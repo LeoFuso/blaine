@@ -83,7 +83,11 @@ If a question asked twice would produce the same correct answer by definition, i
 - Test what the blast radius justifies, not what ritual demands. "Test what you touch" — blast radius decides scope.
 - Passing tests is evidence, not understanding. Before declaring completion, be able to explain failure modes and why the chosen verification covers the relevant risk.
 
-**Long-running work:** Do not fire-and-forget consequential jobs (backfills, migrations, batch operations). Observability, rollback plans, and explicit approval are mandatory. For detailed monitoring requirements and safety gates: [task-completion-and-lifecycle.md](./docs/policies/task-completion-and-lifecycle.md).
+**Long-running work:** Do not fire-and-forget consequential jobs (backfills, migrations, batch operations). Establish observability appropriate to the task type; retain logs and artifacts needed to diagnose failure. For mutating operations, have a rollback or recovery plan ready **before execution**. Duration alone does not require human approval — explicit approval is required only when crossing actual safety boundaries (production mutation, destructive action, privilege escalation, access-boundary change, or other boundary defined by BLAINE.md or project policy). For detailed monitoring requirements and safety gates: [task-completion-and-lifecycle.md](./docs/policies/task-completion-and-lifecycle.md).
+
+## Change Management
+
+**Git safeguards — inspect before acting.** Before modifying an existing checkout, verify `git status` and `git branch`; inspect for uncommitted human changes; never discard or overwrite unrelated work. Permission to edit does not imply permission to commit, push, create a PR, or merge — each is its own authorization boundary. Default to task branches over protected branches; use worktrees when concurrent writers need isolation. For detail: [triage-routing.md](./docs/policies/triage-routing.md).
 
 ## Safety & Completion Protocols
 

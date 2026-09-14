@@ -33,8 +33,8 @@ For every non-trivial task, classify on six dimensions:
 
 ### Large tasks
 
-- Scope: cross-service changes, architecture decisions, new features, any judgment-heavy design that decomposes into independent work units
-- Execution: Full protocol — decomposition, parallel builders, builder-critic separation (see [orchestration.md](./orchestration.md)), full test suite for every touched unit
+- Scope: cross-service changes, architecture decisions, new features, any judgment-heavy design
+- Execution: Full protocol — decomposition into bounded work units, builder-critic separation (see [orchestration.md](./orchestration.md)), full test suite for every touched unit. **Fan-out to parallel builders only when useful independent sub-units exist**; tightly coupled large tasks may use a single builder.
 - Verification: independent critic + full relevant suites for all affected contracts
 - Escalation: default escalation for any change that exceeds the capacity of a single-agent workflow
 

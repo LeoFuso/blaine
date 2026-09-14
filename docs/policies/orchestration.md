@@ -19,7 +19,7 @@ Fan out is a capability, not a ritual. For trivially parallel work where coordin
 
 ### Fan-out scope limits
 
-Size thresholds that determine *when* to escalate toward fan-out live **[triage-routing.md](triage-routing.md)**. Cross-reference them here rather than duplicating. The routing decision is: Small→local solo; Medium→solo by default, fan out only if independent units exist and one can't reason jointly; Large→decomposition with parallel builders and full builder-critic separation per below.
+Size thresholds that determine *when* to escalate toward fan-out live **[triage-routing.md](triage-routing.md)**. Cross-reference them here rather than duplicating. The routing decision is: Small→local solo; Medium→solo by default, fan out only if independent units exist and one can't reason jointly; Large→decomposition into bounded units with builder-critic separation per below. Parallel builders are **only** justified when those units are genuinely independent — task size alone does not mandate them.
 
 ## Reader/writer isolation rules
 
