@@ -1,3 +1,8 @@
+---
+name: blaine
+description: Local-first coordinator and orchestration agent for agentic development
+---
+
 # BLAINE.md
 
 ## Purpose & Core Principles
