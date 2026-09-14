@@ -1,0 +1,15 @@
+cluster-name = "blaine-interactive-spike"
+node-name = "blaine-interactive"
+base-dir = ".local/002/restate-data"
+bind-ip = "127.0.0.1"
+bind-port = 25122
+advertised-host = "127.0.0.1"
+listen-mode = "tcp"
+auto-provision = true
+default-journal-retention = "1 day"
+
+[admin]
+bind-address = "127.0.0.1:29070"
+
+[ingress]
+bind-address = "127.0.0.1:28080"

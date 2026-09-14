@@ -25,7 +25,7 @@ python3 -m venv --without-pip .local/runtime-venv
 .local/bin/uv pip install --python .local/runtime-venv/bin/python \
     --only-binary=:all: -r runtime/requirements.txt
 # Verify the actual SDK/native extension and ASGI app before installing Restate.
-.local/runtime-venv/bin/python -c 'import restate; from runtime.app import app; print("SDK/app import OK")'
+.local/runtime-venv/bin/python -c 'import restate, acp; from runtime.app import app; from runtime.interactive import app as interactive_app; from runtime.acp_agent import BlaineAgent; print("Restate/ACP SDK and app imports OK")'
 .local/bin/uv pip freeze --python .local/runtime-venv/bin/python > .local/runtime-resolved.txt
 
 if [[ ! -x .local/bin/restate-server ]]; then

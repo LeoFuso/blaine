@@ -1,5 +1,7 @@
 # Blaine
 
+Current runtime spike: [Milestone 002 — Interactive Durable Task over ACP](docs/milestones/002-intellij-acp-durable-task.md), including local setup and remote IntelliJ validation.
+
 ### Local-first orchestration agent for agentic development environments
 
 Blaine is a portable source of truth for a personal, local-first agentic development environment. It defines the contract for a coordinator agent that runs on Goose with a local Ollama model, triaging work, curating context, and orchestrating between local tools and frontier agents.
