@@ -1,0 +1,2 @@
+restate-sdk==1.0.5
+hypercorn==0.17.3

@@ -1,0 +1,17 @@
+# Single-machine evaluation only. Start through scripts/run-restate.sh so all
+# relative paths resolve within this repository.
+cluster-name = "blaine-runtime-spike"
+node-name = "blaine-local"
+base-dir = ".local/restate-data"
+bind-ip = "127.0.0.1"
+bind-port = 5122
+advertised-host = "127.0.0.1"
+listen-mode = "tcp"
+auto-provision = true
+default-journal-retention = "1 day"
+
+[admin]
+bind-address = "127.0.0.1:9070"
+
+[ingress]
+bind-address = "127.0.0.1:8080"
