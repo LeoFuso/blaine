@@ -14,21 +14,30 @@ Each entry specifies:
 
 ## Current References
 
+No external skills are currently adopted.
+
+External skills must be evaluated and pinned to a specific revision before being added here.
+
+---
+
+## Candidates Under Evaluation
+
 ### Browser Use
 
-Browser automation patterns for safe, deterministic web interactions.
+Browser automation is a candidate capability for future integration.
 
-```yaml
-name: browser-use
-source: https://github.com/browser-use/skills  # example placeholder — replace with actual repo
-path: skills/browser-use.md
-revision: TBD  # pin after evaluation
-description: Safe browser automation patterns
-integration_notes: Evaluate for sandbox and rate-limiting behavior before adoption
-status: planned
-```
+**Status:** Not yet evaluated or adopted.
 
-**Status:** Planned for future integration. Not yet adopted.
+Before adoption:
+
+- identify the authoritative implementation;
+- review its security and trust boundaries;
+- evaluate sandboxing and network behavior;
+- confirm license compatibility;
+- pin the exact source, path, and revision;
+- document integration constraints.
+
+Do not treat candidates in this section as trusted or installed capabilities.
 
 ---
 
