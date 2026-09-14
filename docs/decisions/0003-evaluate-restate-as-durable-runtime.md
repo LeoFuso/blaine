@@ -1,6 +1,7 @@
 # ADR 0003 — Evaluate Restate as the Durable Runtime
 
-**Status:** Proposed  
+**Status:** Accepted
+
 **Date:** 2026-09-14
 
 ## Context
@@ -75,8 +76,14 @@ Execution state and knowledge state remain separate concerns.
 
 If Restate introduces disproportionate complexity or fails important requirements, this ADR will be rejected and alternatives reconsidered.
 
-## Validation
+## Validation Result
 
-The decision will be validated by the first runtime milestone:
+Milestone 001 successfully verified local Restate execution, persistent workflow state,
+stable task identity, status queries, and durable operations/timers through automated
+tests and live workflow execution. Both Blaine runtime process and Restate process
+crash recovery passed: original tasks completed after restart without resubmission.
 
-`docs/milestones/001-runtime-skeleton.md`
+See [Milestone 001 — Runtime Skeleton](../milestones/001-runtime-skeleton.md#live-evaluation--2026-09-14)
+for evidence and limitations, including untested failure modes and lifecycle features,
+no proof of exactly-once external effects, and the outstanding initial smoke-test
+process cleanup concern.
