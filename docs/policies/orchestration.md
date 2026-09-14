@@ -10,6 +10,8 @@ Without these rules, local agents default to over-parallelism or under-isolation
 
 Fan out only when two conditions hold simultaneously: **multiple genuinely independent sub-units exist** AND **one agent could not reason about them jointly** (not just execute, but understand what connects the units). Otherwise stay local — one good call beats three mediocre ones.
 
+Context-window overflow authorizes **delegation** (see [context-sharding.md](./context-sharding.md)): when investigation would materially pressure the coordinator's working context, decompose along meaningful boundaries and delegate workers writing structured artifacts to persistent storage. This authorizes sharding but does **not** independently authorize parallel fan-out — apply the existing coupling test above to decide whether those shards run in parallel or sequentially. Size alone does not mandate either parallelism or decomposition; tightly coupled work should remain together when decomposition increases coordination cost or loses important relationships.
+
 Use multi-agent fan-out when:
 - Work decomposes cleanly into independent units that would reduce wall-clock time materially through parallelism.
 - Each unit requires a different specialist tool or capability no single agent can provide right now.

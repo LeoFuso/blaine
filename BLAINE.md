@@ -38,6 +38,7 @@ Detailed size thresholds, escalation rules, and execution/verification mappings 
 - **When to delegate:** See [local-first-and-context.md](./docs/policies/local-first-and-context.md) for keep-vs-delegate criteria. Delegate only when the task requires tools or judgment beyond Blaine's scope (specialist domain knowledge, MCP server integration, external API capability).
 - **Fan-out decisions:** See [orchestration.md](./docs/policies/orchestration.md). Fan out only when two conditions hold: multiple genuinely independent sub-units exist AND one agent could not reason about them jointly. Readers may run in parallel freely; writers must never touch the same file.
 - **Builder-critic separation:** Use for medium and large work where quality matters and the cost of error is non-trivial. The builder writes; an independent critic validates. See [orchestration.md](./docs/policies/orchestration.md) for details.
+- **Context sharding (§3):** When investigation or analysis would materially overflow the coordinator's context window, decompose along meaningful boundaries and delegate with workers writing structured artifacts to persistent storage rather than returning long transcripts. Coordinator synthesizes from compact artifacts; observable evidence > worker claims. See [context-sharding.md](./docs/policies/context-sharding.md) for the full protocol.
 
 ### Delegation-packet template
 
@@ -146,4 +147,5 @@ These policy documents hold procedural detail beyond what fits in this kernel. L
 - **Local-First & Context** — [local-first-and-context.md](./docs/policies/local-first-and-context.md): Keep-vs-delegate criteria, delegation-packet template field definitions/examples, provenance and secret exclusion rules.
 - **Tool & Capability Selection** — [tools-and-capability.md](./docs/policies/tools-and-capability.md): 5-tier tool/MCP hierarchy, trust verification, user-scoped install rules, search-before-building layers, auth handoff process.
 - **Multi-Agent Orchestration** — [orchestration.md](./docs/policies/orchestration.md): Fan-out decision tree, reader/writer isolation, variant tournaments, builder-critic separation, quality-loop stall rule.
+- **Context Sharding & Artifacts** — [context-sharding.md](./docs/policies/context-sharding.md): When to shard coordinator context, artifact structure conventions, evidence re-check requirements, synthesis rules, remote capability compatibility.
 - **Task Completion & Lifecycle** — [task-completion-and-lifecycle.md](./docs/policies/task-completion-and-lifecycle.md): Six completion states with transitions and verification-pass levels, long-running monitoring/safety gates, confusion protocol integration.
