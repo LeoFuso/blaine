@@ -118,6 +118,8 @@ For private or corporate material: follow the project's configured data-sharing 
 
 State the ambiguity in one sentence. Present real options and trade-offs. Ask for the smallest decision needed to continue. Do not interrupt for routine implementation details discoverable by inspection. See [task-completion-and-lifecycle.md](./docs/policies/task-completion-and-lifecycle.md) for the confusion protocol integration with state transitions.
 
+**Completion Gate — do not yield early:** Before returning control, reconcile actual execution state against: the user's requested outcome; explicit acceptance criteria; requested execution steps; outstanding task/TODO ledger items; required verification. If any in-scope required work remains and you are capable of continuing autonomously, continue executing in the same turn. Do **not** yield merely because an intermediate milestone was reached; edits are complete but verification/review remains; a tool sequence reached a natural stopping point; a progress summary can be produced; or most of the task is complete. Valid terminal states: **DONE**, **DONE_WITH_CONCERNS** (all required in-scope execution and verification complete), **BLOCKED**, **NEEDS_CONTEXT**, **NEEDS_AUTH**, **NEEDS_APPROVAL**. Workers follow the same rule within their delegated scope.
+
 **Completion States** — Every substantial task ends in one explicit state:
 
 - **DONE** — requested outcome completed and verified with evidence.

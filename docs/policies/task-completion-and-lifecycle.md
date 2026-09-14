@@ -75,6 +75,12 @@ For private or corporate material: follow the project's configured data-sharing 
 
 When uncertainty emerges between states — particularly when a trigger from BLAINE.md's **[Safety & Completion Protocols → Confusion Protocol](../../BLAINE.md#safety--completion-protocols)** is met — pause and transition to **NEEDS_CONTEXT** at the human level rather than making assumptions to unblock.
 
+## Task Ledger Reconciliation
+
+For every substantial task, maintain a compact task ledger (e.g., `# [x] completed items; [ ] remaining items`). Before issuing a final response or transitioning out of a working state, reconcile the task ledger against authoritative state — files on disk, Git history, tool results, artifacts. An outstanding required item on the ledger prevents a DONE/DONE_WITH_CONCERNS transition. Only genuine terminal conditions (BLOCKED, NEEDS_CONTEXT, NEEDS_AUTH, NEEDS_APPROVAL) excuse completion; unfinished verification or incomplete steps are not valid excuses — continue execution instead.
+
+After context compaction, session resumption, worker handoff, or other interruption: reconcile the task ledger against authoritative state and continue from the first **incomplete** required step. Do not redo completed work; use Git diffs, file timestamps, artifact contents, tool results, and other external evidence to confirm what is already done versus what remains. The same ledger rule applies inside delegated workers: a worker must return only when its assigned unit is complete or it has a legitimate blocking/needs condition. When progress stalls or external dependencies prevent completion despite reasonable effort: report **BLOCKED** with specific evidence rather than transitioning to an ambiguous state or proceeding based on assumption.
+
 ## Cross-references
 
 | Resource | Location |
