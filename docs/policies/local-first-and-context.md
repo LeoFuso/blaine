@@ -1,68 +1,76 @@
-# Local-First Routing & Delegation Context Policy
+# Local-first inference and context
 
-Determining what Blaine handles locally versus what gets delegated to a frontier worker. The guiding principle: spend frontier capability on judgment that benefits from it, not on discovery or routine work.
 
-## When to keep work local (§4)
+## Tool before inference
 
-**Keep local when:**
-- The answer can be obtained from shell commands, files, Git, structured APIs, logs, or other deterministic sources;
-- The task is retrieval, filtering, summarization, classification, routine transformation, or low-risk editing;
-- The local model can complete the task with high confidence and verification is available;
-- The primary cost is discovering what matters rather than performing specialist reasoning.
+Use the cheapest reliable mechanism that can establish the fact or produce the
+result.
 
-**Delegate to a frontier worker when:**
-- Implementation requires stronger coding or reasoning capability than the local model can reliably provide;
-- The task is judgment-heavy and the quality difference justifies the frontier cost;
-- A difficult debugging, refactoring, architectural, security, or review problem benefits from specialist capability;
-- An independent high-capability reviewer is warranted by risk level; or
-- The local attempt has stalled and confidence remains materially low after reasonable local investigation.
+Default preference:
 
-Codex is the current primary frontier coding worker. Do not assume other paid providers exist unless configured.
+1. authoritative or deterministic tools;
+2. local model inference;
+3. paid cloud inference.
 
-Prefer **one well-prepared frontier call** over repeated cold starts. Batch related context and questions together to preserve clarity. When a continuation mechanism exists, prefer it over rebuilding context from scratch. **Do not spend frontier tokens on repository discovery, grep, basic file reads, environment inspection, trivial parsing, command execution, or context reconstruction** — do those locally first.
+Do not use an LLM to simulate work that a tool can perform directly and
+verifiably. Examples include searching files, matching text, parsing structured
+data, calculating values, checking network reachability, inspecting Git state,
+querying runtime state, or running tests.
 
-## Deterministic-over-latent rule & the meta-loop (§6)
+The model's role is to decide which tool is appropriate, supply bounded inputs,
+interpret the output, and decide what to do next.
 
-If a question asked twice would produce the same correct answer by definition and should be deterministic work (arithmetic, date/time conversion, structured parsing, CSV/JSON transforms, regex matching, hashing, Git state inspection, dependency versions, etc.), write a script or use a tool rather than reasoning through it in latent space.
+This rule applies to local models too. Local inference may be abundant, but it is
+still probabilistic and should not replace a cheaper, faster, authoritative
+observation.
 
-**The meta-loop:** The model writes the deterministic script, then the script constrains the model forever after. Repeated failure becomes a guardrail; repeated success becomes a reusable primitive — a script, skill, recipe, or MCP tool. Don't reinvent what already exists. Before writing a utility, check for an established one (3-layer preference: tried-and-true standard libs → newer libraries with real traction → first-principles only when conventional approaches genuinely don't fit).
+Escalate from tools to model inference only when interpretation, synthesis,
+ranking, classification, planning, or another semantic judgment is actually
+required.
 
-## Delegation-packet template (minimum sufficient context)
+When inference is required, prefer local inference. Escalate to paid cloud
+inference only when the expected quality or capability benefit justifies the
+cost and the Task's cloud policy permits it.
 
-Before delegating, assemble the minimum sufficient context — not a repository dump. A normal builder packet contains:
+## Deliberate cloud use
 
-```markdown
-# Objective
-What outcome is required.
+Use local tools for retrieval, inspection, filtering, and deterministic transforms.
+Local models can spend context on understanding, ranking, and synthesis when useful.
+Cloud capability is justified by a material quality benefit: difficult reasoning,
+implementation beyond local capability, or independent review warranted by risk.
+A local stall is a reason to reassess, not automatic permission to spend.
 
-# Relevant context
-Only facts and background that materially affect the task.
+Before recommending cloud work, establish the reason, permitted data, smallest
+useful packet, and a way to verify the result. Apply the TaskSpec's cloud policy
+and total budget. Code enforces spend limits and records usage across attempts;
+the Personal Agent cannot raise a ceiling or authorize overspend on its own.
+No provider or adapter is assumed installed. Worker selection is separate from
+whether execution is local or paid cloud; this policy implements no router.
 
-# Evidence
-Observed facts, with file paths, commands, references, or outputs when useful.
+## Just-in-time context
 
-# Scope
-Files, components, services, or artifacts in scope.
+Describe context needs at creation and resolve relevant sources when a step needs
+them. Recheck freshness when source changes could alter the result. Keep provenance
+(path, revision, query, timestamp, or equivalent) with summaries and extracted facts.
+Summaries never outrank original evidence.
 
-# Constraints
-Contracts, compatibility requirements, policies, versions, safety boundaries, and things that must not change.
+For sensitive material, apply configured sharing policy; absent permission, keep it
+local and ask only if remote sharing is necessary. Never transmit credentials.
+A sanitized derivative still needs an appropriate sharing decision.
 
-# Acceptance criteria
-Observable conditions that make the task complete.
+## Minimal worker packet
 
-# Uncertainties
-Open questions, hypotheses, and facts that could not be verified locally.
+Include only applicable content:
 
-# Requested output
-What the worker should return or modify.
-```
+- Objective and requested output.
+- Relevant facts and evidence references with freshness/provenance.
+- Scope and constraints, including autonomy and cloud limits.
+- Completion criteria and expected evidence.
+- Uncertainties and unresolved context needs.
 
-### Do not bias independent reviewers
-
-A packet for an **independent critic or factual reviewer** must not quietly contain the desired verdict or step-by-step solution. Give the artifact, objective, constraints, reference rubric, and relevant facts. Let the reviewer reason to their own conclusion. The builder may receive hypotheses; a cold critic should receive evidence and a reference, not the builder's justification.
-
-## Provenance preservation & secret exclusion
-
-When context comes from source code, Git, documentation, logs, MCPs, or external systems, retain enough provenance for verification later: path, line/function, commit, query, command, issue/MR identifier, or equivalent reference. Do not transmit secrets or unnecessary private material in delegation packets — especially never send credentials, private keys, recovery codes, or API tokens to online models.
-
-For completion states and lifecycle guidance ([`task-completion-and-lifecycle.md`](./task-completion-and-lifecycle.md)), refer to the six-state machine for marking outcomes and handoff conditions.
+Do not send repository dumps, full chat histories, or irrelevant private material.
+Do not remove essential dependencies merely to shorten a packet. Prepare related
+questions together to avoid repeated cloud context reconstruction.
+For independent review, provide the artifact and criteria without a desired verdict
+or the builder's persuasive justification. Large context may use
+[sharding](context-sharding.md) within runtime-managed work.

@@ -1,232 +1,60 @@
-# Blaine Architecture
+# Blaine architecture
 
-This document explains the layered structure of Blaine and how each component serves a distinct purpose. Understanding these boundaries prevents drift, duplication, and confusion.
+Blaine is a personal agentic work system with a conversational control plane over
+durable Tasks. The [product architecture](agentic-development-kit.md) gives the
+broader direction; this document maps the first Personal Agent harness.
 
----
-
-## Layered Architecture
-
-```
-┌──────────────────────────────────────────────┐
-│              Agent Contract                  │
-│           (BLAINE.md / AGENTS.md)            │
-│  Defines orchestration behavior and policy   │
-└──────────────────────────────────────────────┘
-                        │
-                        v
-┌──────────────────────────────────────────────┐
-│                 Skills                       │
-│     (skills/*.md + skills/manifest.md)       │
-│  Domain knowledge: testing, DDD, security    │
-│  External skill references with provenance   │
-└──────────────────────────────────────────────┘
-                        │
-                        v
-┌──────────────────────────────────────────────┐
-│               Recipes/Workflows              │
-│            (recipes/*.recipe)                │
-│  Reusable deterministic workflows            │
-│  Only when repetition justifies automation   │
-└──────────────────────────────────────────────┘
-                        │
-                        v
-┌──────────────────────────────────────────────┐
-│        Machine-Specific Configuration        │
-│    (~/.goose/, .env, gitignored files)       │
-│  Secrets, credentials, local paths           │
-│  NEVER committed to this repository          │
-└──────────────────────────────────────────────┘
+```text
+User / interactive client
+         |
+Personal Agent (BLAINE.md + selected skills)
+         |
+TaskSpec / operation contracts (future tool bindings)
+         |
+Restate runtime -- replaceable workers and verifiers
+         |
+Task evidence / external sources
 ```
 
----
+## Ownership
 
-## Layer 1: Agent Contract (BLAINE.md)
+| Layer | Responsibility | Location |
+|-------|----------------|----------|
+| Personal Agent | Understand intent, answer directly, create/inspect/steer work, explain evidence | [BLAINE.md](../BLAINE.md) |
+| Skills | One contextual procedure per Task operation | [skills convention](../skills/SKILL.md) |
+| Contracts | Intent structure and semantic binding requirements | [TaskSpec](contracts/task-spec.md), [operations](contracts/task-operations.md) |
+| Policy | Shared safety, context, cloud, and verification guidance | `docs/policies/` |
+| Runtime | Durable state, timers, retries, signals, recovery, lifecycle enforcement | Restate; evaluated by ADR 0003 |
+| Workers/verifiers | Bounded execution and evidence checks | Replaceable adapters; bindings added separately |
 
-**Purpose:** Defines the orchestration agent's behavior and decision-making framework.
+The harness does not implement runtime calls, ACP, adapters, routing, or indexing.
+Its contracts are requirements for later integration, not documentation of currently
+implemented endpoints. Runtime implementation and milestone work remain separate.
 
-**Location:** `BLAINE.md` (canonical), `AGENTS.md` (symlink for Codex compatibility)
+## Memory and context
 
-**Content:**
-- Operating principles
-- Triage methodology
-- Local-first routing policy
-- When to delegate vs. stay local
-- Completion states and handoff protocols
-- Safety boundaries
+Chat is disposable working memory. Restate holds execution memory. Knowledge and
+artifact stores hold reusable findings with provenance; external systems remain
+authoritative for their own facts. Context is resolved just in time, with a minimal
+permitted packet for cloud work. A worker claiming success does not complete a Task.
 
-**Why it exists:** Every agent invocation should behave consistently. This layer is the "constitution" — high-level policy that guides all downstream behavior.
+## Progressive disclosure and portability
 
-**Changes are justified when:**
-- The orchestration methodology fundamentally changes
-- New completion states or handoff patterns are needed
-- Triage criteria evolve based on real-world usage
+BLAINE.md is a small entry point. Load only the needed skill and its references.
+Skills use `skills/<name>/SKILL.md`; external references retain reviewed provenance
+in [manifest.md](../skills/manifest.md). No specific loader is assumed.
+Recipes can capture repeated deterministic work when justified; they do not replace
+runtime durability. Machine paths, credentials, and private settings stay outside
+the public repository in ignored local configuration or secure credential stores.
 
----
+## Interaction example
 
-## Layer 2: Skills (`skills/`)
+“Explain this error” may receive a direct answer. “Investigate its cause and retain
+evidence” becomes a TaskSpec. The creation receipt supplies identity; later status
+queries and signals address that identity across sessions. Results pair recorded
+state with deliverables and verification evidence. Closing the client changes none
+of the Task's lifecycle by itself.
 
-**Purpose:** Portable, reusable domain knowledge that agents can load contextually.
-
-**Location:** `skills/*.md` files (e.g., `JAVA_TESTING.md`, `DDD_MODELING.md`)
-
-**Content:**
-- Concrete commands and patterns
-- Verified examples with expected outputs
-- Tool requirements and version constraints
-- Known limitations and failure modes
-
-**What skills are NOT:**
-- Not agent policy or behavior definitions
-- Not machine-specific configuration
-- Not arbitrary external skill copies (use manifest references instead)
-
-**External Skills Manifest (`skills/manifest.md`):**
-- References to trusted external skills
-- Pinned revisions for reproducibility
-- Trust boundary documentation
-
-**Why it exists:** Skills allow agents to load just-in-time expertise without bloating the core contract. A Java testing skill should work on any machine with the right setup, independent of Blaine's orchestration logic.
-
----
-
-## Layer 3: Recipes/Workflows (`recipes/`)
-
-**Purpose:** Deterministic, repeatable workflows that justify automation.
-
-**Location:** `recipes/*.recipe` or similar format
-
-**Content:**
-- Step-by-step automation for repetitive tasks
-- Project scaffolding
-- Multi-project operations
-- CI/CD configuration generation
-
-**When recipes ARE justified:**
-- The workflow is performed 3+ times independently
-- Steps are deterministic and tool-based
-- Human judgment is minimal during execution
-
-**When recipes are NOT justified:**
-- One-off tasks (just use a shell script)
-- Highly variable workflows
-- Tasks requiring significant human decision-making
-
-**Why it exists:** Recipes codify successful patterns into reusable automation. If you're manually repeating the same steps across projects, a recipe prevents drift and errors.
-
----
-
-## Layer 4: Machine-Specific Configuration
-
-**Purpose:** Local credentials, paths, and private settings that vary per machine.
-
-**Location:** Gitignored directories (`~/.goose/`, `.env.local`, `./.local/`)
-
-**Content:**
-- API keys and tokens (NEVER committed)
-- Absolute local paths
-- Personal notes or project-specific secrets
-- IDE/editor configurations
-
-**Why it exists:** This layer is explicitly excluded from the repository. Public code should never contain secrets, and personal configuration shouldn't pollute portable artifacts.
-
-**Gitignore coverage:**
-
-```gitignore
-# Secrets and credentials
-.env*
-*.key
-*.pem
-secrets/
-
-# Local machine config
-.local/
-~/.goose/local-config/*
-
-# Editor/IDE state
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Logs and temporary files
-*.log
-tmp/
-*.tmp
-```
-
----
-
-## Decision Matrix: Where Does X Belong?
-
-| Artifact | Agent Contract | Skills | Recipes | Machine Config |
-|----------|---------------|--------|---------|----------------|
-| "When to delegate frontier work" | ✅ | | | |
-| "JUnit 5 test patterns" | | ✅ | | |
-| "Spring Boot project bootstrapping" | | | ✅ (if repetitive) | |
-| API key for external service | | | | ✅ |
-| Local path `/home/leo/src` | | | | ✅ |
-| DDD aggregate design principles | | ✅ | | |
-| Trust boundary for external skills | | ✅ (manifest.md) | | |
-| CI pipeline configuration template | | | ✅ | |
-
----
-
-## How Layers Interact
-
-### Example Workflow: Java Testing Task
-
-1. **Agent Contract (BLAINE.md)** receives task: "Add integration tests to Spring Boot service"
-2. **Triage**: Local-first investigation — inspect code structure, understand architecture
-3. **Load Skill**: `load_skill(name: "spring-boot-testing")` brings in JUnit/Testcontainers patterns
-4. **Execute Locally**: Run deterministic tools (`mvn test`, docker container inspection)
-5. **Delegate if Needed**: Complex architectural change → frontier worker with curated context packet
-6. **Verify**: Pass tests, ensure expected behavior matches evidence
-7. **Complete**: Report with state DONE and traceable evidence
-
-### Example Workflow: External Skill Integration
-
-1. **Identify Need**: Require browser automation capability
-2. **Consult Manifest**: Check if already referenced in `skills/manifest.md`
-3. **Evaluate**: Review external skill for security, side effects, provenance
-4. **Add Reference**: If trusted, pin specific revision and add to manifest
-5. **Do Not Vendor**: Use reference only; avoid duplicating content that can drift
-
----
-
-## Portability Goals
-
-This repository should work across:
-- Multiple machines (yours, team members')
-- Different Goose installations
-- Compatibility with Codex via AGENTS.md symlink
-- Future agent frameworks that understand Markdown contracts
-
-Portability is achieved by:
-- Separating policy from configuration
-- Using relative paths where possible
-- Documenting requirements rather than assuming environment
-- Maintaining trust boundaries (what can drift vs. what must be pinned)
-
----
-
-## Trust Boundaries Summary
-
-| Boundary | Description | Risk Level |
-|----------|-------------|------------|
-| Agent Contract | Defines system behavior; authored locally | Internal control |
-| Local Skills | Authored domain knowledge in this repo | Internal control |
-| External Skills Manifest | References external sources with provenance | Trusts referenced source |
-| Machine Config | Per-machine, never shared | Isolated from public |
-
-**Key principle:** This repository is the portable truth. Machine-specific and private configuration stays out. External references are documented but never blindly vendored.
-
----
-
-## Maintenance Model
-
-- **BLAINE.md**: Updated only when orchestration methodology changes
-- **Skills**: Evolve independently as tools, frameworks, conventions shift
-- **Recipes**: Created ad-hoc when repetition justifies automation
-- **Manifest**: New entries require evaluation and pinning; existing entries may update revision if re-evaluated
-
-Each layer can change at its own pace without cascading breaking changes.
+See [ADR 0004](decisions/0004-personal-agent-control-plane.md) for this boundary,
+[ADR 0001](decisions/0001-task-is-the-unit-of-work.md) for Task identity, and
+[ADR 0003](decisions/0003-evaluate-restate-as-durable-runtime.md) for runtime evaluation.
