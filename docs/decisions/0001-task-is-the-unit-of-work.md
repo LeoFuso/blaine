@@ -1,6 +1,7 @@
 # ADR 0001 — Task Is the Unit of Work
 
 **Status:** Accepted  
+**Validation:** Validated
 **Date:** 2026-09-14
 
 ## Context
@@ -48,3 +49,49 @@ Tasks may span multiple:
 Agent state may be discarded or recreated without losing the identity or lifecycle of the Task.
 
 This also allows development and non-development workloads to share the same execution model.
+
+## Validation
+
+### Hypothesis
+
+A durable Task can remain the authoritative unit of work independently of the
+conversation, agent process, or client session that created it.
+
+### Validation level
+
+End-to-end.
+
+### Minimal validation
+
+Create a durable Task, allow its originating conversational session to disappear,
+then inspect and continue the same Task from a new session using its stable
+runtime identity.
+
+### Evidence
+
+Validated by Milestones 001 and 002.
+
+Evidence includes:
+
+- durable workflow state surviving process interruption;
+- a Task reaching `WAITING_FOR_USER`;
+- termination of the originating ACP session;
+- retrieval of the same Task by ID from a new ACP session;
+- continuation of that Task from the new session;
+- the Task reaching `COMPLETED`.
+
+The conversation/session was disposable while the Task remained authoritative.
+
+### Not required for validation
+
+- Personal Agent semantic reasoning;
+- cloud workers;
+- MCP;
+- SpecKit;
+- model routing;
+- context preparation.
+
+### Reconsider when
+
+Reconsider if future workloads require durable work whose identity or lifecycle
+cannot be represented independently of a conversational session.
