@@ -151,7 +151,15 @@ swap.
 GPU residency, contention, switching cost, priority, and queuing are separate
 runtime/resource concerns addressed by a later decision.
 
-They may influence selection policy without becoming workflow semantics.
+Worker Selection determines eligible candidates that satisfy semantic capability
+and quality requirements. Under the scheduler proposal in ADR 0011, the Local
+Inference Scheduler allocates/schedules only among these selector-approved
+candidates. Residency, queue latency, and switching cost may influence which
+eligible candidate runs; the scheduler MUST NOT relax capability or quality
+requirements. If none can currently execute, scheduling may wait or request
+reselection according to policy.
+
+These resource concerns do not become workflow semantics.
 
 ## Cloud worker selection
 

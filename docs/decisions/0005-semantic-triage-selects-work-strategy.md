@@ -21,7 +21,11 @@ Blaine needs a semantic decision boundary before worker and model selection.
 ## Decision
 
 The Personal Agent performs semantic triage before selecting workers, models, or
-execution infrastructure.
+execution infrastructure for the requested work.
+
+This ordering does not require triage to select its own execution strategy first.
+Semantic triage itself may use bounded local inference under the normal applicable
+inference and resource policies.
 
 It chooses the minimum work strategy that preserves the user's objective,
 constraints, required quality, and verification needs.
@@ -43,8 +47,9 @@ Representative strategies include:
 These names describe useful starting strategies, not a closed taxonomy and not
 runtime lifecycle states.
 
-The Personal Agent may choose a different or progressively stronger strategy as
-new evidence changes the character of the work.
+The Personal Agent may propose a different or progressively stronger strategy as
+new evidence changes the character of the work. For durable Tasks, the accepted
+strategy and revisions follow the [Work Strategy handoff](../contracts/task-operations.md#work-strategy-handoff).
 
 Worker/model selection happens only after the work strategy and required
 capabilities are understood.

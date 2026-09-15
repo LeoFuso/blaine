@@ -1,7 +1,7 @@
 # ADR 0014 — Project knowledge is retrieval-first, training-last
 
 **Status:** Proposed
-**Validation:** Unvalidated
+**Validation:** Deferred
 
 ## Context
 

@@ -56,7 +56,7 @@ The exact concurrency value is an implementation and measurement concern.
 The scheduler should consider:
 
 - whether a suitable model is already resident;
-- whether that resident model satisfies the required capability and quality;
+- whether that resident model is among the selector-approved eligible candidates;
 - current local inference work;
 - interactive versus background priority;
 - cost of switching models;
@@ -84,7 +84,7 @@ satisfy the same requirement.
 Conceptually:
 
 required capability
--> identify sufficient eligible local workers
+-> Worker Selection identifies sufficient eligible local workers
 -> prefer a sufficient resident worker
 -> otherwise schedule an appropriate switch or wait
 -> execute when the resource becomes available
@@ -150,8 +150,12 @@ Worker selection may consider scheduler information such as:
 - switching cost;
 - resource availability.
 
-However, operational convenience must not cause an insufficient worker to be
-treated as sufficient.
+The scheduler allocates/schedules only among selector-approved eligible candidates
+that satisfy semantic capability and quality requirements. Residency, queue
+latency, and switching cost may influence which eligible candidate runs, but the
+scheduler MUST NOT relax those requirements. If no eligible candidate can
+currently execute, scheduling may wait or request reselection according to policy.
+This defines the ownership boundary, not a scheduling algorithm.
 
 The order is:
 

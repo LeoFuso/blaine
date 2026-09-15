@@ -6,6 +6,16 @@
 
 > Examples in this document are intentionally generic so the public repository does not encode employer-, client-, or project-specific operational details.
 
+Current [ADRs](decisions/README.md) take precedence over this document's older
+exploratory topology, routing, contract, and build-sequence examples. Proposed
+ADRs remain proposals; examples do not establish acceptance or implementation.
+
+Current ownership: the Personal Agent owns semantic interpretation and triage;
+TaskSpec describes durable intent; Work Strategy is derived execution metadata
+recorded with durable Task state. The Durable Runtime owns lifecycle state, with
+Restate as its current implementation. Workers are replaceable; ACP is a client
+integration protocol. SpecKit-style workflows are optional semantic strategies.
+
 ---
 
 ## 1. What Blaine Is
@@ -70,7 +80,7 @@ It defines concepts such as:
 
 The durable execution layer.
 
-Initial runtime candidate: **Restate**.
+Current implementation of the Durable Runtime role: **Restate**.
 
 Responsibilities:
 
@@ -87,6 +97,11 @@ Responsibilities:
 ---
 
 ## 3. Core Architecture
+
+**Historical exploratory topology:** the diagram below is retained for context,
+not as current ownership or routing guidance. Its separate "Decision Plane" is
+now covered by Personal Agent / Semantic Triage responsibility; ACP belongs to
+client integration, not the execution-worker categories shown here.
 
 ```text
                         USER
@@ -147,7 +162,7 @@ It is expensive, lossy, and disposable.
 
 Never treat chat history as authoritative workflow state.
 
-### 4.2 Execution Memory — Restate
+### 4.2 Execution Memory — Durable Runtime (currently Restate)
 
 Authoritative operational state:
 
@@ -286,7 +301,10 @@ Do not create a universal giant prompt.
 
 ---
 
-## 7. Decision Plane
+## 7. Bounded Semantic Decisions
+
+The Personal Agent owns semantic interpretation/triage; this is not a separate
+Decision Plane. Worker Selection owns capability/quality eligibility.
 
 Local models are valuable, but they should make **bounded semantic decisions**, not pretend to be the runtime.
 
@@ -311,7 +329,8 @@ state, schedules and completion entirely through a prompt."
 
 Whenever policy code can make a decision reliably, prefer policy code.
 
-Example early routing policy:
+Historical early routing sketch (not current policy; task type does not select a
+concrete model or worker):
 
 ```text
 simple deterministic lookup     → tools first
@@ -348,7 +367,7 @@ Completion belongs to the task runtime and verifier.
 
 ### Runtime manages lifecycle; agents do work
 
-Restate should manage:
+The Durable Runtime (currently Restate) manages lifecycle; illustrative states:
 
 ```text
 RUNNING
@@ -370,11 +389,11 @@ The runtime controls lifecycle, not thought.
 AgentAdapter
 ├── CodexAdapter
 ├── GooseAdapter
-├── ACPAdapter
 └── future adapters
 ```
 
-Codex is a powerful worker, not part of the architecture itself.
+Codex is a powerful worker, not part of the architecture itself. ACP is a client
+integration protocol, not an execution-worker category.
 
 ---
 
@@ -407,7 +426,8 @@ Do not make every worker ingest the entire operating manual.
 
 ## 10. Task Contract
 
-Conceptually, a Blaine task should be able to represent:
+Historical exploratory contract example; use the current [TaskSpec contract](contracts/task-spec.md)
+for field meanings and cloud authorization. This example is not a valid TaskSpec:
 
 ```yaml
 objective: investigate service routing regression
@@ -612,7 +632,7 @@ If the project starts becoming "our own Air/Cursor", stop and reassess.
 ## 15. Ten Rules to Keep Us Focused
 
 1. **Task is the unit of work. Chat/session is not.**
-2. **Restate owns execution state. LLMs do not.**
+2. **The Durable Runtime (currently Restate) owns execution state. LLMs do not.**
 3. **LLMs make semantic decisions; code manages lifecycle.**
 4. **Local inference is abundant. Paid cloud inference is scarce.**
 5. **Context is resolved just-in-time, not universally loaded.**
@@ -803,7 +823,7 @@ Borrow:
 
 ### Restate
 
-Use as the durable execution kernel:
+Current implementation of the Durable Runtime role:
 
 - workflows;
 - durable state;
@@ -832,7 +852,7 @@ Current working decisions:
 - Coding is a major workload, not the whole system.
 - Interactive work is the default experience.
 - Background/overnight execution must be possible but is secondary.
-- Restate is the current preferred durable-runtime candidate.
+- Restate is the current implementation of the Durable Runtime role.
 - IntelliJ via ACP is the current preferred first user interface.
 - Paid cloud inference should be minimized; local inference need not be.
 - Local models are decision/context workers, not the workflow engine.

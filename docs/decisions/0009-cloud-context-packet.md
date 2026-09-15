@@ -36,10 +36,14 @@ execution.
 
 ## Decision
 
-Every invocation of an allow-listed Cloud Agent must receive context through an
-explicit Cloud Context Packet.
+As in ADR 0008, a **Cloud Worker** is an allow-listed externally hosted model or
+agent outside the local trust boundary. A **Paid Cloud Worker** is a Cloud Worker
+whose invocation incurs paid cloud usage.
 
-A caller does not forward its complete working context directly to a Cloud Agent.
+Every Cloud Worker invocation must receive context through an explicit Cloud
+Context Packet, whether or not it incurs paid usage.
+
+A caller does not forward its complete working context directly to a Cloud Worker.
 
 This applies whether the caller is:
 
@@ -50,8 +54,8 @@ This applies whether the caller is:
 - a future MCP client;
 - a scheduled or background workflow.
 
-Paid cloud invocations additionally cross the Cloud Dispatch Boundary defined by
-ADR 0008.
+Every Paid Cloud Worker invocation additionally crosses the Paid Cloud Dispatch
+Boundary defined by ADR 0008.
 
 The Cloud Context Packet is a first-class dispatch artifact.
 
@@ -124,13 +128,13 @@ The final provenance representation is an implementation concern.
 
 ## Mandatory protocol, proportional work
 
-Every Cloud Agent invocation requires a Cloud Context Packet.
+Every Cloud Worker invocation requires a Cloud Context Packet.
 
 That does not mean every invocation requires an expensive preparation workflow.
 
 A trivial request may produce a trivial packet directly.
 
-For example, a user asking a Cloud Agent to critique one explicitly provided
+For example, a user asking a Cloud Worker to critique one explicitly provided
 paragraph may require little more than:
 
 - the purpose;
@@ -187,7 +191,7 @@ A broad-context override relaxes normal reduction.
 
 It does not bypass:
 
-- Cloud Agent allowlists;
+- Cloud Worker allowlists;
 - cloud authorization;
 - configured budget limits;
 - source permissions;
@@ -231,7 +235,7 @@ context elements before they are eligible for a packet.
 
 ## Dynamic context access
 
-A Cloud Agent must not escape the packet boundary by gaining unrestricted access
+A Cloud Worker must not escape the packet boundary by gaining unrestricted access
 to local context after dispatch.
 
 Future controlled retrieval mechanisms may allow a cloud worker to request
@@ -316,7 +320,7 @@ Define several bounded questions against that corpus.
 Use local tools and, where semantic ranking or compression is required, local
 inference to produce Cloud Context Packets.
 
-Send the resulting packets to a fake Cloud Agent that records exactly what it
+Send the resulting packets to a fake Cloud Worker that records exactly what it
 received.
 
 Include at least:
@@ -348,7 +352,7 @@ PASS requires demonstrating that:
   one prepared synchronously;
 - broad-context authorization still produces a packet and does not bypass other
   egress restrictions;
-- the fake Cloud Agent cannot access unselected local fixture context.
+- the fake Cloud Worker cannot access unselected local fixture context.
 
 Quality evaluation should focus on whether the packet retains the evidence needed
 for the bounded question, not token reduction alone.
@@ -358,7 +362,7 @@ A smaller packet that materially damages the required outcome is a failure.
 ### Not required for validation
 
 - Codex;
-- Astra or another real Cloud Agent;
+- Astra or another real Cloud Worker;
 - paid tokens;
 - Restate integration;
 - IntelliJ;

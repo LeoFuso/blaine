@@ -33,8 +33,13 @@ Blaine therefore needs one mandatory boundary for paid cloud dispatch.
 
 ## Decision
 
-All paid cloud-agent and paid cloud-model access must cross a single conceptual
-Cloud Dispatch Boundary.
+A **Cloud Worker** is an allow-listed externally hosted model or agent outside the
+local trust boundary. A **Paid Cloud Worker** is a Cloud Worker whose invocation
+incurs paid cloud usage.
+
+Every Cloud Worker invocation requires an explicit Cloud Context Packet under
+ADR 0009. Every Paid Cloud Worker invocation additionally must cross a single
+conceptual Paid Cloud Dispatch Boundary.
 
 No component receives unrestricted direct access to a paid cloud worker.
 
@@ -124,7 +129,7 @@ inference.
 Only after those decisions may a workflow determine that paid cloud capability
 is justified.
 
-The request then crosses the Cloud Dispatch Boundary.
+The request then crosses the Paid Cloud Dispatch Boundary.
 
 The boundary does not decide whether a user request should become a Task and
 does not own semantic triage.
@@ -145,7 +150,7 @@ selection.
 
 Concrete worker-selection policy is a separate architectural decision.
 
-The Cloud Dispatch Boundary enforces whether the resulting paid dispatch is
+The Paid Cloud Dispatch Boundary enforces whether the resulting paid dispatch is
 permitted.
 
 ## Personal Agent behavior
@@ -188,7 +193,7 @@ the Task blocked as appropriate.
 
 ## Boundaries
 
-The Cloud Dispatch Boundary does not:
+The Paid Cloud Dispatch Boundary does not:
 
 - own Task lifecycle;
 - replace the Durable Runtime;

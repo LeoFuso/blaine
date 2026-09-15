@@ -23,6 +23,23 @@ Returns:
 
 A submitted request is not proof that creation succeeded.
 
+## Work Strategy handoff
+
+TaskSpec remains the durable intent contract. Work Strategy is derived execution
+metadata, not a required TaskSpec field or a place for workflow steps or plans.
+
+The Personal Agent / Semantic Triage authors the initial Work Strategy. At Task
+creation, Blaine records the current strategy alongside the Task's durable
+execution state.
+
+The Durable Runtime is authoritative for which strategy is currently recorded,
+but it does not make the semantic judgment that produced that strategy.
+
+When later evidence warrants a change, the Personal Agent or workflow may propose
+a revision. Any required policy or user approval is applied before the revision
+becomes current. The resulting strategy must be recorded durably; conversation
+memory is never authoritative for it.
+
 ## Status
 
 Input:

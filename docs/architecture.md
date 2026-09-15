@@ -2,7 +2,9 @@
 
 Blaine is a personal agentic work system with a conversational control plane over
 durable Tasks. The [product architecture](agentic-development-kit.md) gives the
-broader direction; this document maps the first Personal Agent harness.
+broader direction; this document maps the first Personal Agent harness. Current
+[ADRs](decisions/README.md) take precedence over older exploratory topology and
+routing examples; Proposed ADRs remain proposals.
 
 ```text
 User / interactive client
@@ -11,7 +13,7 @@ Personal Agent (BLAINE.md + selected skills)
          |
 TaskSpec / operation contracts (future tool bindings)
          |
-Restate runtime -- replaceable workers and verifiers
+Durable Runtime (currently Restate) -- replaceable workers and verifiers
          |
 Task evidence / external sources
 ```
@@ -20,11 +22,11 @@ Task evidence / external sources
 
 | Layer | Responsibility | Location |
 |-------|----------------|----------|
-| Personal Agent | Understand intent, answer directly, create/inspect/steer work, explain evidence | [BLAINE.md](../BLAINE.md) |
+| Personal Agent | Own semantic interpretation/triage, answer directly, create/inspect/steer work, explain evidence | [BLAINE.md](../BLAINE.md) |
 | Skills | One contextual procedure per Task operation | [skills convention](../skills/SKILL.md) |
 | Contracts | Intent structure and semantic binding requirements | [TaskSpec](contracts/task-spec.md), [operations](contracts/task-operations.md) |
 | Policy | Shared safety, context, cloud, and verification guidance | `docs/policies/` |
-| Runtime | Durable state, timers, retries, signals, recovery, lifecycle enforcement | Restate; evaluated by ADR 0003 |
+| Durable Runtime | Durable state, timers, retries, signals, recovery, lifecycle enforcement | Current implementation: Restate; evaluated by ADR 0003 |
 | Workers/verifiers | Bounded execution and evidence checks | Replaceable adapters; bindings added separately |
 
 The harness does not implement runtime calls, ACP, adapters, routing, or indexing.
@@ -33,8 +35,9 @@ implemented endpoints. Runtime implementation and milestone work remain separate
 
 ## Memory and context
 
-Chat is disposable working memory. Restate holds execution memory. Knowledge and
-artifact stores hold reusable findings with provenance; external systems remain
+Chat is disposable working memory. The Durable Runtime (currently Restate) holds
+execution memory. Knowledge and artifact stores hold reusable findings with
+provenance; external systems remain
 authoritative for their own facts. Context is resolved just in time, with a minimal
 permitted packet for cloud work. A worker claiming success does not complete a Task.
 
