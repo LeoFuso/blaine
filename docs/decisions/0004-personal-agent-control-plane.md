@@ -1,6 +1,6 @@
 # ADR 0004 — Personal Agent as Conversational Control Plane
 
-**Status:** Accepted  
+**Status:** Accepted
 **Date:** 2026-09-14
 
 ## Context
