@@ -1,7 +1,7 @@
 # Milestone 002 — Interactive Durable Task over ACP
 
-Architectural validation spike. Local validation is automated; IntelliJ validation
-is **manual and outstanding**. No LLM is involved.
+Architectural validation spike. Local and IntelliJ validation have both passed.
+No LLM is involved.
 
 IntelliJ AI Chat → local SSH client → Tailscale → SSH on Blaine → official Python
 ACP agent → loopback Restate → durable `TaskWorkflow`.
@@ -133,7 +133,7 @@ agent settings; this spike does not use either. There is no agent login, model
 selection, or subscription used by Blaine. An IntelliJ/AI Assistant version
 supporting custom ACP agents is required; managed installations may restrict them.
 
-## Final MANUAL IntelliJ validation — user must perform
+## Final MANUAL IntelliJ validation — PASSED
 
 1. Configure the custom Blaine ACP agent above and select it in AI Chat.
 2. Send `create task: IntelliJ session independence`; save the returned task ID
@@ -145,8 +145,22 @@ supporting custom ACP agents is required; managed installations may restrict the
 7. Observe COMPLETED and the stored result including that message.
 
 Record the ID and screenshots/transcript under `.local/evidence` if desired.
-Only this manual run can establish IntelliJ integration; a local SDK client is
-not evidence that IntelliJ or the remote SSH path passed.
+Manual IntelliJ validation passed on 2026-09-14.
+
+The client was IntelliJ with a project opened through WSL. IntelliJ launched
+`/usr/bin/ssh` as the ACP transport, connecting through Tailscale SSH to Blaine
+and executing `scripts/run-acp-agent.sh`.
+
+Validation confirmed:
+
+- task creation reached `WAITING_FOR_USER`;
+- the Task ID remained stable after ending the original ACP conversation;
+- a new IntelliJ ACP session retrieved the same Task and state;
+- the new session successfully signalled the Task;
+- the Task reached `COMPLETED`.
+
+This establishes the intended session-independence property end-to-end through
+IntelliJ, WSL, SSH, ACP, and Restate.
 
 ## Local automated evidence
 
