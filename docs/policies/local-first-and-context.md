@@ -1,5 +1,37 @@
 # Local-first inference and context
 
+
+## Tool before inference
+
+Use the cheapest reliable mechanism that can establish the fact or produce the
+result.
+
+Default preference:
+
+1. authoritative or deterministic tools;
+2. local model inference;
+3. paid cloud inference.
+
+Do not use an LLM to simulate work that a tool can perform directly and
+verifiably. Examples include searching files, matching text, parsing structured
+data, calculating values, checking network reachability, inspecting Git state,
+querying runtime state, or running tests.
+
+The model's role is to decide which tool is appropriate, supply bounded inputs,
+interpret the output, and decide what to do next.
+
+This rule applies to local models too. Local inference may be abundant, but it is
+still probabilistic and should not replace a cheaper, faster, authoritative
+observation.
+
+Escalate from tools to model inference only when interpretation, synthesis,
+ranking, classification, planning, or another semantic judgment is actually
+required.
+
+When inference is required, prefer local inference. Escalate to paid cloud
+inference only when the expected quality or capability benefit justifies the
+cost and the Task's cloud policy permits it.
+
 ## Deliberate cloud use
 
 Use local tools for retrieval, inspection, filtering, and deterministic transforms.

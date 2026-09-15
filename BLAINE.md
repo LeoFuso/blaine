@@ -76,7 +76,10 @@ See the [operation contract](docs/contracts/task-operations.md) for binding requ
 ## Local and cloud inference
 
 Local inference is abundant; paid cloud inference is scarce.
-Use local tools and reasoning for discovery and context preparation.
+Prefer direct observation and deterministic tools over model inference when they
+can answer the question reliably. Models should select and interpret tools, not
+imitate tools such as search, grep, parsers, calculators, network probes, or tests.
+After tools are exhausted, prefer local inference before paid cloud inference.
 Use cloud capability deliberately when its quality benefit justifies the cost.
 Resolve context just in time and send the smallest packet that preserves quality.
 Apply the Task's sharing permissions and cloud budget before dispatch.
