@@ -1,0 +1,48 @@
+@startuml context-flow
+title Blaine — context forms and provenance
+top to bottom direction
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam componentBackgroundColor<<proposed>> #FFF2CC
+
+database "Authoritative Project /\nExternal Sources" as Sources <<evidence>>
+database "Artifact Store\nprior plans, outputs, evidence" as Artifacts
+component "Context Catalog\ndiscovery aid" as Catalog <<proposed>>
+component "Context Retrieval\nand Preparation" as Retrieval
+artifact "Selected Working Context\nwith source provenance" as Selected
+artifact "Exact Evidence /\nSafe Summaries" as Represented
+component "Protected Transformation\nlocal only" as Transform <<proposed>>
+artifact "Cloud Context Packet\nfor external use" as Packet
+
+Sources --> Retrieval : discover / retrieve
+Artifacts --> Retrieval : addressable prior work
+Catalog ..> Retrieval : aid discovery
+Retrieval --> Selected : select relevant context
+Selected --> Represented : preserve exact or summarize safely
+Selected --> Transform : protected content when required
+Transform --> Packet : permitted transformed form
+Represented --> Packet : bounded external representation
+
+note right of Sources
+  Remain sources of truth.
+end note
+
+note right of Selected
+  Selection retains provenance;
+  derived forms do not replace sources.
+end note
+
+note bottom of Catalog
+  Proposed; not a source of truth.
+end note
+
+note bottom of Transform
+  Proposed; transformation is local
+  and grants no egress permission.
+end note
+
+note bottom of Packet
+  Created only when external use is required.
+  Authorization mechanics are not shown.
+end note
+@enduml

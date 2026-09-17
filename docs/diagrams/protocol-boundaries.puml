@@ -1,0 +1,43 @@
+@startuml protocol-boundaries
+title Blaine — protocol boundaries
+left to right direction
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam componentBackgroundColor<<proposed>> #FFF2CC
+
+component "Conversational Client" as Conversation
+component "Conversational Adapter\nACP — current example" as ACP <<implementation>>
+component "Personal Agent\nsemantic interpretation" as Agent <<decision>>
+component "Programmable Client /\nExternal Agent" as Program
+component "Programmable Adapter\nMCP / CLI — future examples" as ProgramAdapter <<proposed>>
+component "Blaine Core\nprotocol-neutral operations" as Core
+component "Durable Runtime\nRestate — current implementation" as Runtime <<runtime>>
+
+Conversation --> ACP
+ACP --> Agent : transport conversation
+Agent --> Core : semantic requests
+Program --> ProgramAdapter
+ProgramAdapter --> Core : Task operations
+Core --> Runtime : durable execution operations
+
+note bottom of ACP
+  ACP is transport, not
+  Personal Agent semantics.
+end note
+
+note bottom of ProgramAdapter
+  Adapters translate protocols;
+  they do not create another Task model.
+  <<proposed>> future adapter examples.
+end note
+
+note bottom of Core
+  Same core operations across protocols.
+  Protocol-neutral, not protocol-free.
+end note
+
+note bottom of Runtime
+  Adapter session state is not durable Task state.
+end note
+
+@enduml

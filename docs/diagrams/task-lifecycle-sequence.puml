@@ -1,0 +1,47 @@
+@startuml task-lifecycle-sequence
+title Blaine — durable Task lifecycle
+skinparam shadowing false
+hide footbox
+
+actor User
+participant "Personal Agent" as Agent <<decision>>
+participant "Blaine Core\nTask operations" as Core
+participant "Durable Runtime\nRestate — current implementation" as Runtime <<runtime>>
+participant Worker
+
+User -> Agent : request independent work
+Agent -> Core : create(TaskSpec — durable intent)
+Core -> Runtime : accept durable Task intent
+Runtime -> Runtime : assign identity; record state and workflow position
+Runtime --> Core : Task ID + authoritative state
+Core --> Agent : creation receipt
+Agent --> User : Task ID and recorded state
+
+Runtime -> Worker : execute current phase
+Worker --> Runtime : outcome / progress
+
+alt genuine user input is required
+  Runtime -> Runtime : record WAITING_FOR_USER
+  note over Agent,Worker
+    The originating session and Worker may disappear.
+    The durable Task identity and state remain.
+  end note
+  User -> Agent : later interaction
+  Agent -> Core : signal(Task ID, continue / decision)
+  Core -> Runtime : validated signal
+  Runtime -> Runtime : record signal and resume when permitted
+  Runtime -> Worker : execute / resume phase
+  Worker --> Runtime : outcome / progress
+else no durable wait
+  Runtime -> Runtime : continue at recorded position
+end
+
+Runtime -> Runtime : record outcome or completion transition
+Runtime --> Core : authoritative state and result references
+Core --> Agent : current outcome
+Agent --> User : evidenced result or honest waiting state
+
+note over Agent,Runtime
+  Task > conversation/session. Worker replacement does not replace the Task.
+end note
+@enduml

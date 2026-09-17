@@ -1,0 +1,54 @@
+@startuml cloud-egress-sequence
+title Blaine — allowed cloud invocation and context egress
+skinparam shadowing false
+hide footbox
+skinparam sequenceParticipantBackgroundColor<<proposed>> #FFF2CC
+
+participant "Caller / Workflow" as Caller
+participant "Worker Selection" as Selection <<decision>>
+actor User
+participant "Context Preparation" as Preparation
+participant "Context Egress Policy" as Egress
+participant "Paid Cloud Dispatch Boundary" as Dispatch <<boundary>>
+participant "Cloud Worker\noutside local trust boundary" as Cloud
+
+Caller -> Selection : required capability and quality
+Selection --> Caller : cloud capability materially justified
+
+opt paid-cloud policy requires explicit authorization
+  Caller -> User : request cloud authorization
+  User --> Caller : authorize invocation
+end
+
+Caller -> Preparation : prepare bounded cloud context
+Preparation -> Preparation : discover and select needed context
+Preparation -> Egress : selected context with provenance
+Egress -> Egress : decide eligibility; transform locally if required
+note right of Egress
+  Authorization != egress.
+  Transformation != permission.
+end note
+Egress --> Preparation : permitted representation
+Preparation -> Preparation : construct Cloud Context Packet
+note right of Preparation
+  Every covered Cloud Worker receives
+  an explicit Context Packet.
+end note
+
+Caller -> Dispatch : paid request + Context Packet
+Dispatch -> Dispatch : enforce authorization, allowlist, and budget
+Dispatch -> Cloud : allowed paid invocation + Context Packet
+Cloud --> Caller : bounded outcome
+
+loop Cloud Worker requests more context
+  Caller -> Preparation : prepare additional Context Packet
+  Preparation -> Egress : repeat egress process
+  Egress --> Preparation : permitted representation
+  Preparation -> Cloud : additional Context Packet
+end
+
+note over Caller,Dispatch
+  An unpaid Cloud Worker still receives a Context Packet,
+  but does not cross the Paid Cloud Dispatch Boundary.
+end note
+@enduml

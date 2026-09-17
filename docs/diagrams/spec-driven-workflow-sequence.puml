@@ -1,0 +1,68 @@
+@startuml spec-driven-workflow-sequence
+title Blaine — optional spec-driven workflow
+skinparam shadowing false
+hide footbox
+
+actor User
+participant "Personal Agent\nSemantic Triage" as Agent <<decision>>
+participant "Durable Runtime\nRestate — current implementation" as Runtime <<runtime>>
+participant "Phase Worker" as Worker
+database "Artifact Store" as Store
+participant Verifier <<evidence>>
+
+Agent -> Runtime : TaskSpec (durable intent) + SPEC_DRIVEN Work Strategy
+Runtime -> Runtime : record durable workflow position
+note right of Runtime
+  Semantic phases are not lifecycle state.
+  Runtime remains authoritative.
+end note
+
+group SPECIFY
+  Runtime -> Worker : produce specification outcome
+  Worker -> Store : specification artifact
+  Runtime -> Verifier : specification and criteria
+  Verifier --> Runtime : findings
+  Runtime -> Runtime : accept or retain phase
+end
+
+opt CLARIFY when a genuine decision is needed
+  Runtime -> Runtime : record WAITING_FOR_USER
+  Runtime --> Agent : decision need
+  Agent -> User : clarify / request approval
+  User --> Agent : decision
+  Agent -> Runtime : signal decision
+end
+
+group PLAN when useful
+  Runtime -> Worker : produce technical plan
+  Worker -> Store : plan artifact
+  Runtime -> Runtime : record accepted position
+end
+
+group TASKS when useful
+  Runtime -> Worker : decompose bounded work
+  Worker -> Store : task artifact
+  Runtime -> Runtime : record accepted position
+end
+
+group IMPLEMENT
+  Runtime -> Worker : implement bounded work
+  Worker -> Store : implementation artifact
+end
+
+group VERIFY / CONVERGE
+  Runtime -> Verifier : artifacts, evidence, and completion criteria
+  Verifier --> Runtime : supporting evidence or concerns
+  alt evidence supports acceptance
+    Runtime -> Runtime : record phase acceptance / completion
+  else evidence is insufficient
+    Runtime -> Runtime : retain position; request additional work
+    Runtime -> Worker : loop back: revise a needed phase
+  end
+end
+
+note over Runtime,Store
+  Artifacts are phase inputs/outputs, not lifecycle authority.
+  Not every phase is mandatory; SpecKit-style strategy is optional.
+end note
+@enduml

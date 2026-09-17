@@ -1,0 +1,52 @@
+@startuml decision-authority-sequence
+title Blaine — decision authority
+skinparam shadowing false
+hide footbox
+
+actor User
+participant "Personal Agent\nSemantic Triage" as Agent <<decision>>
+participant "Durable Runtime\nRestate — current implementation" as Runtime <<runtime>>
+participant "Worker Selection" as Selection <<decision>>
+participant "Verifier" as Verifier <<evidence>>
+
+User -> Agent : objective, constraints, approvals
+note right of User
+  Owns genuine product and
+  semantic decisions.
+end note
+
+Agent -> Agent : interpret intent; author Work Strategy
+note right of Agent
+  Semantic triage and strategy
+  precede worker selection.
+end note
+Agent -> Runtime : TaskSpec (durable intent) + proposed Work Strategy
+Runtime -> Runtime : record durable state and current strategy
+note right of Runtime
+  Records authority; does not invent
+  semantic strategy.
+end note
+
+Runtime -> Selection : phase capability / quality requirements
+Selection --> Runtime : eligible execution capability
+note right of Selection
+  Decides what may execute;
+  not whether work is accepted.
+end note
+
+Runtime -> Verifier : candidate output and completion criteria
+Verifier -> Verifier : evaluate evidence
+Verifier --> Runtime : findings: supports / does not support acceptance
+Runtime -> Runtime : record phase or Task transition from evidence
+
+opt genuine approval or semantic decision is needed
+  Runtime --> Agent : recorded decision need
+  Agent -> User : request decision
+  User --> Agent : decision / approval
+  Agent -> Runtime : semantic signal
+end
+
+note over Runtime,Verifier
+  A worker's DONE claim is not acceptance evidence.
+end note
+@enduml

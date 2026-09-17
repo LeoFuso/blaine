@@ -1,0 +1,47 @@
+@startuml local-inference-scheduling-sequence
+title Blaine — proposed local inference scheduling
+skinparam shadowing false
+hide footbox
+skinparam sequenceParticipantBackgroundColor<<proposed>> #FFF2CC
+
+participant "Task A" as A
+participant "Task B" as B
+participant "Worker Selection" as Selection <<decision>>
+participant "Local Inference Scheduler" as Scheduler <<proposed>>
+participant "Inference Resource /\nResident Model" as Resource <<proposed>>
+
+note over Selection,Scheduler
+  Worker Selection decides WHAT MAY RUN.
+  Scheduler decides WHEN / WHICH approved local candidate runs.
+end note
+
+== A. Reuse a sufficient resident candidate ==
+A -> Selection : capability / quality requirement
+Selection -> Scheduler : approved local candidate: resident
+Scheduler -> Resource : allocate resident candidate
+Resource --> Scheduler : execution complete
+Scheduler --> A : run without model switch
+
+== B. Prefer a sufficient resident choice ==
+B -> Selection : requirement with several eligible choices
+Selection -> Scheduler : approved candidates: resident, non-resident
+Scheduler -> Resource : allocate sufficient resident candidate
+Resource --> Scheduler : execution complete
+Scheduler --> B : run; avoid unnecessary switch
+
+== C. Wait, then switch only among eligible candidates ==
+B -> Selection : requirement needs a different local candidate
+Selection -> Scheduler : approved candidate: non-resident only
+Scheduler -> Scheduler : queue while GPU is busy
+Scheduler -> Resource : when free, switch and allocate approved candidate
+Resource --> Scheduler : execution complete
+Scheduler --> B : run after durable resource wait
+
+== D. Residency never relaxes semantic requirements ==
+A -> Selection : stricter capability / quality requirement
+Selection --> A : resident candidate is insufficient; not approved
+note over Selection,Scheduler
+  No allocation occurs without an approved candidate.
+  GPU contention does not automatically authorize paid cloud.
+end note
+@enduml
