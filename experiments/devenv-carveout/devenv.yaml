@@ -1,0 +1,5 @@
+# Static prototype: generate and review devenv.lock only after installation approval.
+inputs:
+  nixpkgs:
+    url: github:cachix/devenv-nixpkgs/rolling
+# Deliberately no evaluation-time SecretSpec loading, dotenv or GPU services.

@@ -1,0 +1,29 @@
+{
+  "secret_values_read": false,
+  "keyring_modified": false,
+  "candidates": [
+    {
+      "attribute_names": [
+        "credential",
+        "service",
+        "xdg:schema"
+      ],
+      "has_service": true,
+      "has_username": false,
+      "has_user": false,
+      "locked": false
+    },
+    {
+      "attribute_names": [
+        "credential",
+        "service",
+        "xdg:schema"
+      ],
+      "has_service": true,
+      "has_username": false,
+      "has_user": false,
+      "locked": false
+    }
+  ],
+  "status": "metadata inspected; no values or addressing identifiers retained"
+}

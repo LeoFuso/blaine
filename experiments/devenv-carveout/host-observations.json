@@ -1,0 +1,58 @@
+{
+  "commands": {
+    "devenv": null,
+    "nix": null,
+    "process-compose": null,
+    "secretspec": null,
+    "bws": "/usr/local/bin/bws",
+    "uv": "/home/leofuso/.local/bin/uv",
+    "pg_isready": "/usr/bin/pg_isready",
+    "redis-cli": "/usr/bin/redis-cli"
+  },
+  "executables": {
+    "/home/leofuso/workspace/blaine/.local/bin/restate-server": true,
+    "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python": true,
+    "/home/leofuso/workspace/vllm-lab/.venv/bin/vllm": true,
+    "/home/leofuso/workspace/mirix/.venv/bin/mirix": true,
+    "/nix/var/nix/profiles/default/bin/nix": false,
+    "/home/leofuso/.nix-profile/bin/nix": false
+  },
+  "postgres": {
+    "exit": 0,
+    "stdout": "127.0.0.1:5432 - accepting connections",
+    "stderr": ""
+  },
+  "redis": {
+    "exit": 0,
+    "stdout": "PONG",
+    "stderr": ""
+  },
+  "bws_version": {
+    "exit": 0,
+    "stdout": "bws 2.1.0",
+    "stderr": ""
+  },
+  "http": {
+    "qwen": {
+      "url": "http://127.0.0.1:8000/health",
+      "error_type": "URLError"
+    },
+    "bge": {
+      "url": "http://127.0.0.1:8001/health",
+      "error_type": "URLError"
+    },
+    "mirix": {
+      "url": "http://127.0.0.1:8531/health",
+      "error_type": "URLError"
+    },
+    "restate": {
+      "url": "http://127.0.0.1:29070/deployments",
+      "error_type": "URLError"
+    },
+    "runtime": {
+      "url": "http://127.0.0.1:29080/discover",
+      "error_type": "URLError"
+    }
+  },
+  "launch_options": []
+}

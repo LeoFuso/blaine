@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-19",
+  "python_syntax_files": 2,
+  "existing_evidence_json_files": 2,
+  "secretspec_toml": "parsed with stdlib tomllib; schema/runtime validation pending",
+  "processes_declared": [
+    "qwen",
+    "bge",
+    "mirix",
+    "restate",
+    "blaine-runtime"
+  ],
+  "shell_blocks_syntax_checked": 8,
+  "local_link_targets_checked": 4,
+  "report_lines": 180,
+  "nix_evaluation": "NOT RUN: nix/devenv absent",
+  "yaml_evaluation": "manually inspected minimal input declaration; devenv evaluation pending",
+  "runtime_or_secret_provider_calls": "NONE during static validation",
+  "probe_budget_used": 3
+}
