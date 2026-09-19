@@ -1,0 +1,408 @@
+{
+  "upstream_revision": "2df765a3c8f39789c9fb76316378bcffc20d22d9",
+  "observed_at": "2026-09-18T23:01:37-03:00/2026-09-18T23:02:17-03:00",
+  "description": "Three one-shot live cases using the unchanged codex-probe. Native messages and Result fields are preserved; lifecycle is a selected subset of Multica's Config.Logger records. resume_matched and probe_exit_code belong to the probe, not Multica.",
+  "global_auth_config_probe_and_backend_unchanged": true,
+  "cases": [
+    {
+      "summary": {
+        "case": "cancel",
+        "command": [
+          "/tmp/blaine-multica.orf0qL/codex-probe",
+          "-model",
+          "gpt-6-astra",
+          "-timeout",
+          "90s",
+          "-prompt",
+          "Write the integers from 1 through 2000, one per line, starting immediately at 1. Do not explain or summarize."
+        ],
+        "probe_exit_code": 1,
+        "elapsed_ms": 2663.21,
+        "setup": {
+          "codex_version": "codex-cli 0.154.0",
+          "cwd": "/tmp/blaine-codex-probe-4061176160/work",
+          "executable": "/home/leofuso/.local/bin/codex",
+          "kind": "setup",
+          "model": "gpt-6-astra",
+          "requested_session_id": "",
+          "state_dir": "/tmp/blaine-codex-probe-4061176160"
+        },
+        "injection": {
+          "elapsed_ms": 2635.736,
+          "signal": "SIGINT to probe parent",
+          "probe_pid": 30116,
+          "child_pid": 30160,
+          "verified_ppid": 30116,
+          "verified_executable": "/home/leofuso/.codex/packages/standalone/releases/0.154.0-x86_64-unknown-linux-musl/bin/codex",
+          "verified_pgid": 30160,
+          "trigger": {
+            "Type": "text",
+            "Content": "1",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "",
+            "Level": "",
+            "SessionID": ""
+          },
+          "terminal_observed_before_signal": false
+        },
+        "messages": [
+          {
+            "Type": "status",
+            "Content": "",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "running",
+            "Level": "",
+            "SessionID": "01a0b765-cdc0-7391-93a7-d95b7fca3ff0"
+          },
+          {
+            "Type": "text",
+            "Content": "1",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "",
+            "Level": "",
+            "SessionID": ""
+          },
+          {
+            "Type": "text",
+            "Content": "\n",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "",
+            "Level": "",
+            "SessionID": ""
+          }
+        ],
+        "results": [
+          {
+            "kind": "result",
+            "requested_session_id": "",
+            "result": {
+              "Status": "aborted",
+              "Output": "",
+              "Error": "execution cancelled",
+              "DurationMs": 2644,
+              "SessionID": "01a0b765-cdc0-7391-93a7-d95b7fca3ff0",
+              "Usage": null,
+              "ResumeRejected": false,
+              "ResumeRejectedTransient": false
+            },
+            "resume_matched": false
+          }
+        ],
+        "child_absent_after": true,
+        "auth_copy_absent_after": true
+      },
+      "lifecycle": [
+        {
+          "elapsed_ms": 2649.913,
+          "stream": "stderr",
+          "record": {
+            "time": "2026-09-18T23:01:39.719462296-03:00",
+            "level": "INFO",
+            "msg": "codex turn/completed received",
+            "thread_id": "01a0b765-cdc0-7391-93a7-d95b7fca3ff0",
+            "turn_id": "01a0b765-cdc5-7ae2-8e38-da54b0f2faf3",
+            "status": "interrupted"
+          }
+        },
+        {
+          "elapsed_ms": 2649.934,
+          "stream": "stderr",
+          "record": {
+            "time": "2026-09-18T23:01:39.719484416-03:00",
+            "level": "INFO",
+            "msg": "codex turn interrupted",
+            "thread_id": "01a0b765-cdc0-7391-93a7-d95b7fca3ff0",
+            "turn_id": "01a0b765-cdc5-7ae2-8e38-da54b0f2faf3",
+            "latency": "14ms",
+            "timeout": "2s"
+          }
+        },
+        {
+          "elapsed_ms": 2662.428,
+          "stream": "stderr",
+          "record": {
+            "time": "2026-09-18T23:01:39.731976754-03:00",
+            "level": "INFO",
+            "msg": "codex lifecycle",
+            "phase": "cleanup",
+            "task_id": "",
+            "runtime_id": "",
+            "pid": 30160,
+            "process_group": 30160,
+            "attempt": 1,
+            "latency": "2.658s",
+            "reaped": true,
+            "exit_status": "exit status 0",
+            "wait_error": null,
+            "stderr_bytes": 208,
+            "stderr_truncated": false
+          }
+        }
+      ],
+      "counts": {
+        "result": 1,
+        "error_messages": 0,
+        "launches": 1
+      }
+    },
+    {
+      "summary": {
+        "case": "invalid-resume",
+        "command": [
+          "/tmp/blaine-multica.orf0qL/codex-probe",
+          "-model",
+          "gpt-6-astra",
+          "-timeout",
+          "90s",
+          "-state-dir",
+          "/tmp/blaine-codex-probe-4061176160",
+          "-resume",
+          "00000000-0000-4000-8000-000000000000"
+        ],
+        "probe_exit_code": 1,
+        "elapsed_ms": 3181.636,
+        "setup": {
+          "codex_version": "codex-cli 0.154.0",
+          "cwd": "/tmp/blaine-codex-probe-4061176160/work",
+          "executable": "/home/leofuso/.local/bin/codex",
+          "kind": "setup",
+          "model": "gpt-6-astra",
+          "requested_session_id": "00000000-0000-4000-8000-000000000000",
+          "state_dir": "/tmp/blaine-codex-probe-4061176160"
+        },
+        "injection": null,
+        "messages": [
+          {
+            "Type": "status",
+            "Content": "",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "running",
+            "Level": "",
+            "SessionID": "01a0b766-11bf-7992-8e62-6739b9ec1363"
+          },
+          {
+            "Type": "text",
+            "Content": "UNKNOWN",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "",
+            "Level": "",
+            "SessionID": ""
+          }
+        ],
+        "results": [
+          {
+            "kind": "result",
+            "requested_session_id": "00000000-0000-4000-8000-000000000000",
+            "result": {
+              "Status": "completed",
+              "Output": "UNKNOWN",
+              "Error": "",
+              "DurationMs": 3163,
+              "SessionID": "01a0b766-11bf-7992-8e62-6739b9ec1363",
+              "Usage": {
+                "gpt-6-astra": {
+                  "InputTokens": 9424,
+                  "OutputTokens": 5,
+                  "CacheReadTokens": 0,
+                  "CacheWriteTokens": 0,
+                  "CostUSDTicks": 0
+                }
+              },
+              "ResumeRejected": false,
+              "ResumeRejectedTransient": false
+            },
+            "resume_matched": false
+          }
+        ],
+        "child_absent_after": true,
+        "auth_copy_absent_after": true
+      },
+      "lifecycle": [
+        {
+          "elapsed_ms": 115.073,
+          "stream": "stderr",
+          "record": {
+            "time": "2026-09-18T23:01:54.877500656-03:00",
+            "level": "WARN",
+            "msg": "codex thread/resume failed; falling back to thread/start",
+            "prior_thread_id": "00000000-0000-4000-8000-000000000000",
+            "error": "thread/resume: no rollout found for thread id 00000000-0000-4000-8000-000000000000 (code=-32600)"
+          }
+        },
+        {
+          "elapsed_ms": 3168.498,
+          "stream": "stderr",
+          "record": {
+            "time": "2026-09-18T23:01:57.930903325-03:00",
+            "level": "INFO",
+            "msg": "codex turn/completed received",
+            "thread_id": "01a0b766-11bf-7992-8e62-6739b9ec1363",
+            "turn_id": "01a0b766-11d8-79a1-9150-5af1c860388d",
+            "status": "completed"
+          }
+        },
+        {
+          "elapsed_ms": 3181.117,
+          "stream": "stderr",
+          "record": {
+            "time": "2026-09-18T23:01:57.943557251-03:00",
+            "level": "INFO",
+            "msg": "codex lifecycle",
+            "phase": "cleanup",
+            "task_id": "",
+            "runtime_id": "",
+            "pid": 30603,
+            "process_group": 30603,
+            "attempt": 1,
+            "latency": "3.176s",
+            "reaped": true,
+            "exit_status": "exit status 0",
+            "wait_error": null,
+            "stderr_bytes": 208,
+            "stderr_truncated": false
+          }
+        }
+      ],
+      "counts": {
+        "result": 1,
+        "error_messages": 0,
+        "launches": 1
+      }
+    },
+    {
+      "summary": {
+        "case": "child-failure",
+        "command": [
+          "/tmp/blaine-multica.orf0qL/codex-probe",
+          "-model",
+          "gpt-6-astra",
+          "-timeout",
+          "90s",
+          "-prompt",
+          "Write the integers from 1 through 2000, one per line, starting immediately at 1. Do not explain or summarize."
+        ],
+        "probe_exit_code": 1,
+        "elapsed_ms": 3599.161,
+        "setup": {
+          "codex_version": "codex-cli 0.154.0",
+          "cwd": "/tmp/blaine-codex-probe-545253644/work",
+          "executable": "/home/leofuso/.local/bin/codex",
+          "kind": "setup",
+          "model": "gpt-6-astra",
+          "requested_session_id": "",
+          "state_dir": "/tmp/blaine-codex-probe-545253644"
+        },
+        "injection": {
+          "elapsed_ms": 3588.672,
+          "signal": "SIGKILL to Codex child via pidfd",
+          "probe_pid": 31014,
+          "child_pid": 31058,
+          "verified_ppid": 31014,
+          "verified_executable": "/home/leofuso/.codex/packages/standalone/releases/0.154.0-x86_64-unknown-linux-musl/bin/codex",
+          "verified_pgid": 31058,
+          "trigger": {
+            "Type": "text",
+            "Content": "1",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "",
+            "Level": "",
+            "SessionID": ""
+          },
+          "terminal_observed_before_signal": false
+        },
+        "messages": [
+          {
+            "Type": "status",
+            "Content": "",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "running",
+            "Level": "",
+            "SessionID": "01a0b766-5c0f-7e22-890f-a06e6c820092"
+          },
+          {
+            "Type": "text",
+            "Content": "1",
+            "Tool": "",
+            "CallID": "",
+            "Input": null,
+            "Output": "",
+            "Status": "",
+            "Level": "",
+            "SessionID": ""
+          }
+        ],
+        "results": [
+          {
+            "kind": "result",
+            "requested_session_id": "",
+            "result": {
+              "Status": "failed",
+              "Output": "",
+              "Error": "codex process exited; codex stderr: WARNING: proceeding, even though we could not create PATH aliases: Refusing to create helper binaries under temporary dir \"/tmp\" (codex_home: AbsolutePathBuf(\"/tmp/blaine-codex-probe-545253644/codex-home\"))",
+              "DurationMs": 3592,
+              "SessionID": "01a0b766-5c0f-7e22-890f-a06e6c820092",
+              "Usage": null,
+              "ResumeRejected": false,
+              "ResumeRejectedTransient": false
+            },
+            "resume_matched": false
+          }
+        ],
+        "child_absent_after": true,
+        "auth_copy_absent_after": true
+      },
+      "lifecycle": [
+        {
+          "elapsed_ms": 3597.821,
+          "stream": "stderr",
+          "record": {
+            "time": "2026-09-18T23:02:17.226374371-03:00",
+            "level": "INFO",
+            "msg": "codex lifecycle",
+            "phase": "cleanup",
+            "task_id": "",
+            "runtime_id": "",
+            "pid": 31058,
+            "process_group": 31058,
+            "attempt": 1,
+            "latency": "3.593s",
+            "reaped": true,
+            "exit_status": "signal: killed",
+            "wait_error": "signal: killed",
+            "stderr_bytes": 207,
+            "stderr_truncated": false
+          }
+        }
+      ],
+      "counts": {
+        "result": 1,
+        "error_messages": 0,
+        "launches": 1
+      }
+    }
+  ]
+}
