@@ -3,10 +3,13 @@
 Research evidence, not an architecture decision. Investigated 2026-09-19.
 
 **Answer: MIRIX has a usable architectural seam for an external agent to submit
-and retrieve memory without adopting its Chat Agent. Native PostgreSQL 18 is
-likely compatible. Local Qwen inference is LIKELY COMPATIBLE through the
-existing OpenAI client, subject to a real tool-calling and embedding probe.
-This revision is not ready to trust as Blaine's sensitive memory boundary.**
+and retrieve memory without adopting its Chat Agent. This path is now validated
+locally with native PostgreSQL 18 + pgvector, Redis, Qwen3.5-9B served by vLLM,
+and BGE-M3 served by a second vLLM instance. Core, episodic, and semantic memory
+writes survived process boundaries and were retrieved by a fresh client process.
+MIRIX remains unsuitable as Blaine's credential store or durable execution
+authority, and memory formation must be treated as fallible derived state rather
+than authoritative truth.**
 
 The obstacles are concrete: incomplete public configuration operations,
 message conversion defects, inconsistent authorization/scope enforcement,
@@ -18,8 +21,8 @@ calling the full intended deployment validated or production-ready.
 ## Evidence and scope
 
 - **OBSERVED** means inspected source at the pinned revision or an explicitly
-  identified deterministic probe result. Source observations are not live
-  integration results.
+  identified probe result. The live-validation checkpoint distinguishes its
+  integration observations from the initial source-only results.
 - **INFERRED** means a conclusion drawn from those observations.
 - **UNVERIFIED** means a behavior needing execution or evidence not obtained here.
 
@@ -46,9 +49,223 @@ The [TaskSpec request][task] is **unsubmitted**: no authoritative Task creation
 binding was exposed. No runtime Task ID or runtime completion state is claimed.
 The user-authorized investigation was performed in this workspace.
 
-No MIRIX server, PostgreSQL, Redis, model, or cloud inference was invoked. No
-system packages were installed, Docker used, upstream source changed, production
-code modified, or Restate/Graphify/Goose integration attempted.
+The initial source-review phase did not invoke MIRIX, PostgreSQL, Redis, or a
+model. A subsequent local validation phase did. Native PostgreSQL 18.6 with
+pgvector 0.8.6, Redis 8.10.2, MIRIX, Qwen3.5-9B via vLLM, and BGE-M3 via vLLM
+were exercised together on the Blaine workstation. No Docker deployment,
+Restate integration, Graphify integration, Goose integration, or cloud inference
+was required for that validation.
+
+
+## Live validation checkpoint — 2026-09-19
+
+The source review was followed by a real local integration probe. Unless noted
+otherwise, the observations in this section are empirical.
+
+The files under `experiments/mirix-carveout/` retain the initial source-only
+phase. This checkpoint records the subsequent run as a narrative; separate raw
+request/response logs and a reproducible live-probe script are not included in
+this repository update. Publishing this checkpoint did not rerun the services.
+
+### Runtime used
+
+- Ubuntu 26.04.1 LTS on the Blaine workstation.
+- Native PostgreSQL 18.6 with pgvector 0.8.6.
+- Redis 8.10.2 with Search/ReJSON support.
+- MIRIX on `127.0.0.1:8531`.
+- Qwen3.5-9B served by vLLM on `127.0.0.1:8000`.
+- BGE-M3 served by a second vLLM process on `127.0.0.1:8001`.
+- BGE-M3 returned 1024-dimensional embeddings through its
+  OpenAI-compatible `/v1/embeddings` endpoint.
+
+The Qwen server successfully handled ordinary chat, JSON-schema-constrained
+output, tool calling, MIRIX Meta Agent routing, and child memory-agent tool
+execution.
+
+For the validated LLM path MIRIX uses:
+
+```yaml
+model: Qwen/Qwen3.5-9B
+model_endpoint_type: openai
+model_endpoint: http://127.0.0.1:8000/v1
+api_key: EMPTY
+context_window: 32768
+```
+
+No provider implementation change was required for this Qwen/vLLM path.
+
+### Local embeddings
+
+The working embedding configuration is:
+
+```yaml
+embedding_model: BAAI/bge-m3
+embedding_endpoint_type: hugging-face
+embedding_endpoint: http://127.0.0.1:8001/v1
+embedding_dim: 1024
+api_key: EMPTY
+```
+
+The `hugging-face` name is misleading in this revision. That branch constructs
+MIRIX's generic `EmbeddingEndpoint`, which posts the configured model name to
+`<base_url>/embeddings`. It therefore works with vLLM's OpenAI-compatible
+embedding endpoint.
+
+The `openai` embedding branch is materially different: it constructs
+LlamaIndex `OpenAIEmbedding`. With the original code it selected
+`text-embedding-ada-002`. A temporary experiment passing
+`model=config.embedding_model` instead caused LlamaIndex to reject
+`BAAI/bge-m3` because it is not a member of `OpenAIEmbeddingModelType`.
+
+That temporary patch was reverted. The existing `hugging-face` /
+`EmbeddingEndpoint` branch is the working generic OpenAI-compatible route for
+this local BGE-M3 server.
+
+A direct MIRIX adapter probe produced a 1024-dimensional embedding:
+
+```text
+MIRIX EmbeddingConfig
+  -> EmbeddingEndpoint
+  -> vLLM /v1/embeddings
+  -> BGE-M3
+  -> 1024-dimensional vector
+```
+
+### Persistent Meta Agent configuration
+
+`MirixClient.initialize_meta_agent()` defaults to:
+
+```python
+update_agents=False
+```
+
+The server reuses the existing Meta Agent for the client.
+
+Supplying new configuration while leaving `update_agents=False` did not update
+the already-persisted child-agent embedding configuration. This was observed
+when an episodic-memory write continued to use the old LlamaIndex/OpenAI path
+and requested `text-embedding-ada-002`.
+
+Reinitializing with:
+
+```python
+update_agents=True
+```
+
+updated the existing hierarchy rather than creating a new Meta Agent. The same
+persistent Meta Agent identity was retained while the child agents began using
+BGE-M3.
+
+This gives the useful operational distinction:
+
+```text
+update_agents=False
+  -> attach/create-if-absent behavior
+  -> preserve persisted configuration
+
+update_agents=True
+  -> retain Meta Agent identity
+  -> evolve persisted hierarchy configuration
+```
+
+### End-to-end persistent memory result
+
+A conversation stating that Leonardo configured BGE-M3 as Blaine's local
+embedding model and that the model produces 1024-dimensional embeddings was
+processed by the local Qwen-backed Meta Agent.
+
+MIRIX persisted both episodic and semantic memory.
+
+A later Python process created a fresh `MirixClient`, reattached to the
+persistent Meta Agent, and retrieved:
+
+```text
+episodic.total_count = 1
+semantic.total_count = 1
+```
+
+The episodic entry retained the configuration event and date. The semantic
+entry retained the BGE-M3 model and 1024-dimensional embedding fact.
+
+The selected path is therefore validated:
+
+```text
+conversation
+  -> local Qwen3.5-9B / vLLM
+  -> MIRIX Meta Agent
+  -> memory child agents
+  -> local BGE-M3 / vLLM
+  -> PostgreSQL / pgvector persistence
+  -> original client process exits
+  -> fresh MirixClient
+  -> persisted memory retrieval
+```
+
+Core memory persistence was independently validated across a fresh client
+process as well.
+
+The episodic result appeared under `recent`, while `relevant` was empty for the
+specific retrieval request. This validates durable episodic storage/retrieval,
+but does not by itself prove successful episodic vector-relevance ranking for
+that query.
+
+### Memory-quality and completion findings
+
+The live run exposed several concerns relevant to Blaine.
+
+1. The Meta Agent routed ordinary BGE-M3 configuration information to Knowledge
+   Vault. A vault entry therefore existed for information that was not a
+   credential or secret. Memory-type routing is an LLM judgment, not an
+   authorization or sensitivity boundary.
+
+2. A semantic-memory attempt generated plausible explanatory detail that was
+   not supplied by the user. Derived memory therefore needs provenance and an
+   explicit distinction between observed fact and inference/speculation.
+
+3. Child memory operations can fail and later agent steps can still call
+   `finish_memory_update` and finish with `function_failed=False`. Agent-level
+   completion is not evidence that every requested durable memory write
+   succeeded.
+
+4. Knowledge Vault remains rejected as Blaine's credential store. The observed
+   non-secret classification into Knowledge Vault strengthens the case for
+   keeping credentials outside this boundary.
+
+5. Redis emitted a Search warning involving `filter_tags_session_id`. It did
+   not block the validated persistence path, but the index/schema mismatch
+   remains an investigation item before relying on that filter.
+
+### Local resource observation
+
+With both local model servers active, measured GPU use was:
+
+```text
+RTX 5090 total             32607 MiB
+total observed use         27833 MiB
+
+Qwen vLLM EngineCore       24516 MiB
+BGE-M3 vLLM EngineCore      2574 MiB
+desktop / other              ~530 MiB
+```
+
+System memory remained comfortable:
+
+```text
+visible RAM                 59 GiB
+used                        14 GiB
+available                   44 GiB
+swap used                    0 GiB
+Redis                       ~124 MiB
+```
+
+The current Qwen server uses `--gpu-memory-utilization 0.80`. Reducing that
+toward `0.70` is a later tuning experiment for additional workstation
+headroom, not a requirement for the validated correctness result.
+
+Qwen should be treated as a shared local inference service. MIRIX and Goose
+should consume the same Qwen endpoint rather than loading independent copies
+of the model.
+
 
 ## Current architecture and external-agent boundary
 
@@ -188,7 +405,7 @@ validated. [Internal updates][agent-updates], [public 501][update-route],
 
 | Endpoint type | OBSERVED status in this revision |
 |---|---|
-| `openai`, `azure_openai`, `anthropic`, `google_ai` | Factory branches import existing concrete clients. These are the four implemented modern completion-client paths. Their live provider behavior was not tested. |
+| `openai`, `azure_openai`, `anthropic`, `google_ai` | Factory branches import existing concrete clients. These are the four implemented modern completion-client paths. The `openai` path was exercised against local Qwen/vLLM; hosted provider behavior was not tested. |
 | `openrouter` | Factory branch exists, but `mirix/llm_api/openrouter_client.py` does not. Selecting this branch cannot instantiate the named client. An OpenRouter-compatible URL can instead be configured as `openai`; that is a different path. |
 | `groq`, `bedrock` | Legacy `llm_api_tools.create` contains completion branches. However the current agent's fallback passes `user_id`, absent from that function's signature. The retained probe confirms argument binding raises `TypeError`. These are not established working end-to-end memory-service providers. Summarization/distillation also rely on the modern factory. |
 | `azure` | Legacy fallback spelling; the LLM schema accepts `azure_openai`, not `azure`. Modern Azure uses the concrete client above. Embeddings separately use `azure`. |
@@ -208,97 +425,58 @@ fields/configurations and provider helper files remain; `cohere.py` imports a
 missing `mirix.local_llm.utils`. Do not restore or select legacy local paths
 based only on their names. [Discovery][providers], [server registration][registration]
 
-### Local Qwen: LIKELY COMPATIBLE
+### Local Qwen: VALIDATED WITH vLLM
 
-**OBSERVED:** the unchanged `_prepare_client_kwargs` accepted a synthetic key
-and preserved `http://127.0.0.1:8000/v1` exactly in the isolated probe. There is
-no OpenAI-host allowlist or Qwen-model-name rejection in that path. An explicit
-dummy key avoids falling through to database/global OpenAI credentials when
-calling a local server. This is constructor-argument evidence, not a request
-sent to a model. [OpenAI client][openai-client], [results][results]
+The local Qwen path has now been exercised end-to-end rather than only inspected
+statically.
 
-**INFERRED:** a text-capable Qwen model behind a sufficiently compatible Chat
-Completions server can service the Meta and memory-agent calls without a new
-provider implementation. Use `model_endpoint_type: openai`, the actual served
-model ID, an explicit local `/v1` endpoint, explicit synthetic key, and a
-realistic context window. Do not select the `ollama`/`vllm` enum merely because
-that software hosts the model.
+The validated serving configuration is Qwen3.5-9B behind vLLM's
+OpenAI-compatible Chat Completions API:
 
-Compatibility requires more than accepting a messages array:
+```yaml
+model: Qwen/Qwen3.5-9B
+model_endpoint_type: openai
+model_endpoint: http://127.0.0.1:8000/v1
+api_key: EMPTY
+context_window: 32768
+```
 
-- **Tools:** MIRIX normally sends `tool_choice="required"`; it sometimes forces
-  a named function. A handle containing `vllm` changes the normal choice to
-  `auto`, but named forcing can still occur. It expects structured
-  `tool_calls`, JSON arguments, tool-call IDs, and tool-result messages, and
-  may consume several calls per reply.
-- **Schemas:** the OpenAI client attempts to convert every tool to
-  `strict: true`, `additionalProperties: false`, all fields required, including
-  nested schemas. Unsupported conversion can warn and retain the original
-  schema. The small `STRUCTURED_OUTPUT_MODELS` allowlist influences initial
-  tool rules; it does not prevent the client from sending strict tools for
-  Qwen. This path does not require a separate `response_format=json_schema`.
-- **Request/response details:** `max_completion_tokens`, temperature, system
-  messages, and an empty `user` field are sent; completion choices/finish reasons,
-  usage and tool-call structure must match MIRIX's response expectations.
-  Token counting falls back to OpenAI-style tokenizers for unknown models;
-  Qwen context-budget accuracy remains unverified.
-- **Non-tool calls:** topic extraction forces a function; summarization expects
-  prose; the session distiller asks for and parses a JSON array from ordinary
-  completion content. Reliable tool use alone does not establish distillation
-  quality.
-- **Multimodal inputs:** the client can construct image URL/base64 messages and
-  resolve stored file references. Text-only Qwen cannot satisfy image/audio
-  workloads simply because its server is OpenAI-compatible. No multimodal
-  equivalence is claimed.
+The selected vLLM configuration enables Qwen tool calling with the Qwen reasoning
+and tool-call parsers. Live probes established ordinary chat, disabled-thinking
+behavior, JSON-schema-constrained output, structured tool calls, MIRIX Meta
+Agent routing, child memory-agent execution, and persistent Core, Episodic, and
+Semantic memory formation.
 
-Evidence: [OpenAI request builder][openai-client], [schema conversion][strict],
-[tool rules][tool-rules], [agent loop][agent-loop], [distiller][distiller].
+MIRIX therefore does not need a new provider implementation for this selected
+Qwen/vLLM path. Its existing `openai` completion endpoint type is sufficient
+when pointed at vLLM's OpenAI-compatible `/v1` API.
 
-Serving-engine evidence is supporting context, not a live MIRIX result:
+This does not establish equivalent behavior for every model or serving engine
+accepted by MIRIX's configuration schemas, multimodal workloads, native Ollama
+paths, or every procedural/distillation prompt. Those are separate
+compatibility questions and should be tested only when Blaine needs them.
 
-| Local server | INFERRED fit and remaining test |
-|---|---|
-| vLLM | Strong candidate: official documentation describes required and named tool calls, strict-schema handling, and model-specific parsers/templates. Pin an engine/model/parser version and exercise MIRIX's exact payload. [vLLM tool calling](https://docs.vllm.ai/en/latest/features/tool_calling/) |
-| Ollama | Its OpenAI-compatible `/v1` endpoint is a candidate; compatibility covers only a subset of OpenAI behavior. Test required/named choices, strict schemas, token-limit fields, and tool replay against the chosen version. The native `ollama` MIRIX LLM tag is not the route. [Ollama compatibility](https://docs.ollama.com/api/openai-compatibility) |
-| llama.cpp | Function calling and Qwen-related chat templates exist; server/template/schema behavior must satisfy the same contract. No equivalent behavior was measured. [llama.cpp function calling](https://github.com/ggml-org/llama.cpp/blob/master/docs/function-calling.md) |
-| Other compatible server | Apply the same payload-level criteria; a successful plain-text completion is insufficient. |
+Tool/schema compatibility remains part of the serving contract: MIRIX depends
+on structured tool calls, JSON arguments, tool-call IDs, tool-result
+continuation, and usable schema adherence. Plain text Chat Completions support
+alone is insufficient.
 
-**Embeddings are a separate local dependency.** They default to enabled.
-`embedding_model` supports an actual native Ollama embedding implementation and
-configurable endpoints for other branches. The ordinary OpenAI/LlamaIndex branch
-passes the endpoint/key but **omits `config.embedding_model`** when constructing
-`OpenAIEmbedding`; arbitrary embedding-model selection cannot be assumed to work
-there. Its custom-auth branch uses the configured model. Native Ollama embeddings
-are a plausible configuration-only alternative. Model dimensions are padded to
-4096, and vectors from different models are not interchangeable. Text-only
-`bm25`/string probes can set `BUILD_EMBEDDINGS_FOR_MEMORY=false`, but the default
-search path still requests embeddings unless explicitly changed. [Embeddings][embeddings],
-[constants][constants], [search][search]
-
-Native Ollama topic extraction is **currently wired** by
-`local_model_for_retrieval` and `MIRIX_OLLAMA_BASE_URL`; it is not general internal
-LLM configuration, does not extract temporal expressions, and on failure falls
-back to the configured main LLM. To make eventual inference local-only, all
-completion/embedding configurations and fallbacks must be local, and tracing
-must also be considered. [Retrieval implementation][retrieval]
-
-**UNVERIFIED:** Qwen memory quality, schema/tool reliability, effective context
-limits, multimodal handling, and an entirely local end-to-end run. No evidence
-currently establishes a mandatory provider-code rewrite for the `openai` route;
-an incompatible chosen server could require a small payload adaptation or a
-different serving configuration. The current application defects below are
-independent of Qwen.
+Embeddings are a separate local service. BGE-M3 is served independently by
+vLLM and accessed through MIRIX's generic `EmbeddingEndpoint` using the
+currently misleading `embedding_endpoint_type: hugging-face` configuration
+documented in the live-validation section above.
 
 ## Native PostgreSQL 18
 
-**Conclusion — INFERRED: likely compatible without MIRIX source changes for a
-fresh native database. UNVERIFIED in a live database.**
+**Conclusion — VALIDATED for the selected local path.** Native PostgreSQL
+18.6 with pgvector 0.8.6 was used successfully by the running MIRIX service for
+the memory operations exercised in this carveout. This is not exhaustive
+validation of every migration, query, index, or recovery path.
 
-**OBSERVED environment:** Python 3.14.4 on Ubuntu 26.04.1. `psql`, `postgres`,
-`pg_config`, `pg_isready`, and `redis-server` are absent from PATH; standard
-PostgreSQL installation directories are absent. Matching dpkg database entries
-were `un` (not installed); no installed PostgreSQL/pgvector package was found.
-No live database portion was attempted. Exact prerequisites are retained in the
+**OBSERVED initial environment:** the first source-only inspection found no
+PostgreSQL or Redis installation. The subsequent empirical phase installed and
+used native PostgreSQL 18.6 with pgvector 0.8.6 and Redis 8.10.2. The initial
+environment record remains retained as historical experiment evidence in the
 [experiment README][experiment].
 
 | Concern | OBSERVED implementation / consequence |
@@ -328,9 +506,10 @@ GIN text-search support. [pgvector changelog](https://github.com/pgvector/pgvect
 [pgvector native installation and limits](https://github.com/pgvector/pgvector),
 [PostgreSQL 18 FTS indexes](https://www.postgresql.org/docs/18/textsearch-indexes.html)
 
-**UNVERIFIED:** dependency resolution on this host, schema creation, exact query
-execution, migration upgrades, query plans/performance, crash recovery, and
-driver compatibility with the eventual installed PG18/pgvector build.
+**UNVERIFIED beyond the selected live path:** reproducibility from a fresh
+dependency install, full schema/query coverage, migration upgrades, query
+plans/performance, crash recovery, and compatibility with other PG18/pgvector
+builds.
 
 ## Knowledge Vault security
 
@@ -580,14 +759,14 @@ resolve this checkpoint's risks. A memory system's lack of credential-store
 guarantees is an architectural limitation, distinct from broken configuration,
 conversion, or access enforcement in its existing paths.
 
-The research judgments remain unchanged: MIRIX is **architecturally viable as
-an independent memory service**; native PostgreSQL 18 and local Qwen through
-an OpenAI-compatible endpoint are **likely compatible**. Live database/model
-proof remains **UNVERIFIED**. Knowledge Vault as a credential store and MIRIX
-as Blaine's root secret store remain **REJECT**. Blaine's intended security
-direction is external secret storage (Bitwarden or equivalent), with no
-integration or secret-store design undertaken here. Upstream fix coverage,
-merge timing, and empirical compatibility remain **UNVERIFIED**.
+The research judgment is now stronger: MIRIX is **validated locally as an
+independent memory service** for the selected Qwen/vLLM + BGE-M3/vLLM + native
+PostgreSQL/pgvector + Redis path. This is not equivalent to production readiness
+or exhaustive provider/database validation. Knowledge Vault as a credential
+store and MIRIX as Blaine's root secret store remain **REJECT**. Blaine's
+security direction remains external secret storage such as Bitwarden. Broader
+isolation/security guarantees, recovery semantics, memory-quality policy, and
+upstream fix coverage remain open investigation areas.
 
 ## HARVEST / ADAPT / REJECT / INVESTIGATE
 
@@ -612,62 +791,90 @@ Classifications are research judgments, not authorization to extract/integrate.
 | MIRIX as scheduler or durable Task owner | REJECT | Contradicts Blaine ownership; current queue/dream implementation does not supply those guarantees. |
 | Memory-derived skills as authoritative policy/completion evidence | REJECT | Distillation produces fallible memories, not authorization or verified Task state. |
 | Replacing Graphify/project knowledge with MIRIX | REJECT | Outside this memory experiment and the separately evaluated project-knowledge role. |
-| Qwen tool/schema behavior and memory quality | INVESTIGATE | Configurable transport observed; no local model run. |
-| PG18 migration/query/performance behavior | INVESTIGATE | Static compatibility evidence only; native prerequisites absent. |
+| Local Qwen/vLLM inference path | HARVEST | Chat, structured output, tool calls, Meta Agent routing, and memory-manager execution passed locally. Keep the serving layer replaceable. |
+| Memory formation quality/provenance | INVESTIGATE | Routing and generated content remain fallible; observed Knowledge Vault misclassification and unsupported semantic elaboration require provenance/epistemic policy. |
+| Native PostgreSQL 18 + pgvector persistence | HARVEST | Selected live Core/Episodic/Semantic write and fresh-process retrieval paths passed on PostgreSQL 18.6 + pgvector 0.8.6. Broader migrations/query plans/recovery remain unverified. |
 | Complete isolation, retention/deletion and recovery guarantees | INVESTIGATE | Specific defects found; no live adversarial/recovery test. |
 
-## Unanswered questions and next empirical probe
+## Open questions and next steps
 
-**UNVERIFIED questions that remain:**
+The original source-only stop condition has been exceeded. The selected local
+Qwen/BGE-M3/PostgreSQL/Redis round trip passes, including persistent memory
+retrieval from a fresh Python process.
 
-1. Which pinned Qwen model/server/parser combination reliably handles the exact
-   strict schemas, required/named tools, JSON distillation and context limits?
-2. Does a fresh native PG18/maintained pgvector database create all models and
-   execute every selected memory search without driver/type/query failures?
-3. Which message/config/auth defects will upstream fix, and which would require
-   a narrowly scoped future adaptation before trusted use?
-4. Do memory isolation, deletion and read scopes hold across cache on/off,
-   direct/retrieval/tool/dream paths and users? Source evidence already shows
-   they cannot be assumed; live tests should measure the precise exposure.
-5. What survives process death after queue acceptance, session recording,
-   partial child writes, or a claimed consolidation window? What duplicate
-   effects arise when the caller retries?
-6. What quality/provenance/retention policy is appropriate for remembered facts
-   and learned skills? This experiment does not decide Blaine's final interface
-   or production architecture.
+Further work should be driven by concrete Blaine integration needs rather than
+by attempting to exhaustively validate MIRIX.
 
-**Proposed next probe, not executed:** after the user supplies/authorizes native
-prerequisites, use a disposable native PG18 database with pgvector, a pinned
-local Qwen Chat Completions server, synthetic content, and a tiny ordinary HTTP
-client. Keep the MIRIX checkout read-only and runtime data outside it.
+Remaining questions with architectural value are:
 
-First verify the exact MIRIX completion payload against the local server:
-required tool call, forced `update_topic_and_time`, nested vault schema with a
-synthetic value, tool-result continuation, and JSON-array distillation. Record
-raw requests/responses and confirm no cloud fallback. This separates protocol
-failure from memory-service behavior.
+1. **Memory provenance and epistemics.** Blaine needs to distinguish
+   user-supplied facts, source-derived facts, model inference, and speculation.
+   MIRIX memory formation cannot itself be treated as truth.
 
-Then create a fresh schema and a minimal meta hierarchy without Chat Agent,
-reflexion or background agents. Disable tracing/caches; start with embedding
-generation disabled and explicit `bm25` search to isolate ingestion/storage.
-Submit role-plus-string synthetic conversation content using `/memory/add_sync`
-and `session_tag=conversation`; verify the database row and a separate API
-read, then repeat with a configured local embedding model and vector search.
-Record the known nested-block/conversational-retrieval failures rather than
-silently patching upstream. Test rejected identity headers and scope/user
-separation using synthetic tenants before trusting any sensitive data.
+2. **Memory-type policy.** The live run showed ordinary configuration
+   information being classified into Knowledge Vault. Blaine should control
+   which memory categories are permitted. Knowledge Vault remains inappropriate
+   for credentials and is a candidate for exclusion from normal Blaine memory
+   formation.
 
-Only after that narrow round-trip passes would session-based procedural
-distillation and one explicit dry-run/real Auto-Dream comparison add useful
-evidence. Pin every dependency and serving model used. No Restate, Goose,
-Graphify, provider implementation, credential-store implementation, or common
-Blaine interface is needed for this probe.
+3. **Completion evidence.** A child memory write may fail while the surrounding
+   agent later finishes successfully. MIRIX agent completion must therefore not
+   become Blaine Task completion evidence. Durable writes that matter to a
+   Completion Contract need independent verification.
 
-The present stop condition is met at source-evidence level: **independent memory
-service is architecturally possible; native PG18 and local Qwen are plausible;
-the immediate blockers to trusted adoption are implementation/security defects
-and missing empirical validation, not a requirement to adopt MIRIX's Chat Agent
-or runtime.**
+4. **Redis index/schema warning.** The observed `filter_tags_session_id` Search
+   warning should be investigated before Blaine depends on that filtering
+   behavior.
+
+5. **Security and isolation.** The source-visible authentication, scope, TLS,
+   plaintext Knowledge Vault, logging/tracing, and authorization concerns remain
+   unresolved by the successful local functional probe.
+
+6. **Recovery and idempotency.** Queue acceptance, caller retries, process
+   death, and partial child writes need explicit semantics if MIRIX ingestion
+   becomes part of a durable Blaine workflow.
+
+7. **Operationalization.** PostgreSQL and Redis are already native services,
+   while MIRIX and both vLLM servers are currently started manually. The next
+   practical task is reproducible lifecycle and observability using OS process
+   supervision plus thin repository scripts.
+
+8. **Shared inference.** Goose should consume the existing Qwen vLLM endpoint
+   rather than loading another Qwen instance. Once lifecycle automation exists,
+   a concurrent Goose + MIRIX probe can establish the local VRAM and latency
+   budget.
+
+### Carveout classification after live validation
+
+The useful seam is now strong enough to **HARVEST / ADAPT**, not to adopt MIRIX
+as Blaine's architecture.
+
+**HARVEST**
+
+- independent HTTP memory-service boundary;
+- persistent Core, Episodic, and Semantic memory;
+- native PostgreSQL/pgvector persistence;
+- local Qwen through OpenAI-compatible vLLM;
+- local BGE-M3 through MIRIX's generic embedding endpoint;
+- persistent Meta Agent reattachment across client processes.
+
+**ADAPT**
+
+- memory formation and routing;
+- provenance and confidence semantics;
+- configuration lifecycle;
+- scope and isolation expectations;
+- durable-write verification and recovery semantics.
+
+**REJECT**
+
+- MIRIX as Blaine's durable Task runtime;
+- MIRIX Chat Agent as Blaine's persona;
+- Knowledge Vault as credential storage;
+- memory-derived content as authoritative policy or completion evidence.
+
+The MIRIX carveout can stop here. The next work belongs in Blaine's local
+runtime integration rather than additional MIRIX feature exploration.
 
 [experiment]: ../../experiments/mirix-carveout/README.md
 [manifest]: ../../experiments/mirix-carveout/source.json

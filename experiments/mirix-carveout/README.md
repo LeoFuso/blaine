@@ -4,6 +4,12 @@ The [research report](../../docs/research/mirix-carveout.md) answers the memory
 boundary, provider/Qwen, native PostgreSQL 18, and Knowledge Vault questions.
 This directory contains research artifacts only. No service integration exists.
 
+These artifacts cover the initial source-only phase. The report's
+[live-validation checkpoint](../../docs/research/mirix-carveout.md#live-validation-checkpoint--2026-09-19)
+records a subsequent local service/model run. The environment inspection and
+prerequisite status below are historical; this directory does not contain raw
+logs or a reproducible script for that later run.
+
 ## Source and reproducibility
 
 - Upstream: `https://github.com/Mirix-AI/MIRIX`
