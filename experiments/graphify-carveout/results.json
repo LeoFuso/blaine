@@ -1,0 +1,631 @@
+{
+  "upstream_sha": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae",
+  "corpus_sha": "da6654e3a008b7e6be4f7ad54a5c4323bcb8f090",
+  "python": "3.12.14",
+  "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+  "work_directory": "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt",
+  "packages": {
+    "annotated-types": "0.8.0",
+    "referencing": "0.37.0",
+    "tree-sitter-julia": "0.23.1",
+    "tree-sitter-sql": "0.3.11",
+    "pluggy": "1.6.0",
+    "httpx2": "2.13.0",
+    "starlette": "1.6.0",
+    "tree-sitter-json": "0.24.8",
+    "tree-sitter-verilog": "1.0.3",
+    "pydantic": "2.13.5",
+    "mcp": "2.2.0",
+    "tree-sitter-go": "0.25.0",
+    "PyYAML": "6.0.3",
+    "networkx": "3.6.1",
+    "typing_extensions": "4.16.0",
+    "rpds-py": "2026.6.3",
+    "Pygments": "2.21.0",
+    "tree-sitter-scala": "0.26.2",
+    "tree-sitter-javascript": "0.25.0",
+    "tree-sitter-elixir": "0.3.5",
+    "pycparser": "3.0",
+    "tree-sitter-groovy": "0.1.2",
+    "cffi": "2.1.1",
+    "tree-sitter-bash": "0.25.1",
+    "jsonschema": "4.26.0",
+    "tree-sitter-kotlin": "1.1.0",
+    "mcp-types": "2.2.0",
+    "tree-sitter-c": "0.24.2",
+    "numpy": "2.5.3",
+    "tree-sitter-cpp": "0.23.4",
+    "pydantic_core": "2.46.5",
+    "PyJWT": "2.14.0",
+    "RapidFuzz": "3.14.6",
+    "opentelemetry-api": "1.44.0",
+    "uvicorn": "0.53.0",
+    "tree-sitter-zig": "1.1.2",
+    "tree-sitter-powershell": "0.26.4",
+    "typing-inspection": "0.4.4",
+    "httpcore2": "2.13.0",
+    "truststore": "0.10.4",
+    "h11": "0.16.0",
+    "tree-sitter-java": "0.23.5",
+    "attrs": "26.1.0",
+    "sse-starlette": "3.4.11",
+    "tree-sitter-rust": "0.24.2",
+    "anyio": "4.15.1",
+    "tree-sitter-c-sharp": "0.23.5",
+    "iniconfig": "2.3.0",
+    "tree-sitter-python": "0.25.0",
+    "packaging": "26.3",
+    "idna": "3.20",
+    "tree-sitter-fortran": "0.6.0",
+    "python-multipart": "0.0.32",
+    "click": "8.5.0",
+    "tree-sitter": "0.25.2",
+    "tree-sitter-typescript": "0.23.2",
+    "tree-sitter-ruby": "0.23.1",
+    "tree-sitter-swift": "0.7.3",
+    "tree-sitter-lua": "0.5.0",
+    "tree-sitter-php": "0.24.1",
+    "jsonschema-specifications": "2025.9.1",
+    "tree-sitter-objc": "3.0.2",
+    "cryptography": "50.0.1",
+    "pytest": "9.1.1"
+  },
+  "network_guard": "offline/sitecustomize.py denies IPv4/IPv6 connect in this process and Python children",
+  "checks": {
+    "json_roundtrip": {
+      "observed": true,
+      "evidence": {
+        "type": "DiGraph",
+        "nodes": 796,
+        "edges": 930,
+        "node_origins": {
+          "ast": 748,
+          "MISSING": 48
+        },
+        "edge_origins": {
+          "ast": 930
+        },
+        "confidence": {
+          "EXTRACTED": 922,
+          "INFERRED": 8
+        },
+        "relations": {
+          "inherits": 3,
+          "method": 23,
+          "uses": 1,
+          "calls": 67,
+          "references": 91,
+          "indirect_call": 3,
+          "imports": 58,
+          "imports_from": 44,
+          "contains": 627,
+          "rationale_for": 9,
+          "defines": 4
+        }
+      }
+    },
+    "runtime_import_and_calls": {
+      "observed": true,
+      "evidence": {
+        "source_imports": [
+          {
+            "module": "datetime",
+            "names": [
+              "timedelta"
+            ],
+            "line": 4
+          },
+          {
+            "module": "hypercorn.asyncio",
+            "names": [
+              "serve"
+            ],
+            "line": 7
+          },
+          {
+            "module": "hypercorn.config",
+            "names": [
+              "Config"
+            ],
+            "line": 8
+          },
+          {
+            "module": "runtime.task",
+            "names": [
+              "summarize_objective",
+              "validate_request"
+            ],
+            "line": 10
+          }
+        ],
+        "source_calls": [
+          {
+            "name": "Config",
+            "line": 51
+          },
+          {
+            "name": "validate_request",
+            "line": 19
+          },
+          {
+            "name": "serve",
+            "line": 53
+          },
+          {
+            "name": "timedelta",
+            "line": 37
+          },
+          {
+            "name": "str",
+            "line": 21
+          }
+        ],
+        "graph_edges": [
+          {
+            "source": "runtime_app_run",
+            "target": "runtime_task_validate_request",
+            "relation": "calls",
+            "_origin": "ast",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "context": "call",
+            "source_file": "runtime/app.py",
+            "source_location": "L19",
+            "weight": 1.0
+          },
+          {
+            "source": "runtime_app_run",
+            "target": "runtime_task_summarize_objective",
+            "relation": "indirect_call",
+            "_origin": "ast",
+            "confidence": "INFERRED",
+            "confidence_score": 0.85,
+            "context": "argument",
+            "source_file": "runtime/app.py",
+            "source_location": "L26",
+            "weight": 1.0
+          },
+          {
+            "source": "runtime_app",
+            "target": "runtime_task_summarize_objective",
+            "relation": "imports",
+            "_origin": "ast",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "context": "import",
+            "source_file": "runtime/app.py",
+            "source_location": "L10",
+            "weight": 1.0
+          },
+          {
+            "source": "runtime_app",
+            "target": "runtime_task_validate_request",
+            "relation": "imports",
+            "_origin": "ast",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "context": "import",
+            "source_file": "runtime/app.py",
+            "source_location": "L10",
+            "weight": 1.0
+          },
+          {
+            "source": "runtime_app",
+            "target": "runtime_task",
+            "relation": "imports_from",
+            "_origin": "ast",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "context": "import",
+            "source_file": "runtime/app.py",
+            "source_location": "L10",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    "docs_reference_runtime": {
+      "observed": true,
+      "evidence": [
+        {
+          "source": "docs_contracts_task_operations_signal",
+          "target": "runtime_acp_agent_blaineagent_cancel",
+          "relation": "references",
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "context": "cancel",
+          "source_file": "docs/contracts/task-operations.md",
+          "source_location": "L79",
+          "weight": 1.0
+        },
+        {
+          "source": "skills_task_signal_skill_task_signal",
+          "target": "runtime_acp_agent_blaineagent_cancel",
+          "relation": "references",
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "context": "cancel",
+          "source_file": "skills/task-signal/SKILL.md",
+          "source_location": "L18",
+          "weight": 1.0
+        },
+        {
+          "source": "docs_milestones_002_intellij_acp_durable_task_task_and_session_contract",
+          "target": "runtime_interactive_proceed",
+          "relation": "references",
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "context": "proceed",
+          "source_file": "docs/milestones/002-intellij-acp-durable-task.md",
+          "source_location": "L16",
+          "weight": 1.0
+        }
+      ]
+    },
+    "changed_caller_to_unchanged_callee": {
+      "observed": true,
+      "evidence": {
+        "changed": [
+          "runtime/app.py"
+        ],
+        "edges": [
+          {
+            "source": "runtime_app_carveout_probe_only",
+            "target": "runtime_task_validate_request",
+            "relation": "calls",
+            "_origin": "ast",
+            "confidence": "EXTRACTED",
+            "confidence_score": 1.0,
+            "context": "call",
+            "source_file": "runtime/app.py",
+            "source_location": "L57",
+            "weight": 1.0
+          }
+        ]
+      }
+    },
+    "renamed_symbol_removes_old_definition": {
+      "observed": true,
+      "evidence": {
+        "old": [],
+        "new": [
+          "runtime_task_validate_request_renamed"
+        ],
+        "incoming_from_unchanged_app": []
+      }
+    },
+    "moved_file_drops_old_nodes": {
+      "observed": true,
+      "evidence": {
+        "old_nodes": [],
+        "new_nodes": [
+          "runtime_task_moved_summarize_objective",
+          "runtime_task_moved_validate_request_renamed",
+          "runtime_task_moved",
+          "runtime_task_moved_rationale_1"
+        ]
+      }
+    },
+    "deleted_file_drops_nodes": {
+      "observed": true,
+      "evidence": {
+        "type": "DiGraph",
+        "nodes": 797,
+        "edges": 909,
+        "node_origins": {
+          "ast": 749,
+          "semantic": 48
+        },
+        "edge_origins": {
+          "ast": 909
+        },
+        "confidence": {
+          "EXTRACTED": 903,
+          "INFERRED": 6
+        },
+        "relations": {
+          "method": 23,
+          "inherits": 3,
+          "uses": 1,
+          "calls": 60,
+          "references": 91,
+          "indirect_call": 1,
+          "imports": 51,
+          "imports_from": 41,
+          "contains": 626,
+          "rationale_for": 8,
+          "defines": 4
+        }
+      }
+    },
+    "concurrent_reads_parse_during_update": {
+      "observed": true,
+      "evidence": {
+        "returncode": 0,
+        "reads_by_size": {
+          "(796, 930)": 573,
+          "(797, 931)": 30
+        },
+        "errors": []
+      }
+    },
+    "query_cache_hot_reload": {
+      "observed": true,
+      "evidence": {
+        "old_has_sentinel": false,
+        "new_has_sentinel": true
+      }
+    },
+    "checkout_stamp_follows_revision": {
+      "observed": true,
+      "evidence": {
+        "checked_out": "82bb32f1dcf4c2ca7d794c3cc92bd20c51a67ac6",
+        "built_at_commit": "82bb32f1dcf4c2ca7d794c3cc92bd20c51a67ac6",
+        "nodes": 760
+      }
+    }
+  },
+  "initial": {
+    "detected_by_type": {
+      "code": 29,
+      "document": 51,
+      "paper": 0,
+      "image": 0,
+      "video": 0
+    },
+    "extracted_files": 79,
+    "raw_nodes": 748,
+    "raw_edges": 932,
+    "failed_sources": [],
+    "unclassified": [
+      ".gitignore",
+      "LICENSE",
+      "docs/diagrams/cloud-egress-sequence.puml",
+      "docs/diagrams/context-flow.puml",
+      "docs/diagrams/decision-authority-sequence.puml",
+      "docs/diagrams/local-inference-scheduling-sequence.puml",
+      "docs/diagrams/protocol-boundaries.puml",
+      "docs/diagrams/spec-driven-workflow-sequence.puml",
+      "docs/diagrams/system-context.puml",
+      "docs/diagrams/task-lifecycle-sequence.puml",
+      "experiments/mirix-carveout/source-files.sha256",
+      "runtime/interactive-restate.toml",
+      "runtime/restate.toml"
+    ],
+    "graph": {
+      "type": "DiGraph",
+      "nodes": 796,
+      "edges": 930,
+      "node_origins": {
+        "ast": 748,
+        "MISSING": 48
+      },
+      "edge_origins": {
+        "ast": 930
+      },
+      "confidence": {
+        "EXTRACTED": 922,
+        "INFERRED": 8
+      },
+      "relations": {
+        "inherits": 3,
+        "method": 23,
+        "uses": 1,
+        "calls": 67,
+        "references": 91,
+        "indirect_call": 3,
+        "imports": 58,
+        "imports_from": 44,
+        "contains": 627,
+        "rationale_for": 9,
+        "defines": 4
+      }
+    },
+    "communities": 53,
+    "seconds": 0.3127779919996101,
+    "json_bytes": 660802,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "artifact_sha256": "1b08993e20ed568d883aa2b30cb64c1488f6e2d77363616d5b99c8b405696b85",
+    "god_nodes": [
+      {
+        "id": "docs_decisions_0015_durable_task_execution_and_verification_adr_0015_durable_task_execution_and_verification",
+        "label": "ADR 0015 — Durable Task execution and verification",
+        "degree": 25
+      },
+      {
+        "id": "docs_agentic_development_kit_blaine_personal_agentic_development_kit",
+        "label": "Blaine — Personal Agentic Development Kit",
+        "degree": 22
+      },
+      {
+        "id": "docs_decisions_0016_agent_harnesses_are_replaceable_execution_capabilities_adr_0016_agent_harnesses_are_replaceable_execution_capabilities",
+        "label": "ADR 0016 — Agent harnesses are replaceable execution capabilities",
+        "degree": 19
+      }
+    ]
+  },
+  "queries": {
+    "validate_request": {
+      "seconds": 0.016388986998208566,
+      "answer": "Graph: /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/graphify-out/graph.json (796 nodes) | Traversal: BFS depth=3 | Start: ['validate_request()', 'request()'] | 97 nodes found\n\n[!] TRUNCATED: showing 47 of 97 nodes (~900-token budget). The answer may be among the 50 cut nodes — raise the token budget (CLI: --budget) or narrow the query (e.g. context_filter=['call'], or get_node for a specific symbol).\n\nNODE validate_request() [src=runtime/task.py loc=L6 community=3]\nNODE request() [src=runtime/acp_agent.py loc=L18 community=0]\nNODE acp_agent.py [src=runtime/acp_agent.py loc=L1 community=7]\nNODE app.py [src=runtime/app.py loc=L1 community=3]\nNODE interactive.py [src=runtime/interactive.py loc=L1 community=3]\nNODE verify-interactive.py [src=scripts/verify-interactive.py loc=L1 community=0]\nNODE execute() [src=runtime/acp_agent.py loc=L38 community=7]\nNODE task.py [src=runtime/task.py loc=L1 community=3]\nNODE run() [src=runtime/app.py loc=L17 community=3]\nNODE run() [src=runtime/interactive.py loc=L14 community=3]\nNODE test_task.py [src=tests/test_task.py loc=L1 community=3]\nNODE main() [src=scripts/verify-interactive.py loc=L22 community=0]\nNODE .test_preserves_objective_and_handles_unicode_whitespace() [src=tests/test_task.py loc=L14 community=3]\nNODE .test_delay_boundaries() [src=tests/test_task.py loc=L29 community=3]\nNODE .test_rejects_bad_input_before_work() [src=tests/test_task.py loc=L21 community=3]\nNODE dev.py [src=scripts/dev.py loc=L1 community=0]\nNODE BlaineAgent [src=runtime/acp_agent.py loc=L59 community=7]\nNODE test_acp.py [src=tests/test_acp.py loc=L1 community=7]\nNODE summarize_objective() [src=runtime/task.py loc=L18 community=3]\nNODE owned() [src=scripts/dev.py loc=L42 community=0]\nNODE json [src= loc= community=0]\nNODE pathlib [src= loc= community=0]\nNODE asyncio [src= loc= community=3]\nNODE parse_command() [src=runtime/acp_agent.py loc=L28 community=7]\nNODE subprocess [src= loc= community=0]\nNODE sys [src= loc= community=0]\nNODE TaskOperationTests [src=tests/test_task.py loc=L6 community=3]\nNODE proceed() [src=runtime/interactive.py loc=L37 community=3]\nNODE status() [src=runtime/app.py loc=L44 community=3]\nNODE status() [src=runtime/interactive.py loc=L32 community=3]\nNODE socket [src= loc= community=0]\nNODE unittest [src= loc= community=7]\nNODE urllib_request [src= loc= community=7]\nNODE acp [src= loc= community=7]\nNODE acp_schema [src= loc= community=7]\nNODE hypercorn_asyncio [src= loc= community=3]\nNODE hypercorn_config [src= loc= community=3]\nNODE restate [src= loc= community=3]\nNODE .prompt() [src=runtime/acp_agent.py loc=L75 community=7]\nNODE run() [src=scripts/verify-interactive.py loc=L16 community=0]\nNODE .test_status_reads_runtime_without_local_task() [src=tests/test_acp.py loc=L21 community=7]\nNODE .test_uncertain_create_preserves_id() [src=tests/test_acp.py loc=L27 community=7]\nNODE urllib_error [src= loc= community=7]\nNODE datetime [src= loc= community=3]\nNODE hashlib [src= loc= community=3]\nNODE logging [src= loc= community=7]\nNODE re [src= loc= community=7]\n... (truncated — 50 more nodes cut by ~900-token budget. Narrow with context_filter=['call'] or use get_node for a specific symbol)"
+    },
+    "durable Task execution verification": {
+      "seconds": 0.004234084000927396,
+      "answer": "Graph: /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/graphify-out/graph.json (796 nodes) | Traversal: BFS depth=3 | Start: ['Durable Task execution and verification', 'Task', 'Execution and verification', 'ADR 0015 — Durable Task execution and verification'] | 56 nodes found\n\n[!] TRUNCATED: showing 22 of 56 nodes (~900-token budget). The answer may be among the 34 cut nodes — raise the token budget (CLI: --budget) or narrow the query (e.g. context_filter=['call'], or get_node for a specific symbol).\n\nNODE Durable Task execution and verification [src=docs/decisions/0016-agent-harnesses-are-replaceable-execution-capabilities.md loc=L338 community=5]\nNODE Task [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L51 community=4]\nNODE Execution and verification [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L272 community=4]\nNODE ADR 0015 — Durable Task execution and verification [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L1 community=4]\nNODE Validation [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L645 community=4]\nNODE Relationship to other decisions [src=docs/decisions/0016-agent-harnesses-are-replaceable-execution-capabilities.md loc=L330 community=5]\nNODE 0015-durable-task-execution-and-verification.md [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L1 community=4]\nNODE Artifacts [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L142 community=4]\nNODE Card verification as a Task [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L386 community=4]\nNODE Completion Contract [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L205 community=4]\nNODE Conceptual model [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L549 community=4]\nNODE Consequences [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L610 community=4]\nNODE Context [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L7 community=4]\nNODE Decision [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L33 community=4]\nNODE Evidence [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L169 community=4]\nNODE Example — implementing code [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L353 community=4]\nNODE Example — processing a Card comment [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L305 community=4]\nNODE Failure and retry [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L519 community=4]\nNODE Model contract [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L494 community=4]\nNODE Relationship to Cards [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L582 community=4]\nNODE Relationship to existing decisions [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L599 community=4]\nNODE Restate [src=docs/decisions/0015-durable-task-execution-and-verification.md loc=L431 community=4]\n... (truncated — 34 more nodes cut by ~900-token budget. Narrow with context_filter=['call'] or use get_node for a specific symbol)"
+    },
+    "project knowledge retrieval": {
+      "seconds": 0.0019080379970546346,
+      "answer": "Graph: /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/graphify-out/graph.json (796 nodes) | Traversal: BFS depth=3 | Start: ['Retrieval and synthesis', 'Project instructions', 'Knowledge Vault security'] | 45 nodes found\n\n[!] TRUNCATED: showing 24 of 45 nodes (~900-token budget). The answer may be among the 21 cut nodes — raise the token budget (CLI: --budget) or narrow the query (e.g. context_filter=['call'], or get_node for a specific symbol).\n\nNODE Retrieval and synthesis [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L125 community=11]\nNODE Project instructions [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L62 community=11]\nNODE Knowledge Vault security [src=docs/research/mirix-carveout.md loc=L335 community=2]\nNODE ADR 0014 — Project knowledge is retrieval-first, training-last [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L1 community=11]\nNODE MIRIX carveout: independent memory service [src=docs/research/mirix-carveout.md loc=L1 community=2]\nNODE Audit and mutation history [src=docs/research/mirix-carveout.md loc=L452 community=2]\nNODE Complete value path [src=docs/research/mirix-carveout.md loc=L341 community=2]\nNODE Encryption, representation, and exposure [src=docs/research/mirix-carveout.md loc=L371 community=2]\nNODE What sensitivity and authorization really enforce [src=docs/research/mirix-carveout.md loc=L404 community=2]\nNODE Validation [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L300 community=11]\nNODE Internal provider and configuration path [src=docs/research/mirix-carveout.md loc=L134 community=2]\nNODE mirix-carveout.md [src=docs/research/mirix-carveout.md loc=L1 community=2]\nNODE Current architecture and external-agent boundary [src=docs/research/mirix-carveout.md loc=L53 community=2]\nNODE Smallest public memory seam [src=docs/research/mirix-carveout.md loc=L473 community=2]\nNODE 0014-project-knowledge-is-retrieval-first.md [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L1 community=11]\nNODE Addressable project context [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L82 community=11]\nNODE Boundaries [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L265 community=11]\nNODE Consequences [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L281 community=11]\nNODE Context [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L6 community=11]\nNODE Context Catalog [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L104 community=11]\nNODE Decision [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L41 community=11]\nNODE Freshness [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L145 community=11]\nNODE Model adaptation [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L160 community=11]\nNODE Model artifacts as sensitive assets [src=docs/decisions/0014-project-knowledge-is-retrieval-first.md loc=L185 community=11]\n... (truncated — 21 more nodes cut by ~900-token budget. Narrow with context_filter=['call'] or use get_node for a specific symbol)"
+    },
+    "runtime app summarize_objective": {
+      "seconds": 0.004586561000905931,
+      "answer": "Graph: /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/graphify-out/graph.json (796 nodes) | Traversal: BFS depth=3 | Start: ['summarize_objective()', 'app.py', 'Runtime process crash'] | 86 nodes found\n\n[!] TRUNCATED: showing 40 of 86 nodes (~900-token budget). The answer may be among the 46 cut nodes — raise the token budget (CLI: --budget) or narrow the query (e.g. context_filter=['call'], or get_node for a specific symbol).\n\nNODE summarize_objective() [src=runtime/task.py loc=L18 community=3]\nNODE app.py [src=runtime/app.py loc=L1 community=3]\nNODE Runtime process crash [src=docs/milestones/001-runtime-skeleton.md loc=L115 community=9]\nNODE interactive.py [src=runtime/interactive.py loc=L1 community=3]\nNODE validate_request() [src=runtime/task.py loc=L6 community=3]\nNODE task.py [src=runtime/task.py loc=L1 community=3]\nNODE asyncio [src= loc= community=3]\nNODE run() [src=runtime/app.py loc=L17 community=3]\nNODE run() [src=runtime/interactive.py loc=L14 community=3]\nNODE test_task.py [src=tests/test_task.py loc=L1 community=3]\nNODE Recovery experiment — manual procedure [src=docs/milestones/001-runtime-skeleton.md loc=L92 community=9]\nNODE status() [src=runtime/app.py loc=L44 community=3]\nNODE .test_preserves_objective_and_handles_unicode_whitespace() [src=tests/test_task.py loc=L14 community=3]\nNODE hypercorn_asyncio [src= loc= community=3]\nNODE hypercorn_config [src= loc= community=3]\nNODE restate [src= loc= community=3]\nNODE .test_known_digest_and_word_count() [src=tests/test_task.py loc=L7 community=3]\nNODE datetime [src= loc= community=3]\nNODE Milestone 001: one Restate workflow, one operation, one query. [src=runtime/app.py loc=L1 community=3]\nNODE source_probe.py [src=experiments/mirix-carveout/source_probe.py loc=L1 community=0]\nNODE acp_agent.py [src=runtime/acp_agent.py loc=L1 community=7]\nNODE smoke-acp.py [src=scripts/smoke-acp.py loc=L1 community=20]\nNODE Milestone 001 — Runtime Skeleton [src=docs/milestones/001-runtime-skeleton.md loc=L1 community=9]\nNODE TaskOperationTests [src=tests/test_task.py loc=L6 community=3]\nNODE proceed() [src=runtime/interactive.py loc=L37 community=3]\nNODE status() [src=runtime/interactive.py loc=L32 community=3]\nNODE unittest [src= loc= community=7]\nNODE .test_delay_boundaries() [src=tests/test_task.py loc=L29 community=3]\nNODE .test_rejects_bad_input_before_work() [src=tests/test_task.py loc=L21 community=3]\nNODE Restate process crash [src=docs/milestones/001-runtime-skeleton.md loc=L149 community=9]\nNODE hashlib [src= loc= community=3]\nNODE handler [src= loc= community=3]\nNODE main [src= loc= community=3]\nNODE WorkflowContext [src= loc= community=3]\nNODE WorkflowSharedContext [src= loc= community=3]\nNODE main [src= loc= community=3]\nNODE WorkflowContext [src= loc= community=3]\nNODE Milestone 002: Restate owns the task, including its human-input wait. [src=runtime/interactive.py loc=L1 community=3]\nNODE The spike's deterministic operation; no execution state lives here. [src=runtime/task.py loc=L1 community=3]\nNODE BlaineAgent [src=runtime/acp_agent.py loc=L59 community=7]\n... (truncated — 46 more nodes cut by ~900-token budget. Narrow with context_filter=['call'] or use get_node for a specific symbol)"
+    }
+  },
+  "shortest_path": "No directed path found between 'run()' and 'request()'. Retry with undirected=true to search ignoring edge direction.",
+  "requirements_coverage": {
+    "source": "restate-sdk==1.0.5\nhypercorn==0.17.3\nagent-client-protocol==0.12.1\n",
+    "nodes": []
+  },
+  "warm_extract": {
+    "seconds": 0.09996360399964033,
+    "parser_calls": [],
+    "same_raw": true
+  },
+  "cli_code_only": {
+    "returncode": 0,
+    "stdout": "[graphify extract] scanning /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/corpus\n[graphify extract] --code-only: skipping 51 non-code file(s) (51 docs, 0 papers, 0 images) — no LLM extraction\n[graphify extract] found 29 code, 0 docs, 0 papers, 0 images\n[graphify extract] 13 file(s) not classified (no supported extension or shebang), skipped: .gitignore, LICENSE, cloud-egress-sequence.puml, context-flow.puml, decision-authority-sequence.puml, interactive-restate.toml (+7 more)\n[graphify extract] AST extraction on 29 code files...\n[graphify extract] wrote /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/cli-output/graph.json: 184 nodes, 287 edges, 19 communities\n[graphify extract] wrote /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/cli-output/.graphify_analysis.json\n[graphify extract] next: run `graphify cluster-only /home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt` to generate GRAPH_REPORT.md and name communities\n",
+    "stderr": "",
+    "graph": {
+      "type": "DiGraph",
+      "nodes": 184,
+      "edges": 287,
+      "node_origins": {
+        "ast": 136,
+        "MISSING": 48
+      },
+      "edge_origins": {
+        "ast": 287
+      },
+      "confidence": {
+        "EXTRACTED": 283,
+        "INFERRED": 4
+      },
+      "relations": {
+        "method": 23,
+        "inherits": 3,
+        "uses": 1,
+        "calls": 67,
+        "references": 10,
+        "indirect_call": 3,
+        "imports": 58,
+        "imports_from": 44,
+        "contains": 65,
+        "rationale_for": 9,
+        "defines": 4
+      }
+    }
+  },
+  "mcp": {
+    "error": "TimeoutError('initialize')"
+  },
+  "mixed_semantic_update": {
+    "synthetic_not_llm": true,
+    "update_return": true,
+    "semantic_claim_retained": true,
+    "new_heading_present": false,
+    "semantic_record": {
+      "label": "Synthetic summary before doc edit",
+      "_origin": "semantic",
+      "community": null,
+      "file_type": "concept",
+      "norm_label": "synthetic summary before doc edit",
+      "source_file": "docs/architecture.md",
+      "source_location": "L1"
+    }
+  },
+  "builder_controls": {
+    "False": {
+      "input_edges": [
+        {
+          "source": "a",
+          "target": "b",
+          "relation": "calls",
+          "confidence": "INFERRED",
+          "_origin": "ast"
+        },
+        {
+          "source": "a",
+          "target": "b",
+          "relation": "references",
+          "confidence": "EXTRACTED",
+          "_origin": "ast"
+        },
+        {
+          "source": "b",
+          "target": "a",
+          "relation": "calls",
+          "confidence": "INFERRED",
+          "_origin": "ast"
+        }
+      ],
+      "surviving_edges": [
+        {
+          "source": "a",
+          "target": "b",
+          "relation": "calls",
+          "confidence": "INFERRED",
+          "_origin": "ast",
+          "source_file": "control.py",
+          "_src": "a",
+          "_tgt": "b"
+        }
+      ]
+    },
+    "True": {
+      "input_edges": [
+        {
+          "source": "a",
+          "target": "b",
+          "relation": "calls",
+          "confidence": "INFERRED",
+          "_origin": "ast"
+        },
+        {
+          "source": "a",
+          "target": "b",
+          "relation": "references",
+          "confidence": "EXTRACTED",
+          "_origin": "ast"
+        },
+        {
+          "source": "b",
+          "target": "a",
+          "relation": "calls",
+          "confidence": "INFERRED",
+          "_origin": "ast"
+        }
+      ],
+      "surviving_edges": [
+        {
+          "source": "a",
+          "target": "b",
+          "relation": "calls",
+          "confidence": "INFERRED",
+          "_origin": "ast",
+          "source_file": "control.py",
+          "_src": "a",
+          "_tgt": "b"
+        },
+        {
+          "source": "b",
+          "target": "a",
+          "relation": "calls",
+          "confidence": "INFERRED",
+          "_origin": "ast",
+          "source_file": "control.py",
+          "_src": "b",
+          "_tgt": "a"
+        }
+      ]
+    }
+  },
+  "artifacts": [
+    ".graphify_labels.json",
+    ".graphify_labels.json.sig",
+    ".graphify_root",
+    "2026-09-19/.graphify_labels.json",
+    "2026-09-19/GRAPH_REPORT.md",
+    "2026-09-19/graph.json",
+    "2026-09-19/manifest.json",
+    "GRAPH_REPORT.md",
+    "graph.html",
+    "graph.json",
+    "manifest.json"
+  ],
+  "upstream_tracked_status": ""
+}

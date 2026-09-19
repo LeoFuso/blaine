@@ -1,0 +1,42 @@
+{
+  "upstream_sha": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae",
+  "mcp_version": "2.2.0",
+  "path": {
+    "exact_ids": [
+      "runtime_app_run",
+      "runtime_task_validate_request"
+    ],
+    "networkx": [
+      "runtime_app_run",
+      "runtime_task_validate_request"
+    ],
+    "graphify_text": "No directed path found between 'run()' and 'request()'. Retry with undirected=true to search ignoring edge direction."
+  },
+  "mcp_invocation": [
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+    "-u",
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/mcp_factory_server.py",
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/run-2xsiooqt/initial-graph.json"
+  ],
+  "mcp_error": "TimeoutError('initialize')",
+  "mcp_returncode": -15,
+  "mcp_stderr": "",
+  "mcp_messages": [],
+  "http_asgi": [
+    {
+      "method": "initialize",
+      "status": 200,
+      "body": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"capabilities\":{\"experimental\":{},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2025-03-26\",\"serverInfo\":{\"name\":\"graphify\",\"version\":\"0\"}}}"
+    },
+    {
+      "method": "tools/list",
+      "status": 200,
+      "body": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"tools\":[{\"description\":\"Search the knowledge graph using BFS or DFS. Returns relevant nodes and edges as text context.\",\"inputSchema\":{\"properties\":{\"question\":{\"type\":\"string\",\"description\":\"Natural language question or keyword search\"},\"mode\":{\"type\":\"string\",\"enum\":[\"bfs\",\"dfs\"],\"default\":\"bfs\",\"description\":\"bfs=broad context, dfs=trace a specific path\"},\"depth\":{\"type\":\"integer\",\"default\":3,\"description\":\"Traversal depth (1-6)\"},\"token_budget\":{\"type\":\"integer\",\"default\":2000,\"description\":\"Max output tokens\"},\"context_filter\":{\"type\":\"array\",\"items\":{\"type\":\"string\"},\"description\":\"Optional explicit edge-context filter, e.g. ['call', 'field']\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"required\":[\"question\"],\"type\":\"object\"},\"name\":\"query_graph\"},{\"description\":\"Get full details for a specific node by label or ID.\",\"inputSchema\":{\"properties\":{\"label\":{\"type\":\"string\",\"description\":\"Node label or ID to look up\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"required\":[\"label\"],\"type\":\"object\"},\"name\":\"get_node\"},{\"description\":\"Get all direct neighbors of a node with edge details.\",\"inputSchema\":{\"properties\":{\"label\":{\"type\":\"string\"},\"relation_filter\":{\"type\":\"string\",\"description\":\"Optional: filter by relation type\"},\"token_budget\":{\"type\":\"integer\",\"default\":2000,\"description\":\"Max output tokens\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"required\":[\"label\"],\"type\":\"object\"},\"name\":\"get_neighbors\"},{\"description\":\"Get all nodes in a community by community ID.\",\"inputSchema\":{\"properties\":{\"community_id\":{\"type\":\"integer\",\"description\":\"Community ID (0-indexed by size)\"},\"token_budget\":{\"type\":\"integer\",\"default\":2000,\"description\":\"Max output tokens\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"required\":[\"community_id\"],\"type\":\"object\"},\"name\":\"get_community\"},{\"description\":\"Return the most connected nodes - the core abstractions of the knowledge graph.\",\"inputSchema\":{\"properties\":{\"top_n\":{\"type\":\"integer\",\"default\":10},\"exclude_hubs_percentile\":{\"type\":\"number\",\"description\":\"Suppress nodes whose degree exceeds this percentile (0-100) of the degree distribution, matching cluster()'s hub exclusion\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"type\":\"object\"},\"name\":\"god_nodes\"},{\"description\":\"Return summary statistics: node count, edge count, communities, confidence breakdown.\",\"inputSchema\":{\"properties\":{\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"type\":\"object\"},\"name\":\"graph_stats\"},{\"description\":\"Find the shortest path between two concepts in the knowledge graph. Follows stored edge direction by default; set undirected=true to ignore it.\",\"inputSchema\":{\"properties\":{\"source\":{\"type\":\"string\",\"description\":\"Source concept label or keyword\"},\"target\":{\"type\":\"string\",\"description\":\"Target concept label or keyword\"},\"max_hops\":{\"type\":\"integer\",\"default\":8,\"description\":\"Maximum hops to consider\"},\"undirected\":{\"type\":\"boolean\",\"default\":false,\"description\":\"Ignore stored edge direction when searching\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"required\":[\"source\",\"target\"],\"type\":\"object\"},\"name\":\"shortest_path\"},{\"description\":\"List open GitHub PRs with CI status, review state, and graph impact (which communities each PR touches, blast radius). Use this before starting work to check if a PR already covers the area you're about to change.\",\"inputSchema\":{\"properties\":{\"base\":{\"type\":\"string\",\"description\":\"Base branch to filter PRs by (auto-detected if omitted)\"},\"repo\":{\"type\":\"string\",\"description\":\"GitHub repo (owner/repo). Defaults to current repo.\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"type\":\"object\"},\"name\":\"list_prs\"},{\"description\":\"Get detailed graph impact for a specific PR: which files it changes, which knowledge-graph communities are affected, and how many nodes are touched. Use this to assess merge risk or check for overlap with your current work.\",\"inputSchema\":{\"properties\":{\"pr_number\":{\"type\":\"integer\",\"description\":\"PR number to analyse\"},\"repo\":{\"type\":\"string\",\"description\":\"GitHub repo (owner/repo). Defaults to current repo.\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"required\":[\"pr_number\"],\"type\":\"object\"},\"name\":\"get_pr_impact\"},{\"description\":\"Return all actionable open PRs (correct base, not stale) with full graph impact data so you can reason about review priority, merge order, and conflict risk. Call this when the user asks 'what PRs should I review?' or 'what's ready to merge?'\",\"inputSchema\":{\"properties\":{\"base\":{\"type\":\"string\",\"description\":\"Base branch to filter PRs by (auto-detected if omitted)\"},\"repo\":{\"type\":\"string\",\"description\":\"GitHub repo (owner/repo). Defaults to current repo.\"},\"project_path\":{\"type\":\"string\",\"description\":\"Absolute path to a project directory containing graphify-out/graph.json. Optional \u2014 defaults to the graph this server was started with.\"}},\"type\":\"object\"},\"name\":\"triage_prs\"}]}}"
+    },
+    {
+      "method": "tools/call",
+      "status": 200,
+      "body": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"content\":[{\"text\":\"Node: validate_request()\\n  ID: runtime_task_validate_request\\n  Source: runtime/task.py L6\\n  Type: code\\n  Community: 3\\n  Degree: 9\",\"type\":\"text\"}],\"isError\":false}}"
+    }
+  ]
+}

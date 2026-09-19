@@ -1,0 +1,91 @@
+{
+  "frontmatter_change": {
+    "before": [
+      {
+        "id": "notes",
+        "label": "notes.md",
+        "file_type": "document",
+        "node_kind": "page",
+        "source_file": "notes.md",
+        "source_location": "L1",
+        "frontmatter": {
+          "review_status": "draft"
+        },
+        "_origin": "ast"
+      },
+      {
+        "id": "notes_project",
+        "label": "Project",
+        "file_type": "document",
+        "node_kind": "heading",
+        "source_file": "notes.md",
+        "source_location": "L4",
+        "_origin": "ast"
+      }
+    ],
+    "warm": [
+      {
+        "id": "notes",
+        "label": "notes.md",
+        "file_type": "document",
+        "node_kind": "page",
+        "source_file": "notes.md",
+        "source_location": "L1",
+        "frontmatter": {
+          "review_status": "draft"
+        },
+        "_origin": "ast"
+      },
+      {
+        "id": "notes_project",
+        "label": "Project",
+        "file_type": "document",
+        "node_kind": "heading",
+        "source_file": "notes.md",
+        "source_location": "L4",
+        "_origin": "ast"
+      }
+    ],
+    "cold": [
+      {
+        "id": "home_leofuso_workspace_blaine_experiments_graphify_carveout_work_freshness_2vhsdl8a_corpus_notes_md",
+        "label": "notes.md",
+        "file_type": "document",
+        "node_kind": "page",
+        "source_file": "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/freshness-2vhsdl8a/corpus/notes.md",
+        "source_location": "L1",
+        "frontmatter": {
+          "review_status": "accepted"
+        }
+      },
+      {
+        "id": "home_leofuso_workspace_blaine_experiments_graphify_carveout_work_freshness_2vhsdl8a_corpus_notes_project",
+        "label": "Project",
+        "file_type": "document",
+        "node_kind": "heading",
+        "source_file": "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/freshness-2vhsdl8a/corpus/notes.md",
+        "source_location": "L4"
+      }
+    ]
+  },
+  "callee_added_unchanged_caller": {
+    "partial_calls": [],
+    "full_calls": [
+      {
+        "source": "caller_caller",
+        "target": "callee_newly_available",
+        "relation": "calls",
+        "_origin": "ast",
+        "confidence": "EXTRACTED",
+        "confidence_score": 1.0,
+        "context": "call",
+        "source_file": "caller.py",
+        "source_location": "L4",
+        "weight": 1.0
+      }
+    ]
+  },
+  "relocation": {
+    "same_ids": true
+  }
+}

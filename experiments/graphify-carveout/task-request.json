@@ -1,0 +1,20 @@
+{
+  "objective": "Evaluate pinned Graphify source and an isolated Blaine-corpus probe for independent, trustworthy, incremental, provenance-aware Project Knowledge; retain source-backed findings without integration.",
+  "mode": "interactive",
+  "context": [
+    {"need": "Blaine constraints, decisions, previous carveouts, and corpus", "source": "../../", "sharing": "local-only"},
+    {"need": "Current upstream implementation", "source": "https://github.com/Graphify-Labs/graphify", "freshness": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae", "sharing": "cloud-allowed"}
+  ],
+  "capabilities": ["read repository", "read public upstream", "clone sibling checkout", "edit research and isolated experiment", "install isolated Python dependencies", "run deterministic local probes"],
+  "autonomy": {
+    "allowed": ["Inspect upstream without source changes", "Run isolated probes on disposable corpus copies", "Write findings and reproducible evidence"],
+    "ask_before": ["Material architectural decisions outside the experiment"],
+    "forbidden": ["Paid model calls", "Credential configuration", "System-wide installation", "Global git hooks", "Assistant integration installation", "Production source changes", "MIRIX/Restate/Goose/Multica integration", "ProjectKnowledge interface or context resolver design", "Commit or push"]
+  },
+  "cloud": {"policy": "forbid"},
+  "completion": [
+    {"criterion": "All seven investigation areas have source-backed conclusions with uncertainty labels", "evidence": "docs/research/graphify-carveout.md with commit-pinned source paths"},
+    {"criterion": "Demonstrate or explicitly falsify deterministic build, persistence, queries, and incremental reconciliation", "evidence": "Reproducible isolated probe and retained results"},
+    {"criterion": "Answer the independence/trustworthiness question without integration", "evidence": "Fit matrix, unresolved questions, and scoped workspace diff"}
+  ]
+}

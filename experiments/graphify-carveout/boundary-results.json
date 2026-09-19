@@ -1,0 +1,531 @@
+{
+  "upstream_sha": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae",
+  "mcp_version": "2.2.0",
+  "path": {
+    "exact_ids": [
+      "runtime_app_run",
+      "runtime_task_validate_request"
+    ],
+    "networkx": [
+      "runtime_app_run",
+      "runtime_task_validate_request"
+    ],
+    "graphify_text": "No directed path found between 'run()' and 'request()'. Retry with undirected=true to search ignoring edge direction."
+  },
+  "mcp_error": "TimeoutError('initialize')",
+  "mcp_returncode": -15,
+  "mcp_stderr": "",
+  "mcp_messages": [],
+  "fixtures": {
+    "inputs": {
+      "python/pyproject.toml": "[project]\nname=\"probe-python\"\nversion=\"1.0\"\ndependencies=[\"httpx>=0.27\"]\n",
+      "go/go.mod": "module example.org/probe\n\ngo 1.23\nrequire example.org/external v1.2.3\n",
+      "rust/Cargo.toml": "[package]\nname=\"probe-rust\"\nversion=\"1.0.0\"\n[dependencies]\nserde=\"1\"\n",
+      "java/pom.xml": "<project><groupId>example</groupId><artifactId>probe</artifactId><dependencies><dependency><groupId>example</groupId><artifactId>external</artifactId><version>1</version></dependency></dependencies></project>",
+      "schema.sql": "CREATE TABLE users (id INT PRIMARY KEY);\nCREATE TABLE orders (id INT PRIMARY KEY, user_id INT REFERENCES users(id));\nCREATE VIEW orders_view AS SELECT * FROM orders;\n",
+      "config.yaml": "server:\n  port: 8080\n",
+      "config.toml": "[server]\nport=8080\n",
+      "requirements.txt": "httpx==0.27.0\n",
+      "build.gradle": "plugins { id \"java\" }\ndependencies { implementation \"example:external:1.0\" }\n",
+      "Overloaded.java": "class Overloaded { void run(int x) {} void run(String x) {} }\n"
+    },
+    "extractor_available": {
+      "python/pyproject.toml": true,
+      "go/go.mod": true,
+      "rust/Cargo.toml": true,
+      "java/pom.xml": true,
+      "schema.sql": true,
+      "config.yaml": false,
+      "config.toml": false,
+      "requirements.txt": false,
+      "build.gradle": true,
+      "Overloaded.java": true
+    },
+    "raw": {
+      "nodes": [
+        {
+          "id": "pkg_probe_python",
+          "label": "probe-python",
+          "file_type": "code",
+          "type": "package",
+          "ecosystem": "python",
+          "source_file": "python/pyproject.toml",
+          "source_location": "L1",
+          "version": "1.0",
+          "_origin": "ast"
+        },
+        {
+          "id": "pkg_example_org_probe",
+          "label": "example.org/probe",
+          "file_type": "code",
+          "type": "package",
+          "ecosystem": "go",
+          "source_file": "go/go.mod",
+          "source_location": "L1",
+          "_origin": "ast"
+        },
+        {
+          "id": "pkg_probe_rust",
+          "label": "probe-rust",
+          "file_type": "code",
+          "type": "package",
+          "ecosystem": "cargo",
+          "source_file": "rust/Cargo.toml",
+          "source_location": "L1",
+          "version": "1.0.0",
+          "_origin": "ast"
+        },
+        {
+          "id": "pkg_example_probe",
+          "label": "example:probe",
+          "file_type": "code",
+          "type": "package",
+          "ecosystem": "maven",
+          "source_file": "java/pom.xml",
+          "source_location": "L1",
+          "_origin": "ast"
+        },
+        {
+          "id": "schema",
+          "label": "schema.sql",
+          "file_type": "code",
+          "source_file": "schema.sql",
+          "source_location": null,
+          "_origin": "ast"
+        },
+        {
+          "id": "schema_users",
+          "label": "users",
+          "file_type": "code",
+          "source_file": "schema.sql",
+          "source_location": "L1",
+          "_origin": "ast"
+        },
+        {
+          "id": "schema_orders",
+          "label": "orders",
+          "file_type": "code",
+          "source_file": "schema.sql",
+          "source_location": "L2",
+          "_origin": "ast"
+        },
+        {
+          "id": "schema_orders_view",
+          "label": "orders_view",
+          "file_type": "code",
+          "source_file": "schema.sql",
+          "source_location": "L3",
+          "_origin": "ast"
+        },
+        {
+          "id": "build",
+          "label": "build.gradle",
+          "file_type": "code",
+          "source_file": "build.gradle",
+          "source_location": "L1",
+          "_origin": "ast"
+        },
+        {
+          "id": "overloaded",
+          "label": "Overloaded.java",
+          "file_type": "code",
+          "source_file": "Overloaded.java",
+          "source_location": "L1",
+          "_origin": "ast"
+        },
+        {
+          "id": "overloaded_overloaded",
+          "label": "Overloaded",
+          "file_type": "code",
+          "source_file": "Overloaded.java",
+          "source_location": "L1",
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast"
+        },
+        {
+          "id": "overloaded_overloaded_run",
+          "label": ".run()",
+          "file_type": "code",
+          "source_file": "Overloaded.java",
+          "source_location": "L1",
+          "_callable": true,
+          "_origin": "ast"
+        }
+      ],
+      "edges": [
+        {
+          "source": "pkg_probe_python",
+          "target": "pkg_httpx",
+          "relation": "depends_on",
+          "context": "dependency",
+          "confidence": "EXTRACTED",
+          "confidence_score": 1.0,
+          "source_file": "python/pyproject.toml",
+          "source_location": "L1",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "pkg_example_org_probe",
+          "target": "pkg_example_org_external",
+          "relation": "depends_on",
+          "context": "dependency",
+          "confidence": "EXTRACTED",
+          "confidence_score": 1.0,
+          "source_file": "go/go.mod",
+          "source_location": "L1",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "pkg_probe_rust",
+          "target": "pkg_serde",
+          "relation": "depends_on",
+          "context": "dependency",
+          "confidence": "EXTRACTED",
+          "confidence_score": 1.0,
+          "source_file": "rust/Cargo.toml",
+          "source_location": "L1",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "pkg_example_probe",
+          "target": "pkg_example_external",
+          "relation": "depends_on",
+          "context": "dependency",
+          "confidence": "EXTRACTED",
+          "confidence_score": 1.0,
+          "source_file": "java/pom.xml",
+          "source_location": "L1",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "schema",
+          "target": "schema_users",
+          "relation": "contains",
+          "confidence": "EXTRACTED",
+          "source_file": "schema.sql",
+          "source_location": "L1",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "schema",
+          "target": "schema_orders",
+          "relation": "contains",
+          "confidence": "EXTRACTED",
+          "source_file": "schema.sql",
+          "source_location": "L2",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "schema_orders",
+          "target": "schema_users",
+          "relation": "references",
+          "confidence": "EXTRACTED",
+          "source_file": "schema.sql",
+          "source_location": "L2",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "schema",
+          "target": "schema_orders_view",
+          "relation": "contains",
+          "confidence": "EXTRACTED",
+          "source_file": "schema.sql",
+          "source_location": "L3",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "schema_orders_view",
+          "target": "schema_orders",
+          "relation": "reads_from",
+          "confidence": "EXTRACTED",
+          "source_file": "schema.sql",
+          "source_location": "L3",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "overloaded",
+          "target": "overloaded_overloaded",
+          "relation": "contains",
+          "confidence": "EXTRACTED",
+          "source_file": "Overloaded.java",
+          "source_location": "L1",
+          "weight": 1.0,
+          "_origin": "ast"
+        },
+        {
+          "source": "overloaded_overloaded",
+          "target": "overloaded_overloaded_run",
+          "relation": "method",
+          "confidence": "EXTRACTED",
+          "source_file": "Overloaded.java",
+          "source_location": "L1",
+          "weight": 1.0,
+          "_origin": "ast"
+        }
+      ],
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "failed_sources": [],
+      "extracted_sources": [
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/python/pyproject.toml",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/go/go.mod",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/rust/Cargo.toml",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/java/pom.xml",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/schema.sql",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/config.yaml",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/config.toml",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/requirements.txt",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/build.gradle",
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/work/boundary-f7qdxnxh/fixtures/Overloaded.java"
+      ]
+    },
+    "graph_nodes": [
+      {
+        "id": "pkg_probe_python",
+        "label": "probe-python",
+        "file_type": "code",
+        "type": "package",
+        "ecosystem": "python",
+        "source_file": "python/pyproject.toml",
+        "source_location": "L1",
+        "version": "1.0",
+        "_origin": "ast"
+      },
+      {
+        "id": "pkg_example_org_probe",
+        "label": "example.org/probe",
+        "file_type": "code",
+        "type": "package",
+        "ecosystem": "go",
+        "source_file": "go/go.mod",
+        "source_location": "L1",
+        "_origin": "ast"
+      },
+      {
+        "id": "pkg_probe_rust",
+        "label": "probe-rust",
+        "file_type": "code",
+        "type": "package",
+        "ecosystem": "cargo",
+        "source_file": "rust/Cargo.toml",
+        "source_location": "L1",
+        "version": "1.0.0",
+        "_origin": "ast"
+      },
+      {
+        "id": "pkg_example_probe",
+        "label": "example:probe",
+        "file_type": "code",
+        "type": "package",
+        "ecosystem": "maven",
+        "source_file": "java/pom.xml",
+        "source_location": "L1",
+        "_origin": "ast"
+      },
+      {
+        "id": "schema",
+        "label": "schema.sql",
+        "file_type": "code",
+        "source_file": "schema.sql",
+        "source_location": null,
+        "_origin": "ast"
+      },
+      {
+        "id": "schema_users",
+        "label": "users",
+        "file_type": "code",
+        "source_file": "schema.sql",
+        "source_location": "L1",
+        "_origin": "ast"
+      },
+      {
+        "id": "schema_orders",
+        "label": "orders",
+        "file_type": "code",
+        "source_file": "schema.sql",
+        "source_location": "L2",
+        "_origin": "ast"
+      },
+      {
+        "id": "schema_orders_view",
+        "label": "orders_view",
+        "file_type": "code",
+        "source_file": "schema.sql",
+        "source_location": "L3",
+        "_origin": "ast"
+      },
+      {
+        "id": "build",
+        "label": "build.gradle",
+        "file_type": "code",
+        "source_file": "build.gradle",
+        "source_location": "L1",
+        "_origin": "ast"
+      },
+      {
+        "id": "overloaded",
+        "label": "Overloaded.java",
+        "file_type": "code",
+        "source_file": "Overloaded.java",
+        "source_location": "L1",
+        "_origin": "ast"
+      },
+      {
+        "id": "overloaded_overloaded",
+        "label": "Overloaded",
+        "file_type": "code",
+        "source_file": "Overloaded.java",
+        "source_location": "L1",
+        "_callable": true,
+        "_callable_class": true,
+        "_origin": "ast"
+      },
+      {
+        "id": "overloaded_overloaded_run",
+        "label": ".run()",
+        "file_type": "code",
+        "source_file": "Overloaded.java",
+        "source_location": "L1",
+        "_callable": true,
+        "_origin": "ast"
+      }
+    ],
+    "graph_edges": [
+      {
+        "source": "schema",
+        "target": "schema_orders",
+        "relation": "contains",
+        "confidence": "EXTRACTED",
+        "source_file": "schema.sql",
+        "source_location": "L2",
+        "weight": 1.0,
+        "_origin": "ast",
+        "_src": "schema",
+        "_tgt": "schema_orders"
+      },
+      {
+        "source": "schema",
+        "target": "schema_orders_view",
+        "relation": "contains",
+        "confidence": "EXTRACTED",
+        "source_file": "schema.sql",
+        "source_location": "L3",
+        "weight": 1.0,
+        "_origin": "ast",
+        "_src": "schema",
+        "_tgt": "schema_orders_view"
+      },
+      {
+        "source": "schema",
+        "target": "schema_users",
+        "relation": "contains",
+        "confidence": "EXTRACTED",
+        "source_file": "schema.sql",
+        "source_location": "L1",
+        "weight": 1.0,
+        "_origin": "ast",
+        "_src": "schema",
+        "_tgt": "schema_users"
+      },
+      {
+        "source": "schema_orders",
+        "target": "schema_users",
+        "relation": "references",
+        "confidence": "EXTRACTED",
+        "source_file": "schema.sql",
+        "source_location": "L2",
+        "weight": 1.0,
+        "_origin": "ast",
+        "_src": "schema_orders",
+        "_tgt": "schema_users"
+      },
+      {
+        "source": "schema_orders_view",
+        "target": "schema_orders",
+        "relation": "reads_from",
+        "confidence": "EXTRACTED",
+        "source_file": "schema.sql",
+        "source_location": "L3",
+        "weight": 1.0,
+        "_origin": "ast",
+        "_src": "schema_orders_view",
+        "_tgt": "schema_orders"
+      },
+      {
+        "source": "overloaded",
+        "target": "overloaded_overloaded",
+        "relation": "contains",
+        "confidence": "EXTRACTED",
+        "source_file": "Overloaded.java",
+        "source_location": "L1",
+        "weight": 1.0,
+        "_origin": "ast",
+        "_src": "overloaded",
+        "_tgt": "overloaded_overloaded"
+      },
+      {
+        "source": "overloaded_overloaded",
+        "target": "overloaded_overloaded_run",
+        "relation": "method",
+        "confidence": "EXTRACTED",
+        "source_file": "Overloaded.java",
+        "source_location": "L1",
+        "weight": 1.0,
+        "_origin": "ast",
+        "_src": "overloaded_overloaded",
+        "_tgt": "overloaded_overloaded_run"
+      }
+    ]
+  },
+  "synthetic_semantic_transport": {
+    "synthetic_not_llm": true,
+    "client": {
+      "base_url": "http://localhost:11434/v1",
+      "timeout": 600.0,
+      "max_retries": 0
+    },
+    "request_keys": [
+      "extra_body",
+      "max_completion_tokens",
+      "messages",
+      "model",
+      "stream",
+      "temperature"
+    ],
+    "model": "qwen-probe-only",
+    "extra_body": {
+      "options": {
+        "num_ctx": 18822
+      },
+      "keep_alive": "30m"
+    },
+    "returned": {
+      "nodes": [
+        {
+          "id": "model_claim",
+          "label": "server",
+          "file_type": "document",
+          "source_file": "config.yaml",
+          "source_location": "L1"
+        }
+      ],
+      "edges": [],
+      "input_tokens": 10,
+      "output_tokens": 80,
+      "model": "qwen-probe-only",
+      "finish_reason": "stop"
+    },
+    "tier_classification_of_model_node": true,
+    "tier_classification_with_null_location": false
+  }
+}

@@ -1,0 +1,17 @@
+Upstream SHA: b9cd9570728a5ff3485d2a1e36fe9a1272a368ae
+Python: 3.12.14
+Dependency environment: requirements.lock
+Invocation: python -m pytest -q -p no:cacheprovider --basetemp=../pytest-tmp
+Working directory: experiments/graphify-carveout/work/upstream-tests-cwd
+Selections under upstream/tests/:
+  test_java_member_calls.py
+  test_java_type_resolution.py
+  test_go_qualified_resolution.py
+  test_rust_self_member_calls.py
+  test_manifest_ingest.py
+  test_markdown_code_spans.py
+  test_inferred_confidence_rubric.py
+
+........................................................................ [ 76%]
+......................                                                   [100%]
+94 passed in 0.94s
