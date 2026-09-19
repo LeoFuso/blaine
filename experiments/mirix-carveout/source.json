@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/Mirix-AI/MIRIX",
+  "branch_at_checkout": "main",
+  "commit": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "commit_date": "2026-08-20",
+  "observed_on": "2026-09-19",
+  "checkout": "../mirix-upstream",
+  "path_base": "Blaine repository root",
+  "clone": "git clone --branch main --single-branch --depth 1 https://github.com/Mirix-AI/MIRIX.git ../mirix-upstream"
+}

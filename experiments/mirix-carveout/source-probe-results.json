@@ -1,0 +1,59 @@
+{
+  "upstream_sha": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "kind": "isolated source-fragment execution; no integration test",
+  "openai_custom_endpoint": {
+    "base_url": "http://127.0.0.1:8000/v1",
+    "explicit_synthetic_key_preserved": true
+  },
+  "identity_header_resolver": {
+    "caller_ids_accepted_without_api_key": true,
+    "no_headers_status": 401
+  },
+  "add_preprocessing": {
+    "role_with_string": {
+      "outcome": "accepted by preprocessing",
+      "message": [
+        {
+          "type": "text",
+          "text": "[USER] synthetic memory"
+        }
+      ]
+    },
+    "role_with_text_blocks": {
+      "outcome": "TypeError",
+      "error": "can only concatenate str (not \"dict\") to str"
+    },
+    "flat_text_blocks": {
+      "outcome": "accepted by preprocessing",
+      "message": [
+        {
+          "type": "text",
+          "text": "synthetic memory"
+        }
+      ]
+    }
+  },
+  "conversational_retrieval": {
+    "has_content_guard": {
+      "role_with_string": false,
+      "role_with_text_blocks": true,
+      "flat_text_blocks": false
+    },
+    "text_blocks_topic_conversion": "TypeError (caught by the full upstream extractor, which returns no topics)"
+  },
+  "llm_factory": {
+    "explicit_cases": [
+      "openai",
+      "azure_openai",
+      "anthropic",
+      "google_ai",
+      "openrouter"
+    ],
+    "openrouter_client_file_exists": false
+  },
+  "agent_legacy_fallback": {
+    "signature_binding": "TypeError",
+    "error": "got an unexpected keyword argument 'user_id'"
+  },
+  "sdk_add_exposes_session_tag": false
+}

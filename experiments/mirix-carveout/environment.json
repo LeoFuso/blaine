@@ -1,0 +1,20 @@
+{
+  "observed_on": "2026-09-19",
+  "python": "3.14.4",
+  "os_release": "PRETTY_NAME=\"Ubuntu 26.04.1 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04.1 LTS (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+  "commands": {
+    "psql": null,
+    "postgres": null,
+    "pg_config": null,
+    "pg_isready": null,
+    "redis-server": null
+  },
+  "standard_directories": {
+    "/usr/lib/postgresql": false,
+    "/usr/share/postgresql": false
+  },
+  "dpkg_query_stdout": "postgresql-15-pllua un  \npostgresql-17-pllua un  \npostgresql-pgmp un  \n",
+  "dpkg_status_note": "un means unknown/not installed; no installed server/extension found",
+  "live_mirix_database_model_probe": "NOT RUN: native PostgreSQL/pgvector prerequisites absent",
+  "upstream_worktree_status": ""
+}

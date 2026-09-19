@@ -1,0 +1,21 @@
+{
+  "objective": "Investigate pinned current MIRIX as Blaine's independent memory service, with an external harness, native PostgreSQL 18, and eventual local Qwen inference; retain source evidence and security findings without integrating systems.",
+  "mode": "interactive",
+  "context": [
+    {"need": "Blaine architecture and carveout precedent", "source": "AGENTS.md; BLAINE.md; docs/decisions/; docs/research/multica-carveout.md", "sharing": "local-only"},
+    {"need": "Current MIRIX implementation", "source": "https://github.com/Mirix-AI/MIRIX", "freshness": "main pinned to 8cb06a62bbb7c478beb33dd4f2815696a72df482", "sharing": "cloud-allowed"}
+  ],
+  "capabilities": ["read local repositories", "clone public upstream into sibling workspace", "read public documentation", "write research artifacts within authorized paths", "inspect installed native database prerequisites"],
+  "autonomy": {
+    "allowed": ["read-only upstream source investigation", "small deterministic isolated probes", "write experiments/mirix-carveout/ and docs/research/mirix-carveout.md"],
+    "ask_before": ["material architectural decisions", "system configuration changes"],
+    "forbidden": ["modify upstream source", "vendor MIRIX", "install system packages", "use Docker", "integrate Restate, Graphify, or Goose", "modify production code", "implement providers or secret stores", "use real credentials in MIRIX"]
+  },
+  "cloud": {"policy": "ask"},
+  "completion": [
+    {"criterion": "Pin upstream and trace the external-agent and internal inference paths", "evidence": "Commit manifest and source-linked findings"},
+    {"criterion": "Classify local Qwen and native PostgreSQL 18 compatibility", "evidence": "Configuration, execution, SQL, migration and environment evidence, with untested claims marked"},
+    {"criterion": "Trace Knowledge Vault security and the public memory seam", "evidence": "Source-linked storage, search, authorization, exposure and audit analysis"},
+    {"criterion": "Retain HARVEST/ADAPT/REJECT/INVESTIGATE decisions, unanswered questions, and the next empirical probe", "evidence": "docs/research/mirix-carveout.md and experiment reproduction notes"}
+  ]
+}
