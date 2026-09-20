@@ -91,8 +91,12 @@ def app(out):
 
 
 def main():
+    global TASK
     parser=argparse.ArgumentParser();parser.add_argument('--output',required=True,type=Path);parser.add_argument('--serve',action='store_true');parser.add_argument('--restate-server',type=Path)
+    parser.add_argument('--task-id',required=True,help='Explicit fresh identity; never reuse a historical live Task')
     a=parser.parse_args();out=a.output.resolve()
+    TASK=a.task_id
+    if not TASK.startswith('frontier-live-binding-') or not TASK.removeprefix('frontier-live-binding-').isdigit():raise ValueError('Invalid live probe identity')
     if a.serve:return app(out)
     if out.exists():raise ValueError('Fresh output required; never reuse/reset a live attempt')
     for port in (38080,39070,39080,35122):
@@ -101,7 +105,7 @@ def main():
     resolved=encode({'organization':'ORCHID','marker':'7319'}).decode()
     projected=project_context(TASK,resolved,SyntheticProjector());ref=store.put(TASK,projected.content.encode());assert ref==projected.ref
     binding=WorkerBinding('codex-live','codex-cli-0.155.1','openai-chatgpt','gpt-6-astra','https://chatgpt.com',True,('structured-echo',),1)
-    authority=FrontierAuthority(2,TASK,(binding,),True,True,'human-authorized-single-live-dispatch',ref,('projected-context',),(),1,int(time.time())+300,60000)
+    authority=FrontierAuthority(2,TASK,(binding,),True,True,'human-authorized-'+TASK,ref,('projected-context',),(),1,int(time.time())+300,60000)
     proposal=proposal_message({'task_id':TASK,'binding_id':binding.binding_id,'provider':binding.provider,'model':binding.model,
         'destination':binding.destination,'context_ref':ref,'read_scope':['projected-context'],'write_scope':[],'runtime_ms':60000})
     packet=message('WorkerInput',{'task_id':TASK,'objective':'Return the supplied projected organization and marker as one JSON object; no tools or additional work.',
@@ -143,7 +147,7 @@ bind-address = "127.0.0.1:38080"
         until(ready,name+' ready',30);return p
     try:
         start('server',[str(a.restate_server),'--config-file',str(out/'restate.toml')])
-        start('runtime',[sys.executable,str(Path(__file__).resolve()),'--serve','--output',str(out)])
+        start('runtime',[sys.executable,str(Path(__file__).resolve()),'--serve','--output',str(out),'--task-id',TASK])
         save('deployment',http(ADMIN,'/deployments',{'uri':ENDPOINT}))
         save('submission',http(INGRESS,f'/CognitiveTaskV1/{TASK}/run/send',spec))
         def done():

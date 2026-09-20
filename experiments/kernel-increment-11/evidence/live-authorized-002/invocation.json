@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+    "experiments/kernel-increment-11/live/probe.py",
+    "--task-id",
+    "frontier-live-binding-002",
+    "--output",
+    "/tmp/blaine-frontier-live-authorized-002",
+    "--restate-server",
+    "/home/leofuso/workspace/blaine/.local/bin/restate-server"
+  ],
+  "execution_count": 1,
+  "do_not_rerun": true,
+  "offline_verification": [
+    "python",
+    "experiments/kernel-increment-11/live/verify.py",
+    "experiments/kernel-increment-11/evidence/live-authorized-002/acceptance"
+  ]
+}

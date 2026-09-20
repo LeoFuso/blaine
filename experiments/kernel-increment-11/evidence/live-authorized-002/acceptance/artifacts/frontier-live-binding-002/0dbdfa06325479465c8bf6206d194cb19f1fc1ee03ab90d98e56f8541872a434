@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"result","packet_ref":"artifact://frontier-live-binding-002/sha256:191c1afeac69825478c9983baa50e8c3241b9f9ef203d9d6215d6dd04b8df70b"},"type":"INVOKE_CAPABILITY"},"task_id":"frontier-live-binding-002","task_revision":1,"turn_id":"frontier-live-binding-002/2"},"version":1}

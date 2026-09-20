@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "exported_files_byte_identical": 35,
+  "content_addressed_artifacts_verified": true,
+  "prior_evidence_integrity": "historical-integrity.json",
+  "review": "synthetic fixture plus structured metadata/artifacts; no raw stderr/provider diagnostic text, credentials or secret configuration retained",
+  "secret_signature_scan": "no matches",
+  "transient_excluded": [
+    "native Restate data",
+    "runtime/server logs",
+    "temporary preflight scripts"
+  ],
+  "architecture_changed": false,
+  "live_dispatch_count": 1
+}

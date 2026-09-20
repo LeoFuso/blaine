@@ -1,0 +1,1 @@
+{"content":"{\"marker\":\"MASKED_01\",\"organization\":\"FLOWER\"}","producer":{"destination":"https://chatgpt.com","model":"gpt-6-astra","provider":"openai-chatgpt","worker_family":"codex-cli-0.155.1"},"status":"executed","usage":{"input_tokens":5112,"output_tokens":23},"worker_session_id":"01a0bfba-f2f9-7ec1-9d45-6ea9c0c39ca4"}

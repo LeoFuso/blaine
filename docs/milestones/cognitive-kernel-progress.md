@@ -1,5 +1,19 @@
 # Cognitive Kernel progressive program
 
+**Current: Increment 11 PASS / CLOSED after the second explicitly authorized live probe.**
+
+`frontier-live-binding-002`, dispatch `dispatch:frontier-live-binding-002/2`,
+completed through the corrected Codex 0.155.1 binding. One non-fatal diagnostic was
+retained, followed by explicit terminal success; exact projected output was admitted,
+independently verified, and Task state reached COMPLETED. One dispatch, one successful
+settlement, no pending reservation for this Task; no Blaine retry/fallback/escalation.
+See [live PASS milestone](036-cognitive-kernel-increment-11-live-pass.md) and
+[machine-readable evidence](../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json).
+The historical `001` FAILED Task and pending UNKNOWN reservation remain unchanged.
+Increment 12 has not started. Stop; separate continuation is required.
+
+The entries below preserve previous checkpoints and their then-current next decisions.
+
 **Current: Increment 11 Codex 0.155.1 offline correction PASSED; no new live dispatch.**
 
 Version-specific exec semantics supplied from `rust-v0.155.1` resolve milestone

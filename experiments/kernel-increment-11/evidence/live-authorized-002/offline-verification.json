@@ -1,0 +1,23 @@
+{
+  "increment10": {
+    "status": "PASS",
+    "events": 28,
+    "task_lifecycle": null
+  },
+  "projection": {
+    "status": "PASS",
+    "events": 434,
+    "task_lifecycle": null
+  },
+  "historical001": {
+    "status": "STOP",
+    "events": 74,
+    "task_lifecycle": "FAILED"
+  },
+  "live002": {
+    "status": "PASS",
+    "events": 18,
+    "task_lifecycle": "COMPLETED"
+  },
+  "historical_milestones_033_034_035": "byte-identical to prior commit"
+}
