@@ -2,6 +2,8 @@
 
 Current runtime spike: [Milestone 002 — Interactive Durable Task over ACP](docs/milestones/002-intellij-acp-durable-task.md), including local setup and remote IntelliJ validation.
 
+Cognitive Kernel checkpoint: [progress and current Increment 11 STOP](docs/milestones/cognitive-kernel-progress.md); [offline hygiene validation](experiments/kernel-program/checkpoint-hygiene/summary.json).
+
 ### Local-first orchestration agent for agentic development environments
 
 Blaine is a portable source of truth for a personal, local-first agentic development environment. It defines the contract for a coordinator agent that runs on Goose with a local Ollama model, triaging work, curating context, and orchestrating between local tools and frontier agents.
@@ -100,6 +102,14 @@ blaine/
 - ❌ Corporate or proprietary information
 - ❌ Machine-specific paths and configurations
 - ❌ Personal notes or context not generalizable
+
+Maintained Blaine documentation, source, tests, fixtures, prompts, examples and
+future artifacts must use fictional identifiers instead of prohibited real
+organization identifiers. Immutable historical experiment evidence may preserve
+original bytes when sanitization would invalidate provenance, hashes, recorded
+digests or the factual record. This narrow historical exception does not authorize
+future experiments to introduce prohibited identifiers; use fictional values from
+the start.
 
 External skills are a **trust boundary**. This repository does not vendor arbitrary community skills. Instead it maintains a manifest with:
 

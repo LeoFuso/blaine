@@ -77,3 +77,7 @@ expanding into unrelated future work.
 
 See [template.md](template.md) for the standard shape.
 
+
+## Local platform constraint
+
+[ADR 0018 — Blaine Local Platform, Durability and Observability Architecture](0018-local-platform-durability-and-observability.md) preserves the supplied proposed decision. It is an explicit architectural constraint for Cognitive Kernel Increment 10 and subsequent work. Its target platform is not claimed implemented or validated by recording the ADR.

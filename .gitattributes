@@ -1,0 +1,23 @@
+# Exact historical captures and patches retain their original trailing bytes.
+# Limit whitespace exceptions to these existing files; future maintained files use defaults.
+experiments/kernel-increment-10/evidence/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-11/evidence/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-11/evidence/codex-exec-help.txt whitespace=-blank-at-eol
+experiments/kernel-increment-11/evidence/projection/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-11/evidence/revised/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-11/evidence/revised/instrumentation-counterexample/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/coherent-semantics/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/hybrid/hybrid/server-replacement.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/hybrid/hybrid/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/hybrid/retry/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/hybrid/suspend/server-replacement.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/hybrid/suspend/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/production/acceptance/server-replacement.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/production/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/progression/acceptance/server-replacement.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/progression/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/semantic-lowering/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/evidence/verified-resolution/acceptance/server.txt whitespace=-blank-at-eol
+experiments/kernel-increment-8/hybrid/workflow.diff whitespace=-blank-at-eol
+experiments/kernel-increment-8/progression/app.diff whitespace=-blank-at-eol
+experiments/kernel-increment-9/evidence/acceptance/server.txt whitespace=-blank-at-eol
