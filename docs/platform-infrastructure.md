@@ -183,3 +183,16 @@ query path. Local Alloy evidence includes host/self metrics, journal records and
 synthetic metrics/logs/traces. Native PostgreSQL and Redis retained their original
 process IDs throughout this slice. No Blaine Task creation binding was available;
 the updated TaskSpec remains a draft, not a submitted runtime Task.
+
+## Temporary privilege cleanup
+
+`/etc/sudoers.d/90-blaine-d1-codex` was removed at finalization. Host `visudo -c`
+passed before and after removal. `sudo -K` succeeded; the subsequent `sudo -n true`
+failed with exit 1 (interactive authentication required). No replacement sudoers
+rule was created. The running platform does not depend on this temporary privilege.
+The implementation commit is `48b077d`, integrated into local main by fast-forward;
+final cleanup evidence is recorded in the subsequent Git commit. No push occurred.
+
+**PASS applies to this infrastructure slice.** Grafana Cloud remains configured
+for future activation; backup remains paused, reboot recovery pending, and the
+Daily Driver ownership gaps listed above remain open.

@@ -1,5 +1,5 @@
 {
-  "status": "PASS (infrastructure); temporary privilege cleanup still pending",
+  "status": "PASS",
   "observed_at": "2026-09-20",
   "binding": "No callable Blaine creation binding; TaskSpec draft retained, no durable Task submitted",
   "live_acceptance": {
@@ -213,10 +213,21 @@
   ],
   "temporary_privilege_cleanup": {
     "path": "/etc/sudoers.d/90-blaine-d1-codex",
-    "state": "pending"
+    "observed_at": "2026-09-20T18:12:57.158761+00:00",
+    "cleanup_exit_code": 0,
+    "removed": true,
+    "sudoers_validation": "PASS before and after removal",
+    "cache_invalidation_exit_code": 0,
+    "noninteractive_probe_exit_code": 1,
+    "passwordless_sudo_remained_possible": false,
+    "probe_message": "sudo: interactive authentication is required",
+    "state": "PASS"
   },
   "integration": {
     "baseline": "3181a6c8bc0f5b8a7b705e29f3400ee937a13dab",
-    "state": "pending final commit and local-main fast-forward"
+    "implementation_commit": "48b077d",
+    "implementation_integrated_into_local_main": "fast-forward verified",
+    "final_evidence_commit": "recorded in Git history and fast-forwarded with this evidence",
+    "push": "not performed"
   }
 }
