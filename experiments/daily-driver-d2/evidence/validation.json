@@ -3,11 +3,16 @@
   "base_main": "3181a6c8bc0f5b8a7b705e29f3400ee937a13dab",
   "repository_tests": 145,
   "focused_tests": 12,
-  "platform_tests": 13,
+  "platform_tests": 17,
   "verified_retained_artifacts": 42,
   "native_d2": "summary.json",
   "native_kernel_regression": "kernel-parallel-regression.json",
   "cloud_model_calls": 0,
   "development_task_submission": "not submitted; draft only",
-  "deployment": "isolated validation; test-owned services stopped"
+  "deployment": "isolated validation; test-owned services stopped",
+  "integration_base": "e642966f653d32c4bc4aa26ed9750b41e95b19f5",
+  "tested_commit": "d7a492f0a36140149257bfa0faaae2778be2ad60",
+  "post_sync_native": "post-sync-native-summary.json",
+  "source_digests_unchanged_after_sync": true,
+  "diff_check": "PASS"
 }

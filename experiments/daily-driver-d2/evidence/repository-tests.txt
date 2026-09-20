@@ -49,49 +49,49 @@ test_visible_transform_exact_digest_and_adapter_input (test_kernel_frontier_cont
 test_blaine_owns_process_group_termination (test_kernel_frontier_live.LiveBoundaryTests.test_blaine_owns_process_group_termination) ... ok
 test_claim_is_exclusive_persistent_and_never_reset (test_kernel_frontier_live.LiveBoundaryTests.test_claim_is_exclusive_persistent_and_never_reset) ... ok
 test_command_pins_worker_model_and_empty_workspace (test_kernel_frontier_live.LiveBoundaryTests.test_command_pins_worker_model_and_empty_workspace) ... ok
-test_corrected_adapter_case_matrix_no_cli_execution (test_kernel_frontier_live.LiveBoundaryTests.test_corrected_adapter_case_matrix_no_cli_execution) ... /usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda19f30>
+test_corrected_adapter_case_matrix_no_cli_execution (test_kernel_frontier_live.LiveBoundaryTests.test_corrected_adapter_case_matrix_no_cli_execution) ... /usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa11e40>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda19e40>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa11d50>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1a2f0>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa12200>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1a980>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa12890>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1af20>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa12e30>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1b010>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa124d0>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1aa70>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa12980>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1a5c0>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa12f20>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1ab60>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa12a70>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1b1f0>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa13100>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1b2e0>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa131f0>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1b3d0>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa132e0>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1b5b0>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa134c0>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1b970>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa13880>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7f7deda1bc40>
+/usr/lib/python3.14/json/encoder.py:263: ResourceWarning: unclosed database in <sqlite3.Connection object at 0x7d5c4aa13b50>
   return _iterencode(o, 0)
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -190,6 +190,6 @@ test_preserves_objective_and_handles_unicode_whitespace (test_task.TaskOperation
 test_rejects_bad_input_before_work (test_task.TaskOperationTests.test_rejects_bad_input_before_work) ... ok
 
 ----------------------------------------------------------------------
-Ran 145 tests in 0.237s
+Ran 145 tests in 0.239s
 
 OK

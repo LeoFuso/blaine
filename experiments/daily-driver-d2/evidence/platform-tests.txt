@@ -9,10 +9,14 @@ test_symlink_and_special_file_artifacts_rejected (test_backup.GuardTests.test_sy
 test_symlink_destination_rejected (test_backup.GuardTests.test_symlink_destination_rejected) ... ok
 test_failed_dump_is_unpublished_and_does_not_prune (test_backup.RestoreTests.test_failed_dump_is_unpublished_and_does_not_prune) ... ok
 test_postgres_and_kernel_object_restore_retention_and_corruption (test_backup.RestoreTests.test_postgres_and_kernel_object_restore_retention_and_corruption) ... ok
+test_atomic_materialization_restricts_permissions_and_rejects_symlink (test_infrastructure.CloudContractTests.test_atomic_materialization_restricts_permissions_and_rejects_symlink) ... ok
+test_complete_selected_fields_required (test_infrastructure.CloudContractTests.test_complete_selected_fields_required) ... ok
+test_endpoint_cannot_send_credentials_to_another_host (test_infrastructure.CloudContractTests.test_endpoint_cannot_send_credentials_to_another_host) ... ok
+test_placeholders_and_environment_injection_fail_closed (test_infrastructure.CloudContractTests.test_placeholders_and_environment_injection_fail_closed) ... ok
 test_conflicting_uuid_mountpoint_or_duplicate_entry_stops (test_prepare_volume.VolumePlanTests.test_conflicting_uuid_mountpoint_or_duplicate_entry_stops) ... ok
 test_fstab_preserves_existing_bytes_and_reapplies_unchanged (test_prepare_volume.VolumePlanTests.test_fstab_preserves_existing_bytes_and_reapplies_unchanged) ... ok
 
 ----------------------------------------------------------------------
-Ran 13 tests in 1.451s
+Ran 17 tests in 1.465s
 
 OK
