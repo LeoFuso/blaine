@@ -1,0 +1,1 @@
+{"kind":"HumanDecisionRequest","payload":{"allowed_responses":["YES","NO"],"origin_task_id":"task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935","question":"Await explicit cancellation?","request_id":"decision-1","revision":0,"task_id":"task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935"},"version":1}

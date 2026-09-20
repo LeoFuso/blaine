@@ -1,0 +1,13 @@
+{
+  "runtime/kernel/contracts.py": "27dc945d3ef27f069c23a2e221d4d2b5bd67c6a06ff2f0c059bca93888d10008",
+  "runtime/kernel/control.py": "d5eb62a3c059fe3770602a1c4ace15dd2e33c2d27f13b04f33a5d7ff10864f04",
+  "runtime/kernel/events.py": "b364ed06c60d3ee525946e4e2bebcd135751f57f1fc9fc2a1995b1947f6966dc",
+  "runtime/kernel/execution.py": "b640b47e72812e75b7ec3998b4178a62bc472549ed6359ffd1b9d4ba0c2c0cf0",
+  "runtime/kernel/workflow.py": "53fccf92cb7051290743eb746d3c0b1d0ca261717b6c469ae97ef42614042355",
+  "runtime/kernel/workspace.py": "00cefb20b5b0cbd7c76d622f6989e2d698a13dc2a9f7d58c579b1bf132948541",
+  "runtime/personal_agent.py": "0eee7becda7e17f105c5c7f857816ffff74d4d82fa343b9cbef51fb6fffdd3f8",
+  "runtime/personal_acp.py": "3d5f1408f776bf989b210c0da6b93d4c0cceccebeb63d43d1f9aa436c9cf2a9e",
+  "runtime/personal_runtime.py": "6ed6c670b1d19fafb3de81e195ff1895ed69029d0562b0dd610c7dd90c8061e6",
+  "scripts/verify-personal-agent.py": "8ae886aff412d8d2304004a2bdee0ef77d79178fcadbff87eb853fde206f5df3",
+  "tests/test_personal_agent.py": "4177dc2511c82293488f3af81d5b2bebf7c2cb5109ca736e580f75c9bb5c6d54"
+}

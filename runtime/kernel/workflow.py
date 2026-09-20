@@ -1,6 +1,7 @@
 """Native Restate execution. Cognition returns data; only this dispatcher acts."""
 from collections.abc import Awaitable, Callable, Sequence
 from copy import deepcopy
+import hashlib
 from datetime import timedelta
 
 import restate
@@ -53,7 +54,12 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             "observation_ref": None, "wait": None, "artifacts": {},
             "completion_ref": None, "result_ref": None,
             "remaining_children": spec["autonomy"].get("child_tasks", 0), "children": {},
+            "invocation_id": ctx.request().id,
+            "request_digest": hashlib.sha256(encode(request)).hexdigest(),
         }
+        initial_action = request['payload'].get('initial_action') if request.get('kind') == 'TaskRequest' else None
+        if initial_action is not None:
+            state['initial_action'] = initial_action
         if parent is not None:
             state["parent"] = parent
         ctx.set("task", message("TaskState", state))
@@ -147,14 +153,20 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
 
                 # The semantic output is journaled before validation, effect
                 # admission or handoff. Replay consumes it without calling cognition.
-                decision = await step(f"cognitive/{iteration}", decide)
+                deterministic = initial_action is not None and iteration == 1
+                if deterministic:
+                    decision = message('CognitiveDecision', {'task_id': task_id,
+                        'task_revision': state['revision'], 'turn_id': f'{task_id}/{iteration}',
+                        'next_action': initial_action})
+                else:
+                    decision = await step(f"cognitive/{iteration}", decide)
                 state["decision_id"] = f"{task_id}/{iteration}"
                 state["decision_ref"] = await retain(f"decision/{iteration}", decision)
                 ctx.set("task", message("TaskState", state))
                 if checkpoint:
                     await checkpoint(ctx, "decision", deepcopy(state))
 
-                await emit(f'cognition/{iteration}', 'cognition.decided', 'recorded', 'blaine.kernel.workflow',
+                await emit(f'cognition/{iteration}', 'operation.prepared' if deterministic else 'cognition.decided', 'recorded', 'blaine.kernel.workflow',
                     refs={'decision_id': state['decision_id']}, payload_refs=(state['context_ref'], state['decision_ref']))
                 gate = policy_gate(decision, state, spec)
                 await emit(f'policy/{iteration}', 'policy.evaluated', gate['outcome'], 'blaine.kernel.execution.policy_gate',
@@ -174,11 +186,12 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                             state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
                             state['observation_ref'] = await retain(f'effect-observation/{iteration}', observation)
                             ctx.set('task', message('TaskState', state))
-                            await emit(f'capability/{iteration}', 'capability.finished', observation['payload']['outcome'],
-                                'blaine.kernel.execution.Capabilities', refs={'capability_call_id': state['decision_id'],
-                                    **({'worker_session_id': observation['payload']['output']['attempt_id']}
-                                       if action['capability'] == 'worker.run' and 'attempt_id' in observation['payload']['output'] else {})},
-                                payload={'capability': action['capability']}, payload_refs=(state['observation_ref'],))
+                            if action['capability'] != 'workspace.read':
+                                await emit(f'capability/{iteration}', 'capability.finished', observation['payload']['outcome'],
+                                    'blaine.kernel.execution.Capabilities', refs={'capability_call_id': state['decision_id'],
+                                        **({'worker_session_id': observation['payload']['output']['attempt_id']}
+                                           if action['capability'] == 'worker.run' and 'attempt_id' in observation['payload']['output'] else {})},
+                                    payload={'capability': action['capability']}, payload_refs=(state['observation_ref'],))
                             if observation['payload']['artifacts']:
                                 await emit(f'artifacts/{iteration}', 'artifact.produced', 'recorded', 'blaine.kernel.artifacts.ArtifactStore',
                                     refs={'capability_call_id': state['decision_id'],
@@ -186,6 +199,31 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                             if checkpoint:
                                 await checkpoint(ctx, 'effect_persisted', deepcopy(state))
                             await progress('effect')
+                            if (state['lifecycle'] != 'COMPLETED' and action['capability'] == 'workspace.read'
+                                    and observation['payload']['outcome'] == 'success'):
+                                state['wait'] = {'input_type': 'workspace_result',
+                                    'task_revision': state['revision'],
+                                    'promise': f"workspace/{iteration}",
+                                    'request_ref': observation['payload']['output']['request_ref']}
+                                state['lifecycle'] = 'WAITING'
+                                ctx.set('task', message('TaskState', state))
+                                received = await ctx.promise(state['wait']['promise'], type_hint=dict).value()
+                                from runtime.kernel.workspace import validate_read_result
+                                accepted = await step(f'workspace-request/{iteration}', store.read_json,
+                                    task_id=task_id, ref=state['wait']['request_ref'])
+                                content = validate_read_result(received, accepted['payload'])
+                                ref = await step(f'workspace-artifact/{iteration}', store.put,
+                                    task_id=task_id, content=content.encode())
+                                state['artifacts'] = {**state['artifacts'], action['input']['artifact']: ref}
+                                state['wait'] = None
+                                state['lifecycle'] = 'RUNNING'
+                                observation = received
+                                await emit(f'capability/{iteration}', 'capability.finished', 'success',
+                                    'blaine.kernel.workspace', refs={'capability_call_id': state['decision_id']},
+                                    payload={'capability': 'workspace.read'})
+                                await emit(f'artifacts/{iteration}', 'artifact.produced', 'recorded',
+                                    'blaine.kernel.artifacts.ArtifactStore',
+                                    refs={'capability_call_id': state['decision_id'], 'artifact_ids': [ref]})
                             # This accepted, scoped capability is a blocking human
                             # interaction. Its admitted effect supplies the event identity.
                             if (state['lifecycle'] != 'COMPLETED' and action['capability'] == 'human.request'
@@ -303,7 +341,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                 state["lifecycle"] = "FAILED"
         except restate.TerminalError as error:
             concerns.append(f"Execution stopped: {error.message}".encode()[:512].decode(errors="ignore"))
-            state["lifecycle"] = "FAILED"
+            state["lifecycle"] = "CANCELLED" if error.status_code == 409 and error.message.lower() == 'cancelled' else "FAILED"
             state["wait"] = None
         result: TaskResult = {
             "task_id": task_id, "outcome": state["lifecycle"],
@@ -364,4 +402,6 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
         await ctx.promise(wait['promise'], type_hint=dict).resolve(request)
         return message('InputReceipt', {'request_id': response['request_id'], 'outcome': 'ACCEPTED'})
 
+    from runtime.kernel.control import add_control_handlers
+    add_control_handlers(workflow, store)
     return workflow

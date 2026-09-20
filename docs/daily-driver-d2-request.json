@@ -1,0 +1,17 @@
+{
+  "objective": "Implement and validate Daily Driver D2 Personal Agent / Remote Task Intake in the intended D2 worktree, preserving current durable kernel ownership; commit and safely fast-forward local main without pushing.",
+  "mode": "interactive",
+  "context": [{"need": "Existing Personal Agent/ACP experiments and kernel through Increment 12", "source": "git:3181a6c and historical commits named in the D2 user request", "sharing": "local-only"}],
+  "capabilities": ["read repository history", "edit D2 worktree", "isolated native Restate and ACP validation", "commit and integrate local main"],
+  "autonomy": {
+    "allowed": ["bounded implementation", "private loopback listeners and disposable project fixtures", "focused and repository tests", "coherent commits", "safe fast-forward local-main integration"],
+    "forbidden": ["modify Platform D1 worktree", "push", "public API exposure", "Telegram", "Context Compilation", "new Cognitive Kernel increment", "advanced multi-worker work", "new Task runtime", "modify real project files for workspace acceptance"]
+  },
+  "cloud": {"policy": "forbid"},
+  "completion": [
+    {"criterion": "Independent clients can create, inspect, retrieve, respond, and cancel durable Tasks through one Personal Agent surface", "evidence": "Native Restate and official ACP acceptance evidence"},
+    {"criterion": "Client/controller/runtime restart and replay preserve Task identity without duplicate creation", "evidence": "Native invocation count, authoritative Task snapshots, process identities, retained artifacts"},
+    {"criterion": "Capability and authority remain separate; completion and waits remain kernel-owned", "evidence": "Policy denial controls, CompletionEvaluation, typed human response, disposable ACP read"},
+    {"criterion": "D2 is bounded, documented, tested, and integrated safely", "evidence": "Focused and broad tests, native regression, git diff --check, coherent commits and main ancestry"}
+  ]
+}

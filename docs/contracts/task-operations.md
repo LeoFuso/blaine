@@ -8,6 +8,11 @@ and recovery belong to bindings/runtime rather than the agent's reasoning contex
 
 The Personal Agent never reconstructs current Task state from conversation memory.
 
+The [Daily Driver D2 binding](../daily-driver-d2.md) implements bounded create,
+inspection/result/artifact retrieval, typed human/external response, and native
+cancellation over the current kernel. ACP is its first private transport; it
+does not yet implement all prospective actions or listing below.
+
 ## Create
 
 Input:

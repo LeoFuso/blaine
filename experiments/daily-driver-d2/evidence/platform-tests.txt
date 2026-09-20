@@ -1,0 +1,18 @@
+test_cli_has_no_fixture_or_mount_bypass (test_backup.GuardTests.test_cli_has_no_fixture_or_mount_bypass) ... ok
+test_insufficient_space_and_readonly_fail_before_writes (test_backup.GuardTests.test_insufficient_space_and_readonly_fail_before_writes) ... ok
+test_lock_contention_preserves_active_status (test_backup.GuardTests.test_lock_contention_preserves_active_status) ... ok
+test_missing_or_symlink_subtree_is_never_created_or_followed (test_backup.GuardTests.test_missing_or_symlink_subtree_is_never_created_or_followed) ... ok
+test_mount_rejects_wrong_uuid_root_bind_and_readonly (test_backup.GuardTests.test_mount_rejects_wrong_uuid_root_bind_and_readonly) ... ok
+test_real_unmounted_directory_fails_without_destination_writes (test_backup.GuardTests.test_real_unmounted_directory_fails_without_destination_writes) ... ok
+test_subtree_is_pinned_and_historical_paths_are_outside_destination (test_backup.GuardTests.test_subtree_is_pinned_and_historical_paths_are_outside_destination) ... ok
+test_symlink_and_special_file_artifacts_rejected (test_backup.GuardTests.test_symlink_and_special_file_artifacts_rejected) ... ok
+test_symlink_destination_rejected (test_backup.GuardTests.test_symlink_destination_rejected) ... ok
+test_failed_dump_is_unpublished_and_does_not_prune (test_backup.RestoreTests.test_failed_dump_is_unpublished_and_does_not_prune) ... ok
+test_postgres_and_kernel_object_restore_retention_and_corruption (test_backup.RestoreTests.test_postgres_and_kernel_object_restore_retention_and_corruption) ... ok
+test_conflicting_uuid_mountpoint_or_duplicate_entry_stops (test_prepare_volume.VolumePlanTests.test_conflicting_uuid_mountpoint_or_duplicate_entry_stops) ... ok
+test_fstab_preserves_existing_bytes_and_reapplies_unchanged (test_prepare_volume.VolumePlanTests.test_fstab_preserves_existing_bytes_and_reapplies_unchanged) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.451s
+
+OK

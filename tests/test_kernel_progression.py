@@ -5,6 +5,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT))
 from runtime.kernel import workflow
 from runtime.kernel.artifacts import ArtifactStore
@@ -22,6 +23,7 @@ class Registry:
 class Context:
     def __init__(self):self.saved={}
     def key(self):return 'control'
+    def request(self):return SimpleNamespace(id='local-test-invocation')
     def set(self,k,v):self.saved[k]=v
     async def run_typed(self,name,fn,*options,**kw):return fn(**kw)
 

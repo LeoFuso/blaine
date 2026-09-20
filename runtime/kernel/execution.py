@@ -54,6 +54,15 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
                     raise ValueError('Worker packet outside admitted artifacts')
                 if value['artifact'] not in state['artifacts'] and len(state['artifacts']) >= 16:
                     raise ValueError('Artifact limit reached')
+            elif capability == 'text.stats':
+                fields(value, {'text'})
+                text(value['text'], 1024)
+            elif capability == 'workspace.read':
+                from runtime.kernel.workspace import validate_read
+                validate_read(value)
+                # Scope is the exact persisted intake action, not all project access.
+                if action != state.get('initial_action'):
+                    raise ValueError('Workspace read outside accepted operation scope')
             else:
                 fields(value, {"value"})
                 text(value["value"], 256)
@@ -110,6 +119,16 @@ class Capabilities:
         artifacts = {}
         try:
             match request["capability"]:
+                case 'text.stats':
+                    from runtime.task import summarize_objective
+                    output = summarize_objective(value['text'])
+                    artifacts['answer'] = self.store.put_json(task_id, output)
+                case 'workspace.read':
+                    from runtime.kernel.workspace import validate_read
+                    validate_read(value)
+                    ref = self.store.put_json(task_id, message('WorkspaceReadRequest', {
+                        'task_id': task_id, 'operation_id': operation, **value}))
+                    output = {'request_ref': ref, 'delivery': 'authorized ACP client read'}
                 case 'worker.run':
                     from runtime.kernel.worker import validate_packet
                     if self.worker is None:

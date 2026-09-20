@@ -13,7 +13,7 @@ SPECIALISTS = {
     "coordinator": "Coordinate the accepted objective using permitted actions.",
     "specialist": "Produce the required exact artifact and request verification.",
 }
-CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run"}
+CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run", "workspace.read", "text.stats"}
 
 
 class EvidenceRequirement(TypedDict):
@@ -131,6 +131,13 @@ class ChildrenWait(TypedDict):
     task_revision: int
 
 
+class WorkspaceWait(TypedDict):
+    input_type: Literal['workspace_result']
+    task_revision: int
+    promise: str
+    request_ref: str
+
+
 class ChildRelationship(TypedDict):
     task_id: str
     decision_id: str
@@ -140,7 +147,7 @@ class ChildRelationship(TypedDict):
 class TaskState(TypedDict):
     task_id: str
     revision: int
-    lifecycle: Literal["RUNNING", "WAITING", "COMPLETED", "FAILED"]
+    lifecycle: Literal["RUNNING", "WAITING", "COMPLETED", "FAILED", "CANCELLED"]
     iteration: int
     active_specialist: str
     spec_ref: str
@@ -148,7 +155,7 @@ class TaskState(TypedDict):
     decision_ref: str | None
     context_ref: str | None
     observation_ref: str | None
-    wait: WaitState | ChildWait | ChildrenWait | None
+    wait: WaitState | ChildWait | ChildrenWait | WorkspaceWait | None
     artifacts: dict[str, str]
     human_responses: NotRequired[dict[str, str]]
     completion_ref: str | None
@@ -156,6 +163,9 @@ class TaskState(TypedDict):
     remaining_children: int
     children: dict[str, dict]
     parent: NotRequired[ChildRelationship]
+    invocation_id: NotRequired[str]
+    request_digest: NotRequired[str]
+    initial_action: NotRequired[Invoke]
 
 
 class CapabilityRequest(TypedDict):
@@ -180,7 +190,7 @@ class CompletionEvaluation(TypedDict):
 
 class TaskResult(TypedDict):
     task_id: str
-    outcome: Literal["COMPLETED", "FAILED"]
+    outcome: Literal["COMPLETED", "FAILED", "CANCELLED"]
     artifacts: dict[str, str]
     completion_ref: str | None
     concerns: list[str]
@@ -241,6 +251,13 @@ def child_request(parent_id: str, decision_id: str, slot: int | None, spec: dict
 def accept_task_request(value: dict, task_id: str) -> tuple[dict, dict | None]:
     if not isinstance(value, dict):
         raise ValueError('Task request must be an object')
+    if value.get('kind') == 'TaskRequest':
+        request = fields(unpack(value, 'TaskRequest'), {'task_spec', 'initial_action'})
+        decision = validate_decision(message('CognitiveDecision', {'task_id': task_id,
+            'task_revision': 0, 'turn_id': task_id + '/1', 'next_action': request['initial_action']}))
+        if decision['next_action']['type'] != 'INVOKE_CAPABILITY':
+            raise ValueError('Task intake accepts one bounded capability action')
+        return validate_spec(request['task_spec']), None
     if value.get('kind') != 'ChildTaskRequest':
         return validate_spec(value), None
     request = fields(unpack(value, 'ChildTaskRequest'), {'parent', 'task_spec'})
@@ -339,7 +356,7 @@ def validate_result(value: object, task_id: str) -> TaskResult:
                     {"task_id", "outcome", "artifacts", "completion_ref", "concerns"})
     if len(encode(value)) > MAX_RESULT or result["task_id"] != identifier(task_id):
         raise ValueError("Oversized or misaddressed TaskResult")
-    if result["outcome"] not in ("COMPLETED", "FAILED"):
+    if result["outcome"] not in ("COMPLETED", "FAILED", "CANCELLED"):
         raise ValueError("Invalid TaskResult outcome")
     refs = result["artifacts"]
     if not isinstance(refs, dict) or len(refs) > 16:

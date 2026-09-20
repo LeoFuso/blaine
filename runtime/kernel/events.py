@@ -48,7 +48,7 @@ class ExecutionEventPublisher(Protocol):
 OUTCOMES = {
     'task.started': {'RUNNING'},
     'task.child_created': {'recorded'},
-    'task.child_observed': {'COMPLETED', 'FAILED', 'INVALID'},
+    'task.child_observed': {'COMPLETED', 'FAILED', 'CANCELLED', 'INVALID'},
     'task.suspended': {'WAITING'},
     'task.resumed': {'RUNNING'},
     'cognition.decided': {'recorded'},
@@ -56,7 +56,9 @@ OUTCOMES = {
     'capability.finished': {'success', 'failure'},
     'artifact.produced': {'recorded'},
     'verifier.evaluated': {'satisfied', 'unsatisfied', 'unknown'},
-    'completion.finished': {'COMPLETED', 'FAILED'},
+    'completion.finished': {'COMPLETED', 'FAILED', 'CANCELLED'},
+    'operation.prepared': {'recorded'},
+    'personal_agent.control': {'accepted', 'rejected', 'submitted', 'uncertain'},
 }
 ACTIONS = {'INVOKE_CAPABILITY', 'HANDOFF', 'SPAWN_TASK', 'WAIT', 'COMPLETE'}
 REF_KEYS = {'model_call_id', 'capability_call_id', 'artifact_ids', 'human_decision_id',

@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"Exact deterministic objective summary","detail":"Exact artifact digest verified","evidence_ref":"artifact://task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130/sha256:1376873d22b5f31c6d61bfa250bae2793c1a22cde1200d261d355b4e80d7a9f2","outcome":"satisfied"}],"outcome":"satisfied"},"version":1}

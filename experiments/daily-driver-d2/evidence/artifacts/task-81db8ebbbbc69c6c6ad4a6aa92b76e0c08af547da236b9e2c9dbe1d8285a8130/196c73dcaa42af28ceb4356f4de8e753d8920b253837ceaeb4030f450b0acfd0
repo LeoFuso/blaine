@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"text.stats","input":{"text":"Small deterministic remote input"},"type":"INVOKE_CAPABILITY"},"task_id":"task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130","task_revision":0,"turn_id":"task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130/1"},"version":1}

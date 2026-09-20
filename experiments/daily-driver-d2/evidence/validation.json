@@ -1,0 +1,13 @@
+{
+  "outcome": "PASS",
+  "base_main": "3181a6c8bc0f5b8a7b705e29f3400ee937a13dab",
+  "repository_tests": 145,
+  "focused_tests": 12,
+  "platform_tests": 13,
+  "verified_retained_artifacts": 42,
+  "native_d2": "summary.json",
+  "native_kernel_regression": "kernel-parallel-regression.json",
+  "cloud_model_calls": 0,
+  "development_task_submission": "not submitted; draft only",
+  "deployment": "isolated validation; test-owned services stopped"
+}

@@ -1,0 +1,1 @@
+{"kind":"TaskSpec","payload":{"autonomy":{"allowed":["text.stats"]},"capabilities":["text.stats"],"completion":[{"criterion":"Exact deterministic objective summary","evidence":{"artifact":"answer","sha256":"1376873d22b5f31c6d61bfa250bae2793c1a22cde1200d261d355b4e80d7a9f2"}}],"objective":"Small deterministic remote input"},"version":1}

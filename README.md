@@ -1,8 +1,10 @@
 # Blaine
 
-Current runtime spike: [Milestone 002 — Interactive Durable Task over ACP](docs/milestones/002-intellij-acp-durable-task.md), including local setup and remote IntelliJ validation.
+Personal Agent: [Daily Driver D2 — remote Task intake and control](docs/daily-driver-d2.md), including private ACP setup and native acceptance evidence.
 
-Cognitive Kernel checkpoint: [progress and current Increment 11 STOP](docs/milestones/cognitive-kernel-progress.md); [offline hygiene validation](experiments/kernel-program/checkpoint-hygiene/summary.json).
+Historical runtime spike: [Milestone 002 — Interactive Durable Task over ACP](docs/milestones/002-intellij-acp-durable-task.md), including earlier remote IntelliJ validation.
+
+Cognitive Kernel: [program progress through completed Increment 12](docs/milestones/cognitive-kernel-progress.md); [offline hygiene validation](experiments/kernel-program/checkpoint-hygiene/summary.json).
 
 Platform D1: [current state and bounded STOP](docs/platform-d1.md);
 [backup and recovery operations](docs/platform-operations.md).
