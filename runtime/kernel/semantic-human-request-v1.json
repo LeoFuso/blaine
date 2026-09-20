@@ -1,0 +1,25 @@
+{
+  "$id": "urn:blaine:semantic-human-request:1",
+  "title": "SemanticHumanRequest v1",
+  "description": "Request an accepted, scoped human clarification. Version is selected by this adapter binding, not emitted inside the action.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["action", "purpose", "question", "response"],
+  "properties": {
+    "action": {"const": "request_human"},
+    "purpose": {"type": "string", "minLength": 1, "maxLength": 80, "x-maxBytes": 80},
+    "question": {"type": "string", "minLength": 1, "maxLength": 512, "x-maxBytes": 512},
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "choices"],
+      "properties": {
+        "kind": {"const": "choice"},
+        "choices": {
+          "type": "array", "minItems": 1, "maxItems": 8, "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1, "maxLength": 80, "x-maxBytes": 80}
+        }
+      }
+    }
+  }
+}

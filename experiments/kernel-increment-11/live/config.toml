@@ -1,0 +1,20 @@
+model = "gpt-6-astra"
+model_provider = "openai"
+forced_login_method = "chatgpt"
+sandbox_mode = "read-only"
+approval_policy = "never"
+web_search = "disabled"
+model_instructions_file = "/instructions.txt"
+project_doc_max_bytes = 0
+check_for_update_on_startup = false
+[features]
+shell_tool = false
+unified_exec = false
+shell_snapshot = false
+memories = false
+apps = false
+multi_agent = false
+[history]
+persistence = "none"
+[feedback]
+enabled = false

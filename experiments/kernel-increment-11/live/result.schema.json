@@ -1,0 +1,1 @@
+{"type":"object","properties":{"organization":{"type":"string"},"marker":{"type":"string"}},"required":["organization","marker"],"additionalProperties":false}

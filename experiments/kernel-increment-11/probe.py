@@ -1,0 +1,324 @@
+#!/usr/bin/env python3
+"""Isolated frontier proof on the unchanged CognitiveTaskV1 runtime.
+
+The trusted checkpoint supplies admission/settlement for this experiment only.
+No frontier grant endpoint, kernel migration, credential access or cloud call.
+"""
+import argparse
+import asyncio
+from dataclasses import asdict,replace
+import hashlib
+import json
+import os
+from pathlib import Path
+import runpy
+import shutil
+import socket
+import subprocess
+import sys
+import time
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+from runtime.kernel.artifacts import ArtifactStore
+from runtime.kernel.contracts import encode,message,validate_spec
+from runtime.kernel.event_sinks import JsonlEventPublisher
+from runtime.kernel.events import safe_prepare,safe_publish,event_identity
+from runtime.kernel.execution import Capabilities
+from runtime.kernel.frontier import (FrontierAuthority,DispatchBudget,WorkerBinding,GlobalGuardrails,NativeLimits,
+    authorize,reserve,settle,invoke,record_usage,authority_from_json,proposal_message)
+from runtime.kernel.frontier_context import project_context,ProjectionError,IdentityProjector
+from runtime.kernel.worker_routing import Workload,ScriptedClassifier,select
+from runtime.kernel.workflow import create_workflow
+BASE=runpy.run_path(str(ROOT/'scripts/verify-kernel.py'))
+http,until,ADMIN,INGRESS,ENDPOINT=(BASE[k] for k in ('http','until','ADMIN','INGRESS','ENDPOINT'))
+CASES={'authorized':'admitted','disabled':'cloud_disabled','wrong-provider':'provider_mismatch',
+    'wrong-model':'model_mismatch','wrong-egress':'egress_denied','budget':'dispatch_budget_exhausted',
+    'read-escalation':'scope_escalation','write-escalation':'scope_escalation','approval':'approval_required',
+    'deadline':'deadline_expired','runtime':'runtime_limit','repeat':'dispatch_budget_exhausted',
+    'not-executed':'admitted','timeout':'admitted',
+    'global-disabled':'global_frontier_disabled','kill-switch':'global_frontier_disabled',
+    'account-exhausted':'global_budget_exhausted','account-unknown':'global_guardrail_unknown',
+    'native-required':'required_native_control_unavailable',
+    'projection-failure':'context_projection_failed','raw-bypass':'context_not_projected','substitution':'admitted'}
+RESULT='SYNTHETIC_FRONTIER_RESULT'
+
+
+# Synthetic fixture ONLY. No general masking, classification or condensation.
+RAW_CONTEXT='organization=ORCHID; marker=RAW_SECRET_7319'
+PROJECTED_CONTEXT='organization=FLOWER; marker=MASKED_7319'
+
+class FixtureProjector:
+    projector_id='synthetic-replacement-v1'
+    def project(self, resolved):
+        return resolved.replace('ORCHID','FLOWER').replace('RAW_SECRET_7319','MASKED_7319')
+
+class FailingProjector:
+    projector_id='failing-fixture-v1'
+    def project(self, resolved):
+        raise RuntimeError('synthetic projection failure')
+
+
+def report(reason,status=None):
+    if reason!='admitted':return {'outcome':'denied','reason_category':reason,'provider_invoked':False}
+    value={'outcome':status or 'executed','reason_category':reason,'provider_invoked':True}
+    if value['outcome']=='executed':value['content']=RESULT
+    return value
+
+
+def routing_evidence(authority, proposal, budget, guardrails, state, spec, decision, now, context):
+    economical=authority.bindings[0]
+    local=WorkerBinding('local','goose-fixture','local-vllm','qwen-fixture','http://127.0.0.1:8000/v1',False,('code',),1)
+    strong=replace(economical,binding_id='strong',worker_family='codex-fixture',model='astra-fixture',quality=3)
+    specialist=replace(strong,binding_id='specialist',worker_family='junie-fixture',provider='specialist-fixture',model='claude-fixture')
+    bindings=(local,economical,strong,specialist)
+    # These are trusted isolated fixture grants, not classifier-created grants.
+    candidate_authority=replace(authority,bindings=bindings)
+    gates={}
+    for b in bindings:
+        candidate=proposal_message(proposal['payload']|{k:getattr(b,k) for k in ('binding_id','provider','model','destination')})
+        gates[b.binding_id]=authorize(candidate,candidate_authority,budget,guardrails=guardrails,
+            state=state,spec=spec,decision=decision,now=now,context=context)[0]
+    classifier=ScriptedClassifier({'local':0,'economical':1,'strong':2,'specialist':3})
+    return {'economical_sufficient':select(Workload(('code',),2),bindings,classifier,gates),
+            'strong_required':select(Workload(('code',),3),bindings,classifier,gates),
+            'none_adequate':select(Workload(('unavailable-capability',),3),bindings,classifier,gates),
+            'explicit_strong_authorization':gates['strong'],
+            'note':'Scripted suitability only; no candidate model executed by routing.'}
+
+
+def provider_process(out):
+    request=json.loads(sys.stdin.read());task=request['task_id']
+    with (out/'provider-calls.jsonl').open('ab',buffering=0) as f:
+        f.write(encode({'pid':os.getpid(),'request':request,'inference':'synthetic; no network'})+b'\n');os.fsync(f.fileno())
+    if task=='timeout':time.sleep(3)
+    result={'status':'not_executed','content':''} if task=='not-executed' else {'status':'executed','content':RESULT}
+    result.update(worker_session_id='synthetic-session:'+request['worker_dispatch_id'],
+        producer={k:request['binding'][k] for k in ('worker_family','provider','model','destination')},
+        usage={'model_calls':3 if result['status']=='executed' else 0,
+               'input_tokens':120 if result['status']=='executed' else 0,
+               'output_tokens':30 if result['status']=='executed' else 0,
+               'cost_microusd':None})  # illustrative counters; NO real inference/pricing
+    print(encode(result).decode())
+
+
+def app(out):
+    import restate
+    from hypercorn.asyncio import serve
+    from hypercorn.config import Config
+    fixtures=json.loads((out/'fixtures.json').read_text());store=ArtifactStore(out/'artifacts')
+    publisher=JsonlEventPublisher(out/'events.jsonl');prepared={}
+    def audit(filename,value):
+        with (out/filename).open('ab',buffering=0) as f:f.write(encode({'pid':os.getpid(),**value})+b'\n');os.fsync(f.fileno())
+    class Provider:
+        def dispatch(self,request):
+            # Fixed local program. No executable, environment or network destination
+            # comes from the proposal. Timeout kills and waits for the owned process.
+            response=subprocess.run([sys.executable,str(Path(__file__).resolve()),'--provider','--output',str(out)],
+                input=encode(asdict(request)),stdout=subprocess.PIPE,stderr=subprocess.PIPE,
+                env={'PATH':os.environ.get('PATH',''),'PYTHONDONTWRITEBYTECODE':'1'},
+                timeout=request.runtime_ms/1000,check=True)
+            return json.loads(response.stdout)
+    provider=Provider()
+    def worker(packet,operation_id):
+        gate,authorized,authority=prepared[operation_id]
+        dispatched=authorized
+        if authorized and authorized.task_id=='substitution':
+            # Attempt to replace projected bytes, digest AND reference together.
+            other=project_context(authorized.task_id,RAW_CONTEXT,IdentityProjector())
+            dispatched=replace(authorized,context=other,context_digest=other.digest,context_ref=other.ref)
+        result=invoke(dispatched,provider,authority=authority,guardrails=GlobalGuardrails(**fixtures[authority.task_id]['guardrails'])) if authorized else None
+        body=report(gate['reason_category'],result['status'] if result else None)
+        if result:body['provider_invoked']=result['provider_invoked']
+        audit('dispatch-results.jsonl',{'operation_id':operation_id,'gate':gate,'authorized':asdict(authorized) if authorized else None,'result':result,'report':body})
+        return {'outcome':'success','attempt_id':operation_id+'-frontier-boundary','operation_id':operation_id,
+            'content':encode(body).decode(),'dispatch_outcome':result['status'] if result else 'denied','frontier_result':result}
+    def cognitive(packet):
+        turn=packet['payload'];fixture=fixtures[turn['task_id']]
+        if turn['iteration']==1:
+            action={'type':'INVOKE_CAPABILITY','capability':'artifact.write','input':{'name':'worker_packet','content':encode(fixture['worker_packet']).decode()}}
+        else:
+            ref=next(item['source'] for item in turn['context'] if item['authority']=='artifact' and item['content'].get('name')=='worker_packet')
+            action={'type':'INVOKE_CAPABILITY','capability':'worker.run','input':{'packet_ref':ref,'artifact':'report'}}
+        decision=message('CognitiveDecision',{k:turn[k] for k in ('task_id','task_revision','turn_id')}|{'next_action':action})
+        audit('cognition.jsonl',{'packet':packet,'decision':decision,'provider':'scripted; no LLM'});return decision
+    async def checkpoint(ctx,stage,state):
+        task=state['task_id'];iteration=state['iteration'];fixture=fixtures[task]
+        if not state['decision_ref']:return
+        decision=store.read_json(task,state['decision_ref']);action=decision['payload']['next_action']
+        if action.get('capability')!='worker.run':return
+        op=state['decision_id'];run_id='run:'+ctx.request().id
+        async def record_event(label,event_type,outcome,ref,cause):
+            event=await ctx.run_typed('frontier-event-prepare/'+label,safe_prepare,task_id=task,run_id=run_id,step_id='frontier/'+label,
+                event_type=event_type,outcome=outcome,producer={'kind':'deterministic_application','component':'blaine.frontier'},
+                cause=cause,references={'decision_id':op,'capability_call_id':op,'restate_invocation_id':ctx.request().id},
+                payload_refs=(ref,),payload={'iteration':iteration})
+            await ctx.run_typed('frontier-event-publish/'+label,safe_publish,publisher=publisher,event=event)
+            return event_identity(run_id,'frontier/'+label)
+        if stage=='decision':
+            raw_authority=await ctx.get('frontier-authority')
+            if raw_authority is None:
+                raw_authority=await ctx.run_typed('accept-frontier-authority',lambda: fixture['authority'])
+                ctx.set('frontier-authority',raw_authority)
+            authority=authority_from_json(raw_authority)
+            budget=DispatchBudget.from_json(await ctx.get('frontier-budget') or fixture['initial_budget'])
+            # Selection is read from the actual persisted worker packet, never a
+            # model-supplied authority object. Only deployment fixture owns the grant.
+            packet=store.read_json(task,action['input']['packet_ref'])
+            proposal=json.loads(packet['payload']['context'][0]['content'])
+            now=await ctx.time()
+            # Fresh typed projection in this runtime; grant binds its exact output.
+            projector=FailingProjector() if task=='projection-failure' else FixtureProjector()
+            try:
+                context=project_context(task,fixture['raw_context'],projector)
+                projection={'version':1,'task_id':task,'projector_id':context.projector_id,'outcome':'projected',
+                            'context_digest':context.digest,'context_ref':context.ref}
+            except ProjectionError:
+                context=None
+                projection={'version':1,'task_id':task,'projector_id':projector.projector_id,'outcome':'failed'}
+            projection_ref=await ctx.run_typed('frontier-projection/'+str(iteration),store.put_json,task_id=task,value=projection)
+            await record_event('projection/'+str(iteration),'artifact.produced','recorded',projection_ref,event_identity(run_id,'start'))
+            await ctx.run_typed('frontier-projection-audit/'+str(iteration),audit,filename='projection.jsonl',value=projection|{'stage':'before_authorization','operation_id':op})
+            if context is None:
+                gate,authorized={'outcome':'deny','reason_category':'context_projection_failed'},None
+                routing={'outcome':'STOP','reason':'projection_failed'}
+            else:
+                # Controlled bypass counterexample: caller incorrectly passes raw text.
+                supplied=fixture['raw_context'] if task=='raw-bypass' else context
+                gate,authorized=authorize(proposal,authority,budget,guardrails=GlobalGuardrails(**fixture['guardrails']),state=state,spec=validate_spec(fixture['spec']),decision=decision,now=now,context=supplied)
+                routing=routing_evidence(authority,proposal,budget,GlobalGuardrails(**fixture['guardrails']),state,
+                                         validate_spec(fixture['spec']),decision,now,context)
+            routing_ref=await ctx.run_typed('frontier-routing/'+str(iteration),store.put_json,task_id=task,value=routing)
+            await record_event('routing/'+str(iteration),'cognition.decided','recorded',routing_ref,event_identity(run_id,'frontier/projection/'+str(iteration)))
+            prepared[op]=(gate,authorized,authority)
+            selected={'proposal':proposal,'gate':gate,'budget_before':asdict(budget),'authorized':asdict(authorized) if authorized else None}
+            ref=await ctx.run_typed('frontier-policy/'+str(iteration),store.put_json,task_id=task,value=selected)
+            cause=await record_event('proposal/'+str(iteration),'cognition.decided','recorded',state['decision_ref'],event_identity(run_id,'start'))
+            await record_event('policy/'+str(iteration),'policy.evaluated',gate['outcome'],ref,cause)
+            if authorized:budget=reserve(budget,authorized)
+            ctx.set('frontier-budget',asdict(budget))
+            await ctx.run_typed('frontier-audit-policy/'+str(iteration),audit,filename='policy.jsonl',value={'task_id':task,'operation_id':op,**selected,'budget_reserved':asdict(budget)})
+        elif stage=='effect_persisted':
+            if task=='authorized' and not (out/'restarted').exists():
+                (out/'committed.json').write_bytes(encode({'task_id':task,'operation_id':op,'state':state,'pid':os.getpid()}))
+                await asyncio.Event().wait()
+            gate,authorized,authority=prepared[op]
+            result=store.read_json(task,state['artifacts']['report']);budget=DispatchBudget.from_json(await ctx.get('frontier-budget'))
+            ledger=await ctx.get('frontier-accounting') or {}
+            if authorized:
+                observation=store.read_json(task,state['observation_ref'])
+                worker_evidence=store.read_json(task,observation['payload']['output']['evidence_ref'])
+                observed=worker_evidence['frontier_result']
+                budget=settle(budget,authorized,observed['status'])
+                ledger=record_usage(ledger,authorized,observed)
+                ctx.set('frontier-accounting',ledger)
+                accounting_ref=await ctx.run_typed('frontier-usage/'+str(iteration),store.put_json,task_id=task,value=ledger)
+                await record_event('usage/'+str(iteration),'capability.finished','success' if observed['status']=='executed' else 'failure',accounting_ref,event_identity(run_id,'frontier/policy/'+str(iteration)))
+            ctx.set('frontier-budget',asdict(budget))
+            await record_event('result/'+str(iteration),'capability.finished','success' if result['outcome']=='executed' else 'failure',state['artifacts']['report'],event_identity(run_id,'frontier/policy/'+str(iteration)))
+            await ctx.run_typed('frontier-audit-settlement/'+str(iteration),audit,filename='settlements.jsonl',value={'task_id':task,'operation_id':op,'budget':asdict(budget),'accounting':ledger,'report':result})
+    service=create_workflow(store,cognitive,Capabilities(store,out/'effects.sqlite',worker=worker),checkpoint=checkpoint,event_publisher=publisher)
+    config=Config();config.bind=['127.0.0.1:39080'];asyncio.run(serve(restate.app([service]),config))
+
+
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--output',type=Path,required=True);p.add_argument('--restate-server',type=Path)
+    p.add_argument('--serve',action='store_true');p.add_argument('--provider',action='store_true');a=p.parse_args();out=a.output.resolve()
+    if a.provider:return provider_process(out)
+    if a.serve:return app(out)
+    if out.exists():raise ValueError('Fresh directory required')
+    for port in (38080,39070,39080,35122):
+        with socket.socket() as s:s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);s.bind(('127.0.0.1',port))
+    out.mkdir();ev=out/'evidence';ev.mkdir();store=ArtifactStore(out/'artifacts')
+    def save(name,value):(ev/(name+'.json')).write_bytes(encode(value)+b'\n')
+    fixtures={}
+    for case,reason in CASES.items():
+        context=project_context(case,RAW_CONTEXT,FixtureProjector());ref=store.put(case,context.content.encode('utf-8'));assert ref==context.ref
+        binding=WorkerBinding('economical','synthetic-worker','synthetic','fixture-v2','https://frontier.invalid/v1',True,('code',),2)
+        grant=FrontierAuthority(2,case,(binding,),True,True,'fixture-approval-'+case,
+            ref,('public-source',),(),1,int(time.time())+600,2000)
+        guardrails=GlobalGuardrails()
+        if case=='global-disabled':guardrails=GlobalGuardrails(frontier_enabled=False)
+        if case=='kill-switch':guardrails=GlobalGuardrails(kill_switch=True)
+        if case=='account-exhausted':guardrails=GlobalGuardrails(account_status='exhausted',source='trusted synthetic exhausted account flag')
+        if case=='account-unknown':guardrails=GlobalGuardrails(account_status='unknown')
+        if case=='native-required':grant=replace(grant,required_native_limits=NativeLimits(output_tokens=20))
+        value={'task_id':case,'binding_id':binding.binding_id,'provider':binding.provider,'model':binding.model,'destination':binding.destination,
+            'context_ref':ref,'read_scope':['public-source'],'write_scope':[],'usage_hints':{'input_tokens':1,'output_tokens':1},'runtime_ms':1000}
+        if case=='disabled':grant=replace(grant,frontier_permitted=False)
+        if case=='approval':grant=replace(grant,approval_ref=None)
+        if case=='deadline':grant=replace(grant,deadline_unix=int(time.time())-1)
+        if case=='wrong-provider':value['provider']='other'
+        if case=='wrong-model':value['model']='other'
+        if case=='wrong-egress':value['destination']='https://unapproved.invalid/v1'
+        if case=='read-escalation':value['read_scope'].append('private-source')
+        if case=='write-escalation':value['write_scope']=['public-source']
+        if case=='runtime':value['runtime_ms']=3000
+        if case=='timeout':value['runtime_ms']=100
+        expected=report(reason,'not_executed' if case=='not-executed' else 'unknown' if case=='timeout' else None)
+        if case=='substitution':expected=report('admitted','not_executed')|{'provider_invoked':False}
+        proposal=proposal_message(value)
+        packet=message('WorkerInput',{'task_id':case,'objective':'Evaluate this scoped frontier proposal; return the exact dispatch outcome without widening authority.',
+            'context':[{'source':'semantic-proposal','content':encode(proposal).decode()}]})
+        spec=message('TaskSpec',{'objective':'Verify the isolated frontier-dispatch '+case+' case with independent exact-result evidence.',
+            'completion':[{'criterion':'Exact dispatch outcome','evidence':{'artifact':'report','sha256':hashlib.sha256(encode(expected)).hexdigest()}}],
+            'capabilities':['artifact.write','worker.run'],'autonomy':{'allowed':['artifact.write','worker.run']}})
+        fixtures[case]={'raw_context':RAW_CONTEXT,'projected_context':asdict(context),'authority':asdict(grant),'guardrails':asdict(guardrails),'initial_budget':asdict(DispatchBudget(1,0,(),('previous-dispatch',)) if case=='budget' else DispatchBudget()),'worker_packet':packet,'spec':spec,'expected':expected}
+    (out/'fixtures.json').write_bytes(encode(fixtures))
+    (out/'restate.toml').write_text(f'''cluster-name = "blaine-frontier-proof"
+node-name = "frontier-proof"
+base-dir = "{out/'restate-data'}"
+bind-ip = "127.0.0.1"
+bind-port = 35122
+advertised-host = "127.0.0.1"
+listen-mode = "tcp"
+auto-provision = true
+default-journal-retention = "7 days"
+[admin]
+bind-address = "127.0.0.1:39070"
+[ingress]
+bind-address = "127.0.0.1:38080"
+''')
+    env={k:v for k,v in os.environ.items() if not k.startswith('RESTATE_')};env['PYTHONDONTWRITEBYTECODE']='1';processes=[]
+    def start(name,command):
+        with (out/(name+'.txt')).open('wb') as log:process=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT)
+        processes.append(process)
+        def ready():
+            if process.poll() is not None:raise RuntimeError(name+' exited')
+            if name=='server':return http(ADMIN,'/deployments') is not None
+            try:
+                with socket.create_connection(('127.0.0.1',39080),timeout=1):return True
+            except OSError:return False
+        until(ready,name+' ready',30);return process
+    summary={'status':'UNVERIFIED'}
+    try:
+        start('server',[str(a.restate_server),'--config-file',str(out/'restate.toml')])
+        command=[sys.executable,str(Path(__file__).resolve()),'--serve','--output',str(out)]
+        runtime=start('runtime',command);save('deployment',http(ADMIN,'/deployments',{'uri':ENDPOINT}))
+        for case,f in fixtures.items():
+            save(case+'-submission',http(INGRESS,f'/CognitiveTaskV1/{case}/run/send',f['spec']))
+            if case=='authorized':
+                until(lambda:(out/'committed.json').exists(),'committed frontier effect',30)
+                save('authorized-before-restart',http(ADMIN,'/query',{'query':"SELECT * FROM sys_journal WHERE id IN (SELECT id FROM sys_invocation WHERE target = 'CognitiveTaskV1/authorized/run') ORDER BY index"}))
+                runtime.kill();runtime.wait(timeout=5);(out/'restarted').touch();replacement=start('replacement',command)
+                save('recovery',{'killed_pid':runtime.pid,'replacement_pid':replacement.pid,'signal':'SIGKILL','point':'committed worker capability; budget reservation held; settlement pending'})
+            def done():
+                s=http(INGRESS,f'/CognitiveTaskV1/{case}/status',method='POST')['payload'];return s if s.get('result_ref') else None
+            state=until(done,case+' completion',30);save(case+'-state',state)
+            assert state['lifecycle']=='COMPLETED',state
+            save(case+'-result',http(INGRESS,f'/restate/workflow/CognitiveTaskV1/{case}/attach'))
+            save(case+'-journal',http(ADMIN,'/query',{'query':f"SELECT * FROM sys_journal WHERE id IN (SELECT id FROM sys_invocation WHERE target = 'CognitiveTaskV1/{case}/run') ORDER BY index"}))
+        summary={'status':'EXECUTED_PENDING_INDEPENDENT_VERIFICATION','cases':list(fixtures),'cloud_calls':0,'credential_access':False,'inference':'none; scripted cognition and synthetic local provider'}
+    except Exception as error:
+        summary={'status':'FAIL','error':str(error)};raise
+    finally:
+        save('execution',summary)
+        for process in reversed(processes):
+            if process.poll() is None:
+                process.terminate()
+                try:process.wait(timeout=5)
+                except subprocess.TimeoutExpired:process.kill();process.wait(timeout=5)
+        save('processes',{'all_stopped':all(p.poll() is not None for p in processes)})
+        for pattern in ('*.jsonl','*.txt','fixtures.json','committed.json'):
+            for f in out.glob(pattern):shutil.copyfile(f,ev/f.name)
+        shutil.copytree(out/'artifacts',ev/'artifacts',dirs_exist_ok=True)
+        print(json.dumps(summary,indent=2));print(ev)
+if __name__=='__main__':main()
