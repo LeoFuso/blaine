@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily partial Blaine backup; enable only after local acceptance
+
+[Timer]
+OnCalendar=*-*-* 03:30:00
+Persistent=yes
+Unit=blaine-partial-backup.service
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

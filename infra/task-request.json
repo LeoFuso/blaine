@@ -1,0 +1,21 @@
+{
+  "objective": "Prepare the bounded D1 long-lived Blaine platform foundation: observed inventory, service ownership, pragmatic Ansible, safe local backup machinery, and recovery acceptance preparation; integrate a coherent validated PASS or STOP into local main.",
+  "mode": "interactive",
+  "context": [
+    {"need": "Integrated Cognitive Kernel baseline", "source": "git:215a86c6366e4d4da9a53b29d6fd763d5fc02de7", "sharing": "local-only"},
+    {"need": "Accepted local platform direction and explicit D1 scope", "source": "docs/decisions/0018-local-platform-durability-and-observability.md; D1 user request", "sharing": "local-only"}
+  ],
+  "capabilities": ["read repository and host metadata", "edit D1 worktree", "isolated local validation", "commit and fast-forward local main at integration"],
+  "autonomy": {
+    "allowed": ["read-only host inspection without secret values", "deterministic repository implementation", "disposable local fixture validation", "coherent commits and safe local-main integration"],
+    "ask_before": ["disk selection/preparation where identity or existing data requires a human decision", "destructive operations", "host reboot", "broad network/firewall changes", "secret migration", "semantic integration conflicts"],
+    "forbidden": ["modify other feature worktrees", "kernel lifecycle or frontier changes", "Daily Driver features", "cloud/off-site backup", "push"]
+  },
+  "cloud": {"policy": "ask"},
+  "completion": [
+    {"criterion": "Inventory and service ownership distinguish observation from desired state", "evidence": "docs/platform-d1.md and infra/versions.json"},
+    {"criterion": "Backup safeguards and available restore machinery have isolated evidence", "evidence": "tests/platform/test_backup.py and infra/validation-d1.json, with physical disk and S3 gaps explicit"},
+    {"criterion": "Ansible staging is convergent and units validate", "evidence": "syntax/unit checks and two scratch staging recaps"},
+    {"criterion": "Recovery gates, remaining human decisions, and integration result are truthful", "evidence": "docs/platform-operations.md, Git history, and final D1 report"}
+  ]
+}

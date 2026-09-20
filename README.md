@@ -4,6 +4,9 @@ Current runtime spike: [Milestone 002 — Interactive Durable Task over ACP](doc
 
 Cognitive Kernel checkpoint: [progress and current Increment 11 STOP](docs/milestones/cognitive-kernel-progress.md); [offline hygiene validation](experiments/kernel-program/checkpoint-hygiene/summary.json).
 
+Platform D1: [current state and bounded STOP](docs/platform-d1.md);
+[backup and recovery operations](docs/platform-operations.md).
+
 ### Local-first orchestration agent for agentic development environments
 
 Blaine is a portable source of truth for a personal, local-first agentic development environment. It defines the contract for a coordinator agent that runs on Goose with a local Ollama model, triaging work, curating context, and orchestrating between local tools and frontier agents.

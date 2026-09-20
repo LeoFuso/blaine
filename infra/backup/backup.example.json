@@ -1,0 +1,16 @@
+{
+  "coverage": "UNCONFIGURED",
+  "mount": "/srv/blaine-backup",
+  "filesystem_uuid": "",
+  "status_directory": "/var/lib/blaine-backup",
+  "keep_last": 7,
+  "postgres": {
+    "bin": "/usr/lib/postgresql/18/bin",
+    "host": "/var/run/postgresql",
+    "port": 5432,
+    "user": "postgres",
+    "os_user": "postgres",
+    "databases": []
+  },
+  "artifact_roots": {}
+}

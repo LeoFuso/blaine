@@ -1,0 +1,29 @@
+[Unit]
+Description=Blaine partial PostgreSQL and kernel-artifact backup (S3 coverage pending)
+After=local-fs.target postgresql@18-main.service
+# No ConditionPathIsMountPoint: a missing disk must FAIL, not silently skip.
+# No RequiresMountsFor: this unit never attempts to mount or prepare a disk.
+
+[Service]
+Type=oneshot
+User=root
+Group=root
+UMask=0077
+StateDirectory=blaine-backup
+StateDirectoryMode=0700
+ExecStart=/usr/bin/python3 /usr/local/lib/blaine/backup.py partial-backup --config /etc/blaine/backup.json
+Restart=no
+TimeoutStartSec=2h
+TimeoutStopSec=30s
+KillMode=control-group
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_UNIX
+StandardOutput=journal
+StandardError=journal
+# Root reads private artifact trees and runuser uses existing PostgreSQL peer
+# authentication. No database password or new access grant is installed.

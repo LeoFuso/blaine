@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-09-20",
+  "status": "inventory, not a known-good full-platform lock",
+  "host": {
+    "os": "Ubuntu 26.04.1 LTS",
+    "kernel": "7.0.0-31-generic",
+    "systemd": "259.5-0ubuntu3.4",
+    "python3_package": "3.14.3-0ubuntu2",
+    "python3_executable": "3.14.4",
+    "postgresql-18": "18.6-1.pgdg26.04+2",
+    "postgresql-18-pgvector": "0.8.6-1.pgdg26.04+1",
+    "redis-server": "6:8.10.2-1rl1~resolute1",
+    "restate_server_available_in_main_checkout": "1.7.9",
+    "vllm": "0.29.1rc1.dev401+gc3b484463",
+    "mirix_package": "0.1.0"
+  },
+  "repository_runtime_pins": "runtime/requirements.txt",
+  "validation": {"ansible-core": "2.20.0"},
+  "not_discovered": ["S3 implementation", "Caddy", "Alloy", "Langfuse", "ClickHouse"],
+  "unresolved": ["vLLM model weight revisions", "MIRIX deployment revision"]
+}

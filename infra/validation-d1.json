@@ -1,0 +1,111 @@
+{
+  "observed_at": "2026-09-20T16:31:17.681898+00:00",
+  "result": "STOP",
+  "integration_baseline": "f5727f741c31fff70e5a9fe2d83a807afa096818",
+  "scope": "D1 repository foundation and scratch PostgreSQL/artifact restore; no production deployment",
+  "checks": [
+    {
+      "name": "postgres-and-artifact-restore-and-safety",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/platform",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "test_cli_has_no_fixture_or_mount_bypass (test_backup.GuardTests.test_cli_has_no_fixture_or_mount_bypass) ... ok\ntest_lock_contention_preserves_active_status (test_backup.GuardTests.test_lock_contention_preserves_active_status) ... ok\ntest_mount_rejects_wrong_uuid_root_bind_and_readonly (test_backup.GuardTests.test_mount_rejects_wrong_uuid_root_bind_and_readonly) ... ok\ntest_real_unmounted_directory_fails_without_destination_writes (test_backup.GuardTests.test_real_unmounted_directory_fails_without_destination_writes) ... ok\ntest_symlink_and_special_file_artifacts_rejected (test_backup.GuardTests.test_symlink_and_special_file_artifacts_rejected) ... ok\ntest_symlink_destination_rejected (test_backup.GuardTests.test_symlink_destination_rejected) ... ok\ntest_failed_dump_is_unpublished_and_does_not_prune (test_backup.RestoreTests.test_failed_dump_is_unpublished_and_does_not_prune) ... ok\ntest_postgres_and_kernel_object_restore_retention_and_corruption (test_backup.RestoreTests.test_postgres_and_kernel_object_restore_retention_and_corruption) ... ok\n\n----------------------------------------------------------------------\nRan 8 tests in 1.021s\n\nOK\n"
+    },
+    {
+      "name": "ansible-syntax",
+      "command": [
+        "/tmp/blaine-d1-validation/bin/ansible-playbook",
+        "-i",
+        "infra/ansible/inventory.ini",
+        "infra/ansible/host.yml",
+        "--syntax-check"
+      ],
+      "exit_code": 0,
+      "output": "\nplaybook: infra/ansible/host.yml\n"
+    },
+    {
+      "name": "ansible-first-scratch-apply",
+      "command": [
+        "/tmp/blaine-d1-validation/bin/ansible-playbook",
+        "-i",
+        "infra/ansible/inventory.ini",
+        "infra/ansible/host.yml",
+        "-e",
+        "blaine_prefix=/tmp/blaine-d1-proof-0hakcm4c"
+      ],
+      "exit_code": 0,
+      "output": "\nPLAY [Stage the bounded D1 backup foundation] **********************************\n\nTASK [Validate staging boundary] ***********************************************\nok: [localhost] => {\n    \"changed\": false,\n    \"msg\": \"All assertions passed\"\n}\n\nTASK [Inspect required native tools without installing or upgrading packages] ***\nok: [localhost] => (item=/usr/bin/python3)\nok: [localhost] => (item=/usr/bin/findmnt)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dump)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dumpall)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_restore)\n\nTASK [Create the small Blaine-owned directory set] *****************************\nchanged: [localhost] => (item={'path': '/etc/blaine', 'mode': '0700'})\nchanged: [localhost] => (item={'path': '/usr/local/lib/blaine', 'mode': '0755'})\nchanged: [localhost] => (item={'path': '/var/lib/blaine-backup', 'mode': '0700'})\nchanged: [localhost] => (item={'path': '/etc/systemd/system', 'mode': '0755'})\n\nTASK [Install reviewed backup implementation and inert example configuration] ***\nchanged: [localhost] => (item={'src': '../backup/backup.py', 'dest': '/usr/local/lib/blaine/backup.py', 'mode': '0755'})\nchanged: [localhost] => (item={'src': '../backup/backup.example.json', 'dest': '/etc/blaine/backup.example.json', 'mode': '0600'})\n\nTASK [Install disabled backup units] *******************************************\nchanged: [localhost] => (item=blaine-partial-backup.service)\nchanged: [localhost] => (item=blaine-partial-backup.timer)\n\nTASK [Explain the deployment boundary] *****************************************\nok: [localhost] => {\n    \"msg\": \"Files staged only. No mount, backup.json, daemon reload, service start or timer enablement performed.\"\n}\n\nPLAY RECAP *********************************************************************\nlocalhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n\n"
+    },
+    {
+      "name": "ansible-second-scratch-apply",
+      "command": [
+        "/tmp/blaine-d1-validation/bin/ansible-playbook",
+        "-i",
+        "infra/ansible/inventory.ini",
+        "infra/ansible/host.yml",
+        "-e",
+        "blaine_prefix=/tmp/blaine-d1-proof-0hakcm4c"
+      ],
+      "exit_code": 0,
+      "output": "\nPLAY [Stage the bounded D1 backup foundation] **********************************\n\nTASK [Validate staging boundary] ***********************************************\nok: [localhost] => {\n    \"changed\": false,\n    \"msg\": \"All assertions passed\"\n}\n\nTASK [Inspect required native tools without installing or upgrading packages] ***\nok: [localhost] => (item=/usr/bin/python3)\nok: [localhost] => (item=/usr/bin/findmnt)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dump)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dumpall)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_restore)\n\nTASK [Create the small Blaine-owned directory set] *****************************\nok: [localhost] => (item={'path': '/etc/blaine', 'mode': '0700'})\nok: [localhost] => (item={'path': '/usr/local/lib/blaine', 'mode': '0755'})\nok: [localhost] => (item={'path': '/var/lib/blaine-backup', 'mode': '0700'})\nok: [localhost] => (item={'path': '/etc/systemd/system', 'mode': '0755'})\n\nTASK [Install reviewed backup implementation and inert example configuration] ***\nok: [localhost] => (item={'src': '../backup/backup.py', 'dest': '/usr/local/lib/blaine/backup.py', 'mode': '0755'})\nok: [localhost] => (item={'src': '../backup/backup.example.json', 'dest': '/etc/blaine/backup.example.json', 'mode': '0600'})\n\nTASK [Install disabled backup units] *******************************************\nok: [localhost] => (item=blaine-partial-backup.service)\nok: [localhost] => (item=blaine-partial-backup.timer)\n\nTASK [Explain the deployment boundary] *****************************************\nok: [localhost] => {\n    \"msg\": \"Files staged only. No mount, backup.json, daemon reload, service start or timer enablement performed.\"\n}\n\nPLAY RECAP *********************************************************************\nlocalhost                  : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n\n"
+    },
+    {
+      "name": "systemd-unit-verification",
+      "command": [
+        "systemd-analyze",
+        "verify",
+        "infra/systemd/blaine-partial-backup.service",
+        "infra/systemd/blaine-partial-backup.timer"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "name": "staged-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "source_sha256": {
+    "README.md": "f1605702172e98b2ddccba4812eceed4bae3d284f072a195207457d4282af2e9",
+    "docs/platform-d1.md": "9bb6c6e383683057da754ea92ce181d885e55d50f9380ef84c5149343720c280",
+    "docs/platform-operations.md": "128cd2b97b60d4e041db689d19780acc21a2a21c0d39305e30ba59a435dace2b",
+    "infra/ansible/host.yml": "e92b6169dec870b8a57771853ff28cd12f1aa7d6c292cf935877c855bf9538e7",
+    "infra/ansible/inventory.ini": "8d80c3cb342838a5da22faf72c1b388ed8e1870bfedb5e7bb8e7ab76c076d4be",
+    "infra/backup/backup.example.json": "e6322ec60b9c6c4f1e8083d8e08e42360bf5b04309301dca1789387626282644",
+    "infra/backup/backup.py": "1e3b265c64fb16e01589865d2b2c7888fe5ad9e59806023d107dc496a34f9c25",
+    "infra/systemd/blaine-partial-backup.service": "e2297ad695ec427682849b6334d96c6d92998d34b98583ce16b63a61fbe92e68",
+    "infra/systemd/blaine-partial-backup.timer": "a08bd2e184b93d321b996d13c083486928e593a5cc54af1764cb62035860f49a",
+    "infra/task-request.json": "9c55790260b93e368ffb63814e8ef7f06a4196d9684e15be4cb46806edab38b0",
+    "infra/versions.json": "66415ec47eaf39161f319eea243c1d78cdc3b8653b467d72dc02fd5bb3f8d836",
+    "tests/platform/test_backup.py": "5c07fca354e1944ca12478395daf096d78fae5e490ae71902e06d9fc4361f434"
+  },
+  "not_proven": [
+    "physical HDD identity/mount/detach",
+    "S3 backup/restore",
+    "live PostgreSQL and artifact coverage/access",
+    "live systemd/Ansible ownership and timer execution",
+    "reboot recovery"
+  ],
+  "optional_tools_unavailable": [
+    "ansible-lint",
+    "shellcheck (no new shell scripts)"
+  ],
+  "kernel_source_changes": false,
+  "cloud_backup": false,
+  "host_reboot": false,
+  "task_submitted": false
+}

@@ -1,0 +1,67 @@
+---
+- name: Stage the bounded D1 backup foundation
+  hosts: blaine
+  gather_facts: false
+  vars:
+    # Empty means the actual host. A scratch prefix stages files only, never
+    # touches systemd, and is used by the idempotency test.
+    blaine_prefix: ""
+  tasks:
+    - name: Validate staging boundary
+      ansible.builtin.assert:
+        that:
+          - blaine_prefix == '' or blaine_prefix is match('^/tmp/blaine-d1-[A-Za-z0-9_-]+$')
+        fail_msg: Use an empty host prefix or a dedicated /tmp/blaine-d1-* scratch directory
+
+    - name: Inspect required native tools without installing or upgrading packages
+      ansible.builtin.command:
+        argv: ["{{ item }}", "--version"]
+      loop:
+        - /usr/bin/python3
+        - /usr/bin/findmnt
+        - /usr/lib/postgresql/18/bin/pg_dump
+        - /usr/lib/postgresql/18/bin/pg_dumpall
+        - /usr/lib/postgresql/18/bin/pg_restore
+      changed_when: false
+      check_mode: false
+
+    - name: Create the small Blaine-owned directory set
+      ansible.builtin.file:
+        path: "{{ blaine_prefix }}{{ item.path }}"
+        state: directory
+        mode: "{{ item.mode }}"
+        owner: "{{ 'root' if blaine_prefix == '' else omit }}"
+        group: "{{ 'root' if blaine_prefix == '' else omit }}"
+      loop:
+        - {path: /etc/blaine, mode: '0700'}
+        - {path: /usr/local/lib/blaine, mode: '0755'}
+        - {path: /var/lib/blaine-backup, mode: '0700'}
+        - {path: /etc/systemd/system, mode: '0755'}
+
+    - name: Install reviewed backup implementation and inert example configuration
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ blaine_prefix }}{{ item.dest }}"
+        mode: "{{ item.mode }}"
+        owner: "{{ 'root' if blaine_prefix == '' else omit }}"
+        group: "{{ 'root' if blaine_prefix == '' else omit }}"
+      loop:
+        - {src: ../backup/backup.py, dest: /usr/local/lib/blaine/backup.py, mode: '0755'}
+        - {src: ../backup/backup.example.json, dest: /etc/blaine/backup.example.json, mode: '0600'}
+
+    - name: Install disabled backup units
+      ansible.builtin.copy:
+        src: "../systemd/{{ item }}"
+        dest: "{{ blaine_prefix }}/etc/systemd/system/{{ item }}"
+        mode: '0644'
+        owner: "{{ 'root' if blaine_prefix == '' else omit }}"
+        group: "{{ 'root' if blaine_prefix == '' else omit }}"
+      loop:
+        - blaine-partial-backup.service
+        - blaine-partial-backup.timer
+      # Reload is an explicit operator step: host inspection found unrelated
+      # PostgreSQL/Redis units with pending manager reload. Avoid applying them.
+
+    - name: Explain the deployment boundary
+      ansible.builtin.debug:
+        msg: Files staged only. No mount, backup.json, daemon reload, service start or timer enablement performed.
