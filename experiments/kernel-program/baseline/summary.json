@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "source_manifest_matches": true,
+  "artifact_digests": "PASS",
+  "retained_journal_verification": "PASS",
+  "unit_tests": 23,
+  "live_probes": 7,
+  "git_state": "Prior Increment 1 deliverables are untracked; no unexplained changes"
+}

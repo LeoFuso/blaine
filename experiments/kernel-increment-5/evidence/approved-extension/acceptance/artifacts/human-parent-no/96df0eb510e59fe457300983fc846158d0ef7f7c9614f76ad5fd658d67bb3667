@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"parent exact answer","name":"answer"},"type":"INVOKE_CAPABILITY"},"task_id":"human-parent-no","task_revision":2,"turn_id":"human-parent-no/3"},"version":1}

@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://not-executed/sha256:869e9c8453b49c11fd20369afeeff73c9b4e8a370afcc8309e8c504876e85b80"},"type":"INVOKE_CAPABILITY"},"task_id":"not-executed","task_revision":1,"turn_id":"not-executed/2"},"version":1}

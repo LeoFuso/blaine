@@ -1,0 +1,48 @@
+{
+  "status": "PASS_CHECKS_ONLY",
+  "git_diff_check": "PASS",
+  "links_valid": true,
+  "files": [
+    {
+      "file": "experiments/kernel-increment-11/live/binding.py",
+      "sha256": "3fc67fcaeae4ad8091d2a121cddb6f4c1412b9b926ef2c8fa4c8839c3037d01e"
+    },
+    {
+      "file": "experiments/kernel-increment-11/live/result.schema.json",
+      "sha256": "687b301dd8dc551a3ef44a0790de99292acce8ee91777709d45fb4bed194b014"
+    },
+    {
+      "file": "experiments/kernel-increment-11/live/verify.py",
+      "sha256": "232fecfd3b7a31092df0eb06a744b02b5d0b65259921ab7da1a7d71944f527b8"
+    },
+    {
+      "file": "experiments/kernel-increment-11/live/instructions.txt",
+      "sha256": "341330908558574f5453fdc78f708b5ab48165b28a4bb345a53c7cd0fe3a2223"
+    },
+    {
+      "file": "experiments/kernel-increment-11/live/probe.py",
+      "sha256": "809d60906ebddcb6edba7443c0710dfa2a6c4c3090f1ff649099562fe8f7bef8"
+    },
+    {
+      "file": "experiments/kernel-increment-11/live/config.toml",
+      "sha256": "5295753797e281d59c14bd493e13b02596382ab838130543f0f427abe761b3bc"
+    },
+    {
+      "file": "tests/test_kernel_frontier_live.py",
+      "sha256": "9b49e08db445976a50c069c85c7e738637a6affd21d08d9cc913973adbd13fc1"
+    },
+    {
+      "file": "docs/contracts/frontier-dispatch.md",
+      "sha256": "8d1861ffc4d6ce1dca11ce0a68af69745a3914dd579035b3fa52b5c778b9cc6a"
+    },
+    {
+      "file": "docs/milestones/033-cognitive-kernel-increment-11-live-stop.md",
+      "sha256": "2d647c9c2bf8ffac24a25291286b9c9a1dc5002545d5de84e68036273cba6db0"
+    },
+    {
+      "file": "docs/milestones/cognitive-kernel-progress.md",
+      "sha256": "849d15aaeec3d590b18d0590267fe31f859022b467649acc342a3f3b2824bf4d"
+    }
+  ],
+  "live_gate": "STOP"
+}

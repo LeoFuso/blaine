@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "json_evidence_parses": true,
+  "documentation_links_valid": true,
+  "tracked_and_untracked_diff_check": "PASS",
+  "tests_not_rerun": "No production code changed; previous isolated PASS is preserved, not counted as live evidence"
+}

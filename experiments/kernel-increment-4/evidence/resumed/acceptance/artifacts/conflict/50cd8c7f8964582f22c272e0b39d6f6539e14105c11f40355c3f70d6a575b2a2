@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"Exact answer","detail":"Exact artifact digest verified","evidence_ref":"artifact://conflict/sha256:c2b44b0b31a1e37760a4aa8265e4e5bcbfb9835ab312569b34818fc90f982a08","outcome":"satisfied"}],"outcome":"satisfied"},"version":1}

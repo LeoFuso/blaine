@@ -1,0 +1,29 @@
+{
+  "increment": 11,
+  "status": "BLOCKED_BEFORE_IMPLEMENTATION",
+  "live_provider_execution": "SKIPPED_UNAVAILABLE_APPROVED_BINDING",
+  "cloud_calls": 0,
+  "secret_access": false,
+  "configuration_mutations": false,
+  "expected": "An existing safe provider binding, with independent authorization, bounded egress and budget enforcement, before live frontier dispatch.",
+  "observed": [
+    "The configured kernel model adapter accepts loopback HTTP only (Qwen/Qwen3.5-9B).",
+    "The configured Goose worker binds to the same local model.",
+    "The executable TaskSpec exposes capability grants and child allocation, not cloud authorization/egress/spend contracts.",
+    "ADRs 0008 and 0009 define the required conceptual dispatch/context boundary, but no executable frontier binding is present in the inspected runtime."
+  ],
+  "architecture_impact": "None; no kernel or authority contract changed.",
+  "limitations": "No claim that the host has no credentials. Credentials were not inspected; unrelated interactive client authentication is not an approved Blaine dispatch binding.",
+  "attempted": "Read-only runtime/contract prerequisite inspection; no cloud inference or provider connectivity test.",
+  "decision_required": "Identify an existing approved binding with its scoped authorization/egress/budget policy, or choose an isolated fake-transport validation scope before live integration.",
+  "safest_next_option": "Keep runtime local-only; establish the existing ADR 0008/0009 boundary in a bounded isolated proof without changing Task authority implicitly.",
+  "next_increment_started": false,
+  "sources": {
+    "runtime/kernel/model.py": "c3acbcc5e2830bd1d56c08d7a962516e8c353d367dc51cf814f0a70878aaaaf6",
+    "runtime/kernel/worker.py": "c5c6ad82f0c32ab58eb8fbeab6a03b45bb1f4b5885f6d6db89336afb3d302899",
+    "runtime/kernel/contracts.py": "71c11e264a2417485edc4148bc629a8dc53f432ffaac3fbf13890d5460452e9b",
+    "runtime/kernel/execution.py": "c1635594922403842f57f156c0ac596b1ed8fd54ff9c21bf2e57cddbc0096807",
+    "docs/decisions/0008-paid-cloud-crosses-single-dispatch-boundary.md": "57e075f076a5ad51841997c025117911dedf25555eef94d635323e0206ade0ab",
+    "docs/decisions/0009-cloud-context-packet.md": "2049b22c6291f4079fd87071e0c0b4b75146b0e1baef1376c85ec9343c5e9596"
+  }
+}

@@ -1,0 +1,638 @@
+[2m2026-09-20T04:13:30.131016Z[0m [32mINFO[0m [1;3;32mrestate_server[0m[32m[32m
+  [1;32mStarting Restate Server 1.7.9 (fb0ca13 x86_64-unknown-linux-musl 2026-09-04)[0m[32m
+    node_name: "hybrid-experiment"
+    config_source: /tmp/blaine-increment8-production-20260920/restate.toml
+    base_dir: /tmp/blaine-increment8-production-20260920/restate-data/hybrid-experiment/
+    cpus: 32[0m[32m[0m
+[2;3mon[0m main
+[2m2026-09-20T04:13:30.175818Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mServer listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-22
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: message-fabric-server 
+    server.address: "127.0.0.1" 
+    server.port: 35122
+[2m2026-09-20T04:13:30.175858Z[0m [32mINFO[0m [1;3;32mrestate_node::init[0m[32m[32m
+  [1;32mTrying to join the cluster 'blaine-hybrid-experiment'[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-22
+[2m2026-09-20T04:13:30.176645Z[0m [32mINFO[0m [1;3;32mrestate_metadata_server::raft::server::member[0m[32m[32m
+  [1;32mRun as member of the metadata cluster[0m[32m
+    configuration: v1; [N1][0m[32m[0m
+[2;3mon[0m rs:worker-25
+  [2;3min[0m [1;3mrestate_metadata_server::raft::server::member::run[0m
+    member_id: N1:e6c0
+[2m2026-09-20T04:13:30.176700Z[0m [32mINFO[0m [1;3;32mrestate_metadata_server::raft::server::member[0m[32m[32m
+  [1;32mWon metadata cluster leadership[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-25
+  [2;3min[0m [1;3mrestate_metadata_server::raft::server::member::run[0m
+    member_id: N1:e6c0
+[2m2026-09-20T04:13:30.177827Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mCluster 'blaine-hybrid-experiment' has been automatically provisioned[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-26
+[2m2026-09-20T04:13:30.281795Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mMy Node ID is N1:2[0m[32m
+    node_name: hybrid-experiment
+    roles: http-ingress | admin | worker | log-server | metadata-server
+    address: http://127.0.0.1:35122/
+    location: 
+    nodes_config_version: v2
+    cluster_name: blaine-hybrid-experiment
+    cluster_fingerprint: Some(ClusterFingerprint(14370922935680024980))
+    partition_table_version: v1
+    logs_version: v1[0m[32m[0m
+[2;3mon[0m rs:worker-25
+[2m2026-09-20T04:13:30.324962Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::server[0m[32m[32m
+  [1;32mIngress HTTP listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-31
+  [2;3min[0m [1;3mrestate_ingress_http::server::server[0m
+    server_name: http-ingress-server 
+    server.address: "127.0.0.1" 
+    server.port: 38080
+[2m2026-09-20T04:13:30.324980Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mRestate node roles [http-ingress | admin | worker | log-server | metadata-server] were started[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-31
+[2m2026-09-20T04:13:30.324990Z[0m [32mINFO[0m [1;3;32mrestate_node::failure_detector[0m[32m[32m
+  [1;32mFailure Detector Started[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-31
+[2m2026-09-20T04:13:30.327602Z[0m [32mINFO[0m [1;3;32mrestate_admin::service[0m[32m[32m
+  [1;32mAdmin API starting on: http://127.0.0.1:39070/[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-33
+[2m2026-09-20T04:13:30.327614Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mServer listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-33
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: admin-api-server 
+    server.address: "127.0.0.1" 
+    server.port: 39070
+[2m2026-09-20T04:13:30.426556Z[0m [32mINFO[0m [1;3;32mrestate_node::failure_detector::node_state[0m[32m[32m
+  [1;32mN1:2 transitioned from Dead to Alive (gossip-age=0)[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-25
+[2m2026-09-20T04:13:30.426629Z[0m [32mINFO[0m [1;3;32mrestate_admin::cluster_controller::service::cluster_controller_state[0m[32m[32m
+  [1;32mCluster controller switching to leader mode[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-31
+[2m2026-09-20T04:13:30.438936Z[0m [32mINFO[0m [1;3;32mrestate_server::build_info[0m[32m[32m
+  [1;32m📣⬆️New Version Notice: v1.7.10 was released at 2026-09-14 13:25:33 UTC, check it out at https://github.com/restatedev/restate/releases/tag/v1.7.10[0m[32m
+    current_version: 1.7.9[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T04:13:31.097444Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager[0m[32m[32m
+  [1;32mReconciling partition processors: starts=[P0(v1 [N1]), P1(v1 [N1]), P2(v1 [N1]), P3(v1 [N1]), P4(v1 [N1]), P5(v1 [N1]), P6(v1 [N1]), P7(v1 [N1]), P8(v1 [N1]), P9(v1 [N1]), P10(v1 [N1]), P11(v1 [N1]), P12(v1 [N1]), P13(v1 [N1]), P14(v1 [N1]), P15(v1 [N1]), P16(v1 [N1]), P17(v1 [N1]), P18(v1 [N1]), P19(v1 [N1]), P20(v1 [N1]), P21(v1 [N1]), P22(v1 [N1]), P23(v1 [N1])] stops=[][0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T04:13:31.129801Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 1 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T04:13:31.130165Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 1
+    leader_epoch: e2
+    campaign_duration: 321µs 48ns[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T04:13:31.131728Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 3 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T04:13:31.131728Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 0 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T04:13:31.131917Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 3
+    leader_epoch: e2
+    campaign_duration: 160µs 299ns[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T04:13:31.131917Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 0
+    leader_epoch: e2
+    campaign_duration: 171µs 809ns[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T04:13:31.132011Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 8 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T04:13:31.132013Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 9 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T04:13:31.132013Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 2 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T04:13:31.132015Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 22 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T04:13:31.132014Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 5 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T04:13:31.132027Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 11 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T04:13:31.132299Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 8
+    leader_epoch: e2
+    campaign_duration: 260µs 528ns[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T04:13:31.132313Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 9
+    leader_epoch: e2
+    campaign_duration: 274µs 538ns[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T04:13:31.132322Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 5
+    leader_epoch: e2
+    campaign_duration: 283µs 878ns[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T04:13:31.132321Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 2
+    leader_epoch: e2
+    campaign_duration: 269µs 568ns[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T04:13:31.132321Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 22
+    leader_epoch: e2
+    campaign_duration: 269µs 648ns[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T04:13:31.132324Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 11
+    leader_epoch: e2
+    campaign_duration: 276µs 198ns[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T04:13:31.135469Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 5ms 292µs 198ns as BecomingLeader[0m[32m
+    campaign_duration: 5ms 625µs 556ns
+    partition_id: 1[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T04:13:31.136332Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 23 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T04:13:31.136503Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 23
+    leader_epoch: e2
+    campaign_duration: 147µs 639ns[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T04:13:31.169924Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 37ms 614µs 716ns as BecomingLeader[0m[32m
+    campaign_duration: 37ms 885µs 44ns
+    partition_id: 8[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T04:13:31.169933Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 37ms 598µs 996ns as BecomingLeader[0m[32m
+    campaign_duration: 37ms 893µs 594ns
+    partition_id: 5[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T04:13:31.169935Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 37ms 613µs 816ns as BecomingLeader[0m[32m
+    campaign_duration: 37ms 895µs 654ns
+    partition_id: 9[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T04:13:31.169943Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 37ms 609µs 476ns as BecomingLeader[0m[32m
+    campaign_duration: 37ms 891µs 434ns
+    partition_id: 22[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T04:13:31.169957Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 33ms 446µs 151ns as BecomingLeader[0m[32m
+    campaign_duration: 33ms 601µs 480ns
+    partition_id: 23[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T04:13:31.169960Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 38ms 33µs 733ns as BecomingLeader[0m[32m
+    campaign_duration: 38ms 202µs 922ns
+    partition_id: 3[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T04:13:31.170026Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 37ms 691µs 455ns as BecomingLeader[0m[32m
+    campaign_duration: 37ms 977µs 543ns
+    partition_id: 11[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T04:13:31.170043Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 38ms 116µs 722ns as BecomingLeader[0m[32m
+    campaign_duration: 38ms 297µs 401ns
+    partition_id: 0[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T04:13:31.170112Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 37ms 777µs 65ns as BecomingLeader[0m[32m
+    campaign_duration: 38ms 58µs 943ns
+    partition_id: 2[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T04:13:31.170755Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 7 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T04:13:31.170927Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 7
+    leader_epoch: e2
+    campaign_duration: 155µs 839ns[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T04:13:31.171086Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 10 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T04:13:31.171087Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 21 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T04:13:31.171087Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 14 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T04:13:31.171093Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 16 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T04:13:31.171097Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 4 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T04:13:31.171097Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 17 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T04:13:31.171094Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 19 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T04:13:31.171097Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 20 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T04:13:31.171100Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 18 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T04:13:31.171099Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 13 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T04:13:31.171101Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 6 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T04:13:31.171101Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 15 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T04:13:31.171106Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 12 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T04:13:31.171226Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 291µs 348ns as BecomingLeader[0m[32m
+    campaign_duration: 454µs 997ns
+    partition_id: 7[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T04:13:31.171436Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 16
+    leader_epoch: e2
+    campaign_duration: 300µs 78ns[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T04:13:31.171436Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 13
+    leader_epoch: e2
+    campaign_duration: 317µs 238ns[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T04:13:31.171439Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 14
+    leader_epoch: e2
+    campaign_duration: 319µs 98ns[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T04:13:31.171439Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 21
+    leader_epoch: e2
+    campaign_duration: 319µs 888ns[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T04:13:31.171444Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 17
+    leader_epoch: e2
+    campaign_duration: 327µs 578ns[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T04:13:31.171447Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 20
+    leader_epoch: e2
+    campaign_duration: 314µs 328ns[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T04:13:31.171453Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 15
+    leader_epoch: e2
+    campaign_duration: 312µs 128ns[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T04:13:31.171461Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 10
+    leader_epoch: e2
+    campaign_duration: 344µs 288ns[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T04:13:31.171513Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 6
+    leader_epoch: e2
+    campaign_duration: 391µs 388ns[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T04:13:31.171514Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 19
+    leader_epoch: e2
+    campaign_duration: 396µs 738ns[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T04:13:31.171518Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 4
+    leader_epoch: e2
+    campaign_duration: 400µs 668ns[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T04:13:31.171519Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 12
+    leader_epoch: e2
+    campaign_duration: 375µs 78ns[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T04:13:31.171518Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 18
+    leader_epoch: e2
+    campaign_duration: 385µs 498ns[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T04:13:31.171820Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 376µs 468ns as BecomingLeader[0m[32m
+    campaign_duration: 684µs 486ns
+    partition_id: 16[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T04:13:31.171849Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 400µs 918ns as BecomingLeader[0m[32m
+    campaign_duration: 729µs 396ns
+    partition_id: 14[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T04:13:31.171849Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 399µs 758ns as BecomingLeader[0m[32m
+    campaign_duration: 730µs 76ns
+    partition_id: 21[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T04:13:31.171901Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 448µs 827ns as BecomingLeader[0m[32m
+    campaign_duration: 783µs 865ns
+    partition_id: 17[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T04:13:31.171953Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 495µs 247ns as BecomingLeader[0m[32m
+    campaign_duration: 820µs 335ns
+    partition_id: 20[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T04:13:31.171957Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 511µs 947ns as BecomingLeader[0m[32m
+    campaign_duration: 836µs 905ns
+    partition_id: 13[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T04:13:31.171969Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 499µs 217ns as BecomingLeader[0m[32m
+    campaign_duration: 852µs 225ns
+    partition_id: 10[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T04:13:31.171969Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 440µs 937ns as BecomingLeader[0m[32m
+    campaign_duration: 825µs 405ns
+    partition_id: 12[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T04:13:31.171978Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 457µs 487ns as BecomingLeader[0m[32m
+    campaign_duration: 860µs 205ns
+    partition_id: 19[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T04:13:31.171996Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 533µs 897ns as BecomingLeader[0m[32m
+    campaign_duration: 854µs 515ns
+    partition_id: 15[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T04:13:31.172044Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 515µs 996ns as BecomingLeader[0m[32m
+    campaign_duration: 926µs 654ns
+    partition_id: 4[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T04:13:31.172045Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 525µs 486ns as BecomingLeader[0m[32m
+    campaign_duration: 924µs 254ns
+    partition_id: 6[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T04:13:31.172057Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 528µs 346ns as BecomingLeader[0m[32m
+    campaign_duration: 923µs 914ns
+    partition_id: 18[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T04:13:32.309119Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 400 Bad request, message: "Response does not match accepted Task/request revision and digest", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T04:13:32.313002Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 400 Bad request, message: "Response does not match accepted Task/request revision and digest", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-1
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T04:13:32.317473Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 400 Bad request, message: "Response does not match accepted Task/request revision and digest", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-1
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T04:13:32.321722Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 400 Bad request, message: "Response does not match accepted Task/request revision and digest", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T04:13:32.325933Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 400 Bad request, message: "Response is outside the allowed set", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-1
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T04:13:32.327900Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 400 Bad request, message: "Unsupported contract version or kind", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-0
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T04:13:32.329859Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 400 Bad request, message: "Invalid object fields", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-0
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T04:13:32.331957Z[0m [33mWARN[0m [1;3;33mrestate_invoker_impl[0m[33m[33m
+  [1;33mInvocation error, retrying in 526ms 663µs.[0m[33m
+    [1;33merror[0m[33m: unexpected error while reading the response body: stream closed because of a broken pipe
+    [1;33mrestate.invocation.id[0m[33m: [3;33minv_10KHTH6Jn7Kx4ubfaqwNzJOGkWd3quhH2e[0m[33m
+    [1;33mrestate.invocation.target[0m[33m: [3;33mCognitiveTaskV1/procedure/run[0m[33m
+    restate.deployment.id: dp_10UbvNkSUNFAnQPiwmogRwJ[0m[33m
+    restate.error.code: RT0010
+    Visit [1;3;33mhttps://docs.restate.dev/references/errors#RT0010[0m[33m for more info and suggestions.[0m
+[2;3mon[0m rt:pp-23

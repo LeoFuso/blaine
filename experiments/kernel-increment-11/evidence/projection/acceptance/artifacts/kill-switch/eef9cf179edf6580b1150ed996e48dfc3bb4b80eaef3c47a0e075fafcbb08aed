@@ -1,0 +1,1 @@
+{"attempt_id":"kill-switch/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"global_frontier_disabled\"}","dispatch_outcome":"denied","frontier_result":null,"operation_id":"kill-switch/2","outcome":"success"}

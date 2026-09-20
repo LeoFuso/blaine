@@ -1,0 +1,26 @@
+[2026-09-20 00:04:05 -0300] [239248] [WARNING] ASGI Framework Lifespan error, continuing without Lifespan support
+[2026-09-20 00:04:05 -0300] [239248] [INFO] Running on http://127.0.0.1:39080 (CTRL + C to quit)
+Exception in do_progress
+Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/vm.py", line 251, in do_progress
+    result = self.vm.do_progress(_unresolved_future_to_pyo3(unresolved_future))
+restate_sdk_python_core.VMException: (500) ValueError('An equivalent human request is already pending or resolved')
+Stacktrace: Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/server_context.py", line 868, in create_run_coroutine
+    action_result = typing.cast(T, await action_result_future)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: An equivalent human request is already pending or resolved
+
+Related command: run [cognitive/2]
+Exception in do_progress
+Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/vm.py", line 251, in do_progress
+    result = self.vm.do_progress(_unresolved_future_to_pyo3(unresolved_future))
+restate_sdk_python_core.VMException: (500) ValueError('An equivalent human request is already pending or resolved')
+Stacktrace: Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/server_context.py", line 868, in create_run_coroutine
+    action_result = typing.cast(T, await action_result_future)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: An equivalent human request is already pending or resolved
+
+Related command: run [cognitive/2]

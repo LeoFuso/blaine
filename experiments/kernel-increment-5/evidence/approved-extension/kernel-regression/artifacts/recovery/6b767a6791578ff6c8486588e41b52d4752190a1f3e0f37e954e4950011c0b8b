@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"fixture.effect","input":{"value":"one bounded effect"},"type":"INVOKE_CAPABILITY"},"task_id":"recovery","task_revision":0,"turn_id":"recovery/1"},"version":1}

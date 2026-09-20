@@ -1,0 +1,36 @@
+{
+  "increment": 7,
+  "status": "BLOCKED",
+  "gate": "STOP",
+  "main_inference_binding": "PROVEN",
+  "full_binding_capture": "INCOMPLETE",
+  "attempts": 2,
+  "main_response": {
+    "endpoint": "http://127.0.0.1:8000/v1/chat/completions",
+    "request_model": "Qwen/Qwen3.5-9B",
+    "response_model": "Qwen/Qwen3.5-9B",
+    "status": 200,
+    "content": "BINDING_OK"
+  },
+  "auxiliary_request": {
+    "purpose": "Goose-generated conversation title",
+    "endpoint": "http://127.0.0.1:8000/v1/chat/completions",
+    "request_model": "Qwen/Qwen3.5-9B",
+    "response_model": null,
+    "completion": "UNKNOWN; capture did not finish within bounded wait",
+    "count_per_attempt": 1
+  },
+  "global_config_unchanged": true,
+  "invocation_isolation": "GOOSE_PATH_ROOT under /tmp; --no-profile --no-session; CLI openai/Qwen overrides; non-secret process-local EMPTY token",
+  "recorder_correction": "Second attempt waited up to 20 seconds after main process exit for auxiliary capture completion",
+  "known_limit": "Proxy collects complete response before persisting sanitized metadata; absence of capture completion does not distinguish upstream delay from stream/framing/recorder behavior",
+  "worker_acceptance": "NOT_RUN",
+  "repository_or_task_changes_during_binding": false,
+  "kernel_changes": false,
+  "model_server_changes": false,
+  "cloud_used": false,
+  "architecture_impact": "None",
+  "stop_reason": "Auxiliary inference capture remains incomplete after one bounded recorder correction; do not silently ignore unknown behavior",
+  "decision_required": "Authorize only a narrow auxiliary-request/stream-capture diagnostic or a documented per-run option to disable title generation; no global config changes",
+  "next_increment": 7
+}

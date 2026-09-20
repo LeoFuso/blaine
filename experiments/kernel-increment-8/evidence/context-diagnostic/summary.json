@@ -1,0 +1,102 @@
+{
+  "increment": "8 diagnostic",
+  "status": "DIAGNOSTIC_COMPLETE_STOP",
+  "acceptance_gate": "REMAINS_FAILED",
+  "new_model_calls": 0,
+  "live_reproductions": 0,
+  "classification": "STALE_OBJECTIVE_OR_PROCEDURE_STATE",
+  "classification_detail": "Confirmed stale objective assertion; procedure itself says not to repeat answered questions.",
+  "context_projection_finding": "Durable accepted ExternalInput is omitted after observation_ref advances to CapabilityResult. No verified HumanDecisionResponse was created, so category 1 as strictly defined is not fully established.",
+  "model_causality": "Not isolated: missing resolution plus stale assertion explain a plausible WAIT; matching artifact digest and COMPLETE instruction also support COMPLETE. No model defect or inevitable WAIT established.",
+  "A_answer_available_turn_2": true,
+  "B_absent_turn_3": "Only latest observation is projected; generic text answer is not retained in Task artifact map or a resolved-decision field.",
+  "C_verified_replacement": false,
+  "D_stale_objective": true,
+  "E_artifact_visible_turn_3": "Successful CapabilityResult and answer ref/digest; exact bytes and human provenance are absent.",
+  "F_explainable_without_model_defect": "Yes, as a plausible response to incomplete/conflicting context; unique internal cause cannot be inferred.",
+  "turn_diff": [
+    {
+      "turn": 1,
+      "revision": 0,
+      "observation_kinds": [],
+      "direct_answer": false,
+      "verified_human_response": false,
+      "artifact_sources": [],
+      "action": {
+        "type": "WAIT",
+        "wait_id": "retention",
+        "input_type": "text"
+      },
+      "packet_bytes": 2678,
+      "usage": {
+        "completion_tokens": 50,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 2484,
+        "prompt_tokens_details": null,
+        "total_tokens": 2534
+      }
+    },
+    {
+      "turn": 2,
+      "revision": 1,
+      "observation_kinds": [
+        "ExternalInput"
+      ],
+      "direct_answer": true,
+      "verified_human_response": false,
+      "artifact_sources": [],
+      "action": {
+        "type": "INVOKE_CAPABILITY",
+        "capability": "artifact.write",
+        "input": {
+          "name": "answer",
+          "content": "RETENTION_30_DAYS"
+        }
+      },
+      "packet_bytes": 2824,
+      "usage": {
+        "completion_tokens": 62,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 2522,
+        "prompt_tokens_details": null,
+        "total_tokens": 2584
+      }
+    },
+    {
+      "turn": 3,
+      "revision": 2,
+      "observation_kinds": [
+        "CapabilityResult"
+      ],
+      "direct_answer": false,
+      "verified_human_response": false,
+      "artifact_sources": [
+        "artifact://procedure/sha256:f20deb1acab1f5eb7cc13323ed47bfd4f4c53092739aaa8755dc16d4db968a42"
+      ],
+      "action": {
+        "type": "WAIT",
+        "wait_id": "retention",
+        "input_type": "text"
+      },
+      "packet_bytes": 3346,
+      "usage": {
+        "completion_tokens": 50,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens": 2828,
+        "prompt_tokens_details": null,
+        "total_tokens": 2878
+      }
+    }
+  ],
+  "secondary_issue": "Objective/procedure request reason but sent guidance schema excludes reason; application validator accepts it. No causal link to WAIT established.",
+  "boundary": "Durable accepted input/artifacts -> bounded Context Reconstruction -> cognition; initial objective vs current resolved clarification.",
+  "smallest_proposed_correction": "Project a bounded scoped resolution/value with exact source and validation status beyond the next observation. Distinguish initial uncertainty from current resolved context without mutating accepted intent. Reuse the existing typed human-response path if independently verified human authority is required.",
+  "correction_applied": false,
+  "next": "Human review/authorization of a bounded context correction; remain at Increment 8."
+}

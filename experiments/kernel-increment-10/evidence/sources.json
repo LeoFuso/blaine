@@ -1,0 +1,11 @@
+{
+  "docs/decisions/0018-local-platform-durability-and-observability.md": "9520dd896c8bdbafbb9da0224ed325d19a0f4c08166924ace250e9dc9d7e5f53",
+  "docs/decisions/README.md": "d8b470f9e1bba9b36138274ee909e4177f53308f95ec334e0cc645804c643928",
+  "docs/contracts/execution-event.md": "c4b9066447c5ddfa384c66de2f75e86a08d7da12aa2cecf382c69ceff94494b9",
+  "runtime/kernel/events.py": "85130d766f877130d8a846e2b00bb39880b3aeb90b1659034c848ff7b53d5edc",
+  "runtime/kernel/event_sinks.py": "456b4cc45705f27f560f98c379ca92df40eee6e2faa1c39e0d9ad39c34b79161",
+  "runtime/kernel/workflow.py": "97538646d708da4b77e47abc493dbe27e3d2aab88fb88f80c21cc8e656faeb8c",
+  "tests/test_kernel_events.py": "a6831ed48c31710c5e3579cd65f0dd4fc41f34f1505ad803c9e94e0fe38fb220",
+  "experiments/kernel-increment-10/probe.py": "bcbb231d117a31708e8fca697b73954a34e17ba9bab86c0b8e9fe44787d518ec",
+  "experiments/kernel-increment-10/verify.py": "f6dc58acf902b0cd6ef048787e4ccb7034e82d2f807f1e83aa473f8bf99ab3eb"
+}

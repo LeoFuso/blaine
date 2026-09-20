@@ -1,0 +1,18 @@
+{
+  "git_diff_check": "PASS",
+  "untracked_files_also_checked": [
+    "docs/decisions/0018-local-platform-durability-and-observability.md",
+    "docs/decisions/README.md",
+    "docs/contracts/execution-event.md",
+    "docs/milestones/cognitive-kernel-progress.md",
+    "docs/milestones/027-cognitive-kernel-increment-10.md",
+    "docs/milestones/028-cognitive-kernel-increment-11-stop.md",
+    "runtime/kernel/events.py",
+    "runtime/kernel/event_sinks.py",
+    "runtime/kernel/workflow.py",
+    "tests/test_kernel_events.py",
+    "experiments/kernel-increment-10/probe.py",
+    "experiments/kernel-increment-10/verify.py"
+  ],
+  "issues": []
+}

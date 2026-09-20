@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://deadline/sha256:991c9acb44b97d71f88c0a00d70fa5d72f047df119552407dec524f3e2479b4c"},"type":"INVOKE_CAPABILITY"},"task_id":"deadline","task_revision":1,"turn_id":"deadline/2"},"version":1}

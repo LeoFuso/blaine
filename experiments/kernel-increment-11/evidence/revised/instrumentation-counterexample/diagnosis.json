@@ -1,0 +1,8 @@
+{
+  "status": "FAIL_INSTRUMENTATION_ONLY",
+  "expected": "usage event for each admitted dispatch",
+  "observed": "0 usage events; capability.finished outcome=recorded invalid in existing ExecutionEvent v1",
+  "impact": "probe accounting event discarded by fail-open telemetry; no authority/runtime change",
+  "correction": "use existing success/failure outcome; rerun acceptance",
+  "resolved_by": "../acceptance/verification.json"
+}

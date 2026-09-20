@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://recovery/sha256:19ae190ae096908c3a11a67b79a2081378598d54b93bc3090d70759a99dd7c83"},"completion_ref":"artifact://recovery/sha256:d5bf5aab5559e4888c520af76a3a44b9b6a5dadbefe7704019f6b1c12da477d7","concerns":[],"outcome":"COMPLETED","task_id":"recovery"},"version":1}

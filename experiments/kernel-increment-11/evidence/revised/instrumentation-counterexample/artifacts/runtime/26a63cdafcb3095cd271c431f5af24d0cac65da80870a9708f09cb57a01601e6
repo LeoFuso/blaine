@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"Exact dispatch outcome","detail":"Exact artifact digest verified","evidence_ref":"artifact://runtime/sha256:60877ec9ee2c75c8cc3bf08a178afa535e614a2afe9cd8c213f6b93121efa03d","outcome":"satisfied"}],"outcome":"satisfied"},"version":1}

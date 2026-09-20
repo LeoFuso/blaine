@@ -1,0 +1,1 @@
+{"kind":"TaskSpec","payload":{"autonomy":{"allowed":["artifact.write","fixture.effect"],"child_tasks":0},"capabilities":["artifact.write","fixture.effect"],"completion":[{"criterion":"Exact accepted answer","evidence":{"artifact":"answer","sha256":"1a6b251b924b8abb4a2f2e8b116bad0507abf252b83785389d01b0bb6ebb2290"}}],"objective":"Produce independent child answer"},"version":1}

@@ -1,0 +1,9 @@
+{
+  "runtime/kernel/frontier.py": "25ef5d850d8827a26d31e35d641a7aeaa4c055effe4dfa0c03e5cfc6ee382ad1",
+  "tests/test_kernel_frontier.py": "055d883fa38734ccfc485e672dced9970f6a4c8abac670bf433c99b3931f5377",
+  "experiments/kernel-increment-11/probe.py": "29cb59e1dc5c58c7d9ba61c9c0b168df381e2279d0a2e5168e726dd548d18ee8",
+  "experiments/kernel-increment-11/verify.py": "58c10922162ec362fc6efacfa62e0b223d3e6a2773fe010a1f615e610eb0cec1",
+  "docs/contracts/frontier-dispatch.md": "5ffa0616678f6f665c689eabdba5c318915bcc19c3cd9709f5977fa286f21827",
+  "docs/milestones/029-cognitive-kernel-increment-11-isolated.md": "3b87e2df10ed9f22035c7c1b6f9f13debc49e2c1ba8a0b2aecb5f4f7f8142dc6",
+  "docs/milestones/cognitive-kernel-progress.md": "956199d30d879099e6bd9a93cac508f97b6ce9980a3a68cdee8ef3a1b91617d8"
+}

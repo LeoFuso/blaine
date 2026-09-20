@@ -1,0 +1,1093 @@
+[2m2026-09-20T04:25:09.905815Z[0m [32mINFO[0m [1;3;32mrestate_server[0m[32m[32m
+  [1;32mStarting Restate Server 1.7.9 (fb0ca13 x86_64-unknown-linux-musl 2026-09-04)[0m[32m
+    node_name: "knowledge-probe"
+    config_source: /tmp/blaine-increment9-20260920/restate.toml
+    base_dir: /tmp/blaine-increment9-20260920/restate-data/knowledge-probe/
+    cpus: 32[0m[32m[0m
+[2;3mon[0m main
+[2m2026-09-20T04:25:09.948233Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mServer listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-2
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: message-fabric-server 
+    server.address: "127.0.0.1" 
+    server.port: 35122
+[2m2026-09-20T04:25:09.948274Z[0m [32mINFO[0m [1;3;32mrestate_node::init[0m[32m[32m
+  [1;32mTrying to join the cluster 'blaine-knowledge-probe'[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-2
+[2m2026-09-20T04:25:09.949040Z[0m [32mINFO[0m [1;3;32mrestate_metadata_server::raft::server::member[0m[32m[32m
+  [1;32mRun as member of the metadata cluster[0m[32m
+    configuration: v1; [N1][0m[32m[0m
+[2;3mon[0m rs:worker-22
+  [2;3min[0m [1;3mrestate_metadata_server::raft::server::member::run[0m
+    member_id: N1:943c
+[2m2026-09-20T04:25:09.949097Z[0m [32mINFO[0m [1;3;32mrestate_metadata_server::raft::server::member[0m[32m[32m
+  [1;32mWon metadata cluster leadership[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-22
+  [2;3min[0m [1;3mrestate_metadata_server::raft::server::member::run[0m
+    member_id: N1:943c
+[2m2026-09-20T04:25:09.950150Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mCluster 'blaine-knowledge-probe' has been automatically provisioned[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-20
+[2m2026-09-20T04:25:10.075061Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mMy Node ID is N1:2[0m[32m
+    node_name: knowledge-probe
+    roles: http-ingress | admin | worker | log-server | metadata-server
+    address: http://127.0.0.1:35122/
+    location: 
+    nodes_config_version: v2
+    cluster_name: blaine-knowledge-probe
+    cluster_fingerprint: Some(ClusterFingerprint(12402873971967684737))
+    partition_table_version: v1
+    logs_version: v1[0m[32m[0m
+[2;3mon[0m rs:worker-32
+[2m2026-09-20T04:25:10.115629Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::server[0m[32m[32m
+  [1;32mIngress HTTP listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-20
+  [2;3min[0m [1;3mrestate_ingress_http::server::server[0m
+    server_name: http-ingress-server 
+    server.address: "127.0.0.1" 
+    server.port: 38080
+[2m2026-09-20T04:25:10.115647Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mRestate node roles [http-ingress | admin | worker | log-server | metadata-server] were started[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-20
+[2m2026-09-20T04:25:10.115656Z[0m [32mINFO[0m [1;3;32mrestate_node::failure_detector[0m[32m[32m
+  [1;32mFailure Detector Started[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-20
+[2m2026-09-20T04:25:10.118325Z[0m [32mINFO[0m [1;3;32mrestate_admin::service[0m[32m[32m
+  [1;32mAdmin API starting on: http://127.0.0.1:39070/[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-25
+[2m2026-09-20T04:25:10.118346Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mServer listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-25
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: admin-api-server 
+    server.address: "127.0.0.1" 
+    server.port: 39070
+[2m2026-09-20T04:25:10.216691Z[0m [32mINFO[0m [1;3;32mrestate_node::failure_detector::node_state[0m[32m[32m
+  [1;32mN1:2 transitioned from Dead to Alive (gossip-age=0)[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T04:25:10.216761Z[0m [32mINFO[0m [1;3;32mrestate_admin::cluster_controller::service::cluster_controller_state[0m[32m[32m
+  [1;32mCluster controller switching to leader mode[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-25
+[2m2026-09-20T04:25:10.222880Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager[0m[32m[32m
+  [1;32mReconciling partition processors: starts=[P0(v1 [N1])] stops=[][0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-26
+[2m2026-09-20T04:25:10.227599Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 0 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T04:25:10.282266Z[0m [32mINFO[0m [1;3;32mrestate_server::build_info[0m[32m[32m
+  [1;32m📣⬆️New Version Notice: v1.7.10 was released at 2026-09-14 13:25:33 UTC, check it out at https://github.com/restatedev/restate/releases/tag/v1.7.10[0m[32m
+    current_version: 1.7.9[0m[32m[0m
+[2;3mon[0m rs:worker-25
+[2m2026-09-20T04:25:10.625569Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager[0m[32m[32m
+  [1;32mReconciling partition processors: starts=[P1(v1 [N1]), P2(v1 [N1]), P3(v1 [N1]), P4(v1 [N1]), P5(v1 [N1]), P6(v1 [N1]), P7(v1 [N1]), P8(v1 [N1]), P9(v1 [N1]), P10(v1 [N1]), P11(v1 [N1]), P12(v1 [N1]), P13(v1 [N1]), P14(v1 [N1]), P15(v1 [N1]), P16(v1 [N1]), P17(v1 [N1]), P18(v1 [N1]), P19(v1 [N1]), P20(v1 [N1]), P21(v1 [N1]), P22(v1 [N1]), P23(v1 [N1])] stops=[][0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-34
+[2m2026-09-20T04:25:10.627006Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 0
+    leader_epoch: e2
+    campaign_duration: 302µs 388ns[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T04:25:10.653750Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 26ms 732µs 500ns as BecomingLeader[0m[32m
+    campaign_duration: 27ms 46µs 638ns
+    partition_id: 0[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T04:25:10.655007Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 1 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T04:25:10.655008Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 8 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T04:25:10.655228Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 8
+    leader_epoch: e2
+    campaign_duration: 201µs 18ns[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T04:25:10.655226Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 1
+    leader_epoch: e2
+    campaign_duration: 188µs 758ns[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T04:25:10.655339Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 2 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T04:25:10.655564Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 2
+    leader_epoch: e2
+    campaign_duration: 196µs 208ns[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T04:25:10.705872Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 50ms 636µs 759ns as BecomingLeader[0m[32m
+    campaign_duration: 50ms 834µs 427ns
+    partition_id: 1[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T04:25:10.705987Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 50ms 409µs 410ns as BecomingLeader[0m[32m
+    campaign_duration: 50ms 618µs 368ns
+    partition_id: 2[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T04:25:10.706008Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 50ms 772µs 658ns as BecomingLeader[0m[32m
+    campaign_duration: 50ms 981µs 126ns
+    partition_id: 8[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T04:25:10.706766Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 3 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T04:25:10.706972Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 3
+    leader_epoch: e2
+    campaign_duration: 177µs 159ns[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T04:25:10.707192Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 18 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T04:25:10.707189Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 9 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T04:25:10.707189Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 19 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T04:25:10.707189Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 16 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T04:25:10.707189Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 11 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T04:25:10.707190Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 12 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T04:25:10.707189Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 14 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T04:25:10.707196Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 22 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T04:25:10.707196Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 10 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T04:25:10.707197Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 20 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T04:25:10.707204Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 6 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T04:25:10.707203Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 15 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T04:25:10.707204Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 21 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T04:25:10.707215Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 7 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T04:25:10.707215Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 4 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T04:25:10.707225Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 17 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T04:25:10.707238Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 13 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T04:25:10.707299Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 319µs 338ns as BecomingLeader[0m[32m
+    campaign_duration: 504µs 537ns
+    partition_id: 3[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T04:25:10.707346Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 23 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T04:25:10.707481Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 5 started[0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T04:25:10.707521Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 18
+    leader_epoch: e2
+    campaign_duration: 313µs 768ns[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T04:25:10.707617Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 14
+    leader_epoch: e2
+    campaign_duration: 382µs 798ns[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T04:25:10.707651Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 21
+    leader_epoch: e2
+    campaign_duration: 408µs 848ns[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T04:25:10.707650Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 12
+    leader_epoch: e2
+    campaign_duration: 414µs 818ns[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T04:25:10.707664Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 7
+    leader_epoch: e2
+    campaign_duration: 420µs 288ns[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T04:25:10.707666Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 22
+    leader_epoch: e2
+    campaign_duration: 429µs 28ns[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T04:25:10.707666Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 16
+    leader_epoch: e2
+    campaign_duration: 430µs 668ns[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T04:25:10.707702Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 20
+    leader_epoch: e2
+    campaign_duration: 482µs 927ns[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T04:25:10.707709Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 10
+    leader_epoch: e2
+    campaign_duration: 489µs 237ns[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T04:25:10.707720Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 9
+    leader_epoch: e2
+    campaign_duration: 500µs 387ns[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T04:25:10.707758Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 4
+    leader_epoch: e2
+    campaign_duration: 519µs 207ns[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T04:25:10.707782Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 11
+    leader_epoch: e2
+    campaign_duration: 538µs 617ns[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T04:25:10.707836Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 13
+    leader_epoch: e2
+    campaign_duration: 583µs 147ns[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T04:25:10.707838Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 19
+    leader_epoch: e2
+    campaign_duration: 498µs 857ns[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T04:25:10.707840Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 23
+    leader_epoch: e2
+    campaign_duration: 472µs 27ns[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T04:25:10.707870Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 6
+    leader_epoch: e2
+    campaign_duration: 634µs 497ns[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T04:25:10.707951Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 5
+    leader_epoch: e2
+    campaign_duration: 446µs 337ns[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T04:25:10.708006Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 17
+    leader_epoch: e2
+    campaign_duration: 740µs 636ns[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T04:25:10.708020Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor transitioned into BecomingLeader. Will propose a `VersionBarrier` to enable [EnableJournalV2][0m[32m
+    partition_id: 15
+    leader_epoch: e2
+    campaign_duration: 671µs 966ns[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T04:25:10.708105Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 577µs 66ns as BecomingLeader[0m[32m
+    campaign_duration: 898µs 284ns
+    partition_id: 18[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T04:25:10.708240Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 607µs 566ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 6µs 434ns
+    partition_id: 14[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T04:25:10.708244Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 583µs 746ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 1µs 444ns
+    partition_id: 21[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T04:25:10.708299Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 532µs 467ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 59µs 674ns
+    partition_id: 4[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T04:25:10.708322Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 645µs 526ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 78µs 104ns
+    partition_id: 7[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T04:25:10.708337Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 549µs 267ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 93µs 504ns
+    partition_id: 11[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T04:25:10.708399Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 683µs 625ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 179µs 572ns
+    partition_id: 20[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T04:25:10.708402Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 554µs 436ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 62µs 73ns
+    partition_id: 19[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T04:25:10.708461Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 579µs 726ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 224µs 623ns
+    partition_id: 6[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T04:25:10.708486Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 809µs 975ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 250µs 913ns
+    partition_id: 16[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T04:25:10.708490Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 773µs 455ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 270µs 72ns
+    partition_id: 10[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T04:25:10.708490Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 756µs 666ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 271µs 52ns
+    partition_id: 9[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T04:25:10.708493Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 642µs 456ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 124µs 813ns
+    partition_id: 23[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T04:25:10.708504Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 657µs 616ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 250µs 833ns
+    partition_id: 13[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T04:25:10.708508Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 544µs 807ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 3µs 194ns
+    partition_id: 5[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T04:25:10.708520Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 843µs 725ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 283µs 93ns
+    partition_id: 22[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T04:25:10.708612Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 952µs 224ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 377µs 262ns
+    partition_id: 12[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T04:25:10.708666Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 635µs 586ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 318µs 842ns
+    partition_id: 15[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T04:25:10.708851Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e2. Spent 831µs 575ns as BecomingLeader[0m[32m
+    campaign_duration: 1ms 586µs 161ns
+    partition_id: 17[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T04:25:21.441516Z[0m [32mINFO[0m [1;3;32mrestate_server::signal[0m[32m[32m
+  [1;32mReceived signal, starting shutdown.[0m[32m
+    signal: SIGTERM[0m[32m[0m
+[2;3mon[0m main
+[2m2026-09-20T04:25:21.441555Z[0m [32mINFO[0m [1;3;32mrestate_core::task_center[0m[32m[32m
+  [1;32m** Shutdown requested[0m[32m
+    reason: received signal SIGTERM[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"
+[2m2026-09-20T04:25:21.441597Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::server[0m[32m[32m
+  [1;32mHTTP ingress shutdown requested[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_ingress_http::server::server[0m
+    server_name: http-ingress-server 
+    server.address: "127.0.0.1" 
+    server.port: 38080
+[2m2026-09-20T04:25:21.441613Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::server[0m[32m[32m
+  [1;32mAll in-flight HTTP ingress connections drained[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_ingress_http::server::server[0m
+    server_name: http-ingress-server 
+    server.address: "127.0.0.1" 
+    server.port: 38080
+[2m2026-09-20T04:25:21.442367Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mStopped listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: admin-api-server 
+    server.address: "127.0.0.1" 
+    server.port: 39070
+[2m2026-09-20T04:25:21.442526Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 7[0m[32m[0m
+[2;3mon[0m rt:pp-7
+[2m2026-09-20T04:25:21.442526Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 2[0m[32m[0m
+[2;3mon[0m rt:pp-2
+[2m2026-09-20T04:25:21.442526Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 3[0m[32m[0m
+[2;3mon[0m rt:pp-3
+[2m2026-09-20T04:25:21.442531Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 1[0m[32m[0m
+[2;3mon[0m rt:pp-1
+[2m2026-09-20T04:25:21.442539Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 11[0m[32m[0m
+[2;3mon[0m rt:pp-11
+[2m2026-09-20T04:25:21.442539Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 4[0m[32m[0m
+[2;3mon[0m rt:pp-4
+[2m2026-09-20T04:25:21.442546Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 17[0m[32m[0m
+[2;3mon[0m rt:pp-17
+[2m2026-09-20T04:25:21.442545Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 9[0m[32m[0m
+[2;3mon[0m rt:pp-9
+[2m2026-09-20T04:25:21.442546Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 5[0m[32m[0m
+[2;3mon[0m rt:pp-5
+[2m2026-09-20T04:25:21.442548Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 12[0m[32m[0m
+[2;3mon[0m rt:pp-12
+[2m2026-09-20T04:25:21.442548Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 0[0m[32m[0m
+[2;3mon[0m rt:pp-0
+[2m2026-09-20T04:25:21.442555Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 15[0m[32m[0m
+[2;3mon[0m rt:pp-15
+[2m2026-09-20T04:25:21.442556Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 6[0m[32m[0m
+[2;3mon[0m rt:pp-6
+[2m2026-09-20T04:25:21.442594Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 22[0m[32m[0m
+[2;3mon[0m rt:pp-22
+[2m2026-09-20T04:25:21.442599Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 14[0m[32m[0m
+[2;3mon[0m rt:pp-14
+[2m2026-09-20T04:25:21.442613Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 10[0m[32m[0m
+[2;3mon[0m rt:pp-10
+[2m2026-09-20T04:25:21.442613Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 19[0m[32m[0m
+[2;3mon[0m rt:pp-19
+[2m2026-09-20T04:25:21.442621Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 18[0m[32m[0m
+[2;3mon[0m rt:pp-18
+[2m2026-09-20T04:25:21.442622Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 20[0m[32m[0m
+[2;3mon[0m rt:pp-20
+[2m2026-09-20T04:25:21.442626Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 8[0m[32m[0m
+[2;3mon[0m rt:pp-8
+[2m2026-09-20T04:25:21.442628Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 13[0m[32m[0m
+[2;3mon[0m rt:pp-13
+[2m2026-09-20T04:25:21.442630Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 16[0m[32m[0m
+[2;3mon[0m rt:pp-16
+[2m2026-09-20T04:25:21.442698Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 21[0m[32m[0m
+[2;3mon[0m rt:pp-21
+[2m2026-09-20T04:25:21.442769Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 23[0m[32m[0m
+[2;3mon[0m rt:pp-23
+[2m2026-09-20T04:25:21.443450Z[0m [32mINFO[0m [1;3;32mrestate_worker[0m[32m[32m
+  [1;32mWorker role has stopped[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-8
+[2m2026-09-20T04:25:21.443706Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 136.489µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 17_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-13
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443707Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 128.919µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 16_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-10
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443707Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 136.839µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 22_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-18
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443706Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 111.669µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 21_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-9
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443717Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 133.059µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 4_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-14
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443719Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 125.219µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 13_0
+    replication: {node: 1}
+    max_local_tail: 147
+    global_tail: 147[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443720Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 126.099µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 15_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-5
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443711Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 138.339µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 6_0
+    replication: {node: 1}
+    max_local_tail: 147
+    global_tail: 147[0m[32m[0m
+[2;3mon[0m rs:worker-4
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443714Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 139.859µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 7_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-7
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443731Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 128.729µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 18_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443734Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 133.959µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 12_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-10
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443720Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 141.409µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 9_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-33
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443737Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 137.889µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 2_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-13
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443737Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 136.379µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 19_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-9
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443738Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 134.469µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 11_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-14
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443734Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 139.969µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 20_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-25
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443738Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 119.369µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 14_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-18
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443740Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 133.529µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 3_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-5
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443746Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 138.509µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 0_0
+    replication: {node: 1}
+    max_local_tail: 147
+    global_tail: 147[0m[32m[0m
+[2;3mon[0m rs:worker-10
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443747Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 148.119µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 8_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-13
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443746Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 151.749µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 5_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-8
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443747Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 139.619µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 1_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-4
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443747Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 138.239µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 23_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-7
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443747Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 144.319µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 10_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rs:worker-12
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T04:25:21.443760Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::provider[0m[32m[32m
+  [1;32mAll sequencers were stopped[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T04:25:21.443808Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 14_0[0m[32m[0m
+[2;3mon[0m rs:worker-12
+[2m2026-09-20T04:25:21.443817Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 19_0[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T04:25:21.443821Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 20_0[0m[32m[0m
+[2;3mon[0m rs:worker-4
+[2m2026-09-20T04:25:21.443822Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 2_0[0m[32m[0m
+[2;3mon[0m rs:worker-10
+[2m2026-09-20T04:25:21.443823Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 22_0[0m[32m[0m
+[2;3mon[0m rs:worker-13
+[2m2026-09-20T04:25:21.443818Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 4_0[0m[32m[0m
+[2;3mon[0m rs:worker-6
+[2m2026-09-20T04:25:21.443825Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 16_0[0m[32m[0m
+[2;3mon[0m rs:worker-8
+[2m2026-09-20T04:25:21.443832Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 18_0[0m[32m[0m
+[2;3mon[0m rs:worker-13
+[2m2026-09-20T04:25:21.443833Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 5_0[0m[32m[0m
+[2;3mon[0m rs:worker-10
+[2m2026-09-20T04:25:21.443835Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 1_0[0m[32m[0m
+[2;3mon[0m rs:worker-8
+[2m2026-09-20T04:25:21.443834Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 23_0[0m[32m[0m
+[2;3mon[0m rs:worker-4
+[2m2026-09-20T04:25:21.443836Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 11_0[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T04:25:21.443838Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 3_0[0m[32m[0m
+[2;3mon[0m rs:worker-13
+[2m2026-09-20T04:25:21.443838Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 13_0[0m[32m[0m
+[2;3mon[0m rs:worker-10
+[2m2026-09-20T04:25:21.443840Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 15_0[0m[32m[0m
+[2;3mon[0m rs:worker-8
+[2m2026-09-20T04:25:21.443841Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 6_0[0m[32m[0m
+[2;3mon[0m rs:worker-4
+[2m2026-09-20T04:25:21.443843Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 21_0[0m[32m[0m
+[2;3mon[0m rs:worker-13
+[2m2026-09-20T04:25:21.443843Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 12_0[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T04:25:21.443844Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 8_0[0m[32m[0m
+[2;3mon[0m rs:worker-10
+[2m2026-09-20T04:25:21.443844Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 17_0[0m[32m[0m
+[2;3mon[0m rs:worker-25
+[2m2026-09-20T04:25:21.443843Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 7_0[0m[32m[0m
+[2;3mon[0m rs:worker-33
+[2m2026-09-20T04:25:21.443847Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 0_0[0m[32m[0m
+[2;3mon[0m rs:worker-8
+[2m2026-09-20T04:25:21.443848Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 10_0[0m[32m[0m
+[2;3mon[0m rs:worker-18
+[2m2026-09-20T04:25:21.443849Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 9_0[0m[32m[0m
+[2;3mon[0m rs:worker-6
+[2m2026-09-20T04:25:21.443933Z[0m [32mINFO[0m [1;3;32mrestate_core::network::connection_manager[0m[32m[32m
+  [1;32mPeer shutdown notification received[0m[32m
+    peer: N1:2[0m[32m[0m
+[2;3mon[0m rs:worker-6
+  [2;3min[0m [1;3mrestate_core::network::io::reactor::network-reactor[0m
+    peer: N1:2 
+    task_id: 190
+[2m2026-09-20T04:25:21.444435Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mStopped listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-9
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: message-fabric-server 
+    server.address: "127.0.0.1" 
+    server.port: 35122
+[2m2026-09-20T04:25:21.447112Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32m2 column families flushed in 3.197781ms[0m[32m
+    db: replicated-metadata-server[0m[32m[0m
+[2;3mon[0m rs:worker-35
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: replicated-metadata-server
+[2m2026-09-20T04:25:21.447126Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32mRocksdb 'replicated-metadata-server' was gracefully closed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-35
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: replicated-metadata-server
+[2m2026-09-20T04:25:21.458926Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32m25 column families flushed in 14.454434ms[0m[32m
+    db: db[0m[32m[0m
+[2;3mon[0m rs:worker-31
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: db
+[2m2026-09-20T04:25:21.458951Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32mRocksdb 'db' was gracefully closed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-31
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: db
+[2m2026-09-20T04:25:21.465996Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32m2 column families flushed in 21.567901ms[0m[32m
+    db: log-server[0m[32m[0m
+[2;3mon[0m rs:worker-32
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: log-server
+[2m2026-09-20T04:25:21.466416Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32mRocksdb 'log-server' was gracefully closed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-32
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: log-server
+[2m2026-09-20T04:25:21.471333Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::db_manager[0m[32m[32m
+  [1;32mRocksdb manager shutdown completed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-9
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"
+[2m2026-09-20T04:25:21.471341Z[0m [32mINFO[0m [1;3;32mrestate_core::task_center[0m[32m[32m
+  [1;32mTask center has stopped[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-9
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"
+[2m2026-09-20T04:25:21.471348Z[0m [32mINFO[0m [1;3;32mrestate_core::task_center[0m[32m[32m
+  [1;32mRestate has gracefully shutdown in 29.796502ms[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-9
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"

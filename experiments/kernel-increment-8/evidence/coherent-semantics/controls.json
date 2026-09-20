@@ -1,0 +1,120 @@
+{
+  "source": "synthetic deterministic controls; not additional live model calls",
+  "cases": [
+    {
+      "case": "WAIT_without_pending",
+      "semantic_input": {
+        "action": "WAIT",
+        "purpose": "retention_period"
+      },
+      "outcome": "rejected",
+      "error": "No external condition is pending",
+      "effect_dispatched": false
+    },
+    {
+      "case": "unknown_action",
+      "semantic_input": {
+        "action": "DELETE"
+      },
+      "outcome": "rejected",
+      "error": "Unknown semantic action",
+      "effect_dispatched": false
+    },
+    {
+      "case": "runtime_envelope",
+      "semantic_input": {
+        "version": 1,
+        "kind": "CognitiveDecision",
+        "payload": {}
+      },
+      "outcome": "rejected",
+      "error": "Unknown semantic action",
+      "effect_dispatched": false
+    },
+    {
+      "case": "unexpected_version",
+      "semantic_input": {
+        "action": "COMPLETE",
+        "version": 1
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "effect_dispatched": false
+    },
+    {
+      "case": "missing_question",
+      "semantic_input": {
+        "action": "REQUEST_HUMAN",
+        "purpose": "retention_period",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ]
+        }
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "effect_dispatched": false
+    },
+    {
+      "case": "runtime_task_id",
+      "semantic_input": {
+        "action": "REQUEST_HUMAN",
+        "purpose": "retention_period",
+        "question": "Retention period?",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ]
+        },
+        "task_id": "forbidden"
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "effect_dispatched": false
+    },
+    {
+      "case": "malformed_response",
+      "semantic_input": {
+        "action": "REQUEST_HUMAN",
+        "purpose": "retention_period",
+        "question": "Retention period?",
+        "response": {
+          "kind": "text"
+        }
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "effect_dispatched": false
+    },
+    {
+      "case": "REQUEST_HUMAN_already_pending",
+      "outcome": "rejected",
+      "error": "An equivalent human request is already pending or resolved",
+      "effect_dispatched": false
+    },
+    {
+      "case": "WAIT_with_pending",
+      "runtime_command": {
+        "version": 1,
+        "kind": "CognitiveDecision",
+        "payload": {
+          "task_id": "PRIVATE_TASK_7",
+          "task_revision": 0,
+          "turn_id": "PRIVATE_TASK_7/1",
+          "next_action": {
+            "type": "WAIT",
+            "wait_id": "PRIVATE_REQUEST_2",
+            "input_type": "human_response"
+          }
+        }
+      },
+      "outcome": "allow",
+      "effect_dispatched": false
+    }
+  ]
+}

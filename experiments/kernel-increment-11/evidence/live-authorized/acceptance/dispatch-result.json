@@ -1,0 +1,1 @@
+{"gate":{"outcome":"allow","reason_category":"admitted"},"result":{"content":"","provider_invoked":true,"reason_category":"unknown_provider_outcome","runtime_ms":3623,"status":"unknown","usage":{"cost_microusd":null,"input_tokens":null,"model_call_ids":[],"model_calls":null,"output_tokens":null},"worker_session_id":null}}

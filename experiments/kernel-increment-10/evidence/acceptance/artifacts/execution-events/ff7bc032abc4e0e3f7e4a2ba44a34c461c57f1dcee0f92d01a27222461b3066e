@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"report":"artifact://execution-events/sha256:2269514a233056fbc936b10b406952c54a12ca317c35e1f89ddd66b1159f1515"},"completion_ref":"artifact://execution-events/sha256:b9ca112065039de23ec6e2df0ae8f2b7e67668fd56b00e8033ffcd4f1c01b4d3","concerns":[],"outcome":"COMPLETED","task_id":"execution-events"},"version":1}

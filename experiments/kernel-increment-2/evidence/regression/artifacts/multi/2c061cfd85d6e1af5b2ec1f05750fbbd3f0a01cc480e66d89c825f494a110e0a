@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"Increment 1 exact evidence.\n","name":"answer"},"type":"INVOKE_CAPABILITY"},"task_id":"multi","task_revision":0,"turn_id":"multi/1"},"version":1}

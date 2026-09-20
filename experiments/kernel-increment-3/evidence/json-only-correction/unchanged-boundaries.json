@@ -1,0 +1,15 @@
+{
+  "source_checks": {
+    "runtime/kernel/contracts.py": true,
+    "runtime/kernel/cognition.py": true,
+    "runtime/kernel/execution.py": true,
+    "runtime/kernel/context.py": true,
+    "runtime/kernel/artifacts.py": true,
+    "runtime/kernel/__init__.py": true,
+    "runtime/kernel/workflow.py": true,
+    "scripts/verify-kernel-model.py": true,
+    "experiments/kernel-increment-3/probe_app.py": true
+  },
+  "response_parsing_and_validation_ast_unchanged": true,
+  "acceptance_probe_unchanged": true
+}

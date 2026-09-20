@@ -1,0 +1,173 @@
+"""Isolated frontier authority boundary. No credentials, network or provider routing.
+
+Trusted callers supply immutable grants and Restate-owned budget state. Proposals
+cannot update either. The existing Task PolicyGate is an additional required check.
+"""
+from dataclasses import dataclass, asdict, replace
+import hashlib
+import time
+from typing import Protocol
+from urllib.parse import urlsplit
+
+from runtime.kernel.contracts import encode, fields, identifier, text, unpack
+from runtime.kernel.execution import policy_gate
+
+
+@dataclass(frozen=True)
+class FrontierAuthority:
+    version: int
+    task_id: str
+    worker_class: str
+    provider: str
+    model: str
+    destination: str
+    permitted: bool
+    approval_required: bool
+    approval_ref: str | None
+    context_ref: str
+    read_scope: tuple[str, ...]
+    write_scope: tuple[str, ...]
+    max_invocations: int
+    max_effects: int
+    token_budget: int
+    cost_budget_microusd: int
+    deadline_unix: int
+    max_runtime_ms: int
+
+    def __post_init__(self):
+        if type(self.version) is not int or self.version != 1:
+            raise ValueError('Unsupported authority version')
+        identifier(self.task_id)
+        for value in (self.worker_class,self.provider,self.model):text(value,128)
+        address=urlsplit(self.destination)
+        if (address.scheme!='https' or not address.hostname or address.username or address.password
+                or address.query or address.fragment):raise ValueError('Expected fixed HTTPS destination')
+        if type(self.permitted) is not bool or type(self.approval_required) is not bool:raise ValueError('Invalid permission')
+        if self.approval_ref is not None:text(self.approval_ref,256)
+        if not self.context_ref.startswith('artifact://'+self.task_id+'/sha256:'):raise ValueError('Context must belong to Task')
+        for scope in (self.read_scope,self.write_scope):
+            if type(scope) is not tuple or len(scope)>8:raise ValueError('Scope must be a bounded immutable set')
+            for resource in scope:
+                text(resource,128)
+                if '*' in resource or '..' in resource:raise ValueError('No wildcard/traversal scopes')
+        for value in (self.max_invocations,self.max_effects,self.token_budget,self.cost_budget_microusd,self.deadline_unix,self.max_runtime_ms):
+            if type(value) is not int or value<0:raise ValueError('Invalid authority ceiling')
+
+
+@dataclass(frozen=True)
+class Budget:
+    invocations: int = 0
+    effects: int = 0
+    tokens_charged: int = 0
+    cost_charged_microusd: int = 0
+    reserved_effects: int = 0
+    reserved_tokens: int = 0
+    reserved_cost_microusd: int = 0
+
+    def __post_init__(self):
+        if any(type(v) is not int or v<0 for v in asdict(self).values()):raise ValueError('Invalid budget state')
+
+
+@dataclass(frozen=True)
+class AuthorizedFrontierRequest:
+    version: int
+    task_id: str
+    operation_id: str
+    authority_digest: str
+    worker_class: str
+    provider: str
+    model: str
+    destination: str
+    context_ref: str
+    context: str
+    read_scope: tuple[str, ...]
+    write_scope: tuple[str, ...]
+    max_tokens: int
+    max_cost_microusd: int
+    deadline_unix: int
+    runtime_ms: int
+
+
+class FrontierWorkerProvider(Protocol):
+    def dispatch(self, request: AuthorizedFrontierRequest) -> dict:
+        """One bounded attempt; no adapter-selected destination/model or retries."""
+
+
+REASONS={'admitted','invalid_proposal','task_mismatch','cloud_disabled','approval_required',
+    'worker_mismatch','provider_mismatch','model_mismatch','egress_denied','context_denied',
+    'scope_escalation','deadline_expired','runtime_limit','budget_exhausted','task_policy_denied'}
+
+
+def authorize(proposal, authority: FrontierAuthority, budget: Budget, *, state, spec, decision, now, context):
+    """No normalization, semantic repair, budget mutation or provider invocation."""
+    def deny(reason):return {'outcome':'deny','reason_category':reason},None
+    try:
+        value=fields(unpack(proposal,'FrontierProposal'),{'task_id','worker_class','provider','model','destination',
+            'context_ref','read_scope','write_scope','max_tokens','max_cost_microusd','runtime_ms'})
+        for key in ('task_id','worker_class','provider','model','destination','context_ref'):text(value[key],256)
+        for key in ('read_scope','write_scope'):
+            if not isinstance(value[key],list) or len(value[key])>8:raise ValueError('Invalid scope')
+            for item in value[key]:text(item,128)
+        for key in ('max_tokens','max_cost_microusd','runtime_ms'):
+            if type(value[key]) is not int or value[key]<=0:raise ValueError('Invalid requested limit')
+        text(context,2048)
+    except (ValueError,TypeError):return deny('invalid_proposal')
+    if value['task_id']!=authority.task_id or state['task_id']!=authority.task_id:return deny('task_mismatch')
+    if not authority.permitted:return deny('cloud_disabled')
+    if authority.approval_required and not authority.approval_ref:return deny('approval_required')
+    for key,reason in [('worker_class','worker_mismatch'),('provider','provider_mismatch'),('model','model_mismatch'),('destination','egress_denied')]:
+        if value[key]!=getattr(authority,key):return deny(reason)
+    if value['context_ref']!=authority.context_ref:return deny('context_denied')
+    if authority.context_ref.rsplit(':',1)[-1]!=hashlib.sha256(context.encode()).hexdigest():return deny('context_denied')
+    for key in ('read_scope','write_scope'):
+        if not set(value[key])<=set(getattr(authority,key)):return deny('scope_escalation')
+    if now>=authority.deadline_unix:return deny('deadline_expired')
+    if value['runtime_ms']>authority.max_runtime_ms or now+value['runtime_ms']/1000>authority.deadline_unix:return deny('runtime_limit')
+    if (budget.invocations>=authority.max_invocations or budget.effects+budget.reserved_effects>=authority.max_effects
+            or budget.tokens_charged+budget.reserved_tokens+value['max_tokens']>authority.token_budget
+            or budget.cost_charged_microusd+budget.reserved_cost_microusd+value['max_cost_microusd']>authority.cost_budget_microusd):return deny('budget_exhausted')
+    if policy_gate(decision,state,spec)['outcome']!='allow':return deny('task_policy_denied')
+    action=decision['payload']['next_action']
+    if action.get('capability')!='worker.run':return deny('task_policy_denied')
+    request=AuthorizedFrontierRequest(version=1,task_id=authority.task_id,operation_id=state['decision_id'],
+        authority_digest=hashlib.sha256(encode(asdict(authority))).hexdigest(),
+        worker_class=authority.worker_class,provider=authority.provider,model=authority.model,destination=authority.destination,
+        context_ref=authority.context_ref,context=context,read_scope=tuple(value['read_scope']),write_scope=tuple(value['write_scope']),
+        max_tokens=value['max_tokens'],max_cost_microusd=value['max_cost_microusd'],deadline_unix=authority.deadline_unix,runtime_ms=value['runtime_ms'])
+    return {'outcome':'allow','reason_category':'admitted'},request
+
+
+def reserve(budget: Budget, request: AuthorizedFrontierRequest) -> Budget:
+    return replace(budget,invocations=budget.invocations+1,reserved_effects=budget.reserved_effects+1,
+        reserved_tokens=budget.reserved_tokens+request.max_tokens,
+        reserved_cost_microusd=budget.reserved_cost_microusd+request.max_cost_microusd)
+
+
+def settle(budget: Budget, request: AuthorizedFrontierRequest, outcome: str) -> Budget:
+    if outcome=='unknown':return budget  # ambiguous failure is not an executed effect or refunded allowance
+    if outcome not in ('executed','not_executed'):raise ValueError('Invalid settlement')
+    return replace(budget,reserved_effects=budget.reserved_effects-1,
+        reserved_tokens=budget.reserved_tokens-request.max_tokens,
+        reserved_cost_microusd=budget.reserved_cost_microusd-request.max_cost_microusd,
+        effects=budget.effects+(outcome=='executed'),
+        tokens_charged=budget.tokens_charged+(request.max_tokens if outcome=='executed' else 0),
+        cost_charged_microusd=budget.cost_charged_microusd+(request.max_cost_microusd if outcome=='executed' else 0))
+
+
+def invoke(request: AuthorizedFrontierRequest, provider: FrontierWorkerProvider) -> dict:
+    """Adapters get only immutable narrowed data. A failure never triggers a retry.
+
+    Provider adapters must bound their transport/process by runtime_ms. The proof
+    adapter uses subprocess timeout; a live adapter must demonstrate that guarantee.
+    """
+    if not isinstance(request,AuthorizedFrontierRequest):raise ValueError('Authorized request required')
+    if time.time()+request.runtime_ms/1000>request.deadline_unix:
+        return {'status':'not_executed','content':'','provider_invoked':False}
+    try:
+        result=fields(provider.dispatch(request),{'status','content'})
+        if result['status'] not in {'executed','not_executed'}:raise ValueError('Unknown provider outcome')
+        if result['status']=='executed':text(result['content'],2048)
+        elif result['content']!='':raise ValueError('Unexpected non-execution content')
+        return {**result,'provider_invoked':True}
+    except Exception:
+        return {'status':'unknown','content':'','provider_invoked':True}

@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"RETENTION_30_DAYS","name":"answer"},"type":"INVOKE_CAPABILITY"},"task_id":"procedure","task_revision":3,"turn_id":"procedure/4"},"version":1}

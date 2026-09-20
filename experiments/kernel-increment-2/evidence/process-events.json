@@ -1,0 +1,1 @@
+[{"event":"start","pid":204763,"process":"server"},{"event":"start","pid":204943,"process":"runtime"},{"event":"SIGKILL","exit_code":-9,"pid":204943,"process":"runtime"},{"event":"start","pid":205043,"process":"runtime"},{"event":"SIGKILL","exit_code":-9,"pid":204763,"process":"server"},{"event":"start","pid":205044,"process":"server"}]

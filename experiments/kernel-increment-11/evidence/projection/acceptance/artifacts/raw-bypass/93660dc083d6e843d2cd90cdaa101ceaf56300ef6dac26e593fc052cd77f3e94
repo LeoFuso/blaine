@@ -1,0 +1,1 @@
+{"attempt_id":"raw-bypass/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"context_not_projected\"}","dispatch_outcome":"denied","frontier_result":null,"operation_id":"raw-bypass/2","outcome":"success"}

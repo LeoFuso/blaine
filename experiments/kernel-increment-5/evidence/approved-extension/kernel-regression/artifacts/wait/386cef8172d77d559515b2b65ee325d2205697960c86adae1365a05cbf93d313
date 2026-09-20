@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://wait/sha256:19ae190ae096908c3a11a67b79a2081378598d54b93bc3090d70759a99dd7c83"},"completion_ref":"artifact://wait/sha256:4284ed532bd910718cca7e5c78b9b457b004e1903f23b2a7eff6b3b52ac22988","concerns":[],"outcome":"COMPLETED","task_id":"wait"},"version":1}

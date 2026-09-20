@@ -1,0 +1,12 @@
+{
+  "selected_non_secret_fields": [
+    {
+      "path": "/home/leofuso/.codex/config.toml",
+      "field": "model",
+      "value": "gpt-6-astra"
+    }
+  ],
+  "auth_files_opened": false,
+  "credentials_inspected": false,
+  "network_provider_probe": false
+}

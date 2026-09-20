@@ -1,0 +1,70 @@
+{
+  "status": "STOP",
+  "increment": 11,
+  "preflight": "PASS under approved retry-domain/worker-context semantics",
+  "task_id": "frontier-live-binding-001",
+  "lifecycle": "FAILED",
+  "worker": "Codex CLI 0.155.1",
+  "provider": "built-in OpenAI with ChatGPT authentication",
+  "model_intent": "gpt-6-astra",
+  "trust_boundary": "https://chatgpt.com",
+  "resolved_account": null,
+  "resolved_model": null,
+  "exact_provider_prompt": null,
+  "lower_level_path": null,
+  "raw_synthetic_context": {
+    "organization": "ORCHID",
+    "marker": "7319"
+  },
+  "projected_context": "{\"marker\":\"MASKED_01\",\"organization\":\"FLOWER\"}",
+  "context_digest": "e4dfa3217256de41f4b4036aa046161b727f3db8b6efbfbde5da09ea4f17f183",
+  "context_boundary_verified": true,
+  "worker_dispatch_count": 1,
+  "worker_session_id": "01a0bf7b-1f07-78e2-a308-4d09f50217ba",
+  "model_call_count": null,
+  "provider_internal_retry_count": null,
+  "usage": {
+    "cached_input_tokens": 0,
+    "input_tokens": 5112,
+    "output_tokens": 23
+  },
+  "monetary_cost": null,
+  "runtime_ms": 3623,
+  "deadline_ms": 60000,
+  "live_public_result": {
+    "organization": "FLOWER",
+    "marker": "MASKED_01"
+  },
+  "public_values_match": true,
+  "adapter_outcome": "unknown; unexpected item.completed/error; body not retained",
+  "verifier": "unsatisfied; required artifact missing",
+  "effect_settlement": "held pending; no successful effect counted",
+  "accounting_note": "CLI observed usage retained separately; frontier ledger stays unknown because result was rejected",
+  "focused_tests": 107,
+  "execution_events": 74,
+  "blaine_retry": false,
+  "replacement": false,
+  "fallback": false,
+  "escalation": false,
+  "second_worker_dispatch": false,
+  "architecture_change": false,
+  "credentials_inspected": false,
+  "source_data_sent": false,
+  "limits": [
+    "Internal error-item body was not retained; cause unresolved",
+    "Exact final provider prompt/account/model and internal call/retry counts remain UNKNOWN",
+    "No destructive live crash test performed"
+  ],
+  "evidence": {
+    "verification": "acceptance/verification.json",
+    "worker_observation": "acceptance/worker-observation.json",
+    "events": "acceptance/events.jsonl",
+    "public_value_check": "public-value-check.json",
+    "preflight": "preflight.json",
+    "isolation": "isolation-preflight.json",
+    "integrity": "integrity.json"
+  },
+  "next_decision": "Review unexpected Codex error-item handling and authorize only a narrow offline adapter diagnostic/capture correction; no second cloud dispatch is authorized",
+  "increment_11_ready_to_close": false,
+  "increment_12_started": false
+}

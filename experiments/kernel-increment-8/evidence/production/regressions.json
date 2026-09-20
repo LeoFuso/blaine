@@ -1,0 +1,24 @@
+{
+  "focused_tests_at_increment8": 72,
+  "subsequent_increment9_tests": 78,
+  "module_counts": {
+    "test_kernel_model": 5,
+    "test_kernel_memory": 6,
+    "test_kernel_human": 3,
+    "test_kernel_resolution": 7,
+    "test_kernel_youtrack": 3,
+    "test_kernel_worker": 3,
+    "test_kernel_progression": 4,
+    "test_kernel_semantic_provider": 12
+  },
+  "live_rerun": "Increment 8 original intent on production Restate, Qwen, signals and crashes; scripted incomplete-effect control",
+  "not_rerun": [
+    "MIRIX/BGE live stack",
+    "YouTrack live connector",
+    "Goose live worker",
+    "Increment 3 original six-case live probe"
+  ],
+  "reason": "Unchanged boundary implementations, deterministic regression coverage, and targeted live production lifecycle probe",
+  "increment3_adapter_unchanged": true,
+  "production_progression_unchanged_during_increment9": true
+}

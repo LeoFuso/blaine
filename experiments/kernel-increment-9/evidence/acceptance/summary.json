@@ -1,0 +1,1 @@
+{"cases":["fresh","stale","absent"],"cognition":"scripted; native Restate lifecycle and exact artifact verification","cognitive_turns":9,"effects":9,"graphify_build_rerun":false,"max_retrieved_context_bytes":669,"model_calls":0,"next_increment":10,"provider_absence_preserves_execution":true,"source_over_stale_index":true,"status":"PASS","tasks_completed":3}

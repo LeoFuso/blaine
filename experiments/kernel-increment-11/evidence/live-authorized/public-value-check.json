@@ -1,0 +1,10 @@
+{
+  "status": "PASS_VALUES_ONLY",
+  "public_result": {
+    "organization": "FLOWER",
+    "marker": "MASKED_01"
+  },
+  "authorizes_task_completion": false,
+  "runtime_completion_verifier": "unsatisfied; no admitted result artifact",
+  "runtime_task_state": "FAILED"
+}

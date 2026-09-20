@@ -1,0 +1,1 @@
+{"action":"REQUEST_HUMAN","purpose":"retention_period","question":"How long should exports be retained?","response":{"choices":["30 days","90 days"],"kind":"choice"}}

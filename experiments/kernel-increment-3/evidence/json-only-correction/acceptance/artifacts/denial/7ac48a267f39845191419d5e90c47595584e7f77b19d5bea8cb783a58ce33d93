@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"fixture.effect","input":{"value":"FORBIDDEN"},"type":"INVOKE_CAPABILITY"},"task_id":"denial","task_revision":0,"turn_id":"denial/1"},"version":1}

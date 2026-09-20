@@ -1,0 +1,271 @@
+{
+  "source": "deterministic synthetic controls; no model calls",
+  "cases": [
+    {
+      "case": "unknown_action",
+      "input": {
+        "action": "unknown",
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ]
+        }
+      },
+      "outcome": "rejected",
+      "error": "Unknown semantic action",
+      "lowered_command": null
+    },
+    {
+      "case": "unknown_field",
+      "input": {
+        "action": "request_human",
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ]
+        },
+        "version": 1
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "lowered_command": null
+    },
+    {
+      "case": "missing_question",
+      "input": {
+        "action": "request_human",
+        "purpose": "retention_period",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ]
+        }
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "lowered_command": null
+    },
+    {
+      "case": "missing_purpose",
+      "input": {
+        "action": "request_human",
+        "question": "How long should exports be retained?",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ]
+        }
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "lowered_command": null
+    },
+    {
+      "case": "missing_response",
+      "input": {
+        "action": "request_human",
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?"
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "lowered_command": null
+    },
+    {
+      "case": "unsupported_response",
+      "input": {
+        "action": "request_human",
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "kind": "text"
+        }
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "lowered_command": null
+    },
+    {
+      "case": "duplicate_choices",
+      "input": {
+        "action": "request_human",
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "YES",
+            "YES"
+          ]
+        }
+      },
+      "outcome": "rejected",
+      "error": "Duplicate response choice",
+      "lowered_command": null
+    },
+    {
+      "case": "unknown_response_field",
+      "input": {
+        "action": "request_human",
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ],
+          "version": 1
+        }
+      },
+      "outcome": "rejected",
+      "error": "Invalid object fields",
+      "lowered_command": null
+    },
+    {
+      "case": "unbound_purpose",
+      "input": {
+        "action": "request_human",
+        "purpose": "other",
+        "question": "How long should exports be retained?",
+        "response": {
+          "kind": "choice",
+          "choices": [
+            "30 days",
+            "90 days"
+          ]
+        }
+      },
+      "outcome": "rejected",
+      "error": "Unbound semantic purpose",
+      "lowered_command": null
+    },
+    {
+      "case": "lowered_input_version",
+      "input": {
+        "version": 1,
+        "kind": "CognitiveDecision",
+        "payload": {
+          "task_id": "procedure",
+          "task_revision": 0,
+          "turn_id": "procedure/1",
+          "next_action": {
+            "type": "INVOKE_CAPABILITY",
+            "capability": "human.request",
+            "input": {
+              "request": {
+                "version": 1,
+                "kind": "HumanDecisionRequest",
+                "payload": {
+                  "task_id": "procedure",
+                  "origin_task_id": "procedure",
+                  "request_id": "retention",
+                  "revision": 0,
+                  "question": "How long should exports be retained?",
+                  "allowed_responses": [
+                    "30 days",
+                    "90 days"
+                  ]
+                }
+              },
+              "version": 1
+            }
+          }
+        }
+      },
+      "policy": {
+        "outcome": "deny",
+        "reason": "Invalid object fields"
+      },
+      "effect_dispatched": false
+    },
+    {
+      "case": "lowered_request_version",
+      "input": {
+        "version": 1,
+        "kind": "CognitiveDecision",
+        "payload": {
+          "task_id": "procedure",
+          "task_revision": 0,
+          "turn_id": "procedure/1",
+          "next_action": {
+            "type": "INVOKE_CAPABILITY",
+            "capability": "human.request",
+            "input": {
+              "request": {
+                "version": 2,
+                "kind": "HumanDecisionRequest",
+                "payload": {
+                  "task_id": "procedure",
+                  "origin_task_id": "procedure",
+                  "request_id": "retention",
+                  "revision": 0,
+                  "question": "How long should exports be retained?",
+                  "allowed_responses": [
+                    "30 days",
+                    "90 days"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "policy": {
+        "outcome": "deny",
+        "reason": "Unsupported contract version or kind"
+      },
+      "effect_dispatched": false
+    },
+    {
+      "case": "lowered_stale_turn",
+      "input": {
+        "version": 1,
+        "kind": "CognitiveDecision",
+        "payload": {
+          "task_id": "procedure",
+          "task_revision": 99,
+          "turn_id": "procedure/1",
+          "next_action": {
+            "type": "INVOKE_CAPABILITY",
+            "capability": "human.request",
+            "input": {
+              "request": {
+                "version": 1,
+                "kind": "HumanDecisionRequest",
+                "payload": {
+                  "task_id": "procedure",
+                  "origin_task_id": "procedure",
+                  "request_id": "retention",
+                  "revision": 0,
+                  "question": "How long should exports be retained?",
+                  "allowed_responses": [
+                    "30 days",
+                    "90 days"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "policy": {
+        "outcome": "deny",
+        "reason": "Stale or misaddressed decision"
+      },
+      "effect_dispatched": false
+    }
+  ]
+}

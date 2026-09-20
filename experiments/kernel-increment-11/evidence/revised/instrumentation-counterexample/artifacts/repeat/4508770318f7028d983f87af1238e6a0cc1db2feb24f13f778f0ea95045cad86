@@ -1,0 +1,1 @@
+{"attempt_id":"repeat/3-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"dispatch_budget_exhausted\"}","dispatch_outcome":"denied","frontier_result":null,"operation_id":"repeat/3","outcome":"success"}

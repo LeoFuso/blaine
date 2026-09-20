@@ -1,0 +1,1 @@
+{"attempt_id":"wrong-egress/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"egress_denied\"}","dispatch_outcome":"denied","operation_id":"wrong-egress/2","outcome":"success"}

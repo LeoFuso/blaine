@@ -1,0 +1,1 @@
+{"architecture_deviations":[],"cases":["recall","absent","conflict"],"fresh_process":{"runtime_pids":[222321],"seed_pid":221898},"gate":"PASS","max_packet_bytes":2563,"model_turns":6,"next_increment":5,"status":"PASS","total_completion_tokens":316,"total_prompt_tokens":10774}

@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "increment": 11,
+  "scope": "structural outbound context projection; no live frontier call",
+  "authority_version": 2,
+  "authorized_request_version": 3,
+  "projected_context_version": 1,
+  "baseline_tests": 98,
+  "focused_tests": 103,
+  "acceptance_A_to_F": "PASS",
+  "previous_A_to_J": "PASS",
+  "native_cases": 22,
+  "events": 434,
+  "synthetic_provider_invocations": 4,
+  "cloud_calls": 0,
+  "model_calls": 0,
+  "credential_access": false,
+  "raw_fixture": "organization=PRONET; marker=RAW_SECRET_7319",
+  "projected_fixture": "organization=SPORTINGTECH; marker=MASKED_7319",
+  "context_digest": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+  "digest_encoding": "exact projected content UTF-8 bytes, not JSON envelope or raw source",
+  "provider_received_only_projection": true,
+  "substitution_blocked_before_provider": true,
+  "projection_failure_blocked_before_provider": true,
+  "raw_absent_from_events_and_referenced_payloads": true,
+  "core_and_routing_hashes_unchanged": true,
+  "recovery": {
+    "killed_pid": 300583,
+    "point": "committed worker capability; budget reservation held; settlement pending",
+    "replacement_pid": 300680,
+    "signal": "SIGKILL"
+  },
+  "no_duplicate_committed_effect_or_settlement": true,
+  "evidence": {
+    "gate": "acceptance/verification.json",
+    "events": "acceptance/events.jsonl",
+    "projection": "acceptance/projection.jsonl",
+    "provider": "acceptance/provider-calls.jsonl",
+    "integrity": "integrity.json",
+    "tests": "focused-tests.txt"
+  },
+  "limitations": [
+    "Identity production hook is not sanitization, DLP or context-quality evaluation",
+    "Synthetic projector only proves traversal and exact-byte binding",
+    "Application trust boundary, not protection against malicious trusted Python or adapters",
+    "No live egress/provider validation"
+  ],
+  "next": "STOP; propose only a synthetic one-worker live probe via projection after explicit authorization and binding-specific preflight; Increment 12 not started",
+  "git_diff_check": "PASS",
+  "changed_files": "changed-files.json"
+}

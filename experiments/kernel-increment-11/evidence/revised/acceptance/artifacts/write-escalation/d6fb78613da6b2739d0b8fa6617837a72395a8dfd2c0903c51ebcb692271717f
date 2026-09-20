@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://write-escalation/sha256:5e06f155c944aef4541593a5b0a31aed98b743c6f282efc6fbf9dfdb298349f6"},"type":"INVOKE_CAPABILITY"},"task_id":"write-escalation","task_revision":1,"turn_id":"write-escalation/2"},"version":1}

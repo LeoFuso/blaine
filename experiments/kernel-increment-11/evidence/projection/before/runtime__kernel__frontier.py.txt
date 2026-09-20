@@ -1,0 +1,351 @@
+"""Frontier v2: hard authority and dispatch slots, separate from observed usage.
+
+No credentials, provider pricing, billing integration or network transport. Trusted
+Blaine code supplies grants/guardrails and owns the Restate-persisted slot state.
+"""
+from dataclasses import asdict, dataclass, field, replace
+import hashlib
+import re
+import time
+from typing import Protocol
+from urllib.parse import urlsplit
+
+from runtime.kernel.contracts import MAX_PACKET, encode, fields, identifier, text
+from runtime.kernel.execution import policy_gate
+
+
+def nonnegative(value):
+    if type(value) is not int or value < 0:
+        raise ValueError('Expected nonnegative integer')
+
+
+@dataclass(frozen=True)
+class NativeLimits:
+    """Optional HARD controls. Absence does not make a binding unusable."""
+    model_calls: int | None = None
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    cost_microusd: int | None = None
+
+    def __post_init__(self):
+        for value in asdict(self).values():
+            if value is not None:
+                nonnegative(value)
+
+
+@dataclass(frozen=True)
+class WorkerBinding:
+    binding_id: str
+    worker_family: str
+    provider: str
+    model: str
+    destination: str
+    frontier: bool
+    capabilities: tuple[str, ...]
+    quality: int
+    native_controls: tuple[str, ...] = ()
+
+    def __post_init__(self):
+        identifier(self.binding_id)
+        for value in (self.worker_family, self.provider, self.model):
+            text(value, 128)
+        if type(self.frontier) is not bool:
+            raise ValueError('Invalid locality')
+        address = urlsplit(self.destination)
+        if (address.scheme not in ('http', 'https') or not address.hostname
+                or (self.frontier and address.scheme != 'https')
+                or (not self.frontier and address.hostname not in ('127.0.0.1', '::1'))
+                or address.username or address.password or address.query or address.fragment):
+            raise ValueError('Expected explicit approved destination')
+        nonnegative(self.quality)
+        for values in (self.capabilities, self.native_controls):
+            if type(values) is not tuple or len(values) > 8:
+                raise ValueError('Expected bounded immutable capabilities')
+            for value in values:
+                text(value, 128)
+        if not set(self.native_controls) <= set(asdict(NativeLimits())):
+            raise ValueError('Unknown provider-native control')
+
+
+@dataclass(frozen=True)
+class GlobalGuardrails:
+    frontier_enabled: bool = True
+    kill_switch: bool = False
+    account_status: str = 'not_configured'
+    source: str = 'no account ceiling integration'
+
+    def __post_init__(self):
+        if type(self.frontier_enabled) is not bool or type(self.kill_switch) is not bool:
+            raise ValueError('Invalid global guardrails')
+        if self.account_status not in {'not_configured', 'available', 'exhausted', 'unknown'}:
+            raise ValueError('Invalid account ceiling status')
+        text(self.source, 256)
+
+
+def global_denial(binding, guardrails):
+    if not binding.frontier:
+        return None
+    if guardrails.kill_switch or not guardrails.frontier_enabled:
+        return 'global_frontier_disabled'
+    if guardrails.account_status in ('exhausted', 'unknown'):
+        return 'global_budget_exhausted' if guardrails.account_status == 'exhausted' else 'global_guardrail_unknown'
+    return None
+
+
+@dataclass(frozen=True)
+class FrontierAuthority:
+    version: int
+    task_id: str
+    bindings: tuple[WorkerBinding, ...]
+    frontier_permitted: bool
+    approval_required: bool
+    approval_ref: str | None
+    context_ref: str
+    read_scope: tuple[str, ...]
+    write_scope: tuple[str, ...]
+    max_dispatches: int
+    deadline_unix: int
+    max_runtime_ms: int
+    required_native_limits: NativeLimits = field(default_factory=NativeLimits)
+
+    def __post_init__(self):
+        if type(self.version) is not int or self.version != 2:
+            raise ValueError('Expected frontier authority v2; v1 is not silently migrated')
+        identifier(self.task_id)
+        if type(self.bindings) is not tuple or not 1 <= len(self.bindings) <= 8 or not all(isinstance(b, WorkerBinding) for b in self.bindings):
+            raise ValueError('Expected bounded approved bindings')
+        if len({b.binding_id for b in self.bindings}) != len(self.bindings):
+            raise ValueError('Duplicate binding identity')
+        if type(self.frontier_permitted) is not bool or type(self.approval_required) is not bool:
+            raise ValueError('Invalid permission')
+        if self.approval_ref is not None:
+            text(self.approval_ref, 256)
+        if not isinstance(self.context_ref, str) or not re.fullmatch('artifact://'+self.task_id+'/sha256:[0-9a-f]{64}', self.context_ref):
+            raise ValueError('Context must be an exact Task artifact')
+        for scope in (self.read_scope, self.write_scope):
+            if type(scope) is not tuple or len(scope) > 8:
+                raise ValueError('Invalid scope')
+            for resource in scope:
+                text(resource, 128)
+                if '*' in resource or '..' in resource:
+                    raise ValueError('No wildcard/traversal scopes')
+        for value in (self.max_dispatches, self.deadline_unix, self.max_runtime_ms):
+            nonnegative(value)
+        if self.max_dispatches > 16 or not isinstance(self.required_native_limits, NativeLimits):
+            raise ValueError('Invalid bounded dispatch grant')
+
+
+def authority_from_json(raw):
+    """Trusted grant storage codec; not a model-facing grant-creation endpoint."""
+    return FrontierAuthority(**{**raw,
+        'bindings': tuple(WorkerBinding(**{**b, 'capabilities': tuple(b['capabilities']),
+                                         'native_controls': tuple(b['native_controls'])}) for b in raw['bindings']),
+        'read_scope': tuple(raw['read_scope']), 'write_scope': tuple(raw['write_scope']),
+        'required_native_limits': NativeLimits(**raw['required_native_limits'])})
+
+
+@dataclass(frozen=True)
+class DispatchBudget:
+    """Real worker-attempt slots, not estimated tokens or dollars."""
+    dispatches: int = 0
+    completed_effects: int = 0
+    pending: tuple[str, ...] = ()
+    settled: tuple[str, ...] = ()
+
+    def __post_init__(self):
+        nonnegative(self.dispatches)
+        nonnegative(self.completed_effects)
+        if type(self.pending) is not tuple or type(self.settled) is not tuple:
+            raise ValueError('Expected immutable dispatch identities')
+        ids = self.pending + self.settled
+        if len(ids) > 16 or len(ids) != len(set(ids)) or self.dispatches != len(ids) or self.completed_effects > len(self.settled):
+            raise ValueError('Inconsistent dispatch state')
+        for value in ids:
+            text(value, 128)
+
+    @classmethod
+    def from_json(cls, value):
+        return cls(**{**value, 'pending': tuple(value['pending']), 'settled': tuple(value['settled'])})
+
+
+@dataclass(frozen=True)
+class AuthorizedFrontierRequest:
+    version: int
+    task_id: str
+    worker_dispatch_id: str
+    authority_digest: str
+    binding: WorkerBinding
+    context_ref: str
+    context: str
+    read_scope: tuple[str, ...]
+    write_scope: tuple[str, ...]
+    deadline_unix: int
+    runtime_ms: int
+    required_native_limits: NativeLimits
+    usage_hints: NativeLimits  # requested SOFT guidance, never an enforcement claim
+
+
+class FrontierWorkerProvider(Protocol):
+    def dispatch(self, request: AuthorizedFrontierRequest) -> dict:
+        """One worker execution, which may contain multiple model inferences."""
+
+
+def proposal_message(payload):
+    return {'version': 2, 'kind': 'FrontierProposal', 'payload': payload}
+
+
+def authorize(proposal, authority, budget, *, guardrails, state, spec, decision, now, context):
+    """Hard authority only: suitability and usage observations are not inputs."""
+    def deny(reason):
+        return {'outcome': 'deny', 'reason_category': reason}, None
+    try:
+        envelope = fields(proposal, {'version', 'kind', 'payload'})
+        if type(envelope['version']) is not int or envelope['version'] != 2 or envelope['kind'] != 'FrontierProposal' or len(encode(proposal)) > MAX_PACKET:
+            raise ValueError('Unsupported frontier proposal')
+        value = fields(envelope['payload'], {'task_id', 'binding_id', 'provider', 'model', 'destination',
+            'context_ref', 'read_scope', 'write_scope', 'runtime_ms'}, {'usage_hints'})
+        for key in ('task_id', 'binding_id', 'provider', 'model', 'destination', 'context_ref'):
+            text(value[key], 256)
+        for key in ('read_scope', 'write_scope'):
+            if not isinstance(value[key], list) or len(value[key]) > 8:
+                raise ValueError('Invalid scope')
+            for item in value[key]:
+                text(item, 128)
+        nonnegative(value['runtime_ms'])
+        if value['runtime_ms'] == 0:
+            raise ValueError('Positive runtime required')
+        hints = NativeLimits(**fields(value.get('usage_hints', {}), set(), set(asdict(NativeLimits()))))
+        text(context, 2048)
+    except (ValueError, TypeError):
+        return deny('invalid_proposal')
+    if value['task_id'] != authority.task_id or state['task_id'] != authority.task_id:
+        return deny('task_mismatch')
+    binding = next((b for b in authority.bindings if b.binding_id == value['binding_id']), None)
+    if binding is None:
+        return deny('binding_denied')
+    if binding.frontier and not authority.frontier_permitted:
+        return deny('cloud_disabled')
+    denial = global_denial(binding, guardrails)
+    if denial:
+        return deny(denial)
+    if authority.approval_required and not authority.approval_ref:
+        return deny('approval_required')
+    for key, reason in (('provider', 'provider_mismatch'), ('model', 'model_mismatch'), ('destination', 'egress_denied')):
+        if value[key] != getattr(binding, key):
+            return deny(reason)
+    if value['context_ref'] != authority.context_ref or authority.context_ref.rsplit(':', 1)[-1] != hashlib.sha256(context.encode()).hexdigest():
+        return deny('context_denied')
+    for key in ('read_scope', 'write_scope'):
+        if not set(value[key]) <= set(getattr(authority, key)):
+            return deny('scope_escalation')
+    if now >= authority.deadline_unix:
+        return deny('deadline_expired')
+    if value['runtime_ms'] > authority.max_runtime_ms or now + value['runtime_ms']/1000 > authority.deadline_unix:
+        return deny('runtime_limit')
+    if budget.dispatches >= authority.max_dispatches:
+        return deny('dispatch_budget_exhausted')
+    needed = {k for k, v in asdict(authority.required_native_limits).items() if v is not None}
+    if not needed <= set(binding.native_controls):
+        return deny('required_native_control_unavailable')
+    if policy_gate(decision, state, spec)['outcome'] != 'allow' or decision['payload']['next_action'].get('capability') != 'worker.run':
+        return deny('task_policy_denied')
+    request = AuthorizedFrontierRequest(2, authority.task_id, 'dispatch:'+state['decision_id'],
+        hashlib.sha256(encode(asdict(authority))).hexdigest(), binding, authority.context_ref, context,
+        tuple(value['read_scope']), tuple(value['write_scope']), authority.deadline_unix,
+        value['runtime_ms'], authority.required_native_limits, hints)
+    return {'outcome': 'allow', 'reason_category': 'admitted'}, request
+
+
+def reserve(budget, request):
+    identity = request.worker_dispatch_id
+    if identity in budget.pending + budget.settled:
+        return budget
+    return replace(budget, dispatches=budget.dispatches+1, pending=budget.pending+(identity,))
+
+
+def settle(budget, request, outcome):
+    identity = request.worker_dispatch_id
+    if identity in budget.settled:
+        return budget
+    if identity not in budget.pending:
+        raise ValueError('Dispatch was not reserved')
+    if outcome == 'unknown':
+        return budget
+    if outcome not in ('executed', 'not_executed'):
+        raise ValueError('Unknown outcome')
+    return replace(budget, pending=tuple(x for x in budget.pending if x != identity),
+        settled=budget.settled+(identity,), completed_effects=budget.completed_effects+(outcome == 'executed'))
+
+
+def validate_usage(value):
+    usage = fields(value, set(), {'model_calls', 'input_tokens', 'output_tokens', 'cost_microusd', 'model_call_ids'})
+    for key, amount in usage.items():
+        if key == 'model_call_ids':
+            if not isinstance(amount, list) or len(amount) > 16:
+                raise ValueError('Unbounded model call identities')
+            for identity in amount:
+                text(identity, 128)
+        elif amount is not None:
+            nonnegative(amount)
+    if usage.get('model_calls') is not None and len(usage.get('model_call_ids', [])) > usage['model_calls']:
+        raise ValueError('Inconsistent observed usage')
+    return {key: usage.get(key) for key in ('model_calls', 'input_tokens', 'output_tokens', 'cost_microusd')} | {'model_call_ids': usage.get('model_call_ids', [])}
+
+
+def invoke(request, provider, *, guardrails):
+    if not isinstance(request, AuthorizedFrontierRequest) or request.version != 2:
+        raise ValueError('Authorized v2 request required')
+    start = time.monotonic()
+    result = {'status': 'not_executed', 'content': '', 'provider_invoked': False,
+              'worker_session_id': None, 'usage': validate_usage({}), 'reason_category': 'deadline_expired'}
+    denial = global_denial(request.binding, guardrails)
+    if denial or time.time()+request.runtime_ms/1000 > request.deadline_unix:
+        return result | {'reason_category': denial or 'deadline_expired', 'runtime_ms': 0}
+    result.update(status='unknown', provider_invoked=True, reason_category='unknown_provider_outcome')
+    try:
+        raw = fields(provider.dispatch(request), {'status', 'content', 'worker_session_id', 'producer', 'usage'})
+        if raw['status'] not in ('executed', 'not_executed'):
+            raise ValueError('Unknown provider outcome')
+        text(raw['worker_session_id'], 128)
+        producer = fields(raw['producer'], {'worker_family', 'provider', 'model', 'destination'})
+        for value in producer.values():
+            text(value, 256)
+        usage = validate_usage(raw['usage'])
+        # Retain bounded observations even if they expose a binding/control
+        # violation. They cannot authorize the result or settle it as executed.
+        result.update(worker_session_id=raw['worker_session_id'], producer=producer, usage=usage)
+        if any(producer[k] != getattr(request.binding, k) for k in producer):
+            result['reason_category'] = 'binding_mismatch'
+            raise ValueError('Observed binding differs from authority')
+        # Native control availability is a trusted adapter attestation. Any observed
+        # breach is an error, not permission to reinterpret the control as a hint.
+        for name, limit in asdict(request.required_native_limits).items():
+            if limit is not None and usage[name] is not None and usage[name] > limit:
+                result['reason_category'] = 'native_limit_violation'
+                raise ValueError('Provider-native guarantee breached')
+        if raw['status'] == 'executed':
+            text(raw['content'], 2048)
+        elif raw['content'] != '':
+            raise ValueError('Unexpected non-execution content')
+        result.update(raw, usage=usage, reason_category='observed_result')
+    except Exception:
+        pass  # no retry; no potentially sensitive exception text
+    return result | {'runtime_ms': max(0, int((time.monotonic()-start)*1000))}
+
+
+def record_usage(ledger, request, result):
+    """Idempotent observed accounting, with no path back into the authority grant."""
+    identity = request.worker_dispatch_id
+    record = {'version': 2, 'task_id': request.task_id, 'worker_dispatch_id': identity,
+        'binding': asdict(request.binding), 'worker_session_id': result['worker_session_id'],
+        'status': result['status'], 'provider_invoked': result['provider_invoked'],
+        'runtime_ms': result['runtime_ms'], 'usage': result['usage'], 'accounting_mode': 'observed_only'}
+    if 'producer' in result:
+        record['observed_producer'] = result['producer']
+    if identity in ledger:
+        if ledger[identity] != record:
+            raise ValueError('Conflicting accounting identity')
+        return ledger
+    if len(ledger) >= 16:
+        raise ValueError('Bounded accounting record limit')
+    return {**ledger, identity: record}

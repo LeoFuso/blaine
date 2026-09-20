@@ -1,0 +1,18 @@
+{
+  "client_id": "client-df3da0d9",
+  "user_id": "probe-leofuso",
+  "agent_id": "agent-afc4ab06-c8f8-4035-9d03-a0376b0dc521",
+  "llm_config": {
+    "model": "Qwen/Qwen3.5-9B",
+    "model_endpoint": "http://127.0.0.1:8000/v1",
+    "model_endpoint_type": "openai"
+  },
+  "embedding_config": {
+    "embedding_model": "BAAI/bge-m3",
+    "embedding_endpoint": "http://127.0.0.1:8001/v1",
+    "embedding_endpoint_type": "hugging-face",
+    "embedding_dim": 1024
+  },
+  "pid": 221898,
+  "started_at": "2026-09-20T01:03:02.039175+00:00"
+}

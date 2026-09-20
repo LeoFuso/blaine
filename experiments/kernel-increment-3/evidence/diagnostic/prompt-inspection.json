@@ -1,0 +1,12 @@
+{
+  "acceptance_criteria": "Present in packet.payload.completion in both states/modes.",
+  "adapter_integrity": "Source has no COMPLETE default/coercion. A synthetic INVOKE_CAPABILITY response returns the unchanged JSON object; unknown/malformed/missing-version responses are rejected.",
+  "available_capabilities": "artifact.write is present in allowed_capabilities; its input shape is shown in system instructions.",
+  "completion_condition": "Objective says when durable evidence shows answer exists request COMPLETE, and when missing request artifact.write. SYSTEM says COMPLETE requests independent verification.",
+  "effects_dispatched": false,
+  "fixture_setup": "Local fixture artifacts only; no Task submitted, dispatcher instantiated or runtime started.",
+  "interpretation": "No necessary state was omitted or misrepresented. Identical JSON-only messages elicit the expected raw actions, so this wording gap does not explain the mode-specific action failure.",
+  "missing_or_satisfied_evidence": "Present in prior CompletionEvaluation observation; deterministic exact-artifact verifier generated both fixtures.",
+  "reconsideration_after_rejection": "SYSTEM says failed CompletionEvaluation describes missing evidence and to respond to that evidence. Explicit do-not-repeat wording is absent; conditional objective supplies the alternative.",
+  "scope": "Exact requests captured in the four diagnostic case files; no prompt correction."
+}

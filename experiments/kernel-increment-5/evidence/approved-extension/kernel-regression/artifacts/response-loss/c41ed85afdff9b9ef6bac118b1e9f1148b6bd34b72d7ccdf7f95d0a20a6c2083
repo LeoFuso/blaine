@@ -1,0 +1,1 @@
+{"kind":"CapabilityResult","payload":{"artifacts":{},"error":null,"operation_id":"response-loss/1","outcome":"success","output":{"effect_id":"response-loss/1","value":"one bounded effect"}},"version":1}

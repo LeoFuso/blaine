@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"Exact independently checked implementation manifest","detail":"Exact artifact digest verified","evidence_ref":"artifact://telemetry-outage/sha256:2269514a233056fbc936b10b406952c54a12ca317c35e1f89ddd66b1159f1515","outcome":"satisfied"}],"outcome":"satisfied"},"version":1}

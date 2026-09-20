@@ -1,0 +1,51 @@
+{
+  "source": "installed Codex doctor --json (documented redacted report); selected non-secret fields only",
+  "network": "disabled via bwrap --unshare-net",
+  "filesystem": "read-only; private temporary /tmp",
+  "exit_code": 1,
+  "report": {
+    "config.load": {
+      "model": "gpt-6-astra",
+      "model provider": "openai",
+      "configuration scope": "invocation config, including cloud-managed policy"
+    },
+    "auth.credentials": {
+      "stored auth mode": "chatgpt",
+      "auth storage mode": "File"
+    },
+    "network.provider_reachability": {
+      "ChatGPT inference URL": {
+        "scheme": "https",
+        "host": "chatgpt.com",
+        "port": null,
+        "path": "/backend-api/<redacted> connect failed (required)",
+        "userinfo_present": false,
+        "query_present": false,
+        "fragment_present": false
+      },
+      "reachability mode": "ChatGPT auth"
+    },
+    "network.websocket_reachability": {
+      "auth mode": "chatgpt",
+      "endpoint": {
+        "scheme": "wss",
+        "host": "chatgpt.com",
+        "port": null,
+        "path": "/backend-api/<redacted>",
+        "userinfo_present": false,
+        "query_present": false,
+        "fragment_present": false
+      },
+      "model provider": "openai",
+      "provider name": "OpenAI",
+      "supports websockets": "true",
+      "wire API": "responses"
+    },
+    "runtime.provenance": {
+      "version": "0.155.1",
+      "commit": "unknown",
+      "platform": "linux-x86_64"
+    }
+  },
+  "live_worker_dispatches": 0
+}

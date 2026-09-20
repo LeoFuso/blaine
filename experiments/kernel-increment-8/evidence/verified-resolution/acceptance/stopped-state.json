@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "kind": "TaskState",
+  "payload": {
+    "task_id": "procedure",
+    "revision": 16,
+    "lifecycle": "FAILED",
+    "iteration": 16,
+    "active_specialist": "coordinator",
+    "spec_ref": "artifact://procedure/sha256:5c0be2f506e00ea9abc7523745bc565558d02181f8603f8af93014ed9de864fc",
+    "decision_id": "procedure/16",
+    "decision_ref": "artifact://procedure/sha256:48b0c8d4178112056c098f9db6a3894d56660c02a44f72760bd418e22468e230",
+    "context_ref": "artifact://procedure/sha256:8f10bd3951c820d3572fc99ac5bbdfa54109f5623d0d5e8004f8a1655b90e3d5",
+    "observation_ref": "artifact://procedure/sha256:6ad416a10a11a991b87c390d0620c5af43cb46d1436807ebd3ccaed1ebbcaa2e",
+    "wait": null,
+    "artifacts": {},
+    "completion_ref": null,
+    "result_ref": "artifact://procedure/sha256:ba0d67493806744ab368ceceb4b340025b17c51de020d1a1c4512ab700a61ed3",
+    "remaining_children": 0,
+    "children": {}
+  }
+}

@@ -19,5 +19,5 @@ experiments/kernel-increment-8/evidence/progression/acceptance/server.txt whites
 experiments/kernel-increment-8/evidence/semantic-lowering/acceptance/server.txt whitespace=-blank-at-eol
 experiments/kernel-increment-8/evidence/verified-resolution/acceptance/server.txt whitespace=-blank-at-eol
 experiments/kernel-increment-8/hybrid/workflow.diff whitespace=-blank-at-eol
-experiments/kernel-increment-8/progression/app.diff whitespace=-blank-at-eol
+experiments/kernel-increment-8/progression/app.diff whitespace=-blank-at-eol,-blank-at-eof
 experiments/kernel-increment-9/evidence/acceptance/server.txt whitespace=-blank-at-eol

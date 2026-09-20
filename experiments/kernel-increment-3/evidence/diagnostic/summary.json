@@ -1,0 +1,89 @@
+{
+  "adapter_before_sha256": "e1dc994a7734ac3ed51e601d61620c5bc8c8d312bb729c26794bd120a362968e",
+  "cause_limit": "The controlled contrast isolates the provider-constrained path; it does not establish the internal decoder/schema mechanism.",
+  "classification": "CONSTRAINED_DECODING_DEFECT",
+  "classification_code": "A",
+  "classification_scope": "Action selection before application validation; JSON-only envelope validity is a separate failure.",
+  "effect_dispatched": false,
+  "effects_dispatched": 0,
+  "identical_semantic_messages_across_modes": true,
+  "increment_3_gate": "NOT PASSED",
+  "integrity_controls": "PASS",
+  "json_only_correct": false,
+  "json_only_semantic_choice_correct": true,
+  "live_calls": 4,
+  "only_request_difference": "response_format present in schema mode; absent in JSON-only mode",
+  "production_ready": false,
+  "rows": [
+    {
+      "completion_state": "unsatisfied",
+      "effect_dispatched": false,
+      "expected_action": "INVOKE_CAPABILITY",
+      "fixture": "missing",
+      "missing_envelope_fields": [
+        "version"
+      ],
+      "output_mode": "json-only",
+      "parsed_action": null,
+      "raw_action": "INVOKE_CAPABILITY",
+      "sample": 1,
+      "validation": "REJECTED"
+    },
+    {
+      "completion_state": "unsatisfied",
+      "effect_dispatched": false,
+      "expected_action": "INVOKE_CAPABILITY",
+      "fixture": "missing",
+      "missing_envelope_fields": [],
+      "output_mode": "schema",
+      "parsed_action": "COMPLETE",
+      "raw_action": "COMPLETE",
+      "sample": 1,
+      "validation": "PASS"
+    },
+    {
+      "completion_state": "satisfied",
+      "effect_dispatched": false,
+      "expected_action": "COMPLETE",
+      "fixture": "satisfied",
+      "missing_envelope_fields": [
+        "version"
+      ],
+      "output_mode": "json-only",
+      "parsed_action": null,
+      "raw_action": "COMPLETE",
+      "sample": 1,
+      "validation": "REJECTED"
+    },
+    {
+      "completion_state": "satisfied",
+      "effect_dispatched": false,
+      "expected_action": "COMPLETE",
+      "fixture": "satisfied",
+      "missing_envelope_fields": [],
+      "output_mode": "schema",
+      "parsed_action": "COMPLETE",
+      "raw_action": "COMPLETE",
+      "sample": 1,
+      "validation": "PASS"
+    }
+  ],
+  "runtime_adapter_unchanged": true,
+  "samples_per_state_mode": 1,
+  "schema_correct": false,
+  "schema_semantic_choice_correct": false,
+  "secondary_finding": "Both JSON-only responses omit required version; strict validator rejects them. No fallback or envelope repair applied.",
+  "kernel_contract_policy_verifier_unchanged": {
+    "runtime/kernel/__init__.py": true,
+    "runtime/kernel/artifacts.py": true,
+    "runtime/kernel/cognition.py": true,
+    "runtime/kernel/context.py": true,
+    "runtime/kernel/contracts.py": true,
+    "runtime/kernel/execution.py": true,
+    "runtime/kernel/workflow.py": true
+  },
+  "unit_tests_passed": 5,
+  "acceptance_probe_rerun": false,
+  "increment_4_started": false,
+  "scope": "Increment 3A diagnostic only, per latest user authorization"
+}

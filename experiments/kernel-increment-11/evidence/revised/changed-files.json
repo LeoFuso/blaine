@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "git_diff_check": "PASS",
+  "untracked_files_also_checked": true,
+  "documentation_links": "PASS",
+  "files": [
+    {
+      "file": "runtime/kernel/frontier.py",
+      "sha256": "28eeb85a05545f66e9d9d3316bd936c6318a18ea6ca3b7f53dc0d1c1dfca1e08",
+      "whitespace_check": "PASS"
+    },
+    {
+      "file": "runtime/kernel/worker_routing.py",
+      "sha256": "f4e49291caa7a88d538dbe6dc20541eefb4696a0507b114d48458ad24c0a8b88",
+      "whitespace_check": "PASS"
+    },
+    {
+      "file": "tests/test_kernel_frontier.py",
+      "sha256": "c832f34cf8f6adaae02084426f436bd5e50bceeff047c534a55ddf033fe2c921",
+      "whitespace_check": "PASS"
+    },
+    {
+      "file": "experiments/kernel-increment-11/probe.py",
+      "sha256": "855224725f869ecad619fa511ca99a9170d8285f0adab4c08e14e62a87438b9d",
+      "whitespace_check": "PASS"
+    },
+    {
+      "file": "experiments/kernel-increment-11/verify.py",
+      "sha256": "80fa973365cc60eaa86af0d7182b522d2d0026bcdc8bec366024c63ff494c0fa",
+      "whitespace_check": "PASS"
+    },
+    {
+      "file": "docs/contracts/frontier-dispatch.md",
+      "sha256": "c050e54b905f2eec97d7754729b6c39dcd94fff36404cd74bbc7a5bea8f65a4f",
+      "whitespace_check": "PASS"
+    },
+    {
+      "file": "docs/milestones/030-cognitive-kernel-increment-11-revised.md",
+      "sha256": "6c7358ae899ae0c798ffba19565207b675f6b12eac42b56aad19907d48c2354e",
+      "whitespace_check": "PASS"
+    },
+    {
+      "file": "docs/milestones/cognitive-kernel-progress.md",
+      "sha256": "c3a78376a3d2d68ee158c7c6c89230a11a038832ab9ab00b6037a7d2088aa2ac",
+      "whitespace_check": "PASS"
+    }
+  ]
+}

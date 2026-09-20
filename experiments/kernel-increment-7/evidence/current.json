@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "evidence": "acceptance/summary.json",
+  "auxiliary_diagnostic": "auxiliary-diagnostic/binding.json",
+  "next_increment": 8
+}

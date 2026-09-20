@@ -1,0 +1,93 @@
+{
+  "calls": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/v1/models",
+      "headers": {},
+      "timestamp": "2026-09-19T23:22:47.179181+00:00",
+      "status": 200,
+      "response": {
+        "object": "list",
+        "data": [
+          {
+            "id": "Qwen/Qwen3.5-9B",
+            "object": "model",
+            "created": 1789860167,
+            "owned_by": "vllm",
+            "root": "Qwen/Qwen3.5-9B",
+            "parent": null,
+            "max_model_len": 32768,
+            "permission": [
+              {
+                "id": "modelperm-b54ae07bc2a66e24",
+                "object": "model_permission",
+                "created": 1789860167,
+                "allow_create_engine": false,
+                "allow_sampling": true,
+                "allow_logprobs": true,
+                "allow_search_indices": false,
+                "allow_view": true,
+                "allow_fine_tuning": false,
+                "organization": "*",
+                "group": null,
+                "is_blocking": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8001/v1/models",
+      "headers": {},
+      "timestamp": "2026-09-19T23:22:47.183324+00:00",
+      "status": 200,
+      "response": {
+        "object": "list",
+        "data": [
+          {
+            "id": "BAAI/bge-m3",
+            "object": "model",
+            "created": 1789860167,
+            "owned_by": "vllm",
+            "root": "BAAI/bge-m3",
+            "parent": null,
+            "max_model_len": 8192,
+            "permission": [
+              {
+                "id": "modelperm-bcd33d915da10b87",
+                "object": "model_permission",
+                "created": 1789860167,
+                "allow_create_engine": false,
+                "allow_sampling": true,
+                "allow_logprobs": true,
+                "allow_search_indices": false,
+                "allow_view": true,
+                "allow_fine_tuning": false,
+                "organization": "*",
+                "group": null,
+                "is_blocking": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:8531/agents?limit=10",
+      "headers": {
+        "x-client-id": "client-00000000-0000-4000-8000-000000000000",
+        "x-org-id": "org-00000000-0000-4000-8000-000000000000"
+      },
+      "timestamp": "2026-09-19T23:22:47.183980+00:00",
+      "status": 200,
+      "response": []
+    }
+  ],
+  "inference_calls": 0,
+  "embedding_calls": 0,
+  "memory_writes": 0,
+  "note": "Model discovery is not inference or proof of MIRIX provider configuration."
+}

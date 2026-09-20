@@ -1,0 +1,1 @@
+{"receipt":{"kind":"InputReceipt","payload":{"outcome":"ACCEPTED","wait_id":"review"},"version":1},"request":{"kind":"ExternalInput","payload":{"input_type":"text","task_revision":0,"value":"reviewed bounded input","wait_id":"review"},"version":1}}

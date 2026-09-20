@@ -1,0 +1,178 @@
+{
+  "arms": {
+    "hybrid": {
+      "completion": "satisfied",
+      "completion_tokens": 172,
+      "controller_pause_seconds": 1.4811339720035903,
+      "duplicate_request_attempts": 0,
+      "effect_count": 6,
+      "effect_operations": [
+        "procedure/1",
+        "procedure/2",
+        "procedure/3",
+        "procedure/4",
+        "procedure/5",
+        "procedure/6"
+      ],
+      "endpoint": "http://127.0.0.1:8000/v1/chat/completions",
+      "inference_seconds": 2.049474124,
+      "invalid_decisions": 0,
+      "mode": "hybrid",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_calls": 6,
+      "prompt_tokens": 2581,
+      "raw_responses": 6,
+      "semantic_actions": [
+        "REQUEST_HUMAN",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT"
+      ],
+      "status": "MEASURED",
+      "suspension_verified": true,
+      "task_outcome": "FAILED",
+      "wall_minus_controlled_pause_seconds": 4.455196513998089,
+      "wall_seconds": 5.93633048600168
+    },
+    "retry": {
+      "completion": "unsatisfied",
+      "completion_tokens": 308,
+      "controller_pause_seconds": 0,
+      "duplicate_request_attempts": 3,
+      "effect_count": 1,
+      "effect_operations": [
+        "procedure/1"
+      ],
+      "endpoint": "http://127.0.0.1:8000/v1/chat/completions",
+      "inference_seconds": 3.357144522,
+      "invalid_decisions": 3,
+      "mode": "retry",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_calls": 4,
+      "prompt_tokens": 2766,
+      "raw_responses": 4,
+      "semantic_actions": [
+        "REQUEST_HUMAN",
+        "REQUEST_HUMAN",
+        "REQUEST_HUMAN",
+        "REQUEST_HUMAN"
+      ],
+      "status": "MEASURED",
+      "task_outcome": "FAILED",
+      "wall_minus_controlled_pause_seconds": 5.405741201990168,
+      "wall_seconds": 5.405741201990168
+    },
+    "suspend": {
+      "completion": "satisfied",
+      "completion_tokens": 172,
+      "controller_pause_seconds": 1.5553006150148576,
+      "duplicate_request_attempts": 0,
+      "effect_count": 6,
+      "effect_operations": [
+        "procedure/1",
+        "procedure/2",
+        "procedure/3",
+        "procedure/4",
+        "procedure/5",
+        "procedure/6"
+      ],
+      "endpoint": "http://127.0.0.1:8000/v1/chat/completions",
+      "inference_seconds": 2.034261177,
+      "invalid_decisions": 0,
+      "mode": "suspend",
+      "model": "Qwen/Qwen3.5-9B",
+      "model_calls": 6,
+      "prompt_tokens": 4168,
+      "raw_responses": 6,
+      "semantic_actions": [
+        "REQUEST_HUMAN",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT",
+        "PRODUCE_ARTIFACT"
+      ],
+      "status": "MEASURED",
+      "suspension_verified": true,
+      "task_outcome": "FAILED",
+      "wall_minus_controlled_pause_seconds": 4.659381648976705,
+      "wall_seconds": 6.214682263991563
+    }
+  },
+  "baseline_pending_completion_tokens": 231,
+  "baseline_pending_inference_seconds": 2.510636216,
+  "baseline_pending_prompt_tokens": 2073,
+  "choice": {
+    "effect_executed": false,
+    "lowering": {
+      "kind": "CognitiveDecision",
+      "payload": {
+        "next_action": {
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            }
+          },
+          "type": "INVOKE_CAPABILITY"
+        },
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1"
+      },
+      "version": 1
+    },
+    "model_calls": 1,
+    "policy_gate": {
+      "outcome": "allow",
+      "reason": null
+    },
+    "scope": "One live inference on frozen authoritative state; no runtime Task continuation or effect claimed.",
+    "semantic": {
+      "action": "REQUEST_HUMAN",
+      "purpose": "retention_period",
+      "question": "How long should exports be retained?",
+      "response": {
+        "choices": [
+          "30 days",
+          "90 days"
+        ],
+        "kind": "choice"
+      }
+    },
+    "semantic_strategy_selected_by": "Qwen/Qwen3.5-9B",
+    "status": "PASS",
+    "validation": "passed"
+  },
+  "choice_tokens": {
+    "completion_tokens": 77,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens": 619,
+    "prompt_tokens_details": null,
+    "total_tokens": 696
+  },
+  "conclusion": "Durable blocking suspension and hard action projection work; neither demonstrates end-to-end completion. Legal action repetition remains. No architecture adopted.",
+  "invalid_retry_inference_saved_at_pending_state": 3,
+  "total_real_model_calls": 17,
+  "experimental_call_cap_applies_to": [
+    "suspend",
+    "hybrid"
+  ],
+  "retry_terminal_cause": "Existing maximum-attempt rejection of inadmissible semantic decisions"
+}

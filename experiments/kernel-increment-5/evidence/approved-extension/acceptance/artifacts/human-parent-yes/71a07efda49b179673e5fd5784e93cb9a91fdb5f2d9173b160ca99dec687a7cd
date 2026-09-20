@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://human-parent-yes/sha256:0d39b06f6923727ccb9cec7ed59d841531cf7749d316ee1aaf5a263f55fe429a"},"completion_ref":"artifact://human-parent-yes/sha256:43b103667283c8ee534f563810a46634c70e64058b7a919dd184397e19a0ee55","concerns":[],"outcome":"COMPLETED","task_id":"human-parent-yes"},"version":1}

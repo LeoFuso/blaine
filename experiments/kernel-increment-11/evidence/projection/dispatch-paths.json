@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "provider_call_sites": [
+    {
+      "file": "runtime/kernel/frontier.py",
+      "line": 318,
+      "call": "provider.dispatch"
+    }
+  ],
+  "authorization_entry": "runtime.kernel.frontier.authorize requires ProjectedContext",
+  "execution_entry": "runtime.kernel.frontier.invoke checks accepted authority and projected digest before provider.dispatch",
+  "projection_factory": "runtime.kernel.frontier_context.project_context",
+  "current_binding": "isolated synthetic worker only; no installed live frontier path",
+  "raw_or_dict_input": "rejected",
+  "identity_projector": "explicit production hook; no implicit bypass"
+}

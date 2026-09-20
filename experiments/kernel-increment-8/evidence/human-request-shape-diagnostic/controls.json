@@ -1,0 +1,640 @@
+[
+  {
+    "case": "valid",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            }
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            }
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "allow",
+      "reason": null
+    },
+    "expected": "allow",
+    "observed": "allow",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "extra_input_version",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            },
+            "version": 1
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            },
+            "version": 1
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "extra_input_unknown",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            },
+            "unexpected": true
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            },
+            "unexpected": true
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "extra_input_kind",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            },
+            "kind": "CapabilityInput"
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1
+            },
+            "kind": "CapabilityInput"
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "missing_request",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {}
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {}
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "version_only",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "version": 1
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "version": 1
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "null_request",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": null
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": null
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "extra_request_field",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1,
+              "unexpected": true
+            }
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              },
+              "version": 1,
+              "unexpected": true
+            }
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "missing_request_version",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parsed_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": {
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "30 days",
+                  "90 days"
+                ],
+                "origin_task_id": "procedure",
+                "question": "How long should exports be retained?",
+                "request_id": "retention",
+                "revision": 0,
+                "task_id": "procedure"
+              }
+            }
+          }
+        }
+      }
+    },
+    "policy": {
+      "outcome": "deny",
+      "reason": "Invalid object fields"
+    },
+    "expected": "deny",
+    "observed": "deny",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "null_input",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": null
+        }
+      }
+    },
+    "parsed_decision": null,
+    "policy": null,
+    "expected": "adapter_rejected",
+    "observed": "adapter_rejected",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "list_input",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": []
+        }
+      }
+    },
+    "parsed_decision": null,
+    "policy": null,
+    "expected": "adapter_rejected",
+    "observed": "adapter_rejected",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  },
+  {
+    "case": "string_input",
+    "source": "synthetic provider response, not inference",
+    "raw_decision": {
+      "version": 1,
+      "kind": "CognitiveDecision",
+      "payload": {
+        "task_id": "procedure",
+        "task_revision": 0,
+        "turn_id": "procedure/1",
+        "next_action": {
+          "type": "INVOKE_CAPABILITY",
+          "capability": "human.request",
+          "input": "request"
+        }
+      }
+    },
+    "parsed_decision": null,
+    "policy": null,
+    "expected": "adapter_rejected",
+    "observed": "adapter_rejected",
+    "input_unchanged": true,
+    "effect_dispatched": false
+  }
+]

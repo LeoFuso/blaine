@@ -1,0 +1,28 @@
+test_errors_are_protocol_updates (test_acp.Bridge.test_errors_are_protocol_updates) ... ok
+test_status_reads_runtime_without_local_task (test_acp.Bridge.test_status_reads_runtime_without_local_task) ... ok
+test_uncertain_create_preserves_id (test_acp.Bridge.test_uncertain_create_preserves_id) ... ok
+test_multiline_objective_and_signal (test_acp.Commands.test_multiline_objective_and_signal) ... ok
+test_rejects_empty_and_path_injection (test_acp.Commands.test_rejects_empty_and_path_injection) ... ok
+test_matching_record_stops_only_owned_process (test_dev.ProcessOwnership.test_matching_record_stops_only_owned_process) ... ok
+test_stale_record_never_signals_unrelated_process (test_dev.ProcessOwnership.test_stale_record_never_signals_unrelated_process) ... ok
+test_policy_rejects_stale_invalid_and_ineligible_decisions (test_kernel.KernelContracts.test_policy_rejects_stale_invalid_and_ineligible_decisions) ... ok
+test_requirements_do_not_grant_authority (test_kernel.KernelContracts.test_requirements_do_not_grant_authority) ... ok
+test_spawn_is_typed_but_not_executable (test_kernel.KernelContracts.test_spawn_is_typed_but_not_executable) ... ok
+test_strict_versions_fields_and_criteria (test_kernel.KernelContracts.test_strict_versions_fields_and_criteria) ... ok
+test_wait_requires_identifiable_typed_input (test_kernel.KernelContracts.test_wait_requires_identifiable_typed_input) ... ok
+test_artifact_read_preserves_provenance (test_kernel.KernelStorageAndContext.test_artifact_read_preserves_provenance) ... ok
+test_context_is_selective_and_provider_cannot_override_authority (test_kernel.KernelStorageAndContext.test_context_is_selective_and_provider_cannot_override_authority) ... ok
+test_corruption_cannot_complete (test_kernel.KernelStorageAndContext.test_corruption_cannot_complete) ... ok
+test_exact_artifact_replay_and_cross_task_isolation (test_kernel.KernelStorageAndContext.test_exact_artifact_replay_and_cross_task_isolation) ... ok
+test_fixture_effect_is_atomic_and_idempotent (test_kernel.KernelStorageAndContext.test_fixture_effect_is_atomic_and_idempotent) ... ok
+test_missing_wrong_and_exact_evidence (test_kernel.KernelStorageAndContext.test_missing_wrong_and_exact_evidence) ... ok
+test_script_is_effect_free_and_observation_read_is_exact (test_kernel.KernelStorageAndContext.test_script_is_effect_free_and_observation_read_is_exact) ... ok
+test_delay_boundaries (test_task.TaskOperationTests.test_delay_boundaries) ... ok
+test_known_digest_and_word_count (test_task.TaskOperationTests.test_known_digest_and_word_count) ... ok
+test_preserves_objective_and_handles_unicode_whitespace (test_task.TaskOperationTests.test_preserves_objective_and_handles_unicode_whitespace) ... ok
+test_rejects_bad_input_before_work (test_task.TaskOperationTests.test_rejects_bad_input_before_work) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.110s
+
+OK

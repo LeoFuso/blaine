@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.read","input":{"ref":"artifact://absent/sha256:1366a1cf4f38a895dfc067cf722012619e1a37a2b19d7d7b9941a16b3a79a445"},"type":"INVOKE_CAPABILITY"},"task_id":"absent","task_revision":1,"turn_id":"absent/2"},"version":1}

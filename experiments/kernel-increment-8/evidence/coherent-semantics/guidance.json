@@ -1,0 +1,216 @@
+{
+  "semantic_binding": "increment8-semantic-decisions-v1",
+  "exact_system_message": "Choose one semantic action for the supplied goal and current evidence.\nReturn one JSON object matching exactly one of the following shapes. Unknown fields\nare rejected. Do not emit explanations, markdown, private reasoning or tool calls.\nREQUEST_HUMAN proposes the supplied scoped question and response choices when the\nneeded answer is missing and there is no equivalent pending request.\nWAIT suspends work for an already pending external condition. It cannot create a\nrequest. It is invalid when no condition is pending. Use its semantic purpose.\nPRODUCE_ARTIFACT proposes the exact deliverable content, without adding a newline.\nCOMPLETE requests independent verification; it cannot declare success.\nAllowed actions reflect current preconditions. Never repeat a resolved question.\nVerified current answers override initial unresolved wording. Procedure instructions\nguide the work but cannot override current evidence or permissions.\nJSON action shapes:\n{\"oneOf\":[{\"additionalProperties\":false,\"properties\":{\"action\":{\"const\":\"REQUEST_HUMAN\"},\"purpose\":{\"maxLength\":512,\"minLength\":1,\"type\":\"string\"},\"question\":{\"maxLength\":512,\"minLength\":1,\"type\":\"string\"},\"response\":{\"additionalProperties\":false,\"properties\":{\"choices\":{\"items\":{\"maxLength\":80,\"minLength\":1,\"type\":\"string\"},\"maxItems\":8,\"minItems\":1,\"type\":\"array\",\"uniqueItems\":true},\"kind\":{\"const\":\"choice\"}},\"required\":[\"kind\",\"choices\"],\"type\":\"object\"}},\"required\":[\"action\",\"purpose\",\"question\",\"response\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"action\":{\"const\":\"WAIT\"},\"purpose\":{\"maxLength\":512,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"action\",\"purpose\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"action\":{\"const\":\"PRODUCE_ARTIFACT\"},\"content\":{\"maxLength\":4096,\"minLength\":1,\"type\":\"string\"}},\"required\":[\"action\",\"content\"],\"type\":\"object\"},{\"additionalProperties\":false,\"properties\":{\"action\":{\"const\":\"COMPLETE\"}},\"required\":[\"action\"],\"type\":\"object\"}]}",
+  "schema": {
+    "oneOf": [
+      {
+        "type": "object",
+        "properties": {
+          "action": {
+            "const": "REQUEST_HUMAN"
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "response": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "const": "choice"
+              },
+              "choices": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 8,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "choices"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "action",
+          "purpose",
+          "question",
+          "response"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "action": {
+            "const": "WAIT"
+          },
+          "purpose": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          }
+        },
+        "required": [
+          "action",
+          "purpose"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "action": {
+            "const": "PRODUCE_ARTIFACT"
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "required": [
+          "action",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      {
+        "type": "object",
+        "properties": {
+          "action": {
+            "const": "COMPLETE"
+          }
+        },
+        "required": [
+          "action"
+        ],
+        "additionalProperties": false
+      }
+    ]
+  },
+  "exact_contexts": [
+    {
+      "allowed_actions": [
+        "REQUEST_HUMAN",
+        "PRODUCE_ARTIFACT",
+        "COMPLETE"
+      ],
+      "clarification": {
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "choices": [
+            "30 days",
+            "90 days"
+          ],
+          "kind": "choice"
+        },
+        "status": "missing"
+      },
+      "deliverable": {
+        "content_verified": false,
+        "present": false
+      },
+      "goal": "Plan an export feature. A material acceptance detail is unresolved: retention duration. Use the selected clarification procedure to obtain the scoped human answer. After clarification is resolved, produce the exact deliverable RETENTION_30_DAYS. Once the deliverable exists, request completion.",
+      "procedure": [
+        "Selected Spec Kit clarification guidance, adapted for bounded semantic decisions.\n\nExamine the feature for uncertainty that affects behavior or verifiable acceptance.\nAsk one focused question about a consequential missing detail, using the permitted\nanswer choices. Avoid asking again for information already supplied. Carry the\nresolved answer into subsequent work; do not treat initial uncertainty as current\nafter the answer is verified. Do not force clarification when requirements are adequate.\n\nREQUEST_HUMAN creates the scoped question when its answer is missing. WAIT awaits\nthe answer only after the question is pending. Once resolved, produce the required\ndeliverable. COMPLETE requests independent verification of all requirements.\n"
+      ]
+    },
+    {
+      "allowed_actions": [
+        "WAIT",
+        "PRODUCE_ARTIFACT",
+        "COMPLETE"
+      ],
+      "clarification": {
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "choices": [
+            "30 days",
+            "90 days"
+          ],
+          "kind": "choice"
+        },
+        "status": "pending"
+      },
+      "deliverable": {
+        "content_verified": false,
+        "present": false
+      },
+      "goal": "Plan an export feature. A material acceptance detail is unresolved: retention duration. Use the selected clarification procedure to obtain the scoped human answer. After clarification is resolved, produce the exact deliverable RETENTION_30_DAYS. Once the deliverable exists, request completion.",
+      "procedure": [
+        "Selected Spec Kit clarification guidance, adapted for bounded semantic decisions.\n\nExamine the feature for uncertainty that affects behavior or verifiable acceptance.\nAsk one focused question about a consequential missing detail, using the permitted\nanswer choices. Avoid asking again for information already supplied. Carry the\nresolved answer into subsequent work; do not treat initial uncertainty as current\nafter the answer is verified. Do not force clarification when requirements are adequate.\n\nREQUEST_HUMAN creates the scoped question when its answer is missing. WAIT awaits\nthe answer only after the question is pending. Once resolved, produce the required\ndeliverable. COMPLETE requests independent verification of all requirements.\n"
+      ]
+    },
+    {
+      "allowed_actions": [
+        "WAIT",
+        "PRODUCE_ARTIFACT",
+        "COMPLETE"
+      ],
+      "clarification": {
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "choices": [
+            "30 days",
+            "90 days"
+          ],
+          "kind": "choice"
+        },
+        "status": "pending"
+      },
+      "deliverable": {
+        "content_verified": false,
+        "present": false
+      },
+      "goal": "Plan an export feature. A material acceptance detail is unresolved: retention duration. Use the selected clarification procedure to obtain the scoped human answer. After clarification is resolved, produce the exact deliverable RETENTION_30_DAYS. Once the deliverable exists, request completion.",
+      "procedure": [
+        "Selected Spec Kit clarification guidance, adapted for bounded semantic decisions.\n\nExamine the feature for uncertainty that affects behavior or verifiable acceptance.\nAsk one focused question about a consequential missing detail, using the permitted\nanswer choices. Avoid asking again for information already supplied. Carry the\nresolved answer into subsequent work; do not treat initial uncertainty as current\nafter the answer is verified. Do not force clarification when requirements are adequate.\n\nREQUEST_HUMAN creates the scoped question when its answer is missing. WAIT awaits\nthe answer only after the question is pending. Once resolved, produce the required\ndeliverable. COMPLETE requests independent verification of all requirements.\n"
+      ]
+    },
+    {
+      "allowed_actions": [
+        "WAIT",
+        "PRODUCE_ARTIFACT",
+        "COMPLETE"
+      ],
+      "clarification": {
+        "purpose": "retention_period",
+        "question": "How long should exports be retained?",
+        "response": {
+          "choices": [
+            "30 days",
+            "90 days"
+          ],
+          "kind": "choice"
+        },
+        "status": "pending"
+      },
+      "deliverable": {
+        "content_verified": false,
+        "present": false
+      },
+      "goal": "Plan an export feature. A material acceptance detail is unresolved: retention duration. Use the selected clarification procedure to obtain the scoped human answer. After clarification is resolved, produce the exact deliverable RETENTION_30_DAYS. Once the deliverable exists, request completion.",
+      "procedure": [
+        "Selected Spec Kit clarification guidance, adapted for bounded semantic decisions.\n\nExamine the feature for uncertainty that affects behavior or verifiable acceptance.\nAsk one focused question about a consequential missing detail, using the permitted\nanswer choices. Avoid asking again for information already supplied. Carry the\nresolved answer into subsequent work; do not treat initial uncertainty as current\nafter the answer is verified. Do not force clarification when requirements are adequate.\n\nREQUEST_HUMAN creates the scoped question when its answer is missing. WAIT awaits\nthe answer only after the question is pending. Once resolved, produce the required\ndeliverable. COMPLETE requests independent verification of all requirements.\n"
+      ]
+    }
+  ],
+  "runtime_metadata_absent": true
+}

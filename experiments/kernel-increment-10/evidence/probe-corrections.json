@@ -1,0 +1,6 @@
+{
+  "initial_offline_verifier_error": "Used TaskState active_specialist field name against CognitiveTurn; corrected to existing specialist field after checking captured packet",
+  "live_semantics_changed": false,
+  "acceptance_criteria_changed": false,
+  "final_probe_reason": "Carry available worker attempt reference and compatibility verifier evaluation"
+}

@@ -1,0 +1,1 @@
+{"attempt_id":"worker-711014a2a43d496a90e0ced906995407","content":"","exit_code":-9,"normalization":"strip terminal whitespace; raw public stdout retained in worker evidence","operation_id":"worker-task/2","outcome":"interrupted","public_stdout":"","stderr_bytes":0}

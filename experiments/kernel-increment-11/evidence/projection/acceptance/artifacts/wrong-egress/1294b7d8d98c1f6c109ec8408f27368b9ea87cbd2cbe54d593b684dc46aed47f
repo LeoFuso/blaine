@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://wrong-egress/sha256:69dda0b13a4388599708e451e5b98ed358b7d6d44396adf0d0262532fb34d955"},"type":"INVOKE_CAPABILITY"},"task_id":"wrong-egress","task_revision":1,"turn_id":"wrong-egress/2"},"version":1}

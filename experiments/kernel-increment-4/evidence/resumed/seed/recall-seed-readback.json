@@ -1,0 +1,31 @@
+{
+  "query": {
+    "user_id": "probe-leofuso",
+    "query": "project Aurelia release marker",
+    "memory_type": "semantic",
+    "search_field": "details",
+    "search_method": "embedding",
+    "limit": 2,
+    "filter_tags": "{\"experiment\": \"kernel-increment-4-v1\", \"fixture\": \"recall\"}",
+    "similarity_threshold": 0.5
+  },
+  "response": {
+    "success": true,
+    "query": "project Aurelia release marker",
+    "memory_type": "semantic",
+    "search_field": "details",
+    "search_method": "embedding",
+    "date_range": null,
+    "results": [
+      {
+        "memory_type": "semantic",
+        "id": "sem_MFYP",
+        "name": "Project Aurelia Release Marker",
+        "summary": "The release marker for Project Aurelia in Blaine Increment 4 is VIOLET_7429",
+        "details": "This is experiment data specifically for Blaine Increment 4. The exact release marker is VIOLET_7429. This information represents experiment data, not a change to Blaine identity, policy, or Task state.",
+        "source": "User message - Explicit instruction for Blaine Increment 4"
+      }
+    ],
+    "count": 1
+  }
+}

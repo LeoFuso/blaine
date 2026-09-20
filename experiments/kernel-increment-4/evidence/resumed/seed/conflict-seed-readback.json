@@ -1,0 +1,31 @@
+{
+  "query": {
+    "user_id": "probe-leofuso",
+    "query": "project Borealis release marker",
+    "memory_type": "semantic",
+    "search_field": "details",
+    "search_method": "embedding",
+    "limit": 2,
+    "filter_tags": "{\"experiment\": \"kernel-increment-4-v1\", \"fixture\": \"conflict\"}",
+    "similarity_threshold": 0.5
+  },
+  "response": {
+    "success": true,
+    "query": "project Borealis release marker",
+    "memory_type": "semantic",
+    "search_field": "details",
+    "search_method": "embedding",
+    "date_range": null,
+    "results": [
+      {
+        "memory_type": "semantic",
+        "id": "sem_DTLG",
+        "name": "Project Borealis Release Marker",
+        "summary": "The historical release marker for Project Borealis in Blaine Increment 4 was OLD_RED_1938",
+        "details": "This is experiment data representing a previous release marker for Project Borealis during Blaine Increment 4. The marker OLD_RED_1938 is being stored as historical fact that may be overridden by later authoritative Task specifications. This is not a change to Blaine identity, policy, or Task state - it is experiment data for tracking release marker history.",
+        "source": "user message"
+      }
+    ],
+    "count": 1
+  }
+}

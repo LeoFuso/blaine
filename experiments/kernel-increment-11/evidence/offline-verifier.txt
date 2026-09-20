@@ -1,0 +1,254 @@
+{
+  "status": "PASS",
+  "increment": 11,
+  "scope": "isolated synthetic authority proof; not frontier inference",
+  "cases": [
+    {
+      "case": "approval",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "approval_required",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "authorized",
+      "status": "PASS",
+      "provider_calls": 1,
+      "reason_category": "admitted",
+      "final_budget": {
+        "cost_charged_microusd": 100,
+        "effects": 1,
+        "invocations": 1,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 50
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "budget",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "budget_exhausted",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 1,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "deadline",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "deadline_expired",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "disabled",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "cloud_disabled",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "not-executed",
+      "status": "PASS",
+      "provider_calls": 1,
+      "reason_category": "admitted",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 1,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "read-escalation",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "scope_escalation",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "repeat",
+      "status": "PASS",
+      "provider_calls": 1,
+      "reason_category": "budget_exhausted",
+      "final_budget": {
+        "cost_charged_microusd": 100,
+        "effects": 1,
+        "invocations": 1,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 50
+      },
+      "independent_verifier": "satisfied",
+      "events": 26
+    },
+    {
+      "case": "runtime",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "runtime_limit",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "timeout",
+      "status": "PASS",
+      "provider_calls": 1,
+      "reason_category": "admitted",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 1,
+        "reserved_cost_microusd": 100,
+        "reserved_effects": 1,
+        "reserved_tokens": 50,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "write-escalation",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "scope_escalation",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "wrong-egress",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "egress_denied",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "wrong-model",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "model_mismatch",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    },
+    {
+      "case": "wrong-provider",
+      "status": "PASS",
+      "provider_calls": 0,
+      "reason_category": "provider_mismatch",
+      "final_budget": {
+        "cost_charged_microusd": 0,
+        "effects": 0,
+        "invocations": 0,
+        "reserved_cost_microusd": 0,
+        "reserved_effects": 0,
+        "reserved_tokens": 0,
+        "tokens_charged": 0
+      },
+      "independent_verifier": "satisfied",
+      "events": 17
+    }
+  ],
+  "provider_invocations": 4,
+  "executed_synthetic_effects": 2,
+  "cloud_inference_calls": 0,
+  "events": 247,
+  "same_authorized_request_recovered": true,
+  "committed_effect_not_reexecuted": true,
+  "budget_settled_once_after_restart": true,
+  "denied_effect_budget_unchanged": true,
+  "next": "STOP before real provider call; Increment 12 not started"
+}

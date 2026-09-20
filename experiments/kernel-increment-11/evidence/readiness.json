@@ -1,0 +1,42 @@
+{
+  "status": "LIVE_UNVERIFIED_NOT_AUTHORIZED",
+  "candidate": {
+    "executable": "/home/leofuso/.local/bin/codex",
+    "version": "0.155.1",
+    "configured_model": "gpt-6-astra",
+    "provider": "OpenAI candidate; effective binding not established",
+    "actual_endpoint": "UNVERIFIED; authentication path not inspected"
+  },
+  "proven_non_secret_controls": [
+    "CLI --model",
+    "CLI --config overrides",
+    "read-only sandbox option",
+    "ephemeral option"
+  ],
+  "not_proven": [
+    "exact provider destination including auxiliary traffic",
+    "one invocation equals one model request",
+    "total token and monetary enforcement",
+    "remote effect idempotency after response loss",
+    "authentication availability"
+  ],
+  "authorization_required": [
+    "Task identity",
+    "approved harness/provider/model",
+    "exact destination",
+    "exact context artifact digest",
+    "read/write scope",
+    "max invocation/effect counts",
+    "token and cost ceilings",
+    "deadline and runtime limit",
+    "scoped approval"
+  ],
+  "credentials_inspected": false,
+  "cloud_calls": 0,
+  "configuration_changed": false,
+  "official_sources": [
+    "https://developers.openai.com/es-419/docs/config-file/config-basic",
+    "https://developers.openai.com/es-419/docs/config-file/config-advanced"
+  ],
+  "next": "Human binding/authority decision; prove missing adapter constraints before first live call; no Increment 12"
+}

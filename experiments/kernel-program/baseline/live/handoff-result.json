@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://handoff/sha256:19ae190ae096908c3a11a67b79a2081378598d54b93bc3090d70759a99dd7c83"},"completion_ref":"artifact://handoff/sha256:282a8b62c886ee72412ca6649771bc51bac192aee9bc5be94c4f79a28100250d","concerns":[],"outcome":"COMPLETED","task_id":"handoff"},"version":1}

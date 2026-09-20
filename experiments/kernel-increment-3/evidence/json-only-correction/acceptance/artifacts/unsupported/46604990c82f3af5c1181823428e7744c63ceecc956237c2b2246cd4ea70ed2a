@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{},"completion_ref":null,"concerns":["Execution stopped: ValueError('Invalid model CognitiveDecision')"],"outcome":"FAILED","task_id":"unsupported"},"version":1}

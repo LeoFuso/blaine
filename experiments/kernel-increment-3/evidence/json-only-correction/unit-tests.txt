@@ -1,0 +1,10 @@
+test_input_budget_and_local_endpoint_enforced (test_kernel_model.ModelBoundary.test_input_budget_and_local_endpoint_enforced) ... ok
+test_malformed_unknown_stale_and_native_tools_never_return_decisions (test_kernel_model.ModelBoundary.test_malformed_unknown_stale_and_native_tools_never_return_decisions) ... ok
+test_only_validated_decision_and_bounded_packet_cross_boundary (test_kernel_model.ModelBoundary.test_only_validated_decision_and_bounded_packet_cross_boundary) ... ok
+test_raw_invoke_is_preserved_without_complete_fallback (test_kernel_model.ModelBoundary.test_raw_invoke_is_preserved_without_complete_fallback) ... ok
+test_schema_keeps_five_actions (test_kernel_model.ModelBoundary.test_schema_keeps_five_actions) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.002s
+
+OK

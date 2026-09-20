@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""Independent offline gate: provider records, Restate journal, events and verifier."""
+from collections import Counter
+import json
+from pathlib import Path
+import sys
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+from runtime.kernel.artifacts import ArtifactStore
+from runtime.kernel.contracts import encode,validate_spec
+from runtime.kernel.events import validate_event
+from runtime.kernel.execution import evaluate
+
+
+def verify(root):
+    def read(name):return json.loads((root/(name+'.json')).read_text())
+    def rows(name):return [json.loads(x) for x in (root/(name+'.jsonl')).read_text().splitlines()]
+    def results(name):
+        commands={};values={}
+        for row in read(name)['rows']:
+            data=json.loads(row['entry_json'])
+            if row['entry_type']=='Command: Run':commands[data['Command']['Run']['completion_id']]=row['name']
+            elif row['entry_type']=='Notification: Run':
+                item=data['Notification']['Completion']['Run']
+                if 'Success' in item['result']:
+                    raw=bytes(item['result']['Success'])
+                    values[item['completion_id']]=json.loads(raw) if raw else None
+        return {commands[k]:v for k,v in values.items() if k in commands}
+    def states(name,key):
+        records=[]
+        for row in read(name)['rows']:
+            if row['entry_type']=='Command: SetState':
+                entry=json.loads(row['entry_json'])['Command']['SetState']
+                if entry['key']==key:records.append(json.loads(bytes(entry['value'])))
+        return records
+    fixtures=read('fixtures');calls=rows('provider-calls');policies=rows('policy');settlements=rows('settlements')
+    events=rows('events');store=ArtifactStore(root/'artifacts');checks=[]
+    assert read('execution')['status']=='EXECUTED_PENDING_INDEPENDENT_VERIFICATION'
+    counts=Counter(c['request']['task_id'] for c in calls)
+    assert counts=={'authorized':1,'repeat':1,'not-executed':1,'timeout':1},counts
+    assert len({c['request']['operation_id'] for c in calls})==len(calls)
+    for call in calls:
+        request=call['request'];admitted=next(p for p in policies if p['operation_id']==request['operation_id'])
+        assert admitted['gate']=={'outcome':'allow','reason_category':'admitted'}
+        assert request==admitted['authorized']
+        grant=fixtures[request['task_id']]['authority']
+        for key in ('task_id','worker_class','provider','model','destination','context_ref'):
+            assert request[key]==grant[key]
+        assert set(request['read_scope'])<=set(grant['read_scope']) and set(request['write_scope'])<=set(grant['write_scope'])
+        assert 'approval_ref' not in request and 'budget' not in request
+        assert request['context']==store.read(request['task_id'],request['context_ref']).decode()
+    for case,fixture in fixtures.items():
+        state=read(case+'-state');result=read(case+'-result');journal=results(case+'-journal')
+        assert result==store.read_json(case,state['result_ref'])
+        assert evaluate(validate_spec(fixture['spec']),state,store)['payload']['outcome']=='satisfied'
+        assert state['lifecycle']==result['payload']['outcome']=='COMPLETED'
+        assert store.read_json(case,state['artifacts']['report'])==fixture['expected']
+        case_policies=[p for p in policies if p['task_id']==case]
+        assert len(case_policies)==(2 if case=='repeat' else 1)
+        for policy in case_policies:
+            i=policy['operation_id'].rsplit('/',1)[1]
+            assert journal['frontier-policy/'+i].startswith('artifact://'+case+'/sha256:')
+            if policy['gate']['outcome']=='deny':
+                assert policy['authorized'] is None and policy['budget_before']==policy['budget_reserved']
+                assert not any(c['request']['operation_id']==policy['operation_id'] for c in calls)
+        final=[x for x in settlements if x['task_id']==case][-1]['budget']
+        assert states(case+'-journal','frontier-budget')[-1]==final
+        assert states(case+'-journal','frontier-authority')==[fixture['authority']]
+        if case in ('authorized','repeat'):
+            assert final['invocations']==final['effects']==1 and final['tokens_charged']==50 and final['cost_charged_microusd']==100
+            assert final['reserved_effects']==0
+        elif case=='not-executed':
+            assert final['invocations']==1 and final['effects']==final['tokens_charged']==final['cost_charged_microusd']==final['reserved_effects']==0
+        elif case=='timeout':
+            assert final['invocations']==final['reserved_effects']==1 and final['effects']==final['tokens_charged']==0
+            assert final['reserved_tokens']==50 and final['reserved_cost_microusd']==100
+        else:assert final==fixture['initial_budget']
+        task_events=[e for e in events if e['task_id']==case];known={e['event_id'] for e in task_events}
+        assert len(known)==len(task_events) and len({e['run_id'] for e in task_events})==1
+        for event in task_events:
+            validate_event(event)
+            if 'causation_event_id' in event:assert event['causation_event_id'] in known
+            for ref in event['payload_refs']:store.read(case,ref['ref'])
+        gate_events=[e for e in task_events if e['step_id'].startswith('frontier/policy/')]
+        assert len(gate_events)==len(case_policies)
+        for event,policy in zip(gate_events,case_policies):
+            evidence=store.read_json(case,event['payload_refs'][0]['ref'])
+            assert evidence['gate']==policy['gate'] and event['outcome']==policy['gate']['outcome']
+        assert task_events[-1]['event_type']=='completion.finished'
+        checks.append({'case':case,'status':'PASS','provider_calls':counts[case],'reason_category':case_policies[-1]['gate']['reason_category'],
+            'final_budget':final,'independent_verifier':'satisfied','events':len(task_events)})
+    before=results('authorized-before-restart');after=results('authorized-journal')
+    assert before['capability/2']==after['capability/2']
+    held=states('authorized-before-restart','frontier-budget')[-1]
+    assert held['reserved_effects']==1 and held['effects']==0
+    assert states('authorized-journal','frontier-budget')[0]==held
+    assert 'frontier-audit-settlement/2' not in before and 'frontier-audit-settlement/2' in after
+    assert len([x for x in settlements if x['task_id']=='authorized'])==1
+    assert read('recovery')['killed_pid']!=read('recovery')['replacement_pid']
+    assert read('processes')['all_stopped']
+    return {'status':'PASS','increment':11,'scope':'isolated synthetic authority proof; not frontier inference',
+        'cases':checks,'provider_invocations':len(calls),'executed_synthetic_effects':2,'cloud_inference_calls':0,
+        'events':len(events),'same_authorized_request_recovered':True,'committed_effect_not_reexecuted':True,
+        'budget_settled_once_after_restart':True,'denied_effect_budget_unchanged':True,
+        'next':'STOP before real provider call; Increment 12 not started'}
+
+if __name__=='__main__':
+    root=Path(sys.argv[1]);report=verify(root)
+    (root/'verification.json').write_bytes(encode(report)+b'\n');print(json.dumps(report,indent=2))

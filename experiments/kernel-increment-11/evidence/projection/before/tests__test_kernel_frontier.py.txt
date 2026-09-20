@@ -1,0 +1,155 @@
+"""Frontier v2: authority, suitability and accounting are independent."""
+from dataclasses import asdict, replace, FrozenInstanceError
+import hashlib
+import time
+import unittest
+from runtime.kernel.contracts import message
+from runtime.kernel.frontier import (FrontierAuthority, WorkerBinding, DispatchBudget, GlobalGuardrails,
+    NativeLimits, authorize, reserve, settle, invoke, record_usage, proposal_message, authority_from_json)
+from runtime.kernel.worker_routing import Workload, ScriptedClassifier, select
+
+
+def fixture():
+    context='Selected public fixture.'; ref='artifact://case/sha256:'+hashlib.sha256(context.encode()).hexdigest()
+    binding=WorkerBinding('economical','codex-fixture','synthetic','economical-fixture','https://frontier.invalid/v1',True,('code',),2)
+    authority=FrontierAuthority(2,'case',(binding,),True,True,'approval-fixture',ref,('source-a',),(),1,int(time.time())+1000,500)
+    proposal=proposal_message({'task_id':'case','binding_id':binding.binding_id,'provider':binding.provider,'model':binding.model,
+        'destination':binding.destination,'context_ref':ref,'read_scope':['source-a'],'write_scope':[],'runtime_ms':100,
+        'usage_hints':{'input_tokens':1,'output_tokens':1}})
+    state={'task_id':'case','revision':0,'iteration':1,'decision_id':'case/1','lifecycle':'RUNNING','artifacts':{'packet':'packet-ref'}}
+    spec={'capabilities':['worker.run'],'autonomy':{'allowed':['worker.run']}}
+    decision=message('CognitiveDecision',{'task_id':'case','task_revision':0,'turn_id':'case/1','next_action':{'type':'INVOKE_CAPABILITY','capability':'worker.run','input':{'packet_ref':'packet-ref','artifact':'result'}}})
+    return authority,proposal,dict(guardrails=GlobalGuardrails(),state=state,spec=spec,decision=decision,now=time.time(),context=context)
+
+
+class Provider:
+    def __init__(self): self.calls=[]
+    def dispatch(self,request):
+        self.calls.append(request)
+        return {'status':'executed','content':'fixture result','worker_session_id':'session-1',
+            'producer':{k:getattr(request.binding,k) for k in ('worker_family','provider','model','destination')},
+            'usage':{'model_calls':3,'input_tokens':120,'output_tokens':30,'cost_microusd':7,
+                     'model_call_ids':['synthetic-call-1','synthetic-call-2','synthetic-call-3']}}
+
+
+class FrontierTests(unittest.TestCase):
+    def test_authorized_immutable_request_and_v2_codec(self):
+        a,p,kw=fixture();gate,r=authorize(p,a,DispatchBudget(),**kw)
+        self.assertEqual(gate['outcome'],'allow'); self.assertEqual(r.binding,a.bindings[0])
+        with self.assertRaises(FrozenInstanceError): r.binding=a.bindings[0]
+        self.assertNotIn('budget',asdict(r)); self.assertNotIn('approval_ref',asdict(r))
+        import json
+        self.assertEqual(authority_from_json(json.loads(json.dumps(asdict(a)))),a)
+        with self.assertRaises(ValueError): replace(a,version=1)
+
+    def test_denial_matrix_no_provider(self):
+        a,p,kw=fixture(); provider=Provider()
+        for key,value,reason in [('provider','other','provider_mismatch'),('model','other','model_mismatch'),
+                ('binding_id','other','binding_denied'),('destination','https://other.invalid','egress_denied'),
+                ('write_scope',['source-a'],'scope_escalation'),('read_scope',['extra'],'scope_escalation'),
+                ('task_id','other','task_mismatch'),('runtime_ms',501,'runtime_limit')]:
+            gate,r=authorize(proposal_message(p['payload']|{key:value}),a,DispatchBudget(),**kw)
+            self.assertEqual(gate['reason_category'],reason); self.assertIsNone(r)
+            if r: invoke(r,provider,guardrails=kw['guardrails'])
+        self.assertEqual(provider.calls,[])
+        for grant,reason in [(replace(a,frontier_permitted=False),'cloud_disabled'),(replace(a,approval_ref=None),'approval_required'),
+                             (replace(a,deadline_unix=1),'deadline_expired'),(replace(a,max_dispatches=0),'dispatch_budget_exhausted')]:
+            self.assertEqual(authorize(p,grant,DispatchBudget(),**kw)[0]['reason_category'],reason)
+
+    def test_global_guardrails_are_separate_and_rechecked(self):
+        a,p,kw=fixture(); _,r=authorize(p,a,DispatchBudget(),**kw); provider=Provider()
+        for g in (GlobalGuardrails(frontier_enabled=False),GlobalGuardrails(kill_switch=True),
+                  GlobalGuardrails(account_status='exhausted'),GlobalGuardrails(account_status='unknown')):
+            self.assertEqual(authorize(p,a,DispatchBudget(),**(kw|{'guardrails':g}))[0]['outcome'],'deny')
+            self.assertFalse(invoke(r,provider,guardrails=g)['provider_invoked'])
+        self.assertFalse(provider.calls)
+
+    def test_closed_proposal_and_existing_policy(self):
+        a,p,kw=fixture()
+        for key in ('budget','frontier_permitted','approval_ref','worker_dispatch_id','version','max_tokens'):
+            self.assertEqual(authorize(proposal_message(p['payload']|{key:999}),a,DispatchBudget(),**kw)[0]['reason_category'],'invalid_proposal')
+        self.assertEqual(authorize(p,a,DispatchBudget(),**(kw|{'context':'different'}))[0]['reason_category'],'context_denied')
+        kw['spec']['autonomy']['allowed']=[]
+        self.assertEqual(authorize(p,a,DispatchBudget(),**kw)[0]['reason_category'],'task_policy_denied')
+
+    def test_observation_is_not_enforcement_or_pricing(self):
+        a,p,kw=fixture(); _,r=authorize(p,a,DispatchBudget(),**kw); provider=Provider()
+        result=invoke(r,provider,guardrails=kw['guardrails'])
+        self.assertEqual(result['status'],'executed') # three model calls, tokens above hints
+        used=settle(reserve(DispatchBudget(),r),r,result['status'])
+        self.assertEqual(used.dispatches,1); self.assertEqual(used.completed_effects,1)
+        self.assertEqual(result['usage']['model_calls'],3)
+        ledger=record_usage({},r,result)
+        self.assertEqual(record_usage(ledger,r,result),ledger)
+        self.assertEqual(ledger[r.worker_dispatch_id]['accounting_mode'],'observed_only')
+        self.assertNotIn('tokens',asdict(used))
+        self.assertEqual(ledger[r.worker_dispatch_id]['usage']['cost_microusd'],7) # supplied fixture, not pricing
+
+    def test_optional_native_guarantees_require_binding_support(self):
+        a,p,kw=fixture(); a=replace(a,required_native_limits=NativeLimits(output_tokens=2))
+        self.assertEqual(authorize(p,a,DispatchBudget(),**kw)[0]['reason_category'],'required_native_control_unavailable')
+        a=replace(a,bindings=(replace(a.bindings[0],native_controls=('output_tokens',)),))
+        _,r=authorize(p,a,DispatchBudget(),**kw)
+        self.assertEqual(invoke(r,Provider(),guardrails=kw['guardrails'])['reason_category'],'native_limit_violation')
+
+    def test_idempotent_slots_settlement_and_unknown_hold(self):
+        a,p,kw=fixture(); _,r=authorize(p,a,DispatchBudget(),**kw)
+        held=reserve(DispatchBudget(),r); self.assertEqual(reserve(held,r),held)
+        self.assertEqual(settle(held,r,'unknown'),held)
+        used=settle(held,r,'executed'); self.assertEqual(settle(used,r,'executed'),used)
+        self.assertEqual(authorize(p,a,used,**kw)[0]['reason_category'],'dispatch_budget_exhausted')
+        self.assertEqual(settle(held,r,'not_executed').completed_effects,0)
+        self.assertEqual(settle(held,r,'not_executed').dispatches,1)
+
+    def test_invalid_or_unknown_provider_result_no_retry(self):
+        a,p,kw=fixture(); _,r=authorize(p,a,DispatchBudget(),**kw)
+        class Bad(Provider):
+            def dispatch(self,r): self.calls.append(r); return {'budget':999}
+        bad=Bad(); self.assertEqual(invoke(r,bad,guardrails=kw['guardrails'])['status'],'unknown'); self.assertEqual(len(bad.calls),1)
+        self.assertFalse(invoke(replace(r,deadline_unix=0),bad,guardrails=kw['guardrails'])['provider_invoked'])
+        with self.assertRaises(ValueError): invoke(p,bad,guardrails=kw['guardrails'])
+
+    def test_strict_authority_and_budget(self):
+        a,_,_=fixture()
+        for changes in ({'version':True},{'frontier_permitted':1},{'max_dispatches':-1},{'read_scope':('*',)}):
+            with self.assertRaises(ValueError): replace(a,**changes)
+        with self.assertRaises(ValueError): replace(a.bindings[0],destination='https://user:pass@frontier.invalid')
+        with self.assertRaises(ValueError): DispatchBudget(dispatches=1)
+
+    def test_observed_binding_mismatch_is_unknown_not_success(self):
+        a,p,kw=fixture(); _,r=authorize(p,a,DispatchBudget(),**kw)
+        class Wrong(Provider):
+            def dispatch(self,request):
+                result=super().dispatch(request)
+                result['producer']['model']='unapproved'
+                return result
+        provider=Wrong(); result=invoke(r,provider,guardrails=kw['guardrails'])
+        self.assertEqual(result['status'],'unknown'); self.assertEqual(len(provider.calls),1)
+        self.assertEqual(result['reason_category'],'binding_mismatch')
+        self.assertEqual(result['usage']['model_calls'],3)
+        ledger=record_usage({},r,result)
+        self.assertEqual(ledger[r.worker_dispatch_id]['observed_producer']['model'],'unapproved')
+        with self.assertRaises(ValueError): record_usage(ledger,r,result|{'runtime_ms':9999})
+
+    def test_routing_suitability_never_authorizes(self):
+        a,p,kw=fixture(); economical=a.bindings[0]
+        local=WorkerBinding('local','goose-fixture','local-vllm','qwen-fixture','http://127.0.0.1:8000/v1',False,('code',),1)
+        strong=replace(economical,binding_id='strong',model='astra-fixture',quality=3)
+        specialist=replace(strong,binding_id='specialist',worker_family='junie-fixture',provider='other-fixture',model='claude-fixture')
+        bindings=(local,economical,strong,specialist); a=replace(a,bindings=bindings)
+        gates={}
+        for b in bindings:
+            proposal=proposal_message(p['payload']|{k:getattr(b,k) for k in ('binding_id','provider','model','destination')})
+            gates[b.binding_id]=authorize(proposal,a,DispatchBudget(),**kw)[0]
+        classifier=ScriptedClassifier({'local':0,'economical':1,'strong':2,'specialist':3})
+        result=select(Workload(('code',),2),bindings,classifier,gates)
+        self.assertEqual(result['selected_binding'],'economical')
+        self.assertEqual([c['assessment']['suitability'] for c in result['candidates']],['UNDERPOWERED','JUST_RIGHT','OVERKILL','OVERKILL'])
+        self.assertEqual(gates['strong']['outcome'],'allow')
+        self.assertEqual(select(Workload(('code',),3),bindings,classifier,gates)['selected_binding'],'strong')
+        denied={k:{'outcome':'deny','reason_category':'fixture'} for k in gates}
+        self.assertEqual(select(Workload(('code',),2),bindings,classifier,denied)['outcome'],'STOP_OR_ESCALATE')
+        # A future classifier may rank expected cost-to-success differently from per-call cost.
+        preferred=ScriptedClassifier({'local':0,'economical':5,'strong':1,'specialist':3})
+        self.assertEqual(select(Workload(('code',),2),bindings,preferred,gates)['selected_binding'],'strong')
+        self.assertEqual(select(Workload(('code',),1),bindings,classifier,gates)['selected_binding'],'local')

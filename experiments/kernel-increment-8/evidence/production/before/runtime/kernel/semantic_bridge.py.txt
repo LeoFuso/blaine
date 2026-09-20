@@ -1,0 +1,123 @@
+"""Narrow context projection and lowering. No lifecycle or policy authority."""
+from collections.abc import Callable
+from copy import deepcopy
+from dataclasses import dataclass
+import hashlib
+
+from runtime.kernel.artifacts import ArtifactStore
+from runtime.kernel.contracts import MAX_PACKET, encode, message, unpack, validate_decision
+from runtime.kernel.human import human_requirement, validate_request, validate_response
+from runtime.kernel.semantic_provider import SemanticDecisionProvider, validate_semantic, validate_admissibility
+
+
+@dataclass(frozen=True)
+class SemanticDecisionBridge:
+    provider: SemanticDecisionProvider
+    store: ArtifactStore
+    purpose: str
+    request_id: str
+    artifact: str
+    audit: Callable[[dict], None] | None = None
+
+    def request(self, turn):
+        raw = human_requirement({'completion': turn['completion']}, self.request_id)['request']
+        value = validate_request(raw)
+        if value['task_id'] != turn['task_id']:
+            raise ValueError('Human request belongs to another Task')
+        return raw
+
+    def project(self, packet):
+        turn = unpack(packet, 'CognitiveTurn')
+        raw_request = self.request(turn)
+        request = raw_request['payload']
+        refs = {item['content']['name']: item['source'] for item in turn['context']
+                if item['authority'] == 'artifact' and isinstance(item['content'], dict)
+                and set(item['content']) == {'name'}}
+        expected_request_ref = f"artifact://{turn['task_id']}/sha256:" + hashlib.sha256(encode(raw_request)).hexdigest()
+        published = refs.get('human-request-' + self.request_id) == expected_request_ref
+        if published and self.store.read_json(turn['task_id'], expected_request_ref) != raw_request:
+            raise ValueError('Published human request does not match accepted scope')
+        clarification = {'purpose': self.purpose, 'question': request['question'],
+            'response': {'kind': 'choice', 'choices': deepcopy(request['allowed_responses'])},
+            'status': 'pending' if published else 'missing'}
+        for item in turn['context']:
+            content = item['content']
+            if item['authority'] != 'artifact' or not isinstance(content, dict) or content.get('kind') != 'HumanDecisionResolution':
+                continue
+            resolution = unpack(content, 'HumanDecisionResolution')
+            if (resolution['task_id'] != turn['task_id'] or resolution['request_id'] != self.request_id
+                    or resolution['request_revision'] != request['revision'] or resolution['status'] != 'verified'):
+                continue
+            if item['source'] != resolution['response_ref']:
+                raise ValueError('Resolution provenance mismatch')
+            response = validate_response(self.store.read_json(turn['task_id'], item['source']), raw_request, turn['task_id'])
+            if response['value'] != resolution['value']:
+                raise ValueError('Resolution value mismatch')
+            clarification.update(status='resolved', value=response['value'])
+        requirements = [c for c in turn['completion'] if c['evidence'].get('artifact') == self.artifact
+                        and 'sha256' in c['evidence']]
+        if len(requirements) != 1:
+            raise ValueError('Expected one scoped exact deliverable')
+        present = self.artifact in refs
+        matches = (hashlib.sha256(self.store.read(turn['task_id'], refs[self.artifact])).hexdigest()
+                   == requirements[0]['evidence']['sha256']) if present else False
+        procedures = [item['content']['instructions'] for item in turn['context']
+            if item['authority'] == 'derived' and isinstance(item['content'], dict)
+            and item['content'].get('classification') == 'procedure']
+        allowed = ['PRODUCE_ARTIFACT', 'COMPLETE']
+        if clarification['status'] == 'missing': allowed.insert(0, 'REQUEST_HUMAN')
+        elif clarification['status'] == 'pending': allowed.insert(0, 'WAIT')
+        # Explicit projection, not general recursive redaction. No source refs,
+        # transport names, protocol envelopes, identities or execution internals.
+        context = {'goal': turn['objective'], 'clarification': clarification,
+            'deliverable': {'present': present, 'content_verified': matches},
+            'procedure': procedures, 'allowed_actions': allowed}
+        if len(encode(context)) > MAX_PACKET:
+            raise ValueError('Semantic context exceeds budget')
+        return context
+
+    def lower(self, raw, packet):
+        semantic = validate_admissibility(raw, self.project(packet))
+        turn = unpack(packet, 'CognitiveTurn')
+        match semantic['action']:
+            case 'REQUEST_HUMAN':
+                accepted = self.request(turn)['payload']
+                request = message('HumanDecisionRequest', {
+                    'task_id': turn['task_id'], 'origin_task_id': accepted['origin_task_id'],
+                    'request_id': accepted['request_id'], 'revision': accepted['revision'],
+                    'question': semantic['question'], 'allowed_responses': deepcopy(semantic['response']['choices'])})
+                validate_request(request)
+                action = {'type': 'INVOKE_CAPABILITY', 'capability': 'human.request', 'input': {'request': request}}
+            case 'WAIT':
+                action = {'type': 'WAIT', 'wait_id': self.request_id, 'input_type': 'human_response'}
+            case 'PRODUCE_ARTIFACT':
+                action = {'type': 'INVOKE_CAPABILITY', 'capability': 'artifact.write',
+                          'input': {'name': self.artifact, 'content': semantic['content']}}
+            case 'COMPLETE':
+                action = {'type': 'COMPLETE'}
+        command = message('CognitiveDecision', {k: turn[k] for k in ('task_id', 'task_revision', 'turn_id')} | {'next_action': action})
+        validate_decision(command)
+        return command
+
+    def __call__(self, packet):
+        turn = unpack(packet, 'CognitiveTurn')
+        context = self.project(packet)
+        trace = {'turn_id': turn['turn_id'], 'semantic_context': context,
+            'context_sha256': hashlib.sha256(encode(context)).hexdigest(), 'contract': 'increment8-semantic-decisions-v1'}
+        try:
+            raw = self.provider.decide(deepcopy(context))
+            trace['parsed_semantic_decision'] = raw
+            semantic = validate_semantic(raw)
+            trace['semantic_validation'] = 'passed'
+            validate_admissibility(semantic, context)
+            trace['admissibility'] = 'passed'
+            trace['lowering_input'] = {'semantic': semantic, 'purpose_binding': {self.purpose: self.request_id},
+                'turn_identity': {k: turn[k] for k in ('task_id', 'task_revision', 'turn_id')},
+                'accepted_request': self.request(turn), 'artifact_binding': self.artifact}
+            command = self.lower(semantic, packet)
+            trace['runtime_command'] = command
+        except (ValueError, TypeError, KeyError) as error:
+            if self.audit: self.audit({**trace, 'outcome': 'rejected', 'error': str(error)[:256]})
+            raise
+        if self.audit: self.audit({**trace, 'outcome': 'lowered'})
+        return command

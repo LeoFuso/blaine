@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://native-required/sha256:5f183a5fc455fabc1596dc662388d350cd808fd85ba99cb4c5d8217b85ad94b2"},"type":"INVOKE_CAPABILITY"},"task_id":"native-required","task_revision":1,"turn_id":"native-required/2"},"version":1}

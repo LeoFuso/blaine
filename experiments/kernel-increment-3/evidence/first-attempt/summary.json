@@ -1,0 +1,44 @@
+{
+  "status": "FAILED",
+  "task_id": "choice",
+  "task_lifecycle": "FAILED",
+  "model_turns": 16,
+  "action_types": [
+    "COMPLETE"
+  ],
+  "turns_observing_unsatisfied_completion": 15,
+  "completion_evaluation": {
+    "kind": "CompletionEvaluation",
+    "payload": {
+      "criteria": [
+        {
+          "criterion": "Exact answer",
+          "detail": "Required artifact is missing",
+          "evidence_ref": null,
+          "outcome": "unsatisfied"
+        }
+      ],
+      "outcome": "unsatisfied"
+    },
+    "version": 1
+  },
+  "task_result": {
+    "kind": "TaskResult",
+    "payload": {
+      "artifacts": {},
+      "completion_ref": "artifact://choice/sha256:82c2171d9d6e389ae1b8bda77808e381c2ae147ba582cb5f20a51f2cd85ed0db",
+      "concerns": [
+        "Turn limit exhausted without verified completion"
+      ],
+      "outcome": "FAILED",
+      "task_id": "choice"
+    },
+    "version": 1
+  },
+  "effect_rows": 0,
+  "capability_dispatch_log_exists": false,
+  "verified_artifacts": 35,
+  "max_packet_bytes": 1156,
+  "prompt_tokens": 8287,
+  "completion_tokens": 1361
+}

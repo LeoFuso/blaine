@@ -1,0 +1,9 @@
+test_bad_artifact_returns_to_cognition (test_progression.ProgressionTests.test_bad_artifact_returns_to_cognition) ... ok
+test_exact_artifact_completes_without_complete_proposal (test_progression.ProgressionTests.test_exact_artifact_completes_without_complete_proposal) ... ok
+test_model_complete_still_cannot_bypass_verifier (test_progression.ProgressionTests.test_model_complete_still_cannot_bypass_verifier) ... ok
+test_success_without_evidence_does_not_complete (test_progression.ProgressionTests.test_success_without_evidence_does_not_complete) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.008s
+
+OK

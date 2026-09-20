@@ -1,0 +1,19 @@
+{
+  "status": "FAIL",
+  "gate": "STOP",
+  "increment": 8,
+  "expected": [
+    "WAIT",
+    "INVOKE_CAPABILITY",
+    "COMPLETE"
+  ],
+  "observed": [
+    "WAIT",
+    "INVOKE_CAPABILITY",
+    "WAIT"
+  ],
+  "observed_final_lifecycle": "WAITING",
+  "completion_verified": false,
+  "reason": "Repeated clarification after successful response/artifact; no further input or model turn authorized during STOP",
+  "next_increment": 8
+}

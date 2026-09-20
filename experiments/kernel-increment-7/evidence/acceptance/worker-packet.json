@@ -1,0 +1,1 @@
+{"kind":"WorkerInput","payload":{"context":[{"content":"Names, in order: alpha, beta.","source":"fixture:selected-names:v1"}],"objective":"Uppercase the two supplied names and join them with |. Append | followed by the private code if supplied, otherwise UNKNOWN. Return only this single line.","task_id":"worker-task"},"version":1}

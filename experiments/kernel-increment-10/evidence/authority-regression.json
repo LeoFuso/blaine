@@ -1,0 +1,12 @@
+{
+  "unchanged": {
+    "runtime/kernel/contracts.py": true,
+    "runtime/kernel/execution.py": true,
+    "runtime/kernel/model.py": true,
+    "runtime/kernel/human.py": true,
+    "runtime/kernel/artifacts.py": true,
+    "runtime/kernel/worker.py": true,
+    "runtime/kernel/context.py": true
+  },
+  "workflow_changes": "optional observational publication only; no progression, policy or verifier changes"
+}

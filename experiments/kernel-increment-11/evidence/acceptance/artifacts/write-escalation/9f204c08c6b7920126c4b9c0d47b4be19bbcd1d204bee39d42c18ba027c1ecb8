@@ -1,0 +1,1 @@
+{"attempt_id":"write-escalation/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"scope_escalation\"}","dispatch_outcome":"denied","operation_id":"write-escalation/2","outcome":"success"}

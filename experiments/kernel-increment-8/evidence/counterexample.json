@@ -1,0 +1,44 @@
+{
+  "turns": [
+    {
+      "iteration": 1,
+      "observations": [],
+      "action": {
+        "input_type": "text",
+        "type": "WAIT",
+        "wait_id": "retention"
+      },
+      "operational_reason_present": false
+    },
+    {
+      "iteration": 2,
+      "observations": [
+        "ExternalInput"
+      ],
+      "action": {
+        "capability": "artifact.write",
+        "input": {
+          "content": "RETENTION_30_DAYS",
+          "name": "answer"
+        },
+        "type": "INVOKE_CAPABILITY"
+      },
+      "operational_reason_present": false
+    },
+    {
+      "iteration": 3,
+      "observations": [
+        "CapabilityResult"
+      ],
+      "action": {
+        "input_type": "text",
+        "type": "WAIT",
+        "wait_id": "retention"
+      },
+      "operational_reason_present": false
+    }
+  ],
+  "accepted_answer_in_turn_2": "Retain exports for 30 days.",
+  "answer_not_in_turn_3_observations": true,
+  "diagnosis": "Not isolated: current observation window, unchanged ambiguous Task text and model/procedure instructions all remain candidate causes. No extra model calls or corrections."
+}

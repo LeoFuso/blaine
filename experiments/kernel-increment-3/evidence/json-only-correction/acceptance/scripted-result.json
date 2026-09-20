@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://scripted/sha256:b6681c6bc93d55ab776e8f9a4f87664509a3c67013898c44564fda02350de404"},"completion_ref":"artifact://scripted/sha256:b57cf7fc81f1b442d85fbbcb46ac431dd0b0a8e62c7940e86cb223d78fae4234","concerns":[],"outcome":"COMPLETED","task_id":"scripted"},"version":1}

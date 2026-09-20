@@ -1,0 +1,1877 @@
+[2m2026-09-20T03:34:33.008034Z[0m [32mINFO[0m [1;3;32mrestate_server[0m[32m[32m
+  [1;32mStarting Restate Server 1.7.9 (fb0ca13 x86_64-unknown-linux-musl 2026-09-04)[0m[32m
+    node_name: "hybrid-experiment"
+    config_source: /tmp/blaine-hybrid-filtered-20260920/restate.toml
+    base_dir: /tmp/blaine-hybrid-filtered-20260920/restate-data/hybrid-experiment/
+    cpus: 32[0m[32m[0m
+[2;3mon[0m main
+[2m2026-09-20T03:34:33.067078Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mServer listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-29
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: message-fabric-server 
+    server.address: "127.0.0.1" 
+    server.port: 35122
+[2m2026-09-20T03:34:33.067106Z[0m [32mINFO[0m [1;3;32mrestate_node::init[0m[32m[32m
+  [1;32mTrying to join the provisioned cluster 'blaine-hybrid-experiment'[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-29
+[2m2026-09-20T03:34:33.067412Z[0m [32mINFO[0m [1;3;32mrestate_metadata_server::raft::server::member[0m[32m[32m
+  [1;32mRun as member of the metadata cluster[0m[32m
+    configuration: v1; [N1][0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_metadata_server::raft::server::member::run[0m
+    member_id: N1:3164
+[2m2026-09-20T03:34:33.067608Z[0m [32mINFO[0m [1;3;32mrestate_metadata_server::raft::server::member[0m[32m[32m
+  [1;32mWon metadata cluster leadership[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_metadata_server::raft::server::member::run[0m
+    member_id: N1:3164
+[2m2026-09-20T03:34:33.105863Z[0m [32mINFO[0m [1;3;32mrestate_server::build_info[0m[32m[32m
+  [1;32m📣⬆️New Version Notice: v1.7.10 was released at 2026-09-14 13:25:33 UTC, check it out at https://github.com/restatedev/restate/releases/tag/v1.7.10[0m[32m
+    current_version: 1.7.9[0m[32m[0m
+[2;3mon[0m rs:worker-32
+[2m2026-09-20T03:34:33.149298Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mMy Node ID is N1:3[0m[32m
+    node_name: hybrid-experiment
+    roles: http-ingress | admin | worker | log-server | metadata-server
+    address: http://127.0.0.1:35122/
+    location: 
+    nodes_config_version: v5
+    cluster_name: blaine-hybrid-experiment
+    cluster_fingerprint: Some(ClusterFingerprint(7766278749413473023))
+    partition_table_version: v1
+    logs_version: v7[0m[32m[0m
+[2;3mon[0m rs:worker-0
+[2m2026-09-20T03:34:33.149382Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::server[0m[32m[32m
+  [1;32mIngress HTTP listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-31
+  [2;3min[0m [1;3mrestate_ingress_http::server::server[0m
+    server_name: http-ingress-server 
+    server.address: "127.0.0.1" 
+    server.port: 38080
+[2m2026-09-20T03:34:33.149446Z[0m [32mINFO[0m [1;3;32mrestate_node[0m[32m[32m
+  [1;32mRestate node roles [http-ingress | admin | worker | log-server | metadata-server] were started[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-28
+[2m2026-09-20T03:34:33.149461Z[0m [32mINFO[0m [1;3;32mrestate_node::failure_detector[0m[32m[32m
+  [1;32mFailure Detector Started[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-28
+[2m2026-09-20T03:34:33.152367Z[0m [32mINFO[0m [1;3;32mrestate_admin::service[0m[32m[32m
+  [1;32mAdmin API starting on: http://127.0.0.1:39070/[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-26
+[2m2026-09-20T03:34:33.152379Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mServer listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-26
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: admin-api-server 
+    server.address: "127.0.0.1" 
+    server.port: 39070
+[2m2026-09-20T03:34:33.250118Z[0m [32mINFO[0m [1;3;32mrestate_node::failure_detector::node_state[0m[32m[32m
+  [1;32mN1:3 transitioned from Dead to Alive (gossip-age=0)[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-28
+[2m2026-09-20T03:34:33.250184Z[0m [32mINFO[0m [1;3;32mrestate_admin::cluster_controller::service::cluster_controller_state[0m[32m[32m
+  [1;32mCluster controller switching to leader mode[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-32
+[2m2026-09-20T03:34:33.253376Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager[0m[32m[32m
+  [1;32mReconciling partition processors: starts=[P0(v1 [N1]), P1(v1 [N1]), P2(v1 [N1]), P3(v1 [N1]), P4(v1 [N1]), P5(v1 [N1])] stops=[][0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-6
+[2m2026-09-20T03:34:33.286012Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 1 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T03:34:33.286086Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 4 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T03:34:33.286134Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 3 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T03:34:33.286171Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 5 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T03:34:33.286258Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 0 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T03:34:33.286266Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 2 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T03:34:33.286607Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 1 caught up in 595µs 356ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T03:34:33.286613Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 3 caught up in 479µs 417ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T03:34:33.286618Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 2 caught up in 352µs 498ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T03:34:33.286656Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 0 caught up in 398µs 838ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T03:34:33.286656Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 5 caught up in 485µs 717ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T03:34:33.286656Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 4 caught up in 570µs 67ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T03:34:33.293525Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager[0m[32m[32m
+  [1;32mReconciling partition processors: starts=[P6(v1 [N1]), P7(v1 [N1]), P8(v1 [N1]), P9(v1 [N1]), P10(v1 [N1]), P11(v1 [N1]), P12(v1 [N1]), P13(v1 [N1]), P14(v1 [N1]), P15(v1 [N1]), P16(v1 [N1]), P17(v1 [N1]), P18(v1 [N1]), P19(v1 [N1]), P20(v1 [N1]), P21(v1 [N1]), P22(v1 [N1]), P23(v1 [N1])] stops=[][0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-35
+[2m2026-09-20T03:34:33.294491Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 8 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T03:34:33.294728Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 2.53µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 1
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.294778Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 16 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T03:34:33.294791Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.97µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 5
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.294847Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 19 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T03:34:33.294932Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 6 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T03:34:33.295003Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 21 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T03:34:33.295070Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 14 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T03:34:33.295117Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.02µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 4
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295117Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.03µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 16
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295126Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.46µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 3
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295133Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 770ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 0
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295154Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.42µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 14
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295160Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 7 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T03:34:33.295194Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.41µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 2
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295205Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 530ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 7
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295246Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 12 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T03:34:33.295263Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 8 caught up in 773µs 145ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T03:34:33.295300Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 11 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T03:34:33.295304Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 22 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T03:34:33.295375Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 15 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T03:34:33.295374Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 628.506µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 1_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 1
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295431Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 840ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 15
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295474Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 10 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T03:34:33.295537Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 900ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 10
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295541Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 9 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T03:34:33.295549Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 13 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T03:34:33.295623Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 18 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T03:34:33.295619Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 811.875µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 5_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 5
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295656Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 529.797µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 4_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 4
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295682Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 640ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 18
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295698Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 560.616µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 3_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 3
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295701Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 532.026µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 14_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 14
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295708Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 267.978µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 15_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 15
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295713Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 501.707µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 7_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 7
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295714Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 506.217µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 2_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 2
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295714Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 569.916µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 0_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 0
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295713Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 165.419µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 10_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 10
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295754Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 64.09µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 18_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 18
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295861Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 16 caught up in 1ms 83µs 813ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T03:34:33.295868Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 6 caught up in 936µs 354ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T03:34:33.295869Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 21 caught up in 866µs 354ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T03:34:33.295890Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 19 caught up in 1ms 43µs 373ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T03:34:33.295893Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 12 caught up in 647µs 206ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T03:34:33.295889Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 762.425µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 16_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 16
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295893Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 11 caught up in 592µs 776ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T03:34:33.295904Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 22 caught up in 600µs 476ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T03:34:33.295911Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 10 caught up in 436µs 687ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T03:34:33.295910Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 14 caught up in 840µs 5ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T03:34:33.295912Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 15 caught up in 536µs 877ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T03:34:33.295917Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 7 caught up in 756µs 515ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T03:34:33.295941Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 960ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 12
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295955Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.19µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 19
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295961Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.12µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 22
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295962Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 18 caught up in 338µs 778ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T03:34:33.295963Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.04µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 21
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295967Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.4µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 8
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295973Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.3µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 11
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295975Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.61µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 6
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.295974Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 13 caught up in 424µs 798ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T03:34:33.295974Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 9 caught up in 433µs 368ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T03:34:33.296024Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 75.629µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 12_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 12
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296036Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.29µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 13
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296038Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 1.11µs since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 9
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296060Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 90.519µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 22_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 22
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296061Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 96.899µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 19_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 19
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296081Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 107.689µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 21_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 21
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296086Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 103.539µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 6_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 6
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296088Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 109.509µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 8_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 8
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296093Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 47.67µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 13_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 13
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296092Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 109.499µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 11_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 11
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296094Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 49.68µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 9_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 9
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296171Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v8
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 1
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296542Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 876µs 398ns
+    partition_id: 1[0m[32m[0m
+[2;3mon[0m rt:pp-1
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 1
+[2m2026-09-20T03:34:33.296663Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 22
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296662Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 10
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296662Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 7
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296664Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 15
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296665Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 14
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296664Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 19
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296666Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 12
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296667Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 3
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296669Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 18
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296670Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 2
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296669Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 5
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296669Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 16
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296674Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 4
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.296697Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v9
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 0
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.297101Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 997µs 998ns
+    partition_id: 14[0m[32m[0m
+[2;3mon[0m rt:pp-14
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 14
+[2m2026-09-20T03:34:33.297122Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 207µs 842ns
+    partition_id: 12[0m[32m[0m
+[2;3mon[0m rt:pp-12
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 12
+[2m2026-09-20T03:34:33.297204Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 2ms 120µs 787ns
+    partition_id: 3[0m[32m[0m
+[2;3mon[0m rt:pp-3
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 3
+[2m2026-09-20T03:34:33.297341Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 944µs 568ns
+    partition_id: 15[0m[32m[0m
+[2;3mon[0m rt:pp-15
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 15
+[2m2026-09-20T03:34:33.297343Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 696µs 499ns
+    partition_id: 18[0m[32m[0m
+[2;3mon[0m rt:pp-18
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 18
+[2m2026-09-20T03:34:33.297350Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 2ms 630µs 134ns
+    partition_id: 5[0m[32m[0m
+[2;3mon[0m rt:pp-5
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 5
+[2m2026-09-20T03:34:33.297416Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 2ms 339µs 776ns
+    partition_id: 4[0m[32m[0m
+[2;3mon[0m rt:pp-4
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 4
+[2m2026-09-20T03:34:33.297458Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 2ms 287µs 645ns
+    partition_id: 7[0m[32m[0m
+[2;3mon[0m rt:pp-7
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 7
+[2m2026-09-20T03:34:33.297459Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 971µs 797ns
+    partition_id: 10[0m[32m[0m
+[2;3mon[0m rt:pp-10
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 10
+[2m2026-09-20T03:34:33.297467Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 2ms 394µs 345ns
+    partition_id: 16[0m[32m[0m
+[2;3mon[0m rt:pp-16
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 16
+[2m2026-09-20T03:34:33.297497Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 2ms 357µs 875ns
+    partition_id: 2[0m[32m[0m
+[2;3mon[0m rt:pp-2
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 2
+[2m2026-09-20T03:34:33.297509Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 578µs 110ns
+    partition_id: 22[0m[32m[0m
+[2;3mon[0m rt:pp-22
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 22
+[2m2026-09-20T03:34:33.297510Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 2ms 417µs 895ns
+    partition_id: 0[0m[32m[0m
+[2;3mon[0m rt:pp-0
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 0
+[2m2026-09-20T03:34:33.297523Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 597µs 680ns
+    partition_id: 19[0m[32m[0m
+[2;3mon[0m rt:pp-19
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 19
+[2m2026-09-20T03:34:33.307462Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v10
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 9
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.307463Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v10
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 13
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.307480Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v10
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 8
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.307482Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v10
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 11
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.307492Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v10
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 6
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.307494Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v10
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 21
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.307664Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 20 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T03:34:33.307764Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 23 started. Replaying 165 record(s) in range: [1..165][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T03:34:33.307851Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 11ms 844µs 38ns
+    partition_id: 9[0m[32m[0m
+[2;3mon[0m rt:pp-9
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 9
+[2m2026-09-20T03:34:33.307879Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::status[0m[32m[32m
+  [1;32mPartition 17 started. Replaying 3 record(s) in range: [1..3][0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T03:34:33.307899Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 11ms 903µs 537ns
+    partition_id: 13[0m[32m[0m
+[2;3mon[0m rt:pp-13
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 13
+[2m2026-09-20T03:34:33.308014Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 12ms 83µs 866ns
+    partition_id: 8[0m[32m[0m
+[2;3mon[0m rt:pp-8
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 8
+[2m2026-09-20T03:34:33.308082Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 12ms 142µs 395ns
+    partition_id: 11[0m[32m[0m
+[2;3mon[0m rt:pp-11
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 11
+[2m2026-09-20T03:34:33.308099Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 20 caught up in 434µs 967ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T03:34:33.308127Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 17 caught up in 248µs 29ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T03:34:33.308139Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 12ms 234µs 425ns
+    partition_id: 21[0m[32m[0m
+[2;3mon[0m rt:pp-21
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 21
+[2m2026-09-20T03:34:33.308176Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 12ms 238µs 105ns
+    partition_id: 6[0m[32m[0m
+[2;3mon[0m rt:pp-6
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 6
+[2m2026-09-20T03:34:33.308231Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 920ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 17
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.308282Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 42.62µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 17_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 17
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.308478Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 760ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 23
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.308543Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 54.769µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 23_0
+    replication: {node: 1}
+    max_local_tail: 166
+    global_tail: 166[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 23
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.308623Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Attempting to extend the chain to recover log availability with a new configuration. It has been 890ns since encountering the sealed loglet[0m[32m
+    sealed_segment: 0[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 20
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.308674Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 42.84µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 20_0
+    replication: {node: 1}
+    max_local_tail: 4
+    global_tail: 4[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 20
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.308963Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v11
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 17
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.309333Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 132µs 814ns
+    partition_id: 17[0m[32m[0m
+[2;3mon[0m rt:pp-17
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 17
+[2m2026-09-20T03:34:33.309367Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v12
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 20
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.309391Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::appender[0m[32m[32m
+  [1;32m[Auto Recovery] Reconfiguration complete[0m[32m
+    log_metadata_version: v12
+    error_recovery_strategy: ExtendChainPreferred[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_bifrost::appender::on_sealed_loglet[0m
+    log_id: 23
+    sealed_segment: 0
+    error_recovery_strategy: ExtendChainPreferred
+[2m2026-09-20T03:34:33.309707Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 120µs 23ns
+    partition_id: 20[0m[32m[0m
+[2;3mon[0m rt:pp-20
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 20
+[2m2026-09-20T03:34:33.310073Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::processor::context[0m[32m[32m
+  [1;32mPartition 23 caught up in 2ms 309µs 956ns![0m[32m[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T03:34:33.310347Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition::leadership[0m[32m[32m
+  [1;32mProcessor became Leader of epoch e3[0m[32m
+    campaign_duration: 1ms 907µs 38ns
+    partition_id: 23[0m[32m[0m
+[2;3mon[0m rt:pp-23
+  [2;3min[0m [1;3mrestate_worker::partition::run[0m
+    partition_id: 23
+[2m2026-09-20T03:34:34.633459Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::handler::responses[0m[32m[32m
+  [1;32mComplete external HTTP request with a failure[0m[32m
+    rpc.response: InvocationError { code: 409 Aborted, message: "Task is not waiting", stacktrace: None, metadata: [] }[0m[32m[0m
+[2;3mon[0m rs:worker-5
+  [2;3min[0m [1;3mrestate_ingress_http::api::ingress-http-request[0m
+    http.version: HTTP/1.1
+    http.request.method: POST
+    url.path: "/CognitiveTaskV1/procedure/submit_human_response"
+    url.query: ""
+    url.scheme: "http"
+[2m2026-09-20T03:34:34.643066Z[0m [33mWARN[0m [1;3;33mrestate_invoker_impl[0m[33m[33m
+  [1;33mInvocation error, retrying in 524ms 435µs.[0m[33m
+    [1;33merror[0m[33m: unexpected error while reading the response body: stream closed because of a broken pipe
+    [1;33mrestate.invocation.id[0m[33m: [3;33minv_10KHTH6Jn7Kx4ubfaqwNzJOGkWd3quhH2e[0m[33m
+    [1;33mrestate.invocation.target[0m[33m: [3;33mCognitiveTaskV1/procedure/run[0m[33m
+    restate.deployment.id: dp_11cFBJxbNdqV9bxsp4W2W3f[0m[33m
+    restate.error.code: RT0010
+    Visit [1;3;33mhttps://docs.restate.dev/references/errors#RT0010[0m[33m for more info and suggestions.[0m
+[2;3mon[0m rt:pp-23
+[2m2026-09-20T03:34:46.198755Z[0m [32mINFO[0m [1;3;32mrestate_server::signal[0m[32m[32m
+  [1;32mReceived signal, starting shutdown.[0m[32m
+    signal: SIGTERM[0m[32m[0m
+[2;3mon[0m main
+[2m2026-09-20T03:34:46.198787Z[0m [32mINFO[0m [1;3;32mrestate_core::task_center[0m[32m[32m
+  [1;32m** Shutdown requested[0m[32m
+    reason: received signal SIGTERM[0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"
+[2m2026-09-20T03:34:46.198825Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::server[0m[32m[32m
+  [1;32mHTTP ingress shutdown requested[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_ingress_http::server::server[0m
+    server_name: http-ingress-server 
+    server.address: "127.0.0.1" 
+    server.port: 38080
+[2m2026-09-20T03:34:46.198846Z[0m [32mINFO[0m [1;3;32mrestate_ingress_http::server[0m[32m[32m
+  [1;32mAll in-flight HTTP ingress connections drained[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_ingress_http::server::server[0m
+    server_name: http-ingress-server 
+    server.address: "127.0.0.1" 
+    server.port: 38080
+[2m2026-09-20T03:34:46.199615Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mStopped listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: admin-api-server 
+    server.address: "127.0.0.1" 
+    server.port: 39070
+[2m2026-09-20T03:34:46.199826Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 16[0m[32m[0m
+[2;3mon[0m rt:pp-16
+[2m2026-09-20T03:34:46.199827Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 0[0m[32m[0m
+[2;3mon[0m rt:pp-0
+[2m2026-09-20T03:34:46.199833Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 10[0m[32m[0m
+[2;3mon[0m rt:pp-10
+[2m2026-09-20T03:34:46.199833Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 9[0m[32m[0m
+[2;3mon[0m rt:pp-9
+[2m2026-09-20T03:34:46.199837Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 1[0m[32m[0m
+[2;3mon[0m rt:pp-1
+[2m2026-09-20T03:34:46.199843Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 17[0m[32m[0m
+[2;3mon[0m rt:pp-17
+[2m2026-09-20T03:34:46.199846Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 20[0m[32m[0m
+[2;3mon[0m rt:pp-20
+[2m2026-09-20T03:34:46.199845Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 5[0m[32m[0m
+[2;3mon[0m rt:pp-5
+[2m2026-09-20T03:34:46.199843Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 7[0m[32m[0m
+[2;3mon[0m rt:pp-7
+[2m2026-09-20T03:34:46.199841Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 3[0m[32m[0m
+[2;3mon[0m rt:pp-3
+[2m2026-09-20T03:34:46.199850Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 12[0m[32m[0m
+[2;3mon[0m rt:pp-12
+[2m2026-09-20T03:34:46.199854Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 13[0m[32m[0m
+[2;3mon[0m rt:pp-13
+[2m2026-09-20T03:34:46.199857Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 2[0m[32m[0m
+[2;3mon[0m rt:pp-2
+[2m2026-09-20T03:34:46.199860Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 22[0m[32m[0m
+[2;3mon[0m rt:pp-22
+[2m2026-09-20T03:34:46.199860Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 6[0m[32m[0m
+[2;3mon[0m rt:pp-6
+[2m2026-09-20T03:34:46.199863Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 4[0m[32m[0m
+[2;3mon[0m rt:pp-4
+[2m2026-09-20T03:34:46.199867Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 15[0m[32m[0m
+[2;3mon[0m rt:pp-15
+[2m2026-09-20T03:34:46.199874Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 19[0m[32m[0m
+[2;3mon[0m rt:pp-19
+[2m2026-09-20T03:34:46.199876Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 8[0m[32m[0m
+[2;3mon[0m rt:pp-8
+[2m2026-09-20T03:34:46.199875Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 11[0m[32m[0m
+[2;3mon[0m rt:pp-11
+[2m2026-09-20T03:34:46.199883Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 18[0m[32m[0m
+[2;3mon[0m rt:pp-18
+[2m2026-09-20T03:34:46.199894Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 23[0m[32m[0m
+[2;3mon[0m rt:pp-23
+[2m2026-09-20T03:34:46.199882Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 21[0m[32m[0m
+[2;3mon[0m rt:pp-21
+[2m2026-09-20T03:34:46.199926Z[0m [32mINFO[0m [1;3;32mrestate_worker::partition_processor_manager::spawn_processor_task[0m[32m[32m
+  [1;32mPartition processor stopped[0m[32m
+    partition_id: 14[0m[32m[0m
+[2;3mon[0m rt:pp-14
+[2m2026-09-20T03:34:46.200935Z[0m [32mINFO[0m [1;3;32mrestate_worker[0m[32m[32m
+  [1;32mWorker role has stopped[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T03:34:46.201187Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 119.319µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 15_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201188Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 123.409µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 9_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-22
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201203Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 139.629µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 1_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-31
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201208Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 141.299µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 17_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-23
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201219Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 151.649µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 2_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201216Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 109.6µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 7_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-3
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201220Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 126.23µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 10_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-22
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201224Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 119.34µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 6_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-31
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201222Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 104.19µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 12_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201219Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 121.26µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 11_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-33
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201228Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 139.44µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 8_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201231Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 119.9µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 16_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-23
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201224Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 138.52µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 23_1
+    replication: {node: 1}
+    max_local_tail: 259
+    global_tail: 259[0m[32m[0m
+[2;3mon[0m rs:worker-13
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201224Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 110.25µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 22_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-37
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201225Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 119.03µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 14_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-9
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201234Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 135.879µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 3_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-31
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201234Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 143.68µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 20_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-3
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201226Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 124.12µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 18_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-20
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201238Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 141.829µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 13_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201240Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 178.058µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 0_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-28
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201235Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 157.509µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 5_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-15
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201236Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 131.459µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 19_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-22
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201239Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 146.049µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 4_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-33
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201250Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::tasks::seal[0m[32m[32m
+  [1;32mSeal task completed on f-majority of nodes in 159.679µs. Nodeset status [N1(S)][0m[32m
+    loglet_id: 21_1
+    replication: {node: 1}
+    max_local_tail: 2
+    global_tail: 2[0m[32m[0m
+[2;3mon[0m rs:worker-7
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::tasks::seal::run[0m
+  [2;3min[0m [1;3mrestate_bifrost::providers::replicated_loglet::loglet::seal[0m
+    otel.name: "replicated_loglet: seal"
+[2m2026-09-20T03:34:46.201266Z[0m [32mINFO[0m [1;3;32mrestate_bifrost::providers::replicated_loglet::provider[0m[32m[32m
+  [1;32mAll sequencers were stopped[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T03:34:46.201298Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 14_0[0m[32m[0m
+[2;3mon[0m rs:worker-33
+[2m2026-09-20T03:34:46.201301Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 12_0[0m[32m[0m
+[2;3mon[0m rs:worker-20
+[2m2026-09-20T03:34:46.201305Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 11_1[0m[32m[0m
+[2;3mon[0m rs:worker-15
+[2m2026-09-20T03:34:46.201309Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 14_1[0m[32m[0m
+[2;3mon[0m rs:worker-22
+[2m2026-09-20T03:34:46.201312Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 7_0[0m[32m[0m
+[2;3mon[0m rs:worker-28
+[2m2026-09-20T03:34:46.201314Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 18_1[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T03:34:46.201318Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 20_0[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T03:34:46.201317Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 4_1[0m[32m[0m
+[2;3mon[0m rs:worker-9
+[2m2026-09-20T03:34:46.201320Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 19_0[0m[32m[0m
+[2;3mon[0m rs:worker-3
+[2m2026-09-20T03:34:46.201322Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 2_1[0m[32m[0m
+[2;3mon[0m rs:worker-15
+[2m2026-09-20T03:34:46.201323Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 13_1[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T03:34:46.201323Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 9_1[0m[32m[0m
+[2;3mon[0m rs:worker-31
+[2m2026-09-20T03:34:46.201324Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 23_1[0m[32m[0m
+[2;3mon[0m rs:worker-20
+[2m2026-09-20T03:34:46.201326Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 12_1[0m[32m[0m
+[2;3mon[0m rs:worker-28
+[2m2026-09-20T03:34:46.201327Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 8_1[0m[32m[0m
+[2;3mon[0m rs:worker-37
+[2m2026-09-20T03:34:46.201328Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 6_0[0m[32m[0m
+[2;3mon[0m rs:worker-15
+[2m2026-09-20T03:34:46.201328Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 3_0[0m[32m[0m
+[2;3mon[0m rs:worker-22
+[2m2026-09-20T03:34:46.201330Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 4_0[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T03:34:46.201329Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 22_0[0m[32m[0m
+[2;3mon[0m rs:worker-13
+[2m2026-09-20T03:34:46.201331Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 21_1[0m[32m[0m
+[2;3mon[0m rs:worker-3
+[2m2026-09-20T03:34:46.201330Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 8_0[0m[32m[0m
+[2;3mon[0m rs:worker-20
+[2m2026-09-20T03:34:46.201332Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 16_1[0m[32m[0m
+[2;3mon[0m rs:worker-28
+[2m2026-09-20T03:34:46.201331Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 11_0[0m[32m[0m
+[2;3mon[0m rs:worker-9
+[2m2026-09-20T03:34:46.201333Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 9_0[0m[32m[0m
+[2;3mon[0m rs:worker-15
+[2m2026-09-20T03:34:46.201333Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 3_1[0m[32m[0m
+[2;3mon[0m rs:worker-31
+[2m2026-09-20T03:34:46.201334Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 10_0[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T03:34:46.201337Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 20_1[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T03:34:46.201337Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 17_0[0m[32m[0m
+[2;3mon[0m rs:worker-23
+[2m2026-09-20T03:34:46.201339Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 18_0[0m[32m[0m
+[2;3mon[0m rs:worker-3
+[2m2026-09-20T03:34:46.201340Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 2_0[0m[32m[0m
+[2;3mon[0m rs:worker-13
+[2m2026-09-20T03:34:46.201341Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 7_1[0m[32m[0m
+[2;3mon[0m rs:worker-37
+[2m2026-09-20T03:34:46.201341Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 0_0[0m[32m[0m
+[2;3mon[0m rs:worker-31
+[2m2026-09-20T03:34:46.201342Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 22_1[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T03:34:46.201341Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 21_0[0m[32m[0m
+[2;3mon[0m rs:worker-22
+[2m2026-09-20T03:34:46.201344Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 17_1[0m[32m[0m
+[2;3mon[0m rs:worker-7
+[2m2026-09-20T03:34:46.201338Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 15_1[0m[32m[0m
+[2;3mon[0m rs:worker-12
+[2m2026-09-20T03:34:46.201347Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 6_1[0m[32m[0m
+[2;3mon[0m rs:worker-28
+[2m2026-09-20T03:34:46.201348Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 23_0[0m[32m[0m
+[2;3mon[0m rs:worker-23
+[2m2026-09-20T03:34:46.201349Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 16_0[0m[32m[0m
+[2;3mon[0m rs:worker-13
+[2m2026-09-20T03:34:46.201350Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 10_1[0m[32m[0m
+[2;3mon[0m rs:worker-31
+[2m2026-09-20T03:34:46.201352Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 1_0[0m[32m[0m
+[2;3mon[0m rs:worker-9
+[2m2026-09-20T03:34:46.201352Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 1_1[0m[32m[0m
+[2;3mon[0m rs:worker-22
+[2m2026-09-20T03:34:46.201350Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 15_0[0m[32m[0m
+[2;3mon[0m rs:worker-32
+[2m2026-09-20T03:34:46.201355Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 5_0[0m[32m[0m
+[2;3mon[0m rs:worker-37
+[2m2026-09-20T03:34:46.201357Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 13_0[0m[32m[0m
+[2;3mon[0m rs:worker-23
+[2m2026-09-20T03:34:46.201358Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 5_1[0m[32m[0m
+[2;3mon[0m rs:worker-3
+[2m2026-09-20T03:34:46.201358Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 0_1[0m[32m[0m
+[2;3mon[0m rs:worker-19
+[2m2026-09-20T03:34:46.201359Z[0m [32mINFO[0m [1;3;32mrestate_log_server::loglet_worker[0m[32m[32m
+  [1;32mLoglet worker shutting down. Will drain 0 data and 0 meta messages and 0 pending rpcs[0m[32m
+    loglet_id: 19_1[0m[32m[0m
+[2;3mon[0m rs:worker-18
+[2m2026-09-20T03:34:46.201441Z[0m [32mINFO[0m [1;3;32mrestate_core::network::connection_manager[0m[32m[32m
+  [1;32mPeer shutdown notification received[0m[32m
+    peer: N1:3[0m[32m[0m
+[2;3mon[0m rs:worker-33
+  [2;3min[0m [1;3mrestate_core::network::io::reactor::network-reactor[0m
+    peer: N1:3 
+    task_id: 261
+[2m2026-09-20T03:34:46.202045Z[0m [32mINFO[0m [1;3;32mrestate_core::network::net_util[0m[32m[32m
+  [1;32mStopped listening[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_core::network::net_util::server[0m
+    server_name: message-fabric-server 
+    server.address: "127.0.0.1" 
+    server.port: 35122
+[2m2026-09-20T03:34:46.206189Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32m2 column families flushed in 4.767661ms[0m[32m
+    db: replicated-metadata-server[0m[32m[0m
+[2;3mon[0m rs:worker-24
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: replicated-metadata-server
+[2m2026-09-20T03:34:46.206241Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32mRocksdb 'replicated-metadata-server' was gracefully closed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-24
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: replicated-metadata-server
+[2m2026-09-20T03:34:46.215602Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32m25 column families flushed in 13.520047ms[0m[32m
+    db: db[0m[32m[0m
+[2;3mon[0m rs:worker-26
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: db
+[2m2026-09-20T03:34:46.215619Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32mRocksdb 'db' was gracefully closed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-26
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: db
+[2m2026-09-20T03:34:46.225742Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32m2 column families flushed in 23.993023ms[0m[32m
+    db: log-server[0m[32m[0m
+[2;3mon[0m rs:worker-29
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: log-server
+[2m2026-09-20T03:34:46.226533Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::rock_access[0m[32m[32m
+  [1;32mRocksdb 'log-server' was gracefully closed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-29
+  [2;3min[0m [1;3mrestate_rocksdb::rock_access::shutdown[0m
+    db: log-server
+[2m2026-09-20T03:34:46.231700Z[0m [32mINFO[0m [1;3;32mrestate_rocksdb::db_manager[0m[32m[32m
+  [1;32mRocksdb manager shutdown completed[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"
+[2m2026-09-20T03:34:46.231708Z[0m [32mINFO[0m [1;3;32mrestate_core::task_center[0m[32m[32m
+  [1;32mTask center has stopped[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"
+[2m2026-09-20T03:34:46.231714Z[0m [32mINFO[0m [1;3;32mrestate_core::task_center[0m[32m[32m
+  [1;32mRestate has gracefully shutdown in 32.929518ms[0m[32m[0m[32m[0m
+[2;3mon[0m rs:worker-19
+  [2;3min[0m [1;3mrestate_core::task_center::handle::shutdown_node[0m
+    reason: "received signal SIGTERM"

@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.read","input":{"ref":"artifact://stale/sha256:27e928452b145432435e2b82f402842ad240dbf7a4423fd84b03aee7724e4860"},"type":"INVOKE_CAPABILITY"},"task_id":"stale","task_revision":1,"turn_id":"stale/2"},"version":1}

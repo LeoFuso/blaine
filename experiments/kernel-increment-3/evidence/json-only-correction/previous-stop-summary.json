@@ -1,0 +1,45 @@
+{
+  "increment": 3,
+  "status": "BLOCKED",
+  "gate": "NOT PASSED",
+  "availability": "RESTORED",
+  "expected": "Qwen selects at least two legitimate NextActions from differing durable evidence.",
+  "observed": "Both bounded runs selected COMPLETE for all 16 turns, including 15 turns observing missing evidence. Both Tasks correctly ended FAILED.",
+  "impact": "Action selection requirement failed; no capability or Task authority bypass. Increment 4 and later not started.",
+  "architecture_impact": "None",
+  "root_cause": "Increment 3A isolates constrained-mode action-selection failure. JSON-only shows correct raw actions but omits required version and is rejected.",
+  "bounded_correction": "One prompt correction exposed all five existing action shapes; repeat still failed.",
+  "unit_tests_passed": 4,
+  "live_model_turns": 32,
+  "live_probe": "FAILED on first scenario; subsequent live cases not reached",
+  "satisfied_checks": [
+    "structured validated decisions from real Qwen",
+    "premature COMPLETE rejected",
+    "context/token usage recorded",
+    "existing kernel source unchanged"
+  ],
+  "unverified_checks": [
+    "two legitimate action choices based on evidence",
+    "Qwen-requested forbidden action denial",
+    "scripted control on same live deployment",
+    "live invalid-response fixtures (unit rejection passed)"
+  ],
+  "unchanged_kernel_files": {
+    "runtime/kernel/__init__.py": true,
+    "runtime/kernel/artifacts.py": true,
+    "runtime/kernel/cognition.py": true,
+    "runtime/kernel/context.py": true,
+    "runtime/kernel/contracts.py": true,
+    "runtime/kernel/execution.py": true,
+    "runtime/kernel/workflow.py": true
+  },
+  "system_configuration_changes": false,
+  "total_prompt_tokens": 19038,
+  "total_completion_tokens": 1982,
+  "smallest_next_decision_required": "Review the isolated decoding result and authorize any adapter-only correction separately; keep strict envelope validation and rerun the original Increment 3 gate before MIRIX.",
+  "next_increment": 3,
+  "later_increments": "NOT STARTED",
+  "diagnostic_classification": "A: CONSTRAINED_DECODING_DEFECT (action selection)",
+  "diagnostic_evidence": "diagnostic/summary.json",
+  "diagnostic_only": true
+}

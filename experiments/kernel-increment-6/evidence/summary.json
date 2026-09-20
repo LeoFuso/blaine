@@ -1,0 +1,1 @@
+{"card_state_controls_task_lifecycle":false,"cases":["allowed","denied"],"cognition":"scripted adapter","connector":"existing authenticated YouTrack MCP through controlled experiment bridge","denied_card_effects":0,"issue":"NCP-2","live_card_reads":1,"model_calls":0,"next_increment":7,"status":"PASS","writes_to_youtrack":0}

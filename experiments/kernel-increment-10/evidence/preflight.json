@@ -1,0 +1,8 @@
+{
+  "status": "RESOLVED",
+  "increment": 10,
+  "workload": "ExecutionEvent v1 foundation under ADR 0018",
+  "gate": "PASS",
+  "evidence": "summary.json",
+  "previous_stop": "docs/milestones/026-cognitive-kernel-increment-10-workload-stop.md"
+}

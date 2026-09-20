@@ -1,0 +1,34 @@
+{
+  "increment": 7,
+  "status": "BLOCKED",
+  "gate": "STOP",
+  "expected": "An already-working local worker/harness bound to the permitted shared Qwen service",
+  "observed": {
+    "goose": {
+      "executable": "/home/leofuso/.local/bin/goose",
+      "version": "1.50.1",
+      "configuration": "/home/leofuso/.config/goose/config.yaml",
+      "active_provider": "ollama",
+      "OLLAMA_HOST": "localhost",
+      "model": "qwen3.6:35b-a3b",
+      "shared_vllm_binding_verified": false
+    },
+    "codex": {
+      "executable": "/home/leofuso/.local/bin/codex",
+      "configuration": "/home/leofuso/.codex/config.toml",
+      "model": "gpt-6-astra",
+      "model_provider": null,
+      "configured_local_providers": []
+    }
+  },
+  "evidence_method": "Read CLI version/help and allowlisted non-secret provider-selection fields; no credential values read or retained",
+  "worker_invocations": 0,
+  "inference_calls": 0,
+  "configuration_changes": false,
+  "installation": false,
+  "architecture_impact": "None",
+  "stop_rule": "Serving assumption materially different; no silent provider substitution or unapproved resource use",
+  "decision_required": "Authorize an isolated per-run Goose OpenAI-compatible binding to the existing shared Qwen/vLLM endpoint, or identify an already-working permitted local harness binding",
+  "safest_next_option": "Validate only that per-run binding, with no global config or serving changes, then resume Increment 7 acceptance",
+  "later_increments_started": false
+}

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "journal_prefix_unchanged": [
+    "child-8919ae5250346ea40b19b25cf9d96ed93960f7cfec7140bbaa6591dc2a045daf",
+    "human-parent-yes"
+  ],
+  "comparison_fields": [
+    "id",
+    "index",
+    "raw",
+    "appended_at"
+  ],
+  "exact_artifacts_verified": true
+}

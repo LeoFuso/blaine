@@ -1,0 +1,26 @@
+{
+  "experiments/kernel-increment-8/hybrid/workflow.py": {
+    "archive": "experiments/kernel-increment-8/evidence/production/retired-experimental-sources/hybrid/workflow.py.txt",
+    "sha256": "ef861843714ad36e9b33c727abf709fac61e76f4a7d58ebee8884acc03e0b926"
+  },
+  "experiments/kernel-increment-8/hybrid/app.py": {
+    "archive": "experiments/kernel-increment-8/evidence/production/retired-experimental-sources/hybrid/app.py.txt",
+    "sha256": "300d8751568f88015c9bca0a8d978a495a3e0e97bdac0e6359fcd166775aff11"
+  },
+  "experiments/kernel-increment-8/hybrid/run.py": {
+    "archive": "experiments/kernel-increment-8/evidence/production/retired-experimental-sources/hybrid/run.py.txt",
+    "sha256": "2b2e742ddd850d65a481fc62806f33590993dd64f4aeaeb1fe507bdac924bdb0"
+  },
+  "experiments/kernel-increment-8/progression/workflow.py": {
+    "archive": "experiments/kernel-increment-8/evidence/production/retired-experimental-sources/progression/workflow.py.txt",
+    "sha256": "282717538443b8fdbdac834ec9c7a66eaac35b1b24bda779996184ec8d9c1734"
+  },
+  "experiments/kernel-increment-8/progression/app.py": {
+    "archive": "experiments/kernel-increment-8/evidence/production/retired-experimental-sources/progression/app.py.txt",
+    "sha256": "71275a80a5ae40d855712e9ea131eefc373772196c95f67b0d7e1d96357235ff"
+  },
+  "experiments/kernel-increment-8/progression/run.py": {
+    "archive": "experiments/kernel-increment-8/evidence/production/retired-experimental-sources/progression/run.py.txt",
+    "sha256": "3e2657361d8ec528a17c4cec4723062594254bca3a987e27ae388edd75173e14"
+  }
+}

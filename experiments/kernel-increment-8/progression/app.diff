@@ -1,0 +1,59 @@
+--- hybrid/app.py (retained)
++++ progression/app.py
+@@ -1,19 +1,21 @@
+-"""Isolated deployment for A=retry, S=suspension-only, H=hybrid; no production imports patched."""
++"""Verifier-first experiment; hybrid cognition and production components unchanged."""
+ import asyncio
+ from copy import deepcopy
+ import os
+ from pathlib import Path
++import sys
+ import time
+ import restate
+ from hypercorn.asyncio import serve
+ from hypercorn.config import Config
+ from runtime.kernel.artifacts import ArtifactStore
+-from runtime.kernel.contracts import encode
++from runtime.kernel.contracts import encode, message
+ from runtime.kernel.execution import Capabilities, policy_gate
+ from runtime.kernel.procedure import ProcedureContext
+ from runtime.kernel.model import LocalModelCognition
+ from runtime.kernel.semantic_provider import JsonSemanticDecisionProvider, validate_admissibility
+ from runtime.kernel.semantic_bridge import SemanticDecisionBridge
++sys.path.append(str(Path(__file__).parent.parent/'hybrid'))
+ from actions import derive, ProjectedProvider, validate, lower_handoff
+ from workflow import create_workflow
+ 
+@@ -54,6 +56,18 @@
+ 
+ def cognitive(packet):
+     state = deepcopy(STATE[packet['payload']['task_id']])
++    if state['task_id'] == 'incomplete-effect':
++        # Explicit deterministic negative fixture, never counted as model inference.
++        turn = packet['payload']
++        content = 'DRAFT' if turn['iteration'] == 1 else 'VERIFIED_RESULT'
++        if turn['iteration'] > 2:
++            raise restate.TerminalError('Negative control exceeded two scripted turns')
++        command = message('CognitiveDecision', {k: turn[k] for k in ('task_id', 'task_revision', 'turn_id')} |
++            {'next_action': {'type': 'INVOKE_CAPABILITY', 'capability': 'artifact.write',
++                'input': {'name': 'answer', 'content': content}}})
++        audit('scripted.jsonl', {'provider': 'deterministic negative fixture', 'state': state,
++            'packet': packet, 'decision': command})
++        return command
+     spec = store.read_json(state['task_id'], state['spec_ref'])['payload']
+     context = bridge.project(packet)
+     choice = MODE == 'choice'
+@@ -98,10 +112,12 @@
+             row['gate'] = policy_gate(store.read_json(state['task_id'], state['decision_ref']), state,
+                 store.read_json(state['task_id'], state['spec_ref'])['payload'])
+         if stage == 'suspended': row.update(cognition_invoked=False, awaited_event=state['wait'])
++        if stage.startswith('verification-'):
++            row['evaluation'] = store.read_json(state['task_id'], state['completion_ref'])
+         audit('states.jsonl', row)
+         return None
+     await ctx.run_typed(f'experiment-audit/{stage}/{state["iteration"]}', record)
+-    if stage == 'outcome' and 'answer' in state['artifacts'] and (ROOT/'pause-after-artifact').exists():
++    if stage == 'effect_persisted' and state['task_id'] == 'procedure' and 'answer' in state['artifacts'] and (ROOT/'pause-after-artifact').exists():
+         (ROOT/'paused-state.json').write_bytes(encode(state))
+         await asyncio.Event().wait()
+ 

@@ -1,0 +1,1 @@
+{"attempt_id":"worker-1544c96d206f493e8e344e42f32590af","content":"ALPHA|BETA|UNKNOWN","exit_code":0,"normalization":"strip terminal whitespace; raw public stdout retained in worker evidence","operation_id":"worker-task/5","outcome":"success","public_stdout":"\n\nALPHA|BETA|UNKNOWN\n","stderr_bytes":0}

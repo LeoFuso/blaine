@@ -1,0 +1,126 @@
+{
+  "inputs_and_behavior_files_unchanged": true,
+  "sha256": {
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/425c1031a0643786946d1e595344ca647b3fe6fb0cc0f92068f5a1b9ed00e889": "425c1031a0643786946d1e595344ca647b3fe6fb0cc0f92068f5a1b9ed00e889",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/64359770257ff51c042499fd2525c011183d1125385c813354e748c498da12a6": "64359770257ff51c042499fd2525c011183d1125385c813354e748c498da12a6",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/7c5e90bb61c515783e80e4ffa1fdae11f825ccaedb079f07f22500ee096bb546": "7c5e90bb61c515783e80e4ffa1fdae11f825ccaedb079f07f22500ee096bb546",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/9181893b4e0be7c407371f89626a7f6400f3f80f59b1c9c97706670f57f88328": "9181893b4e0be7c407371f89626a7f6400f3f80f59b1c9c97706670f57f88328",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/93d656e1ef593b9b4a17a623af49aa0e720f93d54ef4d8f0c7444d8b2b3f18a1": "93d656e1ef593b9b4a17a623af49aa0e720f93d54ef4d8f0c7444d8b2b3f18a1",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/a31afc44792082d39329048651caa41060066712f872a91f473982931465abd1": "a31afc44792082d39329048651caa41060066712f872a91f473982931465abd1",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/a840b2ee6fa7181e4396450acf3844285f24cc068764e7439acb9cbf852ca616": "a840b2ee6fa7181e4396450acf3844285f24cc068764e7439acb9cbf852ca616",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/b100ae8b32ca025e77402faddc388583270e537626f76d02ed14b697c5d63650": "b100ae8b32ca025e77402faddc388583270e537626f76d02ed14b697c5d63650",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/d3347671b8199a639a8d3e4bd624cefee34bbb88c1b014508a24f70a4268df85": "d3347671b8199a639a8d3e4bd624cefee34bbb88c1b014508a24f70a4268df85",
+    "experiments/kernel-increment-8/evidence/artifacts/procedure/f20deb1acab1f5eb7cc13323ed47bfd4f4c53092739aaa8755dc16d4db968a42": "f20deb1acab1f5eb7cc13323ed47bfd4f4c53092739aaa8755dc16d4db968a42",
+    "experiments/kernel-increment-8/evidence/capabilities.jsonl": "c7ea5c54ad0eade9c22174949aa5dc3539c086d813276c01f36b083f44e7cc3f",
+    "experiments/kernel-increment-8/evidence/cognition.jsonl": "3a88c2427b1cc29996199f070166ec59982c8720c4e4cc3ef9d5533427c7a53b",
+    "experiments/kernel-increment-8/evidence/counterexample.json": "c916f8e2f9f46288759a5652fc4e3e89b479fa0377f8d1ed2d38665fa7f8da6e",
+    "experiments/kernel-increment-8/evidence/deployment.json": "92e7036dd0b018f576ae269225634cc7ed7fe446223b2d6fe1551c082df5e856",
+    "experiments/kernel-increment-8/evidence/input-receipt.json": "317aa6c33db22ac81b59ca4bc091f5c79ae8a2daafa5db1605e5a57ed3a162ca",
+    "experiments/kernel-increment-8/evidence/model.jsonl": "f65fc82bd7e5480b11f8a5e2f23e8921888497d0761e41fbe3c2da6f56b1ae57",
+    "experiments/kernel-increment-8/evidence/policy.jsonl": "9445296c9af9598017965dba3a436efe3a44af97282d99947f5f546c03d07bc3",
+    "experiments/kernel-increment-8/evidence/procedure-spec.json": "b37947e0de0d24319980ef8acd1d7fe80e23f957f2ce7dad26b54d6112ae5469",
+    "experiments/kernel-increment-8/evidence/procedure-submission.json": "503f725f77143ed15d65685fe4071e08eef854dac51ee7f61f4ae918ef3926d9",
+    "experiments/kernel-increment-8/evidence/process.jsonl": "517521994e8a496c5a174edd44c8e2917f7464df8cac3b6cbba780b31df3c7a6",
+    "experiments/kernel-increment-8/evidence/stopped-state.json": "436a478a6bec5494281f19b211f206eb4dbc4ad8a77e7206c39f293c2ee69f63",
+    "experiments/kernel-increment-8/evidence/summary.json": "aeabcff8761155d1191cf702be7954daae44483b82d774cde82253e3cea23a63",
+    "experiments/kernel-increment-8/evidence/tests.json": "2722a05dd4c8bd47ddf2f411846b034e2a3fa48e15cf2c61c23639bb7a434cb3",
+    "experiments/kernel-increment-8/evidence/tests.txt": "3229458ccfa6b67d12c51d4d88ab190bb8bf074865b0b374a07d45bd26a7ae65",
+    "experiments/kernel-increment-8/evidence/unchanged-boundaries.json": "b1e1f61eb07afcfd331a4996f16af918cb5b06a95c83806c067e9304fb004901",
+    "experiments/kernel-increment-8/evidence/versions.json": "0972d76b51f89998fb23d9eef7fd1a2e07e033c6f7b129ced63fdf726e0f9dc8",
+    "experiments/kernel-increment-8/evidence/wait-state.json": "cadc02a467be1fb53a5e3651f1da9542aa2edf3f87097e9c131a7f3ef61d9e02",
+    "experiments/kernel-increment-8/evidence/wire.jsonl": "ad18bd6300ca39cfe51456f961a698f4939bc0e326386bc4d077e6ad03829ba5",
+    "experiments/kernel-increment-8/probe_app.py": "755ae666cd130a80f00af84572488aa7cd5a881b14dc5a458faf3c9d29c1f7f9",
+    "experiments/kernel-increment-8/speckit-clarification.md": "dadf9923e6972fa55ff251f6b0e3f388b015793eb2e95bb3851f9fda866c9b70",
+    "runtime/kernel/__init__.py": "4abeaecfd74694342188dbf55245831fb2547f0afd5e8a3e4936b0f61f485009",
+    "runtime/kernel/artifacts.py": "4e748f4e8e840aca630813467126ef85ba73abac0f5a04c0283dbccf67a4820a",
+    "runtime/kernel/cognition.py": "efe6f3683dd06050a4fb7950a48cec723fa68dfa1df2bdea1dd782cd62ee4778",
+    "runtime/kernel/context.py": "2b6e7694b877dd4b4c3ab03a9c0c53f8e0ba21d5a48b46568a0d1cfa3e5ea1f6",
+    "runtime/kernel/contracts.py": "71c11e264a2417485edc4148bc629a8dc53f432ffaac3fbf13890d5460452e9b",
+    "runtime/kernel/execution.py": "c1635594922403842f57f156c0ac596b1ed8fd54ff9c21bf2e57cddbc0096807",
+    "runtime/kernel/human.py": "7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+    "runtime/kernel/memory.py": "ebb778c8a10fc010562a9522e1386496b7e20f3b0c1ba4a1a9a5fc747397b1e8",
+    "runtime/kernel/model.py": "c3acbcc5e2830bd1d56c08d7a962516e8c353d367dc51cf814f0a70878aaaaf6",
+    "runtime/kernel/procedure.py": "49e55d203869f5ad5265a5bea1faa0f4c58240b49e7def290b59cc43c9d2f7ff",
+    "runtime/kernel/worker.py": "c5c6ad82f0c32ab58eb8fbeab6a03b45bb1f4b5885f6d6db89336afb3d302899",
+    "runtime/kernel/workflow.py": "4b980a61ea056747ef9d8e20335ce6e4faabd0975b10c66e58a16594d3ab45a7",
+    "runtime/kernel/youtrack.py": "cde9c786e83c4a896da1cff13579953a96d553c0daf978a57e45266ad56dc22f",
+    "scripts/verify-kernel-children.py": "74879abce53deba32c8bc3061700a75feb41f4897c75fdfa44fdbfb3d76bdea8",
+    "scripts/verify-kernel-human.py": "6154be60043390bc1fece3a37c4b01d8dd391c477a66b4758720316b06429901",
+    "scripts/verify-kernel-memory.py": "f63a0c6fa1a2813e6ee21e3185965d1507de90c5fdd16121edbdba5a78931caa",
+    "scripts/verify-kernel-model.py": "6acd121e1aa734a2cf175162a7a7eb21f1d7e2600fb3092a1d843b2b07f5957e",
+    "scripts/verify-kernel-procedure.py": "46b5e94bd9a17338290bdca5d425af3ad8cdeafa11b791413918dbe5d60f274e",
+    "scripts/verify-kernel-worker.py": "935b4c6848a1a4d9c04b7d3cb2cfe044c8e416bd20fd70ed24a9047045ecda6d",
+    "scripts/verify-kernel-youtrack.py": "147d0568fe495c31f4055cae69b03ba6baab89cf414ef87c04cadc0469a3203a",
+    "scripts/verify-kernel.py": "8f0264b8427d138ec320edadbf34b0fb38060ce25ce512cf8a49fc6d6ab4630a",
+    "tests/test_kernel.py": "8af720b78ec6e4208ec2d3a7212b4594d78c083a426583988265f58c77487807",
+    "tests/test_kernel_children.py": "bf16fb4c2514264716d28cac4a43440a0f943a7e159c37bfa517d06a708c8689",
+    "tests/test_kernel_human.py": "9a746da2357abb94171e2d700f4a9c35ff9fd641c4b8e077c2f5b8dfef1e1644",
+    "tests/test_kernel_memory.py": "ce811efed6289e576636c8e55fb47d44b8549338e65b35db3c17eb2008ae230c",
+    "tests/test_kernel_model.py": "33793b2432c02063b6a355b73cf30fabbdfe4adc89f1b60948c7b97c17bb424c",
+    "tests/test_kernel_procedure.py": "b65c9cfd6cb445ed940840ed100fc02d9cd2c868e8050c9eb19fb79e71d317e9",
+    "tests/test_kernel_worker.py": "ad1f4a3ae97356e7c9922b8854761c28865ae90dc44546ee3c040b02fe657948",
+    "tests/test_kernel_youtrack.py": "aebceeaaaef81cbdf9fb1474949cd12276bb79c8fc83514be5d7e6e1a6fa0c00"
+  },
+  "artifact_inventory": [
+    {
+      "ref": "artifact://procedure/sha256:425c1031a0643786946d1e595344ca647b3fe6fb0cc0f92068f5a1b9ed00e889",
+      "bytes": 2824,
+      "digest_valid": true,
+      "kind": "CognitiveTurn"
+    },
+    {
+      "ref": "artifact://procedure/sha256:64359770257ff51c042499fd2525c011183d1125385c813354e748c498da12a6",
+      "bytes": 702,
+      "digest_valid": true,
+      "kind": "TaskSpec"
+    },
+    {
+      "ref": "artifact://procedure/sha256:7c5e90bb61c515783e80e4ffa1fdae11f825ccaedb079f07f22500ee096bb546",
+      "bytes": 188,
+      "digest_valid": true,
+      "kind": "CognitiveDecision"
+    },
+    {
+      "ref": "artifact://procedure/sha256:9181893b4e0be7c407371f89626a7f6400f3f80f59b1c9c97706670f57f88328",
+      "bytes": 146,
+      "digest_valid": true,
+      "kind": "ExternalInput"
+    },
+    {
+      "ref": "artifact://procedure/sha256:93d656e1ef593b9b4a17a623af49aa0e720f93d54ef4d8f0c7444d8b2b3f18a1",
+      "bytes": 3346,
+      "digest_valid": true,
+      "kind": "CognitiveTurn"
+    },
+    {
+      "ref": "artifact://procedure/sha256:a31afc44792082d39329048651caa41060066712f872a91f473982931465abd1",
+      "bytes": 245,
+      "digest_valid": true,
+      "kind": "CognitiveDecision"
+    },
+    {
+      "ref": "artifact://procedure/sha256:a840b2ee6fa7181e4396450acf3844285f24cc068764e7439acb9cbf852ca616",
+      "bytes": 419,
+      "digest_valid": true,
+      "kind": "CapabilityResult"
+    },
+    {
+      "ref": "artifact://procedure/sha256:b100ae8b32ca025e77402faddc388583270e537626f76d02ed14b697c5d63650",
+      "bytes": 188,
+      "digest_valid": true,
+      "kind": "CognitiveDecision"
+    },
+    {
+      "ref": "artifact://procedure/sha256:d3347671b8199a639a8d3e4bd624cefee34bbb88c1b014508a24f70a4268df85",
+      "bytes": 2678,
+      "digest_valid": true,
+      "kind": "CognitiveTurn"
+    },
+    {
+      "ref": "artifact://procedure/sha256:f20deb1acab1f5eb7cc13323ed47bfd4f4c53092739aaa8755dc16d4db968a42",
+      "bytes": 17,
+      "digest_valid": true,
+      "kind": "exact_bytes"
+    }
+  ]
+}

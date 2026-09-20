@@ -1,0 +1,1 @@
+{"kind":"HumanDecisionRequest","payload":{"allowed_responses":["YES","NO"],"origin_task_id":"human-parent-no","question":"Proceed with operation D-1?","request_id":"decision-1","revision":0,"task_id":"child-937f1c5c25058058c746f8394f11d59a086988ac2f7ef956c0370b143658b3e9"},"version":1}

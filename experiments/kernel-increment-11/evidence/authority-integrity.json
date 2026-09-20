@@ -1,0 +1,12 @@
+{
+  "unchanged": {
+    "runtime/kernel/workflow.py": true,
+    "runtime/kernel/contracts.py": true,
+    "runtime/kernel/execution.py": true,
+    "runtime/kernel/events.py": true,
+    "runtime/kernel/worker.py": true,
+    "runtime/kernel/model.py": true
+  },
+  "new_module": "runtime/kernel/frontier.py",
+  "proof_wiring": "existing trusted checkpoint and worker.run injection only"
+}

@@ -1,0 +1,6 @@
+{
+  "endpoint": "http://127.0.0.1:8000/v1/models",
+  "mutation": false,
+  "status": "UNAVAILABLE",
+  "error": "<urlopen error [Errno 111] Connection refused>"
+}

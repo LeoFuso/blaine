@@ -1,0 +1,195 @@
+{
+  "scope": "Accumulated Cognitive Kernel repository checkpoint; no development increment",
+  "initial_branch": "feature/durable-cognitive-loop",
+  "initial_commit": "cb347c2294d55120fd0eb9036c52c3b0af05b7b9",
+  "initial_untracked_files": 3698,
+  "initial_tracked_modified": [
+    "docs/decisions/README.md"
+  ],
+  "concurrency": "Only this Codex session, idle shells and sleep helpers found; no other worktree writer; initial hashes stable before edits",
+  "retained_categories": [
+    "kernel source and contracts",
+    "tests and verification machinery",
+    "experiment machinery and exact PASS/STOP evidence including source snapshots and historical patches",
+    "architecture and milestone documents"
+  ],
+  "transient_material_excluded": [
+    "existing gitignored .local runtime scratch, Restate database files and temporary probe outputs",
+    "existing gitignored __pycache__ and .pyc",
+    "existing gitignored log files"
+  ],
+  "untracked_transient_junk_found": false,
+  "files_discarded": false,
+  "active_material_sanitized": [
+    "docs/milestones/031-cognitive-kernel-increment-11-projection.md",
+    "experiments/kernel-increment-11/probe.py",
+    "experiments/kernel-increment-11/verify.py",
+    "tests/test_kernel_frontier_context.py"
+  ],
+  "verifier_compatibility": "Checks raw fixture values from the recorded run, rather than current fixture spellings",
+  "historical_exception": "User explicitly authorized original identifiers in immutable historical evidence; no general exception for future artifacts",
+  "historical_files_preserved": [
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/account-exhausted/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/account-unknown/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/approval/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/authorized/0ad09cd96ad039ad40699d68a5aa3fd8733c8a6da35fa5d669f30f7e04279f19",
+      "sha256": "0ad09cd96ad039ad40699d68a5aa3fd8733c8a6da35fa5d669f30f7e04279f19"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/authorized/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/budget/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/deadline/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/disabled/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/global-disabled/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/kill-switch/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/native-required/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/not-executed/5e3342e024a4229aff48ea67e1896b3dde8428a326e3676106ba05a26f5c5a1a",
+      "sha256": "5e3342e024a4229aff48ea67e1896b3dde8428a326e3676106ba05a26f5c5a1a"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/not-executed/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/projection-failure/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/raw-bypass/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/read-escalation/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/repeat/236406c5c2868f86c35d53427b806f181b4e6acda9e23f3f191f3b74e9dc486f",
+      "sha256": "236406c5c2868f86c35d53427b806f181b4e6acda9e23f3f191f3b74e9dc486f"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/repeat/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/runtime/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/substitution/861c31c9f410e07e7a205605a0a08515ffee10ea579165a1f55d18d97d865198",
+      "sha256": "861c31c9f410e07e7a205605a0a08515ffee10ea579165a1f55d18d97d865198"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/substitution/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/timeout/be51777ba5eec550768c1db696b929ecd662070f7861aa1f1fce56f9e8bea501",
+      "sha256": "be51777ba5eec550768c1db696b929ecd662070f7861aa1f1fce56f9e8bea501"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/timeout/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/write-escalation/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/wrong-egress/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/wrong-model/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/artifacts/wrong-provider/c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9",
+      "sha256": "c3131651074f4fc72d640b9ebd24d27336596449a4255c89571d1cf1435636d9"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/dispatch-results.jsonl",
+      "sha256": "6227f099be92c9b54b10c51dc1cf45cf8c9df2b4cc89ccb5c967352ce7a0505d"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/fixtures.json",
+      "sha256": "70e99d8940520ab365c58da26182055a5698694dd5ecef335b65b21369b22087"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/policy.jsonl",
+      "sha256": "de3e09b2b19ccfd1851cb9654d6ed1fd434523cc8ff23c9206fca1364d8942d4"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/acceptance/provider-calls.jsonl",
+      "sha256": "254163a4546c32887e94f86fc822e06628d12608d471a32a918a6b33c2729c36"
+    },
+    {
+      "path": "experiments/kernel-increment-11/evidence/projection/summary.json",
+      "sha256": "df14072c301448e9b01f0402ab0481953e326ef42f8441298a5b9ba7a4805b1d"
+    }
+  ],
+  "all_kernel_evidence_files_preserved": 3421,
+  "milestone_033": {
+    "path": "docs/milestones/033-cognitive-kernel-increment-11-live-stop.md",
+    "sha256": "2d647c9c2bf8ffac24a25291286b9c9a1dc5002545d5de84e68036273cba6db0",
+    "outcome": "STOP; Task FAILED; one live dispatch; pending unknown reservation; Increment 11 not closed"
+  },
+  "security_review": {
+    "text_pattern_candidates": 26,
+    "candidate_resolution": "23 non-secret placeholders/explanatory labels; 3 invalid-domain user/password rejection fixtures",
+    "json_files_checked": 3304,
+    "decoded_journal_byte_arrays_checked": 9117,
+    "credential_findings": 0,
+    "limitations": "Pattern scanning plus targeted inspection, not a proof of absence of every possible sensitive value; no credential files opened"
+  },
+  "offline_validation": {
+    "focused_tests": 107,
+    "result": "PASS",
+    "execution_event_historical_verifier": "PASS: 28 events",
+    "projection_historical_verifier": "PASS: 434 events",
+    "live_historical_verifier": "Expected STOP retained: 74 events; no worker invoked"
+  },
+  "whitespace_preservation": {
+    "mechanism": "Exact-file .gitattributes disables blank-at-eol complaints for existing raw captures and historical patch context lines; one historical patch also retains its blank EOF context line",
+    "files": 21,
+    "evidence_bytes_changed": false
+  },
+  "live_provider_calls": 0,
+  "increments_11_and_12_continued": false,
+  "checkpoint_grouping": [
+    "runtime/contracts/tests/verifiers/probe machinery",
+    "architecture/milestones/repository hygiene",
+    "historical evidence and checkpoint validation"
+  ],
+  "integration_note": "Git history identifies checkpoint commits. Main integration and post-integration checks are reported by the hygiene session; this artifact does not claim a merge before it occurs."
+}

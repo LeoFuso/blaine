@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://raw-bypass/sha256:ef1e27674c0c55b04bc7359c74c643572a50462ead7e4387b4174843e41a76ab"},"type":"INVOKE_CAPABILITY"},"task_id":"raw-bypass","task_revision":1,"turn_id":"raw-bypass/2"},"version":1}

@@ -1,0 +1,242 @@
+#!/usr/bin/env python3
+"""Increment 8 procedure gate on isolated Restate; does not manage inference."""
+import argparse
+import hashlib
+import importlib.metadata
+import json
+import os
+from pathlib import Path
+import runpy
+import shutil
+import socket
+import sqlite3
+import subprocess
+import sys
+import urllib.error
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from runtime.kernel.contracts import encode, message
+from runtime.kernel.artifacts import ArtifactStore
+from runtime.kernel.execution import evaluate
+from runtime.kernel.human import request_digest
+BASE = runpy.run_path(str(ROOT / 'scripts/verify-kernel.py'))
+http, until = BASE['http'], BASE['until']
+ADMIN, INGRESS, ENDPOINT = BASE['ADMIN'], BASE['INGRESS'], BASE['ENDPOINT']
+CONTENT='RETENTION_30_DAYS'
+CASES={'procedure':'Plan an export feature. A material acceptance detail is unresolved: retention duration. Use the selected clarification procedure to obtain the scoped human answer. After clarification is resolved, produce the exact deliverable RETENTION_30_DAYS. Once the deliverable exists, request completion.'}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--restate-server', type=Path, required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    out = args.output.resolve()
+    if out.exists(): raise RuntimeError('Use a fresh output directory')
+    for port in (38080,39070,39080,35122):
+        with socket.socket() as sock:
+            sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1); sock.bind(('127.0.0.1',port))
+    out.mkdir(parents=True); evidence=out/'evidence'; evidence.mkdir()
+    (out/'pause-after-artifact').touch()
+    def save(name,value): (evidence/(name+'.json')).write_bytes(encode(value)+b'\n')
+    save('versions',{'server':subprocess.check_output([str(args.restate_server),'--version'],text=True).strip(),
+                     'sdk':importlib.metadata.version('restate-sdk')})
+    (out/'restate.toml').write_text(f'''cluster-name = "blaine-model-probe"
+node-name = "model-probe"
+base-dir = "{out / 'restate-data'}"
+bind-ip = "127.0.0.1"
+bind-port = 35122
+advertised-host = "127.0.0.1"
+listen-mode = "tcp"
+auto-provision = true
+default-journal-retention = "7 days"
+[admin]
+bind-address = "127.0.0.1:39070"
+[ingress]
+bind-address = "127.0.0.1:38080"
+''')
+    env={k:v for k,v in os.environ.items() if not k.startswith('RESTATE_')}
+    env.update(KERNEL_PROBE_DIR=str(out),PYTHONPATH=str(ROOT),PYTHONDONTWRITEBYTECODE='1')
+    processes=[]
+    def start(name,command):
+        with (out/(name+'.txt')).open('wb') as log:
+            p=subprocess.Popen(command,cwd=ROOT,env=env,stdout=log,stderr=subprocess.STDOUT)
+        processes.append(p)
+        def ready():
+            if p.poll() is not None: raise RuntimeError(name+' exited')
+            if name=='server': return http(ADMIN,'/deployments') is not None
+            try:
+                with socket.create_connection(('127.0.0.1',39080),timeout=1): return True
+            except OSError: return False
+        until(ready,name+' ready',40)
+        return p
+    try:
+        start('server',[str(args.restate_server),'--config-file',str(out/'restate.toml')])
+        runtime=start('runtime',[sys.executable,str(ROOT/'experiments/kernel-increment-8/probe_app.py')])
+        save('deployment',http(ADMIN,'/deployments',{'uri':ENDPOINT}))
+        states={}
+        for task,objective in CASES.items():
+            request=message('HumanDecisionRequest',{'task_id':task,'origin_task_id':task,
+                'request_id':'retention','revision':0,'question':'How long should exports be retained?',
+                'allowed_responses':['30 days','90 days']})
+            spec=message('TaskSpec',{'objective':objective,'completion':[
+                {'criterion':'Scoped retention clarification','evidence':{'artifact':'retention-response',
+                    'verifier':'human_response','request':request}},
+                {'criterion':'Exact answer','evidence':{'artifact':'answer','sha256':hashlib.sha256(CONTENT.encode()).hexdigest()}}],
+                'capabilities':['artifact.write','human.request'],'autonomy':{'allowed':['artifact.write','human.request']}})
+            save(task+'-spec',spec)
+            save(task+'-submission',http(INGRESS,f'/CognitiveTaskV1/{task}/run/send',spec))
+            def waiting():
+                state=http(INGRESS,f'/CognitiveTaskV1/{task}/status',method='POST')['payload']
+                if state.get('lifecycle')=='FAILED':
+                    save('stopped-state',state)
+                    raise AssertionError('Task failed before clarification WAIT')
+                return state if state.get('lifecycle')=='WAITING' else None
+            suspended=until(waiting,'procedure selected clarification wait',90)
+            save('wait-state',suspended)
+            wait=suspended['wait']
+            assert wait['input_type']=='human_response' and wait['wait_id']=='retention',wait
+            store=ArtifactStore(out/'artifacts')
+            assert store.read_json(task,wait['request_ref'])==request
+            response=message('HumanDecisionResponse',{'task_id':task,'request_id':'retention',
+                'request_revision':0,'request_digest':request_digest(request),
+                'response_id':'retention-answer-1','value':'30 days'})
+            controls=[]
+            for field,value in [('task_id','other'),('request_id','other'),('request_revision',1),
+                                ('request_digest','0'*64),('value','forever'),('version',2),('missing',None)]:
+                bad=json.loads(json.dumps(response))
+                if field=='version':bad['version']=value
+                elif field=='missing':del bad['payload']['value']
+                else:bad['payload'][field]=value
+                try:
+                    http(INGRESS,f'/CognitiveTaskV1/{task}/submit_human_response',bad)
+                    raise AssertionError('Invalid response accepted: '+field)
+                except urllib.error.HTTPError as error:
+                    assert error.code==400,error.code
+                    controls.append({'control':field,'request':bad,'status':error.code,
+                                     'response':error.read().decode()})
+                assert http(INGRESS,f'/CognitiveTaskV1/{task}/status',method='POST')['payload']==suspended
+            save('negative-controls',controls)
+            save('submitted-human-response',response)
+            save('input-receipt',http(INGRESS,f'/CognitiveTaskV1/{task}/submit_human_response',response))
+            def paused():
+                path=out/'paused-state.json'
+                if path.exists():return json.loads(path.read_text())
+                current=http(INGRESS,f'/CognitiveTaskV1/{task}/status',method='POST')['payload']
+                if current['lifecycle']=='FAILED' or (current.get('wait') and current['iteration']>2):
+                    save('stopped-state',current)
+                    raise AssertionError('Unexpected failure or repeated wait before artifact')
+                return None
+            committed=until(paused,'artifact committed before fresh-runtime reconstruction',90)
+            save('pre-restart-state',committed)
+            save('pre-restart-journal',http(ADMIN,'/query',{'query':f"SELECT * FROM sys_journal WHERE id IN (SELECT id FROM sys_invocation WHERE target = 'CognitiveTaskV1/{task}/run') ORDER BY index"}))
+            runtime.kill();runtime.wait(timeout=10)
+            (out/'pause-after-artifact').unlink()
+            replacement=start('runtime-replacement',[sys.executable,str(ROOT/'experiments/kernel-increment-8/probe_app.py')])
+            save('recovery',{'killed_pid':runtime.pid,'exit_code':runtime.returncode,
+                'replacement_pid':replacement.pid,'task_id':task,'committed_decision_id':committed['decision_id'],
+                'response_ref':committed['human_responses']['retention'],'artifact_ref':committed['artifacts']['answer']})
+            def complete():
+                s=http(INGRESS,f'/CognitiveTaskV1/{task}/status',method='POST')['payload']
+                if s.get('wait') and s['iteration']>committed['iteration']:
+                    save('stopped-state',s)
+                    raise AssertionError('Repeated wait after durable verified resolution')
+                return s if s.get('result_ref') else None
+            state=until(complete,task+' finished',150)
+            states[task]=state; save(task+'-state',state)
+            expected='COMPLETED'
+            assert state['lifecycle']==expected,state
+            save(task+'-result',http(INGRESS,f'/restate/workflow/CognitiveTaskV1/{task}/attach'))
+            save(task+'-journal',http(ADMIN,'/query',{'query':f"SELECT * FROM sys_journal WHERE id IN (SELECT id FROM sys_invocation WHERE target = 'CognitiveTaskV1/{task}/run') ORDER BY index"}))
+            print('PASS',task,flush=True)
+        turns=[json.loads(x) for x in (out/'cognition.jsonl').read_text().splitlines()]
+        grouped={task:[x for x in turns if x['packet']['payload']['task_id']==task] for task in CASES}
+        actions=lambda task:[x['decision']['payload']['next_action']['type'] for x in grouped[task]]
+        assert actions('procedure')==['INVOKE_CAPABILITY','WAIT','INVOKE_CAPABILITY','COMPLETE']
+        turns=grouped['procedure']
+        assert turns[0]['decision']['payload']['next_action']['capability']=='human.request'
+        assert turns[0]['decision']['payload']['next_action']['input']['request']==request
+        semantics=[json.loads(x) for x in (out/'semantic.jsonl').read_text().splitlines()]
+        assert len(semantics)==4 and all(s['outcome']=='lowered' for s in semantics)
+        assert [s['parsed_semantic_decision']['action'] for s in semantics]==['REQUEST_HUMAN','WAIT','PRODUCE_ARTIFACT','COMPLETE']
+        assert [s['semantic_context']['clarification']['status'] for s in semantics]==['missing','pending','resolved','resolved']
+        semantic=semantics[0]['parsed_semantic_decision']
+        assert semantic['action']=='REQUEST_HUMAN' and semantic['purpose']=='retention_period'
+        assert semantics[0]['semantic_validation']=='passed'
+        assert semantics[0]['lowering_input']['semantic']==semantic
+        assert semantics[0]['runtime_command']==turns[0]['decision']
+        assert semantic['question']==request['payload']['question']
+        assert semantic['response']=={'kind':'choice','choices':request['payload']['allowed_responses']}
+        assert not {'version','task_id','request_id'} & semantic.keys()
+        provider=[json.loads(x) for x in (out/'wire.jsonl').read_text().splitlines()]
+        assert len(provider)==4
+        for raw,turn,trace in zip(provider,turns,semantics):
+            assert json.loads(raw['raw_response_safe']['choices'][0]['content'])==trace['parsed_semantic_decision']
+            assert json.loads(raw['request']['messages'][1]['content'])==trace['semantic_context']
+            assert trace['runtime_command']==turn['decision'] and trace['admissibility']=='passed'
+            shown=encode(raw['request']['messages']).decode()
+            for excluded in ['CognitiveDecision','HumanDecisionRequest','HumanDecisionResponse','HumanDecisionResolution',
+                             'human.request','artifact.write','artifact://','task_id','request_id','turn_id','task_revision',
+                             'PolicyGate','sha256','wait_id']:
+                assert excluded not in shown,excluded
+        assert semantics[0]['semantic_context']['deliverable']=={'present':False,'content_verified':False}
+        assert semantics[3]['semantic_context']['deliverable']=={'present':True,'content_verified':True}
+        save('semantic-boundary',{'model_output':semantic,'validation':'passed',
+            'lowering':semantics[0]['lowering_input'],'runtime_command':semantics[0]['runtime_command'],
+            'semantic_information_invented':False,'runtime_contracts_unchanged':True,
+            'all_decisions_semantic':True,'runtime_metadata_excluded':True})
+        assert turns[2]['packet']['payload']['observations'][0]['kind']=='HumanInputReceipt'
+        assert turns[3]['packet']['payload']['observations'][0]['kind']=='CapabilityResult'
+        resolutions=lambda t:[x['content']['payload'] for x in t['packet']['payload']['context']
+            if isinstance(x['content'],dict) and x['content'].get('kind')=='HumanDecisionResolution']
+        assert not resolutions(turns[0]) and not resolutions(turns[1])
+        assert resolutions(turns[2])==resolutions(turns[3]) and len(resolutions(turns[3]))==1
+        assert resolutions(turns[3])[0]['value']=='30 days'
+        assert turns[2]['pid']==runtime.pid and turns[3]['pid']==replacement.pid
+        assert all(t['packet']['payload']['objective']==objective for t in turns)
+        assert store.read_json(task,state['spec_ref'])==spec
+        response_ref=state['human_responses']['retention']
+        assert store.read_json(task,response_ref)==response
+        assert response_ref==committed['human_responses']['retention']
+        assert store.read(task,state['artifacts']['answer'])==CONTENT.encode()
+        outcome_states=[json.loads(x)['state'] for x in (out/'states.jsonl').read_text().splitlines()]
+        human_only=next(s for s in outcome_states if s.get('human_responses') and 'answer' not in s['artifacts'])
+        missing=evaluate(spec['payload'],human_only,store)
+        assert missing['payload']['outcome']=='unsatisfied'
+        save('response-alone-completion-control',{'basis':'offline deterministic verifier on captured durable state',
+            'state':human_only,'evaluation':missing})
+        completion=store.read_json(task,state['completion_ref'])
+        assert completion['payload']['outcome']=='satisfied'
+        save('completion',completion)
+        executions=[json.loads(x) for x in (out/'capabilities.jsonl').read_text().splitlines()]
+        assert len(executions)==2 and len({x['request']['payload']['operation_id'] for x in executions})==2
+        save('verified-resolution',{'before_next_capability':resolutions(turns[2]),
+            'after_next_capability_and_restart':resolutions(turns[3]),'same_response_ref':response_ref,
+            'objective_unchanged':True,'fresh_runtime':True,'no_duplicate_effects_or_decisions':True})
+        assert any(x['content'].get('classification')=='procedure' for x in turns[0]['packet']['payload']['context'] if isinstance(x['content'],dict))
+        audits=[json.loads(x) for x in (out/'model.jsonl').read_text().splitlines()]
+        save('summary',{'status':'PASS','model':'Qwen/Qwen3.5-9B','model_turns':len(audits),
+            'actions':actions('procedure'),'clarification_question':request['payload']['question'],
+            'negative_controls':len(controls),'fresh_runtime_reconstruction':True,'verified_response_survives_capability':True,
+            'response_alone_cannot_complete':True,'default_adapter_unchanged':True,
+            'opt_in_semantic_provider':True,'semantic_information_invented':False,
+            'semantic_actions':[s['parsed_semantic_decision']['action'] for s in semantics],
+            'max_packet_bytes':max(x['packet_bytes'] for x in audits),
+            'prompt_tokens':sum(x['usage']['prompt_tokens'] for x in audits),
+            'procedure':'bounded adapted Spec Kit clarification excerpt','runtime_phase_states_added':0,
+            'next_increment':9})
+    except Exception as error:
+        save('summary',{'status':'FAIL','gate':'STOP','error':str(error),'exception':type(error).__name__})
+        raise
+    finally:
+        for p in reversed(processes):
+            p.terminate()
+            try: p.wait(timeout=10)
+            except subprocess.TimeoutExpired: p.kill(); p.wait(timeout=5)
+        for name in ('process.jsonl','wire.jsonl','cognition.jsonl','capabilities.jsonl','policy.jsonl','model.jsonl','states.jsonl','semantic.jsonl'):
+            if (out/name).exists():shutil.copyfile(out/name,evidence/name)
+        if (out/'artifacts').exists():shutil.copytree(out/'artifacts',evidence/'artifacts',dirs_exist_ok=True)
+        print('Evidence:',evidence,flush=True)
+
+if __name__=='__main__': main()

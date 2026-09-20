@@ -1,0 +1,29 @@
+{
+  "status": "EXPERIMENT_COMPLETE_STOP",
+  "increment_8": "UNPASSED",
+  "architecture_adopted": false,
+  "experiments": {
+    "runtime_suspension": "SUPPORTED; zero inference while pending, restart/wake controls passed; final completion not reached",
+    "hard_action_projection": "SUPPORTED as a legal-vocabulary boundary, not sufficient for goal completion",
+    "current_vs_hybrid": "MEASURED; hybrid still repeats legal artifact production",
+    "genuine_choice": "PASS; one live inference over frozen authoritative initial state; no effects"
+  },
+  "inference_calls": 17,
+  "model": "Qwen/Qwen3.5-9B",
+  "provider": "existing local vLLM",
+  "endpoint": "http://127.0.0.1:8000/v1/chat/completions",
+  "embedding_calls": 0,
+  "cloud_calls": 0,
+  "existing_tests_passed": 65,
+  "isolated_projection_tests_passed": 7,
+  "production_runtime_unchanged": true,
+  "limitations": [
+    "One sample per arm; no general reliability or latency benchmark",
+    "Six-call cap limits conclusions about eventual completion",
+    "Duplicate response control sequential, not concurrent",
+    "Timer/worker/general event waits are mappings, not live tests",
+    "No automatic completion or suppression of legal rewrites tested/adopted"
+  ],
+  "decision_required": "Whether to adopt explicit blocking-request suspension and authorize a separate bounded legal-action progress/termination investigation",
+  "next_increment_started": false
+}

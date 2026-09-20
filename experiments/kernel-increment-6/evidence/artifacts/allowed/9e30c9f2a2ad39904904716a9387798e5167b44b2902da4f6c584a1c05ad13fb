@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"youtrack.read","input":{"issue_id":"NCP-2"},"type":"INVOKE_CAPABILITY"},"task_id":"allowed","task_revision":0,"turn_id":"allowed/1"},"version":1}

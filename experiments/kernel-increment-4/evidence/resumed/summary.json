@@ -1,0 +1,29 @@
+{
+  "architecture_deviations": [],
+  "cases": [
+    "recall",
+    "absent",
+    "conflict"
+  ],
+  "fresh_process": {
+    "runtime_pids": [
+      222321
+    ],
+    "seed_pid": 221898
+  },
+  "gate": "PASS",
+  "max_packet_bytes": 2563,
+  "model_turns": 6,
+  "next_increment": 5,
+  "status": "PASS",
+  "total_completion_tokens": 316,
+  "total_prompt_tokens": 10774,
+  "max_memory_context_bytes": 842,
+  "client_id": "client-df3da0d9",
+  "user_id": "probe-leofuso",
+  "model": "Qwen/Qwen3.5-9B",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_provenance": "Persisted MIRIX agent configuration plus live search_method=embedding responses and inspected native API path; no raw internal BGE request capture.",
+  "fixture_ingestion": "Two explicit POST /memory/add_sync calls to existing MIRIX agent; extraction inference internal to MIRIX not counted as CognitiveTurn calls.",
+  "acceptance_model_output_source": "Six live Qwen chat/completions responses, no injected inference responses"
+}

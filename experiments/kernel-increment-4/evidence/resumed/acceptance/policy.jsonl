@@ -1,0 +1,6 @@
+{"decision_id":"recall/1","gate":{"outcome":"allow","reason":null},"pid":222321,"task_id":"recall"}
+{"decision_id":"recall/2","gate":{"outcome":"allow","reason":null},"pid":222321,"task_id":"recall"}
+{"decision_id":"absent/1","gate":{"outcome":"allow","reason":null},"pid":222321,"task_id":"absent"}
+{"decision_id":"absent/2","gate":{"outcome":"allow","reason":null},"pid":222321,"task_id":"absent"}
+{"decision_id":"conflict/1","gate":{"outcome":"allow","reason":null},"pid":222321,"task_id":"conflict"}
+{"decision_id":"conflict/2","gate":{"outcome":"allow","reason":null},"pid":222321,"task_id":"conflict"}

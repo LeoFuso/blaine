@@ -1,0 +1,236 @@
+"""Native Restate execution. Cognition returns data; only this dispatcher acts."""
+from collections.abc import Awaitable, Callable, Sequence
+from copy import deepcopy
+from datetime import timedelta
+
+import restate
+
+from runtime.kernel.artifacts import ArtifactStore
+from runtime.kernel.context import ContextProvider, reconstruct
+from runtime.kernel.contracts import (
+    MAX_PACKET, MAX_TURNS, TaskResult, TaskState, encode, fields, identifier,
+    child_task_id, message, text, unpack, validate_spec, validate_result,
+)
+from runtime.kernel.execution import Capabilities, evaluate, policy_gate
+from runtime.kernel.human import human_requirement, validate_response
+
+CognitiveAdapter = Callable[[dict], dict]
+# Deployment-injected probe hook, never selected by a Task/model or exposed by
+# the normal handlers. The integration fixture uses durable barriers for SIGKILL.
+Checkpoint = Callable[[restate.WorkflowContext, str, TaskState], Awaitable[None]]
+
+
+def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
+                    capabilities: Capabilities, providers: Sequence[ContextProvider] = (),
+                    checkpoint: Checkpoint | None = None) -> restate.Workflow:
+    workflow = restate.Workflow("CognitiveTaskV1")
+
+    @workflow.main(workflow_retention=timedelta(days=7))
+    async def run(ctx: restate.WorkflowContext, request: dict) -> dict:
+        try:
+            task_id = identifier(ctx.key())
+            spec = validate_spec(request)
+            for criterion in spec['completion']:
+                evidence = criterion['evidence']
+                if evidence.get('verifier') == 'human_response' and evidence['request']['payload']['task_id'] != task_id:
+                    raise ValueError('Human request does not belong to this Task')
+        except (ValueError, TypeError) as error:
+            raise restate.TerminalError(str(error), status_code=400) from error
+
+        async def step(name, function, **kwargs):
+            return await ctx.run_typed(name, function, restate.RunOptions(max_attempts=3), **kwargs)
+
+        async def retain(name: str, value: dict) -> str:
+            return await step(name, store.put_json, task_id=task_id, value=value)
+
+        state: TaskState = {
+            "task_id": task_id, "revision": 0, "lifecycle": "RUNNING", "iteration": 0,
+            "active_specialist": "coordinator", "spec_ref": await retain("accept-spec", message("TaskSpec", spec)),
+            "decision_id": None, "decision_ref": None, "context_ref": None,
+            "observation_ref": None, "wait": None, "artifacts": {},
+            "completion_ref": None, "result_ref": None,
+            "remaining_children": spec["autonomy"].get("child_tasks", 0), "children": {},
+        }
+        ctx.set("task", message("TaskState", state))
+        concerns = []
+        prepared_packet = None
+        try:
+            for iteration in range(1, MAX_TURNS + 1):
+                state = {**state, "iteration": iteration}
+                packet = prepared_packet or await step(f"context/{iteration}", reconstruct,
+                                                       state=deepcopy(state), spec=spec, store=store, providers=providers)
+                prepared_packet = None
+                state["context_ref"] = await retain(f"context-artifact/{iteration}", packet)
+                ctx.set("task", message("TaskState", state))
+
+                def decide() -> dict:
+                    raw = cognitive(deepcopy(packet))
+                    if len(encode(raw)) > MAX_PACKET:
+                        raise restate.TerminalError("Decision exceeds size limit", status_code=400)
+                    return raw
+
+                # The semantic output is journaled before validation, effect
+                # admission or handoff. Replay consumes it without calling cognition.
+                decision = await step(f"cognitive/{iteration}", decide)
+                state["decision_id"] = f"{task_id}/{iteration}"
+                state["decision_ref"] = await retain(f"decision/{iteration}", decision)
+                ctx.set("task", message("TaskState", state))
+                if checkpoint:
+                    await checkpoint(ctx, "decision", deepcopy(state))
+
+                gate = policy_gate(decision, state, spec)
+                if gate["outcome"] == "deny":
+                    observation = message("PolicyDecision", {**gate, "decision_id": state["decision_id"]})
+                else:
+                    action = decision["payload"]["next_action"]
+                    match action["type"]:
+                        case "INVOKE_CAPABILITY":
+                            capability_request = {
+                                "task_id": task_id, "operation_id": state["decision_id"],
+                                "capability": action["capability"], "input": action["input"],
+                            }
+                            observation = await step(f"capability/{iteration}", capabilities.execute,
+                                                     request=message("CapabilityRequest", capability_request))
+                            state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
+                        case "HANDOFF":
+                            previous = state["active_specialist"]
+                            state["active_specialist"] = action["specialist"]
+                            observation = message("HandoffResult", {
+                                "from": previous, "to": action["specialist"], "decision_id": state["decision_id"],
+                            })
+                        case "WAIT":
+                            state["wait"] = {"wait_id": action["wait_id"], "input_type": action["input_type"],
+                                             "task_revision": state["revision"], "promise": f"input/{iteration}/{action['wait_id']}"}
+                            if action['input_type'] == 'human_response':
+                                requirement = human_requirement(spec, action['wait_id'])
+                                state['wait']['request_ref'] = await retain(f'human-request/{iteration}', requirement['request'])
+                            state["lifecycle"] = "WAITING"
+                            ctx.set("task", message("TaskState", state))
+                            received = await ctx.promise(state["wait"]["promise"], type_hint=dict).value()
+                            if action['input_type'] == 'human_response':
+                                validate_response(received, requirement['request'], task_id)
+                                response_ref = await retain(f'human-response/{iteration}', received)
+                                state['human_responses'] = {**state.get('human_responses', {}), action['wait_id']: response_ref}
+                                state['artifacts'] = {**state['artifacts'], requirement['artifact']: response_ref}
+                                observation = message('HumanInputReceipt', {'request_id': action['wait_id'],
+                                    'response_ref': response_ref, 'value': received['payload']['value']})
+                            else:
+                                observation = message("ExternalInput", received)
+                            state["wait"] = None
+                            state["lifecycle"] = "RUNNING"
+                        case "SPAWN_TASK":
+                            child_id = child_task_id(task_id, state["decision_id"])
+                            child_spec = validate_spec(action["task_spec"])
+                            state["remaining_children"] -= 1 + child_spec["autonomy"].get("child_tasks", 0)
+                            child_request = message("TaskSpec", child_spec)
+                            state["children"][child_id] = {
+                                "spec_ref": await retain(f"child-spec/{iteration}", child_request),
+                                "result_ref": None,
+                            }
+                            state["wait"] = {"child_id": child_id, "input_type": "TaskResult",
+                                             "task_revision": state["revision"]}
+                            state["lifecycle"] = "WAITING"
+                            ctx.set("task", message("TaskState", state))
+                            # A native joined call already is durable. Never wrap
+                            # it in run_typed or start the child through ingress.
+                            try:
+                                observation = await ctx.workflow_call(run, key=child_id, arg=child_request)
+                            except restate.TerminalError as error:
+                                observation = message("TaskResult", {"task_id": child_id, "outcome": "FAILED",
+                                    "artifacts": {}, "completion_ref": None,
+                                    "concerns": [str(error.message).encode()[:512].decode(errors="ignore") or "Child failed"]})
+                            try:
+                                validate_result(observation, child_id)
+                            except (ValueError, TypeError) as error:
+                                raise restate.TerminalError(f"Invalid child result: {error}") from error
+                            state["children"][child_id]["result_ref"] = await retain(f"child-result/{iteration}", observation)
+                            # Child evidence is observed, never promoted into the
+                            # parent's accepted artifact map or completion state.
+                            state["wait"] = None
+                            state["lifecycle"] = "RUNNING"
+                        case "COMPLETE":
+                            observation = await step(f"verify/{iteration}", evaluate,
+                                                     spec=spec, state=deepcopy(state), store=store)
+                            state["completion_ref"] = await retain(f"completion/{iteration}", observation)
+                            if observation["payload"]["outcome"] == "satisfied":
+                                state["lifecycle"] = "COMPLETED"
+                state["observation_ref"] = await retain(f"observation/{iteration}", observation)
+                state["revision"] += 1
+                # Commit owner and originating decision together, then create a
+                # fresh specialist packet before its next cognitive execution.
+                if gate["outcome"] == "allow" and action["type"] == "HANDOFF":
+                    next_state = {**state, "iteration": iteration + 1}
+                    next_packet = await step(f"handoff-context/{iteration}", reconstruct,
+                                             state=next_state, spec=spec, store=store, providers=providers)
+                    state["context_ref"] = await retain(f"handoff-packet/{iteration}", next_packet)
+                    prepared_packet = next_packet
+                ctx.set("task", message("TaskState", state))
+                if checkpoint:
+                    await checkpoint(ctx, "outcome", deepcopy(state))
+                if state["lifecycle"] == "COMPLETED":
+                    break
+            else:
+                concerns.append("Turn limit exhausted without verified completion")
+                state["lifecycle"] = "FAILED"
+        except restate.TerminalError as error:
+            concerns.append(f"Execution stopped: {error.message}".encode()[:512].decode(errors="ignore"))
+            state["lifecycle"] = "FAILED"
+            state["wait"] = None
+        result: TaskResult = {
+            "task_id": task_id, "outcome": state["lifecycle"],
+            "artifacts": state["artifacts"], "completion_ref": state["completion_ref"], "concerns": concerns,
+        }
+        output = message("TaskResult", result)
+        validate_result(output, task_id)
+        state["result_ref"] = await retain("task-result", output)
+        ctx.set("task", message("TaskState", state))
+        return output
+
+    @workflow.handler()
+    async def status(ctx: restate.WorkflowSharedContext) -> dict:
+        return await ctx.get("task") or message("TaskLookup", {"task_id": ctx.key(), "outcome": "UNAVAILABLE"})
+
+    @workflow.handler()
+    async def submit_input(ctx: restate.WorkflowSharedContext, request: dict) -> dict:
+        try:
+            payload = fields(unpack(request, "ExternalInput"), {"wait_id", "task_revision", "input_type", "value"})
+            identifier(payload["wait_id"])
+            text(payload["value"], 512)
+            if type(payload["task_revision"]) is not int or payload["input_type"] != "text":
+                raise ValueError("Invalid input revision/type")
+        except (ValueError, TypeError) as error:
+            raise restate.TerminalError(str(error), status_code=400) from error
+        current = await ctx.get("task")
+        if not current or current["payload"]["lifecycle"] != "WAITING":
+            raise restate.TerminalError("Task is not waiting", status_code=409)
+        wait = current["payload"]["wait"]
+        if wait["input_type"] != "text":
+            raise restate.TerminalError("This wait is resolved by a child TaskResult", status_code=409)
+        if any(payload[key] != wait[key] for key in ("wait_id", "task_revision", "input_type")):
+            raise restate.TerminalError("Input does not match current wait", status_code=409)
+        # A one-shot, iteration-qualified promise prevents overwrite and reuse
+        # of an old answer at a later wait. Receipt is not completion evidence.
+        await ctx.promise(wait["promise"], type_hint=dict).resolve(payload)
+        return message("InputReceipt", {"wait_id": payload["wait_id"], "outcome": "ACCEPTED"})
+
+    @workflow.handler()
+    async def submit_human_response(ctx: restate.WorkflowSharedContext, request: dict) -> dict:
+        current = await ctx.get('task')
+        if not current or current['payload']['lifecycle'] != 'WAITING':
+            raise restate.TerminalError('Task is not waiting', status_code=409)
+        state = current['payload']
+        wait = state['wait']
+        if wait['input_type'] != 'human_response':
+            raise restate.TerminalError('Not a human decision wait', status_code=409)
+        try:
+            accepted = await ctx.run_typed('read-human-request', store.read_json,
+                restate.RunOptions(max_attempts=3), task_id=ctx.key(), ref=wait['request_ref'])
+            response = validate_response(request, accepted, ctx.key())
+        except (ValueError, TypeError) as error:
+            raise restate.TerminalError(str(error), status_code=400) from error
+        # This controlled input handler is transport-neutral, not a public authenticated UI.
+        # Native one-shot resolution deduplicates the wait; only the consumed value is evidence.
+        await ctx.promise(wait['promise'], type_hint=dict).resolve(request)
+        return message('InputReceipt', {'request_id': response['request_id'], 'outcome': 'ACCEPTED'})
+
+    return workflow

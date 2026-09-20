@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://timeout/sha256:c012a8ee04a81c467b5353003d72bcae0e1af970917cedc1bca1da9f499daf19"},"type":"INVOKE_CAPABILITY"},"task_id":"timeout","task_revision":1,"turn_id":"timeout/2"},"version":1}

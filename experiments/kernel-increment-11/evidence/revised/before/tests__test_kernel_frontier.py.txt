@@ -1,0 +1,89 @@
+"""Isolated authority controls; synthetic providers, no network or credentials."""
+from dataclasses import asdict, replace, FrozenInstanceError
+import hashlib
+import time
+import unittest
+from runtime.kernel.contracts import message
+from runtime.kernel.frontier import FrontierAuthority,Budget,authorize,reserve,settle,invoke
+
+
+def fixture():
+    context='Selected public fixture.';ref='artifact://case/sha256:'+hashlib.sha256(context.encode()).hexdigest()
+    authority=FrontierAuthority(1,'case','frontier','synthetic','fixture-v1','https://frontier.invalid/v1',True,True,'approval-fixture',ref,('source-a',),(),1,1,100,1000,int(time.time())+1000,500)
+    proposal=message('FrontierProposal',{'task_id':'case','worker_class':'frontier','provider':'synthetic','model':'fixture-v1','destination':authority.destination,'context_ref':ref,
+        'read_scope':['source-a'],'write_scope':[],'max_tokens':50,'max_cost_microusd':100,'runtime_ms':100})
+    state={'task_id':'case','revision':0,'iteration':1,'decision_id':'case/1','lifecycle':'RUNNING','artifacts':{'packet':'packet-ref'}}
+    spec={'capabilities':['worker.run'],'autonomy':{'allowed':['worker.run']}}
+    decision=message('CognitiveDecision',{'task_id':'case','task_revision':0,'turn_id':'case/1','next_action':{'type':'INVOKE_CAPABILITY','capability':'worker.run','input':{'packet_ref':'packet-ref','artifact':'result'}}})
+    return authority,proposal,dict(state=state,spec=spec,decision=decision,now=1000,context=context)
+
+
+class FrontierTests(unittest.TestCase):
+    def test_authorized_request_is_fixed_and_no_budget_handle(self):
+        a,p,kw=fixture();gate,r=authorize(p,a,Budget(),**kw)
+        self.assertEqual(gate['outcome'],'allow');self.assertEqual(r.model,a.model);self.assertEqual(r.destination,a.destination)
+        self.assertNotIn('budget',asdict(r));self.assertNotIn('approval_ref',asdict(r))
+        with self.assertRaises(FrozenInstanceError):r.model='other'
+        self.assertEqual(asdict(Budget()),asdict(Budget()))
+        for used in (Budget(invocations=1),Budget(effects=1),Budget(tokens_charged=100),Budget(cost_charged_microusd=1000)):
+            self.assertEqual(authorize(p,a,used,**kw)[0]['reason_category'],'budget_exhausted')
+
+    def test_denial_matrix_and_no_provider(self):
+        a,p,kw=fixture()
+        changes=[('provider','other','provider_mismatch'),('model','other','model_mismatch'),('worker_class','other','worker_mismatch'),
+                 ('destination','https://elsewhere.invalid','egress_denied'),('write_scope',['source-a'],'scope_escalation'),
+                 ('read_scope',['source-a','extra'],'scope_escalation'),('task_id','other','task_mismatch'),
+                 ('runtime_ms',501,'runtime_limit'),('max_tokens',101,'budget_exhausted'),('max_cost_microusd',1001,'budget_exhausted')]
+        for key,value,reason in changes:
+            with self.subTest(key=key):
+                gate,r=authorize(message('FrontierProposal',p['payload']|{key:value}),a,Budget(),**kw)
+                self.assertEqual(gate['reason_category'],reason);self.assertIsNone(r)
+        for grant,reason in [(replace(a,permitted=False),'cloud_disabled'),(replace(a,approval_ref=None),'approval_required'),(replace(a,deadline_unix=999),'deadline_expired')]:
+            self.assertEqual(authorize(p,grant,Budget(),**kw)[0]['reason_category'],reason)
+
+    def test_unknown_fields_cannot_change_authority(self):
+        a,p,kw=fixture()
+        for key in ('budget','permitted','approval_ref','operation_id','version'):
+            self.assertEqual(authorize(message('FrontierProposal',p['payload']|{key:999}),a,Budget(),**kw)[0]['reason_category'],'invalid_proposal')
+        self.assertEqual(authorize({'version':2,'kind':'FrontierProposal','payload':p['payload']},a,Budget(),**kw)[0]['outcome'],'deny')
+
+    def test_existing_policy_gate_remains_required(self):
+        a,p,kw=fixture();kw['spec']['autonomy']['allowed']=[]
+        self.assertEqual(authorize(p,a,Budget(),**kw)[0]['reason_category'],'task_policy_denied')
+        self.assertEqual(authorize(p,a,Budget(),**(kw|{'context':'different'}))[0]['reason_category'],'context_denied')
+
+    def test_reserve_and_provisional_max_charge(self):
+        a,p,kw=fixture();_,r=authorize(p,a,Budget(),**kw)
+        held=reserve(Budget(),r);self.assertEqual(held.invocations,1);self.assertEqual(held.effects,0)
+        self.assertEqual(authorize(p,a,held,**kw)[0]['reason_category'],'budget_exhausted')
+        used=settle(held,r,'executed');self.assertEqual(used.effects,1);self.assertEqual(used.tokens_charged,50)
+        self.assertEqual(used.reserved_tokens,0);self.assertEqual(used.cost_charged_microusd,100)
+
+    def test_confirmed_non_execution_does_not_charge_effect(self):
+        a,p,kw=fixture();_,r=authorize(p,a,Budget(),**kw)
+        used=settle(reserve(Budget(),r),r,'not_executed')
+        self.assertEqual(used.effects,0);self.assertEqual(used.tokens_charged,0);self.assertEqual(used.cost_charged_microusd,0)
+        self.assertEqual(used.invocations,1)  # actual provider attempt, not successful work
+
+    def test_unknown_failure_holds_reservation_and_never_retries(self):
+        a,p,kw=fixture();_,r=authorize(p,a,Budget(),**kw);calls=[]
+        class Provider:
+            def dispatch(self,request):calls.append(request);raise TimeoutError('not logged')
+        result=invoke(r,Provider());self.assertEqual(result['status'],'unknown');self.assertEqual(len(calls),1)
+        held=reserve(Budget(),r);self.assertEqual(settle(held,r,'unknown'),held)
+        expired=invoke(replace(r,deadline_unix=0),Provider())
+        self.assertEqual(expired,{'status':'not_executed','content':'','provider_invoked':False})
+        self.assertEqual(len(calls),1)
+
+    def test_provider_cannot_return_budget_or_bypass_request_type(self):
+        a,p,kw=fixture();_,r=authorize(p,a,Budget(),**kw)
+        class Provider:
+            def dispatch(self,request):return {'status':'executed','content':'ok','budget':999}
+        self.assertEqual(invoke(r,Provider())['status'],'unknown')
+        with self.assertRaises(ValueError):invoke(p,Provider())
+
+    def test_authority_and_budget_validation(self):
+        a,_,_=fixture()
+        for changes in ({'version':True},{'permitted':1},{'max_invocations':-1},{'destination':'https://user:pass@frontier.invalid'}, {'read_scope':('*',)}):
+            with self.assertRaises(ValueError):replace(a,**changes)
+        with self.assertRaises(ValueError):Budget(invocations=-1)

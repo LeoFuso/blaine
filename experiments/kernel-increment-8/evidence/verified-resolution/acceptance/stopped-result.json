@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "kind": "TaskResult",
+  "payload": {
+    "task_id": "procedure",
+    "outcome": "FAILED",
+    "artifacts": {},
+    "completion_ref": null,
+    "concerns": [
+      "Turn limit exhausted without verified completion"
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "baseline_tests": 37,
+  "focused_tests": 44,
+  "new_projection_tests": 7,
+  "negative_controls_preserved": true,
+  "new_checks": [
+    "test_corrupt_artifact_cannot_be_projected (test_kernel_resolution.ResolutionTests.test_corrupt_artifact_cannot_be_projected)",
+    "test_fresh_process_reconstructs_from_persisted_artifact (test_kernel_resolution.ResolutionTests.test_fresh_process_reconstructs_from_persisted_artifact)",
+    "test_no_response_does_not_invent_a_resolution (test_kernel_resolution.ResolutionTests.test_no_response_does_not_invent_a_resolution)",
+    "test_response_alone_cannot_complete_exact_deliverable (test_kernel_resolution.ResolutionTests.test_response_alone_cannot_complete_exact_deliverable)",
+    "test_unrelated_response_and_prior_request_revision_do_not_leak (test_kernel_resolution.ResolutionTests.test_unrelated_response_and_prior_request_revision_do_not_leak)",
+    "test_verified_resolution_outlives_observation_without_mutating_intent (test_kernel_resolution.ResolutionTests.test_verified_resolution_outlives_observation_without_mutating_intent)",
+    "test_wrong_task_request_stale_malformed_and_unverified_are_not_resolutions (test_kernel_resolution.ResolutionTests.test_wrong_task_request_stale_malformed_and_unverified_are_not_resolutions)"
+  ]
+}

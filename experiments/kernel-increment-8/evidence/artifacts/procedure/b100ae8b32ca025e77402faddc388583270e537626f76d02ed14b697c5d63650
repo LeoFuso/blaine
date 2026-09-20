@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"input_type":"text","type":"WAIT","wait_id":"retention"},"task_id":"procedure","task_revision":2,"turn_id":"procedure/3"},"version":1}

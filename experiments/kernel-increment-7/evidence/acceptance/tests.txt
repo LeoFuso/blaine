@@ -1,0 +1,41 @@
+test_policy_rejects_stale_invalid_and_ineligible_decisions (test_kernel.KernelContracts.test_policy_rejects_stale_invalid_and_ineligible_decisions) ... ok
+test_requirements_do_not_grant_authority (test_kernel.KernelContracts.test_requirements_do_not_grant_authority) ... ok
+test_spawn_is_typed_but_denied_without_allocation (test_kernel.KernelContracts.test_spawn_is_typed_but_denied_without_allocation) ... ok
+test_strict_versions_fields_and_criteria (test_kernel.KernelContracts.test_strict_versions_fields_and_criteria) ... ok
+test_wait_requires_identifiable_typed_input (test_kernel.KernelContracts.test_wait_requires_identifiable_typed_input) ... ok
+test_artifact_read_preserves_provenance (test_kernel.KernelStorageAndContext.test_artifact_read_preserves_provenance) ... ok
+test_context_is_selective_and_provider_cannot_override_authority (test_kernel.KernelStorageAndContext.test_context_is_selective_and_provider_cannot_override_authority) ... ok
+test_corruption_cannot_complete (test_kernel.KernelStorageAndContext.test_corruption_cannot_complete) ... ok
+test_exact_artifact_replay_and_cross_task_isolation (test_kernel.KernelStorageAndContext.test_exact_artifact_replay_and_cross_task_isolation) ... ok
+test_fixture_effect_is_atomic_and_idempotent (test_kernel.KernelStorageAndContext.test_fixture_effect_is_atomic_and_idempotent) ... ok
+test_missing_wrong_and_exact_evidence (test_kernel.KernelStorageAndContext.test_missing_wrong_and_exact_evidence) ... ok
+test_script_is_effect_free_and_observation_read_is_exact (test_kernel.KernelStorageAndContext.test_script_is_effect_free_and_observation_read_is_exact) ... ok
+test_child_authority_and_descendant_allocation_cannot_expand (test_kernel_children.ChildContracts.test_child_authority_and_descendant_allocation_cannot_expand) ... ok
+test_identity_is_stable_distinct_and_bounded (test_kernel_children.ChildContracts.test_identity_is_stable_distinct_and_bounded) ... ok
+test_invalid_allocations_rejected (test_kernel_children.ChildContracts.test_invalid_allocations_rejected) ... ok
+test_result_rejects_transcript_foreign_identity_and_evidence (test_kernel_children.ChildContracts.test_result_rejects_transcript_foreign_identity_and_evidence) ... ok
+test_both_answers_and_general_allowed_set (test_kernel_human.HumanTests.test_both_answers_and_general_allowed_set) ... ok
+test_scope_version_staleness_and_malformed_controls (test_kernel_human.HumanTests.test_scope_version_staleness_and_malformed_controls) ... ok
+test_verifier_requires_accepted_input_not_just_model_artifact (test_kernel_human.HumanTests.test_verifier_requires_accepted_input_not_just_model_artifact) ... ok
+test_cloud_endpoint_rejected (test_kernel_memory.MemoryTests.test_cloud_endpoint_rejected) ... ok
+test_empty_memory_is_empty_context (test_kernel_memory.MemoryTests.test_empty_memory_is_empty_context) ... ok
+test_memory_cannot_claim_authority_and_text_is_bounded (test_kernel_memory.MemoryTests.test_memory_cannot_claim_authority_and_text_is_bounded) ... ok
+test_missing_identity_and_overfetch_rejected (test_kernel_memory.MemoryTests.test_missing_identity_and_overfetch_rejected) ... ok
+test_provenance_and_bounded_query (test_kernel_memory.MemoryTests.test_provenance_and_bounded_query) ... ok
+test_response_errors_are_not_empty_recall (test_kernel_memory.MemoryTests.test_response_errors_are_not_empty_recall) ... ok
+test_input_budget_and_local_endpoint_enforced (test_kernel_model.ModelBoundary.test_input_budget_and_local_endpoint_enforced) ... ok
+test_malformed_unknown_stale_and_native_tools_never_return_decisions (test_kernel_model.ModelBoundary.test_malformed_unknown_stale_and_native_tools_never_return_decisions) ... ok
+test_only_validated_decision_and_bounded_packet_cross_boundary (test_kernel_model.ModelBoundary.test_only_validated_decision_and_bounded_packet_cross_boundary) ... ok
+test_raw_invoke_is_preserved_without_complete_fallback (test_kernel_model.ModelBoundary.test_raw_invoke_is_preserved_without_complete_fallback) ... ok
+test_schema_keeps_five_actions (test_kernel_model.ModelBoundary.test_schema_keeps_five_actions) ... ok
+test_packet_scope_and_size (test_kernel_worker.WorkerTests.test_packet_scope_and_size) ... ok
+test_worker_packet_requires_admission (test_kernel_worker.WorkerTests.test_worker_packet_requires_admission) ... ok
+test_worker_success_does_not_establish_completion (test_kernel_worker.WorkerTests.test_worker_success_does_not_establish_completion) ... ok
+test_bounded_coordination_snapshot_not_task_state (test_kernel_youtrack.CardTests.test_bounded_coordination_snapshot_not_task_state) ... ok
+test_scope_rejected_before_transport (test_kernel_youtrack.CardTests.test_scope_rejected_before_transport) ... ok
+test_task_policy_must_grant_card_capability (test_kernel_youtrack.CardTests.test_task_policy_must_grant_card_capability) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.008s
+
+OK

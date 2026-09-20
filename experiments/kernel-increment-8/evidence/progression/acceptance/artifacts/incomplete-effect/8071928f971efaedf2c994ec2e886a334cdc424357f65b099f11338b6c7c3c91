@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://incomplete-effect/sha256:eadafa2d4f226a94393d2263bd73c4da9dba083c8950b385ddcd8a6eec8399b0"},"completion_ref":"artifact://incomplete-effect/sha256:1b9ad43c908a58213c30726120c900ca8e9ba3a6555290b61c3a3761130f6889","concerns":[],"outcome":"COMPLETED","task_id":"incomplete-effect"},"version":1}

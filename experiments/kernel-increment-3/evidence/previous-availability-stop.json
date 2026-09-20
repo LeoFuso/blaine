@@ -1,0 +1,19 @@
+{
+  "increment": 3,
+  "status": "BLOCKED",
+  "gate": "NOT PASSED",
+  "hypothesis": "Existing shared local Qwen can emit structured CognitiveDecision through the unchanged lifecycle.",
+  "expected": "Existing local Qwen/vLLM service available at the documented loopback endpoint.",
+  "observed": "GET http://127.0.0.1:8000/v1/models failed with ECONNREFUSED (111).",
+  "impact": "Real-model empirical requirements cannot be tested. No model adapter was implemented. Increments 4 through 12 were not started.",
+  "architecture_impact": "None",
+  "system_mutations": false,
+  "source": "docs/research/mirix-carveout.md:76",
+  "evidence": "availability.json",
+  "smallest_next_decision_required": "Provide the correct already-running shared Qwen endpoint, or restore the existing shared service outside this program; then resume Increment 3.",
+  "successful_increments": [
+    1,
+    2
+  ],
+  "next_increment": 3
+}

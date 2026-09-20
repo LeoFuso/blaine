@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "checks": {
+    "empty_workspace": true,
+    "repository_not_mounted": true,
+    "personal_instructions_skills_not_mounted": true,
+    "no_personal_mcp_config": true,
+    "auth_readonly_for_cli_no_value_inspected": true
+  },
+  "network": "disabled for checks; live built-in provider will use its normal network",
+  "config_sha256": "5295753797e281d59c14bd493e13b02596382ab838130543f0f427abe761b3bc",
+  "worker_executable_sha256": "0753dfe1d8b87a52436deb13eb1c549661ef4c84fee2c5aa688385eebeccb761",
+  "cli_version": "0.155.1",
+  "live_dispatches": 0,
+  "provider_override": false,
+  "effective_features": [
+    "apps                                     stable             false",
+    "memories                                 stable             false",
+    "multi_agent                              stable             false",
+    "shell_snapshot                           stable             false",
+    "shell_tool                               stable             false",
+    "unified_exec                             stable             true"
+  ],
+  "feature_note": "unified_exec reports true despite legacy false config; shell_tool, apps and multi_agent are false. Sterile filesystem and read-only sandbox remain restrictive; no tools requested."
+}

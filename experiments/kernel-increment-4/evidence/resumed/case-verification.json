@@ -1,0 +1,68 @@
+{
+  "recall": {
+    "task_id": "recall",
+    "lifecycle": "COMPLETED",
+    "verifier": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Exact answer",
+            "detail": "Exact artifact digest verified",
+            "evidence_ref": "artifact://recall/sha256:f315ee671dc0a7dbd2edd71b379a85ba8a84b8b9c62d7a20f1a5b07c5eb419cc",
+            "outcome": "satisfied"
+          }
+        ],
+        "outcome": "satisfied"
+      },
+      "version": 1
+    },
+    "artifacts": {
+      "answer": "artifact://recall/sha256:f315ee671dc0a7dbd2edd71b379a85ba8a84b8b9c62d7a20f1a5b07c5eb419cc"
+    }
+  },
+  "absent": {
+    "task_id": "absent",
+    "lifecycle": "COMPLETED",
+    "verifier": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Exact answer",
+            "detail": "Exact artifact digest verified",
+            "evidence_ref": "artifact://absent/sha256:181b78ec2b14f003884650ea5ed14bed6f83c191a8d424b66e7369afff6b556f",
+            "outcome": "satisfied"
+          }
+        ],
+        "outcome": "satisfied"
+      },
+      "version": 1
+    },
+    "artifacts": {
+      "answer": "artifact://absent/sha256:181b78ec2b14f003884650ea5ed14bed6f83c191a8d424b66e7369afff6b556f"
+    }
+  },
+  "conflict": {
+    "task_id": "conflict",
+    "lifecycle": "COMPLETED",
+    "verifier": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Exact answer",
+            "detail": "Exact artifact digest verified",
+            "evidence_ref": "artifact://conflict/sha256:c2b44b0b31a1e37760a4aa8265e4e5bcbfb9835ab312569b34818fc90f982a08",
+            "outcome": "satisfied"
+          }
+        ],
+        "outcome": "satisfied"
+      },
+      "version": 1
+    },
+    "artifacts": {
+      "answer": "artifact://conflict/sha256:c2b44b0b31a1e37760a4aa8265e4e5bcbfb9835ab312569b34818fc90f982a08"
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "source": "constructed deterministic fixture, NOT live Qwen output",
+  "semantic_contract": "urn:blaine:semantic-human-request:1",
+  "semantic": {
+    "action": "request_human",
+    "purpose": "retention_period",
+    "question": "How long should exports be retained?",
+    "response": {
+      "kind": "choice",
+      "choices": [
+        "30 days",
+        "90 days"
+      ]
+    }
+  },
+  "validation": "passed",
+  "lowering_input": {
+    "semantic": {
+      "action": "request_human",
+      "purpose": "retention_period",
+      "question": "How long should exports be retained?",
+      "response": {
+        "kind": "choice",
+        "choices": [
+          "30 days",
+          "90 days"
+        ]
+      }
+    },
+    "purpose_bindings": {
+      "retention_period": "retention"
+    },
+    "turn_identity": {
+      "task_id": "procedure",
+      "task_revision": 0,
+      "turn_id": "procedure/1"
+    },
+    "accepted_request": {
+      "kind": "HumanDecisionRequest",
+      "payload": {
+        "allowed_responses": [
+          "30 days",
+          "90 days"
+        ],
+        "origin_task_id": "procedure",
+        "question": "How long should exports be retained?",
+        "request_id": "retention",
+        "revision": 0,
+        "task_id": "procedure"
+      },
+      "version": 1
+    }
+  },
+  "runtime_command": {
+    "version": 1,
+    "kind": "CognitiveDecision",
+    "payload": {
+      "task_id": "procedure",
+      "task_revision": 0,
+      "turn_id": "procedure/1",
+      "next_action": {
+        "type": "INVOKE_CAPABILITY",
+        "capability": "human.request",
+        "input": {
+          "request": {
+            "version": 1,
+            "kind": "HumanDecisionRequest",
+            "payload": {
+              "task_id": "procedure",
+              "origin_task_id": "procedure",
+              "request_id": "retention",
+              "revision": 0,
+              "question": "How long should exports be retained?",
+              "allowed_responses": [
+                "30 days",
+                "90 days"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "policy": {
+    "outcome": "allow",
+    "reason": null
+  },
+  "effect_dispatched": false
+}

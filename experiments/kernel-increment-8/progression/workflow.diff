@@ -1,0 +1,54 @@
+--- hybrid/workflow.py (retained)
++++ progression/workflow.py
+@@ -54,8 +54,24 @@
+         ctx.set("task", message("TaskState", state))
+         concerns = []
+         prepared_packet = None
+-        try:
++        async def progress(phase: str):
++            # EXPERIMENT ONLY: exact persisted evidence, never worker/model success,
++            # determines whether another semantic turn is needed.
++            label = f"{phase}/{state['iteration']}"
++            evaluation = await step(f"progress/{label}", evaluate,
++                spec=spec, state=deepcopy(state), store=store)
++            state['completion_ref'] = await retain(f"progress-evidence/{label}", evaluation)
++            if evaluation['payload']['outcome'] == 'satisfied':
++                state['lifecycle'] = 'COMPLETED'
++            ctx.set('task', message('TaskState', state))
++            if checkpoint:
++                await checkpoint(ctx, 'verification-' + phase, deepcopy(state))
++
++        try:
++            await progress('accepted')
+             for iteration in range(1, MAX_TURNS + 1):
++                if state['lifecycle'] == 'COMPLETED':
++                    break
+                 state = {**state, "iteration": iteration}
+                 packet = prepared_packet or await step(f"context/{iteration}", reconstruct,
+                                                        state=deepcopy(state), spec=spec, store=store, providers=providers)
+@@ -95,10 +111,15 @@
+                             observation = await step(f"capability/{iteration}", capabilities.execute,
+                                                      request=message("CapabilityRequest", capability_request))
+                             state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
++                            state['observation_ref'] = await retain(f'effect-observation/{iteration}', observation)
++                            ctx.set('task', message('TaskState', state))
++                            if checkpoint:
++                                await checkpoint(ctx, 'effect_persisted', deepcopy(state))
++                            await progress('effect')
+                             # EXPERIMENT ONLY: this deployment binds human.request as a
+                             # blocking interaction, not as background work. The admitted
+                             # request effect determines the event; no semantic WAIT is made.
+-                            if suspend_human and action['capability'] == 'human.request' and observation['payload']['outcome'] == 'success':
++                            if state['lifecycle'] != 'COMPLETED' and suspend_human and action['capability'] == 'human.request' and observation['payload']['outcome'] == 'success':
+                                 request_id = action['input']['request']['payload']['request_id']
+                                 requirement = human_requirement(spec, request_id)
+                                 request_ref = state['artifacts']['human-request-' + request_id]
+@@ -196,6 +217,8 @@
+                     state["context_ref"] = await retain(f"handoff-packet/{iteration}", next_packet)
+                     prepared_packet = next_packet
+                 ctx.set("task", message("TaskState", state))
++                if state['lifecycle'] != 'COMPLETED':
++                    await progress('outcome')
+                 if checkpoint:
+                     await checkpoint(ctx, "outcome", deepcopy(state))
+                 if state["lifecycle"] == "COMPLETED":

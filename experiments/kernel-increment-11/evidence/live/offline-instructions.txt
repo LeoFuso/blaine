@@ -1,0 +1,1 @@
+Return only the requested bounded JSON result from the supplied synthetic context. Do not use tools, inspect files, access websites or take follow-up actions.

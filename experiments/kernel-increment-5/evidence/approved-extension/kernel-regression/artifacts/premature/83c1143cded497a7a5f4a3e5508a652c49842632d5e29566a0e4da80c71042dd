@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://premature/sha256:19ae190ae096908c3a11a67b79a2081378598d54b93bc3090d70759a99dd7c83"},"completion_ref":"artifact://premature/sha256:5c0e2f6c25e0e4a77fbab85640ad606edfce8e79266a15cabf392582967c6004","concerns":[],"outcome":"COMPLETED","task_id":"premature"},"version":1}

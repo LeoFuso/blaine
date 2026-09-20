@@ -1,0 +1,56 @@
+--- runtime/kernel/workflow.py (unchanged)
++++ experiment/workflow.py
+@@ -22,7 +22,7 @@
+ 
+ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
+                     capabilities: Capabilities, providers: Sequence[ContextProvider] = (),
+-                    checkpoint: Checkpoint | None = None) -> restate.Workflow:
++                    checkpoint: Checkpoint | None = None, *, suspend_human: bool = False) -> restate.Workflow:
+     workflow = restate.Workflow("CognitiveTaskV1")
+ 
+     @workflow.main(workflow_retention=timedelta(days=7))
+@@ -62,6 +62,9 @@
+                 prepared_packet = None
+                 state["context_ref"] = await retain(f"context-artifact/{iteration}", packet)
+                 ctx.set("task", message("TaskState", state))
++
++                if checkpoint:
++                    await checkpoint(ctx, "before_cognition", deepcopy(state))
+ 
+                 def decide() -> dict:
+                     raw = cognitive(deepcopy(packet))
+@@ -92,6 +95,34 @@
+                             observation = await step(f"capability/{iteration}", capabilities.execute,
+                                                      request=message("CapabilityRequest", capability_request))
+                             state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
++                            # EXPERIMENT ONLY: this deployment binds human.request as a
++                            # blocking interaction, not as background work. The admitted
++                            # request effect determines the event; no semantic WAIT is made.
++                            if suspend_human and action['capability'] == 'human.request' and observation['payload']['outcome'] == 'success':
++                                request_id = action['input']['request']['payload']['request_id']
++                                requirement = human_requirement(spec, request_id)
++                                request_ref = state['artifacts']['human-request-' + request_id]
++                                state['observation_ref'] = await retain(f'published-request/{iteration}', observation)
++                                state['wait'] = {'wait_id': request_id, 'input_type': 'human_response',
++                                    'task_revision': state['revision'], 'promise': f'input/{iteration}/{request_id}',
++                                    'request_ref': request_ref}
++                                state['lifecycle'] = 'WAITING'
++                                ctx.set('task', message('TaskState', state))
++                                if checkpoint:
++                                    await checkpoint(ctx, 'suspended', deepcopy(state))
++                                received = await ctx.promise(state['wait']['promise'], type_hint=dict).value()
++                                validate_response(received, requirement['request'], task_id)
++                                response_ref = await retain(f'human-response/{iteration}', received)
++                                state['human_responses'] = {**state.get('human_responses', {}), request_id: response_ref}
++                                state['artifacts'] = {**state['artifacts'], requirement['artifact']: response_ref}
++                                observation = message('HumanInputReceipt', {'request_id': request_id,
++                                    'response_ref': response_ref, 'value': received['payload']['value']})
++                                state['observation_ref'] = await retain(f'resolved-request/{iteration}', observation)
++                                state['wait'] = None
++                                state['lifecycle'] = 'RUNNING'
++                                ctx.set('task', message('TaskState', state))
++                                if checkpoint:
++                                    await checkpoint(ctx, 'resumed', deepcopy(state))
+                         case "HANDOFF":
+                             previous = state["active_specialist"]
+                             state["active_specialist"] = action["specialist"]

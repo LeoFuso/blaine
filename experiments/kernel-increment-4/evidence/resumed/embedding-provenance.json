@@ -1,0 +1,16 @@
+{
+  "evidence_type": "configuration + live embedding-search API + local source inspection; not captured embedding HTTP payloads",
+  "search_code": {
+    "path": "/home/leofuso/workspace/mirix-upstream/mirix/server/rest_api.py",
+    "sha256": "88258a85dc9b14aea9de396c65b247a0da53675bac4ab64105c85fe791de2b2d",
+    "function": "_precompute_embedding_for_search",
+    "behavior": "Nonempty embedding query calls embedding_model(agent_state.embedding_config).get_text_embedding(query) before memory lookup."
+  },
+  "embedding_code": {
+    "path": "/home/leofuso/workspace/mirix-upstream/mirix/embeddings.py",
+    "sha256": "533c6f6b35fbf313c30fe27745e17fdb0e625c3a2695569452a500a318a9b436"
+  },
+  "configuration_file": "seed/binding.json",
+  "model": "BAAI/bge-m3",
+  "endpoint": "http://127.0.0.1:8001/v1"
+}

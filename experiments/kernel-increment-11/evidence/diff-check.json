@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "tracked_and_new_files_checked": [
+    "runtime/kernel/frontier.py",
+    "tests/test_kernel_frontier.py",
+    "experiments/kernel-increment-11/probe.py",
+    "experiments/kernel-increment-11/verify.py",
+    "docs/contracts/frontier-dispatch.md",
+    "docs/milestones/029-cognitive-kernel-increment-11-isolated.md",
+    "docs/milestones/cognitive-kernel-progress.md"
+  ]
+}

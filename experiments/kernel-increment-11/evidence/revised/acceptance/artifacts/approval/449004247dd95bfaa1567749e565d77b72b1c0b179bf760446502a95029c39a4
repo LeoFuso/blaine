@@ -1,0 +1,1 @@
+{"attempt_id":"approval/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"approval_required\"}","dispatch_outcome":"denied","frontier_result":null,"operation_id":"approval/2","outcome":"success"}

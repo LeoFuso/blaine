@@ -1,0 +1,4 @@
+{"pid":215956,"request":{"kind":"CapabilityRequest","payload":{"capability":"artifact.write","input":{"content":"QWEN_EVIDENCE_V1","name":"answer"},"operation_id":"choice/1","task_id":"choice"},"version":1}}
+{"pid":215956,"request":{"kind":"CapabilityRequest","payload":{"capability":"artifact.write","input":{"content":"QWEN_EVIDENCE_V1","name":"answer"},"operation_id":"premature/2","task_id":"premature"},"version":1}}
+{"pid":215956,"request":{"kind":"CapabilityRequest","payload":{"capability":"artifact.write","input":{"content":"QWEN_EVIDENCE_V1","name":"answer"},"operation_id":"denial/2","task_id":"denial"},"version":1}}
+{"pid":215956,"request":{"kind":"CapabilityRequest","payload":{"capability":"artifact.write","input":{"content":"QWEN_EVIDENCE_V1","name":"answer"},"operation_id":"scripted/1","task_id":"scripted"},"version":1}}

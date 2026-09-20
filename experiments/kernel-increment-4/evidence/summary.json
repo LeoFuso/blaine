@@ -1,0 +1,8 @@
+{
+  "increment": 4,
+  "status": "PASS",
+  "gate": "PASS",
+  "current_evidence": "resumed/summary.json",
+  "prior_blocker": "Resolved by user-supplied existing client/user IDs",
+  "next_increment": 5
+}

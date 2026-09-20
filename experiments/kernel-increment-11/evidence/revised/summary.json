@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "increment": 11,
+  "revision": "frontier-v2",
+  "scope": "isolated authority/economic-routing/observed-accounting correction",
+  "baseline_tests": 96,
+  "focused_tests": 98,
+  "native_cases": 19,
+  "events": 356,
+  "acceptance_A_to_J": "PASS",
+  "local_synthetic_provider_invocations": 4,
+  "cloud_calls": 0,
+  "credential_access": false,
+  "live_model_inference": false,
+  "committed_worker_execution_count": 1,
+  "recovery": {
+    "killed_pid": 298867,
+    "point": "committed worker capability; budget reservation held; settlement pending",
+    "replacement_pid": 298967,
+    "signal": "SIGKILL"
+  },
+  "settlement_and_accounting_once": true,
+  "core_authority_files_unchanged": true,
+  "architectural_correction": "separate hard authority, economic suitability and observed usage; one worker dispatch may contain multiple model inferences",
+  "limitations": [
+    "No real provider enforcement or cloud usage validated",
+    "No provider billing integration; account flags are trusted synthetic inputs",
+    "Unknown remote outcome before journal commit requires adapter-specific handling",
+    "Scripted suitability ranks are not measured cost-to-success"
+  ],
+  "evidence": {
+    "verification": "acceptance/verification.json",
+    "events": "acceptance/events.jsonl",
+    "routing_ref": "artifact://authorized/sha256:ae351a7644f44e5f11dd7be6ee33172b04e7f3693fa8b76836802fca5b84a6c0",
+    "tests": "focused-tests.txt",
+    "integrity": "authority-integrity.json"
+  },
+  "next": "STOP; review revised model and authorize a binding-specific live preflight/one worker dispatch; Increment 12 unstarted",
+  "changed_files": "changed-files.json",
+  "git_diff_check": "PASS"
+}

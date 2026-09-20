@@ -1,0 +1,2 @@
+[2026-09-20 00:59:01 -0300] [244955] [WARNING] ASGI Framework Lifespan error, continuing without Lifespan support
+[2026-09-20 00:59:01 -0300] [244955] [INFO] Running on http://127.0.0.1:39080 (CTRL + C to quit)

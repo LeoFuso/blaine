@@ -1,0 +1,105 @@
+# Frontier dispatch authority — isolated v1 proof
+
+[ADR 0008](../decisions/0008-paid-cloud-crosses-single-dispatch-boundary.md),
+[ADR 0009](../decisions/0009-cloud-context-packet.md) and
+[ADR 0018](../decisions/0018-local-platform-durability-and-observability.md) constrain
+this boundary. Implementation: [frontier.py](../../runtime/kernel/frontier.py).
+This is an isolated synthetic proof, not an enabled live frontier capability.
+
+## Authority and ownership
+
+`FrontierAuthority` is immutable, version 1, supplied by trusted Blaine application
+code. The probe journals its first accepted copy into the Task's Restate state.
+There is no model-facing grant/update endpoint. Its exact fields are:
+
+| Fields | Meaning |
+|---|---|
+| `version`, `task_id` | Versioned authority bound to one Task |
+| `worker_class`, `provider`, `model` | Exact approved execution selection |
+| `destination` | Exact HTTPS destination; userinfo, query and fragment forbidden |
+| `permitted` | Independent cloud permission; budgets do not grant permission |
+| `approval_required`, `approval_ref` | Whether a trusted issuer must establish scoped human approval |
+| `context_ref` | One approved Task-owned exact artifact; digest checked before admission |
+| `read_scope`, `write_scope` | Bounded sets of literal resource identities; no glob expansion |
+| `max_invocations`, `max_effects` | Invocation and completed-effect limits |
+| `token_budget`, `cost_budget_microusd` | Integer resource ceilings; cost uses millionths of USD |
+| `deadline_unix`, `max_runtime_ms` | Absolute validity and per-invocation runtime ceilings |
+
+Approval references in this experiment are explicit **synthetic trusted fixtures**,
+not verified live human approvals. A real grant issuer must verify approval and
+bind it to this Task/scope; a nonempty model-supplied string cannot issue a grant.
+
+`FrontierProposal` uses the existing strict versioned JSON envelope, with fields
+`task_id`, `worker_class`, `provider`, `model`, `destination`, `context_ref`,
+`read_scope`, `write_scope`, `max_tokens`, `max_cost_microusd`, `runtime_ms`.
+It cannot contain permission, approval, budget state, authority version placement
+or an operation identity. Unknown/missing fields are rejected without repair.
+The trusted fixture supplies Task addressing; a future semantic adapter may lower
+that addressing as usual. No TaskSpec or NextAction field was added.
+
+Admission checks exact selection/destination/context, subset scope, approval,
+deadline and available allowance. It then requires the existing Task PolicyGate
+and an admitted `worker.run` decision. The ordinary kernel PolicyGate also remains
+in place. A frontier grant cannot authorize a capability denied by the Task.
+
+## Authorized provider request
+
+`FrontierWorkerProvider.dispatch(AuthorizedFrontierRequest) -> bounded result`
+is the replaceable execution boundary. The immutable request contains version,
+Task/operation identity, authority digest, exact worker/provider/model/destination,
+approved context reference and bytes, narrowed read/write scope, token/cost caps,
+deadline and runtime limit. No grant object, approval control or budget-state
+handle is passed to the provider. Direct raw-proposal invocation is rejected.
+
+This is an application authority boundary, not a sandbox for hostile Python code
+or a network firewall. The real adapter must implement exact destination/model
+binding, scope isolation, redirect policy, bounded transport and usage controls.
+The proof adapter executes a fixed local synthetic program with a process timeout,
+a sanitized minimal environment and no networking code. It cannot select another
+executable from model input. No installed harness or credential confers authority.
+
+## Budget semantics
+
+The probe uses small `frontier-authority` and `frontier-budget` keys on the existing
+Restate Task invocation. No separate database or Task ledger is introduced.
+Admission/reservation/settlement are Blaine code; provider output is never a budget
+update. An invocation's admission and provider effect are journaled independently.
+
+- Denied proposal: no provider call and no counters/reservations change.
+- Admitted attempt: reserve one invocation/effect slot and requested token/cost
+  ceilings before entering the provider. The invocation counter conservatively
+  records an admitted attempt, not a successful effect.
+- Executed result: increment completed effects and charge the reserved ceilings.
+  This is conservative provisional accounting, **not measured tokens or billing**.
+- Confirmed non-execution: release effect/token/cost reservations; retain the
+  invocation attempt count. No work is counted as executed.
+- Timeout/unknown outcome: keep reservations, do not claim an executed effect,
+  and do not retry automatically. Reconciliation remains a future explicit action.
+
+`not_executed` must be established by trusted adapter/transport evidence, not model
+text or an unverified provider claim. This proof uses a controlled program branch.
+A real adapter must certify that condition or return `unknown`.
+The live binding must enforce total token and monetary ceilings before execution;
+passing numeric limits to an arbitrary harness is not proof they are enforced.
+
+Restate replay after a committed capability result does not call the provider
+again. This experiment does **not** prove exactly-once remote effects after an
+uncommitted response loss. A live adapter needs idempotency or an explicit
+unknown-outcome/no-retry strategy for that window.
+
+## Evidence and completion
+
+Existing ExecutionEvent v1 classes record proposal, policy, result and completion.
+Reason categories and exact authorized requests are in bounded policy artifacts
+referenced by events. Stable Task/operation identity joins them to provider records.
+Raw configuration, credentials and secrets are never captured.
+
+The proof uses the existing `worker.run` seam and trusted probe hook, leaving
+production kernel, PolicyGate, CompletionVerifier, Task contracts and event schema
+unchanged. A worker may successfully report a **denial**: that means the boundary
+produced evidence, not that cloud work executed. Each proof Task's accepted digest
+contract independently verifies its expected outcome. The denied/unknown cases
+must not be mistaken for successfully completed cloud workloads.
+
+The probe wiring is not installed in the normal runtime and is not a new lifecycle
+engine. A production integration and real provider dispatch remain unapproved.

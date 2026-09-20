@@ -1,0 +1,7 @@
+PASS choice
+PASS premature
+PASS denial
+PASS scripted
+PASS malformed
+PASS unsupported
+Evidence: /home/leofuso/workspace/blaine-cognitive-loop/.local/kernel-program/model-json-only-correction/evidence

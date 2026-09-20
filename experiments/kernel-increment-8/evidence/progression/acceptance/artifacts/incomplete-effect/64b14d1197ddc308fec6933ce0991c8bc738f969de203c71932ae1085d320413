@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"DRAFT","name":"answer"},"type":"INVOKE_CAPABILITY"},"task_id":"incomplete-effect","task_revision":0,"turn_id":"incomplete-effect/1"},"version":1}

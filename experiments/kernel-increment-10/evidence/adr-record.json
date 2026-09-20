@@ -1,0 +1,9 @@
+{
+  "path": "docs/decisions/0018-local-platform-durability-and-observability.md",
+  "sha256": "9520dd896c8bdbafbb9da0224ed325d19a0f4c08166924ace250e9dc9d7e5f53",
+  "sections": 36,
+  "title_number_only_formatting_change": true,
+  "repository_copy_read": true,
+  "diff_check": "PASS",
+  "baseline_tests": 78
+}

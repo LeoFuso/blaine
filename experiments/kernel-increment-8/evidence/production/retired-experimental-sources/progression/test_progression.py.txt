@@ -1,0 +1,74 @@
+"""Offline progression controls. Fake context is not durable/live model evidence."""
+import hashlib
+from pathlib import Path
+import sys
+import tempfile
+import unittest
+from unittest.mock import patch
+ROOT=Path(__file__).resolve().parents[3];sys.path.insert(0,str(ROOT))
+import workflow
+from runtime.kernel.artifacts import ArtifactStore
+from runtime.kernel.contracts import message
+from runtime.kernel.execution import Capabilities
+
+class Registry:
+    def __init__(self,*a):self.handlers={}
+    def main(self,**kw):
+        def accept(f):self.run=f;return f
+        return accept
+    def handler(self,**kw):
+        def accept(f):self.handlers[f.__name__]=f;return f
+        return accept
+class Context:
+    def __init__(self):self.saved={}
+    def key(self):return 'control'
+    def set(self,k,v):self.saved[k]=v
+    async def run_typed(self,name,fn,*options,**kw):return fn(**kw)
+
+class ProgressionTests(unittest.IsolatedAsyncioTestCase):
+    async def exercise(self,contents,empty_first=False,force_complete_first=False):
+        with tempfile.TemporaryDirectory() as d:
+            store=ArtifactStore(Path(d)/'artifacts');caps=Capabilities(store,Path(d)/'effects.sqlite')
+            original=caps.execute;calls=[];effects=[];states=[]
+            class Counted:
+                def execute(self,request):
+                    effects.append(request)
+                    if empty_first and len(effects)==1:
+                        return message('CapabilityResult',{'operation_id':request['payload']['operation_id'],
+                            'outcome':'success','output':{},'artifacts':{},'error':None})
+                    return original(request)
+            def cognitive(packet):
+                turn=packet['payload'];calls.append(packet)
+                if len(calls)>len(contents):self.fail('Cognition ran after sufficient evidence')
+                action={'type':'COMPLETE'} if force_complete_first and len(calls)==1 else {
+                    'type':'INVOKE_CAPABILITY','capability':'artifact.write','input':{'name':'answer','content':contents[len(calls)-1]}}
+                return message('CognitiveDecision',{k:turn[k] for k in ('task_id','task_revision','turn_id')}|{'next_action':action})
+            async def checkpoint(ctx,stage,state):
+                states.append({'stage':stage,'state':state,'evaluation':store.read_json('control',state['completion_ref']) if state['completion_ref'] else None})
+            spec=message('TaskSpec',{'objective':'Produce GOOD exactly.','completion':[{'criterion':'Exact','evidence':{'artifact':'answer','sha256':hashlib.sha256(b'GOOD').hexdigest()}}],
+                'capabilities':['artifact.write'],'autonomy':{'allowed':['artifact.write']}})
+            with patch.object(workflow.restate,'Workflow',Registry):
+                service=workflow.create_workflow(store,cognitive,Counted(),checkpoint=checkpoint,suspend_human=True)
+            ctx=Context();result=await service.run(ctx,spec)
+            self.assertEqual(result['payload']['outcome'],'COMPLETED')
+            self.assertEqual(len(calls),len(contents))
+            self.assertEqual(store.read_json('control',result['payload']['completion_ref'])['payload']['outcome'],'satisfied')
+            return states,effects
+    async def test_exact_artifact_completes_without_complete_proposal(self):
+        states,effects=await self.exercise(['GOOD'])
+        self.assertEqual(len(effects),1)
+        self.assertEqual([s['evaluation']['payload']['outcome'] for s in states if s['stage'].startswith('verification-')],['unsatisfied','satisfied'])
+    async def test_success_without_evidence_does_not_complete(self):
+        states,effects=await self.exercise(['GOOD','GOOD'],empty_first=True)
+        self.assertEqual(len(effects),2)
+        self.assertTrue(any(s['stage']=='before_cognition' and s['state']['iteration']==2 and s['state']['lifecycle']=='RUNNING' for s in states))
+    async def test_bad_artifact_returns_to_cognition(self):
+        states,effects=await self.exercise(['DRAFT','GOOD'])
+        first=[s for s in states if s['stage']=='verification-effect'][0]
+        self.assertEqual(first['evaluation']['payload']['outcome'],'unsatisfied')
+        self.assertEqual(first['state']['lifecycle'],'RUNNING')
+    async def test_model_complete_still_cannot_bypass_verifier(self):
+        states,effects=await self.exercise(['unused','GOOD'],force_complete_first=True)
+        self.assertEqual(len(effects),1)
+        self.assertTrue(any(s['stage']=='before_cognition' and s['state']['iteration']==2 for s in states))
+if __name__=='__main__':unittest.main()

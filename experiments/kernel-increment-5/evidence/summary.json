@@ -1,0 +1,82 @@
+{
+  "increment": 5,
+  "status": "BLOCKED",
+  "gate": "STOP",
+  "probe_type": "deterministic contract-fit counterexample, not a live human interaction",
+  "accepted_spec": {
+    "version": 1,
+    "kind": "TaskSpec",
+    "payload": {
+      "objective": "Obtain the human decision YES or NO, scoped to request D-1.",
+      "completion": [
+        {
+          "criterion": "Valid scoped human response",
+          "evidence": {
+            "artifact": "decision",
+            "sha256": "f9171164593756e56fb197327b529a4955590566560dbe62d586bff41be9d297"
+          }
+        }
+      ],
+      "capabilities": [
+        "artifact.write"
+      ],
+      "autonomy": {
+        "allowed": [
+          "artifact.write"
+        ]
+      }
+    }
+  },
+  "observed_completion": {
+    "YES": {
+      "version": 1,
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "outcome": "satisfied",
+        "criteria": [
+          {
+            "criterion": "Valid scoped human response",
+            "outcome": "satisfied",
+            "evidence_ref": "artifact://human-contract-probe/sha256:f9171164593756e56fb197327b529a4955590566560dbe62d586bff41be9d297",
+            "detail": "Exact artifact digest verified"
+          }
+        ]
+      }
+    },
+    "NO": {
+      "version": 1,
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "outcome": "unsatisfied",
+        "criteria": [
+          {
+            "criterion": "Valid scoped human response",
+            "outcome": "unsatisfied",
+            "evidence_ref": "artifact://human-contract-probe/sha256:23794d91c53ae875c8e247d72561e35d9d06ee07c70c9e0dbcc977a6d161504a",
+            "detail": "Artifact does not match accepted digest"
+          }
+        ]
+      }
+    }
+  },
+  "unapproved_alternative_digest_contract": {
+    "accepted": false,
+    "error": "Invalid object fields"
+  },
+  "unapproved_inline_result_field": {
+    "accepted": false,
+    "error": "Invalid object fields"
+  },
+  "interpretation": "Existing exact-byte verification cannot express acceptance of either human answer directly. A new trusted response verifier or receipt design needs a narrow semantic decision. Artifact-referenced TaskResult remains a possible representation; inline decision is not currently allowed.",
+  "not_proven": [
+    "Human input identity/scope validation",
+    "duplicate/stale response rejection",
+    "human wait crash/recovery",
+    "parent receives verified YES/NO"
+  ],
+  "architecture_impact": "Local extension required; none applied",
+  "llm_calls": 0,
+  "external_effects": 0,
+  "runtime_changes": [],
+  "decision_required": "Authorize a narrowly specified scoped human-response verification/result contract before Increment 5 implementation."
+}

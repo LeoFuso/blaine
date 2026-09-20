@@ -1,0 +1,119 @@
+{
+  "status": "STOP_BEFORE_LIVE_DISPATCH",
+  "increment": 11,
+  "scope": "first live frontier probe preflight",
+  "worker": {
+    "executable": "/home/leofuso/.local/bin/codex",
+    "resolved_executable": "/home/leofuso/.codex/packages/standalone/releases/0.155.1-x86_64-unknown-linux-musl/bin/codex",
+    "version": "0.155.1",
+    "model_intent": "gpt-6-astra",
+    "resolved_model": null
+  },
+  "provider": {
+    "id": "openai",
+    "name": "OpenAI",
+    "auth_mode": "chatgpt",
+    "auth_storage": "File",
+    "inference_origin": "https://chatgpt.com",
+    "websocket_origin": "wss://chatgpt.com",
+    "path": "UNKNOWN; installed redacted doctor output shows /backend-api/<redacted>",
+    "wire_api": "responses",
+    "account_identity": "UNKNOWN; no credential inspection",
+    "source": "doctor-safe.json"
+  },
+  "configuration": {
+    "root_model": "gpt-6-astra",
+    "explicit_root_model_provider": false,
+    "explicit_endpoint_override": false,
+    "custom_provider_definitions_present": false,
+    "endpoint_environment_overrides_present": false,
+    "mcp_configuration_present": true,
+    "global_configuration_modified": false
+  },
+  "offline_checks": [
+    {
+      "command": "codex --version / --help / exec --help / login --help / doctor --help / debug --help / debug prompt-input --help",
+      "inference": false,
+      "result": "documented CLI controls inspected"
+    },
+    {
+      "command": "codex doctor --json",
+      "network": "disabled via bwrap --unshare-net",
+      "filesystem": "read-only with private temporary /tmp",
+      "result": "non-secret provider/auth-mode/origin obtained; unreachable expected without network",
+      "raw_report_retained": false
+    },
+    {
+      "command": "isolated codex --strict-config debug prompt-input",
+      "result": "CLI rejects strict-config for debug; removed for next offline check"
+    },
+    {
+      "command": "isolated codex debug prompt-input",
+      "result": "configuration rejected before prompt rendering",
+      "exit_code": 1,
+      "error": "model_providers contains reserved built-in provider IDs: `openai`. Built-in providers cannot be overridden. Rename your custom provider (for example, `openai-custom`)."
+    }
+  ],
+  "expected": "One worker dispatch with projected-only synthetic context, no automatic retry/escalation, independently verified result",
+  "observed": "Installed built-in provider rejects the scoped retry-control configuration. Zero-retry behavior and final model-visible input remain unverified; no live execution attempted.",
+  "stop_reason": "Cannot establish the one-shot binding precondition using the attempted supported provider configuration; no custom provider substitution authorized or executed.",
+  "requested_authority": {
+    "frontier_enabled_for_probe": true,
+    "worker_dispatch_limit": 1,
+    "automatic_worker_retries": 0,
+    "automatic_escalation": false,
+    "scope": "synthetic context only; read-only; no repository or external tools"
+  },
+  "issued_runtime_authority": null,
+  "accepted_context_digest": null,
+  "reservation": null,
+  "settlement": null,
+  "synthetic_fixture": {
+    "raw_intended": {
+      "organization": "ORCHID",
+      "marker": "7319"
+    },
+    "projected_intended": {
+      "organization": "FLOWER",
+      "marker": "MASKED_01"
+    },
+    "status": "projected values only were supplied to offline prompt-debug argv; no live context/grant issued"
+  },
+  "isolation_attempt": {
+    "repository_mount": false,
+    "personal_instructions_mount": false,
+    "personal_mcp_config_mount": false,
+    "auth_file": "mounted read-only for CLI; no credential values inspected or retained",
+    "fixture_configuration": "offline-config.toml",
+    "network": "disabled",
+    "deadline": "30-second offline subprocess timeout; live deadline NOT_ACTIVATED"
+  },
+  "projection_boundary": "Previously PASSED and unchanged; live entry not reached",
+  "task": {
+    "intended_identity": "frontier-live-binding-001",
+    "runtime_identity": null,
+    "state": "NOT_SUBMITTED"
+  },
+  "live_worker_dispatches": 0,
+  "live_model_inference_calls": 0,
+  "provider_result": null,
+  "verifier": "NOT_RUN",
+  "execution_events": [],
+  "observed_usage": {
+    "input_tokens": null,
+    "output_tokens": null,
+    "monetary_cost": null,
+    "model_call_ids": null,
+    "worker_session_id": null
+  },
+  "retry_or_escalation_performed_by_blaine": false,
+  "fallback_provider_or_model": false,
+  "credentials_inspected": false,
+  "live_network_or_model_call": false,
+  "architecture_impact": "None; no runtime change, authorization weakening or lifecycle change",
+  "previous_isolated_guarantees": "Preserved; no production code changed. Accepted 103-test/22-case evidence remains historical and is not relabeled live.",
+  "official_reference": "https://learn.chatgpt.com/docs/config-file/config-reference",
+  "decision_required": "Authorize a narrow offline investigation of a supported zero-retry Codex binding, or explicitly decide whether bounded native transport retries within one worker dispatch are acceptable. No provider substitution or live retry without resolving this constraint.",
+  "safest_next_option": "Keep live dispatch blocked; establish a supported binding and render its exact synthetic-only model input offline before resuming.",
+  "increment_12_started": false
+}

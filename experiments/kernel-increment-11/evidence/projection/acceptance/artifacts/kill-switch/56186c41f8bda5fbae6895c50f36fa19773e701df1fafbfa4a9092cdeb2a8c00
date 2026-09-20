@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://kill-switch/sha256:ad270ae4092010c21c9bc85e9ef98241b5e5edf21eb028b561d0924fc1cb9a90"},"type":"INVOKE_CAPABILITY"},"task_id":"kill-switch","task_revision":1,"turn_id":"kill-switch/2"},"version":1}

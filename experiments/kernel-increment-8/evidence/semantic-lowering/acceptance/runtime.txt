@@ -1,0 +1,40 @@
+[2026-09-19 23:46:30 -0300] [237447] [WARNING] ASGI Framework Lifespan error, continuing without Lifespan support
+[2026-09-19 23:46:30 -0300] [237447] [INFO] Running on http://127.0.0.1:39080 (CTRL + C to quit)
+Exception in do_progress
+Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/vm.py", line 251, in do_progress
+    result = self.vm.do_progress(_unresolved_future_to_pyo3(unresolved_future))
+restate_sdk_python_core.VMException: (500) ValueError('Invalid semantic action or runtime decision')
+Stacktrace: Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine-cognitive-loop/runtime/kernel/semantic_human.py", line 150, in __call__
+    raise ValueError('human.request requires SemanticHumanRequest in this adapter')
+ValueError: human.request requires SemanticHumanRequest in this adapter
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/server_context.py", line 868, in create_run_coroutine
+    action_result = typing.cast(T, await action_result_future)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid semantic action or runtime decision
+
+Related command: run [cognitive/2]
+Exception in do_progress
+Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/vm.py", line 251, in do_progress
+    result = self.vm.do_progress(_unresolved_future_to_pyo3(unresolved_future))
+restate_sdk_python_core.VMException: (500) ValueError('Invalid semantic action or runtime decision')
+Stacktrace: Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine-cognitive-loop/runtime/kernel/semantic_human.py", line 150, in __call__
+    raise ValueError('human.request requires SemanticHumanRequest in this adapter')
+ValueError: human.request requires SemanticHumanRequest in this adapter
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/server_context.py", line 868, in create_run_coroutine
+    action_result = typing.cast(T, await action_result_future)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Invalid semantic action or runtime decision
+
+Related command: run [cognitive/2]

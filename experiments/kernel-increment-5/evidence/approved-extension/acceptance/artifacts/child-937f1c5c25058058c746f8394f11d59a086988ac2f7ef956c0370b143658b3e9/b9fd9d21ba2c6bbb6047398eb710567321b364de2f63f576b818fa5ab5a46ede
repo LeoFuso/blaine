@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"input_type":"human_response","type":"WAIT","wait_id":"decision-1"},"task_id":"child-937f1c5c25058058c746f8394f11d59a086988ac2f7ef956c0370b143658b3e9","task_revision":2,"turn_id":"child-937f1c5c25058058c746f8394f11d59a086988ac2f7ef956c0370b143658b3e9/3"},"version":1}

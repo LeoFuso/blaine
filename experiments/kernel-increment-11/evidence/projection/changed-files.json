@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "git_diff_check": "PASS",
+  "untracked_whitespace_check": "PASS",
+  "documentation_links": "PASS",
+  "files": [
+    {
+      "file": "runtime/kernel/frontier_context.py",
+      "sha256": "8cdff4048cb8a93d5ddfe63f9978111f89a5cfd32c2033f2b765bcb997fb9dbe"
+    },
+    {
+      "file": "runtime/kernel/frontier.py",
+      "sha256": "69ffe5d0773767ff0f3e459aee0f231954c749f215f0bc6185326e8dec5156fb"
+    },
+    {
+      "file": "tests/test_kernel_frontier.py",
+      "sha256": "4c7d69654e1e68ad93785f1cf7aa9f0a033801ca21b924c32c04e2f12deb9d6b"
+    },
+    {
+      "file": "tests/test_kernel_frontier_context.py",
+      "sha256": "d3a63500a00d8c4ee59a6513ed26ffc0aacccd69b913920cbb0f7f84e8d6344d"
+    },
+    {
+      "file": "experiments/kernel-increment-11/probe.py",
+      "sha256": "027c52f31c8728abb656d25a44fadf0018c8b7a18983cd4ad5925fb5260ff071"
+    },
+    {
+      "file": "experiments/kernel-increment-11/verify.py",
+      "sha256": "4248ce73b07d5e5de164d0975c132bc969c16efb5f870750d738cdfd03a48398"
+    },
+    {
+      "file": "docs/contracts/frontier-dispatch.md",
+      "sha256": "bd47d02240d349e8a3b7bf9a1fbedcb0d2eb18b66b77991ba85f4bb3ce1501d2"
+    },
+    {
+      "file": "docs/milestones/031-cognitive-kernel-increment-11-projection.md",
+      "sha256": "270ebe7bf9d2cab31cc3e42de46efdb13b07a09d10e0cf8c1b920d202aa33d37"
+    },
+    {
+      "file": "docs/milestones/cognitive-kernel-progress.md",
+      "sha256": "a87bc1b0cb54691eeaa2c82c25cc6f70a262b10537cfedb8c33f033452a157f3"
+    }
+  ]
+}

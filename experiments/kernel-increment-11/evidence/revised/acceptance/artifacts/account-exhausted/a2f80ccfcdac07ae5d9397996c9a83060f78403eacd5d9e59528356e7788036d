@@ -1,0 +1,1 @@
+{"attempt_id":"account-exhausted/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"global_budget_exhausted\"}","dispatch_outcome":"denied","frontier_result":null,"operation_id":"account-exhausted/2","outcome":"success"}

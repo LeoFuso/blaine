@@ -1,0 +1,29 @@
+{
+  "auxiliary_title_requests": 2,
+  "cognitive_adapter": "scripted",
+  "cognitive_turns": 6,
+  "completion": "independent exact artifact verifier",
+  "first_attempt_interrupted": true,
+  "first_main_request_forwarded": false,
+  "fresh_worker_packet_equal": true,
+  "main_worker_requests": 2,
+  "max_worker_packet_bytes": 332,
+  "model": "Qwen/Qwen3.5-9B",
+  "next_increment": 8,
+  "runtime_sigkills": 1,
+  "same_Task_after_restart": true,
+  "sentinel_in_any_worker_request": false,
+  "server_sigkills": 1,
+  "status": "PASS",
+  "task_id": "worker-task",
+  "worker_adapter": "Goose 1.50.1",
+  "worker_attempts": 2,
+  "worker_tools_available": false,
+  "focused_tests": 36,
+  "auxiliary_accounting": {
+    "observed_requests": 2,
+    "complete_usage_records": [],
+    "incomplete_usage": "UNKNOWN; never counted as zero",
+    "known_limitation": "Goose may disconnect from background title streams; separately counted under user-approved option B"
+  }
+}

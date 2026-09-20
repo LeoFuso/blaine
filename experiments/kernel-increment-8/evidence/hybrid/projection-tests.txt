@@ -1,0 +1,12 @@
+test_capability_policy_masks (test_actions.ProjectionTests.test_capability_policy_masks) ... ok
+test_choice_not_selected_by_policy (test_actions.ProjectionTests.test_choice_not_selected_by_policy) ... ok
+test_initial_multiple_legal_actions (test_actions.ProjectionTests.test_initial_multiple_legal_actions) ... ok
+test_resolved_removes_duplicate_but_not_completion_or_rewrite (test_actions.ProjectionTests.test_resolved_removes_duplicate_but_not_completion_or_rewrite) ... ok
+test_schema_contains_only_current_actions (test_actions.ProjectionTests.test_schema_contains_only_current_actions) ... ok
+test_unknown_runtime_fields_rejected (test_actions.ProjectionTests.test_unknown_runtime_fields_rejected) ... ok
+test_waiting_no_cognition (test_actions.ProjectionTests.test_waiting_no_cognition) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.000s
+
+OK

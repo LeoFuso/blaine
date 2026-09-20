@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"report":"artifact://telemetry-outage/sha256:2269514a233056fbc936b10b406952c54a12ca317c35e1f89ddd66b1159f1515"},"completion_ref":"artifact://telemetry-outage/sha256:6a25c52a747a60ed9fc99da3ac1cd52df1560c86f087f8183c99716bdf10170f","concerns":[],"outcome":"COMPLETED","task_id":"telemetry-outage"},"version":1}

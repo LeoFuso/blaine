@@ -1,0 +1,84 @@
+{
+  "classification_guard": "closed metadata; no SECRET payload class accepted",
+  "cognitive_packet_bytes": [
+    990,
+    1120,
+    2046,
+    1678,
+    1114,
+    958
+  ],
+  "events": 28,
+  "maximum_event_bytes": 1294,
+  "model_calls": 0,
+  "no_authority_dependency_on_telemetry": true,
+  "no_repeated_committed_worker_effect": true,
+  "parent_receives_bounded_child_result": true,
+  "replay_lost_ack_deduplicated": true,
+  "sink": "JSONL acceptance/local forensics only; no platform backend selected",
+  "status": "PASS",
+  "tasks": [
+    {
+      "event_types": {
+        "artifact.produced": 1,
+        "capability.finished": 1,
+        "cognition.decided": 3,
+        "completion.finished": 1,
+        "policy.evaluated": 3,
+        "task.started": 1,
+        "verifier.evaluated": 4
+      },
+      "events": 14,
+      "independent_completion": "satisfied",
+      "result_bytes": 354,
+      "run_id": "run:inv_1amJi08YZatQ0yFknCi20qtpAZTAPz6IX5",
+      "task_id": "execution-events"
+    },
+    {
+      "event_types": {
+        "artifact.produced": 2,
+        "capability.finished": 2,
+        "cognition.decided": 2,
+        "completion.finished": 1,
+        "policy.evaluated": 2,
+        "task.started": 1,
+        "verifier.evaluated": 4
+      },
+      "events": 14,
+      "independent_completion": "satisfied",
+      "result_bytes": 688,
+      "run_id": "run:inv_1en5sVkdkFEM6wER8Y57JrPaAHrbL0ax7Z",
+      "task_id": "child-438297f7a8c9a0d7baa42fd7a2f831c48f4ab8935827d55ff88db52afb0a1451"
+    }
+  ],
+  "trace_context": "absent, not fabricated",
+  "worker_packet_bytes": 882,
+  "worker_test_executions": 1,
+  "increment": 10,
+  "architecture_constraint": "docs/decisions/0018-local-platform-durability-and-observability.md",
+  "focused_tests": 87,
+  "baseline_tests": 78,
+  "architecture_deviations": [],
+  "files_changed": [
+    "docs/decisions/0018-local-platform-durability-and-observability.md",
+    "docs/decisions/README.md",
+    "docs/contracts/execution-event.md",
+    "docs/milestones/cognitive-kernel-progress.md",
+    "docs/milestones/027-cognitive-kernel-increment-10.md",
+    "runtime/kernel/events.py",
+    "runtime/kernel/event_sinks.py",
+    "runtime/kernel/workflow.py",
+    "tests/test_kernel_events.py",
+    "experiments/kernel-increment-10/probe.py",
+    "experiments/kernel-increment-10/verify.py"
+  ],
+  "next_increment": 11,
+  "no_new_infrastructure": true,
+  "limitations": [
+    "Scripted cognition; no live model-quality or model token measurement in this event acceptance",
+    "No trace/span instrumentation present; optional correlation contract tested offline",
+    "No telemetry delivery guarantee during sink outage",
+    "JSONL is acceptance/local forensics only",
+    "No claim that the ADR platform is deployed"
+  ]
+}

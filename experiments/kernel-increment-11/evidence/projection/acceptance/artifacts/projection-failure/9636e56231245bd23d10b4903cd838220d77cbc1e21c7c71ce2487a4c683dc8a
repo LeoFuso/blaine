@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"worker.run","input":{"artifact":"report","packet_ref":"artifact://projection-failure/sha256:4b8c7a18ea05eef691fd0b20e3d849f3a69a092949deb815c250f92070e85a05"},"type":"INVOKE_CAPABILITY"},"task_id":"projection-failure","task_revision":1,"turn_id":"projection-failure/2"},"version":1}

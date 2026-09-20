@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://response-loss/sha256:19ae190ae096908c3a11a67b79a2081378598d54b93bc3090d70759a99dd7c83"},"completion_ref":"artifact://response-loss/sha256:ada693fe3eec3988633906c638fc746ba35c115c1801933befc020b5f5592225","concerns":[],"outcome":"COMPLETED","task_id":"response-loss"},"version":1}

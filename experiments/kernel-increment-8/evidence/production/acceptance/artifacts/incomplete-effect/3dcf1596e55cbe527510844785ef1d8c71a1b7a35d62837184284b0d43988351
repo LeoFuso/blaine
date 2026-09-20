@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"Exact candidate","detail":"Artifact does not match accepted digest","evidence_ref":"artifact://incomplete-effect/sha256:53dd5f4b25e5f226916dff10264af7da41c3fdc8ac9162ca6fae61e734e19d26","outcome":"unsatisfied"}],"outcome":"unsatisfied"},"version":1}

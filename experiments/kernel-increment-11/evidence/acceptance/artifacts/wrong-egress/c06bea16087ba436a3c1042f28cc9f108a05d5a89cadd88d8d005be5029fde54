@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"Exact dispatch outcome","detail":"Exact artifact digest verified","evidence_ref":"artifact://wrong-egress/sha256:a6c1dc8ceab8b514967626d5fb1eebc416f10b491119934e927b7dcb95ba6799","outcome":"satisfied"}],"outcome":"satisfied"},"version":1}

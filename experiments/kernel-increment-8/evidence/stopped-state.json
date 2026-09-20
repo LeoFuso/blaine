@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "kind": "TaskState",
+  "payload": {
+    "task_id": "procedure",
+    "revision": 2,
+    "lifecycle": "WAITING",
+    "iteration": 3,
+    "active_specialist": "coordinator",
+    "spec_ref": "artifact://procedure/sha256:64359770257ff51c042499fd2525c011183d1125385c813354e748c498da12a6",
+    "decision_id": "procedure/3",
+    "decision_ref": "artifact://procedure/sha256:b100ae8b32ca025e77402faddc388583270e537626f76d02ed14b697c5d63650",
+    "context_ref": "artifact://procedure/sha256:93d656e1ef593b9b4a17a623af49aa0e720f93d54ef4d8f0c7444d8b2b3f18a1",
+    "observation_ref": "artifact://procedure/sha256:a840b2ee6fa7181e4396450acf3844285f24cc068764e7439acb9cbf852ca616",
+    "wait": {
+      "wait_id": "retention",
+      "input_type": "text",
+      "task_revision": 2,
+      "promise": "input/3/retention"
+    },
+    "artifacts": {
+      "answer": "artifact://procedure/sha256:f20deb1acab1f5eb7cc13323ed47bfd4f4c53092739aaa8755dc16d4db968a42"
+    },
+    "completion_ref": null,
+    "result_ref": null,
+    "remaining_children": 0,
+    "children": {}
+  }
+}

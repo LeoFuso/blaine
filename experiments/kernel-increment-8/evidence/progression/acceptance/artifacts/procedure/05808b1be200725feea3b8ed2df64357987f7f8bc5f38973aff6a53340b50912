@@ -1,0 +1,1 @@
+{"kind":"HumanDecisionRequest","payload":{"allowed_responses":["30 days","90 days"],"origin_task_id":"procedure","question":"How long should exports be retained?","request_id":"retention","revision":0,"task_id":"procedure"},"version":1}

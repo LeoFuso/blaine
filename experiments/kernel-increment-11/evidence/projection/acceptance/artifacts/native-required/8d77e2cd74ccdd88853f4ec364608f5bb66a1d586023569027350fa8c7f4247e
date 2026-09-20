@@ -1,0 +1,1 @@
+{"attempt_id":"native-required/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"required_native_control_unavailable\"}","dispatch_outcome":"denied","frontier_result":null,"operation_id":"native-required/2","outcome":"success"}

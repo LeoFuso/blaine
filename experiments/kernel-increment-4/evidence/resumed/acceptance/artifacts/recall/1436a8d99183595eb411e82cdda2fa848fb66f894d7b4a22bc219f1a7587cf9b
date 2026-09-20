@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://recall/sha256:f315ee671dc0a7dbd2edd71b379a85ba8a84b8b9c62d7a20f1a5b07c5eb419cc"},"completion_ref":"artifact://recall/sha256:61649f38d9693b8e53111a43f8eda2c5f15bf923871fdaadb7887aeafd75d352","concerns":[],"outcome":"COMPLETED","task_id":"recall"},"version":1}

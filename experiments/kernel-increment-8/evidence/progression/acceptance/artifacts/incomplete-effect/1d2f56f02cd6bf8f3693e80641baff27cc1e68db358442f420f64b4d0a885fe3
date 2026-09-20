@@ -1,0 +1,1 @@
+{"kind":"TaskSpec","payload":{"autonomy":{"allowed":["artifact.write"]},"capabilities":["artifact.write"],"completion":[{"criterion":"Exact candidate","evidence":{"artifact":"answer","sha256":"eadafa2d4f226a94393d2263bd73c4da9dba083c8950b385ddcd8a6eec8399b0"}}],"objective":"Produce exact artifact VERIFIED_RESULT."},"version":1}

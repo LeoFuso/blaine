@@ -1,0 +1,1 @@
+{"attempt_id":"wrong-model/2-frontier-boundary","content":"{\"outcome\":\"denied\",\"provider_invoked\":false,\"reason_category\":\"model_mismatch\"}","dispatch_outcome":"denied","operation_id":"wrong-model/2","outcome":"success"}

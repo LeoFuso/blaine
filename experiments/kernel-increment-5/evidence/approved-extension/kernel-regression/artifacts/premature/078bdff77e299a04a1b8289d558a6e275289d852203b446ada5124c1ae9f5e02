@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"answer contains the accepted exact bytes","detail":"Required artifact is missing","evidence_ref":null,"outcome":"unsatisfied"}],"outcome":"unsatisfied"},"version":1}

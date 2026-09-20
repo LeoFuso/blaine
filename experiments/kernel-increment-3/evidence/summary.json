@@ -1,0 +1,15 @@
+{
+  "increment": 3,
+  "status": "PASS",
+  "gate": "PASS",
+  "latest_evidence": "json-only-correction/summary.json",
+  "diagnostic_evidence": "diagnostic/summary.json",
+  "unit_tests_passed": 5,
+  "acceptance_cases_passed": 6,
+  "model_turns": 8,
+  "kernel_contracts_enforcement_unchanged": true,
+  "architecture_deviations": [],
+  "stop_reason": "User explicitly required stopping after this acceptance probe regardless of result.",
+  "increment_4_started": false,
+  "next_increment_authorized": false
+}
