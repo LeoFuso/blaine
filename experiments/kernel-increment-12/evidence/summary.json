@@ -1,0 +1,109 @@
+{
+  "status": "PASS",
+  "cases": {
+    "ab": {
+      "parent_id": "parallel-ab",
+      "child_ids": [
+        "child-ece66d1789d8de66cb4a7386b3fafcf38915f2a429dc0896e61d7a105467660a",
+        "child-1fbad00993505af85cd6e1841951a29942927fe5e1c32853e43e8623d351f59b"
+      ],
+      "completion_order": [
+        "child-ece66d1789d8de66cb4a7386b3fafcf38915f2a429dc0896e61d7a105467660a",
+        "child-1fbad00993505af85cd6e1841951a29942927fe5e1c32853e43e8623d351f59b"
+      ],
+      "parent_outcome": "COMPLETED",
+      "child_outcomes": [
+        "COMPLETED",
+        "COMPLETED"
+      ],
+      "creation_count": 2,
+      "result_projection_bytes": 844,
+      "parent_cognition_while_children_pending": 0,
+      "parent_cognitive_turns": 2,
+      "child_verification_independent": true,
+      "parent_verification": "satisfied"
+    },
+    "ba": {
+      "parent_id": "parallel-ba",
+      "child_ids": [
+        "child-e0e33db6079bb23af05383cd5f3c3fbc7a2d291ab907c92de76eeb99549a3103",
+        "child-ac73929225685f14d8565e9c254dc7f585e64817159558a0a6b20ae9b90c9648"
+      ],
+      "completion_order": [
+        "child-ac73929225685f14d8565e9c254dc7f585e64817159558a0a6b20ae9b90c9648",
+        "child-e0e33db6079bb23af05383cd5f3c3fbc7a2d291ab907c92de76eeb99549a3103"
+      ],
+      "parent_outcome": "COMPLETED",
+      "child_outcomes": [
+        "COMPLETED",
+        "COMPLETED"
+      ],
+      "creation_count": 2,
+      "result_projection_bytes": 844,
+      "parent_cognition_while_children_pending": 0,
+      "parent_cognitive_turns": 2,
+      "child_verification_independent": true,
+      "parent_verification": "satisfied"
+    },
+    "denial": {
+      "parent_id": "parallel-denial",
+      "child_ids": [
+        "child-baca4c4981a9ddd221a635272872d261802c66014cc046da943e45dfb7b35202",
+        "child-36d670baf395d965bd4921009f97d667faced97661ff52012e2f45f11e4d0e62"
+      ],
+      "completion_order": [
+        "child-baca4c4981a9ddd221a635272872d261802c66014cc046da943e45dfb7b35202",
+        "child-36d670baf395d965bd4921009f97d667faced97661ff52012e2f45f11e4d0e62"
+      ],
+      "parent_outcome": "FAILED",
+      "child_outcomes": [
+        "COMPLETED",
+        "FAILED"
+      ],
+      "creation_count": 2,
+      "result_projection_bytes": 849,
+      "parent_cognition_while_children_pending": 0,
+      "parent_cognitive_turns": 16,
+      "child_verification_independent": true,
+      "parent_verification": "unsatisfied"
+    },
+    "failure": {
+      "parent_id": "parallel-failure",
+      "child_ids": [
+        "child-7bd0b1cc48cdacc21d681798a65e22c03815c55f22997716844c2be7f33b49b4",
+        "child-7241920923806133f3617fa8a27d5a62c562016a7b8fa3eb7569aa36975312c9"
+      ],
+      "completion_order": [
+        "child-7bd0b1cc48cdacc21d681798a65e22c03815c55f22997716844c2be7f33b49b4",
+        "child-7241920923806133f3617fa8a27d5a62c562016a7b8fa3eb7569aa36975312c9"
+      ],
+      "parent_outcome": "FAILED",
+      "child_outcomes": [
+        "COMPLETED",
+        "FAILED"
+      ],
+      "creation_count": 2,
+      "result_projection_bytes": 851,
+      "parent_cognition_while_children_pending": 0,
+      "parent_cognitive_turns": 16,
+      "child_verification_independent": true,
+      "parent_verification": "unsatisfied"
+    }
+  },
+  "native_tasks": 12,
+  "logical_children": 8,
+  "duplicate_children": 0,
+  "fixture_effects": 7,
+  "duplicate_capability_executions": 0,
+  "duplicate_cognitive_turns": 0,
+  "duplicate_terminal_events": 0,
+  "runtime_sigkills": 3,
+  "server_sigkills": 3,
+  "events": 410,
+  "authority_denial_effects": 0,
+  "live_model_calls": 0,
+  "cloud_calls": 0,
+  "source_of_truth": "Native Restate Task state and joined call results; exact artifacts independently verified",
+  "fan_in": "ALL_TERMINAL, stable declared order; failed outcomes are surfaced, never promoted to parent completion",
+  "architecture_deviations": []
+}

@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"A+B","name":"answer"},"type":"INVOKE_CAPABILITY"},"task_id":"parallel-ba","task_revision":1,"turn_id":"parallel-ba/2"},"version":1}

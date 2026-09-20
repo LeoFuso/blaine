@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"A","name":"answer"},"type":"INVOKE_CAPABILITY"},"task_id":"child-baca4c4981a9ddd221a635272872d261802c66014cc046da943e45dfb7b35202","task_revision":2,"turn_id":"child-baca4c4981a9ddd221a635272872d261802c66014cc046da943e45dfb7b35202/3"},"version":1}

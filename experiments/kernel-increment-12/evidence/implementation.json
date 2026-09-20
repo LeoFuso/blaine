@@ -1,0 +1,20 @@
+{
+  "source_sha256": {
+    "runtime/kernel/contracts.py": "a7ef50c83be8f9d223d840b80cd4c998c0da2c170f48ae6f23d4be5946cb54b1",
+    "runtime/kernel/workflow.py": "1d353a480f5a9ac8943495e3f2e4a198ec1c5d553649f0131ad78e7b0fa3dc33",
+    "runtime/kernel/events.py": "0c7c85fd5d195fee542c48fc038026dddf123ed24374d4e0bd53ccc24e0f1089",
+    "runtime/kernel/execution.py": "ed9ac99337e42d025991d55f4c5ef5ec19cde2a1d6df3f9c5a6a44a957859b3c",
+    "tests/test_kernel_parallel.py": "a1598c2f4df629c8d0464d061991f54ff5faf130f7a48b2f29396ae3e2a6ed53",
+    "scripts/verify-kernel-parallel.py": "81d3c82cfc4388c840992fb18b188e0d1e72a6aafd89e9365a9d24baf3d6fb6c",
+    "experiments/kernel-increment-12/probe_app.py": "b6d1f056acf2520b923ee69911ff4d6ea0350239cf3d04bc28f0bb92d1a9952c",
+    "experiments/kernel-increment-12/verify.py": "f8fc8e82bd53b0b666266b76dc35e05705ec3a61a4ac5f851cea2bbdebeca1e1"
+  },
+  "sdk_version": "1.0.5",
+  "server_version": "1.7.9",
+  "sdk_local_source": "/home/leofuso/workspace/blaine/.local/runtime-venv/lib/python3.14/site-packages/restate/server_context.py",
+  "sdk_source_sha256": "532eca00244de4ad288f344a9f5afbb480e08fca76aae0cb7666d014d0086254",
+  "sdk_primitive": "workflow_call -> object_call -> do_raw_call -> vm.sys_call; synchronous call issuance, durable returned future",
+  "provider_calls": 0,
+  "inference": "scripted only",
+  "scope": "fixed bounded batch, no custom scheduler"
+}

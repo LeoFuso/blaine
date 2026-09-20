@@ -1,0 +1,1 @@
+{"kind":"TaskSpec","payload":{"autonomy":{"allowed":["artifact.write","fixture.effect"],"child_tasks":2},"capabilities":["artifact.write","fixture.effect"],"completion":[{"criterion":"Exact answer","evidence":{"artifact":"answer","sha256":"ca5b7e1c5b0ddba53ac5a73e3c49e9bb896a6f488ce4d605d24a6debedcc901d"}}],"objective":"Produce exact A+B using only local fixtures."},"version":1}

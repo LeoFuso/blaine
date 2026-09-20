@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "exported_files_byte_identical": 320,
+  "historical_milestones_033_through_036": "unchanged",
+  "increment_11_evidence": "unchanged",
+  "transient_excluded": [
+    "Restate native data directory",
+    "server/runtime logs",
+    "SQLite fixture database; receipts retained in evidence"
+  ]
+}

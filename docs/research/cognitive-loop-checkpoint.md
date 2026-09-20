@@ -1,5 +1,12 @@
 # Durable Cognitive Loop — architecture checkpoint
 
+> Increment 12 implements the approved bounded parallel topology: native joined
+> Restate child calls, explicit parent relationships, ALL_TERMINAL fan-in, bounded
+> outcome references and independent completion. The sequential child form remains
+> supported. This supersedes the earlier increment-specific sequential-only limit;
+> it adds no generic DAG/scheduler or model/session lifecycle authority.
+> [Implementation and recovery evidence](../milestones/037-cognitive-kernel-increment-12-parallel-children.md).
+
 > Adopted Increment 8 amendment: cognition proposes semantic work; runtime determines
 > whether cognition is necessary. After authoritative evidence changes, evaluate the
 > unchanged CompletionContract first; complete if satisfied, otherwise suspend for

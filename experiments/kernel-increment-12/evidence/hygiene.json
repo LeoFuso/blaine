@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "files_reviewed": 328,
+  "secret_signatures_found": false,
+  "prohibited_identifiers_found": false,
+  "data": "synthetic fixtures and native local operational evidence only",
+  "provider_payloads": "none",
+  "raw_environment_or_credentials": "not collected"
+}

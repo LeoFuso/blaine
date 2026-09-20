@@ -9,7 +9,7 @@ from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.contracts import (
     CAPABILITIES, MAX_CONTENT, SPECIALISTS, CapabilityRequest, CompletionEvaluation,
     TaskSpec, TaskState, encode, fields, identifier, message, text, unpack, validate_decision, validate_spec,
-    child_task_id,
+    child_task_id, spawn_specs,
 )
 
 
@@ -71,20 +71,21 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
         elif action["type"] == "HANDOFF" and action["specialist"] not in SPECIALISTS:
             raise ValueError("Ineligible HANDOFF target")
         elif action["type"] == "SPAWN_TASK":
-            child = validate_spec(action["task_spec"])
-            for criterion in child['completion']:
-                evidence = criterion['evidence']
-                if evidence.get('verifier') == 'human_response':
-                    request = evidence['request']['payload']
-                    if (request['origin_task_id'] != state['task_id'] or
-                            request['task_id'] != child_task_id(state['task_id'], decision['turn_id'])):
-                        raise ValueError('Human child request must bind to its parent and derived child identity')
-            cost = 1 + child["autonomy"].get("child_tasks", 0)
-            if cost > state.get("remaining_children", 0):
-                raise ValueError("Child Task allocation exhausted")
-            authority = set(spec["capabilities"]) & set(spec["autonomy"]["allowed"])
-            if not set(child["autonomy"]["allowed"]) <= authority:
-                raise ValueError("Child Task cannot expand parent authority")
+            children = spawn_specs(action)
+            cost = sum(1 + child['autonomy'].get('child_tasks', 0) for _, child in children)
+            if cost > state.get('remaining_children', 0):
+                raise ValueError('Child Task allocation exhausted')
+            authority = set(spec['capabilities']) & set(spec['autonomy']['allowed'])
+            for slot, child in children:
+                if not set(child['autonomy']['allowed']) <= authority:
+                    raise ValueError('Child Task cannot expand parent authority')
+                for criterion in child['completion']:
+                    evidence = criterion['evidence']
+                    if evidence.get('verifier') == 'human_response':
+                        request = evidence['request']['payload']
+                        if (request['origin_task_id'] != state['task_id'] or
+                                request['task_id'] != child_task_id(state['task_id'], decision['turn_id'], slot)):
+                            raise ValueError('Human child request must bind to its parent and derived child identity')
         return {"outcome": "allow", "reason": None}
     except (ValueError, TypeError) as error:
         return {"outcome": "deny", "reason": str(error)}

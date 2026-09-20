@@ -60,6 +60,12 @@ class SpawnTask(TypedDict):
     task_spec: dict
 
 
+class SpawnTasks(TypedDict):
+    type: Literal["SPAWN_TASK"]
+    task_specs: list[dict]
+    independent: Literal[True]
+
+
 class Wait(TypedDict):
     type: Literal["WAIT"]
     wait_id: str
@@ -70,7 +76,7 @@ class Complete(TypedDict):
     type: Literal["COMPLETE"]
 
 
-NextAction = Invoke | Handoff | SpawnTask | Wait | Complete
+NextAction = Invoke | Handoff | SpawnTask | SpawnTasks | Wait | Complete
 
 
 class CognitiveDecision(TypedDict):
@@ -118,6 +124,19 @@ class ChildWait(TypedDict):
     task_revision: int
 
 
+class ChildrenWait(TypedDict):
+    child_ids: list[str]
+    input_type: Literal["TaskResults"]
+    condition: Literal["ALL_TERMINAL"]
+    task_revision: int
+
+
+class ChildRelationship(TypedDict):
+    task_id: str
+    decision_id: str
+    slot: int | None
+
+
 class TaskState(TypedDict):
     task_id: str
     revision: int
@@ -129,13 +148,14 @@ class TaskState(TypedDict):
     decision_ref: str | None
     context_ref: str | None
     observation_ref: str | None
-    wait: WaitState | ChildWait | None
+    wait: WaitState | ChildWait | ChildrenWait | None
     artifacts: dict[str, str]
     human_responses: NotRequired[dict[str, str]]
     completion_ref: str | None
     result_ref: str | None
     remaining_children: int
     children: dict[str, dict]
+    parent: NotRequired[ChildRelationship]
 
 
 class CapabilityRequest(TypedDict):
@@ -193,8 +213,41 @@ def identifier(value: object) -> str:
     return value
 
 
-def child_task_id(parent_id: str, decision_id: str) -> str:
-    return "child-" + hashlib.sha256(encode([identifier(parent_id), decision_id])).hexdigest()
+def child_task_id(parent_id: str, decision_id: str, slot: int | None = None) -> str:
+    parts = [identifier(parent_id), text(decision_id, 100)]
+    if slot is not None:
+        if type(slot) is not int or not 0 <= slot < MAX_CHILDREN:
+            raise ValueError('Invalid child slot')
+        parts.append(slot)
+    return "child-" + hashlib.sha256(encode(parts)).hexdigest()
+
+
+def spawn_specs(action: dict) -> list[tuple[int | None, dict]]:
+    """One joined child or a bounded explicitly independent ALL-joined batch."""
+    if 'task_spec' in action:
+        fields(action, {'type', 'task_spec'})
+        return [(None, validate_spec(action['task_spec']))]
+    fields(action, {'type', 'task_specs', 'independent'})
+    if action['independent'] is not True or not isinstance(action['task_specs'], list) or not 2 <= len(action['task_specs']) <= MAX_CHILDREN:
+        raise ValueError('Expected 2..4 explicitly independent children')
+    return [(slot, validate_spec(spec)) for slot, spec in enumerate(action['task_specs'])]
+
+
+def child_request(parent_id: str, decision_id: str, slot: int | None, spec: dict) -> dict:
+    return message('ChildTaskRequest', {'parent': {'task_id': parent_id, 'decision_id': decision_id, 'slot': slot},
+                                       'task_spec': message('TaskSpec', spec)})
+
+
+def accept_task_request(value: dict, task_id: str) -> tuple[dict, dict | None]:
+    if not isinstance(value, dict):
+        raise ValueError('Task request must be an object')
+    if value.get('kind') != 'ChildTaskRequest':
+        return validate_spec(value), None
+    request = fields(unpack(value, 'ChildTaskRequest'), {'parent', 'task_spec'})
+    parent = fields(request['parent'], {'task_id', 'decision_id', 'slot'})
+    if task_id != child_task_id(parent['task_id'], parent['decision_id'], parent['slot']):
+        raise ValueError('Child identity does not match its explicit relationship')
+    return validate_spec(request['task_spec']), parent
 
 
 def unpack(value: object, kind: str) -> dict:
@@ -268,8 +321,7 @@ def validate_decision(value: object) -> CognitiveDecision:
             fields(action, {"type", "specialist"})
             identifier(action["specialist"])
         case "SPAWN_TASK":
-            fields(action, {"type", "task_spec"})
-            validate_spec(action["task_spec"])
+            spawn_specs(action)
         case "WAIT":
             fields(action, {"type", "wait_id", "input_type"})
             identifier(action["wait_id"])

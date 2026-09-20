@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"fixture.effect","input":{"value":"PRIVATE_CHILD_A"},"type":"INVOKE_CAPABILITY"},"task_id":"child-7bd0b1cc48cdacc21d681798a65e22c03815c55f22997716844c2be7f33b49b4","task_revision":0,"turn_id":"child-7bd0b1cc48cdacc21d681798a65e22c03815c55f22997716844c2be7f33b49b4/1"},"version":1}

@@ -1,0 +1,1 @@
+{"kind":"CompletionEvaluation","payload":{"criteria":[{"criterion":"Exact answer","detail":"Artifact does not match accepted digest","evidence_ref":"artifact://child-36d670baf395d965bd4921009f97d667faced97661ff52012e2f45f11e4d0e62/sha256:02b60b3b9ed309b730abc7006e62bf07ad5b911bc8ae57c4cf001bad35819e7a","outcome":"unsatisfied"}],"outcome":"unsatisfied"},"version":1}

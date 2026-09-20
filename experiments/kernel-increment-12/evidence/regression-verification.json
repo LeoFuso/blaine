@@ -1,0 +1,24 @@
+{
+  "increment10": {
+    "status": "PASS",
+    "events": 28,
+    "source_validation": "historical source snapshot at f95b27b; current source intentionally differs",
+    "current_snapshot_mismatches": [
+      "runtime/kernel/events.py",
+      "runtime/kernel/workflow.py"
+    ],
+    "acceptance_not_weakened": true
+  },
+  "projection": {
+    "status": "PASS",
+    "events": 434
+  },
+  "live001": {
+    "status": "STOP",
+    "events": 74
+  },
+  "live002": {
+    "status": "PASS",
+    "events": 18
+  }
+}

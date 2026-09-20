@@ -1,5 +1,20 @@
 # Cognitive Kernel progressive program
 
+**Current: Increment 12 PASS — bounded parallel child Tasks. Program stopped.**
+
+Native Restate fan-out/fan-in now supports 2–4 explicitly independent children,
+with stable typed relationships, bounded result references, ALL_TERMINAL waiting,
+unchanged per-child authority and independent parent/child verification.
+Four native cases (both completion orders, deterministic failure, authority denial)
+passed; three runtime/server restart pairs preserved identities, journals and effects.
+Zero duplicate child/effect execution and zero parent cognition while waiting.
+See [milestone 037](037-cognitive-kernel-increment-12-parallel-children.md) and
+[machine-readable evidence](../../experiments/kernel-increment-12/evidence/summary.json).
+Increment 11 remains CLOSED; no model/cloud call or further development cycle occurred.
+Next: report and stop. No additional increment is defined or started.
+
+Previous checkpoint entries below retain their historical decisions.
+
 **Current: Increment 11 PASS / CLOSED after the second explicitly authorized live probe.**
 
 `frontier-live-binding-002`, dispatch `dispatch:frontier-live-binding-002/2`,

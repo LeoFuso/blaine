@@ -47,6 +47,10 @@ class ExecutionEventPublisher(Protocol):
 
 OUTCOMES = {
     'task.started': {'RUNNING'},
+    'task.child_created': {'recorded'},
+    'task.child_observed': {'COMPLETED', 'FAILED', 'INVALID'},
+    'task.suspended': {'WAITING'},
+    'task.resumed': {'RUNNING'},
     'cognition.decided': {'recorded'},
     'policy.evaluated': {'allow', 'deny'},
     'capability.finished': {'success', 'failure'},
@@ -56,7 +60,7 @@ OUTCOMES = {
 }
 ACTIONS = {'INVOKE_CAPABILITY', 'HANDOFF', 'SPAWN_TASK', 'WAIT', 'COMPLETE'}
 REF_KEYS = {'model_call_id', 'capability_call_id', 'artifact_ids', 'human_decision_id',
-            'worker_session_id', 'restate_invocation_id', 'decision_id'}
+            'worker_session_id', 'restate_invocation_id', 'decision_id', 'parent_task_id', 'child_task_id'}
 ARTIFACT = r'artifact://[A-Za-z0-9_-]{1,80}/sha256:[0-9a-f]{64}'
 
 

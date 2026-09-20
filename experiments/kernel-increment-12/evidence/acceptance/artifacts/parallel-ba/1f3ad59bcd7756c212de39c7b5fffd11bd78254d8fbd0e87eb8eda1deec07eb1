@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{"answer":"artifact://parallel-ba/sha256:ca5b7e1c5b0ddba53ac5a73e3c49e9bb896a6f488ce4d605d24a6debedcc901d"},"completion_ref":"artifact://parallel-ba/sha256:a9a03a902925f6eff6186c69ebb306dcfd99eec426bfa7d5a85b6aa63d136cba","concerns":[],"outcome":"COMPLETED","task_id":"parallel-ba"},"version":1}

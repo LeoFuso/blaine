@@ -9,7 +9,7 @@ from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.context import ContextProvider, reconstruct
 from runtime.kernel.contracts import (
     MAX_PACKET, MAX_TURNS, TaskResult, TaskState, encode, fields, identifier,
-    child_task_id, message, text, unpack, validate_spec, validate_result,
+    child_task_id, child_request, accept_task_request, spawn_specs, message, text, unpack, validate_spec, validate_result,
 )
 from runtime.kernel.execution import Capabilities, evaluate, policy_gate
 from runtime.kernel.human import human_requirement, validate_response
@@ -32,7 +32,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
     async def run(ctx: restate.WorkflowContext, request: dict) -> dict:
         try:
             task_id = identifier(ctx.key())
-            spec = validate_spec(request)
+            spec, parent = accept_task_request(request, task_id)
             for criterion in spec['completion']:
                 evidence = criterion['evidence']
                 if evidence.get('verifier') == 'human_response' and evidence['request']['payload']['task_id'] != task_id:
@@ -54,6 +54,8 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             "completion_ref": None, "result_ref": None,
             "remaining_children": spec["autonomy"].get("child_tasks", 0), "children": {},
         }
+        if parent is not None:
+            state["parent"] = parent
         ctx.set("task", message("TaskState", state))
         # Optional diagnostics. No Task state, authorization or progression reads
         # these events or the publication result. Keep this deployment option stable
@@ -76,7 +78,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             await step('event-publish/' + label, safe_publish, publisher=event_publisher, event=event)
             previous_event = event_identity(run_id, label)
 
-        await emit('start', 'task.started', 'RUNNING', 'blaine.kernel.workflow', payload_refs=(state['spec_ref'],))
+        await emit('start', 'task.started', 'RUNNING', 'blaine.kernel.workflow', refs={'parent_task_id': parent['task_id']} if parent else None, payload_refs=(state['spec_ref'],))
         concerns = []
         prepared_packet = None
         async def await_input(action):
@@ -201,35 +203,75 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                             # Compatibility: explicit external waits remain representable.
                             observation = await await_input(action)
                         case "SPAWN_TASK":
-                            child_id = child_task_id(task_id, state["decision_id"])
-                            child_spec = validate_spec(action["task_spec"])
-                            state["remaining_children"] -= 1 + child_spec["autonomy"].get("child_tasks", 0)
-                            child_request = message("TaskSpec", child_spec)
-                            state["children"][child_id] = {
-                                "spec_ref": await retain(f"child-spec/{iteration}", child_request),
-                                "result_ref": None,
-                            }
-                            state["wait"] = {"child_id": child_id, "input_type": "TaskResult",
-                                             "task_revision": state["revision"]}
-                            state["lifecycle"] = "WAITING"
-                            ctx.set("task", message("TaskState", state))
-                            # A native joined call already is durable. Never wrap
-                            # it in run_typed or start the child through ingress.
-                            try:
-                                observation = await ctx.workflow_call(run, key=child_id, arg=child_request)
-                            except restate.TerminalError as error:
-                                observation = message("TaskResult", {"task_id": child_id, "outcome": "FAILED",
-                                    "artifacts": {}, "completion_ref": None,
-                                    "concerns": [str(error.message).encode()[:512].decode(errors="ignore") or "Child failed"]})
-                            try:
-                                validate_result(observation, child_id)
-                            except (ValueError, TypeError) as error:
-                                raise restate.TerminalError(f"Invalid child result: {error}") from error
-                            state["children"][child_id]["result_ref"] = await retain(f"child-result/{iteration}", observation)
-                            # Child evidence is observed, never promoted into the
-                            # parent's accepted artifact map or completion state.
-                            state["wait"] = None
-                            state["lifecycle"] = "RUNNING"
+                            children = spawn_specs(action)
+                            batch = 'task_specs' in action
+                            pending = []
+                            for slot, child_spec in children:
+                                child_id = child_task_id(task_id, state['decision_id'], slot)
+                                label = f"{iteration}" + (f"/{slot}" if batch else '')
+                                state['remaining_children'] -= 1 + child_spec['autonomy'].get('child_tasks', 0)
+                                child_spec_ref = await retain('child-spec/' + label, message('TaskSpec', child_spec))
+                                state['children'][child_id] = {'spec_ref': child_spec_ref, 'result_ref': None,
+                                    'parent_task_id': task_id, 'decision_id': state['decision_id'], 'slot': slot}
+                                pending.append((child_id, slot, child_spec, label))
+                            state['wait'] = ({'child_ids': [c[0] for c in pending], 'input_type': 'TaskResults', 'condition': 'ALL_TERMINAL'}
+                                             if batch else {'child_id': pending[0][0], 'input_type': 'TaskResult'})
+                            state['wait']['task_revision'] = state['revision']
+                            state['lifecycle'] = 'WAITING'
+                            ctx.set('task', message('TaskState', state))
+                            # Creating all native durable futures issues all calls before
+                            # any await. Restate owns execution/recovery; no asyncio task pool.
+                            calls = [ctx.workflow_call(run, key=child_id,
+                                arg=child_request(task_id, state['decision_id'], slot, child_spec))
+                                for child_id, slot, child_spec, _ in pending]
+                            for child_id, _, _, label in pending:
+                                await emit('child-created/' + label, 'task.child_created', 'recorded',
+                                    'blaine.kernel.workflow', refs={'child_task_id': child_id},
+                                    payload_refs=(state['children'][child_id]['spec_ref'],))
+                            await emit(f'children-wait/{iteration}', 'task.suspended', 'WAITING', 'blaine.kernel.workflow')
+                            if checkpoint:
+                                await checkpoint(ctx, 'children_created', deepcopy(state))
+                            outcomes = []
+                            invalid_result = False
+                            # Aggregate in declared slot order, independent of physical
+                            # completion order. Failed Tasks are values, never implicit success.
+                            for (child_id, _, _, label), call in zip(pending, calls):
+                                try:
+                                    observation = await call
+                                except restate.TerminalError:
+                                    observation = message('TaskResult', {'task_id': child_id, 'outcome': 'FAILED',
+                                        'artifacts': {}, 'completion_ref': None, 'concerns': ['Child invocation failed']})
+                                try:
+                                    result = validate_result(observation, child_id)
+                                except (ValueError, TypeError):
+                                    # Still join the other launched children; a malformed
+                                    # result must not turn the batch into detached work.
+                                    invalid_result = True
+                                    state['children'][child_id]['result_error'] = 'invalid_result'
+                                    ctx.set('task', message('TaskState', state))
+                                    await emit('child-result/' + label, 'task.child_observed', 'INVALID',
+                                        'blaine.kernel.workflow', refs={'child_task_id': child_id})
+                                    continue
+                                ref = await retain('child-result/' + label, observation)
+                                state['children'][child_id]['result_ref'] = ref
+                                ctx.set('task', message('TaskState', state))
+                                outcomes.append({'task_id': child_id, 'outcome': result['outcome'],
+                                                 'result_ref': ref, 'completion_ref': result['completion_ref']})
+                                await emit('child-result/' + label, 'task.child_observed', result['outcome'],
+                                    'blaine.kernel.workflow', refs={'child_task_id': child_id}, payload_refs=(ref,))
+                                if checkpoint:
+                                    await checkpoint(ctx, 'child_result', deepcopy(state))
+                            if invalid_result:
+                                raise restate.TerminalError('Invalid child result; all launched children joined')
+                            if batch:
+                                observation = message('ChildTaskResults', {'children': outcomes})
+                            # Child evidence is not promoted into the parent's artifacts.
+                            state['wait'] = None
+                            state['lifecycle'] = 'RUNNING'
+                            ctx.set('task', message('TaskState', state))
+                            await emit(f'children-resume/{iteration}', 'task.resumed', 'RUNNING', 'blaine.kernel.workflow')
+                            if checkpoint:
+                                await checkpoint(ctx, 'children_joined', deepcopy(state))
                         case "COMPLETE":
                             observation = await step(f"verify/{iteration}", evaluate,
                                                      spec=spec, state=deepcopy(state), store=store)

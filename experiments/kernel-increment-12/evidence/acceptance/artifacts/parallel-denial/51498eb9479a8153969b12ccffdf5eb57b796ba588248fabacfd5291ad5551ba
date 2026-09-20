@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{},"completion_ref":"artifact://parallel-denial/sha256:82c2171d9d6e389ae1b8bda77808e381c2ae147ba582cb5f20a51f2cd85ed0db","concerns":["Turn limit exhausted without verified completion"],"outcome":"FAILED","task_id":"parallel-denial"},"version":1}
