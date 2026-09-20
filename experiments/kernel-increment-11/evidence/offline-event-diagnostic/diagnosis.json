@@ -1,0 +1,663 @@
+{
+  "diagnostic_status": "STOP_PROTOCOL_SEMANTICS_UNVERIFIED",
+  "historical_task_status": "FAILED",
+  "increment_11": "STOPPED",
+  "historical_observation_sha256": "d49ba35725fc5d77832622670a73f86bd1b88d454af9b68dbc7d199b60251146",
+  "retained_sequence": [
+    {
+      "thread_id": "01a0bf7b-1f07-78e2-a308-4d09f50217ba",
+      "type": "thread.started"
+    },
+    {
+      "item": {
+        "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+        "type": "agent_message"
+      },
+      "type": "item.completed"
+    },
+    {
+      "type": "turn.completed",
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 5112,
+        "output_tokens": 23
+      }
+    }
+  ],
+  "retained_unordered_error_labels": [
+    "unrequested_item:error"
+  ],
+  "error_position": null,
+  "error_body": null,
+  "error_terminality": null,
+  "cases": [
+    {
+      "case": "clean_completed_shape",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "executed",
+      "exception_class": null,
+      "normalized_result_written": true,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 5
+            }
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [],
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 5
+        },
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/clean_completed_shape",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "failed_shape_without_result",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "turn.failed"
+      ],
+      "adapter_outcome": "rejected",
+      "exception_class": "RuntimeError",
+      "normalized_result_written": false,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "detail": "not retained; provider error",
+            "type": "turn.failed"
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [],
+        "usage": {},
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/failed_shape_without_result",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "result_then_failed_shape",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "item.completed",
+        "turn.failed"
+      ],
+      "adapter_outcome": "executed",
+      "exception_class": null,
+      "normalized_result_written": true,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "detail": "not retained; provider error",
+            "type": "turn.failed"
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [],
+        "usage": {},
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/result_then_failed_shape",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "top_error_then_result",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "error",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "executed",
+      "exception_class": null,
+      "normalized_result_written": true,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "detail": "not retained; provider error",
+            "type": "error"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 5
+            }
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [],
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 5
+        },
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/top_error_then_result",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "unknown_item_error_before_result",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "item.completed",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "rejected",
+      "exception_class": "RuntimeError",
+      "normalized_result_written": false,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 5
+            }
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [
+          "unrequested_item:error"
+        ],
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 5
+        },
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/unknown_item_error_before_result",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "unknown_item_error_after_result",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "item.completed",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "rejected",
+      "exception_class": "RuntimeError",
+      "normalized_result_written": false,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 5
+            }
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [
+          "unrequested_item:error"
+        ],
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 5
+        },
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/unknown_item_error_after_result",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "unsupported_nonterminal_claim",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "item.completed",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "rejected",
+      "exception_class": "RuntimeError",
+      "normalized_result_written": false,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 5
+            }
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [
+          "unrequested_item:error"
+        ],
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 5
+        },
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/unsupported_nonterminal_claim",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "malformed_json",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "malformed",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "rejected",
+      "exception_class": "RuntimeError",
+      "normalized_result_written": false,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 5
+            }
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [
+          "non_json_cli_output"
+        ],
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 5
+        },
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/malformed_json",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "wrong_event_type",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "malformed",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "rejected",
+      "exception_class": "AttributeError",
+      "normalized_result_written": false,
+      "retained_observation": null,
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "missing_terminal_event",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "item.completed"
+      ],
+      "adapter_outcome": "executed",
+      "exception_class": null,
+      "normalized_result_written": true,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          }
+        ],
+        "exit_code": 0,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [],
+        "usage": {},
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/missing_terminal_event",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    },
+    {
+      "case": "nonzero_process_exit",
+      "provenance": "deterministic synthetic stream; mocked process; zero inference",
+      "upstream_semantics": "UNKNOWN; fixture does not establish protocol terminality",
+      "input_order": [
+        "thread.started",
+        "item.completed",
+        "turn.completed"
+      ],
+      "adapter_outcome": "rejected",
+      "exception_class": "RuntimeError",
+      "normalized_result_written": false,
+      "retained_observation": {
+        "cancelled": false,
+        "context_boundary": "exact stdin bytes from authorized projection",
+        "context_digest": "069a58afec7746b9b1a61a920509a2416bc89a9ddcb81e48dfca11fb039e00cf",
+        "events": [
+          {
+            "thread_id": "synthetic-session",
+            "type": "thread.started"
+          },
+          {
+            "item": {
+              "text": "{\"organization\":\"FLOWER\",\"marker\":\"MASKED_01\"}",
+              "type": "agent_message"
+            },
+            "type": "item.completed"
+          },
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 10,
+              "output_tokens": 5
+            }
+          }
+        ],
+        "exit_code": 9,
+        "final_provider_prompt": null,
+        "model_call_count": null,
+        "model_intent": "gpt-6-astra",
+        "monetary_cost": null,
+        "provider": "openai-chatgpt",
+        "provider_internal_retry_count": null,
+        "resolved_account": null,
+        "resolved_model": null,
+        "runtime_ms": 0,
+        "stderr_bytes": 0,
+        "timed_out": false,
+        "trust_boundary": "https://chatgpt.com",
+        "unexpected_items": [],
+        "usage": {
+          "input_tokens": 10,
+          "output_tokens": 5
+        },
+        "worker_dispatch_count": 1,
+        "worker_dispatch_id": "synthetic-offline/nonzero_process_exit",
+        "worker_session_id": "synthetic-session"
+      },
+      "synthetic_private_detail_retained": false,
+      "mocked_process_constructions": 1,
+      "live_worker_dispatches": 0
+    }
+  ],
+  "live_worker_dispatches": 0,
+  "model_calls": 0,
+  "production_or_binding_behavior_changed": false,
+  "nonterminal_error_success_case": "NOT ESTABLISHED: no local versioned exec protocol semantics found"
+}

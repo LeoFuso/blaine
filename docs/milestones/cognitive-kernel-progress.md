@@ -1,5 +1,20 @@
 # Cognitive Kernel progressive program
 
+**Current: Increment 11 offline event diagnostic STOP; no additional live dispatch.**
+
+The adapter rejected the original completed `error` item before result normalization.
+Its body and ordering were discarded. Local CLI/package vocabulary does not establish
+version-matched exec terminality semantics, so the adapter's acceptance rule remains
+unchanged pending that evidence. Synthetic characterization also exposes acceptance
+of failure-shaped top-level events and missing terminal events; it is not a new PASS
+for the live binding. Historical milestone 033, FAILED Task and pending UNKNOWN
+reservation remain unchanged. See [offline diagnostic](034-cognitive-kernel-increment-11-offline-event-stop.md)
+and [machine-readable cases](../../experiments/kernel-increment-11/evidence/offline-event-diagnostic/diagnosis.json).
+Next: approved local version-matched exec protocol definitions, or authorization for
+a narrow official source lookup, before an adapter correction. No new cloud call;
+Increment 12 remains unstarted.
+
+
 **Current: Increment 11 live attempt STOP; exactly one worker dispatch, Task FAILED.**
 
 The approved retry-domain and worker-bound-context clarification resolved the earlier

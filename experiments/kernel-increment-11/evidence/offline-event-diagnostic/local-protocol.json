@@ -1,0 +1,81 @@
+{
+  "package": {
+    "layoutVersion": 1,
+    "version": "0.155.1",
+    "target": "x86_64-unknown-linux-musl",
+    "variant": "codex",
+    "entrypoint": "bin/codex",
+    "resourcesDir": "codex-resources",
+    "pathDir": "codex-path"
+  },
+  "binary_sha256": "0753dfe1d8b87a52436deb13eb1c549661ef4c84fee2c5aa688385eebeccb761",
+  "symbol_evidence": {
+    "ThreadErrorEvent": {
+      "occurrences": 1,
+      "first_offset": 217967888
+    },
+    "TurnFailedEvent": {
+      "occurrences": 1,
+      "first_offset": 221327441
+    },
+    "thread.started": {
+      "occurrences": 3,
+      "first_offset": 221040274
+    },
+    "turn.started": {
+      "occurrences": 1,
+      "first_offset": 221327250
+    },
+    "turn.completed": {
+      "occurrences": 1,
+      "first_offset": 221327275
+    },
+    "turn.failed": {
+      "occurrences": 1,
+      "first_offset": 221327299
+    },
+    "item.started": {
+      "occurrences": 1,
+      "first_offset": 221327321
+    },
+    "item.updated": {
+      "occurrences": 1,
+      "first_offset": 221327344
+    },
+    "item.completed": {
+      "occurrences": 1,
+      "first_offset": 221327369
+    }
+  },
+  "meaning": "Embedded type names establish vocabulary, not terminality or legal event ordering.",
+  "local_help": {
+    "commands": [
+      "codex --help",
+      "codex debug --help"
+    ],
+    "exit_codes": [
+      0,
+      0
+    ],
+    "isolation": "Bubblewrap --unshare-all; only executable mounted; empty home/tmp; no credentials or repository mounted; network disabled",
+    "debug_subcommands": [
+      "models",
+      "app-server",
+      "prompt-input",
+      "help"
+    ],
+    "provider_operations_invoked": false,
+    "initial_sandbox_attempt": "Namespace creation denied; repeated static help under approved escalation in network-disabled Bubblewrap"
+  },
+  "bounded_source_search": [
+    "installed standalone package file inventory",
+    "repository retained help and live preflight",
+    "workspace .local cached sources",
+    "main .local cached sources"
+  ],
+  "exec_semantic_source_found": false,
+  "app_server_schema_not_substituted": "Different protocol; no assumption of equivalence to exec --json",
+  "network_access": false,
+  "credentials_opened": false,
+  "inference_calls": 0
+}

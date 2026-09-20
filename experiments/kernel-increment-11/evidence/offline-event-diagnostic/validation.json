@@ -1,0 +1,35 @@
+{
+  "diagnostic_status": "STOP_PROTOCOL_SEMANTICS_UNVERIFIED",
+  "characterization_tests": 12,
+  "focused_frontier_tests": 20,
+  "focused_worker_tests": 3,
+  "broader_kernel_tests": 107,
+  "tests_outcome": "PASS",
+  "tests_are_protocol_certification": false,
+  "offline_verifiers": [
+    {
+      "script": "experiments/kernel-increment-10/verify.py",
+      "outcome": "PASS",
+      "expected": "PASS",
+      "events": 28
+    },
+    {
+      "script": "experiments/kernel-increment-11/verify.py",
+      "outcome": "PASS",
+      "expected": "PASS",
+      "events": 434
+    },
+    {
+      "script": "experiments/kernel-increment-11/live/verify.py",
+      "outcome": "STOP",
+      "expected": "STOP",
+      "events": 74
+    }
+  ],
+  "historical_files_unchanged": 69,
+  "adapter_and_kernel_changes": false,
+  "new_live_dispatches": 0,
+  "network_calls": 0,
+  "credentials_inspected": false,
+  "diff_check": "PASS"
+}
