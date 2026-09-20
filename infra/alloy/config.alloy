@@ -1,0 +1,63 @@
+// Local telemetry continues without a Grafana Cloud account.
+logging {
+  level = "info"
+}
+prometheus.exporter.unix "host" {
+  set_collectors = ["cpu", "meminfo", "loadavg", "filesystem", "diskstats", "netdev", "time", "uname", "systemd"]
+}
+prometheus.scrape "host" {
+  targets = prometheus.exporter.unix.host.targets
+  scrape_interval = "30s"
+  forward_to = [otelcol.receiver.prometheus.local.receiver]
+}
+prometheus.exporter.self "alloy" {}
+prometheus.scrape "alloy" {
+  targets = prometheus.exporter.self.alloy.targets
+  scrape_interval = "30s"
+  forward_to = [otelcol.receiver.prometheus.local.receiver]
+}
+otelcol.receiver.prometheus "local" {
+  output {
+    metrics = [otelcol.processor.batch.local.input]
+  }
+}
+// Allowlist unit logs. No process IDs, command lines, or arbitrary journal fields as labels.
+loki.source.journal "platform" {
+  matches = "_SYSTEMD_UNIT=docker.service _SYSTEMD_UNIT=blaine-infra.service _SYSTEMD_UNIT=alloy.service"
+  max_age = "1h"
+  labels = {job = "blaine-platform"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
+otelcol.receiver.loki "local" {
+  output {
+    logs = [otelcol.processor.batch.local.input]
+  }
+}
+otelcol.receiver.otlp "local" {
+  grpc { endpoint = "127.0.0.1:4317" }
+  http { endpoint = "127.0.0.1:4318" }
+  output {
+    metrics = [otelcol.processor.batch.local.input]
+    logs = [otelcol.processor.batch.local.input]
+    traces = [otelcol.processor.batch.local.input]
+  }
+}
+otelcol.processor.batch "local" {
+  timeout = "5s"
+  send_batch_size = 1024
+  output {
+    metrics = [otelcol.exporter.file.local.input]
+    logs = [otelcol.exporter.file.local.input]
+    traces = [otelcol.exporter.file.local.input]
+  }
+}
+// Bounded local diagnostic retention, never Task/runtime authority.
+otelcol.exporter.file "local" {
+  path = "/var/lib/alloy/telemetry/local.json"
+  format = "json"
+  rotation {
+    max_megabytes = 20
+    max_backups = 3
+    max_days = 3
+  }
+}

@@ -1,4 +1,9 @@
-# D1 — Long-lived platform foundation: STOP
+# D1 — Long-lived platform foundation
+
+**Current infrastructure continuation:** see [infrastructure foundation](platform-infrastructure.md)
+and [Grafana Cloud activation](platform-grafana-cloud.md). The backup checkpoint
+below is historical; its pause remains active, while the new user request authorizes
+infrastructure installation. Final infrastructure evidence is recorded separately.
 
 **LIVE BACKUP ACCEPTANCE = PAUSED** — user-directed checkpoint, 2026-09-20.
 Backup investigation and live acceptance are paused for a later bounded pass.

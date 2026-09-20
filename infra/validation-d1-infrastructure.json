@@ -1,0 +1,222 @@
+{
+  "status": "PASS (infrastructure); temporary privilege cleanup still pending",
+  "observed_at": "2026-09-20",
+  "binding": "No callable Blaine creation binding; TaskSpec draft retained, no durable Task submitted",
+  "live_acceptance": {
+    "status": "PASS",
+    "backup": "PAUSED",
+    "reboot": "PENDING",
+    "checks": {
+      "docker_version": "29.8.1",
+      "compose_version": "5.5.1",
+      "isolated_container": "PASS",
+      "hello_image_digest": "[\"hello-world@sha256:5e22040d441e5fb3aed38368acbe8486b575d7018df38dbdfbc7311fbb2ef3a9\"]",
+      "buckets_and_access_separation": [
+        "blaine-artifacts",
+        "langfuse-events",
+        "langfuse-media"
+      ],
+      "clickhouse_version": "26.4.5.143",
+      "langfuse_web_worker_health": "PASS",
+      "langfuse_initialized_table_count": 14,
+      "langfuse_dependency_roundtrip": {
+        "trace_id": "0c2bc868dd6ba186ccd8a235ba8042d3",
+        "result": "PASS"
+      },
+      "alloy_local_metrics_otlp": "PASS",
+      "restart_blaine-infra.service": "healthy; synthetic persistent state retained",
+      "restart_docker.service": "healthy; synthetic persistent state retained",
+      "restart_alloy.service": "healthy; synthetic persistent state retained",
+      "images": [
+        {
+          "ID": "sha256:c7796a1335d14385c052f10061cf719f4a368a908432ec25980860b1333e9ccd",
+          "ContainerName": "blaine-infra-clickhouse-1",
+          "Repository": "clickhouse/clickhouse-server",
+          "Tag": "26.4.5.143",
+          "Platform": "linux/amd64",
+          "Size": 1138366072,
+          "Created": "2026-08-06T14:11:01.67618647Z",
+          "LastTagTime": "2026-09-20T17:57:15.540863228Z"
+        },
+        {
+          "ID": "sha256:47ef2f121e2959c8458c209d118949ade25778017e3f5b75b1e45f72276811c3",
+          "ContainerName": "blaine-infra-langfuse-web-1",
+          "Repository": "docker.langfuse.com/langfuse/langfuse",
+          "Tag": "4.38.0",
+          "Platform": "linux/amd64",
+          "Size": 1759282810,
+          "Created": "2026-09-17T15:35:03.739517413Z",
+          "LastTagTime": "2026-09-20T17:57:20.780302773Z"
+        },
+        {
+          "ID": "sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882",
+          "ContainerName": "blaine-infra-object-storage-1",
+          "Repository": "chrislusf/seaweedfs",
+          "Tag": "4.47",
+          "Platform": "linux/amd64",
+          "Size": 728654057,
+          "Created": "2026-09-14T02:32:36.698794349Z",
+          "LastTagTime": "2026-09-20T17:57:09.840733006Z"
+        },
+        {
+          "ID": "sha256:8631cf429efc4a2981d4e6ced4c005b9f6f620a4e34625baf60152301ec6d006",
+          "ContainerName": "blaine-infra-langfuse-worker-1",
+          "Repository": "docker.langfuse.com/langfuse/langfuse-worker",
+          "Tag": "4.38.0",
+          "Platform": "linux/amd64",
+          "Size": 1833238629,
+          "Created": "2026-09-17T15:33:51.486278397Z",
+          "LastTagTime": "2026-09-20T17:57:25.398641279Z"
+        }
+      ],
+      "native_postgresql": "127.0.0.1:5432 - accepting connections",
+      "native_redis": "PONG",
+      "loopback_listeners": "PASS"
+    },
+    "phase": "complete",
+    "observed_at": "2026-09-20T18:06:01.751875+00:00"
+  },
+  "inventory": {
+    "observed_at": "2026-09-20T18:08:43.986198+00:00",
+    "versions": {
+      "docker_engine": "29.8.1",
+      "compose": "5.5.1",
+      "alloy": "alloy, version v1.19.2 (branch: HEAD, revision: becfd48)\n  build user:       root@6e82bcbc397d\n  build date:       2026-08-26T20:17:42Z\n  go version:       go1.26.7\n  platform:         linux/amd64\n  tags:             gore2regex,netgo,embedalloyui,promtail_journal_enabled"
+    },
+    "image_digests": {
+      "chrislusf/seaweedfs:4.47": [
+        "chrislusf/seaweedfs@sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882"
+      ],
+      "clickhouse/clickhouse-server:26.4.5.143": [
+        "clickhouse/clickhouse-server@sha256:c7796a1335d14385c052f10061cf719f4a368a908432ec25980860b1333e9ccd"
+      ],
+      "docker.langfuse.com/langfuse/langfuse:4.38.0": [
+        "docker.langfuse.com/langfuse/langfuse@sha256:47ef2f121e2959c8458c209d118949ade25778017e3f5b75b1e45f72276811c3"
+      ],
+      "docker.langfuse.com/langfuse/langfuse-worker:4.38.0": [
+        "docker.langfuse.com/langfuse/langfuse-worker@sha256:8631cf429efc4a2981d4e6ced4c005b9f6f620a4e34625baf60152301ec6d006"
+      ]
+    },
+    "permissions": {
+      "/etc/blaine/secrets": {
+        "mode": "0o700",
+        "uid": 0,
+        "gid": 0
+      },
+      "/etc/blaine/secrets/infrastructure.json": {
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0
+      },
+      "/etc/blaine/secrets/langfuse.env": {
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0
+      },
+      "/etc/blaine/secrets/clickhouse.env": {
+        "mode": "0o600",
+        "uid": 0,
+        "gid": 0
+      },
+      "/etc/blaine/secrets/object-storage.json": {
+        "mode": "0o400",
+        "uid": 1000,
+        "gid": 1000
+      },
+      "/var/lib/alloy": {
+        "mode": "0o700",
+        "uid": 994,
+        "gid": 972
+      },
+      "/var/lib/alloy/telemetry": {
+        "mode": "0o700",
+        "uid": 994,
+        "gid": 972
+      },
+      "/srv/blaine/infra/objects": {
+        "mode": "0o700",
+        "uid": 1000,
+        "gid": 1000
+      },
+      "/srv/blaine/infra/clickhouse/data": {
+        "mode": "0o700",
+        "uid": 101,
+        "gid": 101
+      }
+    },
+    "cloud_exporter_active": false,
+    "cloud_runtime_secret_exists": false,
+    "services": {
+      "docker": "ActiveState=active\nSubState=running\nUnitFileState=enabled\nMainPID=364700\nUser=",
+      "blaine-infra": "ActiveState=active\nSubState=exited\nUnitFileState=enabled\nMainPID=0\nUser=",
+      "alloy": "ActiveState=active\nSubState=running\nUnitFileState=enabled\nMainPID=367757\nUser=alloy",
+      "postgresql@18-main": "ActiveState=active\nSubState=running\nUnitFileState=enabled-runtime\nMainPID=96203\nUser=",
+      "redis-server": "ActiveState=active\nSubState=running\nUnitFileState=enabled\nMainPID=110262\nUser=redis",
+      "blaine-partial-backup.timer": "ActiveState=inactive\nSubState=dead\nUnitFileState=disabled",
+      "blaine-partial-backup.service": "ActiveState=failed\nSubState=failed\nUnitFileState=static\nMainPID=0\nUser=root"
+    },
+    "telemetry": {
+      "host_metrics": true,
+      "alloy_self_metrics": true,
+      "journal_logs": true,
+      "synthetic_three_signals": true
+    },
+    "anonymous_volumes": []
+  },
+  "checks": {
+    "platform_tests": {
+      "count": 17,
+      "result": "PASS",
+      "command": "python3 -m unittest discover -s tests/platform -v",
+      "scope": "isolated fixtures; no physical backup acceptance"
+    },
+    "compose_config": "PASS; quiet validation with live env files",
+    "alloy_local_config": "PASS; 1.19.2, public-preview file exporter explicit",
+    "alloy_inactive_cloud_config": "PASS; validate only, never run or exported",
+    "systemd_units": "PASS",
+    "ansible_scratch": {
+      "first": "ok=6 changed=3 failed=0",
+      "second": "ok=6 changed=0 failed=0"
+    },
+    "ansible_live": {
+      "initial_stage": "ok=9 changed=3 failed=0",
+      "final_first": "ok=15 changed=0 failed=0",
+      "final_second": "ok=15 changed=0 failed=0"
+    },
+    "three_signal_smoke": {
+      "result": "PASS; local metrics, logs, traces persisted",
+      "trace_id": "45973c8ef7d8cf4813d55dd51849480c"
+    },
+    "generated_secret_scan": {
+      "result": "PASS",
+      "maintained_files_scanned": 38
+    },
+    "git_diff_check": "PASS"
+  },
+  "bitwarden": {
+    "executable": "/home/leofuso/.local/bin/bw",
+    "version": "2026.9.0",
+    "artifact_sha256": "580c1deec8345b19dbac7f8b02babb6cc4fe250c69c567e29061f727f1e40768",
+    "vault_status": "unauthenticated",
+    "placeholder_item_created": false
+  },
+  "grafana_cloud": "CONFIGURED FOR FUTURE ACTIVATION; remote exporter inactive, no runtime cloud credentials",
+  "backup": "PAUSED; timer disabled/inactive, prior failed service has no process; no disk/backup acceptance work performed",
+  "deferred": [
+    "full-machine reboot",
+    "complete PostgreSQL plus Object Storage backup/restore",
+    "cloud/off-site backup",
+    "stable Blaine/Restate/vLLM/MIRIX adoption",
+    "Redis profile split",
+    "public ingress",
+    "real cognitive traffic instrumentation"
+  ],
+  "temporary_privilege_cleanup": {
+    "path": "/etc/sudoers.d/90-blaine-d1-codex",
+    "state": "pending"
+  },
+  "integration": {
+    "baseline": "3181a6c8bc0f5b8a7b705e29f3400ee937a13dab",
+    "state": "pending final commit and local-main fast-forward"
+  }
+}

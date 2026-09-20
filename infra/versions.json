@@ -1,6 +1,6 @@
 {
   "observed_at": "2026-09-20",
-  "status": "inventory, not a known-good full-platform lock",
+  "status": "Observed D1 infrastructure versions; service restart acceptance passed, full-machine reboot pending",
   "host": {
     "os": "Ubuntu 26.04.1 LTS",
     "kernel": "7.0.0-31-generic",
@@ -12,10 +12,46 @@
     "redis-server": "6:8.10.2-1rl1~resolute1",
     "restate_server_available_in_main_checkout": "1.7.9",
     "vllm": "0.29.1rc1.dev401+gc3b484463",
-    "mirix_package": "0.1.0"
+    "mirix_package": "0.1.0",
+    "docker-ce": "29.8.1",
+    "docker-compose-plugin": "5.5.1",
+    "containerd.io": "2.3.5",
+    "docker-buildx-plugin": "0.37.1",
+    "alloy": "1.19.2",
+    "bitwarden_cli": "2026.9.0"
   },
   "repository_runtime_pins": "runtime/requirements.txt",
-  "validation": {"ansible-core": "2.20.0"},
-  "not_discovered": ["S3 implementation", "Caddy", "Alloy", "Langfuse", "ClickHouse"],
-  "unresolved": ["vLLM model weight revisions", "MIRIX deployment revision"]
+  "validation": {
+    "ansible-core": "2.20.0",
+    "boto3": "1.42.70",
+    "botocore": "1.42.97"
+  },
+  "not_discovered": [
+    "Caddy"
+  ],
+  "unresolved": [
+    "vLLM model weight revisions",
+    "MIRIX deployment revision"
+  ],
+  "containers": {
+    "object_storage": "chrislusf/seaweedfs:4.47",
+    "clickhouse": "clickhouse/clickhouse-server:26.4.5.143",
+    "langfuse_web": "docker.langfuse.com/langfuse/langfuse:4.38.0",
+    "langfuse_worker": "docker.langfuse.com/langfuse/langfuse-worker:4.38.0"
+  },
+  "acceptance": "infra/validation-d1-infrastructure.json",
+  "image_digests": {
+    "chrislusf/seaweedfs:4.47": [
+      "chrislusf/seaweedfs@sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882"
+    ],
+    "clickhouse/clickhouse-server:26.4.5.143": [
+      "clickhouse/clickhouse-server@sha256:c7796a1335d14385c052f10061cf719f4a368a908432ec25980860b1333e9ccd"
+    ],
+    "docker.langfuse.com/langfuse/langfuse:4.38.0": [
+      "docker.langfuse.com/langfuse/langfuse@sha256:47ef2f121e2959c8458c209d118949ade25778017e3f5b75b1e45f72276811c3"
+    ],
+    "docker.langfuse.com/langfuse/langfuse-worker:4.38.0": [
+      "docker.langfuse.com/langfuse/langfuse-worker@sha256:8631cf429efc4a2981d4e6ced4c005b9f6f620a4e34625baf60152301ec6d006"
+    ]
+  }
 }

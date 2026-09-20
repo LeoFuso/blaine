@@ -1,0 +1,74 @@
+name: blaine-infra
+x-common: &common
+  restart: unless-stopped
+  security_opt: [no-new-privileges:true]
+  cap_drop: [ALL]
+  logging:
+    driver: local
+    options: {max-size: 10m, max-file: "3"}
+services:
+  object-storage:
+    <<: *common
+    image: chrislusf/seaweedfs:4.47
+    user: "1000:1000"
+    command: [mini, -dir=/data, -ip=127.0.0.1, -ip.bind=0.0.0.0, -s3.port=8333, -s3.config=/run/secrets/s3.json, -webdav=false, -admin.ui=false, -s3.port.iceberg=0, -s3.port.lance=0]
+    ports: ["127.0.0.1:8333:8333"]
+    volumes:
+      - /srv/blaine/infra/objects:/data
+      - /etc/blaine/secrets/object-storage.json:/run/secrets/s3.json:ro
+    healthcheck:
+      test: [CMD-SHELL, "wget -q -O /dev/null http://127.0.0.1:9333/cluster/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    stop_grace_period: 60s
+  clickhouse:
+    <<: *common
+    image: clickhouse/clickhouse-server:26.4.5.143
+    user: "101:101"
+    env_file: [/etc/blaine/secrets/clickhouse.env]
+    environment: {TZ: UTC}
+    ports: ["127.0.0.1:8123:8123", "127.0.0.1:9000:9000"]
+    volumes:
+      - /srv/blaine/infra/clickhouse/data:/var/lib/clickhouse
+      - /srv/blaine/infra/clickhouse/logs:/var/log/clickhouse-server
+    ulimits:
+      nofile: {soft: 262144, hard: 262144}
+    healthcheck:
+      test: [CMD-SHELL, "wget -q -O /dev/null http://127.0.0.1:8123/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    stop_grace_period: 60s
+  langfuse-web:
+    <<: *common
+    image: docker.langfuse.com/langfuse/langfuse:4.38.0
+    # Native PostgreSQL/Redis stay on loopback. Upstream HOSTNAME controls bind.
+    network_mode: host
+    env_file: [/etc/blaine/secrets/langfuse.env]
+    environment: {HOSTNAME: 127.0.0.1, PORT: "3000"}
+    depends_on:
+      clickhouse: {condition: service_healthy}
+      object-storage: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3000/api/public/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    stop_grace_period: 60s
+  langfuse-worker:
+    <<: *common
+    image: docker.langfuse.com/langfuse/langfuse-worker:4.38.0
+    network_mode: host
+    env_file: [/etc/blaine/secrets/langfuse.env]
+    environment: {HOSTNAME: 127.0.0.1, PORT: "3030"}
+    depends_on:
+      langfuse-web: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3030/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+    stop_grace_period: 60s

@@ -1,0 +1,163 @@
+---
+- name: Own the bounded D1 local infrastructure
+  hosts: blaine
+  gather_facts: false
+  vars:
+    blaine_prefix: ""
+    blaine_activate: false
+    # Live execution follows reviewed bootstrap-packages.py. No full-host upgrade.
+    blaine_packages:
+      docker-ce: 5:29.8.1-1~ubuntu.26.04~resolute
+      docker-ce-cli: 5:29.8.1-1~ubuntu.26.04~resolute
+      containerd.io: 2.3.5-1~ubuntu.26.04~resolute
+      docker-buildx-plugin: 0.37.1-1~ubuntu.26.04~resolute
+      docker-compose-plugin: 5.5.1-1~ubuntu.26.04~resolute
+      alloy: 1.19.2-1
+    blaine_files:
+      - {src: ../compose/compose.yaml, dest: /etc/blaine/infra/compose.yaml, mode: '0644'}
+      - {src: ../systemd/blaine-infra.service, dest: /etc/systemd/system/blaine-infra.service, mode: '0644'}
+      - {src: ../alloy/blaine.conf, dest: /etc/systemd/system/alloy.service.d/blaine.conf, mode: '0644'}
+      - {src: ../alloy/default, dest: /etc/default/alloy, mode: '0644'}
+      - {src: ../alloy/config.alloy, dest: /etc/blaine/infra/alloy-local.alloy, mode: '0644'}
+      - {src: ../alloy/cloud.alloy.inactive, dest: /etc/blaine/infra/cloud.alloy.inactive, mode: '0644'}
+      - {src: ../infrastructure-secrets.py, dest: /usr/local/lib/blaine/infrastructure-secrets.py, mode: '0755'}
+      - {src: ../grafana-cloud.py, dest: /usr/local/lib/blaine/grafana-cloud.py, mode: '0755'}
+      - {src: ../bootstrap-packages.py, dest: /usr/local/lib/blaine/bootstrap-packages.py, mode: '0755'}
+  tasks:
+    - name: Validate scope
+      ansible.builtin.assert:
+        that:
+          - blaine_prefix == '' or blaine_prefix is match('^/tmp/blaine-d1-[A-Za-z0-9_-]+$')
+          - not (blaine_activate | bool) or blaine_prefix == ''
+
+    - name: Refuse unowned data, symlinks, and the historical backup filesystem
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - |
+            from pathlib import Path
+            import os
+            managed = Path('/etc/blaine/infra/compose.yaml').exists()
+            root_device = os.stat('/').st_dev
+            for value in ['/etc/blaine', '/srv/blaine/infra', '/srv/blaine/infra/objects', '/srv/blaine/infra/clickhouse/data', '/srv/blaine/infra/clickhouse/logs']:
+                p = Path(value)
+                assert p.resolve() == p, 'STOP: symlink in managed path'
+                ancestor = p
+                while not ancestor.exists():
+                    ancestor = ancestor.parent
+                assert ancestor.stat().st_dev == root_device, 'STOP: expected root filesystem, never backup disk'
+                if p.exists() and value.startswith('/srv/') and any(p.iterdir()):
+                    assert managed, 'STOP: existing unmanaged persistent data'
+      changed_when: false
+      when: blaine_prefix == ''
+
+    - name: Inspect installed package pins on live host
+      ansible.builtin.command:
+        argv: [dpkg-query, -W, '-f=${Version}', '{{ item.key }}']
+      loop: '{{ blaine_packages | dict2items }}'
+      register: package_versions
+      changed_when: false
+      failed_when: false
+      when: blaine_prefix == ''
+
+    - name: Require reviewed official-package bootstrap before live staging
+      ansible.builtin.assert:
+        that: item.rc == 0 and item.stdout == item.item.value
+        fail_msg: Run infra/bootstrap-packages.py with bounded sudo first; do not upgrade the whole host
+      loop: '{{ package_versions.results | default([]) }}'
+      when: blaine_prefix == ''
+
+    - name: Create managed configuration and state directories
+      ansible.builtin.file:
+        path: '{{ blaine_prefix }}{{ item.path }}'
+        state: directory
+        mode: '{{ item.mode }}'
+        owner: "{{ item.owner | default('root') if blaine_prefix == '' else omit }}"
+        group: "{{ item.group | default('root') if blaine_prefix == '' else omit }}"
+      loop:
+        - {path: /etc/blaine/infra, mode: '0700'}
+        - {path: /etc/blaine/secrets, mode: '0700'}
+        - {path: /etc/alloy, mode: '0755'}
+        - {path: /etc/default, mode: '0755'}
+        - {path: /etc/systemd/system/alloy.service.d, mode: '0755'}
+        - {path: /usr/local/lib/blaine, mode: '0755'}
+        - {path: /srv/blaine/infra, mode: '0700'}
+        - {path: /srv/blaine/infra/objects, mode: '0700', owner: '1000', group: '1000'}
+        - {path: /srv/blaine/infra/clickhouse/data, mode: '0700', owner: '101', group: '101'}
+        - {path: /srv/blaine/infra/clickhouse/logs, mode: '0700', owner: '101', group: '101'}
+        - {path: /var/lib/alloy, mode: '0700', owner: alloy, group: alloy}
+        - {path: /var/lib/alloy/telemetry, mode: '0700', owner: alloy, group: alloy}
+
+    - name: Stage versioned configuration and bounded operator tools
+      ansible.builtin.copy:
+        src: '{{ item.src }}'
+        dest: '{{ blaine_prefix }}{{ item.dest }}'
+        mode: '{{ item.mode }}'
+        owner: "{{ 'root' if blaine_prefix == '' else omit }}"
+        group: "{{ 'root' if blaine_prefix == '' else omit }}"
+      loop: '{{ blaine_files }}'
+      register: staged_files
+
+    - name: Inspect explicit remote activation marker
+      ansible.builtin.stat:
+        path: '{{ blaine_prefix }}/etc/blaine/infra/cloud.enabled'
+      register: cloud_enabled
+
+    - name: Stage local-only Alloy configuration (remote activation remains operator-owned)
+      ansible.builtin.copy:
+        src: ../alloy/config.alloy
+        dest: '{{ blaine_prefix }}/etc/alloy/config.alloy'
+        mode: '0644'
+        force: '{{ not cloud_enabled.stat.exists }}'
+        owner: "{{ 'root' if blaine_prefix == '' else omit }}"
+        group: "{{ 'root' if blaine_prefix == '' else omit }}"
+      register: alloy_config
+
+    - name: Ensure backup timer stays paused
+      ansible.builtin.systemd_service:
+        name: blaine-partial-backup.timer
+        enabled: false
+        state: stopped
+      when: blaine_prefix == ''
+
+    - name: Explain scratch boundary
+      ansible.builtin.debug:
+        msg: Scratch stages files only; no secrets, native database changes, package installation, or services
+      when: blaine_prefix != ''
+
+    - name: Initialize private secrets and dedicated native PostgreSQL database
+      ansible.builtin.command: /usr/bin/python3 /usr/local/lib/blaine/infrastructure-secrets.py
+      register: secret_setup
+      changed_when: "'changed' in secret_setup.stdout"
+      no_log: true
+      when: blaine_activate | bool
+
+    - name: Validate active Alloy configuration
+      ansible.builtin.command: /usr/bin/alloy validate --stability.level=public-preview /etc/alloy/config.alloy
+      changed_when: false
+      when: blaine_activate | bool
+
+    - name: Validate Compose without displaying secrets
+      ansible.builtin.command: /usr/bin/docker compose -f /etc/blaine/infra/compose.yaml config --quiet
+      changed_when: false
+      when: blaine_activate | bool
+
+    - name: Reload reviewed units
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+      when: blaine_activate | bool
+
+    - name: Start and enable the infrastructure owner
+      ansible.builtin.systemd_service:
+        name: blaine-infra.service
+        enabled: true
+        state: "{{ 'restarted' if staged_files.changed or alloy_config.changed else 'started' }}"
+      when: blaine_activate | bool
+
+    - name: Start and enable package-owned Alloy
+      ansible.builtin.systemd_service:
+        name: alloy.service
+        enabled: true
+        state: "{{ 'restarted' if staged_files.changed else 'started' }}"
+      when: blaine_activate | bool
