@@ -212,3 +212,48 @@ observed usage where available. Exact token/dollar controls are required only if
 explicitly demanded by that Task. Exact destination, scope enforcement and unknown
 outcome handling still need binding-specific preflight. No live call is authorized
 by this document, and Increment 12 remains unstarted.
+## Codex exec binding compatibility: 0.155.1
+
+The experimental Codex binding translates the version-specific protocol defined
+by [OpenAI Codex `rust-v0.155.1`, `exec_events.rs`](https://github.com/openai/codex/blob/rust-v0.155.1/codex-rs/exec/src/exec_events.rs).
+The exact-version semantic definitions were supplied as authoritative evidence
+by the user; no network lookup or provider call was performed for the correction.
+Revalidate this binding contract when upgrading the CLI; these are not universal
+worker or Task lifecycle rules.
+
+- `turn.completed` is successful terminal turn completion.
+- `turn.failed` is terminal failure.
+- Top-level `ThreadEvent::Error` is unrecoverable/fatal.
+- `item.completed` containing `ErrorItem` is a non-fatal diagnostic; its message
+  does not confer authority or negate terminal success.
+
+For this one-turn, tool-free binding, acceptance requires one bounded valid result,
+one successful terminal marker, a valid session, zero exit, no timeout/cancellation,
+and no terminal failure, unknown/malformed event, or out-of-scope effect item.
+Duplicate/contradictory terminal markers and content after termination are rejected
+conservatively; no undocumented precedence is invented. Missing terminal completion
+is unknown, not success. These are binding acceptance restrictions, not claims that
+every broader Codex stream must follow this one-turn subset.
+
+Observation v2 retains ordered structural events, protocol provenance, a local
+`success | failure | unknown` normalization outcome, terminal status, rejection
+categories, result presence, usage and diagnostic metadata. It omits raw diagnostic
+text, private reasoning, raw assistant text and stderr. Error message presence and
+UTF-8 byte length are preserved with a fixed sanitized representation; this is
+deliberately not a content-based secret detector. Item IDs are retained only in the
+bounded `item_<digits>` protocol shape; other IDs are omitted. No raw diagnostic
+prefix/hash, extra provider fields or exception messages are persisted. This allows
+classification/order diagnosis, but does not retain the human-readable root cause
+of arbitrary provider messages.
+
+The existing provider-neutral result DTO remains unchanged. Successful candidate
+content passes into the existing capability/artifact path and independently verified
+completion. Rejected bindings raise without admitting a successful result artifact.
+The existing frontier invocation boundary conservatively records those exceptions as
+unknown execution outcomes; it does not confuse a known protocol failure with proof
+that no provider work occurred. Pending reservations remain pending under existing
+failure semantics. Success settles through the existing idempotent path. No new
+settlement outcome or kernel rule is introduced.
+
+Milestones 033/034 and the original FAILED Task remain exact historical evidence.
+Corrected synthetic streams do not create or settle a result for that old Task.

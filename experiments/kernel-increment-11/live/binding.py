@@ -4,6 +4,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import signal
 import subprocess
 import time
@@ -12,6 +13,146 @@ from runtime.kernel.contracts import encode, fields, text
 EXECUTABLE=Path('/home/leofuso/.codex/packages/standalone/releases/0.155.1-x86_64-unknown-linux-musl/bin/codex')
 AUTH=Path('/home/leofuso/.codex/auth.json')  # mounted, never read by Blaine
 CONFIG=Path(__file__).resolve().parent
+PROTOCOL = 'codex-exec/rust-v0.155.1'
+PROTOCOL_SOURCE = 'https://github.com/openai/codex/blob/rust-v0.155.1/codex-rs/exec/src/exec_events.rs'
+
+
+def unique(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('Duplicate JSON field')
+        result[key] = value
+    return result
+
+
+def diagnostic_message(value):
+    """Closed structural representation, never arbitrary provider diagnostic text.
+
+    Redacting *all* free text avoids pretending a token/PII regex can make it safe.
+    No raw prefix, hash, exception string or extra provider fields are persisted.
+    """
+    return {'present': isinstance(value, str),
+            'utf8_bytes': len(value.encode('utf-8', errors='replace')) if isinstance(value, str) else None,
+            'representation': '[untrusted diagnostic text omitted]',
+            'retention': 'structure_only'}
+
+
+def observe_stream(stdout, *, exit_code, timed_out=False, cancelled=False):
+    """One-turn Codex 0.155.1 translation; no Task/lifecycle authority.
+
+    Returns a safe observation and (only on success) normalized candidate content.
+    Conflicting/duplicate terminal markers are not resolved optimistically.
+    """
+    events, diagnostics, reasons, messages, terminals = [], [], [], [], []
+    session, usage = None, {}
+    turn_started = False
+    known = {'thread.started', 'turn.started', 'turn.completed', 'turn.failed',
+             'error', 'item.started', 'item.updated', 'item.completed'}
+    lines = stdout.splitlines()
+    if len(stdout) > 262144 or len(lines) > 128:
+        reasons.append('stream_limit_exceeded')
+        lines = []
+    for sequence, line in enumerate(lines, 1):
+        record = {'sequence': sequence, 'type': 'unknown', 'classification': 'unknown',
+                  'classification_source': PROTOCOL}
+        events.append(record)
+        try:
+            if len(line) > 32768:
+                raise ValueError('Event limit')
+            event = json.loads(line, object_pairs_hook=unique)
+            if not isinstance(event, dict) or not isinstance(event.get('type'), str):
+                raise ValueError('Event object required')
+            kind = event['type']
+            if kind not in known:
+                reasons.append('unknown_event')
+                continue  # Do not persist an untrusted discriminator string.
+            record['type'] = kind
+            if terminals and kind not in ('turn.completed', 'turn.failed', 'error'):
+                reasons.append('event_after_terminal')
+            if kind == 'thread.started':
+                identity = event.get('thread_id')
+                if session is not None or sequence != 1 or not isinstance(identity, str) or not re.fullmatch(
+                        r'[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}', identity):
+                    raise ValueError('Invalid session identity')
+                session = identity
+                record.update(thread_id=session, classification='session')
+            elif kind == 'turn.started':
+                if turn_started:
+                    reasons.append('multiple_turns')
+                turn_started = True
+                record['classification'] = 'progress'
+            elif kind == 'turn.completed':
+                terminals.append('success')
+                raw = event.get('usage')
+                if not isinstance(raw, dict):
+                    raise ValueError('Usage object required')
+                for key in ('input_tokens', 'output_tokens', 'cached_input_tokens'):
+                    if type(raw.get(key)) is not int or raw[key] < 0:
+                        raise ValueError('Invalid usage')
+                usage = {k: raw[k] for k in ('input_tokens', 'output_tokens', 'cached_input_tokens')}
+                record.update(classification='terminal_success', usage=usage)
+            elif kind in ('turn.failed', 'error'):
+                terminals.append('failure')
+                detail = event.get('error') if kind == 'turn.failed' else event
+                if not isinstance(detail, dict) or not isinstance(detail.get('message'), str):
+                    raise ValueError('Error message required')
+                record.update(classification='terminal_failure', message=diagnostic_message(detail['message']))
+                diagnostics.append(record.copy())
+            else:
+                item = event.get('item')
+                if not isinstance(item, dict):
+                    raise ValueError('Item object required')
+                item_type = item.get('type')
+                if item_type not in ('agent_message', 'reasoning', 'error'):
+                    reasons.append('unrequested_item')
+                    continue  # Tools/effects remain outside this binding's scope.
+                record['item_type'] = item_type
+                identity = item.get('id')
+                record['item_id'] = identity if isinstance(identity, str) and re.fullmatch(r'item_[0-9]{1,10}', identity) else None
+                record['item_id_retention'] = 'protocol_shape' if record['item_id'] else 'absent_or_omitted'
+                if item_type == 'error':
+                    if not isinstance(item.get('message'), str):
+                        raise ValueError('Error message required')
+                    record.update(classification='non_terminal_diagnostic', terminal=False,
+                                  message=diagnostic_message(item['message']), classification_source=PROTOCOL)
+                    diagnostics.append(record.copy())
+                elif item_type == 'reasoning':
+                    record['classification'] = 'private_content_omitted'
+                else:
+                    record['classification'] = 'result_content' if kind == 'item.completed' else 'streamed_content_omitted'
+                    if kind == 'item.completed':
+                        messages.append(text(item.get('text'), 2048))
+                    # Raw model text is not copied into observation telemetry.
+        except (ValueError, TypeError, UnicodeError, RecursionError):
+            record['classification'] = 'malformed'
+            reasons.append('malformed_event')
+    terminal = ('conflicting' if len(terminals) > 1 else terminals[0] if terminals else 'missing')
+    if terminal != 'success':
+        reasons.append('terminal_' + terminal)
+    if not session:
+        reasons.append('missing_session')
+    if len(messages) != 1:
+        reasons.append('result_count')
+    if timed_out or cancelled:
+        reasons.append('timeout' if timed_out else 'cancelled')
+    if exit_code != 0:
+        reasons.append('process_exit')
+    content = None
+    if len(messages) == 1:
+        try:
+            content = normalize(messages[0])
+        except (ValueError, TypeError, UnicodeError, RecursionError):
+            reasons.append('invalid_result_contract')
+    outcome = ('success' if not reasons else 'failure' if terminal == 'failure' or
+               (exit_code != 0 and not timed_out and not cancelled) else 'unknown')
+    if reasons:
+        content = None
+    return {'protocol': PROTOCOL, 'protocol_source': PROTOCOL_SOURCE,
+            'terminal_status': terminal, 'normalized_outcome': outcome,
+            'rejection_reasons': sorted(set(reasons)), 'result_present': bool(messages),
+            'events': events, 'diagnostics': diagnostics, 'worker_session_id': session,
+            'usage': usage}, content
 
 
 def command():
@@ -32,12 +173,6 @@ def command():
 
 
 def normalize(value):
-    def unique(pairs):
-        result={}
-        for k,v in pairs:
-            if k in result:raise ValueError('Duplicate output field')
-            result[k]=v
-        return result
     result=fields(json.loads(value,object_pairs_hook=unique),{'organization','marker'})
     for item in result.values():text(item,80)
     return encode(result).decode()  # serialization only, no value repair/injection
@@ -100,38 +235,25 @@ class CodexBinding:
                 except subprocess.TimeoutExpired:first=False
         finally:
             if process is not None:stop_process(process)
-        # Persist only public results/session/usage events. No private reasoning,
-        # full provider requests, environment objects or credential-bearing stderr.
-        public=[];messages=[];session=None;usage={};unexpected=[]
-        for line in stdout.splitlines():
-            try:event=json.loads(line)
-            except ValueError:unexpected.append('non_json_cli_output');continue
-            kind=event.get('type')
-            if kind=='thread.started':
-                session=event.get('thread_id');public.append({'type':kind,'thread_id':session})
-            elif kind=='turn.completed':
-                raw=event.get('usage',{})
-                usage={k:raw[k] for k in ('input_tokens','output_tokens','cached_input_tokens') if type(raw.get(k)) is int}
-                public.append({'type':kind,'usage':usage})
-            elif kind=='item.completed':
-                item=event.get('item',{})
-                if item.get('type')=='agent_message':
-                    content=text(item.get('text'),2048);messages.append(content)
-                    public.append({'type':kind,'item':{'type':'agent_message','text':content}})
-                elif item.get('type') not in ('reasoning',):unexpected.append('unrequested_item:'+str(item.get('type')))
-            elif kind in ('error','turn.failed'):public.append({'type':kind,'detail':'not retained; provider error'})
-        observation={'worker_dispatch_id':request.worker_dispatch_id,'worker_session_id':session,
+        stream, content = observe_stream(stdout, exit_code=process.returncode,
+                                         timed_out=timed_out, cancelled=cancelled)
+        session, usage = stream['worker_session_id'], stream['usage']
+        observation={'observation_version':2,'worker_dispatch_id':request.worker_dispatch_id,'worker_session_id':session,
             'exit_code':process.returncode,'timed_out':timed_out,'cancelled':cancelled,
             'runtime_ms':int((time.monotonic()-begin)*1000),'worker_dispatch_count':1,
             'provider':'openai-chatgpt','model_intent':'gpt-6-astra','resolved_model':None,'resolved_account':None,
             'trust_boundary':'https://chatgpt.com','final_provider_prompt':None,
             'model_call_count':None,'provider_internal_retry_count':None,'monetary_cost':None,
-            'usage':usage,'events':public,'unexpected_items':unexpected,'stderr_bytes':len(stderr),
+            'usage':usage,'events':stream['events'],'unexpected_items':stream['rejection_reasons'],
+            'protocol':stream['protocol'],'protocol_source':stream['protocol_source'],
+            'terminal_status':stream['terminal_status'],'normalized_outcome':stream['normalized_outcome'],
+            'result_present':stream['result_present'],'diagnostics':stream['diagnostics'],
+            'rejection_reasons':stream['rejection_reasons'],'stderr_bytes':len(stderr),
             'context_digest':request.context_digest,'context_boundary':'exact stdin bytes from authorized projection'}
         (out/'worker-observation.json').write_bytes(encode(observation))
-        if process.returncode!=0 or timed_out or cancelled or unexpected or len(messages)!=1 or not session:
+        if stream['normalized_outcome'] != 'success':
             raise RuntimeError('Single worker dispatch did not produce an unambiguous result')
-        result={'status':'executed','content':normalize(messages[0]),'worker_session_id':session,
+        result={'status':'executed','content':content,'worker_session_id':session,
             'producer':{k:getattr(request.binding,k) for k in ('worker_family','provider','model','destination')},
             'usage':{k:usage[k] for k in ('input_tokens','output_tokens') if k in usage}}
         (out/'worker-normalized-result.json').write_bytes(encode(result))

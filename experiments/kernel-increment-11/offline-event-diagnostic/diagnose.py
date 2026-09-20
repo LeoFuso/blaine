@@ -1,8 +1,8 @@
-"""Offline characterization of the existing adapter, NOT a worker-success gate.
+"""Offline correction controls for the Codex 0.155.1 binding.
 
 Every stream below is synthetic. Popen and the command builder are replaced;
 no CLI, provider, credential file or historical dispatch receipt is used.
-Passing controls means the recorded behavior is reproducible, including defects.
+Passing controls validates synthetic protocol cases, never historical Task completion.
 """
 from dataclasses import dataclass
 import hashlib
@@ -30,17 +30,17 @@ def load(path, name):
 
 
 binding = load('experiments/kernel-increment-11/live/binding.py', 'diagnosed_binding')
-START = {'type': 'thread.started', 'thread_id': 'synthetic-session'}
+START = {'type': 'thread.started', 'thread_id': '00000000-0000-0000-0000-000000000001'}
 MESSAGE = {'type': 'item.completed', 'item': {
-    'type': 'agent_message', 'text': '{"organization":"FLOWER","marker":"MASKED_01"}'}}
-COMPLETED = {'type': 'turn.completed', 'usage': {'input_tokens': 10, 'output_tokens': 5}}
+    'type': 'agent_message', 'id': 'item_1', 'text': '{"organization":"FLOWER","marker":"MASKED_01"}'}}
+COMPLETED = {'type': 'turn.completed', 'usage': {'input_tokens': 10, 'output_tokens': 5, 'cached_input_tokens': 0}}
 DETAIL = 'SYNTHETIC_PRIVATE_DETAIL_DO_NOT_PERSIST'
-ITEM_ERROR = {'type': 'item.completed', 'item': {'type': 'error', 'message': DETAIL}}
+ITEM_ERROR = {'type': 'item.completed', 'item': {'type': 'error', 'id': 'item_0', 'message': DETAIL}}
 FAILED = {'type': 'turn.failed', 'error': {'message': DETAIL}}
-TOP_ERROR = {'type': 'error', 'message': DETAIL}
+TOP_ERROR = {'type': 'error', 'id': 'item_0', 'message': DETAIL}
 
-# These are parser inputs, not assertions about what the upstream protocol permits.
-# In particular terminal:false is an unsupported synthetic claim, not protocol evidence.
+# Versioned semantics were supplied by the user from rust-v0.155.1 exec_events.rs.
+# An extra terminal:false field never establishes authority; the binding owns classification.
 CASES = {
     'clean_completed_shape': [START, MESSAGE, COMPLETED],
     'failed_shape_without_result': [START, FAILED],
@@ -49,9 +49,12 @@ CASES = {
     'unknown_item_error_before_result': [START, ITEM_ERROR, MESSAGE, COMPLETED],
     'unknown_item_error_after_result': [START, MESSAGE, ITEM_ERROR, COMPLETED],
     'unsupported_nonterminal_claim': [START, {'type': 'item.completed', 'item': {
-        'type': 'error', 'message': DETAIL, 'terminal': False}}, MESSAGE, COMPLETED],
+        'type': 'error', 'id': 'item_0', 'message': DETAIL, 'terminal': False}}, MESSAGE, COMPLETED],
     'malformed_json': [START, 'not-json', MESSAGE, COMPLETED],
     'wrong_event_type': [START, [], MESSAGE, COMPLETED],
+    'result_then_top_error': [START, MESSAGE, TOP_ERROR],
+    'conflicting_terminal_events': [START, MESSAGE, COMPLETED, FAILED],
+    'unknown_event': [START, {'type': 'synthetic.unknown'}, MESSAGE, COMPLETED],
     'missing_terminal_event': [START, MESSAGE],
     'nonzero_process_exit': [START, MESSAGE, COMPLETED],
 }
@@ -109,7 +112,7 @@ def exercise(name):
         detail_retained = any(DETAIL in p.read_text() for p in out.iterdir() if p.is_file())
         return {
             'case': name, 'provenance': 'deterministic synthetic stream; mocked process; zero inference',
-            'upstream_semantics': 'UNKNOWN; fixture does not establish protocol terminality',
+            'upstream_semantics': binding.PROTOCOL,
             'input_order': [v.get('type', 'unknown') if isinstance(v, dict) else 'malformed' for v in values],
             'adapter_outcome': outcome, 'exception_class': error,
             'normalized_result_written': (out / 'worker-normalized-result.json').exists(),
@@ -119,7 +122,7 @@ def exercise(name):
 
 
 class CharacterizationTests(unittest.TestCase):
-    """Expected current behavior, not approval of the existing acceptance policy."""
+    """Correction controls; synthetic process only, CompletionVerifier unchanged."""
 
     def test_clean_shape(self):
         self.assertEqual(exercise('clean_completed_shape')['adapter_outcome'], 'executed')
@@ -127,40 +130,55 @@ class CharacterizationTests(unittest.TestCase):
     def test_failure_without_result(self):
         self.assertEqual(exercise('failed_shape_without_result')['adapter_outcome'], 'rejected')
 
-    def test_result_plus_failed_shape_exposes_admission_gap(self):
-        self.assertEqual(exercise('result_then_failed_shape')['adapter_outcome'], 'executed')
+    def test_result_plus_failed_shape_rejected(self):
+        case = exercise('result_then_failed_shape')
+        self.assertEqual(case['adapter_outcome'], 'rejected')
+        self.assertEqual(case['retained_observation']['normalized_outcome'], 'failure')
+        self.assertFalse(case['normalized_result_written'])
 
-    def test_top_error_not_in_rejection_predicate(self):
-        case = exercise('top_error_then_result')
-        self.assertEqual(case['adapter_outcome'], 'executed')
-        self.assertEqual(case['retained_observation']['events'][1]['type'], 'error')
+    def test_top_error_terminal_failure(self):
+        case = exercise('result_then_top_error')
+        self.assertEqual(case['adapter_outcome'], 'rejected')
+        self.assertEqual(case['retained_observation']['normalized_outcome'], 'failure')
         self.assertFalse(case['synthetic_private_detail_retained'])
 
-    def test_unknown_error_remains_rejected_even_with_nonterminal_claim(self):
-        for name in ('unknown_item_error_before_result', 'unsupported_nonterminal_claim'):
+    def test_conflicting_terminal_markers_fail_safely(self):
+        for name in ('top_error_then_result', 'conflicting_terminal_events'):
             case = exercise(name)
             self.assertEqual(case['adapter_outcome'], 'rejected')
-            self.assertEqual(case['retained_observation']['unexpected_items'], ['unrequested_item:error'])
+            self.assertEqual(case['retained_observation']['terminal_status'], 'conflicting')
 
-    def test_error_order_lost_but_public_order_kept(self):
+    def test_nonfatal_item_errors_before_and_after_result(self):
+        for name in ('unknown_item_error_before_result', 'unknown_item_error_after_result',
+                     'unsupported_nonterminal_claim'):
+            case = exercise(name)
+            self.assertEqual(case['adapter_outcome'], 'executed')
+            diagnostic = case['retained_observation']['diagnostics'][0]
+            self.assertEqual(diagnostic['classification'], 'non_terminal_diagnostic')
+            self.assertFalse(diagnostic['terminal'])
+            self.assertEqual(diagnostic['classification_source'], binding.PROTOCOL)
+            self.assertTrue(diagnostic['message']['present'])
+            self.assertEqual(diagnostic['message']['utf8_bytes'], len(DETAIL.encode()))
+
+    def test_diagnostic_order_preserved(self):
         a = exercise('unknown_item_error_before_result')['retained_observation']
         b = exercise('unknown_item_error_after_result')['retained_observation']
-        self.assertEqual(a['events'], b['events'])
-        self.assertEqual(a['unexpected_items'], b['unexpected_items'])
-        self.assertEqual([v['type'] for v in a['events']], ['thread.started', 'item.completed', 'turn.completed'])
+        self.assertEqual(a['diagnostics'][0]['sequence'], 2)
+        self.assertEqual(b['diagnostics'][0]['sequence'], 3)
+        self.assertEqual(a['diagnostics'][0]['item_id'], 'item_0')
+        self.assertEqual([v['sequence'] for v in a['events']], [1, 2, 3, 4])
 
-    def test_malformed_rejects_without_repair(self):
-        case = exercise('malformed_json')
+    def test_malformed_and_unknown_reject_without_repair(self):
+        for name in ('malformed_json', 'wrong_event_type', 'unknown_event'):
+            case = exercise(name)
+            self.assertEqual(case['adapter_outcome'], 'rejected')
+            self.assertIsNotNone(case['retained_observation'])
+            self.assertTrue(case['retained_observation']['rejection_reasons'])
+
+    def test_explicit_terminal_event_required(self):
+        case = exercise('missing_terminal_event')
         self.assertEqual(case['adapter_outcome'], 'rejected')
-        self.assertIn('non_json_cli_output', case['retained_observation']['unexpected_items'])
-
-    def test_non_object_event_loses_observation(self):
-        case = exercise('wrong_event_type')
-        self.assertEqual(case['exception_class'], 'AttributeError')
-        self.assertIsNone(case['retained_observation'])
-
-    def test_terminal_event_not_required_by_current_adapter(self):
-        self.assertEqual(exercise('missing_terminal_event')['adapter_outcome'], 'executed')
+        self.assertEqual(case['retained_observation']['terminal_status'], 'missing')
 
     def test_nonzero_exit_rejected(self):
         self.assertEqual(exercise('nonzero_process_exit')['adapter_outcome'], 'rejected')
@@ -182,16 +200,16 @@ def report():
     path = ROOT / 'experiments/kernel-increment-11/evidence/live-authorized/acceptance/worker-observation.json'
     historical = json.loads(path.read_text())
     return {
-        'diagnostic_status': 'STOP_PROTOCOL_SEMANTICS_UNVERIFIED',
+        'diagnostic_status': 'OFFLINE_CORRECTION_PASS',
         'historical_task_status': 'FAILED', 'increment_11': 'STOPPED',
         'historical_observation_sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
         'retained_sequence': historical['events'],
         'retained_unordered_error_labels': historical['unexpected_items'],
-        'error_position': None, 'error_body': None, 'error_terminality': None,
+        'error_position': None, 'error_body': None, 'historical_item_classification_under_versioned_contract': 'non_fatal',
         'cases': [exercise(name) for name in CASES],
         'live_worker_dispatches': 0, 'model_calls': 0,
-        'production_or_binding_behavior_changed': False,
-        'nonterminal_error_success_case': 'NOT ESTABLISHED: no local versioned exec protocol semantics found',
+        'kernel_behavior_changed': False, 'binding_normalization_corrected': True,
+        'nonterminal_error_success_case': 'PASS_SYNTHETIC_ONLY; original ordering remains UNKNOWN',
     }
 
 

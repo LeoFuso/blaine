@@ -1,5 +1,19 @@
 # Cognitive Kernel progressive program
 
+**Current: Increment 11 Codex 0.155.1 offline correction PASSED; no new live dispatch.**
+
+Version-specific exec semantics supplied from `rust-v0.155.1` resolve milestone
+034's protocol uncertainty. The corrected binding requires terminal success, rejects
+fatal/failed/missing/conflicting outcomes, and preserves non-fatal item errors as
+ordered structure-only diagnostics. Kernel and settlement semantics are unchanged.
+Historical milestones 033/034 and the original FAILED Task/pending UNKNOWN reservation
+remain exact. See [correction milestone](035-cognitive-kernel-increment-11-codex-protocol-correction.md)
+and [offline evidence](../../experiments/kernel-increment-11/evidence/codex-01551-correction/summary.json).
+Next: explicit authorization for one fresh synthetic live probe with a new Task and
+dispatch identity. Do not reuse the old receipt. Increment 11 remains open;
+Increment 12 remains unstarted.
+
+
 **Current: Increment 11 offline event diagnostic STOP; no additional live dispatch.**
 
 The adapter rejected the original completed `error` item before result normalization.

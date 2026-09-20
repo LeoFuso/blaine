@@ -1,0 +1,41 @@
+{
+  "status": "PASS_OFFLINE_CORRECTION",
+  "increment_11_closed": false,
+  "live_task_outcome": "FAILED_UNCHANGED",
+  "historical_reservation": "PENDING_UNKNOWN_UNCHANGED",
+  "new_live_dispatches": 0,
+  "model_calls": 0,
+  "synthetic_case_count": 14,
+  "correction_tests": 12,
+  "focused_frontier_tests": 27,
+  "broader_kernel_tests": 114,
+  "offline_verifiers": [
+    {
+      "script": "experiments/kernel-increment-10/verify.py",
+      "status": "PASS",
+      "events": 28
+    },
+    {
+      "script": "experiments/kernel-increment-11/verify.py",
+      "status": "PASS",
+      "events": 434
+    },
+    {
+      "script": "experiments/kernel-increment-11/live/verify.py",
+      "status": "STOP",
+      "events": 74
+    }
+  ],
+  "core_contract_changes": false,
+  "provider_result_dto_changed": false,
+  "observation_version": 2,
+  "diagnostic_text_policy": "structure_only; message bytes/presence retained, all arbitrary message content omitted",
+  "failure_accounting": "Existing adapter exception -> unknown effect outcome; does not claim non-execution or authorize another dispatch",
+  "diff_check": "PASS",
+  "focused_worker_tests": 3,
+  "integration_base": {
+    "original_main": "f5727f741c31fff70e5a9fe2d83a807afa096818",
+    "updated_main": "5ad930927bd7ed8d3e4cd23a7348d5868369175f",
+    "method": "Feature fast-forwarded to non-overlapping local-main Platform D1 commit before correction commit; no Platform implementation modified"
+  }
+}
