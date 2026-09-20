@@ -1,205 +1,51 @@
 # Blaine
 
-Personal Agent: [Daily Driver D2 — remote Task intake and control](docs/daily-driver-d2.md), including private ACP setup and native acceptance evidence.
+Blaine is a personal-first agentic work system: a human-facing coordinator for
+real work backed by durable Tasks. Coding, investigation, research and personal
+operations share the same boundary: **Task > session**.
 
-Historical runtime spike: [Milestone 002 — Interactive Durable Task over ACP](docs/milestones/002-intellij-acp-durable-task.md), including earlier remote IntelliJ validation.
+**Start with the [living development roadmap and repository handoff](docs/roadmap/001-blaine-development-roadmap.md).**
+It records what is proven, what remains incomplete, why the next workstreams
+exist, and how to resume without prior conversation history.
 
-Cognitive Kernel: [program progress through completed Increment 12](docs/milestones/cognitive-kernel-progress.md); [offline hygiene validation](experiments/kernel-program/checkpoint-hygiene/summary.json).
+The Cognitive Kernel program (Increments 1–12) is complete. Current development
+is Daily Driver Enablement: D1's infrastructure foundation passed with service
+adoption/recovery still pending; D2's Personal Agent control surface passed its
+bounded acceptance. Live IntelliJ/code work is D3, not yet proven.
 
-Platform D1: [current state and bounded STOP](docs/platform-d1.md);
-[backup and recovery operations](docs/platform-operations.md).
+Restate owns Task lifecycle and recovery. Models propose bounded semantic work;
+PolicyGate authorizes effects and deterministic CompletionVerifier owns completion.
+Clients, workers and conversations are replaceable. Local inference comes before
+unnecessary paid frontier inference; cloud dispatch remains authority-controlled.
 
-### Local-first orchestration agent for agentic development environments
+## Repository navigation
 
-Blaine is a portable source of truth for a personal, local-first agentic development environment. It defines the contract for a coordinator agent that runs on Goose with a local Ollama model, triaging work, curating context, and orchestrating between local tools and frontier agents.
+| Start here | Purpose |
+| --- | --- |
+| [Development roadmap](docs/roadmap/001-blaine-development-roadmap.md) | Current program, priorities, dependencies and handoff |
+| [Documentation index](docs/README.md) | Map of maintained documentation |
+| [Architecture](docs/architecture.md) and [ADR index](docs/decisions/README.md) | Ownership and architectural decisions; respect each ADR's status |
+| [Milestones and progress](docs/milestones/README.md) | Accepted evidence and historical STOPs |
+| [TaskSpec](docs/contracts/task-spec.md) and [Task operations](docs/contracts/task-operations.md) | Request and control contracts |
+| [Frontier dispatch](docs/contracts/frontier-dispatch.md) and [ExecutionEvent](docs/contracts/execution-event.md) | Authority/context boundary and forensic evidence |
+| [Platform foundation](docs/platform-infrastructure.md) | D1 installed stack, desired state and acceptance |
+| [Operations/recovery](docs/platform-operations.md) and [Grafana Cloud activation](docs/platform-grafana-cloud.md) | Operator procedures, paused backup and future activation |
+| [Personal Agent / D2](docs/daily-driver-d2.md) | Private ACP control surface, usage, acceptance and live-workspace limits |
+| [Agent instructions](BLAINE.md) and [skills](skills/SKILL.md) | Conversational triage and Task operation procedures |
 
----
+## Working on Blaine
 
-## What Blaine Is
+Use a short-lived worktree from current `main`, select one bounded roadmap
+increment, and preserve other worktrees. Read the relevant contracts and latest
+milestone before editing. Retain deterministic PASS or truthful STOP evidence,
+then integrate a coherent state promptly. See the roadmap's resume procedure.
 
-Blaine is **not just another AI agent**. It is an orchestration layer designed to:
-
-1. **Understand objectives** before taking action
-2. **Inspect environments** and gather authoritative evidence
-3. **Triage work** into appropriate execution paths (local vs. frontier-delegated)
-4. **Delegate specialist tasks** to stronger models when justified
-5. **Verify outcomes** with traceable evidence
-6. **Coordinate retries and escalation** when needed
-
-The philosophy: local inference is cheap; frontier-model calls are expensive. Use the right tool for each class of work.
-
----
-
-## Architecture: Local-First with Frontier Workers
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                   Blaine (Local)                        │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │   Triage     │  │  Context     │  │  Verification│  │
-│  │   & Routing  │  │    Curation  │  │              │  │
-│  └──────────────┘  └──────────────┘  └──────────────┘  │
-│         │                 │                   │         │
-│         v                 v                   v         │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │            Decision Layer                        │   │
-│  │  - Deterministic work → local tools              │   │
-│  │  - Judgment-heavy work → frontier delegation     │   │
-│  └─────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────┘
-                        │
-                        │ delegate (when justified)
-                        v
-          ┌──────────────────────┐
-          │   Frontier Workers   │
-          │   (Codex, etc.)      │
-          └──────────────────────┘
-
-Local first: Use shell commands, Git, file operations, deterministic scripts.
-Delegate when: Stronger reasoning capability materially improves outcome.
-```
-
-**Key principle:** Blaine spends frontier tokens only on work that benefits from frontier capability (architectural decisions, complex debugging, security reviews). Discovery, context reconstruction, grep, and routine transformations happen locally.
-
----
-
-## Repository Structure
-
-```
-blaine/
-├── BLAINE.md          # Canonical agent contract (source of truth)
-├── AGENTS.md          # Symlink → BLAINE.md (Codex compatibility)
-├── README.md          # This file
-├── skills/            # Agent skills and dependencies
-│   ├── SKILL.md       # Local skill implementations
-│   └── manifest.md    # Pinned external skill manifests
-├── recipes/           # Reusable Goose workflows
-└── docs/              # Architecture, policies, references
-
-.gitignore             # Excludes secrets, machine-specific config
-```
-
-### Components
-
-| Component | Purpose | Public? |
-|-----------|---------|---------|
-| **BLAINE.md** | Canonical agent contract defining orchestration behavior | Yes |
-| **Skills (skills/)** | Reusable capabilities: Java testing, Spring Boot, DDD, etc. | Yes (non-sensitive) |
-| **External Skills Manifest (skills/manifest.json)** | Pinned references to trusted external skills | Yes |
-| **Recipes (recipes/)** | Deterministic reusable workflows justified by repetition | Yes |
-| **Machine Config (.machine/, ~/.goose/)** | Secrets, credentials, local paths | **No** (gitignored) |
-
----
-
-## Trust Boundaries
-
-### What's In Scope
-
-- ✅ Blaine orchestration contract and architecture
-- ✅ Portable agent skills (testing patterns, engineering workflows)
-- ✅ References to external skills with pinned revisions
-- ✅ Deterministic reusable recipes/workflows
-- ✅ Documentation explaining the system
-
-### What's Out of Scope (Keep Private)
-
-- ❌ Credentials, API keys, tokens
-- ❌ Corporate or proprietary information
-- ❌ Machine-specific paths and configurations
-- ❌ Personal notes or context not generalizable
-
-Maintained Blaine documentation, source, tests, fixtures, prompts, examples and
-future artifacts must use fictional identifiers instead of prohibited real
-organization identifiers. Immutable historical experiment evidence may preserve
-original bytes when sanitization would invalidate provenance, hashes, recorded
-digests or the factual record. This narrow historical exception does not authorize
-future experiments to introduce prohibited identifiers; use fictional values from
-the start.
-
-External skills are a **trust boundary**. This repository does not vendor arbitrary community skills. Instead it maintains a manifest with:
-
-- Source repository URL
-- Path within the repository
-- Pinned revision (commit/hash)
-
-Example of Browser Use skill integration (not vendored, only referenced):
-
-```yaml
-# skills/manifest.md
-- name: browser-use
-  source: https://github.com/browser-use/browser-use-skill
-  path: skills/browser-use
-  revision: abc123def456  # pinned for reproducibility
-  description: Safe browser automation patterns
-```
-
----
-
-## Installation & Synchronization
-
-The goal is a single source of truth that works across multiple agents (Goose, Codex, and compatible systems).
-
-### Local Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/blaine.git ~/workspace/blaine
-
-# Configure local Goose to recognize skills directory
-mkdir -p ~/.goose/skills
-for skill in ~/workspace/blaine/skills/*.md; do
-    ln -sf "$skill" ~/.goose/skills/$(basename "$skill")
-done
-
-# Verify setup
-goose list-skiils  # or equivalent command
-```
-
-### Git Integration
-
-Blaine follows its own branching policy defined in BLAINE.md:
-
-- `main` — stable, reviewed work
-- `task/<name>` — independent implementation efforts
-- Use **worktrees** when multiple writers need isolation
-
-See BLAINE.md for the complete Git and collaboration protocol.
-
----
-
-## Why This Exists
-
-Most agentic setups today suffer from:
-
-1. **Context bloat**: Every request reconstructs what should be remembered
-2. **Token waste**: Frontier models used for discovery and grep
-3. **No trust boundaries**: Arbitrarily vendored skills without provenance
-4. **Machine-specific chaos**: Secrets mixed with portable configuration
-5. **No verification**: Builders certifying their own work
-
-Blaine is the antidote: a local-first orchestrator that understands objectives, curates evidence deliberately, uses deterministic tools for facts, and spends frontier tokens only where they matter.
-
----
-
-## Contributing to This Repository
-
-This repository represents a working methodology. Changes should:
-
-1. **Solve concrete problems** — no speculative abstractions
-2. **Demonstrate provenance** — include commands, references, evidence
-3. **Respect trust boundaries** — do not commit secrets or private data
-4. **Follow existing conventions** — prefer established patterns over invention
-
----
+`runtime/` contains implementation, `tests/` deterministic checks, `experiments/`
+retained acceptance evidence, and `infra/` platform desired state and validation.
+Follow the D2 and platform runbooks for their respective setup paths; a clone
+alone does not deploy the host or provision private credentials. Secrets stay
+outside Git. This repository does not yet claim complete Daily Driver v0 readiness.
 
 ## License
 
-MIT License — permissive licensing to encourage adoption and adaptation of the orchestration patterns.
-
----
-
-## Author
-
-Leo Fuso (@leofuso)
-
-This repository documents a personal methodology for local-first agentic development. The techniques described here are opinionated but portable.
+[MIT](LICENSE). Created by Leo Fuso (@leofuso).

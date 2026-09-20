@@ -1,9 +1,16 @@
 # D1 — Long-lived platform foundation
 
-**Current infrastructure continuation:** see [infrastructure foundation](platform-infrastructure.md)
-and [Grafana Cloud activation](platform-grafana-cloud.md). The backup checkpoint
-below is historical; its pause remains active, while the new user request authorizes
-infrastructure installation. Final infrastructure evidence is recorded separately.
+**Current: D1 IN PROGRESS — infrastructure foundation PASS; backup PAUSED.**
+See [infrastructure acceptance](platform-infrastructure.md), [Grafana Cloud activation](platform-grafana-cloud.md)
+and [remaining D1 service/recovery work](roadmap/001-blaine-development-roadmap.md#d1).
+SeaweedFS Object Storage is now deployed. Blaine/Restate/vLLM/MIRIX service
+adoption and full reboot acceptance remain incomplete. No backup acceptance is implied.
+
+## Historical backup checkpoint (pause still active)
+
+The following inventory and “next” statements describe the earlier backup slice,
+before infrastructure bring-up. They do not override current infrastructure evidence
+or the roadmap. Historical permission records are not standing authorization.
 
 **LIVE BACKUP ACCEPTANCE = PAUSED** — user-directed checkpoint, 2026-09-20.
 Backup investigation and live acceptance are paused for a later bounded pass.
@@ -13,7 +20,8 @@ blocker. No infrastructure installation is started by this checkpoint.
 The design and offline tests exist. Physical disk safeguards were exercised,
 but real systemd backup execution fails during PostgreSQL identity switching.
 There is no accepted physical backup generation or live restore result. Complete
-durable-brain backup also remains incomplete because Object Storage is absent.
+durable-brain backup was also incomplete because Object Storage was then absent.
+Object Storage has since been deployed; its backup remains unproven.
 The backup timer is confirmed **disabled and inactive** and must remain so.
 This is **not Daily Driver acceptance**.
 

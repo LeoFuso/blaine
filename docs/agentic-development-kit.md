@@ -1,5 +1,9 @@
 # Blaine — Personal Agentic Development Kit
 
+> Historical planning material. Current sequencing, accepted status and next work
+> live in the [development roadmap](roadmap/001-blaine-development-roadmap.md).
+> Build sequences, estimates and next steps below are retained context, not current commitments.
+
 > **North Star / Working Architecture**
 >
 > Blaine is a personal agentic work system: a durable, context-aware control plane that turns intent into tasks, chooses the right tools and agents, keeps execution state outside the LLM, minimizes paid cloud inference, and lets the user steer work interactively from the IDE.

@@ -1,5 +1,9 @@
 # Blaine Refactor Plan — Rule Classification
 
+> Historical planning material. Current sequencing, accepted status and next work
+> live in the [development roadmap](roadmap/001-blaine-development-roadmap.md).
+> Build sequences, estimates and next steps below are retained context, not current commitments.
+
 Classification of every rule, section, and practice in `BLAINE.md` versus upstream `CLAUDE.md`, and a plan for splitting the result into coherent files.
 
 ## Legend

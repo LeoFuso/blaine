@@ -2,7 +2,8 @@
 
 Blaine is a personal agentic work system with a conversational control plane over
 durable Tasks. The [product architecture](agentic-development-kit.md) gives the
-broader direction; this document maps the first Personal Agent harness. Current
+historical product direction; the [living roadmap](roadmap/001-blaine-development-roadmap.md)
+records current sequencing and acceptance. This document maps ownership. Current
 [ADRs](decisions/README.md) take precedence over older exploratory topology and
 routing examples; Proposed ADRs remain proposals.
 
@@ -11,7 +12,7 @@ User / interactive client
          |
 Personal Agent (BLAINE.md + selected skills)
          |
-TaskSpec / operation contracts (future tool bindings)
+TaskSpec / transport-neutral controls (D2 ACP binding)
          |
 Durable Runtime (currently Restate) -- replaceable workers and verifiers
          |
@@ -27,11 +28,13 @@ Task evidence / external sources
 | Contracts | Intent structure and semantic binding requirements | [TaskSpec](contracts/task-spec.md), [operations](contracts/task-operations.md) |
 | Policy | Shared safety, context, cloud, and verification guidance | `docs/policies/` |
 | Durable Runtime | Durable state, timers, retries, signals, recovery, lifecycle enforcement | Current implementation: Restate; evaluated by ADR 0003 |
-| Workers/verifiers | Bounded execution and evidence checks | Replaceable adapters; bindings added separately |
+| Workers/verifiers | Bounded execution and evidence checks | Replaceable execution adapters; deterministic completion verification |
 
-The harness does not implement runtime calls, ACP, adapters, routing, or indexing.
-Its contracts are requirements for later integration, not documentation of currently
-implemented endpoints. Runtime implementation and milestone work remain separate.
+The instruction harness expresses semantic procedures. The [D2 implementation](daily-driver-d2.md)
+binds transport-neutral controls to durable kernel Tasks through the official ACP SDK.
+Its bounded acceptance includes a workspace fixture; live IntelliJ investigation,
+edits and test execution remain D3. Contracts describe intent and guarantees; consult
+D2 documentation for the implemented surface and its supported scope.
 
 ## Memory and context
 

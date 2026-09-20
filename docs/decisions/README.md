@@ -81,3 +81,28 @@ See [template.md](template.md) for the standard shape.
 ## Local platform constraint
 
 [ADR 0018 — Blaine Local Platform, Durability and Observability Architecture](0018-local-platform-durability-and-observability.md) preserves the supplied proposed decision. It is an explicit architectural constraint for Cognitive Kernel Increment 10 and subsequent work. Its target platform is not claimed implemented or validated by recording the ADR.
+
+## Decision index
+
+Current sequencing lives in the [development roadmap](../roadmap/001-blaine-development-roadmap.md);
+measured results live in the [milestone index](../milestones/README.md). Read each
+ADR’s own status before treating it as an accepted constraint.
+
+- [ADR 0001 — Task Is the Unit of Work](0001-task-is-the-unit-of-work.md)
+- [ADR 0002 — IntelliJ ACP as the First Interactive Client](0002-intellij-acp-as-first-client.md)
+- [ADR 0003 — Evaluate Restate as the Durable Runtime](0003-evaluate-restate-as-durable-runtime.md)
+- [ADR 0004 — Personal Agent as Conversational Control Plane](0004-personal-agent-control-plane.md)
+- [ADR 0005 — Semantic triage selects the work strategy](0005-semantic-triage-selects-work-strategy.md)
+- [ADR 0006 — SpecKit is an optional structured-work strategy](0006-speckit-as-structured-work-strategy.md)
+- [ADR 0007 — Deterministic tools precede model inference](0007-tools-before-model-inference.md)
+- [ADR 0008 — Paid cloud access crosses a single dispatch boundary](0008-paid-cloud-crosses-single-dispatch-boundary.md)
+- [ADR 0009 — Cloud Context Packet is the mandatory cloud context contract](0009-cloud-context-packet.md)
+- [ADR 0010 — Worker selection is capability and quality driven](0010-worker-selection-is-capability-and-quality-driven.md)
+- [ADR 0011 — Local inference is a scheduled shared resource](0011-local-inference-is-a-scheduled-shared-resource.md)
+- [ADR 0012 — Blaine Core is protocol-neutral](0012-blaine-core-is-protocol-neutral.md)
+- [ADR 0013 — Protected context is transformed locally before egress](0013-protected-context-transformations.md)
+- [ADR 0014 — Project knowledge is retrieval-first, training-last](0014-project-knowledge-is-retrieval-first.md)
+- [ADR 0015 — Durable Task execution and verification](0015-durable-task-execution-and-verification.md)
+- [ADR 0016 — Agent harnesses are replaceable execution capabilities](0016-agent-harnesses-are-replaceable-execution-capabilities.md)
+- [ADR 0017 — Human–Agent Work Coordination Plane](0017-human-agent-work-coordination-plane.md)
+- [ADR 0018 — Blaine Local Platform, Durability and Observability Architecture](0018-local-platform-durability-and-observability.md)

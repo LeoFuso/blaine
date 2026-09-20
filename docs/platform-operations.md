@@ -1,15 +1,16 @@
 # D1 platform operations and recovery gates
 
-Read the [D1 inventory and STOP boundaries](platform-d1.md) first. Commands below
+Read the [current infrastructure foundation](platform-infrastructure.md),
+[roadmap D1 gates](roadmap/001-blaine-development-roadmap.md#d1), and
+[historical backup checkpoint](platform-d1.md) first. Commands below
 are a runbook; recording them does not mean host deployment was executed.
 
 **LIVE BACKUP ACCEPTANCE = PAUSED**. Keep `blaine-partial-backup.timer`
 **disabled/inactive** (confirmed at checkpoint). Real systemd backup fails during
 PostgreSQL identity switching; no live backup PASS or physical restore is claimed.
-Offline tests and physical volume safeguards exist. S3 is not deployed, so
-complete durable-brain backup is also incomplete. The next D1 workstream is
-missing infrastructure; backup does not block it. No new installation is part
-of this pause.
+Offline tests and physical volume safeguards exist. SeaweedFS Object Storage is
+now deployed, but complete PostgreSQL + Blaine Object Storage backup remains
+unproven. Next D1 work is long-lived service adoption; backup remains paused.
 
 All host mutation, backup, restore and reboot commands below are **future runbook
 reference only**, suspended during this pause. Do not run them to close this
@@ -22,7 +23,8 @@ Restate, Redis, ClickHouse and telemetry cannot be the only repository of
 long-term knowledge. Restate's disk remains necessary for normal execution
 recovery, but is not the brain's disaster-recovery source of truth.
 
-No S3 implementation is deployed or selected here. D1 provides an explicitly
+The deployed SeaweedFS store is not covered by this backup implementation.
+D1 provides an explicitly
 named `partial-backup` of selected PostgreSQL databases and the **existing kernel
 file artifact format**, not a generic copy of an imaginary S3 data directory.
 Every manifest/status says `complete_durable_brain: false`. Setting the explicit
@@ -54,7 +56,7 @@ Artifact strategy: preserve each selected root's label and `task_id/sha256` key
 with exact bytes. Verify content against the filename hash. Reject unexpected
 layouts, symlinks, special files and nested filesystems; a concurrent temporary
 artifact file makes the operation fail safely. Current kernel metadata is in
-the key/reference itself. This does **not** preserve future S3 bucket policies,
+the key/reference itself. This does **not** preserve S3 bucket policies,
 versions/delete markers, tags, retention, encryption keys or implementation
 metadata. Those must be covered by the actual implementation's export/restore
 strategy before full brain acceptance. Redis cache/queue data and telemetry are
@@ -297,63 +299,29 @@ Check agreed SQL invariants and `ArtifactStore.read()` for selected retained
 references in a copied scratch artifact root. Record generation, checks and
 outcomes separately from `status.json`; then shut down/delete only the scratch
 cluster. Global SQL and dumps are trusted sensitive backup inputs, never fetched
-from an untrusted source. S3 restore remains blocked until the actual storage
-implementation and metadata/version semantics exist.
+from an untrusted source. Complete Object Storage restore remains unproven until the deployed storage
+implementation and its metadata/version semantics are covered and verified.
 
 ## Future reboot acceptance — not authorized or executed
 
-This sequence is blocked on actual service adoption, S3 deployment, a verified
-physical backup and an operator-approved reboot window. Do not reboot merely to
-test the current inventory: Restate/Blaine/ingress are absent and model services
-remain terminal-owned.
+The pre-infrastructure reboot sketch is superseded by the [D1.G gate](roadmap/001-blaine-development-roadmap.md#d1).
+Prepare a reviewed acceptance profile after actual service adoption, using current
+unit names, durable paths, readiness endpoints and recovery procedures from the
+infrastructure/service documentation. Do not assume proposed units or public ingress
+exist. Private Daily Driver acceptance does not require Caddy.
 
-First write a local, reviewed acceptance profile under ignored
-`machine-config/`: exact systemd unit names for Blaine, Restate, both inference
-services, the object store and Caddy; expected loopback/ingress URLs; database
-connection and S3 client configuration **paths**, not secrets in this repository.
-Use the actual provider's supported S3 client after selection. No live S3 client
-configuration or provider-specific command can honestly be supplied yet.
+Record a healthy baseline, deployment revisions, Restate registration, synthetic
+Task state, semantic-memory evidence, a synthetic PostgreSQL row and a bounded
+Object Storage object's hash. Review recovery readiness and explicitly record the
+paused backup limitation before requesting a reboot window. This runbook neither
+unpauses backup nor grants reboot authorization.
 
-Before reboot, create a uniquely named synthetic row in a dedicated acceptance
-database and a uniquely keyed synthetic object using that approved local S3
-client. Record the SQL value, object SHA-256, service deployment revision and
-boot ID in the local acceptance packet. Do not use a live business table. Back
-up and restore-test these values using the accepted complete-brain mechanism.
-The partial D1 mechanism alone cannot satisfy this gate.
-
-With that local profile loaded, run the exact service/readiness checks:
-
-```bash
-test -n "${BLAINE_UNIT:?}" && test -n "${RESTATE_UNIT:?}"
-test -n "${QWEN_UNIT:?}" && test -n "${EMBEDDING_UNIT:?}"
-test -n "${OBJECT_UNIT:?}" && test -n "${CADDY_UNIT:?}"
-systemctl is-enabled postgresql.service redis-server.service \
-  "$RESTATE_UNIT" "$BLAINE_UNIT" "$QWEN_UNIT" "$EMBEDDING_UNIT" "$OBJECT_UNIT" "$CADDY_UNIT"
-systemctl is-active postgresql@18-main.service redis-server.service \
-  "$RESTATE_UNIT" "$BLAINE_UNIT" "$QWEN_UNIT" "$EMBEDDING_UNIT" "$OBJECT_UNIT" "$CADDY_UNIT"
-pg_isready -h /var/run/postgresql -p 5432
-redis-cli -h 127.0.0.1 PING
-curl --fail --silent --show-error --max-time 10 "${RESTATE_ADMIN_URL:?}/deployments"
-curl --fail --silent --show-error --max-time 10 "${BLAINE_READINESS_URL:?}"
-curl --fail --silent --show-error --max-time 10 http://127.0.0.1:8000/health
-curl --fail --silent --show-error --max-time 10 http://127.0.0.1:8001/health
-curl --fail --silent --show-error --max-time 10 "${INGRESS_READINESS_URL:?}"
-cat /proc/sys/kernel/random/boot_id
-```
-
-Confirm Restate registration points at the accepted Blaine deployment, not just
-an HTTP 200, and verify one bounded synthetic model call using the accepted model
-profile. Record synthetic SQL/object values and backup freshness. Only then,
-with **separate explicit reboot authorization**, the operator may execute
-`sudo systemctl reboot`.
-
-After reconnecting, run the same checks, require a different boot ID, read the
-same SQL row and retrieve/hash the same S3 object, check one bounded inference
-call, and inspect `systemctl --failed` and `journalctl -b -u UNIT` for each core
-unit. A diagnostic telemetry outage alone does not fail core authority. Missing
-core service, registration, state or object is STOP; do not start a duplicate
-development supervisor to hide a boot failure. Preserve evidence and investigate
-that unit before another reboot attempt. Entire-host acceptance is still pending.
+Only with **explicit human reboot authorization**, perform the controlled reboot.
+Require a changed boot ID, required services returning under their owners, the same
+Task remaining queryable/recoverable, memory and synthetic SQL/object evidence
+intact, and inference readiness. Preserve failed-unit/log evidence. Do not hide a
+service failure by starting a second terminal-owned runtime. Missing core service,
+registration, state or artifact is STOP. Full-host acceptance remains pending.
 
 ## Remaining work after this session
 
@@ -363,9 +331,9 @@ The SSD is already prepared and its historical data preservation was verified
 at preparation. A later bounded backup pass must reconcile attempted installed
 code, establish successful service execution, and complete physical generation,
 restore and final history/capacity evidence. S3-backed complete-brain protection
-remains separate until Object Storage exists.
+must now cover the deployed Blaine Object Storage as well as PostgreSQL.
 
-The next D1 workstream focuses on missing infrastructure and service ownership;
-backup is not its blocker. S3/runtime cutover and reboot acceptance retain their
+The next D1 workstream focuses on Blaine, Restate, vLLM and MIRIX service ownership;
+backup is not its blocker. Runtime/storage integration and reboot acceptance retain their
 own boundaries. Cloud/off-site backup remains deferred. This checkpoint installs
 nothing, changes no disks, performs no reboot and pushes nothing.

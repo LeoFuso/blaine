@@ -1,6 +1,32 @@
 # Cognitive Kernel progressive program
 
-**Current: Increment 12 PASS — bounded parallel child Tasks. Program stopped.**
+**Current: Increments 1–12 COMPLETE.** The Cognitive Kernel is no longer the
+primary development bottleneck. Continue from the [Daily Driver roadmap](../roadmap/001-blaine-development-roadmap.md),
+not the historical next-step instructions retained below. Future kernel changes
+require concrete Daily Driver evidence.
+
+| Increment | Final status | Milestone |
+| --- | --- | --- |
+| 1 | PASS | [Accepted checkpoint](003-cognitive-kernel-increment-1.md) |
+| 2 | PASS | [Accepted checkpoint](004-cognitive-kernel-increment-2.md) |
+| 3 | PASS | [Accepted checkpoint](007-cognitive-kernel-increment-3-passed.md) |
+| 4 | PASS | [Accepted checkpoint](009-cognitive-kernel-increment-4-passed.md) |
+| 5 | PASS | [Accepted checkpoint](011-cognitive-kernel-increment-5-passed.md) |
+| 6 | PASS | [Accepted checkpoint](012-cognitive-kernel-increment-6-passed.md) |
+| 7 | PASS | [Accepted checkpoint](015-cognitive-kernel-increment-7-passed.md) |
+| 8 | PASS | [Accepted checkpoint](024-cognitive-kernel-increment-8-passed.md) |
+| 9 | PASS | [Accepted checkpoint](025-cognitive-kernel-increment-9-passed.md) |
+| 10 | PASS | [Accepted checkpoint](027-cognitive-kernel-increment-10.md) |
+| 11 | PASS | [Accepted checkpoint](036-cognitive-kernel-increment-11-live-pass.md) |
+| 12 | PASS | [Accepted checkpoint](037-cognitive-kernel-increment-12-parallel-children.md) |
+
+Increment 10 ultimately established ExecutionEvent; its earlier workload STOP was
+superseded. Increment 11's successful second live probe does not erase the failed
+first probe or its UNKNOWN usage. Scope and limitations remain in each milestone.
+
+## Historical checkpoints (retained evidence, not current sequencing)
+
+**Historical checkpoint: Increment 12 PASS — bounded parallel child Tasks. Program stopped.**
 
 Native Restate fan-out/fan-in now supports 2–4 explicitly independent children,
 with stable typed relationships, bounded result references, ALL_TERMINAL waiting,
@@ -11,11 +37,11 @@ Zero duplicate child/effect execution and zero parent cognition while waiting.
 See [milestone 037](037-cognitive-kernel-increment-12-parallel-children.md) and
 [machine-readable evidence](../../experiments/kernel-increment-12/evidence/summary.json).
 Increment 11 remains CLOSED; no model/cloud call or further development cycle occurred.
-Next: report and stop. No additional increment is defined or started.
+Historical next: report and stop. No additional increment is defined or started.
 
 Previous checkpoint entries below retain their historical decisions.
 
-**Current: Increment 11 PASS / CLOSED after the second explicitly authorized live probe.**
+**Historical checkpoint: Increment 11 PASS / CLOSED after the second explicitly authorized live probe.**
 
 `frontier-live-binding-002`, dispatch `dispatch:frontier-live-binding-002/2`,
 completed through the corrected Codex 0.155.1 binding. One non-fatal diagnostic was
@@ -25,11 +51,12 @@ settlement, no pending reservation for this Task; no Blaine retry/fallback/escal
 See [live PASS milestone](036-cognitive-kernel-increment-11-live-pass.md) and
 [machine-readable evidence](../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json).
 The historical `001` FAILED Task and pending UNKNOWN reservation remain unchanged.
-Increment 12 has not started. Stop; separate continuation is required.
+At this historical checkpoint, Increment 12 had not started; separate continuation
+was required. It subsequently passed, as recorded in the completed index above.
 
 The entries below preserve previous checkpoints and their then-current next decisions.
 
-**Current: Increment 11 Codex 0.155.1 offline correction PASSED; no new live dispatch.**
+**Historical checkpoint: Increment 11 Codex 0.155.1 offline correction PASSED; no new live dispatch.**
 
 Version-specific exec semantics supplied from `rust-v0.155.1` resolve milestone
 034's protocol uncertainty. The corrected binding requires terminal success, rejects
@@ -38,12 +65,12 @@ ordered structure-only diagnostics. Kernel and settlement semantics are unchange
 Historical milestones 033/034 and the original FAILED Task/pending UNKNOWN reservation
 remain exact. See [correction milestone](035-cognitive-kernel-increment-11-codex-protocol-correction.md)
 and [offline evidence](../../experiments/kernel-increment-11/evidence/codex-01551-correction/summary.json).
-Next: explicit authorization for one fresh synthetic live probe with a new Task and
+Historical next: explicit authorization for one fresh synthetic live probe with a new Task and
 dispatch identity. Do not reuse the old receipt. Increment 11 remains open;
 Increment 12 remains unstarted.
 
 
-**Current: Increment 11 offline event diagnostic STOP; no additional live dispatch.**
+**Historical checkpoint: Increment 11 offline event diagnostic STOP; no additional live dispatch.**
 
 The adapter rejected the original completed `error` item before result normalization.
 Its body and ordering were discarded. Local CLI/package vocabulary does not establish
@@ -53,12 +80,12 @@ of failure-shaped top-level events and missing terminal events; it is not a new 
 for the live binding. Historical milestone 033, FAILED Task and pending UNKNOWN
 reservation remain unchanged. See [offline diagnostic](034-cognitive-kernel-increment-11-offline-event-stop.md)
 and [machine-readable cases](../../experiments/kernel-increment-11/evidence/offline-event-diagnostic/diagnosis.json).
-Next: approved local version-matched exec protocol definitions, or authorization for
+Historical next: approved local version-matched exec protocol definitions, or authorization for
 a narrow official source lookup, before an adapter correction. No new cloud call;
 Increment 12 remains unstarted.
 
 
-**Current: Increment 11 live attempt STOP; exactly one worker dispatch, Task FAILED.**
+**Historical checkpoint: Increment 11 live attempt STOP; exactly one worker dispatch, Task FAILED.**
 
 The approved retry-domain and worker-bound-context clarification resolved the earlier
 preflight restriction. A sterile Codex 0.155.1 / gpt-6-astra-intent dispatch returned
@@ -68,12 +95,12 @@ CompletionVerifier found no admitted result artifact; no runtime completion was
 claimed. One dispatch remains pending/unknown, with no retry, fallback or escalation.
 See [live STOP milestone](033-cognitive-kernel-increment-11-live-stop.md) and
 [machine-readable evidence](../../experiments/kernel-increment-11/evidence/live-authorized/summary.json).
-Next: explicit approval for a narrow offline event-handling/capture diagnostic.
+Historical next: explicit approval for a narrow offline event-handling/capture diagnostic.
 Do not rerun the live probe or clear its spent receipt. Any second live dispatch
 requires new explicit authorization. Increment 11 is not ready to close; Increment
 12 remains unstarted. The previous isolated PASS records remain intact.
 
-**Current: Increment 11 live preflight STOP; zero live dispatches. Isolated gates remain PASSED.**
+**Historical checkpoint: Increment 11 live preflight STOP; zero live dispatches. Isolated gates remain PASSED.**
 
 The user authorized the first synthetic live probe, subject to preflight. Installed
 Codex 0.155.1 reports OpenAI/ChatGPT routing and model intent gpt-6-astra, but rejects
@@ -81,11 +108,11 @@ the attempted built-in-provider retry overrides. Zero automatic retry and exact
 model-visible input remain unverified; no Task, grant, reservation or cloud call was
 started. See [STOP milestone](032-cognitive-kernel-increment-11-live-preflight-stop.md)
 and [machine-readable preflight](../../experiments/kernel-increment-11/evidence/live/preflight.json).
-Next decision: a narrow offline binding diagnostic or explicit clarification of
+Historical next decision: a narrow offline binding diagnostic or explicit clarification of
 native transport retry allowance. No production semantics changed. Increment 12
 remains unstarted. Earlier PASS records below are isolated evidence only.
 
-**Current: Increment 11 context-projection gate PASSED; STOP before live frontier work.**
+**Historical checkpoint: Increment 11 context-projection gate PASSED; STOP before live frontier work.**
 
 Frontier authorization now requires a Blaine-produced immutable projection and binds
 its exact outbound bytes. Dispatch rechecks the accepted grant before the adapter;
@@ -96,10 +123,10 @@ A–J authority/routing/accounting guarantees remain intact. No cloud/model call
 See [projection milestone](031-cognitive-kernel-increment-11-projection.md),
 [current frontier contract](../contracts/frontier-dispatch.md), and
 [summary](../../experiments/kernel-increment-11/evidence/projection/summary.json).
-Next: human review/authorization of the proposed one-worker synthetic live probe,
+Historical next: human review/authorization of the proposed one-worker synthetic live probe,
 including binding-specific preflight. Increment 12 remains unstarted.
 
-**Current: Increment 11 revised isolated boundary PASSED; STOP before live frontier work.**
+**Historical checkpoint: Increment 11 revised isolated boundary PASSED; STOP before live frontier work.**
 
 The authorized correction separates hard authority, economic suitability and observed
 usage. Frontier v2 retains exact Task/context/scope/binding authorization, real worker
@@ -109,7 +136,7 @@ native Restate cases passed; 356 ExecutionEvents independently verified. No clou
 calls or credentials were used. See [current milestone](030-cognitive-kernel-increment-11-revised.md),
 [current contract](../contracts/frontier-dispatch.md), and
 [machine-readable evidence](../../experiments/kernel-increment-11/evidence/revised/summary.json).
-Next: human-authorized real-binding preflight/one bounded worker dispatch under the
+Historical next: human-authorized real-binding preflight/one bounded worker dispatch under the
 revised model. Increment 12 is unstarted. Historical v1 results below remain valid
 for their isolated scope; their universal per-Task token/dollar assumptions are
 superseded by this authorized correction.
@@ -228,8 +255,10 @@ Approved basis: [checkpoint](../research/cognitive-loop-checkpoint.md), Incremen
 1 clarifications, and the user's ordered progressive program. Do not restart
 architecture research. Each increment is a hard gate: hypothesis → smallest
 implementation → focused tests → required live probe → retained evidence and
-milestone → explicit gate evaluation. The table records actual status, not plans
-as accomplishments.
+milestone → explicit gate evaluation. The historical table below records status at that earlier checkpoint,
+not the completed program state.
+
+### Historical planning snapshot (superseded by the completed index above)
 
 | Increment | Status | Evidence / record | Architecture deviations | Next required gate |
 | --- | --- | --- | --- | --- |
@@ -246,7 +275,7 @@ as accomplishments.
 | 11: cloud routing seam | NOT STARTED | — | — | Separate usefulness, authorization, egress, budget and provider; existing safe configuration only; unavailable live provider may be skipped with seam recorded |
 | 12: parallel children | NOT STARTED | — | — | Only after prior stability; explicit independence, resource bounds, deterministic aggregation, failures/cancellation, isolated context and total budget |
 
-## Continuation rules
+## Historical continuation rules
 
 One loop per Task. Runtime owns lifecycle/effects/enforcement; cognition chooses
 semantics. INVOKE_CAPABILITY, same-Task HANDOFF and independent SPAWN_TASK remain

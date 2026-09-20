@@ -1,0 +1,636 @@
+# Blaine development roadmap and repository handoff
+
+**Living checkpoint: 2026-09-20. Current program: Daily Driver Enablement.**
+
+This is Blaine's authoritative **living development program**, handoff for future
+human/agent sessions, and record of intended sequencing and dependencies. It is
+**not a release calendar**, a fixed long-range commitment, or a substitute for
+ADRs, contracts, milestone reports, or measured evidence. Dates identify evidence
+checkpoints, not promised delivery dates. Read the [current next work](#current-next)
+block before selecting an increment.
+
+> The roadmap preserves direction. Evidence chooses the next increment.
+
+> `main` is the latest coherent, safe and truthfully documented state of Blaine, not merely the set of fully completed experiments.
+
+This checkpoint is based on kernel milestones through 037, D1 infrastructure
+acceptance (`48b077d`, `e642966`) and its activation runbook (`e2d9134`), and D2
+implementation/validation (`d7a492f`, `658fef5`). These are repository evidence,
+not a fresh claim about host health. A clone supplies the program and evidence;
+it does not supply secrets, machine state, or authorization to mutate the host.
+
+## Product destination
+
+Blaine is a **personal-first agentic work system**. Coding is an important
+workload alongside investigation, issue tracking, research and personal operations.
+Blaine is not merely a coding agent, chat wrapper, generic agent framework, or LLM
+session manager. Interactive work is the default; unattended work is a capability.
+
+> Task > session.
+
+The intended Daily Driver lets a user delegate real work: inspect or modify a
+codebase through a trusted workstation/IDE; make a small refactor and run tests;
+investigate a technical problem; use issue trackers and other reusable
+capabilities; perform personal operational Tasks; create and reuse capabilities
+under authority; wait for a human decision, notify remotely, and resume the same
+Task after a response. Process and host failures must not silently lose Task state.
+
+Local inference is abundant relative to paid frontier intelligence. First use
+authoritative tools and deterministic operations when they suffice; use local
+cognition when semantic choice is necessary; selectively route frontier work
+under explicit authority and context boundaries. Neither local nor paid inference
+should simulate a reliable tool or become the lifecycle engine. See the
+[local-first policy](../policies/local-first-and-context.md).
+
+## Stable architectural boundaries
+
+These boundaries have kernel evidence within the recorded experimental scopes.
+They are constraints on new product work, not a claim that every future workload
+or host-disaster scenario has passed.
+
+| Boundary | Ownership and invariant | Evidence / contract |
+| --- | --- | --- |
+| Task and lifecycle | Task state is durable. Restate owns lifecycle, retries, timers, suspension/resumption and crash recovery. Models, workers, ACP/Personal Agent/chat sessions do not own that lifecycle. | [Task identity ADR](../decisions/0001-task-is-the-unit-of-work.md), [runtime ADR](../decisions/0003-evaluate-restate-as-durable-runtime.md), [kernel progress](../milestones/cognitive-kernel-progress.md) |
+| Cognition | Models propose semantic intent; Blaine determines admissible actions; code lowers intent into operational protocol. Cognition selects semantic work to attempt, not whether a known wait or verified completion should occur. | [semantic boundary and verifier-driven progression](../milestones/024-cognitive-kernel-increment-8-passed.md), [architecture checkpoint amendments](../research/cognitive-loop-checkpoint.md) |
+| Waiting | Known external dependency → durable runtime suspension. No model call merely to choose WAIT, including human input and joined child outcomes. | [HumanDecision milestone](../milestones/011-cognitive-kernel-increment-5-passed.md), [parallel child Tasks](../milestones/037-cognitive-kernel-increment-12-parallel-children.md) |
+| Completion | CompletionContract and deterministic CompletionVerifier own completion. Worker/model claims are insufficient. Parent and child completion remain independent. | [completion policy](../policies/task-completion-and-lifecycle.md), [progression evidence](../milestones/024-cognitive-kernel-increment-8-passed.md), [child evidence](../milestones/037-cognitive-kernel-increment-12-parallel-children.md) |
+| Authority | PolicyGate / hard execution authority decides whether a concrete effect may execute. Suitability/economic routing is not authority. Technical capability, authorization, and approval/autonomy are separate. Workers cannot broaden grants. | [frontier contract](../contracts/frontier-dispatch.md), [YouTrack proof](../milestones/012-cognitive-kernel-increment-6-passed.md), [D2 scoped workspace proof](../daily-driver-d2.md) |
+| Context | MIRIX is semantic memory, not Task state. Project graphs are derived knowledge, not authority. Chat history is not Task state. Frontier authority binds the exact projected bytes delivered to the worker binding; raw context cannot bypass projection. | [MIRIX milestone](../milestones/009-cognitive-kernel-increment-4-passed.md), [project-knowledge carveout](../milestones/025-cognitive-kernel-increment-9-passed.md), [projection contract](../contracts/frontier-dispatch.md) |
+| Workers | Worker dispatch ≠ model inference; worker session ≠ Task; worker completion ≠ Task completion. Hidden worker/provider/model usage stays UNKNOWN when unobservable; do not invent exact call counts, models or costs. | [worker/harness milestone](../milestones/015-cognitive-kernel-increment-7-passed.md), [live frontier proof and accounting limits](../milestones/036-cognitive-kernel-increment-11-live-pass.md) |
+| Observability | ExecutionEvent is semantic forensic evidence, never runtime authority. Logical Task causality and physical tracing causality are distinct. Telemetry failure must not determine Task correctness. | [ExecutionEvent contract](../contracts/execution-event.md), [observability proof](../milestones/027-cognitive-kernel-increment-10.md) |
+
+A configured implementation, proposed ADR, isolated proof, live binding proof,
+and product acceptance are different claims. Preserve those distinctions when
+updating this document. ADR 0018 retains its recorded proposal status; D1 documents
+which platform direction and packaging the user subsequently accepted. Do not
+silently mark every proposal validated because one implementation slice passed.
+
+## Cognitive Kernel — Increments 1–12
+
+**STATUS: COMPLETE.** [Progress and evidence index](../milestones/cognitive-kernel-progress.md).
+
+The program established a durable per-Task execution loop with bounded real local
+model cognition and a JSON-only semantic decision path. It incorporated MIRIX
+memory/context, durable typed HumanDecision requests/responses, a YouTrack
+capability admitted through PolicyGate, and a replaceable external worker/harness
+boundary. The procedure experiments resolved progression ownership: evaluate
+completion from evidence and suspend on known dependencies without asking cognition
+to reproduce runtime facts. Project-knowledge experiments preserved source truth
+and freshness over derived navigation.
+
+ExecutionEvent supplied backend-independent forensic evidence. Increment 11
+separated frontier hard authority, economic suitability and accounting; bound
+authorization to exact context projection; and passed one fresh, authorized live
+Codex dispatch after version-aware Codex 0.155.1 event normalization. That proof does
+not establish arbitrary model quality or known provider internals. The earlier
+failed live Task and UNKNOWN reservation remain historical facts, not repaired
+by the later PASS. See [live closure](../milestones/036-cognitive-kernel-increment-11-live-pass.md).
+
+Increment 12 proved bounded durable parallel child Tasks: explicit relationships,
+independent authority/context/completion, stable identities, ALL_TERMINAL joining,
+truthful failure propagation, and recovery without duplicate child/effect execution.
+The evidence covers 12 native Tasks and zero parent cognition while waiting; it
+is not an advanced multi-worker strategy program. See [milestone 037](../milestones/037-cognitive-kernel-increment-12-parallel-children.md).
+
+> The Cognitive Kernel is no longer the primary development bottleneck.
+
+Future kernel changes should answer concrete Daily Driver evidence. Do not reopen
+abstract kernel increments or repeat completed experiments merely because a new
+session lacks the old conversation. Historical STOP records preserve how the
+boundaries were learned; they do not supersede subsequent documented closure.
+
+## Current program — Daily Driver Enablement
+
+The objective is no longer to prove abstract kernel primitives:
+
+> Make Blaine useful for real personal/work Tasks as soon as possible without bypassing the proven boundaries.
+
+**Daily Driver v0** is a product milestone: a long-lived Blaine service accepts
+Tasks remotely; operates against a trusted IntelliJ/workstation environment;
+inspects and makes small bounded code changes; runs relevant tests/builds; returns
+artifacts, diffs and results; waits durably for human input through a remote
+channel; resumes the same Task; reuses capabilities; and survives the operational
+recovery path actually proven by D1. It is not achieved yet. D7 evaluates this
+experience as a whole.
+
+| Workstream | Current status | What it unlocks |
+| --- | --- | --- |
+| D1 — long-lived platform runtime | **IN PROGRESS — infrastructure foundation PASS** | Stable service ownership and operational recovery |
+| D2 — Personal Agent / remote intake | **PASS**, bounded control/fixture scope | Durable work accessible without kernel probes |
+| D3 — live IntelliJ / real code Tasks | **NEXT**, not started | Useful work in the existing trusted project environment |
+| D4 — reusable capability system | **PLANNED** | Reuse without a monolithic Personal Agent integration layer |
+| D5 — human interaction channels | **PLANNED** | Notifications and asynchronous remote decisions |
+| D6 — operational/cognitive observability | **PARTIALLY IMPLEMENTED / ACCELERATED BY D1** | Diagnose real Tasks using the existing stack |
+| D7 — v0 acceptance | **PLANNED** | Evidence that the combined product is a Daily Driver |
+
+### Explicitly not blockers for Daily Driver v0
+
+Blaine does **not** need an advanced Context Compiler, Jev, learned routing,
+Graphify/project graph, advanced Worker Sessions, multi-agent critic/debate,
+cloud backup, HA, Kubernetes, or a sophisticated custom UI before useful operation.
+These may evolve after real usage begins. Pull only a bounded prerequisite forward
+when evidence demonstrates that it blocks v0; do not import an entire later cycle.
+
+<a id="d1"></a>
+## D1 — Long-Lived Platform Runtime
+
+**STATUS: IN PROGRESS — infrastructure foundation PASS. Backup: PAUSED.**
+
+**Why:** the kernel can be durable while Blaine still depends on open terminals
+and undocumented machine state. D1 makes the machine an understandable long-lived
+host. Infrastructure PASS is narrower than service adoption, reboot recovery or
+complete backup acceptance.
+
+Start with [infrastructure ownership and paths](../platform-infrastructure.md),
+[credential-free acceptance](../../infra/validation-d1-infrastructure.json),
+[backup operations](../platform-operations.md), and [platform ADR 0018](../decisions/0018-local-platform-durability-and-observability.md).
+
+### Implemented and proven foundation
+
+Docker Engine / Compose run SeaweedFS S3-compatible Object Storage, ClickHouse,
+Langfuse Web and Langfuse Worker. Native PostgreSQL and Redis are reused; native
+Grafana Alloy collects local telemetry. systemd owns the top-level Compose stack
+and Alloy; pragmatic Ansible records desired state. Stack, Docker and Alloy
+restart/persistence smoke tests passed, including synthetic storage and Langfuse
+roundtrips. This does not claim a full-machine reboot or real cognitive traffic.
+
+Persistent locations are explicit: `/srv/blaine/infra/objects` includes SeaweedFS
+metadata/filer/volumes; ClickHouse uses `/srv/blaine/infra/clickhouse`; native
+PostgreSQL uses `/var/lib/postgresql/18/main`; Redis uses `/var/lib/redis`; Alloy
+uses `/var/lib/alloy`. The infrastructure runbook owns the detailed inventory,
+versions, endpoints and config paths. Do not copy a historical inventory into a
+new deployment without observing current state.
+
+Object namespaces are `blaine-artifacts`, `langfuse-events` and `langfuse-media`,
+with separate scoped access. Grafana Cloud is **CONFIGURED FOR FUTURE ACTIVATION**:
+local Alloy works, remote export is inactive, and an operator credential/bootstrap
+procedure is prepared. The [Bitwarden materialization/activation runbook](../platform-grafana-cloud.md)
+keeps secrets external to Git; preparation is not account authentication, token
+creation or delivery verification. No secrets were committed. The temporary D1
+privilege grant was removed; future operators must not assume passwordless sudo.
+
+The durable knowledge/artifact brain is **PostgreSQL + Blaine Object Storage**.
+Restate separately owns durable Task execution state and needs its own state path
+preserved for Task recovery. This statement does not imply that PostgreSQL/S3 alone
+reconstruct in-flight Tasks, or that the kernel's existing local ArtifactStore has
+already been migrated to S3. D2 still uses its documented native state/artifact
+paths; service adoption must account for the actual stores and their relationships.
+
+### Backup — PAUSED
+
+Design and isolated backup/restore test machinery exist. The identified Samsung
+SSD backup filesystem was prepared with an authorized Blaine subtree, preserving
+its historical backups. Physical/live PostgreSQL acceptance exposed a service
+identity-switching failure before a successful generation/restore. Infrastructure
+bring-up was intentionally prioritized. The timer remains disabled/inactive;
+**backup is not complete** and the failed installed variant must be reconciled
+before resuming. See [pause and volume evidence](../platform-d1.md).
+
+Future complete durable-brain backup must cover PostgreSQL **and** Blaine Object
+Storage, including the object store's metadata as well as object bytes. Existing
+PostgreSQL plus selected file-artifact tests do not prove that coverage. Historical
+backup data must remain untouched. Cloud/off-site backup is deferred.
+
+### D1.A — Blaine service adoption
+
+**Goal:** run actual Blaine application/runtime services under stable systemd
+ownership rather than terminals. Select the accepted application entrypoint and
+record release, config, secret references, state/artifact paths and dependencies;
+do not promote an obsolete probe or migrate an active journal silently.
+
+**Acceptance:** automatic start; observable health/readiness; controlled stop and
+restart; the same durable Task remains inspectable and resumable after restart;
+config is versioned where appropriate and secret values remain external. Coordinate
+with D1.B so application registration and runtime ownership agree.
+
+### D1.B — Restate service adoption
+
+**Goal:** one stable long-lived Restate runtime with systemd ownership and an
+explicit durable state directory. Inventory existing instances and registrations
+before adoption; no accidental second runtime may mask a failed service.
+
+**Acceptance:** automatic ownership/start, observable readiness, controlled restart,
+correct Blaine deployment registration, and recovery of the same synthetic Task
+identity/state. Record SDK/server/deployment versions and upgrade constraints.
+D2 process-restart evidence is useful input, not host-service adoption evidence.
+
+### D1.C — vLLM service adoption
+
+**Goal:** replace the observed terminal-owned local inference process with
+systemd ownership while capturing the actual version, model and serving config.
+Do not change model behavior or introduce a benchmark program in this slice.
+
+**Acceptance:** the configured model starts without a manual terminal; health is
+observable; controlled restart succeeds; existing serving behavior is preserved
+by a bounded authorized check. Account for any separate embedding service and GPU
+resource dependencies actually used by the adopted configuration.
+
+### D1.D — MIRIX service adoption
+
+**Goal:** apply the same long-lived operational treatment to MIRIX. Observe its
+actual process/dependency setup; preserve its PostgreSQL/object dependencies and
+semantic-memory identity. Do not move Task state into MIRIX.
+
+**Acceptance:** explicit service ownership, health/readiness and controlled restart;
+a synthetic retained semantic memory can be retrieved after restart without loss.
+Record dependency and inference readiness rather than assuming process start means
+memory readiness.
+
+### D1.E — Redis profiles (conditional)
+
+**Goal:** investigate whether current consumers need separate ephemeral and durable
+Redis profiles. Inventory cache/queue use, eviction and persistence requirements,
+and failure behavior. The existing reuse is evidence, not a mandate to split.
+
+**Acceptance:** a recorded decision backed by actual usage; implement separation
+only if evidence justifies it, then validate consumer recovery and isolation.
+A justified decision to retain the current instance also closes this investigation.
+
+### D1.F — Backup continuation
+
+Resume only after infrastructure/service priorities no longer dominate and the
+backup pause is explicitly lifted for a bounded pass. Reconcile source versus
+installed backup code and resolve the known service-identity defect before claiming
+live success. Establish PostgreSQL + Blaine Object Storage coverage and a coherent
+capture/restore boundary; separately document Restate recovery requirements.
+
+**Acceptance:** write only within the dedicated namespace on the existing backup
+filesystem; preserve historical data; fail closed for absent/wrong mount or UUID;
+produce and verify a real generation; restore it in isolation and check database,
+object identity/content and required metadata. Never substitute scratch machinery
+PASS for physical/live acceptance. Do not enable the timer before accepted proof.
+
+### D1.G — Full reboot acceptance
+
+**Goal:** final D1 operational proof after required services are adopted:
+healthy host → reboot → required services return → Blaine/Restate recover → local
+inference, memory and storage return → synthetic durable state remains valid.
+
+**Acceptance:** capture a reviewed pre-reboot service/dependency profile and recovery
+plan; persist synthetic Task, semantic-memory and storage evidence; observe a new
+boot identity and automatic service readiness; retrieve the same evidence and
+resume the same Task. Report any recovery/backup limitations explicitly. Do not
+manually start a duplicate supervisor to hide failed boot ownership.
+
+**Requires explicit human authorization to reboot the machine.** Roadmap inclusion
+is not reboot permission or permission to unpause backup. Refresh the old backup
+runbook's historical reboot sketch against the adopted topology before executing
+anything; Caddy/public exposure is not automatically a prerequisite for private v0.
+
+## D2 — Personal Agent / Remote Task Intake
+
+**STATUS: PASS.** [Boundary/run instructions](../daily-driver-d2.md),
+[acceptance summary](../../experiments/daily-driver-d2/evidence/summary.json),
+[validation/provenance](../../experiments/daily-driver-d2/evidence/validation.json).
+
+**Why:** a durable kernel is not usable if every Task requires direct test/probe
+interaction. D2 provides a human-facing control boundary without another runtime.
+
+Proven: transport-neutral controls using the official ACP SDK; Task creation with
+stable/idempotent identity (including concurrent requests); authoritative inspection;
+result/artifact retrieval; typed HumanDecisionResponse; explicit native cancellation;
+client/controller loss without implicit cancellation; controller restart without
+Task loss; PolicyGate-protected capabilities; no second Task ledger or authoritative
+chat history. The IntelliJ/ACP workspace **fixture** passed through real SDK calls.
+The evidence covers five native Tasks, controller/runtime/Restate restarts and no
+model calls. Identity guarantees have the documented retention boundary.
+
+**Not proven:** live IntelliJ filesystem/project access, real investigation, real
+edit, or real build/test execution. Those are D3. The earlier live IntelliJ/SSH
+experiment proved session-independent Task control, not project filesystem access.
+D2's private deterministic deployment and launch scripts are not completed D1
+service adoption or a general natural-language coding agent.
+
+<a id="d3"></a>
+## D3 — Live IntelliJ / Real Code Tasks
+
+**STATUS: NEXT — not started by this checkpoint.**
+
+**Why:** this is the minimum practical threshold for Daily Driver use. Blaine must
+work on repositories in the trusted company/work laptop environment, which already
+owns the checkout, IDE/index, Git, JDK/build tools and required private network.
+Use existing IntelliJ/ACP hooks. **Do not build a remote filesystem/workspace daemon
+or export the workstation into Blaine.** Reachability and technical capability
+never grant a Task all project authority.
+
+### D3.A — Live read-only workspace proof
+
+**Goal:** Personal Agent → durable Task → IntelliJ ACP → real project → authorized
+scoped read/navigation → result → verifier. Start from D2's adapter and earlier
+IntelliJ evidence rather than broad IDE research.
+
+**Acceptance:** discover/open the actual project context; navigate/read a bounded
+code location; restrict scope through PolicyGate and the client permission boundary;
+return useful evidence through Personal Agent; survive controller/session loss with
+the same Task. Use a safe project/area, avoid broad repository export, and record
+which live hooks actually exist. Record or resolve D2's POSIX/WSL path and exact-digest
+verification limitations in a bounded way rather than silently loosening them.
+
+### D3.B — Small code change
+
+Begin **only after D3.A passes**. Prefer a disposable or explicitly safe repository
+and Task before sensitive work. Inspect the target, authorize narrowly scoped files
+and tool effects, make a small edit, run the relevant test/build, capture the diff,
+and retain artifacts/evidence. The deterministic CompletionVerifier must evaluate
+the accepted contract; a worker exit or “done” message is insufficient. Acceptance
+requires no unrelated changes and no expansion of workspace authority.
+
+### D3.C — Real-work readiness
+
+After controlled proofs pass, perform one genuinely useful, low-risk Task such as:
+“Find this small duplication, refactor it, run relevant tests, show the diff.”
+Retain the objective, grants, actual work, tests, diff, independent completion result
+and any operator friction. This is the first deliberate real Daily Driver coding
+acceptance, not permission to scale into arbitrary company repositories.
+
+## D4 — Reusable Capability System
+
+**STATUS: PLANNED.**
+
+**Why:** YouTrack proved one vertical capability; IntelliJ/workspace supplies another;
+Telegram will supply another. Without a reusable model, the Personal Agent risks
+becoming a monolithic integration layer. Make capabilities discoverable, versioned
+and reusable by later Tasks, guided by D3's actual integration friction.
+
+Keep three questions separate: **capability** — what can technically be done;
+**authority** — which concrete effects this Task may perform; **approval/autonomy** —
+which authorized effects require a human decision. Neither discovery nor installation
+may grant authority implicitly.
+
+Candidate contract concerns, not a frozen registry schema: identity/version,
+input/output contract, authority requirements, execution location, secret
+dependencies, implementation binding and produced evidence. Early candidates are
+YouTrack, IntelliJ/workspace actions, notification and future integrations.
+
+A normal Task should eventually be able to produce a **Capability artifact**.
+Installation/registration remains Blaine-owned and authority-controlled; Task-created
+capability does not mean self-modifying kernel code. Prove one capability's bounded
+creation/admission and reuse by a different Task before designing a universal catalog.
+
+## D5 — Human Interaction Channels
+
+**STATUS: PLANNED. Initial target: Telegram.**
+
+**Why:** HumanDecision is already durable and typed, but currently requires the
+control surface. Daily Driver needs asynchronous remote interaction. Build on D4's
+capability seam where useful without making registry perfection a prerequisite.
+
+**D5.A — Notifications:** Task completed → notify user. This is non-blocking and
+must not suspend lifecycle. Provide a reusable notification capability, with delivery
+failure visible independently of the Task's already verified completion.
+
+**D5.B — Telegram HumanDecision transport:** existing HumanDecisionRequest → Telegram
+adapter → question/options → user reply → typed HumanDecisionResponse → existing
+Restate Task resumes. Preserve Task/request identity, revision, valid choices and
+one-shot response admission across duplicate/stale delivery and adapter restart.
+Telegram adds neither a new lifecycle nor a competing decision contract.
+
+**D5.C — Capability provisioning:** support the eventual normal request “Blaine,
+prepare Telegram notifications for me and make them reusable.” A Task may produce
+or configure that capability under explicit authority; Blaine controls admission.
+Use the project secret-management/materialization path. Secrets stay out of Git,
+Task telemetry and conversation; endpoint configuration does not imply approval.
+
+## D6 — Operational and Cognitive Observability
+
+**STATUS: PARTIALLY IMPLEMENTED / ACCELERATED BY D1.**
+
+**Why:** useful real Tasks need diagnosable failures and costs. This no longer means
+installing the stack from zero: ExecutionEvent, ClickHouse, Langfuse, Alloy and a
+Grafana Cloud activation path already exist. The remaining objective is to connect
+real Blaine traffic appropriately and prove that the resulting information helps.
+
+| Component | Role |
+| --- | --- |
+| ExecutionEvent | Semantic forensic evidence with Task/dispatch causality |
+| Langfuse | Model/cognitive traces, generations, observed usage and latency |
+| Alloy / Grafana | Host, service and application metrics, logs and traces |
+| ClickHouse | Analytical/observability storage, including the deployed Langfuse dependency |
+
+No observability component becomes authoritative runtime state. Preserve unknown
+usage rather than inventing accounting, protect private content, and keep Task and
+dispatch identifiers in appropriate event/trace fields instead of unbounded metric
+labels. D2's local control/runtime event emission is a starting point, not full
+backend integration.
+
+Remaining examples: wire Personal Agent/runtime traffic, instrument actual cognition
+and model calls, correlate logical identities with physical traces, build operational
+dashboards/alerts, expose service and backup failures, and activate Grafana Cloud
+when the account exists. Cloud activation should need only the already-documented
+human credential/bootstrap steps in the [operator runbook](../platform-grafana-cloud.md),
+not a new observability design. Verify delivery; configured is not connected.
+
+## D7 — Blaine v0 Daily Driver Acceptance
+
+**STATUS: PLANNED.** This is a product-readiness gate, not another architecture cycle.
+
+| Scenario | Required end-to-end evidence |
+| --- | --- |
+| 1. Remote small Task | Remote submission creates durable work, completes under verification, and returns a result after client disconnect/reconnect. |
+| 2. Real code investigation | Live IntelliJ/workstation capabilities inspect a real repository and return useful, evidence-backed output within scope. |
+| 3. Small refactor | Read, narrowly modify, run relevant tests, return diff/artifacts, and independently verify completion without unrelated changes. |
+| 4. Remote human decision | Task blocks, user receives Telegram question/options, response is admitted, and the same durable Task resumes and completes. |
+| 5. Capability reuse | A capability installed/configured earlier is reused by another Task without rebuilding its integration. |
+| 6. Runtime recovery | The authorized D1 recovery scenario occurs; services return and durable Task, memory and storage semantics remain intact. Distinguish process restart from host reboot and tested recovery from unproven backup coverage. |
+| 7. Justified frontier use | When a real Task benefits, use a frontier worker under Increment 11 authority/context-projection constraints and verify the result. Frontier is optional per Task; record why it was used or not needed. |
+
+Retain scenario evidence and explicit unresolved limitations. Do not equate component
+PASS counts with the combined experience. Once these scenarios are sufficiently
+proven against agreed scopes: **BLAINE v0 = DAILY DRIVER**. Frontier is not required
+for every Task; advanced post-v0 cycles are not hidden prerequisites.
+
+## Post-v0 Cycle A — Worker & Session Substrate
+
+**Why:** the current worker boundary is sufficient for v0, but richer worker use
+needs explicit session mechanics. Harvest useful Multica lessons without adopting
+its runtime. Start from the [Multica carveout and limits](../research/multica-carveout.md)
+and [replaceable harness ADR](../decisions/0016-agent-harnesses-are-replaceable-execution-capabilities.md).
+
+| Slice | Intended contract / proof |
+| --- | --- |
+| A1 — Worker Session Contract | Bounded spawn, send, resume, collect and terminate primitives. Session state is execution plumbing, not Task state. |
+| A2 — Continuity | `resume(session X)` resumes X or fails explicitly. Never silently create Y. Test missing/expired session and interruption behavior. |
+| A3 — Result/Event Normalization | Provider-neutral streaming, output, artifacts, diagnostics, interruption, cancellation, usage and terminal status, with version-specific adapters and UNKNOWN where needed. |
+| A4 — Worker Environment Assembly | Blaine constructs bounded ContextProjection, capabilities, skills, MCP/tools, filesystem scopes, environment and authority. The worker cannot broaden that environment or grant. |
+
+Multica lessons to retain: adapters, independent sessions, spawn/resume/send/collect,
+stream normalization, role/context separation, and environment/skill/tool assembly.
+Rejected ownership: Task lifecycle, completion, hidden resume fallback, auto-approval,
+scheduling, and duplicate queue/lease semantics already supplied by Restate. The
+carveout observed invalid-resume fallback and incomplete interrupted usage; do not
+promote those behaviors into Blaine's contract. Review upstream terms before any
+future extraction/distribution, as recorded in that research.
+
+## Post-v0 Cycle B — Context Compilation
+
+**Why:** Increment 11 proved a security projection hook, not sophisticated context
+preparation. As real Tasks grow, raw context becomes inefficient and may expose
+unnecessary information. Produce the **smallest useful authorized context packet
+that preserves enough information to succeed**. This is not permission to bypass
+exact frontier projection or to make summarization authoritative.
+
+| Slice | Plan and evidence gate |
+| --- | --- |
+| B1 — Context Compiler contract | Inputs: Task, authoritative source/artifacts, MIRIX, project knowledge, worker requirements and trust boundary. Output: bounded ContextPacket with provenance. Keep runtime facts and derived material distinguishable. |
+| B2 — Deterministic selection | Start with relevant files/modules, relevant log windows, verified current Task facts and bounded memory retrieval. Retain source references/freshness and allow justified requests for more context. |
+| B3 — Security projection / reversible pseudonymization | Implement deterministic transforms behind the Increment 11 hook: fictional organization aliases, domain aliases, sensitive values replaced by opaque stable tokens. Mapping dictionaries stay inside the trusted boundary; only Blaine-issued tokens can be reversed. Test rejection of invented/foreign tokens and raw-context bypass. |
+| B4 — Structural condensation | Compiler output → relevant errors; test logs → failures/causal neighborhood; diff → changed semantic regions; project → relevant declarations. Prefer deterministic transforms first and preserve the route back to source evidence. |
+| B5 — Context Fidelity Harness | Compare FULL, SELECTED and COMPILED on real Tasks. Measure verifier success, retries, context requests, tokens, latency and cost where observable. Keep grants and success criteria comparable; a FULL baseline still stays within its authorized boundary. Context fidelity is quality/evaluation, not PolicyGate authority. |
+| B6 — Semantic condensation | Add only if prior evidence shows a need. Model summaries remain derived context and can never outrank authoritative source or weaken grants. |
+
+The [frontier contract](../contracts/frontier-dispatch.md),
+[protected-context ADR](../decisions/0013-protected-context-transformations.md) and
+[context policy](../policies/local-first-and-context.md) constrain this work. Fidelity
+failure should first challenge selection/condensation before blaming model ability.
+
+## Post-v0 Cycle C — Routing, Failure and Escalation
+
+**Why:** Increment 11 established static suitability/authority/accounting boundaries.
+Smarter routing needs real execution history. Model failure caused by inadequate
+context must not be misclassified as model capability failure.
+
+| Slice | Plan and evidence gate |
+| --- | --- |
+| C1 — Failure taxonomy | Candidate distinctions: capability insufficient, context insufficient, policy denied, worker failure, tool failure, invalid output, external dependency and verifier rejection. Do not freeze categories before real cases support them. |
+| C2 — Escalation semantics | Specify who judges previous capability insufficient and what evidence warrants escalation. Separate runtime lifecycle, routing recommendation, authority limits and verifier ownership; no omnipotent escalation subsystem or self-issued grants. |
+| C3 — Jev vs Qwen carveout | Jev remains a candidate only. Use approximately 20–30 real Blaine Tasks to compare routing/workload classification, decision error, latency and cost. Preserve fixtures and evaluation labels; adoption requires measured benefit. |
+| C4 — Cost-to-success routing | Optimize expected total cost to successful completion, not the cheapest invocation. Include retries, failure probability, escalation, runtime and observed cost where known; retain uncertainty for hidden accounting. |
+| C5 — Learning-assisted routing | Begin offline: history → proposed policy → evaluation → human/promoted policy. No uncontrolled online self-modification initially. |
+
+Use [frontier authority/suitability/accounting](../contracts/frontier-dispatch.md)
+and [worker selection ADR](../decisions/0010-worker-selection-is-capability-and-quality-driven.md).
+A suitability preference cannot override denied authority, and a cost ceiling does
+not manufacture observability of provider internals.
+
+## Post-v0 Cycle D — Project Knowledge
+
+**Why:** graph/project knowledge may improve Context Compilation and code Tasks,
+but must remain derived. Candidate work includes a provider contract, graph-assisted
+selection, freshness/provenance and conflict semantics. Authority ordering is
+**source/artifact truth > derived graph**. A stale graph is not permission to ignore
+changed source or retain false certainty.
+
+Harvest [Increment 9](../milestones/025-cognitive-kernel-increment-9-passed.md) and
+[Graphify research](../research/graphify-carveout.md), including its freshness and
+provenance counterexamples. Evidence may move this work into Context Compilation
+earlier; neither a graph nor Graphify is required for v0 by default.
+
+## Post-v0 Cycle E — Advanced Multi-Worker Patterns
+
+**Why:** Increment 12 supplied durable child Tasks. Worker Sessions, context and
+authority must mature before richer composition is useful and safe. The default
+hot path remains **builder → artifact → deterministic verifier**.
+
+Use an independent critic only when deterministic completion is insufficient for
+the accepted quality question. Give it fresh, independently scoped context; it
+produces evidence, not automatic completion. Parallel specialists use child Tasks,
+WorkerSessions, role-scoped ContextPackets, explicit authority and typed outcomes.
+Parent/child completion remains independent. Unconstrained multi-agent debate is
+not the default, and parallelism should answer measured workload needs.
+
+## How to resume development
+
+A future human/agent should be able to resume from `main` without this conversation:
+
+1. Read this roadmap, especially the current-next block and intentional unknowns.
+2. Read the relevant [ADRs](../decisions/README.md), contracts and scoped policies.
+   Form the smallest reviewable TaskSpec for durable work and use an available
+   binding. If none fits, record the draft as unsubmitted; never invent runtime state.
+3. Read the latest milestone/runbook and its evidence for the selected workstream.
+   Check whether PASS is isolated, live, operational or product-level. Historical
+   NEXT/STOP statements describe their checkpoint, not fresh authorization.
+4. Inspect current `main`, `git status`, branch and worktree list. Inspect/fetch
+   `origin/main` as needed to avoid overwriting remote work; observe the selected
+   environment separately before relying on historical host facts.
+5. Create a short-lived worktree/branch from current main for the bounded workstream.
+   Assign one writer; define objective, exclusions, authority and observable acceptance.
+6. Execute one bounded increment. Use direct observation and deterministic tools
+   first. Do not start neighboring cycles or acquire broader authority implicitly.
+7. Generate deterministic evidence, run focused checks and relevant regressions,
+   and retain source/version/provenance and the limits of the result. Validate docs,
+   local links and `git diff --check`; do not run live models/infra just for a docs pass.
+8. Record **PASS or STOP** against acceptance. Update the selected milestone and this
+   roadmap's status, evidence links, dependencies, unknowns and current-next block.
+9. Synchronize with latest local main, inspect concurrent changes, stop on semantic
+   conflicts, and revalidate affected scope. Integrate safe/coherent state quickly
+   with bounded commits and fast-forward main when safe; never overwrite concurrent work.
+10. Push main once accepted and authorized, then verify local and remote HEADs.
+    This roadmap checkpoint explicitly authorizes its push; it is not blanket
+    authorization for future live effects, credentials, reboots or frontier dispatches.
+
+**STOP is not failure.** It is expected when evidence reveals ownership ambiguity,
+a lifecycle seam, an authority seam, source-of-truth ambiguity or a missing contract.
+Record expected versus observed behavior, impact and the smallest decision needed.
+A truthful safe STOP may integrate into main. Ordinary bounded implementation bugs
+should normally be fixed rather than elevated into new architecture.
+
+### Concurrent agents and worktrees
+
+One agent/workstream owns one worktree. Other active worktrees are read-only;
+read-only comparison does not authorize editing their working files. Synchronize
+frequently with main, avoid long-running feature branches, preserve uncommitted
+changes, and never overwrite concurrent work. Integrate accepted evidence, ADRs
+and contracts quickly. Changes to lifecycle/authority/storage contracts deserve
+semantic review even when Git merges cleanly. Main integration is the explicit
+shared publication step, not permission to edit another feature worktree.
+
+## Next-step decision guide
+
+The default sequence is outstanding **D1 service-operational work → D3 → D4 → D5 →
+D6 remaining wiring → D7**. D1 and D3 can progress as separate owned tracks where
+dependencies allow; the ordering does not require completing paused backup before
+a safe D3 read-only proof. Operational reliability still gates final v0 acceptance.
+
+| Evidence observed | Bounded priority adjustment |
+| --- | --- |
+| D3 fails because context is unusable | Consider pulling deterministic Context Compilation work forward; measure the failure before adding semantic condensation. |
+| IntelliJ/ACP worker/session continuity blocks work | Pull the relevant Worker Session contract/continuity proof forward. |
+| Rebuilding capability packaging is immediate friction | Prioritize D4 around the concrete duplicated integration. |
+| Remote human interaction prevents useful unattended work | Prioritize D5 using existing HumanDecision contracts. |
+| Real Tasks cannot be diagnosed | Prioritize D6 instrumentation and useful views on the deployed stack. |
+| Service ownership or recovery loses availability/state | Prioritize the responsible D1 adoption/recovery slice before expanding workload. |
+
+Record the evidence and resulting dependency change here; do not silently treat
+these contingencies as authorization to implement an entire post-v0 cycle.
+
+## Open questions / intentional unknowns
+
+**Unknown means unresolved, not forgotten.** Keep each item until evidence or an
+explicit decision closes it.
+
+| Unknown | Evidence needed to resolve it |
+| --- | --- |
+| Final Capability Registry scope/shape | D3/D4 packaging, admission, versioning and cross-Task reuse experience |
+| Redis profile separation | Actual cache/queue persistence, eviction and recovery requirements |
+| When project graph belongs in the context path | Measured retrieval benefit with trustworthy freshness/provenance |
+| Need for semantic condensation | FULL/SELECTED/COMPILED fidelity results showing a remaining deterministic gap |
+| Whether Jev merits adoption | Approximately 20–30 real Task comparisons against Qwen |
+| Precise escalation ownership/semantics | Real failure cases, attribution and a bounded recommendation/authority contract |
+| Eventual custom UI | Concrete operator friction that ACP and remote channels cannot reasonably address |
+| Complete backup/off-site strategy | PostgreSQL/Object Storage coverage, Restate recovery needs, isolated restores, agreed recovery objectives and later off-site requirements |
+| Provider-native accounting availability | Version/binding observations distinguishing known usage from hidden calls, retries and cost |
+
+### Maintaining this handoff
+
+Change status only with a linked milestone/decision and the evidence supporting its
+scope. Record deferrals and failed attempts without retroactive success. Update the
+current-next block in the same accepted increment, and replace stale active entrypoint
+claims with links rather than duplicating this roadmap. ADRs own architectural
+rationale, contracts own interfaces, milestones own measured outcomes, runbooks own
+operator procedures; this document owns development direction and dependencies.
+
+<a id="current-next"></a>
+## Current next work
+
+- **Track A: D3 — Live IntelliJ / Real Code Task.** Start with D3.A, a safe live
+  read-only proof; then D3.B and D3.C only after their preceding gates pass.
+- **Track B: continue D1 long-lived service adoption:** Blaine, Restate, vLLM and
+  MIRIX; then controlled recovery/reboot acceptance with explicit reboot authorization.
+- **Backup: PAUSED.** Preserve historical backup data; no live backup completion claimed.
+- **Grafana Cloud: CONFIGURED FOR FUTURE ACTIVATION.** Human credential/bootstrap
+  procedure prepared; remote delivery inactive/unproven.
+- **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
+- **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
+
+This checkpoint records the program and handoff only. It does not start D3, adopt
+services, change Platform D1 infrastructure, unpause backup or authorize a reboot.
