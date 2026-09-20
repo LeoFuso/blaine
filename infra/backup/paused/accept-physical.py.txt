@@ -1,0 +1,209 @@
+#!/usr/bin/env python3
+"""One bounded authenticated D1 acceptance; preserves historical volume data.
+
+Backs up all non-template databases of the existing local PostgreSQL 18 cluster
+and five explicit retained kernel artifact roots. Adds/removes only a uniquely
+named synthetic SQL database for the proof. No existing database is modified.
+Installs backup units, runs a real generation and isolated restore, verifies
+history, then enables the daily partial-backup timer. No reboot or S3 changes.
+"""
+import importlib.util
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
+import uuid
+
+import backup
+
+HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[1]
+STATE = Path("/var/lib/blaine-backup")
+CONFIG = Path("/etc/blaine/backup.json")
+MOUNT = Path("/srv/blaine-backup")
+UUID = "2415dac3-9d47-470f-8e00-2766bfbb821e"
+SERVICE = "blaine-partial-backup.service"
+TIMER = "blaine-partial-backup.timer"
+# Only these exact, previously reviewed first-attempt files may be upgraded by
+# this bounded correction. Other installed differences still require review.
+PREDECESSORS = {
+    "backup.py": "60c1207f570599aac9201b0c69bbcc03237b521852937d4bc8db79b44195d564",
+    SERVICE: "e852aa7b2033e86c2157dd1df72553aec3d61cb62bebf2f66690d7e666ea57a2",
+}
+
+
+def module(name, filename):
+    spec = importlib.util.spec_from_file_location(name, HERE / filename)
+    result = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(result)
+    return result
+
+
+def native_state():
+    result = {}
+    for unit in ["postgresql@18-main.service", "redis-server.service"]:
+        output = backup.run(["systemctl", "show", unit, "-p", "ActiveState", "-p", "MainPID",
+                             "-p", "ExecStart", "-p", "ExecStop", "-p", "Restart",
+                             "-p", "User", "-p", "Group", "-p", "TimeoutStopUSec"], stdout=subprocess.PIPE).stdout.decode()
+        result[unit] = output
+    return result
+
+
+def publish(result):
+    backup.atomic_json(STATE / "physical-acceptance.json", result)
+    backup.atomic_json(Path("/run/blaine-d1-physical-result.json"), result)
+    os.chmod("/run/blaine-d1-physical-result.json", 0o644)
+
+
+def main():
+    if os.geteuid() != 0:
+        raise backup.Refused("local sudo authentication required")
+    os.umask(0o077)
+    prep = module("prepare_volume", "prepare-volume.py")
+    restore = module("restore_generation", "restore-generation.py")
+    backup.mount_identity(MOUNT, UUID)
+    baseline = json.loads((STATE / "historical-baseline.json").read_text())
+    before = prep.historical_inventory(MOUNT)
+    if before != baseline:
+        raise backup.Refused("historical tree differs from the volume preparation baseline")
+    disk_before = prep.capacity()
+    postgres = {"bin": "/usr/lib/postgresql/18/bin", "host": "/var/run/postgresql",
+                "port": 5432, "user": "postgres", "os_user": "postgres"}
+    def sql(database, query):
+        return backup.run(backup.pg({"postgres": postgres}, "psql", database)
+                          + ["-X", "--set", "ON_ERROR_STOP=1", "-Atc", query],
+                          stdout=subprocess.PIPE).stdout.decode().strip()
+    if sql("postgres", "SELECT count(*) FROM pg_tablespace WHERE spcname NOT IN ('pg_default','pg_global')") != "0":
+        raise backup.Refused("non-default tablespaces require explicit isolated relocation")
+    databases = sql("postgres", "SELECT datname FROM pg_database WHERE NOT datistemplate ORDER BY datname").splitlines()
+    if not databases or len(databases) > 16 or any(not backup.IDENTIFIER.fullmatch(name) for name in databases):
+        raise backup.Refused("database inventory exceeds the bounded simple-name scope")
+    database_bytes = int(sql("postgres", "SELECT sum(pg_database_size(oid)) FROM pg_database WHERE NOT datistemplate"))
+    scratch = os.statvfs("/tmp")
+    if database_bytes * 2 + 1024 ** 3 > scratch.f_bavail * scratch.f_frsize:
+        raise backup.Refused("insufficient scratch capacity for isolated restore")
+    base = Path("/home/leofuso/workspace/blaine/experiments/kernel-increment-11/evidence")
+    sources = {"kernel-acceptance": str(base / "acceptance/artifacts"),
+               "kernel-live-authorized": str(base / "live-authorized/acceptance/artifacts"),
+               "kernel-projection": str(base / "projection/acceptance/artifacts"),
+               "kernel-revised": str(base / "revised/acceptance/artifacts"),
+               "kernel-instrumentation": str(base / "revised/instrumentation-counterexample/artifacts")}
+    for source in sources.values():
+        backup.plain_directory(source)
+    config = {"coverage": backup.COVERAGE, "mount": str(MOUNT), "filesystem_uuid": UUID,
+              "status_directory": str(STATE), "keep_last": 7, "min_free_bytes": 1024 ** 3,
+              "postgres": postgres | {"databases": databases}, "artifact_roots": sources}
+    if CONFIG.exists() and json.loads(CONFIG.read_text()) != config:
+        raise backup.Refused("existing live backup config differs; review it before replacement")
+    # No payloads are written outside the dedicated volume subtree. These are
+    # host-owned configuration/program files, distinct from backup generations.
+    Path("/etc/blaine").mkdir(mode=0o700, exist_ok=True)
+    installed = Path("/usr/local/lib/blaine")
+    installed.mkdir(mode=0o755, parents=True, exist_ok=True)
+    installed.chmod(0o755)
+    for source, target in [(HERE / "backup.py", installed / "backup.py"),
+                           (HERE / "restore-generation.py", installed / "restore-generation.py"),
+                           (REPO / "infra/systemd" / SERVICE, Path("/etc/systemd/system") / SERVICE),
+                           (REPO / "infra/systemd" / TIMER, Path("/etc/systemd/system") / TIMER)]:
+        if target.exists() and target.read_bytes() != source.read_bytes():
+            if hashlib.sha256(target.read_bytes()).hexdigest() != PREDECESSORS.get(target.name):
+                raise backup.Refused("installed D1 file differs; review before replacing")
+        shutil.copyfile(source, target)
+        target.chmod(0o755 if target.suffix == ".py" else 0o644)
+    backup.atomic_json(CONFIG, config)
+    backup.run(["systemd-analyze", "verify", str(Path("/etc/systemd/system") / SERVICE),
+                str(Path("/etc/systemd/system") / TIMER)], stdout=subprocess.DEVNULL)
+    native_before = native_state()
+    backup.run(["systemctl", "daemon-reload"])
+    if native_state() != native_before:
+        raise backup.Refused("native service runtime/settings changed across daemon reload; no service restart attempted")
+    probes = {}
+    for name, client, cwd in [
+        ("previous-pam-private-cwd", ["/usr/sbin/runuser", "-u", "postgres", "--",
+             postgres["bin"] + "/psql", "--no-password", "-h", postgres["host"], "-U", "postgres", "-d", "postgres"], str(MOUNT / "blaine")),
+        ("service-identity-public-cwd", backup.pg({"postgres": postgres}, "psql", "postgres"), "/"),
+    ]:
+        command = ["systemd-run", "--quiet", "--wait", "--pipe", "--collect",
+                   "--unit=blaine-d1-pg-probe-" + uuid.uuid4().hex[:12]]
+        for prop in ["User=root", "Group=root", "WorkingDirectory=" + cwd, "NoNewPrivileges=yes",
+                     "PrivateTmp=yes", "ProtectSystem=full", "ProtectKernelTunables=yes",
+                     "ProtectKernelModules=yes", "ProtectControlGroups=yes", "RestrictAddressFamilies=AF_UNIX"]:
+            command += ["--property", prop]
+        # Diagnostics are safe to expose for this fixed SELECT 1, with no
+        # passwords, arbitrary SQL, or user data in the command or response.
+        probe = subprocess.run(command + client + ["-X", "-Atc", "SELECT 1"], capture_output=True, text=True)
+        probes[name] = {"exit_code": probe.returncode, "stdout": probe.stdout, "stderr": probe.stderr}
+    backup.atomic_json(Path("/run/blaine-d1-pg-probes.json"), probes)
+    os.chmod("/run/blaine-d1-pg-probes.json", 0o644)
+    if probes["service-identity-public-cwd"]["exit_code"] != 0:
+        raise backup.Refused("PostgreSQL service-identity probe failed; inspect /run/blaine-d1-pg-probes.json")
+    # The negative test unmounts ONLY in a private mount namespace. Host mount
+    # and historical data remain in place; diagnostics use a scratch state path.
+    with tempfile.TemporaryDirectory(prefix="blaine-d1-missing-") as temporary:
+        tmp = Path(temporary)
+        missing_config = config | {"status_directory": str(tmp)}
+        backup.atomic_json(tmp / "config.json", missing_config)
+        program = ("import pathlib,subprocess,sys,json; "
+                   "subprocess.run(['umount','/srv/blaine-backup'],check=True); "
+                   "p=pathlib.Path('/srv/blaine-backup'); before=list(p.iterdir()); "
+                   f"r=subprocess.run(['/usr/bin/python3','{installed / 'backup.py'}','partial-backup','--config',sys.argv[1]],capture_output=True); "
+                   "assert r.returncode==1 and list(p.iterdir())==before; "
+                   "status=json.loads((pathlib.Path(sys.argv[1]).parent/'status.json').read_text()); "
+                   "assert status['result']=='failed' and status['failure_reason'].startswith('findmnt failed'); "
+                   "print('missing-mount-failed-without-payload-writes')")
+        backup.run(["unshare", "--mount", "--propagation", "private", "/usr/bin/python3", "-c", program,
+                    str(tmp / "config.json")], stdout=subprocess.DEVNULL)
+    backup.mount_identity(MOUNT, UUID)
+    proof_database = "blaine_d1_proof_" + uuid.uuid4().hex[:12]
+    created = False
+    result = {"result": "STOP", "stage": "physical-backup-acceptance", "filesystem_uuid": UUID,
+              "mount": str(MOUNT), "destination": str(MOUNT / "blaine/blaine-partial-backups"),
+              "capacity_before": disk_before, "historical_before": before,
+              "missing_mount_failed_closed": True, "complete_durable_brain": False}
+    result["postgres_service_probes"] = probes
+    try:
+        sql("postgres", f'CREATE DATABASE "{proof_database}"')
+        created = True
+        sql(proof_database, "CREATE TABLE d1_proof (id integer PRIMARY KEY, value text NOT NULL); INSERT INTO d1_proof VALUES (1, 'ACME physical SSD proof')")
+        proof_config = config | {"postgres": postgres | {"databases": databases + [proof_database]}}
+        backup.atomic_json(CONFIG, proof_config)
+        backup.run(["systemctl", "start", SERVICE])
+        status = json.loads((STATE / "status.json").read_text())
+        if status.get("result") != "ok" or status.get("action") != "partial-backup":
+            raise backup.Refused("systemd backup did not publish successful partial status")
+        generation = status["generation"]
+        snapshot = MOUNT / "blaine/blaine-partial-backups" / generation
+        backup.run(["/usr/bin/python3", str(installed / "backup.py"), "verify", "--generation", generation], stdout=subprocess.DEVNULL)
+        restored = restore.restore(snapshot, proof_database)
+        after = prep.historical_inventory(MOUNT)
+        if before != after:
+            raise backup.Refused("historical fingerprint changed across backup/restore")
+        result.update(generation=generation, protected_databases=databases,
+                      artifact_roots=sources, restore=restored, historical_after=after,
+                      capacity_after=prep.capacity(), verification="checksums-catalog-and-isolated-restore")
+    finally:
+        backup.atomic_json(CONFIG, config)
+        if created:
+            sql("postgres", f'DROP DATABASE "{proof_database}"')
+        publish(result)
+    backup.run(["systemctl", "enable", "--now", TIMER])
+    result["timer_enabled"] = True
+    result["timer_active"] = subprocess.run(["systemctl", "is-active", "--quiet", TIMER]).returncode == 0
+    if not result["timer_active"]:
+        publish(result)
+        raise backup.Refused("backup timer did not become active")
+    result["synthetic_source_database_removed"] = True
+    result["result"] = "PASS"
+    publish(result)
+    print(json.dumps(result, indent=2))
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as error:
+        reason = str(error) if isinstance(error, backup.Refused) else type(error).__name__
+        raise SystemExit("STOP: " + reason)

@@ -23,6 +23,7 @@ COVERAGE = "postgresql-and-kernel-artifacts-only"
 GENERATION = re.compile(r"\d{8}T\d{6}Z-[0-9a-f]{12}")
 IDENTIFIER = re.compile(r"[A-Za-z0-9_-]{1,80}")
 DIGEST = re.compile(r"[0-9a-f]{64}")
+SUBTREE = "blaine"
 
 
 class Refused(RuntimeError):
@@ -82,11 +83,48 @@ def destination(config):
         os.fchdir(fd)
         # Recheck after pinning. All backup writes below are relative to cwd.
         mount_identity(path, config["filesystem_uuid"])
-        yield
+        with owned_subtree():
+            free_space(config)
+            yield
     finally:
         os.fchdir(previous)
         os.close(previous)
         os.close(fd)
+
+
+@contextmanager
+def owned_subtree():
+    """Never create or traverse arbitrary paths on the historical volume."""
+    parent = os.open(".", os.O_RDONLY | os.O_DIRECTORY)
+    child = None
+    try:
+        child = os.open(SUBTREE, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        info = os.fstat(child)
+        if info.st_dev != os.fstat(parent).st_dev:
+            raise Refused("Blaine subtree is a different filesystem")
+        if info.st_uid != os.geteuid() or info.st_mode & 0o077:
+            raise Refused("Blaine subtree must be owned by the backup user with mode 0700")
+        os.fchdir(child)
+        yield
+    finally:
+        os.fchdir(parent)
+        os.close(parent)
+        if child is not None:
+            os.close(child)
+
+
+def free_space(config, estimated_bytes=0):
+    reserve = config.get("min_free_bytes", 1024 ** 3)
+    if type(reserve) is not int or reserve < 1024 ** 2:
+        raise Refused("min_free_bytes must be an integer of at least one MiB")
+    info = os.statvfs(".")
+    free = info.f_bavail * info.f_frsize
+    if info.f_flag & os.ST_RDONLY:
+        raise Refused("backup filesystem is read-only")
+    required = estimated_bytes + reserve
+    if free < required:
+        raise Refused(f"insufficient backup space: available={free}, required={required}")
+    return {"available_bytes": free, "required_bytes": required, "reserve_bytes": reserve}
 
 
 def atomic_json(path, value):
@@ -160,8 +198,8 @@ def prune(root, keep, pg_bin):
         shutil.rmtree(candidate)
 
 
-def snapshot(config, root):
-    """Write only beneath caller's guarded root; also used by isolated fixtures."""
+def source_capacity(config):
+    """Validate explicit sources and budget capacity before any payload write."""
     if config.get("coverage") != COVERAGE:
         raise Refused("explicit partial coverage acknowledgement is required; S3 is not implemented")
     databases = config["postgres"]["databases"]
@@ -177,6 +215,24 @@ def snapshot(config, root):
         if not IDENTIFIER.fullmatch(name):
             raise Refused("invalid artifact source label")
         plain_directory(path)
+    names = ",".join("'" + name + "'" for name in databases)
+    query = f"SELECT COALESCE(sum(pg_database_size(oid)), 0), count(*) FROM pg_database WHERE datname IN ({names})"
+    result = run(pg(config, "psql", "postgres") + ["-X", "--set", "ON_ERROR_STOP=1", "-Atc", query], stdout=subprocess.PIPE)
+    size, count = map(int, result.stdout.decode().strip().split("|"))
+    if count != len(databases):
+        raise Refused("one or more selected databases do not exist")
+    artifacts_size = sum(p.stat().st_size for source in sources.values() for p in safe_files(Path(source)))
+    # Dumps can exceed physical relation size; use a conservative 2x estimate,
+    # with a separate free-space floor. This is not a storage reservation.
+    return free_space(config, 2 * (size + artifacts_size))
+
+
+def snapshot(config, root):
+    """Write only beneath caller's guarded root; also used by isolated fixtures."""
+    capacity = source_capacity(config)
+    databases = config["postgres"]["databases"]
+    sources = config["artifact_roots"]
+    keep = config["keep_last"]
     generation = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ-") + uuid.uuid4().hex[:12]
     partial = root / (".incomplete-" + generation)
     partial.mkdir(mode=0o700)
@@ -194,7 +250,7 @@ def snapshot(config, root):
                 raise Refused("artifact source is not a quiescent kernel content-addressed store")
             target = partial / "artifacts" / name / relative
             target.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
-            fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW)
+            fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
             with os.fdopen(fd, "rb") as input_stream, target.open("xb") as output_stream:
                 if not stat.S_ISREG(os.fstat(input_stream.fileno()).st_mode):
                     raise Refused("artifact changed to a special file")
@@ -202,6 +258,7 @@ def snapshot(config, root):
             if sha256(target) != relative.name:
                 raise Refused("artifact content hash mismatch")
     manifest = {"version": 1, "created_at": now(), "coverage": COVERAGE,
+                "capacity_before": capacity,
                 "complete_durable_brain": False, "restore_test": "not-performed",
                 "databases": databases, "artifact_sources": list(sources),
                 "files": {str(p.relative_to(partial)): sha256(p) for p in safe_files(partial)}}
@@ -258,11 +315,14 @@ def main():
             status.update(last_attempt=now(), action=args.action, destination=config["mount"],
                           result="running", failure_reason=None, coverage=COVERAGE,
                           complete_durable_brain=False)
+            status["destination"] = str(Path(config["mount"]) / SUBTREE / "blaine-partial-backups")
             if args.action == "partial-backup":
                 status["last_backup_attempt"] = now()
             atomic_json(state_path, status)
             try:
                 with destination(config):
+                    if args.action in {"preflight", "partial-backup"}:
+                        status["capacity_before"] = source_capacity(config)
                     root = Path("blaine-partial-backups")
                     if root.is_symlink():
                         raise Refused("backup namespace must not be a symlink")
@@ -274,6 +334,7 @@ def main():
                             raise Refused("backup namespace is a different mounted filesystem")
                         generation = snapshot(config, root)
                         status.update(last_success=now(), generation=generation,
+                                      capacity_after=free_space(config),
                                       verification="checksums-and-pg-archive-catalog; restore-not-proven")
                     elif args.action == "verify":
                         if not args.generation or not GENERATION.fullmatch(args.generation):

@@ -11,18 +11,66 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location("backup", ROOT / "infra/backup/backup.py")
 backup = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(backup)
+sys.modules["backup"] = backup
 PG = Path("/usr/lib/postgresql/18/bin")
 
 
 class GuardTests(unittest.TestCase):
+    def test_subtree_is_pinned_and_historical_paths_are_outside_destination(self):
+        previous = os.open(".", os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            with tempfile.TemporaryDirectory(prefix="blaine-d1-") as tmp:
+                root = Path(tmp)
+                (root / "home").mkdir()
+                (root / "home/proof").write_bytes(b"historical")
+                (root / "blaine").mkdir(mode=0o700)
+                os.chdir(root)
+                with backup.owned_subtree():
+                    self.assertEqual(Path.cwd(), root / "blaine")
+                    Path("blaine-partial-backups").mkdir()
+                self.assertEqual((root / "home/proof").read_bytes(), b"historical")
+                self.assertFalse((root / "blaine-partial-backups").exists())
+                os.fchdir(previous)
+        finally:
+            os.fchdir(previous)
+            os.close(previous)
+
+    def test_missing_or_symlink_subtree_is_never_created_or_followed(self):
+        previous = os.open(".", os.O_RDONLY | os.O_DIRECTORY)
+        try:
+            with tempfile.TemporaryDirectory(prefix="blaine-d1-") as tmp:
+                os.chdir(tmp)
+                with self.assertRaises(OSError):
+                    with backup.owned_subtree():
+                        self.fail("missing subtree accepted")
+                Path("blaine").symlink_to("/tmp")
+                with self.assertRaises(OSError):
+                    with backup.owned_subtree():
+                        self.fail("symlink accepted")
+                os.fchdir(previous)
+        finally:
+            os.fchdir(previous)
+            os.close(previous)
+
+    def test_insufficient_space_and_readonly_fail_before_writes(self):
+        for free, flags in [(1024, 0), (1024 ** 4, os.ST_RDONLY)]:
+            info = SimpleNamespace(f_bavail=free, f_frsize=1, f_flag=flags)
+            with patch.object(backup.os, "statvfs", return_value=info), self.assertRaises(backup.Refused):
+                backup.free_space({"min_free_bytes": 1024 ** 3})
+        info = SimpleNamespace(f_bavail=2 * 1024 ** 3, f_frsize=1, f_flag=0)
+        with patch.object(backup.os, "statvfs", return_value=info), self.assertRaises(backup.Refused):
+            backup.free_space({"min_free_bytes": 1024 ** 3}, estimated_bytes=2 * 1024 ** 3)
+
     def test_real_unmounted_directory_fails_without_destination_writes(self):
         with tempfile.TemporaryDirectory(prefix="blaine-d1-") as tmp:
             root = Path(tmp)
@@ -140,6 +188,7 @@ class RestoreTests(unittest.TestCase):
                                       + ["-X", "--set", "ON_ERROR_STOP=1", "-Atc", query], stdout=subprocess.PIPE).stdout.decode().strip()
                 sql(source, "postgres", "CREATE DATABASE d1fixture")
                 sql(source, "d1fixture", "CREATE TABLE proof (id integer PRIMARY KEY, value text NOT NULL); INSERT INTO proof VALUES (1, 'ACME durable D1 row'); CREATE EXTENSION vector; CREATE TABLE embedding (v vector(3)); INSERT INTO embedding VALUES ('[1,2,3]')")
+                sql(source, "d1fixture", "CREATE TABLE d1_proof (id integer PRIMARY KEY, value text); INSERT INTO d1_proof VALUES (1, 'ACME physical SSD proof')")
                 generation = backup.snapshot(config, output)
                 snapshot = output / generation
                 manifest = backup.verify(snapshot, str(PG))
@@ -156,6 +205,13 @@ class RestoreTests(unittest.TestCase):
                 restored_objects = root / "restored-artifacts"
                 shutil.copytree(snapshot / "artifacts/kernel", restored_objects)
                 self.assertEqual(ArtifactStore(restored_objects).read("d1fixture", ref), payload)
+                restore_spec = importlib.util.spec_from_file_location("restore_generation", ROOT / "infra/backup/restore-generation.py")
+                restore_module = importlib.util.module_from_spec(restore_spec)
+                restore_spec.loader.exec_module(restore_module)
+                drill = restore_module.restore(snapshot, "d1fixture")
+                self.assertEqual(drill["result"], "PASS")
+                self.assertTrue(drill["synthetic_row_verified"])
+                self.assertEqual(drill["artifact_count"], 1)
                 # Prove selected database dump did not overwrite the source.
                 self.assertEqual(sql(source, "d1fixture", "SELECT count(*) FROM proof"), "1")
                 for _ in range(2):
@@ -181,7 +237,7 @@ class RestoreTests(unittest.TestCase):
             output.mkdir()
             config = {"coverage": backup.COVERAGE, "keep_last": 1, "artifact_roots": {"kernel": str(artifacts)},
                       "postgres": {"bin": str(PG), "host": str(root), "port": 15432, "user": "absent", "databases": ["d1fixture"]}}
-            with self.assertRaises(backup.Refused):
+            with patch.object(backup, "source_capacity", return_value={}), self.assertRaises(backup.Refused):
                 backup.snapshot(config, output)
             self.assertFalse(any(backup.GENERATION.fullmatch(p.name) for p in output.iterdir()))
             self.assertEqual(len(list(output.glob(".incomplete-*"))), 1)

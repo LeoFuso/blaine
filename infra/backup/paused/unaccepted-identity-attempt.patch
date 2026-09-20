@@ -1,0 +1,23 @@
+--- maintained/backup.py
++++ attempted/backup.py
+@@ -37,0 +38,4 @@
++    if command[0] == "/usr/bin/setpriv":
++        # PostgreSQL clients need no access to the private backup cwd. Output
++        # file descriptors are opened by the parent inside the pinned subtree.
++        kwargs.setdefault("cwd", "/")
+@@ -41 +45,9 @@
+-        raise Refused(f"{Path(command[0]).name} failed (exit {result.returncode}); inspect access and server logs locally")
++        categories = [label for needle, label in [
++            (b"Permission denied", "permission denied"),
++            (b"Operation not permitted", "operation not permitted"),
++            (b"No such file or directory", "missing path"),
++            (b"authentication failed", "authentication failed"),
++            (b"could not change directory", "inaccessible working directory"),
++        ] if needle in result.stderr]
++        detail = ", ".join(categories) or "inspect access and server logs locally"
++        raise Refused(f"{Path(command[0]).name} failed (exit {result.returncode}); {detail}")
+@@ -154 +166,3 @@
+-        command = ["/usr/sbin/runuser", "-u", pgconfig["os_user"], "--", *command]
++        # This is a noninteractive service identity change, not a PAM session.
++        command = ["/usr/bin/setpriv", "--reuid", pgconfig["os_user"], "--regid", pgconfig["os_user"],
++                   "--init-groups", "--reset-env", "--", *command]

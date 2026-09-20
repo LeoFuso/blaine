@@ -1,7 +1,8 @@
 {
   "coverage": "UNCONFIGURED",
   "mount": "/srv/blaine-backup",
-  "filesystem_uuid": "",
+  "filesystem_uuid": "2415dac3-9d47-470f-8e00-2766bfbb821e",
+  "min_free_bytes": 1073741824,
   "status_directory": "/var/lib/blaine-backup",
   "keep_last": 7,
   "postgres": {

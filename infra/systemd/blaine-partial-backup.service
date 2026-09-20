@@ -1,6 +1,6 @@
 [Unit]
 Description=Blaine partial PostgreSQL and kernel-artifact backup (S3 coverage pending)
-After=local-fs.target postgresql@18-main.service
+After=local-fs.target postgresql@18-main.service srv-blaine\x2dbackup.mount
 # No ConditionPathIsMountPoint: a missing disk must FAIL, not silently skip.
 # No RequiresMountsFor: this unit never attempts to mount or prepare a disk.
 

@@ -1,0 +1,40 @@
+{
+  "stage": "volume-preparation",
+  "result": "PASS",
+  "filesystem_uuid": "2415dac3-9d47-470f-8e00-2766bfbb821e",
+  "mount": "/srv/blaine-backup",
+  "subtree": "/srv/blaine-backup/blaine",
+  "before": {
+    "sha256": "68e9340d3dba04146c60bd62659c48fe57e737eba6476ec55f9161e6ecd32130",
+    "entries": 353132,
+    "regular_bytes": 15436679146,
+    "required_top_directories_present": {
+      "home": true,
+      "inventory": true,
+      "shell": true,
+      "system": true
+    }
+  },
+  "after": {
+    "sha256": "68e9340d3dba04146c60bd62659c48fe57e737eba6476ec55f9161e6ecd32130",
+    "entries": 353132,
+    "regular_bytes": 15436679146,
+    "required_top_directories_present": {
+      "home": true,
+      "inventory": true,
+      "shell": true,
+      "system": true
+    }
+  },
+  "capacity_before": {
+    "total_bytes": 491106508800,
+    "available_bytes": 449654718464
+  },
+  "capacity_after": {
+    "total_bytes": 491106508800,
+    "available_bytes": 449654714368
+  },
+  "persistent_fstab_entry": "UUID=2415dac3-9d47-470f-8e00-2766bfbb821e /srv/blaine-backup ext4 nofail,noatime,nodev,nosuid,noexec,x-systemd.device-timeout=10s 0 0",
+  "backup_executed": false,
+  "services_deployed": false
+}

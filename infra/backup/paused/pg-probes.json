@@ -1,0 +1,12 @@
+{
+  "previous-pam-private-cwd": {
+    "exit_code": 1,
+    "stdout": "",
+    "stderr": "runuser: cannot set user id: Operation not permitted\n"
+  },
+  "service-identity-public-cwd": {
+    "exit_code": 127,
+    "stdout": "",
+    "stderr": "setpriv: setresuid failed: Operation not permitted\n"
+  }
+}

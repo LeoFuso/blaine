@@ -1,0 +1,24 @@
+{
+  "result": "STOP",
+  "stage": "physical-backup-acceptance",
+  "filesystem_uuid": "2415dac3-9d47-470f-8e00-2766bfbb821e",
+  "mount": "/srv/blaine-backup",
+  "destination": "/srv/blaine-backup/blaine/blaine-partial-backups",
+  "capacity_before": {
+    "total_bytes": 491106508800,
+    "available_bytes": 449654714368
+  },
+  "historical_before": {
+    "sha256": "68e9340d3dba04146c60bd62659c48fe57e737eba6476ec55f9161e6ecd32130",
+    "entries": 353132,
+    "regular_bytes": 15436679146,
+    "required_top_directories_present": {
+      "home": true,
+      "inventory": true,
+      "shell": true,
+      "system": true
+    }
+  },
+  "missing_mount_failed_closed": true,
+  "complete_durable_brain": false
+}

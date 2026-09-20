@@ -1,9 +1,67 @@
 # D1 — Long-lived platform foundation: STOP
 
-Observed 2026-09-20 on the Blaine host. This is an accepted bounded repository
-foundation, **not Daily Driver acceptance**. No host service was installed,
-reconfigured, restarted or enabled. No disk was mounted or modified. No reboot
-or cloud backup was performed.
+**LIVE BACKUP ACCEPTANCE = PAUSED** — user-directed checkpoint, 2026-09-20.
+Backup investigation and live acceptance are paused for a later bounded pass.
+The next D1 workstream focuses on missing infrastructure; backup is not its
+blocker. No infrastructure installation is started by this checkpoint.
+
+The design and offline tests exist. Physical disk safeguards were exercised,
+but real systemd backup execution fails during PostgreSQL identity switching.
+There is no accepted physical backup generation or live restore result. Complete
+durable-brain backup also remains incomplete because Object Storage is absent.
+The backup timer is confirmed **disabled and inactive** and must remain so.
+This is **not Daily Driver acceptance**.
+
+## Resumed physical-volume slice
+
+The user subsequently identified and authorized the **Samsung SSD 850 EVO 500GB**,
+ext4 UUID `2415dac3-9d47-470f-8e00-2766bfbb821e`. It replaces the unidentified-HDD
+boundary for this slice. The user reports about 458 GiB usable, 419 GiB free and
+16 GiB of valuable historical Linux backups; these capacity/content figures are
+user-supplied until privileged inspection succeeds. Preserve existing `home`,
+`inventory`, `shell`, `system` and all other historical entries exactly.
+
+Only `/blaine` on that filesystem is authorized for Blaine writes. Existing D1
+generations move conceptually beneath it as
+`/srv/blaine-backup/blaine/blaine-partial-backups`; no existing on-disk D1
+generation has been moved. Mounting, persistent UUID configuration and bounded
+partial backup/restore are authorized; formatting, filesystem repair, historical
+deletion, repartitioning and UUID changes remain forbidden.
+
+At resume, D1 was clean at `5ad9309` and was fast-forwarded to current main
+`9563e2b` before edits. The disk was observed unmounted and fstab unchanged.
+The root command `sudo -n true` failed with interactive authentication required.
+The user then ran the bounded preparation command with local authentication.
+Volume preparation **passed**: the authorized UUID is mounted read/write with
+`noatime,nosuid,nodev,noexec`, its UUID-based fstab entry is installed, and the
+private `blaine` subtree exists. [Preparation evidence](../infra/volume-preparation-d1.json)
+records 353,132 unchanged historical entries and 15,436,679,146 regular-file
+bytes. Their before/after fingerprint is identical. Capacity is 491,106,508,800
+bytes, with 449,654,718,464 bytes available before subtree creation and
+449,654,714,368 afterward (4 KiB used). These are now host-observed values.
+
+The first physical attempt installed the partial backup scripts, units and local
+configuration, and passed the missing-mount negative test in a private namespace.
+It failed at PostgreSQL identity switching before producing a generation.
+[Attempt evidence](../infra/physical-first-attempt-d1.json) records STOP.
+The synthetic database was handled by the runner's cleanup. A second attempt's
+controlled probes failed for both runuser and setpriv; it did not reach backup.
+
+The speculative setpriv/public-working-directory change and its runner are
+[preserved as inert evidence](../infra/backup/paused/README.md), not promoted as a
+proven implementation. Maintained code retains the original runuser path, still
+unproven in this service. The installed host copy retains the attempted variant;
+this checkpoint does not deploy/reconcile it, restart services or modify disks.
+No final physical backup capacity/fingerprint or physical restore proof exists.
+
+The reviewed [volume preparation command](../infra/backup/prepare-volume.py)
+checks UUID/type/mount conflicts, mounts with `noatime`, fingerprints all
+historical regular bytes and metadata, creates only the `blaine` subtree, checks
+the fingerprint again, and adds a nonconflicting persistent fstab entry. It
+records only aggregate history evidence. This prepares the volume; it does not
+claim a physical backup or restore has occurred. The backup implementation now
+requires that subtree and checks a reserve plus estimated source size before
+generation writes. S3 and broader platform gaps below remain unchanged.
 
 Direction follows [ADR 0018](decisions/0018-local-platform-durability-and-observability.md).
 Its header still says “Proposed for acceptance”; the D1 user request explicitly
@@ -31,7 +89,11 @@ Blaine creation binding was available and no Blaine Task was submitted or create
 The explicitly authorized repository pass ran interactively; this document is
 not a shadow durable execution ledger.
 
-## Current / target / gap
+## Initial inventory / target / gap
+
+This inventory describes the initial D1 observation. The resumed-volume and
+paused status above supersede its backup observations; other components were
+not reinspected during this pause.
 
 | Component | Observed current state | Intended state and remaining gap |
 |---|---|---|
@@ -46,7 +108,7 @@ not a shadow durable execution ledger.
 | Docker/Compose/Podman | No installed CLI, platform files, running owner or matching service discovered | No container-group mechanism to reuse or replace here. |
 | Caddy | No current binary/unit/config/listener discovered | Await stable upstream endpoints and exposure/auth decisions. Do not create an ingress to absent applications. |
 | ClickHouse / Langfuse / Alloy | No matching platform units/processes/deployment discovered | Deferred; no expansion into observability deployment. Existing ExecutionEvent and telemetry semantics untouched. |
-| Backup | No backup mount, fstab entry or Blaine job discovered | Repository-only partial backup service/timer, native PostgreSQL + kernel artifacts. HDD and S3 acceptance blocked. |
+| Backup (updated) | Authorized SSD mounted; partial scripts/units installed; service failed; timer disabled/inactive | LIVE BACKUP ACCEPTANCE = PAUSED. PostgreSQL + five selected kernel artifact roots are intended partial coverage; no accepted live generation. S3 absent. |
 
 Relevant versions are retained in [infra/versions.json](../infra/versions.json).
 “Not discovered” reports bounded inspection, not a claim that private alternate
@@ -62,12 +124,14 @@ configurations cannot exist.
 | Embedding vLLM | Separate human terminal; same ownership gap | Same project/user; port 8001, model length 8192, GPU fraction .10; terminal logs. | HTTP health 200; same unproven shutdown boundary. |
 | MIRIX | Human terminal (`scripts/start_server.py`), no dedicated service | leofuso; `/home/leofuso/workspace/mirix`; external venv; local config/environment not read for secrets; terminal logs. | Listener observed at 8531; semantic health and shutdown timeout not established. |
 | Evaluation Restate/Blaine | `scripts/dev.py` starts detached children, records PID + kernel identity, no boot/restart manager; older direct shell entrypoints also exist | Invoking user, repository cwd; `.local/002` logs/PID files and evaluation config/data. No live process at inventory. | Existing script probes deployments/TCP with bounded timeout; SIGTERM then bounded SIGKILL. Evaluation only. |
-| D1 partial backup (prepared) | systemd oneshot + daily persistent timer, **not installed or enabled**; After native PostgreSQL cluster, no automatic mount or service start, no retries | root, 0077; `/etc/blaine/backup.json`; `/var/lib/blaine-backup`; journal. runuser uses existing PostgreSQL peer auth. | Script guard + checksums/catalog; 2h job bound, 30s stop then group termination. Actual host execution unproven. |
+| D1 partial backup (prepared) | systemd oneshot + daily persistent timer, installed, **timer disabled/inactive**; After native PostgreSQL cluster and backup mount; no implicit mount, no retries | root, 0077; `/etc/blaine/backup.json`; `/var/lib/blaine-backup`; journal. Local peer auth intended; maintained runuser and attempted installed setpriv both failed identity probes. | Script guard + checksums/catalog; 2h job bound, 30s stop then group termination. Live execution failed; acceptance paused. |
 
-Read-only `systemctl cat` reported PostgreSQL and Redis unit files changed on
+Initial read-only `systemctl cat` reported PostgreSQL and Redis unit files changed on
 disk relative to the loaded manager. A global daemon reload may apply unrelated
 changes. D1 therefore does not even schedule an automatic reload in Ansible.
-This drift must be reviewed before deployment.
+The prior authenticated acceptance compared PostgreSQL/Redis process and
+execution settings across its reload without restarting either service. This
+pause performs no reload; future deployment must review drift again.
 
 Systemd owns **process/service lifecycle**. Restate owns **Task/workflow
 lifecycle**. The backup timer schedules an operational job, not a second Task
@@ -77,7 +141,7 @@ and inference → ingress, with real readiness checks at each boundary. Telemetr
 is independent and cannot block core startup. No arbitrary startup sleeps or
 blanket one-unit-per-technology scaffold was added.
 
-## Physical storage discovery
+## Initial physical storage discovery (historical)
 
 `lsblk`/filesystem metadata, `findmnt`, `df` and `/etc/fstab` were inspected.
 The table records filesystem identities, **not permission to use them**.
@@ -91,35 +155,35 @@ The table records filesystem identities, **not permission to use them**.
 | nvme0n1p1 | vfat `F2B2-3A87` | EFI, not backup. |
 | nvme0n1p3 / p4 | NTFS `AE7C3B657C3B280B`, `F000A11600A0E4B6` | Existing unmounted filesystems; p2 reserved. |
 
-No physically attached HDD can be uniquely identified. `/srv` is empty; fstab
-contains only root, EFI and swap. `/srv/blaine-backup` is a configurable proposed
-convention, not a created or mounted destination. No `/dev/sdX` selection,
-partition probing for contents, filesystem repair, format or wipe occurred.
+At initial discovery no HDD had been selected. The user subsequently selected
+and authorized the existing sda1 SSD by UUID, preserving its historical contents.
+Preparation and capacity evidence above supersede the initial mount status.
+Other filesystems were not selected or changed.
 
 ## Acceptance classification
 
-**IMPLEMENTED AND VERIFIED**: inventory and ownership; strict missing-mount and
-identity rejection; PostgreSQL/custom-format plus actual kernel artifact fixture
-backup/restore; corruption detection; bounded retention; disabled unit syntax;
-Ansible scratch convergence. See [validation](../infra/validation-d1.json).
+**IMPLEMENTED AND VERIFIED**: offline subtree/UUID/root-filesystem/space guards,
+PostgreSQL/custom-format and kernel artifact fixture backup/restore, retention,
+corruption detection, same-generation scratch restore, unit validation and Ansible
+scratch convergence. Physical volume preparation preserved all 353,132 historical
+entries with identical full fingerprints; the real private-namespace missing-mount
+test failed closed. See [pause validation](../infra/validation-d1-paused.json).
 
-**IMPLEMENTED BUT REQUIRES LIVE-HOST PROOF**: physical mount positive path and
-hot detach behavior; root/runuser access to selected live databases/artifacts;
-host Ansible ownership/modes; systemd sandbox, timer/failure journal and timeout
-behavior; actual backup capacity/duration; restore of a real selected snapshot.
+**IMPLEMENTED BUT REQUIRES LIVE-HOST PROOF**: a successful systemd backup,
+verification and isolated restore of that physical generation, final backup
+capacity/history evidence, and root service identity. These are PAUSED. The
+installed attempted variant needs review/reconciliation before resumption.
 
-**DOCUMENTED / DEFERRED**: native application/Restate/vLLM/MIRIX adoption; Redis
-profiles; S3 deployment, metadata/version preservation and complete-brain
-restore; Caddy; observability deployment; PITR; off-site/cloud protection;
-authorized physical-disk preparation and reboot acceptance.
+**DOCUMENTED / DEFERRED**: missing long-lived Blaine/Restate/inference service
+ownership, Redis profiles, S3 deployment and complete-brain backup, Caddy and
+observability, PITR, cloud/off-site protection and reboot acceptance. Missing
+infrastructure is the next D1 workstream; no installation occurs in this pass.
 
-**UNKNOWN**: which HDD the user intends and why it is not visible; existing
-unmounted filesystem contents; live database names/owners; complete artifact
-root selection; exact model weight and MIRIX deployment revisions; behavior of
-the whole platform across reboot.
+**UNKNOWN**: cause of the service identity-switch failure (not investigated
+further); complete artifact source coverage; whole-platform reboot behavior.
+No successful live protection or Daily Driver readiness is claimed.
 
-**STOP boundaries**: uniquely identify the HDD and decide existing-data handling;
-select the real S3 and long-lived runtime deployment boundaries; review service
-cutovers and pending systemd configuration drift. Ordinary implementation and
-isolated validation are complete for this slice. The [operations guide](platform-operations.md)
-contains the reviewable next actions. No machine readiness claim is made.
+**STOP**: backup paused at the user's direction. No more identity/PAM/service
+investigation, physical backup/restore, disk operations or new infrastructure
+installation in this session. The [runbook](platform-operations.md) records future
+acceptance gates without authorizing their execution during this pause.

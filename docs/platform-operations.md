@@ -3,6 +3,18 @@
 Read the [D1 inventory and STOP boundaries](platform-d1.md) first. Commands below
 are a runbook; recording them does not mean host deployment was executed.
 
+**LIVE BACKUP ACCEPTANCE = PAUSED**. Keep `blaine-partial-backup.timer`
+**disabled/inactive** (confirmed at checkpoint). Real systemd backup fails during
+PostgreSQL identity switching; no live backup PASS or physical restore is claimed.
+Offline tests and physical volume safeguards exist. S3 is not deployed, so
+complete durable-brain backup is also incomplete. The next D1 workstream is
+missing infrastructure; backup does not block it. No new installation is part
+of this pause.
+
+All host mutation, backup, restore and reboot commands below are **future runbook
+reference only**, suspended during this pause. Do not run them to close this
+session. Resume backup in a later bounded pass before attempting live proof.
+
 ## Scope and backup contract
 
 The durable Blaine brain is **PostgreSQL + S3-compatible object storage**.
@@ -50,7 +62,7 @@ not swept into these snapshots.
 
 ## Fail-closed destination and retention
 
-The example configuration has an empty UUID, empty database/root selection and
+The example configuration now names the explicitly authorized UUID but has empty database/root selection and
 `UNCONFIGURED` coverage. No executable live configuration is shipped.
 
 Before any destination write, the script requires:
@@ -62,16 +74,25 @@ Before any destination write, the script requires:
 5. A directory descriptor pinned before and checked after validation. All backup
    writes are relative to that pinned directory; a detached mount cannot redirect
    the job to the underlying root-directory path.
+6. An existing, same-filesystem `blaine` subtree, owned by the backup identity
+   with private permissions. Its descriptor becomes the working directory before
+   using `blaine-partial-backups`. No configurable relative paths or symlinks can
+   redirect the operation into the historical tree.
+7. A writable filesystem and available capacity for twice the selected database
+   storage/artifact bytes plus `min_free_bytes` (default 1 GiB). The PostgreSQL
+   estimate uses `pg_database_size` through the same local peer connection.
+   Available capacity and the estimate enter status/manifest evidence. This is
+   a conservative preflight estimate, not a reservation against concurrent writes.
 
 An absent mount, blank/wrong UUID or unsafe path returns nonzero. The mount
-directory itself is never created by the script or Ansible. No mount command or
-fstab update is executed. Only local status/journal may be written when a disk
+directory itself is never created by the **backup** script or Ansible. Mount/fstab
+preparation is a separate, explicitly authorized operator command below. Only local status/journal may be written when a disk
 is absent; **no backup payload is written to the root filesystem as fallback**.
-Actual mount/detach acceptance still requires the physical disk; simulated
-identity tests are not physical proof. Plaintext local snapshots are mode 0700
+The physical missing-mount negative test passed in a private namespace; the
+host mount stayed intact. Hot-detach and positive backup acceptance remain unproven. Plaintext local snapshots are mode 0700
 under a 0077 umask; physical-access protection/encryption is an operator decision.
 
-The owned `blaine-partial-backups/` namespace holds independent generations.
+The owned `blaine/blaine-partial-backups/` namespace holds independent generations.
 Default retention is the latest **7 verified generations**, configurable from
 1–365. Chronology comes from creation timestamps, not random suffixes. A new
 generation is published only after checksums, PostgreSQL archive-catalog checks
@@ -80,6 +101,85 @@ stops deletion. Foreign and `.incomplete-*` directories are never automatically
 pruned. Failed attempts remain for explicit inspection/removal and may consume
 space. Insufficient space produces failure, not deletion of last good backups.
 No encryption, remote sync, cloud credentials or off-site destination is added.
+
+## Authorized existing-volume preparation
+
+The physical target is now the Samsung SSD 850 EVO 500GB, ext4 UUID
+`2415dac3-9d47-470f-8e00-2766bfbb821e`. Device enumeration and labels are not
+authority. Existing historical Linux backups must remain untouched. The stable
+mount covers the filesystem root; only its new `blaine` subtree is managed.
+
+The user already ran [prepare-volume.py](../infra/backup/prepare-volume.py) with
+local sudo authentication. Preparation passed; do not rerun it during the pause.
+
+It verifies one matching UUID and ext4, rejects conflicting mount/fstab entries,
+mounts at `/srv/blaine-backup` with `noatime,nodev,nosuid,noexec`, and requires the
+four expected historical directories. Before/after fingerprints cover all
+historical entries except the dedicated `blaine` subtree, including regular
+file bytes, inode/ownership/mode/timestamps, extended attributes and symlinks.
+The filesystem root's metadata necessarily changes when adding the new subtree;
+the historical entries must not. No history filename/content listing is printed.
+Each pass reads the historical bytes and can take several minutes.
+
+The persistent entry is:
+
+```fstab
+UUID=2415dac3-9d47-470f-8e00-2766bfbb821e /srv/blaine-backup ext4 nofail,noatime,nodev,nosuid,noexec,x-systemd.device-timeout=10s 0 0
+```
+
+No fsck/format/repair command is included. Existing fstab bytes are retained and
+backed up locally before replacement; a conflicting entry causes STOP. The
+script does not reload systemd or start services. Review pending manager drift
+before deployment. `nofail` lets the host boot without the volume; the backup's
+own guard still fails if it is absent. Its service orders after the generated
+mount unit but does not implicitly mount a missing disk when invoked manually.
+
+Preparation evidence is written to
+`/var/lib/blaine-backup/volume-preparation.json`; the aggregate-only copy at
+`/run/blaine-d1-volume-result.json` lets the interactive session inspect the result
+without elevated access. Preparation PASS is not physical-backup PASS. The
+subsequent acceptance must use actual source selection, produce/verify a
+generation, restore that same generation in isolation, compare the historical
+fingerprint again, and record capacity before/after the backup.
+
+## Physical backup acceptance — PAUSED
+
+The attempted runner is retained as [inert evidence](../infra/backup/paused/README.md),
+not an executable acceptance entrypoint. The first attempt installed the scripts,
+units and root-only `/etc/blaine/backup.json`. It selected all non-template local
+PostgreSQL 18 databases and five explicit retained kernel artifact roots under
+main's Increment 11 evidence: acceptance, live-authorized acceptance, projection
+acceptance, revised acceptance and revised instrumentation counterexample. Those
+five roots are not complete host artifact coverage or S3 coverage. Nothing is
+claimed protected by a successful live generation yet.
+
+The real private-namespace missing-mount test passed without changing the host
+mount. Systemd backup then failed during PostgreSQL identity switching through
+runuser; the synthetic database was handled by cleanup. The second attempt's
+fixed SELECT 1 probes failed for both runuser (exit 1) and setpriv (exit 127),
+reporting Operation not permitted. No physical generation or restore passed.
+No new diagnostics or live experiments were run for the pause checkpoint.
+
+The setpriv/public-cwd attempt was removed from maintained executable code and
+preserved in a patch. The runner is archived as text and is not deployed by
+Ansible. Maintained code uses the previous runuser path, whose live service
+execution remains failing. **The installed host copy retains the attempted
+variant**; no deployment/reconciliation occurs during the pause. Review that
+drift before a future resumption, keeping the timer disabled/inactive until
+successful physical backup and isolated restore acceptance.
+
+Evidence: [volume preparation](../infra/volume-preparation-d1.json),
+[first physical STOP](../infra/physical-first-attempt-d1.json),
+[identity probe results](../infra/backup/paused/pg-probes.json).
+`infra/validation-d1-physical.json` retains historical pre-acceptance test evidence;
+its PENDING status and hashes are not the current acceptance result.
+
+Remaining proof requires producing and verifying a physical generation, restoring
+that exact generation into an isolated PostgreSQL cluster and artifact directory,
+checking contents, and recording historical fingerprints/capacity before and
+after. [restore-generation.py](../infra/backup/restore-generation.py) passed with
+an ordinary-user scratch generation; its root path and live physical generation
+remain unproven. No backup-success report may substitute offline proof for this.
 
 ## Ansible and local configuration
 
@@ -119,7 +219,7 @@ After the host deployment boundary is approved, apply the same command without
 `--check --diff`. A human creates `/etc/blaine/backup.json` from the example with
 root:root mode 0600, selected UUID, database allowlist and actual artifact roots.
 This machine configuration stays outside Git. PostgreSQL uses local peer
-authentication via runuser; no new database password is required or copied.
+authentication via the maintained runuser path (live execution failing); no new database password is required or copied.
 Existing secrets remain in their local mechanisms. Do not paste configuration
 values or raw database diagnostics into telemetry.
 
@@ -129,7 +229,8 @@ manager, because that would also apply those unrelated on-disk definitions.
 
 ## Backup now, status and verification
 
-Only after configuration, installation and mount acceptance:
+Future reference only: resume the bounded backup pass and reconcile installed
+code before configuration, installation and mount acceptance:
 
 ```bash
 sudo python3 /usr/local/lib/blaine/backup.py preflight
@@ -138,12 +239,11 @@ sudo systemctl status blaine-partial-backup.service --no-pager
 sudo journalctl -u blaine-partial-backup.service -n 50 --no-pager
 sudo python3 /usr/local/lib/blaine/backup.py status
 sudo python3 /usr/local/lib/blaine/backup.py verify --generation "$GENERATION"
-# After a successful manual backup AND isolated restore of that generation:
-sudo systemctl enable --now blaine-partial-backup.timer
 systemctl list-timers blaine-partial-backup.timer --no-pager
 ```
 
-The timer is daily at 03:30 in the host timezone, persistent for missed runs.
+Timer activation is deferred until a later successful live acceptance. It must
+remain disabled/inactive now. The configured schedule is daily at 03:30 in the host timezone, persistent for missed runs.
 Systemd owns execution, timeout and process-group shutdown; `Restart=no` avoids
 retry storms. PostgreSQL ordering is `After=postgresql@18-main.service`, not a
 claim of readiness or permission to restart the database. A failed dependency
@@ -255,12 +355,17 @@ core service, registration, state or object is STOP; do not start a duplicate
 development supervisor to hide a boot failure. Preserve evidence and investigate
 that unit before another reboot attempt. Entire-host acceptance is still pending.
 
-## Smallest remaining human decisions
+## Remaining work after this session
 
-Identify/connect the intended HDD by physical model/serial and filesystem UUID;
-review any existing contents without destructive operations. If preparation is
-needed, approve the exact device and bounded operation separately before any
-partitioning, formatting, repair or overwrite. D1 has not selected a candidate.
-Then approve source inventory and the runtime/S3 service cutover, review systemd
-drift, deploy/stage configuration, prove manual backup and isolated restore,
-and finally authorize the reboot window. Cloud/off-site backup remains deferred.
+Backup work is PAUSED, including identity-switch debugging, physical backup and
+restore acceptance. No further authentication or host action is requested now.
+The SSD is already prepared and its historical data preservation was verified
+at preparation. A later bounded backup pass must reconcile attempted installed
+code, establish successful service execution, and complete physical generation,
+restore and final history/capacity evidence. S3-backed complete-brain protection
+remains separate until Object Storage exists.
+
+The next D1 workstream focuses on missing infrastructure and service ownership;
+backup is not its blocker. S3/runtime cutover and reboot acceptance retain their
+own boundaries. Cloud/off-site backup remains deferred. This checkpoint installs
+nothing, changes no disks, performs no reboot and pushes nothing.

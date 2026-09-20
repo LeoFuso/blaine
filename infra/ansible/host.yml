@@ -22,6 +22,7 @@
         - /usr/lib/postgresql/18/bin/pg_dump
         - /usr/lib/postgresql/18/bin/pg_dumpall
         - /usr/lib/postgresql/18/bin/pg_restore
+        - /usr/lib/postgresql/18/bin/psql
       changed_when: false
       check_mode: false
 
@@ -47,6 +48,7 @@
         group: "{{ 'root' if blaine_prefix == '' else omit }}"
       loop:
         - {src: ../backup/backup.py, dest: /usr/local/lib/blaine/backup.py, mode: '0755'}
+        - {src: ../backup/restore-generation.py, dest: /usr/local/lib/blaine/restore-generation.py, mode: '0755'}
         - {src: ../backup/backup.example.json, dest: /etc/blaine/backup.example.json, mode: '0600'}
 
     - name: Install disabled backup units

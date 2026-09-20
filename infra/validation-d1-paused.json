@@ -1,0 +1,115 @@
+{
+  "observed_at": "2026-09-20T17:16:32.154855+00:00",
+  "repository_baseline": "b007fd42e47ec27a06843616514f7fb7bb3ed626",
+  "live_backup_acceptance": "PAUSED",
+  "volume_preparation": "PASS (prior evidence)",
+  "physical_backup_generation": "not accepted",
+  "physical_restore": "incomplete",
+  "complete_durable_brain": false,
+  "timer": {
+    "enabled": "disabled",
+    "active": "inactive",
+    "evidence": "read-only systemctl is-enabled/is-active at pause checkpoint"
+  },
+  "checks": [
+    {
+      "name": "offline-platform-tests",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/platform",
+        "-v"
+      ],
+      "exit_code": 0,
+      "output": "test_cli_has_no_fixture_or_mount_bypass (test_backup.GuardTests.test_cli_has_no_fixture_or_mount_bypass) ... ok\ntest_insufficient_space_and_readonly_fail_before_writes (test_backup.GuardTests.test_insufficient_space_and_readonly_fail_before_writes) ... ok\ntest_lock_contention_preserves_active_status (test_backup.GuardTests.test_lock_contention_preserves_active_status) ... ok\ntest_missing_or_symlink_subtree_is_never_created_or_followed (test_backup.GuardTests.test_missing_or_symlink_subtree_is_never_created_or_followed) ... ok\ntest_mount_rejects_wrong_uuid_root_bind_and_readonly (test_backup.GuardTests.test_mount_rejects_wrong_uuid_root_bind_and_readonly) ... ok\ntest_real_unmounted_directory_fails_without_destination_writes (test_backup.GuardTests.test_real_unmounted_directory_fails_without_destination_writes) ... ok\ntest_subtree_is_pinned_and_historical_paths_are_outside_destination (test_backup.GuardTests.test_subtree_is_pinned_and_historical_paths_are_outside_destination) ... ok\ntest_symlink_and_special_file_artifacts_rejected (test_backup.GuardTests.test_symlink_and_special_file_artifacts_rejected) ... ok\ntest_symlink_destination_rejected (test_backup.GuardTests.test_symlink_destination_rejected) ... ok\ntest_failed_dump_is_unpublished_and_does_not_prune (test_backup.RestoreTests.test_failed_dump_is_unpublished_and_does_not_prune) ... ok\ntest_postgres_and_kernel_object_restore_retention_and_corruption (test_backup.RestoreTests.test_postgres_and_kernel_object_restore_retention_and_corruption) ... ok\ntest_conflicting_uuid_mountpoint_or_duplicate_entry_stops (test_prepare_volume.VolumePlanTests.test_conflicting_uuid_mountpoint_or_duplicate_entry_stops) ... ok\ntest_fstab_preserves_existing_bytes_and_reapplies_unchanged (test_prepare_volume.VolumePlanTests.test_fstab_preserves_existing_bytes_and_reapplies_unchanged) ... ok\n\n----------------------------------------------------------------------\nRan 13 tests in 1.449s\n\nOK\n"
+    },
+    {
+      "name": "ansible-syntax",
+      "command": [
+        "/tmp/blaine-d1-validation/bin/ansible-playbook",
+        "-i",
+        "infra/ansible/inventory.ini",
+        "infra/ansible/host.yml",
+        "--syntax-check"
+      ],
+      "exit_code": 0,
+      "output": "\nplaybook: infra/ansible/host.yml\n"
+    },
+    {
+      "name": "ansible-first-apply",
+      "command": [
+        "/tmp/blaine-d1-validation/bin/ansible-playbook",
+        "-i",
+        "infra/ansible/inventory.ini",
+        "infra/ansible/host.yml",
+        "-e",
+        "blaine_prefix=/tmp/blaine-d1-pause-proof-mkbjnnix"
+      ],
+      "exit_code": 0,
+      "output": "\nPLAY [Stage the bounded D1 backup foundation] **********************************\n\nTASK [Validate staging boundary] ***********************************************\nok: [localhost] => {\n    \"changed\": false,\n    \"msg\": \"All assertions passed\"\n}\n\nTASK [Inspect required native tools without installing or upgrading packages] ***\nok: [localhost] => (item=/usr/bin/python3)\nok: [localhost] => (item=/usr/bin/findmnt)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dump)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dumpall)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_restore)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/psql)\n\nTASK [Create the small Blaine-owned directory set] *****************************\nchanged: [localhost] => (item={'path': '/etc/blaine', 'mode': '0700'})\nchanged: [localhost] => (item={'path': '/usr/local/lib/blaine', 'mode': '0755'})\nchanged: [localhost] => (item={'path': '/var/lib/blaine-backup', 'mode': '0700'})\nchanged: [localhost] => (item={'path': '/etc/systemd/system', 'mode': '0755'})\n\nTASK [Install reviewed backup implementation and inert example configuration] ***\nchanged: [localhost] => (item={'src': '../backup/backup.py', 'dest': '/usr/local/lib/blaine/backup.py', 'mode': '0755'})\nchanged: [localhost] => (item={'src': '../backup/restore-generation.py', 'dest': '/usr/local/lib/blaine/restore-generation.py', 'mode': '0755'})\nchanged: [localhost] => (item={'src': '../backup/backup.example.json', 'dest': '/etc/blaine/backup.example.json', 'mode': '0600'})\n\nTASK [Install disabled backup units] *******************************************\nchanged: [localhost] => (item=blaine-partial-backup.service)\nchanged: [localhost] => (item=blaine-partial-backup.timer)\n\nTASK [Explain the deployment boundary] *****************************************\nok: [localhost] => {\n    \"msg\": \"Files staged only. No mount, backup.json, daemon reload, service start or timer enablement performed.\"\n}\n\nPLAY RECAP *********************************************************************\nlocalhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n\n"
+    },
+    {
+      "name": "ansible-second-apply",
+      "command": [
+        "/tmp/blaine-d1-validation/bin/ansible-playbook",
+        "-i",
+        "infra/ansible/inventory.ini",
+        "infra/ansible/host.yml",
+        "-e",
+        "blaine_prefix=/tmp/blaine-d1-pause-proof-mkbjnnix"
+      ],
+      "exit_code": 0,
+      "output": "\nPLAY [Stage the bounded D1 backup foundation] **********************************\n\nTASK [Validate staging boundary] ***********************************************\nok: [localhost] => {\n    \"changed\": false,\n    \"msg\": \"All assertions passed\"\n}\n\nTASK [Inspect required native tools without installing or upgrading packages] ***\nok: [localhost] => (item=/usr/bin/python3)\nok: [localhost] => (item=/usr/bin/findmnt)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dump)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_dumpall)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/pg_restore)\nok: [localhost] => (item=/usr/lib/postgresql/18/bin/psql)\n\nTASK [Create the small Blaine-owned directory set] *****************************\nok: [localhost] => (item={'path': '/etc/blaine', 'mode': '0700'})\nok: [localhost] => (item={'path': '/usr/local/lib/blaine', 'mode': '0755'})\nok: [localhost] => (item={'path': '/var/lib/blaine-backup', 'mode': '0700'})\nok: [localhost] => (item={'path': '/etc/systemd/system', 'mode': '0755'})\n\nTASK [Install reviewed backup implementation and inert example configuration] ***\nok: [localhost] => (item={'src': '../backup/backup.py', 'dest': '/usr/local/lib/blaine/backup.py', 'mode': '0755'})\nok: [localhost] => (item={'src': '../backup/restore-generation.py', 'dest': '/usr/local/lib/blaine/restore-generation.py', 'mode': '0755'})\nok: [localhost] => (item={'src': '../backup/backup.example.json', 'dest': '/etc/blaine/backup.example.json', 'mode': '0600'})\n\nTASK [Install disabled backup units] *******************************************\nok: [localhost] => (item=blaine-partial-backup.service)\nok: [localhost] => (item=blaine-partial-backup.timer)\n\nTASK [Explain the deployment boundary] *****************************************\nok: [localhost] => {\n    \"msg\": \"Files staged only. No mount, backup.json, daemon reload, service start or timer enablement performed.\"\n}\n\nPLAY RECAP *********************************************************************\nlocalhost                  : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   \n\n"
+    },
+    {
+      "name": "systemd-unit-validation",
+      "command": [
+        "systemd-analyze",
+        "verify",
+        "infra/systemd/blaine-partial-backup.service",
+        "infra/systemd/blaine-partial-backup.timer"
+      ],
+      "exit_code": 0,
+      "output": ""
+    },
+    {
+      "name": "diff-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "output": ""
+    }
+  ],
+  "source_sha256": {
+    "infra/backup/paused/README.md": "a12f5a378ed36be6ac71a016c500e7ade6cc4f6129370e025277d1dab9cee0e1",
+    "infra/backup/paused/accept-physical.py.txt": "d880e4db96f699ee2f879d319caed919350d4ee6dfdd7a5b410c2504f1379504",
+    "infra/backup/paused/pg-probes.json": "3117a81038cb384871f3556345ce6a12264bf9baeb4a3653fb2cd5e8acd5e578",
+    "infra/backup/paused/unaccepted-identity-attempt.patch": "b28483ea3777e2cc49bdd816c8a3b93bcae416e1f51931e933d9f0101187e0eb",
+    "infra/backup/prepare-volume.py": "4411603d0e68416e24583e0064bef07dcdb4dbb1ba54d75d5669a51b5d414dc7",
+    "infra/backup/restore-generation.py": "5df2f17da94ae59a20af314cf997d8626fa54157e4a43e2bece2d35373d717fb",
+    "infra/physical-first-attempt-d1.json": "32eda84ac63c5e7442e196665a6defcd59a3d1e3bbd74a6b7f56d81732755295",
+    "infra/validation-d1-physical.json": "b7f1cf30229274eed326b7d8d7894bc71b64778f1b17756afdc887e1a46cae31",
+    "infra/volume-preparation-d1.json": "5ea54e4fcd4aa12a7aea8d12f1b8b25dcf585ce9e4419c145763d3e9148995f8",
+    "tests/platform/test_prepare_volume.py": "e8c821cd89768d0a4d16bb512a04f293d6c09c8c51e4b7d2af0f0207dd7dba7f",
+    "docs/platform-d1.md": "3a4924cac16d83281867693b28a19cdf874d4401eb11020eb8aae4e3a4201e6a",
+    "docs/platform-operations.md": "6dd11ec7a87b987d90af7226e429bc9eac62986d4a7fc033ad6540f726616d9c",
+    "infra/ansible/host.yml": "2611eed16fa9e073f2acc48031c11bffc4fcb3352abf3eb70d9597d83e101b9a",
+    "infra/backup/backup.example.json": "89433de43ae23af0c4aba4b210f8f45f271655fe9c88f56f80a9488f788419d1",
+    "infra/backup/backup.py": "60c1207f570599aac9201b0c69bbcc03237b521852937d4bc8db79b44195d564",
+    "infra/systemd/blaine-partial-backup.service": "e852aa7b2033e86c2157dd1df72553aec3d61cb62bebf2f66690d7e666ea57a2",
+    "infra/task-request.json": "9ebc5f24f05c687a3cccbc9d061217b005c79a1365b7c2a7768e287f180fde19",
+    "tests/platform/test_backup.py": "d3239f332e0d7973213385a5d752635e6a731c4b95b098545c02622809aa72c2"
+  },
+  "limits": [
+    "Offline scratch validation does not prove live identity switching, physical generation, or physical restore",
+    "No live backup debugging, disk mutation, deployment, or infrastructure installation during pause",
+    "Attempted installed variant remains unreconciled; timer must stay disabled/inactive",
+    "S3 is absent; complete-brain protection is incomplete"
+  ]
+}
