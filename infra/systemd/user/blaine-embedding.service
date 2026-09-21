@@ -1,0 +1,24 @@
+[Unit]
+Description=Blaine local BGE-M3 embeddings
+StartLimitIntervalSec=1800
+StartLimitBurst=3
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/python3 %h/.config/blaine/inference/serve.py %h/.config/blaine/inference/candidate.json embedding
+ExecStartPost=/usr/bin/python3 %h/.config/blaine/services/wait-ready.py --unit blaine-embedding.service --timeout 600 http://127.0.0.1:8001/health
+Restart=on-failure
+RestartSec=15
+TimeoutStartSec=630
+TimeoutStopSec=45
+MemoryHigh=5G
+MemoryMax=6G
+MemorySwapMax=0
+CPUQuota=200%
+CPUWeight=50
+Nice=5
+OOMPolicy=stop
+UMask=0077
+
+[Install]
+WantedBy=default.target

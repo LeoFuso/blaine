@@ -1,0 +1,170 @@
+{
+  "8000": {
+    "health": {
+      "http_status": 200
+    },
+    "models": {
+      "object": "list",
+      "data": [
+        {
+          "id": "nvidia/Qwen3.8-27B-NVFP4",
+          "object": "model",
+          "created": 1790023006,
+          "owned_by": "vllm",
+          "root": "nvidia/Qwen3.8-27B-NVFP4",
+          "parent": null,
+          "max_model_len": 131072,
+          "permission": [
+            {
+              "id": "modelperm-bb496af776298ceb",
+              "object": "model_permission",
+              "created": 1790023006,
+              "allow_create_engine": false,
+              "allow_sampling": true,
+              "allow_logprobs": true,
+              "allow_search_indices": false,
+              "allow_view": true,
+              "allow_fine_tuning": false,
+              "organization": "*",
+              "group": null,
+              "is_blocking": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "8001": {
+    "health": {
+      "http_status": 200
+    },
+    "models": {
+      "object": "list",
+      "data": [
+        {
+          "id": "BAAI/bge-m3",
+          "object": "model",
+          "created": 1790023006,
+          "owned_by": "vllm",
+          "root": "BAAI/bge-m3",
+          "parent": null,
+          "max_model_len": 8192,
+          "permission": [
+            {
+              "id": "modelperm-a9a9d65100739839",
+              "object": "model_permission",
+              "created": 1790023006,
+              "allow_create_engine": false,
+              "allow_sampling": true,
+              "allow_logprobs": true,
+              "allow_search_indices": false,
+              "allow_view": true,
+              "allow_fine_tuning": false,
+              "organization": "*",
+              "group": null,
+              "is_blocking": false
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ordinary": {
+    "seconds": 0.138,
+    "usage": {
+      "prompt_tokens": 19,
+      "total_tokens": 24,
+      "completion_tokens": 5,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "content": "BLAINE_READY",
+    "tool_calls": null,
+    "reasoning_present": false,
+    "finish_reason": "stop"
+  },
+  "reasoning": {
+    "seconds": 1.85,
+    "usage": {
+      "prompt_tokens": 83,
+      "total_tokens": 202,
+      "completion_tokens": 119,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 55
+      }
+    },
+    "content": "\n\nThe probability both are blue is:\n\n\\[\n\\frac{3}{8} \\times \\frac{2}{7} = \\frac{6}{56} = \\frac{3}{28}\n\\]\n\n**Answer: \\(\\frac{3}{28}\\)**",
+    "tool_calls": null,
+    "reasoning_present": true,
+    "finish_reason": "stop"
+  },
+  "structured": {
+    "seconds": 0.726,
+    "usage": {
+      "prompt_tokens": 20,
+      "total_tokens": 39,
+      "completion_tokens": 19,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "content": "{\n  \"status\": \"ready\",\n  \"count\": 3\n}",
+    "tool_calls": null,
+    "reasoning_present": false,
+    "finish_reason": "stop"
+  },
+  "tools": {
+    "seconds": 0.527,
+    "usage": {
+      "prompt_tokens": 287,
+      "total_tokens": 318,
+      "completion_tokens": 31,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "chatcmpl-tool-b06290a54b0546e3",
+        "type": "function",
+        "function": {
+          "name": "inspect_task",
+          "arguments": "{\"task_id\": \"d1_acceptance\"}"
+        }
+      }
+    ],
+    "reasoning_present": false,
+    "finish_reason": "tool_calls"
+  },
+  "simultaneous_generation": {
+    "seconds": 0.111,
+    "usage": {
+      "prompt_tokens": 18,
+      "total_tokens": 22,
+      "completion_tokens": 4,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    },
+    "content": "COEXIST_READY",
+    "tool_calls": null,
+    "reasoning_present": false,
+    "finish_reason": "stop"
+  },
+  "embeddings": {
+    "status": "PASS",
+    "vectors": 3,
+    "dimensions": 1024,
+    "seconds": 0.032
+  },
+  "vram": "29350 MiB, 32607 MiB",
+  "swap": "Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority\n/swap.img                               file\t\t8388604\t\t1389016\t\t-1\n",
+  "status": "PASS"
+}

@@ -32,6 +32,7 @@ class GooseWorker:
     audit: object = None
     proxy: str | None = None
     started: object = None  # trusted deployment observer; never selected by cognition
+    model: str = 'Qwen/Qwen3.5-9B'  # operator deployment choice, never WorkerInput
 
     def __call__(self, packet, operation_id):
         validate_packet(packet, packet['payload']['task_id'])
@@ -48,7 +49,7 @@ class GooseWorker:
                 settings.update(NO_PROXY='', no_proxy='')
             env.update(settings)
             command = [str(self.executable), 'run', '--no-profile', '--no-session', '--provider', 'openai',
-                       '--model', 'Qwen/Qwen3.5-9B', '--max-turns', '1', '--quiet', '--instructions', '-']
+                       '--model', self.model, '--max-turns', '1', '--quiet', '--instructions', '-']
             prompt = ('Execute only this bounded WorkerInput. You have no Task authority. '
                       'Use only supplied context. Return only the requested result, no reasoning or tools.\n' + encode(packet).decode())
             process = subprocess.Popen(command, cwd=directory, env=env, stdin=subprocess.PIPE,

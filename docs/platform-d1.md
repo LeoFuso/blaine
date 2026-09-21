@@ -3,11 +3,45 @@
 **Current: D1 IN PROGRESS — infrastructure foundation and rootful infrastructure-only
 host reboot PASS; rootless migration PASS; backup PAUSED.**
 See [rootless state, decisions and remaining reboot acceptance](platform-rootless-docker.md).
-Rootless reboot acceptance is pending. ADR 0019 is preserved; inference is not resumed.
+Rootless reboot acceptance is pending. D1.C inference acceptance now PASS, including the 131072-token boundary and
+controlled service restarts; see the
+[ADR 0019 operational amendment](decisions/0019-local-inference-serving-baseline.md).
 See [infrastructure acceptance](platform-infrastructure.md), [Grafana Cloud activation](platform-grafana-cloud.md)
 and [remaining D1 service/recovery work](roadmap/001-blaine-development-roadmap.md#d1).
-SeaweedFS Object Storage is now deployed. Blaine/Restate/vLLM/MIRIX service
+SeaweedFS Object Storage is now deployed. Blaine/Restate/MIRIX service
 adoption and full reboot acceptance remain incomplete. No backup acceptance is implied.
+
+## Ready at login — required outcome, not yet achieved
+
+The operator reaffirmed the end goal on 2026-09-21: after boot, logging in must
+find Blaine ready to accept work and recover its existing durable Tasks, including
+Restate, MIRIX, inference and their storage dependencies. No terminal commands or
+manual service starts should be required. User systemd with linger starts services
+at boot independently of interactive login; logout must not stop the platform.
+
+Observed at 2026-09-21 17:15 America/Sao_Paulo:
+
+| Component | Persistent automatic startup | Current acceptance |
+|---|---|---|
+| Rootless Docker + object storage/ClickHouse/Langfuse | Enabled, linger enabled | Infrastructure restarts passed; rootless host reboot pending |
+| PostgreSQL 18, Redis, Alloy | Automatic native services | Infrastructure foundation accepted |
+| Qwen + BGE-M3 | Both persistent user units enabled | D1.C PASS: 131072 context, single generation, coexistence, Goose/Worker and controlled restarts |
+| MIRIX | No persistent unit installed | Launcher staged only; retained-memory restart proof pending |
+| Restate | No persistent unit installed | Deployment/state-path selection and durable recovery proof pending |
+| Blaine application/runtime | No persistent unit installed | Accepted entrypoint adoption and same-Task resume proof pending |
+
+“Ready” requires dependency readiness, correct Restate deployment registration,
+and application capability, not merely an active systemd process. Preserve the
+actual Restate journal, artifact paths and MIRIX identity. After controlled
+restarts, inspect the same synthetic Task and demonstrate its continuation;
+Tasks waiting for a human/external dependency must retain that wait, not invent
+an answer or broaden authority. MIRIX semantic memory remains separate from
+Restate's durable Task state.
+
+Final D1.G must repeat that proof across a separately authorized host reboot,
+with the same Task, semantic-memory and object-storage identities. Until then,
+do not report the complete platform as automatically recovered or D1 as PASS.
+Backup remains PAUSED. No reboot or push was performed by this status update.
 
 ## Historical backup checkpoint (pause still active)
 

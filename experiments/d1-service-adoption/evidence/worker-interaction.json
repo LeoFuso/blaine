@@ -1,0 +1,27 @@
+{
+  "result": {
+    "attempt_id": "worker-92645b5ce8944fceac504ad92262f0e1",
+    "operation_id": "d1-worker-acceptance/1",
+    "outcome": "success",
+    "exit_code": 0,
+    "content": "no_unnecessary_cognition",
+    "normalization": "strip terminal whitespace; raw public stdout retained in worker evidence",
+    "public_stdout": "no_unnecessary_cognition\n",
+    "stderr_bytes": 0
+  },
+  "packet": {
+    "version": 1,
+    "kind": "WorkerInput",
+    "payload": {
+      "task_id": "d1-worker-acceptance",
+      "objective": "Read the supplied Python code. Which function raises TerminalError when no deterministic continuation exists? Return only its exact function name, without formatting.",
+      "context": [
+        {
+          "source": "runtime/personal_runtime.py",
+          "content": "\"\"\"Private Personal Agent deployment; optional operator-selected local adapters.\"\"\"\nimport asyncio\nimport json\nimport os\nfrom pathlib import Path\n\nimport restate\nfrom hypercorn.asyncio import serve\nfrom hypercorn.config import Config\n\nfrom runtime.kernel.artifacts import ArtifactStore\nfrom runtime.kernel.execution import Capabilities\nfrom runtime.kernel.event_sinks import JsonlEventPublisher\nfrom runtime.kernel.workflow import create_workflow\n\n\ndef no_unnecessary_cognition(packet):\n    raise restate.TerminalError('No deterministic continuation; completion criteria remain unmet')\n\n\ndef application(directory, deployment=None):\n    store = ArtifactStore(directory / 'artifacts')\n    cognitive, worker, providers = no_unnecessary_cognition, None, []\n    if deployment is not None:\n        from runtime.kernel.model import LocalModelCognition\n        from runtime.kernel.memory import MirixContext\n        from runtime.kernel.worker import GooseWorker\n        cognitive = LocalModelCognition(**deployment['cognition'])\n        providers = [MirixContext(**deployment['memory'])]\n        worker = GooseWorker(Path(deployment['goose']), directory / 'workers',\n                             model=deployment['cognition']['model'])\n    return restate.app([create_workflow(store, cognitive,\n        Capabilities(store, directory / 'fixture.sqlite', worker=worker), providers=providers,\n        event_publisher=JsonlEventPublisher(directory / 'events.jsonl'))])\n\n\nif __name__ == '__main__':\n    config = Config()\n    config.bind = ['127.0.0.1:49080']\n    deployment_path = os.environ.get('BLAINE_DEPLOYMENT_CONFIG')\n    deployment = json.loads(Path(deployment_path).read_text()) if deployment_path else None\n    asyncio.run(serve(application(Path(os.environ.get('BLAINE_D2_DATA', '.local/d2')), deployment), config))\n"
+        }
+      ]
+    }
+  },
+  "worker_completion_is_not_task_completion": true
+}

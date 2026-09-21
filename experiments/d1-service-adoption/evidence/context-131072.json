@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "configured_boundary": 131072,
+  "input_tokens": 130944,
+  "output_budget": 128,
+  "source": "tracked Blaine docs/runtime reference corpus, repeated only as needed",
+  "prompt_sha256": "97209052f8f35f3f09f58531ef4ef42525e8ea7dad7596ed79ad209a43d75fd0",
+  "markers": [
+    "D1_START_AMBER_7429",
+    "D1_MIDDLE_VIOLET_1938",
+    "D1_END_GREEN_6204"
+  ],
+  "requests": 1,
+  "embedding_before": {
+    "status": "PASS",
+    "vectors": 3,
+    "dimensions": 1024,
+    "seconds": 0.036
+  },
+  "seconds": 34.458,
+  "usage": {
+    "prompt_tokens": 130944,
+    "total_tokens": 130977,
+    "completion_tokens": 33,
+    "prompt_tokens_details": null,
+    "completion_tokens_details": null
+  },
+  "output": "D1_START_AMBER_7429, D1_MIDDLE_VIOLET_1938, D1_END_GREEN_6204",
+  "finish_reason": "stop",
+  "embedding_after": {
+    "status": "PASS",
+    "vectors": 3,
+    "dimensions": 1024,
+    "seconds": 0.015
+  },
+  "vram": "29821 MiB, 32607 MiB"
+}

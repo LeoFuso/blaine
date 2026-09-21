@@ -1,0 +1,10 @@
+{
+  "nvidia/Qwen3.8-27B-NVFP4": {
+    "revision": "482ca0f3832238542f8f5295dde86b5f22711d80",
+    "source": "https://huggingface.co/nvidia/Qwen3.8-27B-NVFP4"
+  },
+  "BAAI/bge-m3": {
+    "revision": "5617a9f61b028005a4858fdac845db406aefb181",
+    "source": "https://huggingface.co/BAAI/bge-m3"
+  }
+}

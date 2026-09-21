@@ -1,8 +1,39 @@
 # ADR 0019 — Local inference serving baseline
 
 **Status:** Accepted
-**Validation:** Unvalidated
+**Validation:** D1.C PASS (2026-09-21); full host reboot pending
 **Date:** 2026-09-21
+
+## Operational amendment — balanced daily use (2026-09-21)
+
+The operator clarified that practical resource balance takes priority over machine
+benchmarks. A host RAM OOM occurred during parallel CUDA compilation; that is not
+evidence that the 131072-token window cannot fit on the GPU. Preserve the original
+128k target with one generation sequence and GPU-resident BGE-M3. The original
+request required simultaneous generation and embeddings, not concurrent Qwen
+requests. Durable Task concurrency does not require model inference concurrency.
+
+The accepted deployment uses a 0.80 generation VRAM budget and BGE-M3 at
+8192 tokens/four sequences with a 0.08 VRAM budget. A single request with 130944
+input tokens and 128 output-token budget passed while embeddings remained resident.
+See [D1.C evidence](../../experiments/d1-service-adoption/evidence/inference-summary.json). Bound cold compilation to one job,
+bound service RAM/CPU, and disable inference cgroup swap. Validate ordinary
+operations and coexistence while keeping other services healthy. No saturation
+or throughput contest is required. Do not label the full 128k boundary accepted
+without relevant evidence; configured context and exercised context are distinct.
+
+The briefly staged 32768-token/two-generation profile was an assistant choice and
+was corrected after operator feedback. It is not the accepted deployment goal.
+If an actual GPU coexistence problem requires a smaller window, follow the
+original 98304/65536 GPU-only fallback sequence. Hybrid CPU/GPU model execution
+and CPU embedding research are low priority and deferred until the remaining
+tasks are complete; do not investigate them during this pass.
+
+Use temporary systemd containment during candidate acceptance so a compiler
+failure cannot consume unbounded host RAM. This supersedes the manual-process
+requirement below; enabling persistent services still requires acceptance.
+Keep all model pins, local-only exposure, no-offload rules and rollback artifacts.
+See [operating profile](../../infra/inference/README.md) for limits and evidence.
 
 ## Context
 

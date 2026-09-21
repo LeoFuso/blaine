@@ -1,0 +1,126 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "unit": "generation",
+      "before": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "InvocationID": "8ce5d724d2e542998f128472e712ff08",
+        "MainPID": "342975"
+      },
+      "after": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "InvocationID": "294dd6a9a0f84935be350877789f4f15",
+        "MainPID": "344312"
+      },
+      "peer_unchanged": true,
+      "restart_seconds": 24.848,
+      "functional": {
+        "generation": {
+          "seconds": 0.108,
+          "usage": {
+            "prompt_tokens": 18,
+            "total_tokens": 22,
+            "completion_tokens": 4,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "content": "RESTART_READY",
+          "tool_calls": null,
+          "reasoning_present": false,
+          "finish_reason": "stop"
+        },
+        "embeddings": {
+          "status": "PASS",
+          "vectors": 3,
+          "dimensions": 1024,
+          "seconds": 0.024
+        }
+      }
+    },
+    {
+      "unit": "embedding",
+      "before": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "InvocationID": "edc0a741852346f98d0c95a5940d5cb6",
+        "MainPID": "340558"
+      },
+      "after": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "InvocationID": "2406cd437038494a8761e1e391a7b41c",
+        "MainPID": "344706"
+      },
+      "peer_unchanged": true,
+      "restart_seconds": 15.587,
+      "functional": {
+        "generation": {
+          "seconds": 0.1,
+          "usage": {
+            "prompt_tokens": 18,
+            "total_tokens": 22,
+            "completion_tokens": 4,
+            "prompt_tokens_details": null,
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          },
+          "content": "RESTART_READY",
+          "tool_calls": null,
+          "reasoning_present": false,
+          "finish_reason": "stop"
+        },
+        "embeddings": {
+          "status": "PASS",
+          "vectors": 3,
+          "dimensions": 1024,
+          "seconds": 0.014
+        }
+      }
+    }
+  ],
+  "maintenance_start_limit_reset": true,
+  "combined_start": {
+    "generation": {
+      "ActiveState": "active",
+      "UnitFileState": "enabled",
+      "InvocationID": "dd8c4b9e3f2f413d8f46984ffba426a4",
+      "MainPID": "346389"
+    },
+    "embedding": {
+      "ActiveState": "active",
+      "UnitFileState": "enabled",
+      "InvocationID": "4de1bfe28c1347edaba7b98a5a60d8af",
+      "MainPID": "346052"
+    },
+    "functional": {
+      "generation": {
+        "seconds": 0.108,
+        "usage": {
+          "prompt_tokens": 18,
+          "total_tokens": 22,
+          "completion_tokens": 4,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          }
+        },
+        "content": "RESTART_READY",
+        "tool_calls": null,
+        "reasoning_present": false,
+        "finish_reason": "stop"
+      },
+      "embeddings": {
+        "status": "PASS",
+        "vectors": 3,
+        "dimensions": 1024,
+        "seconds": 0.026
+      }
+    }
+  }
+}

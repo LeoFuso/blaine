@@ -141,8 +141,17 @@ The [rootless migration checkpoint](../platform-rootless-docker.md) and
 [ADR 0020](../decisions/0020-rootless-docker-operator-runtime.md) select user systemd
 and linger. Full candidate, coherent offline copy, cutover and controlled restarts passed.
 The rootless user stack and linger are enabled; the legacy system owner is disabled.
-Rootless reboot acceptance is pending. D1.C/inference work does not resume in this
-migration; preserve ADR 0019.
+Rootless reboot acceptance is pending. The subsequent service-adoption pass has
+resumed D1.C candidate validation with bounded resources and the amended
+[ADR 0019](../decisions/0019-local-inference-serving-baseline.md): one generation,
+128k target, concurrent GPU embeddings, no benchmark program or hybrid CPU/GPU
+investigation. Restate, MIRIX and Blaine still lack accepted persistent units.
+
+**User-visible completion:** after boot, the operator logs in to a ready Blaine
+that can recover and continue its existing durable Tasks without manual service
+starts. User systemd + linger must start all adopted services independently of
+login. Dependency readiness and same-Task recovery are required in addition to
+enabled units. See the [current startup gap and acceptance](../platform-d1.md#ready-at-login--required-outcome-not-yet-achieved).
 
 **Why:** the kernel can be durable while Blaine still depends on open terminals
 and undocumented machine state. D1 makes the machine an understandable long-lived
