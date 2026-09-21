@@ -1,300 +1,139 @@
-# Grafana Cloud activation runbook
+# Grafana Fleet and Cloud telemetry
 
-Preparation: **COMPLETE**. Runtime: **CONFIGURED FOR FUTURE ACTIVATION**.
-No Grafana Cloud account/stack exists for this D1 pass; Bitwarden was observed
-unauthenticated. No remote exporter is active or remote delivery claimed. Local
-Alloy works without cloud credentials or an unlocked vault.
+**2026-09-21: Fleet runtime adoption STOPPED on native Alloy 1.19.2 startup safety.**
+Existing local Alloy remains active/enabled and its exact accepted configuration
+was restored. Fleet is the accepted architectural direction in
+[ADR 0021](decisions/0021-fleet-observability-control-plane.md), not an operational
+adoption claim. D1.A/B/C/D remain accepted; D1.G has not run; backup is PAUSED.
 
-This is the future operator procedure from that starting point to the first
-synthetic telemetry visible in Grafana Cloud. The authentication, activation and
-smoke commands below were **not executed** to close the preparation item. Run them
-in one local Bash terminal as the normal operator. Stop at any failed command;
-continue only after its expected result is established. No reboot, session restart,
-Docker group membership or temporary sudoers rule is needed.
+## Observed state
 
-## 1. Check the local prerequisites
-
-```sh
-cd /home/leofuso/workspace/blaine-platform-d1
-export PATH="$HOME/.local/bin:$PATH"
-set +x
-bw --version
-test -r /usr/local/lib/blaine/grafana-cloud.py
-test -r infra/smoke-otlp.py
-systemctl is-active alloy
-curl --fail --silent --show-error http://127.0.0.1:12345/-/healthy
-python3 /usr/local/lib/blaine/grafana-cloud.py status
-```
-
-Expected: CLI available (D1 installed 2026.9.0), files present, Alloy `active`, HTTP
-success, and Bitwarden `unauthenticated`. The helper prints only authentication
-state. These checks do not authenticate or enable export. Keep shell tracing off
-throughout credential handling; never put credential values in commands or Git.
-
-## 2. Create the Grafana Cloud account and stack
-
-Open [Grafana Cloud signup](https://grafana.com/auth/sign-up/create-user) in a
-browser, create the account, and complete its verification prompts. In the
-[Cloud Portal](https://grafana.com/profile/org), select the account and its initial
-stack, or choose **Create stack** if onboarding did not create one. Choose a stack
-name and region, wait for provisioning, and open its Grafana instance. Retain the
-stack URL for the later Explore checks.
-
-In the Cloud Portal select the same stack. Under **Manage your stack**, choose
-**OpenTelemetry → Configure**. The stack's OpenTelemetry connection/setup page
-also exposes these connection details. Copy:
-
-- The **OTLP HTTP base endpoint**, including `/otlp`. Do not use the Grafana UI URL
-  or append `/v1/traces` to this base value.
-- The **OTLP instance ID / username from that same page**. Do not infer it from an
-  email, organization ID or unrelated metrics instance.
-
-See the official [Cloud Portal guide](https://grafana.com/docs/grafana-cloud/platform/security-and-account-management/account-management/cloud-portal/)
-and [OpenTelemetry connection-details guide](https://grafana.com/docs/grafana-cloud/observe-and-act/agent-observability/get-started/grafana-cloud/).
-
-## 3. Create the scoped ingestion token
-
-Use the connection UI's token-generation flow, or open **Cloud access policies**
-in the stack's Administration settings. Create policy `blaine-otlp-write`, select
-only `metrics:write`, `logs:write`, and `traces:write`, then add a token with a useful
-expiry. Record who will rotate it. The stack UI scopes the policy to that stack;
-if using the Cloud Portal policy screen, explicitly select the **stack** realm
-and this stack rather than the organization-wide realm.
-
-This must be a **Cloud Access Policy token**. A Grafana service-account token for
-the dashboard HTTP API is a different credential. Keep the one-time token display
-open until saved in Bitwarden; do not put it in shell arguments, screenshots or
-this conversation. Official [access-policy concepts](https://grafana.com/docs/grafana-cloud/platform/security-and-account-management/security-and-access/authentication-and-permissions/access-policies/)
-and [three-signal write scopes](https://grafana.com/docs/grafana-cloud/observe-and-act/agent-observability/get-started/grafana-cloud/)
-define these permissions.
-
-## 4. Authenticate and unlock Bitwarden locally
-
-While the CLI is unauthenticated, select the server owning the operator's account.
-Run **one** applicable command:
-
-```sh
-bw config server https://vault.bitwarden.com  # US-hosted account
-# OR, for an EU-hosted account:
-bw config server https://vault.bitwarden.eu
-# For self-hosting, use the operator's actual existing vault URL instead.
-```
-
-If no Bitwarden account exists, create one in the selected server's browser UI
-first. An existing account must use its existing region; configuring the CLI
-server does not migrate a vault.
-
-Answer login, master-password and two-step-login prompts only in the local
-terminal. Capture raw session output so the session key is not displayed:
-
-```sh
-BW_SESSION="$(bw login --raw)" && export BW_SESSION
-python3 /usr/local/lib/blaine/grafana-cloud.py status
-```
-
-Expected: `unlocked`. If the initial status was already `locked`, use this instead
-of logging in again:
-
-```sh
-BW_SESSION="$(bw unlock --raw)" && export BW_SESSION
-python3 /usr/local/lib/blaine/grafana-cloud.py status
-```
-
-`BW_SESSION` remains only in this operator shell environment. Never persist it in
-a profile, file, Git or systemd. Never ask another person to send the master
-password or session key. The [official Bitwarden CLI guide](https://bitwarden.com/help/cli/)
-covers authentication, unlocking and raw output.
-
-## 5. Populate exactly the intended Bitwarden item
-
-Only after the helper reports `unlocked`:
-
-```sh
-python3 /usr/local/lib/blaine/grafana-cloud.py placeholder
-```
-
-This creates a secure note only when the named item is absent; an existing item
-is left unchanged. It neither enumerates nor dumps the vault. In the Bitwarden UI,
-open exactly **Blaine / Grafana Cloud** and populate these custom fields:
-
-| Field | Initial placeholder → final value |
+| Item | Result |
 |---|---|
-| `GRAFANA_CLOUD_OTLP_ENDPOINT` | `REPLACE_ME_NOT_ACTIVE` → actual HTTPS OTLP base endpoint |
-| `GRAFANA_CLOUD_OTLP_USERNAME` | `REPLACE_ME_NOT_ACTIVE` → numeric OTLP instance identifier |
-| `GRAFANA_CLOUD_OTLP_API_KEY` | `REPLACE_ME_NOT_ACTIVE` → scoped token; use a hidden field |
+| Collector | Existing `/usr/bin/alloy`, v1.19.2, revision `becfd48`, native service user `alloy` |
+| Selected native mechanism | `remotecfg`, 60-second polling, Basic Auth, redirects disabled |
+| Fleet URL / instance | `https://fleet-management-prod-015.grafana.net` / `1838998` |
+| Proposed stable ID | `blaine-platform`; inactive, not an enrolled/restart-proven Fleet identity |
+| Proposed attributes | `environment=blaine-dev`, `host=blaine`, `role=blaine-platform` |
+| BWS/Keyring and protected materialization | PASS |
+| Fleet authentication/read API connectivity | PASS: ListCollectors and ListPipelines returned HTTP 200 |
+| Native config validation | PASS with actual protected credentials; validation only |
+| Fleet enrollment / healthy collector in Fleet | NOT ACTIVATED / NOT PROVEN |
+| Remote config assignment | NOT EXERCISED; no remote pipeline changed |
+| Local telemetry after restoration | PASS: host metrics, five user journal sources, synthetic metric/log/trace persisted |
+| Cloud metrics / logs / traces | All INACTIVE / UNVALIDATED |
+| OpAMP Supervisor / second OTel Collector / generated installer | NOT ADOPTED / NOT INTRODUCED / NOT RUN |
 
-If the helper cannot establish item absence, create a **Secure note** manually
-with that exact name and fields. Do not create duplicates or replace unrelated
-credential items. Save all three real values, close the token display, clear any
-copied token from the clipboard, and sync the CLI:
+[Sanitized evidence](../experiments/d1-grafana-fleet/README.md) separates these
+claims. No Grafana API credential or rendered secret environment is evidence.
 
-```sh
-bw sync
-```
+## Why activation is stopped
 
-Expected: sync succeeds. Do not inspect using a bare `bw get item`, since that
-prints secret fields. The materialization helper captures the selected item.
+The installed native implementation calls Fleet registration during initial
+configuration evaluation. An unreachable endpoint causes that evaluation to fail
+and Alloy to exit. A bounded test using credential-free `http://127.0.0.1:1`
+reproduced this with the real service: no local readiness, five automatic restart
+attempts, then systemd start-limit failure. No host firewall/DNS change or second
+collector was used. The exact prior config was restored and the start limit reset
+once; local Alloy recovered. No Blaine runtime service was restarted.
 
-## 6. Materialize the runtime environment and lock the vault
+The release also contains remote-config cache and polling recovery paths. Those
+do not establish offline initial startup: the observed registration failure
+precedes a successful initial load. See the [installed-release source](https://github.com/grafana/alloy/blob/v1.19.2/internal/service/remotecfg/remotecfg.go)
+and [failure evidence](../experiments/d1-grafana-fleet/evidence/startup-failure.json).
+Thus a plain native enrollment would violate the explicit local-first requirement.
+No custom supervisor, sidecar retry controller, binary patch or upgrade was added.
 
-```sh
-sudo -v
-if python3 /usr/local/lib/blaine/grafana-cloud.py materialize; then
-  printf '%s\n' 'Materialization succeeded; activation remains a separate step.'
-else
-  printf '%s\n' 'Materialization FAILED: stop here; do not activate.'
-fi
-bw lock
-unset BW_SESSION
-python3 /usr/local/lib/blaine/grafana-cloud.py status
-```
+Before activation, a reviewed supported implementation must pass offline startup
+and reconnection. Then validate enrollment, the same collector ID across restart,
+a bounded remote assignment and unchanged local pipelines. A Grafana UI change
+alone does not fix the current STOP.
 
-Proceed only if materialization succeeded. Expected final vault status: `locked`.
-The helper captures only the selected item, validates the three fields, and sends
-only those fields over stdin to its bounded root writer. `BW_SESSION` is not sent
-to systemd or written to disk. This is an explicit operator action; there is no
-Bitwarden background synchronization daemon or runtime unlock dependency.
+## BWS to protected runtime material
 
-Verify file metadata without displaying its contents:
+The existing [materializer](../infra/grafana-cloud.py) now supports Fleet fields
+through **BWS 2.1.0**, reusing its atomic root-only writer:
 
-```sh
-sudo stat -c '%U:%G %a %n' /etc/blaine/secrets/grafana-cloud.env
-```
+1. As the operator, retrieve the bootstrap token from GNOME Keyring using the
+   established `service=leofuso-lab`, `credential=bws-access-token` attributes.
+   The helper captures it; it is not printed or persisted.
+2. Read project `blaine-dev`, ID `ac68b692-2150-45da-ab69-b4ca0085935a`, through a
+   short-lived BWS child environment. Select exactly the three unique keys
+   `GRAFANA_CLOUD_FM_URL`, `GRAFANA_CLOUD_FM_INSTANCE_ID`, `GRAFANA_CLOUD_FM_API_KEY`.
+3. Validate the exact Fleet endpoint/instance and reject environment injection,
+   missing fields and duplicate keys. Metrics/Logs instance IDs are not accepted.
+4. Pass only these fields over stdin to the bounded privileged writer. The result
+   is `/etc/blaine/secrets/grafana-fleet.env`, `root:root 0600`, beneath a root-only
+   0700 directory. The BWS bootstrap never reaches this file or systemd.
 
-Expected: `root:root 600 /etc/blaine/secrets/grafana-cloud.env`. Its parent is
-root-only 0700, outside Git. Do not `cat`/`source` it or include it in diagnostics.
-Materialization does **not** enable export.
-
-The current validator accepts an HTTPS hostname ending `.grafana.net`, base path
-`/otlp`, numeric instance ID and non-placeholder token. Placeholders, unsafe env
-syntax and other endpoints are rejected. If Grafana changes its official endpoint
-shape, review this contract rather than bypassing validation.
-
-## 7. Explicitly activate export and verify Alloy
-
-Activation forwards the existing host/self metrics, allowlisted platform journal
-logs and future local OTLP input, in addition to the synthetic smoke telemetry.
-Local retention continues. Run:
-
-```sh
-sudo python3 /usr/local/lib/blaine/grafana-cloud.py activate
-systemctl is-active alloy
-curl --fail --silent --show-error http://127.0.0.1:12345/-/healthy
-sudo test -f /etc/blaine/infra/cloud.enabled
-```
-
-Expected: activation succeeds, Alloy is `active`, HTTP health succeeds and the
-marker test exits 0. The helper combines the local config and inactive cloud
-fragment, validates the candidate, installs it and restarts Alloy. systemd reads
-`/etc/blaine/secrets/grafana-cloud.env` using its optional `EnvironmentFile`; Alloy
-reads the three fields through `sys.env()` and exports OTLP HTTP with basic auth
-and bounded retry/queue settings. No fake values enter an active exporter.
-
-The marker preserves explicit activation across Ansible applies. A reload alone
-cannot reread systemd's EnvironmentFile: repeat activation/restart after credential
-materialization. Alloy health alone does not prove successful remote delivery.
-
-## 8. Emit one synthetic metric, log and trace
-
-From the repository directory established in step 1:
+Materialization was performed and verified. The file is **not referenced by the
+active Alloy unit**, and the Fleet fragment remains inactive. Therefore no secret
+was loaded into the running collector and no enrollment is implied.
 
 ```sh
-date -u +%FT%TZ
-python3 infra/smoke-otlp.py
+# Explicit operator maintenance/rotation, not a boot requirement:
+python3 /usr/local/lib/blaine/grafana-cloud.py materialize-fleet
+# Metadata only; never cat/source the file for diagnostics:
+sudo stat -c '%U:%G %a %n' /etc/blaine/secrets/grafana-fleet.env
 ```
 
-Expected: `traces: accepted locally`, `metrics: accepted locally`,
-`logs: accepted locally`, and a synthetic trace ID. The script only sends to
-`127.0.0.1:4318`; it invokes no model or real application workload. Record the
-printed ID and UTC time, neither of which is a credential. Allow the five-second
-batch flush and a short backend indexing interval before querying. Local
-acceptance is not evidence of cloud arrival.
+Future accepted activation can use the established systemd EnvironmentFile pattern
+so boot/restart reads protected local material without Keyring/BWS/network login.
+The current `activate-fleet` action explicitly refuses activation until the native
+startup gate is resolved. The legacy interactive `bw` OTLP helper is retained for
+compatibility; it is not the selected Fleet secret source or a new runtime login
+dependency. Future telemetry credentials should extend this BWS path.
 
-## 9. Verify all three signals in Grafana Cloud
+[Ansible staging](../infra/ansible/grafana-fleet.yml) installs only the reviewed
+helper and [inactive native fragment](../infra/alloy/fleet.alloy.inactive). It does
+not fetch secrets, activate/restart Alloy, modify its unit or change remote pipelines.
+Scratch mode uses `/tmp/blaine-d1-fleet-*`; the real stage requires bounded host
+maintenance privilege. Normal Alloy operation remains under user `alloy`, with
+no sudo or open terminal. Temporary sudoers authorization was left untouched.
 
-Open **Explore** in the **same stack**, set **Last 15 minutes**, and choose each
-provisioned data source by type: **Tempo** for traces, **Loki** for logs,
-**Prometheus** for metrics. Names vary by stack. These logged-in UI queries require
-no additional read token.
+## Fleet and telemetry are separate
 
-For Tempo, select **Trace ID**, paste the ID printed by the smoke script and run
-the query. Confirm service `blaine-d1-synthetic`, span `d1-activation-smoke` and the
-recent timestamp. Alternatively search with TraceQL:
+BWS contains the three Fleet keys, but no Grafana telemetry ingestion credentials.
+The active collector has no Cloud exporter or Cloud activation marker. No separate
+Prometheus/Loki exporters or redundant unified OTLP exporter were introduced.
 
-```traceql
-{ resource.service.name = "blaine-d1-synthetic" }
-```
+Existing Grafana-generated remote defaults reference:
 
-For Loki, run this LogQL and confirm the emitted message and recent timestamp:
+| Product | Destination | Product instance |
+|---|---|---|
+| Hosted Metrics | `https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push` | `3602220` |
+| Hosted Logs | `https://logs-prod-024.grafana.net/loki/api/v1/push` | `1796781` |
+| Fleet Management | Fleet base URL above | `1838998` |
 
-```logql
-{service_name="blaine-d1-synthetic"} |= "D1 synthetic activation smoke"
-```
+The metric/log defaults require `GCLOUD_RW_API_KEY`, which is not materialized.
+They were inspected but **not changed or assigned**. Before enrollment, reconcile
+these automatic matchers so Blaine does not inherit unintended exporters. The
+proposed host-only exclusions were not applied after the startup STOP was found.
+No Tempo/OTLP destination or trace ingestion credential was established. Do not
+reuse the Fleet instance ID as a telemetry username or assume its token has write
+scopes. The existing inactive unified OTLP fragment can remain the simple delivery
+option once actual endpoint/username/scoped credentials are available and reviewed.
 
-For Prometheus, run this PromQL; the expected value is **1**. The name expression
-accepts normalized underscores or OTLP dots, while the range retains the single
-emitted gauge sample:
+Later delivery acceptance needs independent backend readback of a unique metric,
+log and trace. Local HTTP acceptance, exporter counters, Fleet API authentication
+and configuration visibility are not substitutes. Dashboard collector-health
+telemetry and remote alerting remain unaccepted. No Task-success monitor was added.
 
-```promql
-max_over_time({__name__=~"d1[._]synthetic[._]value",job="blaine-d1-synthetic"}[15m])
-```
+## Recovery and later D1.G
 
-The [Grafana OTLP mappings](https://grafana.com/docs/grafana-cloud/observe-and-act/send-data/otlp/otlp-format-considerations/)
-explain service/name conversion. If stack-specific mappings differ, use Explore's
-label/metric browser to locate the emitted service/name and record the mapping.
-One smoke span need not populate an Application Observability dashboard; direct
-Explore results are the acceptance evidence.
+The active local file still exactly matches `infra/alloy/config.alloy`. Its protected
+pre-test copy is `/etc/blaine/infra/alloy-pre-fleet.alloy`. No ongoing fallback
+service is required because the unsafe remote block is not activated. Fleet can
+be unreachable without affecting the restored local startup configuration.
 
-Optional local exporter-counter check, without credentials or raw logs:
+The [D1.G procedure](platform-services.md#d1g--later-human-authorized-reboot-procedure)
+retains the original object, MIRIX memory and WAITING Task identities. The fresh
+[read-only D1 preservation check](../experiments/d1-grafana-fleet/evidence/d1-preserved.json)
+passed; it did not replace the original baseline or execute a reboot. At the future
+human-authorized reboot, verify local Alloy readiness and host telemetry. Fleet
+reconnect is supporting evidence **only if separately accepted and activated by
+then**; it must never gate Blaine correctness or mask a local recovery failure.
 
-```sh
-curl --fail --silent --show-error http://127.0.0.1:12345/metrics |
-  rg '^otelcol_exporter_(sent|send_failed|enqueue_failed)_(spans|metric_points|log_records)(_total)?[{ ].*grafana_cloud'
-```
-
-Sent counters should increase after emission. Persistent failures require
-investigation. Counter success alone does not prove all three signals queryable.
-Record UTC time, stack URL, trace ID, the successful log query and metric value
-in an operator acceptance note without credentials. Only after all three are
-visible mark runtime delivery **CONNECTED / VERIFIED**. D1 preparation is already
-complete; this future acceptance remains unperformed.
-
-## 10. Recover, rotate credentials and finish securely
-
-If nothing appears, first check stack, data source and time range. For HTTP 401/403,
-check instance ID, token expiry and all three stack-scoped write permissions.
-For endpoint/DNS/TLS failures, recopy the connection details; do not disable TLS
-verification. For a single missing signal, check its scope and query mapping.
-Do not repeatedly emit synthetic data to mask an exporter failure.
-
-Disable remote export while preserving local telemetry:
-
-```sh
-sudo python3 /usr/local/lib/blaine/grafana-cloud.py deactivate
-systemctl is-active alloy
-curl --fail --silent --show-error http://127.0.0.1:12345/-/healthy
-sudo test ! -e /etc/blaine/infra/cloud.enabled
-```
-
-Expected: local Alloy healthy, activation marker absent. Deactivation does not
-erase the runtime credential or Bitwarden item. Correct/rotate values in Bitwarden,
-unlock and sync, repeat materialization, lock/unset the session, then activate
-and repeat the smoke and three delivery checks. Never paste raw configuration,
-environment files or logs into a diagnostic report.
-
-At the end of either successful activation or troubleshooting:
-
-```sh
-bw lock
-unset BW_SESSION
-sudo -k
-```
-
-D1's `/etc/sudoers.d/90-blaine-d1-codex` rule was removed and revocation verified.
-These future commands use normal operator-authenticated sudo; do not recreate that
-rule. Observability failure never becomes a Task/runtime dependency or authority.
-
-Additional official references checked on 2026-09-20:
-
-- [Grafana OTLP ingestion](https://grafana.com/docs/opentelemetry/ingest/)
-- [Alloy OTLP configuration](https://grafana.com/docs/opentelemetry/collector/grafana-alloy/)
+Official references: [native `remotecfg`](https://grafana.com/docs/alloy/latest/reference/config-blocks/remotecfg/),
+[Collector API](https://grafana.com/docs/grafana-cloud/observe-and-act/send-data/fleet-management/api-reference/collector-api/),
+[Pipeline API](https://grafana.com/docs/grafana-cloud/observe-and-act/send-data/fleet-management/api-reference/pipeline-api/).

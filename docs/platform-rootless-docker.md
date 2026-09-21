@@ -1,5 +1,10 @@
 # D1 rootless Docker migration
 
+**Fleet slice, 2026-09-21: activation STOPPED.** Native Alloy 1.19.2 registration
+failure prevents offline initial startup. Local Alloy was restored and verified;
+D1.A/B/C/D and all prepared D1.G identities remain accepted/unchanged. See the
+[Fleet findings and BWS runbook](platform-grafana-cloud.md). No reboot occurred.
+
 **Migration acceptance: PASS, 2026-09-21. Rootless reboot acceptance: PENDING.**
 Blaine now runs its four infrastructure containers under `leofuso`'s rootless
 Docker and user `blaine-infra.service`. Both user services are enabled, linger

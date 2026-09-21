@@ -14,6 +14,43 @@ from urllib.parse import urlsplit
 FIELDS = ('GRAFANA_CLOUD_OTLP_ENDPOINT', 'GRAFANA_CLOUD_OTLP_USERNAME', 'GRAFANA_CLOUD_OTLP_API_KEY')
 ITEM = 'Blaine / Grafana Cloud'
 ENV_FILE = Path('/etc/blaine/secrets/grafana-cloud.env')
+FLEET_FIELDS = ('GRAFANA_CLOUD_FM_URL', 'GRAFANA_CLOUD_FM_INSTANCE_ID', 'GRAFANA_CLOUD_FM_API_KEY')
+FLEET_PROJECT = 'ac68b692-2150-45da-ab69-b4ca0085935a'
+FLEET_ENV_FILE = Path('/etc/blaine/secrets/grafana-fleet.env')
+
+
+def validate_fleet(values):
+    if set(values) != set(FLEET_FIELDS):
+        raise ValueError('Exactly the three Fleet fields are required')
+    for value in values.values():
+        if not isinstance(value, str) or not value or re.search(r'[\s\x00"\'`$\\]', value):
+            raise ValueError('Invalid Fleet environment value')
+    if values[FLEET_FIELDS[0]] != 'https://fleet-management-prod-015.grafana.net':
+        raise ValueError('Fleet endpoint differs from the accepted stack')
+    if values[FLEET_FIELDS[1]] != '1838998':
+        raise ValueError('Fleet instance differs from the accepted Fleet identity')
+    token = values[FLEET_FIELDS[2]]
+    if len(token) < 20 or any(x in token.lower() for x in ('placeholder', 'replace', 'changeme')):
+        raise ValueError('Fleet token is missing or a placeholder')
+    return values
+
+
+def fleet_from_bws():
+    # The bootstrap token stays only in memory and the short-lived BWS child env.
+    keyring = subprocess.run(['secret-tool', 'lookup', 'service', 'leofuso-lab',
+                              'credential', 'bws-access-token'], capture_output=True, text=True, timeout=15)
+    if keyring.returncode or not keyring.stdout.strip():
+        raise RuntimeError('GNOME Keyring bootstrap unavailable; diagnostics suppressed')
+    env = dict(os.environ, BWS_ACCESS_TOKEN=keyring.stdout.strip())
+    result = subprocess.run(['/usr/local/bin/bws', 'secret', 'list', FLEET_PROJECT],
+                            env=env, capture_output=True, text=True, timeout=45)
+    if result.returncode:
+        raise RuntimeError('BWS project read failed; diagnostics suppressed')
+    rows = [row for row in json.loads(result.stdout) if row.get('key') in FLEET_FIELDS]
+    if len(rows) != 3 or len({row['key'] for row in rows}) != 3:
+        raise RuntimeError('Fleet fields absent or duplicated in the selected BWS project')
+    return validate_fleet({row['key']: row['value'] for row in rows})
+
 
 
 def validate(values):
@@ -55,8 +92,15 @@ def atomic(path, data, mode):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action', choices=['status', 'placeholder', 'materialize', 'write-env', 'activate', 'deactivate'])
+    p.add_argument('action', choices=['status', 'placeholder', 'materialize', 'write-env', 'activate', 'deactivate', 'materialize-fleet', 'write-fleet-env', 'activate-fleet'])
     action = p.parse_args().action
+    if action == 'activate-fleet':
+        raise RuntimeError('STOP: Alloy 1.19.2 native Fleet registration failure prevents local startup; offline-start acceptance is required before activation')
+    if action == 'materialize-fleet':
+        values = fleet_from_bws()
+        subprocess.run(['sudo', '-n', '/usr/bin/python3', '/usr/local/lib/blaine/grafana-cloud.py', 'write-fleet-env'],
+                       input=json.dumps(values), text=True, check=True)
+        return
     if action in ('status', 'placeholder', 'materialize'):
         status = bw('status')['status']
         if action == 'status':
@@ -85,10 +129,18 @@ def main():
         return
     if os.geteuid() != 0:
         raise RuntimeError('This action requires bounded sudo')
-    if action == 'write-env':
-        values = validate(json.load(sys.stdin))
+    if action in ('write-env', 'write-fleet-env'):
+        if action == 'write-fleet-env':
+            values = validate_fleet(json.load(sys.stdin))
+            destination, fields = FLEET_ENV_FILE, FLEET_FIELDS
+        else:
+            values = validate(json.load(sys.stdin))
+            destination, fields = ENV_FILE, FIELDS
+        parent = destination.parent
+        if parent.resolve() != parent or (parent.exists() and (parent.stat().st_uid != 0 or parent.stat().st_mode & 0o077)):
+            raise RuntimeError('Runtime secret directory must be private and root-owned')
         ENV_FILE.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
-        atomic(ENV_FILE, ''.join(f'{k}={values[k]}\n' for k in FIELDS), 0o600)
+        atomic(destination, ''.join(f'{k}={values[k]}\n' for k in fields), 0o600)
         print('Runtime environment materialized; exporter remains inactive.')
         return
     base = Path('/etc/blaine/infra/alloy-local.alloy').read_text()

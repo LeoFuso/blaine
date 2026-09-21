@@ -6,6 +6,11 @@
 > narrows container packaging preferences below. Durability, Task ownership and
 > observability boundaries remain unchanged; migration acceptance is separate.
 
+> Observability extension, 2026-09-21: [ADR 0021](0021-fleet-observability-control-plane.md)
+> accepts Fleet Management as the remote control-plane direction with local bootstrap
+> authority. Deployment is STOPPED on Alloy 1.19.2 offline-start behavior; no remote
+> activation is implied. Other architectural boundaries below remain unchanged.
+
 **Status:** Proposed for acceptance
 **Date:** 2026-09-20
 **Scope:** Blaine runtime, local infrastructure, durability, backup, host configuration, ingress and observability

@@ -1,0 +1,99 @@
+{
+  "fleet_api_authentication": "PASS",
+  "collector_enrollment": "NOT_ACTIVATED",
+  "remote_assignment": "NOT_EXERCISED",
+  "telemetry": {
+    "metrics": "INACTIVE_UNVALIDATED",
+    "logs": "INACTIVE_UNVALIDATED",
+    "traces": "INACTIVE_UNVALIDATED"
+  },
+  "collectors_http_status": 200,
+  "collectors": [],
+  "pipelines_http_status": 200,
+  "pipelines": [
+    {
+      "id": "17079",
+      "name": "host_metrics_otelcol",
+      "enabled": true,
+      "matchers": [
+        "platform!=\"kubernetes\""
+      ],
+      "configType": "CONFIG_TYPE_OTEL",
+      "contents_sha256": "c01b1f9c1e7b707cb01fc3abfb3517272c08fdf2014829fea19aff4e087787ef"
+    },
+    {
+      "id": "17076",
+      "name": "self_monitoring_logs_kubernetes",
+      "enabled": true,
+      "matchers": [
+        "platform=\"kubernetes\""
+      ],
+      "configType": "CONFIG_TYPE_ALLOY",
+      "contents_sha256": "134e432e893a8d59ddb58b3b10a2afb725bf835425a44c75eb00bd7c7e1b2a43"
+    },
+    {
+      "id": "17074",
+      "name": "self_monitoring_logs_linux",
+      "enabled": true,
+      "matchers": [
+        "collector.os=\"linux\"",
+        "platform!=\"kubernetes\""
+      ],
+      "configType": "CONFIG_TYPE_ALLOY",
+      "contents_sha256": "ebd301549f9353c573ce0c1e9dcdad0c902cf1878c64fc63ca772f233212db6e"
+    },
+    {
+      "id": "17075",
+      "name": "self_monitoring_logs_macos",
+      "enabled": true,
+      "matchers": [
+        "collector.os=\"darwin\"",
+        "platform!=\"kubernetes\""
+      ],
+      "configType": "CONFIG_TYPE_ALLOY",
+      "contents_sha256": "4d708c9e8e7d60f09f3d2e4eac54b43d041008ffd78c63cb883d1699514488a5"
+    },
+    {
+      "id": "17073",
+      "name": "self_monitoring_logs_windows",
+      "enabled": true,
+      "matchers": [
+        "collector.os=\"windows\"",
+        "platform!=\"kubernetes\""
+      ],
+      "configType": "CONFIG_TYPE_ALLOY",
+      "contents_sha256": "9a4b7b2a59034a271d905ff6010b30d59e7eec5efa8ff21e90853fe2efd1b264"
+    },
+    {
+      "id": "17072",
+      "name": "self_monitoring_metrics",
+      "enabled": true,
+      "matchers": [
+        "collector.os=~\".*\""
+      ],
+      "configType": "CONFIG_TYPE_ALLOY",
+      "contents_sha256": "53638dd486e94ab7b1ce084fd53b9dff2639d7b4e6d4118d0eb3137939f49692"
+    },
+    {
+      "id": "17078",
+      "name": "self_monitoring_otelcol",
+      "enabled": true,
+      "matchers": [
+        "collector.os=~\".*\""
+      ],
+      "configType": "CONFIG_TYPE_OTEL",
+      "contents_sha256": "0518f0c3a815ab49263ec68c6f2f3ff521855837afcda0efb598182c373ae7c4"
+    },
+    {
+      "id": "17077",
+      "name": "self_monitoring_otelcol_kube_stack",
+      "enabled": true,
+      "matchers": [
+        "platform=\"kubernetes\"",
+        "source=\"otel-kube-stack\""
+      ],
+      "configType": "CONFIG_TYPE_OTEL",
+      "contents_sha256": "bbbb6c8e2f83de4e3bbdab856ac0a7104ac2925cfb54a3811945b5232e35e90c"
+    }
+  ]
+}

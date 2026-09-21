@@ -1,0 +1,32 @@
+{
+  "kind": "TaskSpec",
+  "version": 1,
+  "payload": {
+    "objective": "Adopt native Alloy Fleet remote observability control while preserving local bootstrap, telemetry and accepted D1 state.",
+    "completion": [
+      {
+        "criterion": "Stable native Fleet enrollment, controlled remote augmentation and failure isolation",
+        "evidence": "Sanitized live observations and configuration validation"
+      },
+      {
+        "criterion": "D1 identities preserved and no reboot/backup activation",
+        "evidence": "Existing read-only verifier and local commit"
+      }
+    ],
+    "autonomy": {
+      "allowed": [
+        "bounded Alloy configuration",
+        "BWS materialization",
+        "one remote test pipeline",
+        "necessary host-specific default-pipeline exclusions"
+      ],
+      "forbidden": [
+        "reboot",
+        "push",
+        "sudoers changes",
+        "second collector",
+        "accepted runtime redesign"
+      ]
+    }
+  }
+}

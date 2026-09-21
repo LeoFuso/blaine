@@ -1,0 +1,59 @@
+{
+  "status": "STOP",
+  "reason": "Alloy 1.19.2 native Fleet registration failure aborts initial load, violating local-first startup",
+  "alloy_version": "1.19.2",
+  "alloy_revision": "becfd48",
+  "mechanism": "native remotecfg; validated but inactive",
+  "collector_id": {
+    "value": "blaine-platform",
+    "status": "proposed only, not enrolled or restart-proven"
+  },
+  "attributes": {
+    "environment": "blaine-dev",
+    "host": "blaine",
+    "role": "blaine-platform"
+  },
+  "poll_frequency": "60s",
+  "fleet_api_connectivity": "PASS: authenticated ListCollectors/ListPipelines HTTP 200",
+  "fleet_enrollment": "NOT_ACTIVATED",
+  "fleet_health": "NOT_PROVEN",
+  "controlled_restart": "Local restoration PASS; Fleet-unavailable restart FAIL",
+  "remote_pipeline_assignment": "NOT_EXERCISED; no remote pipeline mutation",
+  "cloud_delivery": {
+    "metrics": "INACTIVE_UNVALIDATED",
+    "logs": "INACTIVE_UNVALIDATED",
+    "traces": "INACTIVE_UNVALIDATED"
+  },
+  "bws": "PASS; project-specific GNOME Keyring -> short-lived BWS -> stdin root writer -> root:root 0600 local file, not loaded by Alloy",
+  "native_configuration_validation": "PASS with actual protected credentials",
+  "local_telemetry": "PASS after exact restoration; synthetic metric/log/trace and host metrics persisted",
+  "opamp_supervisor": "NOT_ADOPTED",
+  "second_collector": "NOT_INTRODUCED",
+  "generated_installer": "NOT_RUN",
+  "alloy_binary_changed": false,
+  "custom_supervisor_introduced": false,
+  "tests": {
+    "platform_security_tests": 33,
+    "ansible_syntax": "PASS",
+    "scratch_idempotency": "second run changed=0 failed=0",
+    "live_staging_idempotency": "second run changed=0 failed=0",
+    "git_diff_check": "PASS",
+    "platform_security_tests_result": "PASS"
+  },
+  "D1.A_B_C_D": "Accepted; preserved-state verifier PASS",
+  "D1.G": "Not executed; original fixture file hashes unchanged; local Alloy check retained, Fleet optional if later accepted",
+  "backup": "PAUSED",
+  "reboot_occurred": false,
+  "push_occurred": false,
+  "sudoers_modified": false,
+  "historical_evidence_modified": false,
+  "future_gate": "Prove native offline initial load and reconnection before activation; no UI-only fix",
+  "expected_unchanged_blaine_pids": {
+    "blaine-generation.service": "346389",
+    "blaine-embedding.service": "346052",
+    "blaine-mirix.service": "356517",
+    "blaine-restate.service": "358882",
+    "blaine-runtime.service": "360671"
+  },
+  "blaine_process_identities_unchanged": true
+}

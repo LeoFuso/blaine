@@ -154,7 +154,9 @@ Existing host CPU/RAM/load/disk/network/systemd metrics and Alloy self metrics
 continue every 30 seconds, with bounded local OTLP retention. GPU use and cgroup
 OOM/swap counters are sampled in acceptance evidence; there is no dedicated GPU
 exporter, new alerting project or automatic end-to-end Task health monitor.
-Grafana Cloud is inactive. Backups are still PAUSED, timer disabled/inactive.
+Grafana Cloud delivery remains inactive. The [Fleet slice](platform-grafana-cloud.md)
+proved BWS/API access but STOPPED activation on Alloy 1.19.2 offline-start failure;
+the exact local collector config was restored. Backups are still PAUSED, timer disabled/inactive.
 
 Routine operator commands need no sudo:
 
@@ -190,7 +192,10 @@ The following procedure is ready for the operator's later explicit authorization
    The verifier waits up to 1500 seconds for automatic readiness, requires a changed
    boot ID, and checks the same identities, states and hashes. It does not start,
    restart, seed or respond to anything.
-4. Preserve its output, process ownership evidence and relevant boot journals.
+4. Check native Alloy readiness and local telemetry. Fleet reconnect is optional
+   supporting evidence only if separately accepted/activated before that reboot;
+   it is currently STOPPED and is never a Blaine correctness dependency.
+   Preserve verifier output, process ownership evidence and relevant boot journals.
    Run the bounded inference smoke if investigating a failed model check. Record
    STOP on missing/changed state; never hide it with a second runtime or new marker.
 5. Only accepted post-reboot evidence can close D1.G. Backup remains PAUSED even

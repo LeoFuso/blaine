@@ -1,0 +1,4 @@
+{
+  "submitted": false,
+  "reason": "The actual accepted kernel does not expose an authorized Fleet/host-maintenance capability. This is the operator-authorized continuation; no synthetic Task is claimed as its execution."
+}

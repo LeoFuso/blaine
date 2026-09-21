@@ -1,0 +1,28 @@
+PLAY [Stage BWS materialization and inactive native Fleet configuration] *******
+
+TASK [Require a bounded staging destination] ***********************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Require real-host root ownership or isolated scratch execution] **********
+ok: [localhost]
+
+TASK [Create only staging directories] *****************************************
+ok: [localhost] => (item={'path': '/usr/local/lib/blaine', 'mode': '0755'})
+ok: [localhost] => (item={'path': '/etc/blaine/infra', 'mode': '0700'})
+
+TASK [Stage the existing materializer with its BWS extension] ******************
+changed: [localhost]
+
+TASK [Stage native Fleet syntax without activation] ****************************
+changed: [localhost]
+
+TASK [Record the activation boundary] ******************************************
+ok: [localhost] => {
+    "msg": "No secret retrieval, active config, EnvironmentFile, restart, enable or remote pipeline mutation. Fleet activation STOPPED pending native offline-start acceptance."
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

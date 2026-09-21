@@ -130,10 +130,12 @@ This is a bounded diagnostic baseline, not a query backend or backup. The file
 exporter is explicitly `public-preview` in Alloy 1.19.2; that stability flag is
 captured in the package environment. Remote export is absent from active config.
 
-Grafana Cloud is **CONFIGURED FOR FUTURE ACTIVATION**, not connected. The
-[activation runbook](platform-grafana-cloud.md) covers account setup, scoped token,
-Bitwarden placeholders, operator materialization, activation and delivery checks.
-Missing cloud values never affect the local collector. No cloud model call occurs.
+Fleet Management is the selected remote observability control-plane direction,
+but native activation is **STOPPED**: Alloy 1.19.2 fails its initial load if Fleet
+registration is unavailable. The exact local config was restored and validated.
+BWS/Keyring materialization and Fleet read-API authentication passed; Cloud
+metrics/logs/traces remain inactive and unvalidated. See the [current runbook](platform-grafana-cloud.md).
+No remote pipeline was changed and no accepted D1 runtime was redesigned.
 
 ## Reproducible deployment and acceptance
 

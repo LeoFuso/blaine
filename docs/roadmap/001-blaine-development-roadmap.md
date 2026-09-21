@@ -182,12 +182,14 @@ versions, endpoints and config paths. Do not copy a historical inventory into a
 new deployment without observing current state.
 
 Object namespaces are `blaine-artifacts`, `langfuse-events` and `langfuse-media`,
-with separate scoped access. Grafana Cloud is **CONFIGURED FOR FUTURE ACTIVATION**:
-local Alloy works, remote export is inactive, and an operator credential/bootstrap
-procedure is prepared. The [Bitwarden materialization/activation runbook](../platform-grafana-cloud.md)
-keeps secrets external to Git; preparation is not account authentication, token
-creation or delivery verification. No secrets were committed. The temporary D1
-privilege grant was removed; future operators must not assume passwordless sudo.
+with separate scoped access. The [Fleet control-plane slice](../platform-grafana-cloud.md)
+reached **STOP for activation** on native Alloy 1.19.2 offline-start failure.
+BWS/Keyring materialization and Fleet read-API access passed; local Alloy is restored
+and Cloud telemetry remains inactive/unvalidated. No D1.G identity was replaced.
+[ADR 0021](../decisions/0021-fleet-observability-control-plane.md) records the direction
+without claiming adoption. Resolve and prove offline startup before enrollment;
+do not introduce an alternate supervisor or reopen inference. Temporary maintenance
+sudo was left untouched for human cleanup, not made a runtime dependency.
 
 The durable knowledge/artifact brain is **PostgreSQL + Blaine Object Storage**.
 Restate separately owns durable Task execution state and needs its own state path

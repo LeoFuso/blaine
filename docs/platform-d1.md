@@ -1,5 +1,10 @@
 # D1 — Long-lived platform foundation
 
+**Fleet slice, 2026-09-21: activation STOPPED.** Native Alloy 1.19.2 registration
+failure prevents offline initial startup. Local Alloy was restored and verified;
+D1.A/B/C/D and all prepared D1.G identities remain accepted/unchanged. See the
+[Fleet findings and BWS runbook](platform-grafana-cloud.md). No reboot occurred.
+
 **Current: D1 IN PROGRESS. D1.A/B/C/D live service adoption PASS; rootless
 migration PASS; D1.G host reboot PENDING; backup PAUSED.**
 

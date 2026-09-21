@@ -1,0 +1,17 @@
+// Selected native mechanism. DO NOT activate on Alloy 1.19.2:
+// failed registration during initial load prevents even local startup.
+// See experiments/d1-grafana-fleet/evidence/startup-failure.json.
+// Secrets would be supplied by the protected runtime EnvironmentFile,
+// not by BWS/Keyring at service startup. That EnvironmentFile is NOT enabled.
+remotecfg {
+  url = sys.env("GRAFANA_CLOUD_FM_URL")
+  id = "blaine-platform"
+  name = "Blaine platform"
+  attributes = {environment = "blaine-dev", host = "blaine", role = "blaine-platform"}
+  poll_frequency = "60s"
+  follow_redirects = false
+  basic_auth {
+    username = sys.env("GRAFANA_CLOUD_FM_INSTANCE_ID")
+    password = sys.env("GRAFANA_CLOUD_FM_API_KEY")
+  }
+}
