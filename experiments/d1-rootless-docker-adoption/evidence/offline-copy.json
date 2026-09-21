@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "source_changed": false,
+  "copies": {
+    "objects": {
+      "source": {
+        "sha256": "78b4fa3c5bba267336975fffc09742f372e7ebd7bbc762f53546151e7943ec66",
+        "entries": 167,
+        "bytes": 1016663
+      },
+      "destination": {
+        "sha256": "78b4fa3c5bba267336975fffc09742f372e7ebd7bbc762f53546151e7943ec66",
+        "entries": 167,
+        "bytes": 1016663
+      },
+      "host_uid_gid": 1000
+    },
+    "clickhouse/data": {
+      "source": {
+        "sha256": "bdb0db692ed719a74416544d6c3741e47bd5db0de347856b70920e1307c8f48e",
+        "entries": 37454,
+        "bytes": 330329442
+      },
+      "destination": {
+        "sha256": "bdb0db692ed719a74416544d6c3741e47bd5db0de347856b70920e1307c8f48e",
+        "entries": 37454,
+        "bytes": 330329442
+      },
+      "host_uid_gid": 100100
+    },
+    "clickhouse/logs": {
+      "source": {
+        "sha256": "c8ea9b81914fec6d1f68f302ecd093270e095bdaacb3d97f5107f65c7c139be7",
+        "entries": 3,
+        "bytes": 282704679
+      },
+      "destination": {
+        "sha256": "c8ea9b81914fec6d1f68f302ecd093270e095bdaacb3d97f5107f65c7c139be7",
+        "entries": 3,
+        "bytes": 282704679
+      },
+      "host_uid_gid": 100100
+    }
+  }
+}

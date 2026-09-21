@@ -1,6 +1,6 @@
 {
   "observed_at": "2026-09-20",
-  "status": "Observed D1 infrastructure versions; service restart acceptance passed, full-machine reboot pending",
+  "status": "D1 foundation and rootless migration accepted; rootful infrastructure-only reboot PASS; rootless reboot pending",
   "host": {
     "os": "Ubuntu 26.04.1 LTS",
     "kernel": "7.0.0-31-generic",
@@ -18,7 +18,9 @@
     "containerd.io": "2.3.5",
     "docker-buildx-plugin": "0.37.1",
     "alloy": "1.19.2",
-    "bitwarden_cli": "2026.9.0"
+    "bitwarden_cli": "2026.9.0",
+    "docker-ce-rootless-extras": "5:29.8.1-1~ubuntu.26.04~resolute",
+    "uidmap": "1:4.17.4-2ubuntu3"
   },
   "repository_runtime_pins": "runtime/requirements.txt",
   "validation": {
@@ -53,5 +55,7 @@
     "docker.langfuse.com/langfuse/langfuse-worker:4.38.0": [
       "docker.langfuse.com/langfuse/langfuse-worker@sha256:8631cf429efc4a2981d4e6ced4c005b9f6f620a4e34625baf60152301ec6d006"
     ]
-  }
+  },
+  "rootless_observed_at": "2026-09-21",
+  "rootless_acceptance": "experiments/d1-rootless-docker-adoption/evidence/summary.json"
 }

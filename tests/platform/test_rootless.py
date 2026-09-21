@@ -18,9 +18,15 @@ def module(name, filename):
 
 bootstrap = module('bootstrap_secrets', 'bootstrap-secrets.py')
 preflight = module('rootless_preflight', 'preflight.py')
+candidate = module('rootless_candidate', 'prepare-candidate.py')
+copy_state = module('rootless_copy', 'copy-stopped-state.py')
 
 
 class RootlessSecretTests(unittest.TestCase):
+    def fingerprint(self, root, uid, gid):
+        # Fixtures may be tmpfs; production calls enforce the host root device.
+        return copy_state.fingerprint(root, uid, gid, device=root.stat().st_dev)
+
     def values(self):
         return {name: 'synthetic-test-value\n' for name in bootstrap.NAMES}
 
@@ -78,6 +84,55 @@ class RootlessSecretTests(unittest.TestCase):
         with patch.object(os, 'getuid', return_value=1000), patch.object(preflight.subprocess, 'check_output', side_effect=['unix:///run/user/1000/docker.sock', '["name=seccomp"]']):
             with self.assertRaises(RuntimeError):
                 preflight.daemon()
+
+    def test_candidate_dependencies_are_isolated_without_rotating_identity(self):
+        source = {'DATABASE_URL': 'postgresql://synthetic:fixture@127.0.0.1:5432/blaine_langfuse',
+                  'SALT': 'synthetic-salt', 'ENCRYPTION_KEY': 'synthetic-key',
+                  'REDIS_CONNECTION_STRING': 'redis://127.0.0.1:6379/15',
+                  'CLICKHOUSE_URL': 'http://127.0.0.1:8123'}
+        result = candidate.candidate_environment(source)
+        self.assertEqual(result['SALT'], source['SALT'])
+        self.assertEqual(result['ENCRYPTION_KEY'], source['ENCRYPTION_KEY'])
+        self.assertIn('/blaine_rootless_candidate_20260921', result['DATABASE_URL'])
+        self.assertIn(':16379/', result['REDIS_CONNECTION_STRING'])
+        self.assertIn(':18123', result['CLICKHOUSE_URL'])
+        self.assertEqual(result['LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT'], 'http://127.0.0.1:18333')
+        self.assertEqual(result['LANGFUSE_S3_MEDIA_UPLOAD_ENDPOINT'], 'http://127.0.0.1:18333')
+        self.assertIn('/blaine_langfuse', source['DATABASE_URL'])
+
+    def test_offline_fingerprint_covers_bytes_and_preserves_relative_symlinks(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / 'data').write_text('synthetic-original')
+            (root / 'link').symlink_to('data')
+            before = self.fingerprint(root, os.getuid(), os.getgid())
+            self.assertEqual(before['entries'], 3)
+            self.assertEqual(os.readlink(root / 'link'), 'data')
+            (root / 'data').write_text('synthetic-changed')
+            after = self.fingerprint(root, os.getuid(), os.getgid())
+            self.assertNotEqual(before['sha256'], after['sha256'])
+
+    def test_offline_copy_refuses_external_links_and_unexpected_owners(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            with self.assertRaises(RuntimeError):
+                self.fingerprint(root, os.getuid() + 1, os.getgid())
+            (root / 'outside').symlink_to('/etc/passwd')
+            with self.assertRaises(RuntimeError):
+                self.fingerprint(root, os.getuid(), os.getgid())
+
+    def test_offline_copy_refuses_special_files(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            os.mkfifo(root / 'pipe', 0o600)
+            with self.assertRaises(RuntimeError):
+                self.fingerprint(root, os.getuid(), os.getgid())
+
+    def test_offline_copy_refuses_unexpected_filesystem(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            with self.assertRaises(RuntimeError):
+                copy_state.fingerprint(root, os.getuid(), os.getgid(), device=root.stat().st_dev + 1)
 
 
 if __name__ == '__main__':

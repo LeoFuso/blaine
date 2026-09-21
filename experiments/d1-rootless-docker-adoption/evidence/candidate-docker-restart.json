@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "scope": "candidate",
+  "checks": {
+    "four_rootless_containers_healthy": "PASS",
+    "http_health": "PASS",
+    "retained_original_state": {
+      "status": "PASS",
+      "objects_preserved": 4,
+      "clickhouse_rows_preserved": 1,
+      "langfuse_traces_preserved": 1
+    },
+    "langfuse_roundtrip": {
+      "trace_id": "7129176a2cf5328682568285b4997696",
+      "since": "2026-09-21T17:02:34.974206+00:00",
+      "status": "PASS"
+    },
+    "private_loopback_listeners": "PASS"
+  },
+  "snapshot": {
+    "objects": [
+      {
+        "bucket": "blaine-artifacts",
+        "identity_sha256": "b94629a49e826d343cb16c29321452523c5826ec8521dd1362f4e6148d7bb9ab",
+        "content_sha256": "25957cde7233d819cd9aeb5d8ff97834ccac5b51d30465f00f78ce72acf99f59",
+        "bytes": 54
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "0a7f907ed6c85bf39824510a5a426e104c0cf96b4fc850849cdf5601f5207957",
+        "content_sha256": "17d2941f85020d9dfb68ce4ba2824680676ce84cab8ccea66d4b0cb9ae01e0e5",
+        "bytes": 53
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "a215d2ba11be247b5ef6f46f2f7cf8084a652d1be0d8b818d5bac8f12a90bbdf",
+        "content_sha256": "7c0d8cd435498bc314dcb76e2d28409deff3d87e15bd76b05f0f8f79ea8d84ad",
+        "bytes": 526
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "e26b088f96c7715b88eae1d4b13514d2122dbef4c9d38e0875e6ad21852a923f",
+        "content_sha256": "49863f7b8b71d6294d3aa886b9cac54b96bd73088fe4e7e6d8ba906fe37d76a3",
+        "bytes": 526
+      },
+      {
+        "bucket": "langfuse-media",
+        "identity_sha256": "744f5a98f300ffa3cf5616f3ca7356e5d52fbd34f34e7b0e0632eb83177db88f",
+        "content_sha256": "e98bd1fde6f6e5ca16f343cabfd21bbbb2b5ec51a51734efcce7e442321563d5",
+        "bytes": 52
+      }
+    ],
+    "clickhouse_rows": [
+      "69c3db69f4a20d200a60ea5f"
+    ],
+    "langfuse_tables": 14,
+    "clickhouse_version": "26.4.5.143",
+    "retained_traces": [
+      {
+        "trace_id": "7129176a2cf5328682568285b4997696",
+        "since": "2026-09-21T17:02:34.974206+00:00",
+        "count": 1
+      }
+    ]
+  },
+  "observed_at": "2026-09-21T17:03:37.110385+00:00"
+}

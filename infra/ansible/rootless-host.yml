@@ -4,6 +4,7 @@
   gather_facts: false
   vars:
     blaine_operator_user: leofuso
+    blaine_rootless_accepted: false
   tasks:
     - name: Verify installed rootless prerequisite packages
       ansible.builtin.command:
@@ -31,3 +32,124 @@
       when: linger.stdout != 'yes'
       changed_when: true
       # Run with bounded sudo. No docker-group grant, sudoers edits or daemon stops.
+
+    - name: Require a healthy accepted rootless stack before legacy cleanup
+      ansible.builtin.command:
+        argv:
+          - runuser
+          - -u
+          - '{{ blaine_operator_user }}'
+          - --
+          - /usr/bin/python3
+          - -c
+          - |
+            import json, os, subprocess
+            from pathlib import Path
+            marker = Path.home() / '.config/blaine/infra/migration-accepted.json'
+            assert json.loads(marker.read_text())['status'] == 'PASS'
+            env = dict(os.environ, XDG_RUNTIME_DIR='/run/user/' + str(os.getuid()))
+            subprocess.run(['systemctl', '--user', 'is-active', '--quiet', 'blaine-infra'], env=env, check=True)
+            options = json.loads(subprocess.check_output(['docker','--context','rootless','info','--format','{{ "{{json .SecurityOptions}}" }}']))
+            assert 'name=rootless' in options
+            ids = subprocess.check_output(['docker','--context','rootless','ps','-q','--filter','label=com.docker.compose.project=blaine-infra-rootless'], text=True).split()
+            assert len(ids) == 4
+            for cid in ids:
+                assert subprocess.check_output(['docker','--context','rootless','inspect','--format','{{ "{{.State.Health.Status}}" }}',cid], text=True).strip() == 'healthy'
+      changed_when: false
+      when: blaine_rootless_accepted | bool
+
+    - name: Disable and stop the superseded system stack owner after acceptance
+      ansible.builtin.systemd_service:
+        name: blaine-infra.service
+        enabled: false
+        state: stopped
+      when: blaine_rootless_accepted | bool
+
+    - name: Pin the retained rollback unit to the legacy daemon explicitly
+      ansible.builtin.copy:
+        src: ../systemd/blaine-infra.service
+        dest: /etc/systemd/system/blaine-infra.service
+        owner: root
+        group: root
+        mode: '0644'
+      register: legacy_unit
+      when: blaine_rootless_accepted | bool
+
+    - name: Reload the changed inactive rollback unit
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+      when: blaine_rootless_accepted | bool and legacy_unit.changed
+
+    - name: Restore private root-owned host configuration parents
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: directory
+        owner: root
+        group: root
+        mode: '0700'
+      loop: [/etc/blaine, /etc/blaine/infra]
+      when: blaine_rootless_accepted | bool
+
+    - name: Restore root-owned legacy non-secret configuration files
+      ansible.builtin.file:
+        path: '{{ item }}'
+        owner: root
+        group: root
+        mode: '0640'
+      loop:
+        - /etc/blaine/infra/compose.yaml
+        - /etc/blaine/infra/alloy-local.alloy
+        - /etc/blaine/infra/cloud.alloy.inactive
+      when: blaine_rootless_accepted | bool
+
+    - name: Inspect docker-group account membership
+      ansible.builtin.getent:
+        database: group
+        key: docker
+      when: blaine_rootless_accepted | bool
+
+    - name: Remove only the rootful Docker administration membership
+      ansible.builtin.command:
+        argv: [gpasswd, '-d', '{{ blaine_operator_user }}', docker]
+      changed_when: true
+      when:
+        - blaine_rootless_accepted | bool
+        - blaine_operator_user in ansible_facts.getent_group.docker[2].split(',')
+
+    - name: Refuse to overwrite unknown or cloud-activated Alloy configuration
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - |
+            from pathlib import Path
+            import hashlib, sys
+            assert not Path('/etc/blaine/infra/cloud.enabled').exists(), 'STOP: merge rootless journal sources into the active cloud composition explicitly'
+            current = Path('/etc/alloy/config.alloy').read_bytes()
+            desired = Path(sys.argv[1]).read_bytes()
+            old_local = 'a57350e91a008894456895e1eabceae8d23edd6098c53ec050a77bb4c188a300'
+            assert current == desired or hashlib.sha256(current).hexdigest() == old_local, 'STOP: unrecognized active Alloy config'
+          - '{{ playbook_dir }}/../alloy/config.alloy'
+      changed_when: false
+      when: blaine_rootless_accepted | bool
+
+    - name: Materialize allowlisted rootless journal collection
+      ansible.builtin.copy:
+        src: ../alloy/config.alloy
+        dest: '{{ item.path }}'
+        owner: root
+        group: root
+        mode: '{{ item.mode }}'
+        validate: /usr/bin/alloy validate --stability.level=public-preview %s
+      loop:
+        - {path: /etc/alloy/config.alloy, mode: '0644'}
+        - {path: /etc/blaine/infra/alloy-local.alloy, mode: '0640'}
+      register: local_alloy
+      when: blaine_rootless_accepted | bool
+
+    - name: Keep native Alloy healthy with the accepted journal configuration
+      ansible.builtin.systemd_service:
+        name: alloy.service
+        enabled: true
+        state: "{{ 'restarted' if local_alloy.changed else 'started' }}"
+      when: blaine_rootless_accepted | bool

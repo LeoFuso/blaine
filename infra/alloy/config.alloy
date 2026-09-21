@@ -28,6 +28,20 @@ loki.source.journal "platform" {
   labels = {job = "blaine-platform"}
   forward_to = [otelcol.receiver.loki.local.receiver]
 }
+// User units have _SYSTEMD_USER_UNIT, not the system manager's unit field.
+// Keep the operator and two unit names explicit; do not collect arbitrary user logs.
+loki.source.journal "rootless_docker" {
+  matches = "_UID=1000 _SYSTEMD_USER_UNIT=docker.service"
+  max_age = "1h"
+  labels = {job = "blaine-rootless-journal", unit = "docker.service"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
+loki.source.journal "rootless_infra" {
+  matches = "_UID=1000 _SYSTEMD_USER_UNIT=blaine-infra.service"
+  max_age = "1h"
+  labels = {job = "blaine-rootless-journal", unit = "blaine-infra.service"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
 otelcol.receiver.loki "local" {
   output {
     logs = [otelcol.processor.batch.local.input]

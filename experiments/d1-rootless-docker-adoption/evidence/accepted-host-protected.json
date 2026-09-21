@@ -1,0 +1,80 @@
+{
+  "observed_at": "2026-09-21T17:22:23.222458+00:00",
+  "source_secrets_unchanged": {
+    "infrastructure.json": true,
+    "object-storage.json": true,
+    "clickhouse.env": true,
+    "langfuse.env": true
+  },
+  "protected_config_metadata": {
+    "/etc/blaine": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o700"
+    },
+    "/etc/blaine/infra": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o700"
+    },
+    "/etc/blaine/secrets": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o700"
+    },
+    "/etc/blaine/secrets/infrastructure.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600"
+    },
+    "/etc/blaine/secrets/object-storage.json": {
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o400"
+    },
+    "/srv/blaine/infra/objects": {
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o700"
+    },
+    "/srv/blaine/infra/clickhouse/data": {
+      "uid": 101,
+      "gid": 101,
+      "mode": "0o700"
+    },
+    "/srv/blaine/infra/clickhouse/logs": {
+      "uid": 101,
+      "gid": 101,
+      "mode": "0o700"
+    }
+  },
+  "legacy_containers": [
+    {
+      "name": "/hungry_hopper",
+      "status": "exited",
+      "image": "sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8"
+    },
+    {
+      "name": "/blaine-infra-langfuse-worker-1",
+      "status": "exited",
+      "image": "sha256:8631cf429efc4a2981d4e6ced4c005b9f6f620a4e34625baf60152301ec6d006"
+    },
+    {
+      "name": "/blaine-infra-langfuse-web-1",
+      "status": "exited",
+      "image": "sha256:47ef2f121e2959c8458c209d118949ade25778017e3f5b75b1e45f72276811c3"
+    },
+    {
+      "name": "/blaine-infra-object-storage-1",
+      "status": "exited",
+      "image": "sha256:ce9e796f1fe6f06968f4c04bdaf8f678dad9c8acdfef3d244133d71bfa6bf882"
+    },
+    {
+      "name": "/blaine-infra-clickhouse-1",
+      "status": "exited",
+      "image": "sha256:c7796a1335d14385c052f10061cf719f4a368a908432ec25980860b1333e9ccd"
+    }
+  ],
+  "rootful_runtime_required_by_blaine": false,
+  "rootful_daemon": "running; retained installed and unused by Blaine; stopped hello-world preserved"
+}

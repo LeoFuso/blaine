@@ -14,8 +14,25 @@
       ansible.builtin.assert:
         that:
           - blaine_prefix == '' or blaine_prefix is match('^/tmp/blaine-d1-[A-Za-z0-9_-]+$')
-          - not (blaine_activate | bool)
-        fail_msg: Staging only; follow docs/platform-rootless-docker.md for candidate and cutover acceptance
+          - not (blaine_activate | bool) or blaine_prefix == ''
+        fail_msg: Activation requires the real accepted host; scratch staging never starts services
+
+    - name: Require recorded acceptance and a disabled legacy owner before activation
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - |
+            import json, subprocess
+            from pathlib import Path
+            marker = Path.home() / '.config/blaine/infra/migration-accepted.json'
+            assert json.loads(marker.read_text())['status'] == 'PASS', 'STOP: migration acceptance absent'
+            assert subprocess.run(['systemctl','is-active','--quiet','blaine-infra']).returncode != 0, 'STOP: legacy owner active'
+            state = subprocess.run(['systemctl','is-enabled','blaine-infra'], capture_output=True, text=True).stdout.strip()
+            assert state in ['disabled','masked'], 'STOP: legacy owner can still start at boot'
+      changed_when: false
+      check_mode: false
+      when: blaine_activate | bool
 
     - name: Observe executing identity
       ansible.builtin.command: /usr/bin/id -u
@@ -69,7 +86,42 @@
         - {src: ../compose/rootless.yaml, dest: '{{ blaine_config }}/infra/compose.yaml'}
         - {src: ../rootless/preflight.py, dest: '{{ blaine_config }}/infra/preflight.py'}
         - {src: ../systemd/user/blaine-infra.service, dest: '{{ blaine_prefix }}{{ blaine_operator_home }}/.config/systemd/user/blaine-infra.service'}
+      register: staged_rootless
 
-    - name: Explain the unaccepted migration boundary
+    - name: Keep the installed rootless daemon enabled for the accepted user runtime
+      ansible.builtin.systemd_service:
+        scope: user
+        name: docker.service
+        enabled: true
+        state: started
+      when: blaine_activate | bool
+
+    - name: Validate private runtime and selected rootless daemon
+      ansible.builtin.command:
+        argv: [/usr/bin/python3, '{{ blaine_config }}/infra/preflight.py']
+      environment:
+        BLAINE_SECRET_DIR: '{{ blaine_config }}/secrets'
+      changed_when: false
+      when: blaine_activate | bool
+
+    - name: Validate rootless Compose without rendering secrets
+      ansible.builtin.command:
+        argv: [/usr/bin/docker, '--context', rootless, compose, '-f', '{{ blaine_config }}/infra/compose.yaml', config, '--quiet']
+      environment:
+        BLAINE_STATE_DIR: '{{ blaine_state }}'
+        BLAINE_SECRET_DIR: '{{ blaine_config }}/secrets'
+      changed_when: false
+      when: blaine_activate | bool
+
+    - name: Own the accepted infrastructure as a user service
+      ansible.builtin.systemd_service:
+        scope: user
+        name: blaine-infra.service
+        daemon_reload: '{{ staged_rootless.changed }}'
+        enabled: true
+        state: "{{ 'restarted' if staged_rootless.changed else 'started' }}"
+      when: blaine_activate | bool
+
+    - name: Explain the default staging boundary
       ansible.builtin.debug:
-        msg: No service start, enablement, secret copy, data change, or rootful action. Native Alloy/PostgreSQL/Redis remain system services. Use rootless-host.yml for bounded host prerequisites.
+        msg: Staging only unless blaine_activate=true and acceptance/legacy-owner guards pass. Native Alloy/PostgreSQL/Redis remain system services; rootless-host.yml owns bounded host prerequisites and accepted legacy cleanup.

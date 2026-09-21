@@ -1,9 +1,9 @@
 # D1 platform operations and recovery gates
 
 **2026-09-21:** infrastructure-only full-host reboot recovery is **PASS** for the
-rootful foundation. [Rootless migration](platform-rootless-docker.md) is **STOP**
-at the sudo boundary, before full candidate/cutover. That runbook contains the
-current operator topology, namespace storage rules, root handoff and rollback.
+rootful foundation. [Rootless migration](platform-rootless-docker.md) is **PASS**;
+user systemd + linger owns the stack and the legacy system owner is disabled. That runbook contains the
+current operator topology, namespace storage rules, normal operations and rollback limits.
 The historical backup instructions below remain paused. Rootless reboot and
 full D1.G remain pending; no reboot is authorized by documenting these gates.
 

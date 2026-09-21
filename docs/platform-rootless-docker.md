@@ -1,163 +1,201 @@
 # D1 rootless Docker migration
 
-**Migration: STOP at bounded sudo authentication. Rootful Blaine remains active.**
-Basic rootless Docker and the synthetic storage-only candidate **PASS**; that
-evidence is separate from full candidate acceptance. No full candidate, data migration or cutover is claimed.
-Linger is currently **no**, and `leofuso` remains in the rootful docker group.
-The installed rootful daemon and old stack are still required by Blaine.
+**Migration acceptance: PASS, 2026-09-21. Rootless reboot acceptance: PENDING.**
+Blaine now runs its four infrastructure containers under `leofuso`'s rootless
+Docker and user `blaine-infra.service`. Both user services are enabled, linger
+is enabled, and the legacy system owner is disabled/inactive. Normal operations
+were verified in a fresh process without docker-group membership; access to the
+rootful socket was denied. Existing login/user-manager processes can retain
+cached supplemental groups until a new session or the later authorized reboot.
 
-**Infrastructure-foundation full-host reboot: PASS, 2026-09-21.** The recorded
-boot ID changed from `55f6e9ad-7915-472d-aaf5-7c9d689c3747` to
-`4e64cd04-43eb-45ef-b493-15fb67cc8072`. Docker, the infrastructure owner, Alloy,
-PostgreSQL and Redis recovered automatically with zero failed units and healthy
-containers. This is rootful foundation evidence, not rootless reboot evidence.
-**D1.G remains incomplete**: Blaine, Restate, vLLM and MIRIX adoption is pending.
+System Docker remains installed and running, **unused by Blaine**. Its four old
+Blaine containers and one stopped hello-world container are retained. Nothing
+requires disabling or uninstalling that daemon to close this migration.
 
-## Decisions and files
+**Infrastructure-foundation full-host reboot: PASS, 2026-09-21, rootful topology.**
+The earlier boot ID changed from `55f6e9ad-7915-472d-aaf5-7c9d689c3747` to
+`4e64cd04-43eb-45ef-b493-15fb67cc8072`, with automatic healthy recovery and zero
+failed units. This migration performed no reboot. **D1.G remains incomplete**:
+Blaine, Restate, vLLM and MIRIX service/recovery adoption remains pending. Backup
+is PAUSED and ADR 0019/inference work is unchanged.
 
-[ADR 0020](decisions/0020-rootless-docker-operator-runtime.md) selects the normal
-operator's rootless daemon, user systemd and linger. ADR 0019 remains unchanged;
-inference work and backup remain paused.
+## Active topology and ownership
 
-| Component | Desired ownership/location | Current migration state |
-|---|---|---|
-| Docker | `leofuso`, `/run/user/1000/docker.sock`, user `docker.service` | Already installed, enabled, active; rootless security verified |
-| Compose | `~/.config/blaine/infra/compose.yaml` | [rootless template](../infra/compose/rootless.yaml); staged, inactive |
-| Secrets | `~/.config/blaine/secrets`, 0700; files 0600/0400 | Empty staged destination; root copy pending |
-| SeaweedFS | `~/.local/share/blaine/infra/objects`, namespace UID 0 | Scratch tested; live source unchanged |
-| ClickHouse | `~/.local/share/blaine/infra/clickhouse/{data,logs}`, namespace UID 101 | Scratch tested; live source unchanged |
-| Stack owner | user `blaine-infra.service` | Staged, disabled; requires cutover marker |
-| Native services | system PostgreSQL, Redis, Alloy | Active; unchanged |
-| Legacy stack | system `blaine-infra.service`, `/srv/blaine/infra` | Healthy and active; rollback source not migrated |
+[ADR 0020](decisions/0020-rootless-docker-operator-runtime.md) records the decision.
 
-The mapped ClickHouse leaves are private to host UID 100100. Do not chmod them
-to make the operator's host shell traverse them. Use explicit rootless container
-operations with the correct namespace identity when inspection is necessary.
-Only the two empty scratch leaves were chowned during compatibility testing.
-
-## Evidence and reproducible staging
-
-- [Sanitized preflight](../experiments/d1-rootless-docker-adoption/evidence/preflight.json)
-- [Storage compatibility](../experiments/d1-rootless-docker-adoption/evidence/storage-candidate.json)
-- [Reboot evidence](../experiments/d1-infrastructure-reboot/evidence/result.txt)
-- [Migration summary](../experiments/d1-rootless-docker-adoption/evidence/summary.json)
-- [Validation record](../experiments/d1-rootless-docker-adoption/evidence/validation.json)
-
-`infra/ansible/infrastructure.yml` now stages user-owned rootless files as the
-operator. It rejects `blaine_activate=true`; convergence is not cutover permission.
-The former play is retained as `infrastructure-rootful.yml`, refuses live use by
-default, and never grants docker-group membership. It is rollback/reference
-material, not the current operating model. Native Alloy desired config remains
-versioned under `infra/alloy`; migration staging intentionally does not reconfigure
-working native services. Host backup staging remains separate and unexecuted.
-
-```sh
-ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml --syntax-check
-ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml \
-  -e blaine_prefix=/tmp/blaine-d1-rootless-scratch
-# Repeat the same scratch command: changed=0 expected.
-ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml
+```text
+machine boot
+├── native PostgreSQL 18, Redis, Alloy (system services)
+└── user@1000.service (linger)
+    ├── docker.service (rootless; /run/user/1000/docker.sock)
+    └── blaine-infra.service (user; Compose project blaine-infra-rootless)
+        ├── SeaweedFS        127.0.0.1:8333
+        ├── ClickHouse      127.0.0.1:8123 / :9000
+        ├── Langfuse Web    127.0.0.1:3000
+        └── Langfuse Worker 127.0.0.1:3030
 ```
 
-Do not run that user play with sudo. `rootless-host.yml` records prerequisite
-package/subordinate-ID checks and linger enablement for bounded host provisioning.
-It does not alter sudoers, add group access, stop a daemon, or perform cutover.
+| Material | Location / ownership |
+|---|---|
+| Versioned desired state | `infra/compose/rootless.yaml`, `infra/systemd/user/blaine-infra.service`, Ansible |
+| Runtime config | `~/.config/blaine/infra`, operator-owned 0700, files 0600 |
+| Runtime secrets | `~/.config/blaine/secrets`, operator-owned 0700; files 0600, S3 config 0400 |
+| SeaweedFS metadata/filer/volumes | `~/.local/share/blaine/infra/objects`, host UID/GID 1000, parent 0700 |
+| ClickHouse data and logs | `~/.local/share/blaine/infra/clickhouse/{data,logs}`, host UID/GID 100100, parents 0700 |
+| Docker image/container state | `~/.local/share/docker` |
+| Retained legacy source | `/srv/blaine/infra`; ownership, links and data preserved |
+| Protected host/rollback config | `/etc/blaine`, root:root 0700; original secret modes retained |
+| Native data | Existing PostgreSQL, Redis and Alloy paths; no database/queue migration |
 
-The [storage probe](../infra/rootless/accept-storage.py) uses existing image versions,
-a distinct project, ports 18333/18123/19000, private synthetic secrets and new state.
-It writes and re-reads an S3 object and a ClickHouse row across Compose restart
-and automatic Docker restart recovery. It retains stopped containers and data. The initial SeaweedFS wrapper failed its
-ownership/privilege switch; the corrected direct binary invocation passed without
-adding capabilities or widening permissions. Both attempts are retained in evidence.
-It refuses to restart Docker when any rootless container is already running.
-This is **not Langfuse or original-data migration acceptance**.
+Observed namespace mapping: UID/GID 0 maps to host 1000; namespace 1..65536 maps
+to host 100000..165535. SeaweedFS uses namespace UID 0 with all capabilities
+dropped. It invokes `weed` directly with upstream mini/FIPS settings; the image
+wrapper's chown/su-exec failed the initial scratch attempt. ClickHouse retains
+namespace UID/GID 101, mapped to host 100100. Do not widen leaf permissions for
+host-shell convenience. Never chown the legacy source to test compatibility.
 
-## Exact next root actions
+Langfuse retains host networking and `HOSTNAME=127.0.0.1`. The installed Docker
+29.8.1 rootless runtime empirically reaches native loopback dependencies. Recheck
+this behavior on upgrades; do not assume it on another version. User systemd
+cannot order directly against system-manager units: preflight checks dependency
+TCP readiness, Compose waits for application health, and systemd bounds retries.
+The later real reboot must still validate startup ordering.
 
-`sudo -n true` failed. The migration specification forbids interactive prompting by
-the agent and requires an exact handoff. Run these in a normal interactive terminal
-from the inspected repository checkout:
+Alloy now includes separate journal sources restricted to UID 1000 and the two
+exact user units. Collection counters and persisted log records passed. Alloy
+was restarted once for that configuration; PostgreSQL and Redis kept their process
+identities. No cloud exporter was activated. See the
+[journal component contract](https://grafana.com/docs/alloy/latest/reference/components/loki/loki.source.journal/).
 
-```sh
-cd /home/leofuso/workspace/blaine
-sudo /usr/bin/python3 infra/rootless/bootstrap-secrets.py \
-  > experiments/d1-rootless-docker-adoption/evidence/root-bootstrap.json
-sudo loginctl enable-linger leofuso
-loginctl show-user leofuso -p Linger
-```
+## Accepted evidence
 
-The first command inventories protected source ownership/modes without printing
-names or contents of stored objects; it copies exactly four secrets into the
-operator's 0700 secret directory after dropping root for destination writes.
-It preserves source files and modes, refuses conflicting destination files, and
-prints only sanitized metadata. It performs no database change, source-data copy,
-service stop or cutover. The second enables user-manager boot persistence.
-Review [the exact helper](../infra/rootless/bootstrap-secrets.py) before running.
-These commands remove the current blocker; they do **not** complete migration.
-Resume the migration after them so actual source inventory can determine the next
-coherent copy and native candidate-isolation steps. No recurring sudo grant needed.
+- [Full isolated candidate](../experiments/d1-rootless-docker-adoption/evidence/full-candidate.json)
+  and [automatic candidate Docker recovery](../experiments/d1-rootless-docker-adoption/evidence/candidate-docker-restart.json).
+- [Offline copy fingerprints](../experiments/d1-rootless-docker-adoption/evidence/offline-copy.json):
+  all bytes, modes, relative links and entry counts matched; mappings changed only
+  on the new copy. Both source and copy were checked while the stores were stopped.
+- [Cutover acceptance](../experiments/d1-rootless-docker-adoption/evidence/cutover-acceptance.json):
+  all four containers healthy, seven original S3 objects, two original ClickHouse
+  synthetic rows and the original Langfuse trace's two observations retained;
+  new synthetic ingestion succeeded.
+- [User stack restart](../experiments/d1-rootless-docker-adoption/evidence/rootless-stack-restart.json)
+  and [Docker restart](../experiments/d1-rootless-docker-adoption/evidence/rootless-docker-restart.json):
+  healthy recovery and retained identities; no manual Compose start hid failure.
+- [Fresh identity without docker group](../experiments/d1-rootless-docker-adoption/evidence/operator-without-docker-group.json),
+  [Alloy journal proof](../experiments/d1-rootless-docker-adoption/evidence/alloy-rootless-journal.json),
+  [final host](../experiments/d1-rootless-docker-adoption/evidence/accepted-host.json),
+  [protected-source/secret checks](../experiments/d1-rootless-docker-adoption/evidence/accepted-host-protected.json).
+- [Validation](../experiments/d1-rootless-docker-adoption/evidence/validation.json),
+  [current summary](../experiments/d1-rootless-docker-adoption/evidence/summary.json),
+  [earlier reboot](../experiments/d1-infrastructure-reboot/evidence/result.txt).
 
-## Remaining candidate and cutover gates
+The full candidate used alternate ports, separate copied secret files, fresh
+SeaweedFS/ClickHouse state, native database `blaine_rootless_candidate_20260921`,
+and a separate user Redis process on port 16379. It never consumed the live queue
+or wrote the live database. Candidate containers and Redis are stopped; their
+state and the isolated candidate database remain retained. No historical data was
+deleted. The original STOP checkpoint and failed first storage attempt are preserved.
 
-1. Observe root-bootstrap output and verify destination secret ownership/modes.
-   Recheck all actual mounts, effective image UIDs/GIDs, namespace maps and source
-   symlinks. Full privileged source metadata was unavailable at this checkpoint.
-2. Prepare an isolated Langfuse database and Redis instance/namespace with no live
-   worker queue consumption. Preserve SALT/ENCRYPTION_KEY and other identities in
-   the final migration. The candidate env file must reference candidate S3 and
-   ClickHouse ports and isolated native dependencies; merely changing web ports
-   does not isolate a Langfuse candidate. Retain all three bucket access scopes.
-3. Prove all four healthy containers, native dependency access, S3 bytes and scoped
-   permissions, ClickHouse rows, and a real synthetic Langfuse ingestion roundtrip.
-   Confirm candidate responses originate from candidate processes on alternate
-   ports. If any acceptance fails, stop and leave rootful healthy.
-4. Capture live object keys/hashes, ClickHouse synthetic rows, Langfuse project/trace
-   identities and database relationships. Inventory writers, then deliberately
-   quiesce them and stop only rootful Blaine using its system owner. Copy all
-   SeaweedFS metadata/filer/volumes and ClickHouse state while stopped. Preserve
-   source state and native database/Redis relationships. Apply mappings only to
-   copied data and verify the copies; never destructively chown `/srv`.
-5. Materialize final config/secrets and the cutover marker only after full candidate
-   PASS. At the bounded cutover, reload user systemd and start the rootless stack.
-   Validate all old identities/content and ingestion; exercise the user stack and
-   Docker restarts. Verify no rootful duplicate is providing the responses.
-6. Only after rootless acceptance, disable the old system owner and enable the new
-   user owner. Record both states. Remove just `leofuso`'s docker-group membership
-   (`sudo gpasswd -d leofuso docker`), preserving all other groups. Old sessions may
-   retain the supplemental group until a new login; prove operations from a fresh
-   session without it. Restore `/etc/blaine` host config to root-owned private
-   access at that boundary, without changing secret permissions.
-7. Keep system Docker installed. A fresh inventory must decide whether unrelated
-   running or stopped workloads exist before any daemon disablement; no such
-   disablement has been performed. Ensure the old Blaine unit cannot start a
-   duplicate stack. Keep a documented rollback route.
-
-Normal operations after accepted cutover:
+## Normal operation and convergence
 
 ```sh
 systemctl --user status docker blaine-infra
+systemctl --user restart blaine-infra
 docker --context rootless ps
 BLAINE_STATE_DIR="$HOME/.local/share/blaine/infra" \
 BLAINE_SECRET_DIR="$HOME/.config/blaine/secrets" \
 docker --context rootless compose -f "$HOME/.config/blaine/infra/compose.yaml" config --quiet
 ```
 
-Before every Docker mutation, verify the explicit context endpoint and rootless
-security options. Never render live Compose config or inspect container environment.
-The legacy unit in Git pins `--context default`; it has not been replaced on host.
+Keep the daemon explicit for Docker mutations. Never render live Compose config,
+inspect container environment, or print raw credential-bearing logs. Langfuse
+shutdown can consume its 60-second stop window; allow the user unit's bounded
+stop/start timeouts to finish before diagnosing a restart as failed.
 
-## Rollback and next reboot
+User convergence requires no sudo:
 
-Before accepting new writes, stop the rootless owner, remove its activation marker,
-keep the new copies, and restart the preserved rootful owner. Never run both final
-stacks on the same ports. After rootless accepts new writes, the source is stale:
-quiesce and reconcile data before rollback; do not discard intervening writes.
+```sh
+ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml --syntax-check
+ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml \
+  -e blaine_prefix=/tmp/blaine-d1-rootless-scratch
+# The default stages files only. Activation on an accepted host is explicit:
+ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml \
+  -e blaine_activate=true
+```
 
-**A new reboot still needs separate explicit human authorization.** The machine is
-not yet ready for rootless reboot acceptance because migration is stopped before
-full candidate/cutover. After all gates pass, record the boot ID, enabled linger
-and user units, disabled legacy owner, all health and retained identities. Only
-then request a reboot window. After the authorized reboot, require a new boot ID,
-automatic user daemon/stack startup without manual starts, healthy native services,
-identical retained S3 bytes/ClickHouse rows/Langfuse records and no duplicate owner.
-Report rootless reboot PASS separately from the remaining full D1.G service gates.
+Activation requires `migration-accepted.json` with PASS and the legacy system
+owner disabled/inactive. Scratch activation fails closed. The user play enables
+Docker and the stack, validates secrets/Compose without rendering values, and
+restarts the stack only when staged runtime files changed. Accepted user and host
+second convergence runs both returned `changed=0`.
+
+Bounded host administration uses the separate play:
+
+```sh
+sudo ansible-playbook -i infra/ansible/inventory.ini infra/ansible/rootless-host.yml \
+  -e blaine_rootless_accepted=true
+```
+
+It checks prerequisites/linger and requires the active accepted four-container
+rootless stack before disabling the old owner or removing only docker-group
+membership. It restores private root-owned host config and pins the retained
+rollback unit to `--context default`. Alloy convergence refuses unknown or
+cloud-activated config rather than overwriting it. Merge future journal changes
+into a cloud composition explicitly if that activation is later performed.
+
+The guarded `infrastructure-rootful.yml` is legacy reference only. Do not replay
+its bootstrap or the old rootful acceptance script against the migrated host.
+Rootless setup on a new host still requires reviewed package installation,
+subordinate IDs and `dockerd-rootless-setuptool.sh install` as the operator.
+Existing rootless extras/uidmap versions are recorded in `infra/versions.json`.
+No NOPASSWD or sudoers change is part of this operating model.
+
+## Recovery and retained state
+
+The original source is a pre-cutover snapshot. **It is now stale** because the
+accepted rootless stack has processed new synthetic writes. Never simply restart
+the legacy stack on that old copy: quiesce writers and reconcile all later S3,
+ClickHouse, native PostgreSQL and Redis relationships first. Preserve both trees;
+use a new offline copy with inverse namespace mapping and compare content before
+an explicitly selected rollback. Stop for review if consistency cannot be proven.
+
+For ordinary repair, prefer the accepted rootless user service and its current
+state. Never start a second supervisor or stack to mask failed ownership. The
+legacy daemon/package and stopped containers remain available for a considered
+recovery, not for automatic operation. Backup remains PAUSED and no complete
+PostgreSQL + Object Storage disaster-recovery proof is implied by migration copies.
+
+## Remaining acceptance: separately authorized reboot
+
+**No root-action handoff remains. The machine is ready for the rootless reboot
+acceptance window, but no reboot has been authorized or performed by this work.**
+
+Before an explicitly authorized reboot, refresh
+[accepted state](../experiments/d1-rootless-docker-adoption/evidence/accepted-state.json)
+if useful traffic has changed it, record the current boot ID, and verify:
+
+```sh
+cat /proc/sys/kernel/random/boot_id
+loginctl show-user leofuso -p Linger
+systemctl --user is-enabled docker blaine-infra
+systemctl is-enabled blaine-infra       # expected disabled; exit 1 is normal
+systemctl --user is-active docker blaine-infra
+```
+
+Only with separate explicit human authorization perform the host reboot. Afterward,
+require a different boot ID, no manual service starts, active/enabled user units,
+healthy native services, no rootful duplicate and a fresh session without the
+rootful docker group. As the operator, verify the retained baseline:
+
+```sh
+uv run --no-project --python 3.13 --with boto3==1.42.70 python \
+  infra/rootless/accept-running.py \
+  --baseline experiments/d1-rootless-docker-adoption/evidence/accepted-state.json \
+  --output experiments/d1-rootless-docker-adoption/evidence/rootless-reboot.json
+```
+
+Also record system/user unit states and both daemon inventories using bounded
+sudo only for the legacy daemon. A later rootless reboot PASS is still narrower
+than D1.G's pending Blaine/Restate/vLLM/MIRIX adoption. Do not resume inference,
+unpause backup, delete retained candidate/source state, or push as part of reboot
+acceptance without the corresponding authorization.

@@ -135,11 +135,12 @@ when evidence demonstrates that it blocks v0; do not import an entire later cycl
 ## D1 — Long-Lived Platform Runtime
 
 **STATUS: IN PROGRESS — infrastructure foundation and infrastructure-only rootful
-host reboot PASS. Rootless migration: STOP at sudo authentication. Backup: PAUSED.**
+host reboot PASS. Rootless migration: PASS. Backup: PAUSED.**
 
 The [rootless migration checkpoint](../platform-rootless-docker.md) and
 [ADR 0020](../decisions/0020-rootless-docker-operator-runtime.md) select user systemd
-and linger. Rootful Blaine remains healthy until full rootless candidate acceptance.
+and linger. Full candidate, coherent offline copy, cutover and controlled restarts passed.
+The rootless user stack and linger are enabled; the legacy system owner is disabled.
 Rootless reboot acceptance is pending. D1.C/inference work does not resume in this
 migration; preserve ADR 0019.
 
@@ -161,8 +162,9 @@ and Alloy; pragmatic Ansible records desired state. Stack, Docker and Alloy
 restart/persistence smoke tests passed, including synthetic storage and Langfuse
 roundtrips. A real infrastructure-only reboot passed on 2026-09-21 with a new boot ID and automatic recovery. It does not prove rootless boot recovery, full D1.G, or real cognitive traffic.
 
-Persistent locations are explicit: `/srv/blaine/infra/objects` includes SeaweedFS
-metadata/filer/volumes; ClickHouse uses `/srv/blaine/infra/clickhouse`; native
+Persistent locations are explicit: `~/.local/share/blaine/infra/objects` includes SeaweedFS
+metadata/filer/volumes; ClickHouse uses `~/.local/share/blaine/infra/clickhouse`. The
+old `/srv/blaine/infra` tree is retained unchanged as the pre-cutover source; native
 PostgreSQL uses `/var/lib/postgresql/18/main`; Redis uses `/var/lib/redis`; Alloy
 uses `/var/lib/alloy`. The infrastructure runbook owns the detailed inventory,
 versions, endpoints and config paths. Do not copy a historical inventory into a

@@ -4,6 +4,12 @@ Date: 2026-09-21
 
 Decision status: **Accepted**. Validation status: **Partially Validated**.
 
+Integration/migration acceptance **PASS, 2026-09-21**: isolated full candidate,
+byte-verified offline copy, retained source identities, Langfuse ingestion, user
+stack/Docker restarts, operator access without the rootful docker group and
+idempotent desired-state convergence passed. Rootless boot recovery still awaits
+an explicitly authorized reboot; it is not inferred from the earlier rootful reboot.
+
 ## Context and decision
 
 The healthy D1 foundation runs under system Docker and a system Compose unit.

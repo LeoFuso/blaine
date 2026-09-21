@@ -240,9 +240,13 @@
     "failed_units": 0
   },
   "rootless_migration": {
-    "status": "STOP",
-    "reason": "sudo noninteractive authentication unavailable; protected source inventory and secret materialization pending",
-    "rootful_stack": "healthy and active; no cutover",
+    "status": "PASS",
+    "observed_at": "2026-09-21T17:27:52.385020+00:00",
+    "scope": "live migration and controlled restart acceptance; rootless real reboot remains pending",
+    "rootful_stack": "disabled/inactive; original data retained",
+    "rootful_daemon": "running but unused by Blaine",
+    "operator_group": "docker membership removed; fresh identity validation passed",
+    "linger": "enabled",
     "evidence": "experiments/d1-rootless-docker-adoption/evidence",
     "rootless_reboot": "PENDING; requires a later explicitly authorized reboot",
     "D1.G": "INCOMPLETE; Blaine/Restate/vLLM/MIRIX adoption pending"

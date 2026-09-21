@@ -1,13 +1,12 @@
 # D1 infrastructure foundation
 
-**2026-09-21: infrastructure-only host reboot PASS (rootful topology). Rootless
-migration STOP at sudo authentication; rootful stack remains healthy and required.**
-Read the [rootless migration runbook](platform-rootless-docker.md) and
-[ADR 0020](decisions/0020-rootless-docker-operator-runtime.md) for current desired
-state, staged user units, namespace ownership and the exact root-action handoff.
-Rootless reboot and full D1.G remain unproven. Backup stays PAUSED; ADR 0019 and
-inference adoption are unchanged. The deployment details below describe the
-still-running legacy foundation, not a claim that rootless cutover happened.
+**2026-09-21: rootless migration PASS; infrastructure-only rootful host reboot PASS.**
+The active stack now runs under the normal operator's rootless Docker and user
+systemd, with linger enabled. The old system stack is disabled/inactive; Docker
+rootful remains installed and unused by Blaine. Read the [migration/runbook and
+evidence](platform-rootless-docker.md) and [ADR 0020](decisions/0020-rootless-docker-operator-runtime.md).
+Rootless reboot and full D1.G remain pending. Backup stays PAUSED; ADR 0019 and
+inference adoption are unchanged.
 
 Infrastructure acceptance **PASS**: all four containers and native Alloy are healthy;
 Docker, stack and Alloy restarts retained synthetic state. See the
@@ -26,7 +25,7 @@ Selection checked against current official sources on 2026-09-20:
 | Component | Selected version | Reason / compatibility |
 |---|---|---|
 | Docker Engine / CLI | 29.8.1 | Official Ubuntu resolute apt packages, no Desktop or convenience installer |
-| Compose plugin | 5.5.1 | Official Docker apt package; legacy sudo administration, rootless operator model selected by ADR 0020 |
+| Compose plugin | 5.5.1 | Official package; normal operation through the rootless operator socket, without sudo or docker-group membership |
 | containerd / Buildx | 2.3.5 / 0.37.1 | Explicit official package pins |
 | SeaweedFS | 4.47 | Apache-2.0, maintained release dated September 14, single-process `weed mini` |
 | ClickHouse | 26.4.5.143 | Langfuse v4 requires >=25.12 and recommends 26.4; single-node, UTC |
@@ -63,39 +62,41 @@ support guarantees; D1 accepts the explicitly requested single-node topology.
 
 ```text
 systemd
-├── docker.service → containerd
-├── blaine-infra.service → Compose project blaine-infra
-│   ├── object-storage (SeaweedFS)
-│   ├── clickhouse
-│   ├── langfuse-web
-│   └── langfuse-worker
-├── alloy.service (native package, alloy user)
-├── postgresql@18-main.service (existing native)
-└── redis-server.service (existing native)
+├── user@1000.service (linger)
+│   ├── docker.service (rootless)
+│   └── blaine-infra.service → project blaine-infra-rootless
+│       ├── object-storage (SeaweedFS)
+│       ├── clickhouse
+│       ├── langfuse-web
+│       └── langfuse-worker
+├── alloy.service (native)
+├── postgresql@18-main.service (native)
+└── redis-server.service (native)
 ```
 
-The Compose owner starts after Docker and native dependencies, waits for container
-health, stops gracefully, and participates in controlled Docker restarts via
+The user Compose owner starts after rootless Docker, probes native dependency readiness,
+waits for container health, and participates in controlled Docker restarts via
 `PartOf=docker.service`. Container `unless-stopped` policies handle process exits.
 No unit in this deployment becomes a dependency of Task correctness.
 
 | Component | Host address | Persistent data/config |
 |---|---|---|
-| Object Storage | 127.0.0.1:8333 | `/srv/blaine/infra/objects` (all mini metadata, filer and volumes) |
-| ClickHouse | 127.0.0.1:8123 HTTP, :9000 native | `/srv/blaine/infra/clickhouse/data`, `/srv/blaine/infra/clickhouse/logs` |
+| Object Storage | 127.0.0.1:8333 | `~/.local/share/blaine/infra/objects` (all mini metadata, filer and volumes) |
+| ClickHouse | 127.0.0.1:8123 HTTP, :9000 native | `~/.local/share/blaine/infra/clickhouse/data`, `~/.local/share/blaine/infra/clickhouse/logs` |
 | Langfuse Web | 127.0.0.1:3000 | PostgreSQL metadata, Redis queues/cache, ClickHouse observations, S3 events/media |
 | Langfuse Worker | 127.0.0.1:3030 | Same dependencies; no unique container-local durable data |
 | Alloy | 127.0.0.1:12345 HTTP, :4317 OTLP gRPC, :4318 OTLP HTTP | `/etc/alloy/config.alloy`, `/etc/default/alloy`, `/var/lib/alloy/data`, `/var/lib/alloy/telemetry` |
 | PostgreSQL | 127.0.0.1:5432 | existing `/var/lib/postgresql/18/main`, `/etc/postgresql/18/main` |
 | Redis | 127.0.0.1/[::1]:6379 | existing `/var/lib/redis`, `/etc/redis/redis.conf` |
-| Compose | no listener | `/etc/blaine/infra/compose.yaml`; systemd unit `/etc/systemd/system/blaine-infra.service` |
-| Docker | local Unix socket | `/var/lib/docker`, `/var/lib/containerd`; infrastructure data uses explicit bind mounts |
+| Compose | no listener | `~/.config/blaine/infra/compose.yaml`; user unit `~/.config/systemd/user/blaine-infra.service` |
+| Docker | local Unix socket | `~/.local/share/docker`, `/run/user/1000/docker.sock`; infrastructure data uses explicit bind mounts |
 
 Langfuse uses host networking with upstream-supported `HOSTNAME=127.0.0.1`, avoiding
 changes to native database exposure. Storage containers use a private Docker bridge
 and only loopback host ports. There are no anonymous volumes for retained data.
 The root filesystem supplies the new state paths; the Samsung backup filesystem
-is not used. Docker's normal bridge rules were installed; no broad firewall redesign.
+is not used. Rootless adoption required no new host firewall rules or native
+database listener changes.
 
 Buckets are `blaine-artifacts`, `langfuse-events`, and `langfuse-media`. Independent
 Blaine and Langfuse keys have bucket-scoped permissions; a separate provisioning key
@@ -106,17 +107,19 @@ physical acceptance remain paused for their own bounded pass.
 
 ## Secrets and local telemetry
 
-Actual secrets live only under `/etc/blaine/secrets` (root directory 0700):
-`infrastructure.json`, `langfuse.env`, `clickhouse.env` are 0600; the mounted
-`object-storage.json` is 0400 for the image's UID 1000 behind the root-only parent.
-The SeaweedFS data leaf is also UID 1000; ClickHouse uses its upstream UID 101.
-No keys are committed or printed by normal diagnostics. `docker inspect` without
-field selection, rendered Compose configuration, and raw container logs can expose
-credentials; use health-only commands and the sanitized acceptance artifact.
+Active runtime secrets live under `~/.config/blaine/secrets` (operator-owned 0700):
+`infrastructure.json`, `langfuse.env`, `clickhouse.env` are 0600; mounted
+`object-storage.json` is 0400. SeaweedFS namespace UID 0 maps to host operator
+1000; ClickHouse namespace UID 101 maps to host 100100. Private data parents stay
+0700. Protected original secrets and source data remain available for reviewed
+recovery; no live source ownership was changed. Rootful docker-group access was
+removed from the account, and a fresh identity proved rootless operation without it.
+No keys are committed or printed. Raw container environment, rendered Compose
+configuration and logs can expose credentials; use sanitized acceptance artifacts.
 
 Alloy runs as package user `alloy`, with supplemental `systemd-journal` and umask
 0077. State/telemetry directories are 0700. It collects selected host metrics,
-self-metrics, allowlisted Docker/infra/Alloy journal units, and loopback OTLP.
+self-metrics, allowlisted system and rootless user Docker/infra journal units, and loopback OTLP.
 Journal bodies remain potentially sensitive local diagnostics, not unrestricted
 labels. No application/personal cognitive traffic was connected.
 
@@ -132,34 +135,17 @@ Missing cloud values never affect the local collector. No cloud model call occur
 
 ## Reproducible deployment and acceptance
 
-`infra/bootstrap-packages.py` installs explicit official apt package versions. It
-refuses conflicting runtimes and unowned existing Docker data; it does not remove
-packages, upgrade the host, change groups, or reboot. `infra/ansible/infrastructure.yml`
-captures package intent, directories, Compose, systemd, Alloy and operator scripts.
-The prior backup play remains separate and unchanged.
+The accepted operator play is `infra/ansible/infrastructure.yml`; it stages private
+user config and activates only with an acceptance marker and the legacy owner
+disabled. `infra/ansible/rootless-host.yml` owns bounded host prerequisites,
+accepted legacy cleanup and native Alloy journal config. The guarded rootful play
+is retained for reviewed legacy recovery only. The backup play remains separate;
+no backup host action was performed.
 
-Historical rootful bootstrap / rollback reference only. Do not replay during the
-rootless migration. The legacy play requires an explicit guard; setting it here
-is not authorization to disrupt the healthy stack. Normal staging now uses the
-operator rootless play in the linked runbook.
-
-```sh
-sudo python3 infra/bootstrap-packages.py
-sudo ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure-rootful.yml -e blaine_allow_legacy_rootful=true
-sudo python3 /usr/local/lib/blaine/infrastructure-secrets.py
-sudo docker --context default compose -f /etc/blaine/infra/compose.yaml pull --quiet
-sudo systemctl daemon-reload
-# Use a Python environment containing boto3; see versions/evidence for acceptance tools.
-sudo /path/to/validation-python infra/accept-infrastructure.py
-sudo ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure-rootful.yml -e blaine_allow_legacy_rootful=true -e blaine_activate=true
-```
-
-Review native unit drift before a daemon reload. First-time acceptance starts stores,
-creates isolated buckets and synthetic state, starts the systemd stack and Alloy,
-then verifies Langfuse v4 OTLP ingestion via the v2 Observations API. It restarts the
-stack, Docker and Alloy and reads the persistent synthetic state again. It refuses
-a Docker restart if unrelated running containers are present. It never invokes the
-physical backup script, deletes backup data, calls models, or reboots.
+See the [rootless runbook](platform-rootless-docker.md) for operator convergence,
+health checks, full candidate isolation, offline copy, rollback limits and the
+exact separately authorized reboot gate. Do not replay the historical rootful
+bootstrap or rootful live acceptance command on this migrated host.
 
 Safe offline convergence:
 
@@ -189,24 +175,25 @@ vLLM and MIRIX were not adopted or restarted. Redis's separate ephemeral/durable
 profiles and stronger queue recovery remain future work. These are Daily Driver
 gaps beyond this infrastructure acceptance slice.
 
-Seventeen platform tests pass; scratch Ansible converges to changed=0 and both
-final live applies report changed=0. Compose, Alloy (local and inactive cloud) and
+Twenty-eight platform tests pass; scratch and accepted operator/host Ansible second
+runs converge to changed=0. Compose, Alloy (local and inactive cloud) and
 systemd validation pass. The Langfuse synthetic trace/generation roundtrip proves
 its PostgreSQL authentication, Redis queue processing, S3 persistence and ClickHouse
 query path. Local Alloy evidence includes host/self metrics, journal records and
-synthetic metrics/logs/traces. Native PostgreSQL and Redis retained their original
-process IDs throughout this slice. No Blaine Task creation binding was available;
+synthetic metrics/logs/traces. Native PostgreSQL and Redis retained their process IDs throughout migration; Alloy
+was restarted once to adopt allowlisted user-unit journal collection. No Blaine Task creation binding was available;
 the updated TaskSpec remains a draft, not a submitted runtime Task.
 
-## Temporary privilege cleanup
+## Historical privilege cleanup (2026-09-20)
 
-`/etc/sudoers.d/90-blaine-d1-codex` was removed at finalization. Host `visudo -c`
+The earlier foundation slice removed `/etc/sudoers.d/90-blaine-d1-codex`.
+The rootless migration made no sudoers changes. Host `visudo -c`
 passed before and after removal. `sudo -K` succeeded; the subsequent `sudo -n true`
 failed with exit 1 (interactive authentication required). No replacement sudoers
 rule was created. The running platform does not depend on this temporary privilege.
 The implementation commit is `48b077d`, integrated into local main by fast-forward;
 final cleanup evidence is recorded in the subsequent Git commit. No push occurred.
 
-**PASS applies to this infrastructure slice.** Grafana Cloud remains configured
+**PASS applies to the infrastructure foundation and rootless migration.** Grafana Cloud remains configured
 for future activation; backup remains paused, rootless reboot recovery pending, and the
 Daily Driver ownership gaps listed above remain open.

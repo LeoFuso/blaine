@@ -1,36 +1,49 @@
-# D1 rootless Docker adoption checkpoint — 2026-09-21
+# D1 rootless Docker adoption — 2026-09-21
 
-**STOP at sudo authentication; no cutover.** Rootful Blaine remains healthy and
-required. Rootless Docker, native-loopback networking and isolated storage
-compatibility pass; full Langfuse candidate and migration acceptance remain open.
+**Migration PASS. Rootless reboot acceptance PENDING.** The four-container stack
+runs under operator rootless Docker and enabled user systemd, with linger. The
+rootful owner is disabled/inactive; system Docker remains installed and unused.
+Seven original S3 objects, two ClickHouse synthetic rows and the original Langfuse
+trace's two observations survived cutover and controlled restarts. New ingestion,
+fresh operator access without the docker group, and rootless Alloy journals pass.
 
-The user explicitly authorized local implementation, host inspection, isolated
-validation and commits using the retained [migration specification](task-specification.md).
-The [TaskSpec](task-request.json) is an **unsubmitted draft** because no Blaine
-creation binding was available; these files are deliverable/evidence records,
-not an alternate durable Task ledger.
-
-Read [the current runbook and exact root actions](../../docs/platform-rootless-docker.md),
+Read [the runbook and separate reboot gate](../../docs/platform-rootless-docker.md),
 [ADR 0020](../../docs/decisions/0020-rootless-docker-operator-runtime.md),
-[summary](evidence/summary.json), and [validation](evidence/validation.json).
+[current summary](evidence/summary.json), [validation](evidence/validation.json),
+[accepted host](evidence/accepted-host.json), and [reboot baseline](evidence/accepted-state.json).
+Original source and all candidate data remain retained. Backup stays PAUSED;
+ADR 0019 is preserved and inference work has not resumed. No reboot or push occurred.
 
-The pre-existing root:docker experiment is preserved as a patch in evidence and
-superseded in desired state. Original reboot evidence is retained in the adjacent
-`d1-infrastructure-reboot` experiment and supports **rootful foundation reboot PASS**,
-not rootless reboot recovery or full D1.G. ADR 0019 and its commit are preserved.
+The user authorized local implementation, bounded host administration, isolated
+validation and commits using the retained [migration specification](task-specification.md).
+The [TaskSpec](task-request.json) is an **unsubmitted draft**, because no Blaine
+creation binding was available. These are deliverable/evidence records, not a
+separate durable Task ledger.
 
-The first storage attempt failed because SeaweedFS's wrapper tried chown/su-exec
-under dropped capabilities. The corrected direct binary invocation preserves
-upstream mini flags/FIPS setting without widening permissions; the passing second
-attempt retained S3 bytes and a ClickHouse row across Compose restart and automatic
-rootless Docker restart recovery. Both state directories and private fixture
-secrets remain outside Git; final candidate containers are stopped.
+## Earlier checkpoint and resumption
 
-No live secret, source-state copy, native database change, source ownership change,
-rootful service stop, linger change, group cleanup, reboot, push, backup resume or
-inference work occurred. Source secret metadata beneath the protected ancestor
-remains unavailable until the documented bounded root action is run.
+Commit `15c6551` stopped at missing noninteractive sudo. Its
+[STOP summary](evidence/summary-before-resume.json) and `final-host.json` describe
+that earlier checkpoint, not the accepted final state. The user then ran the
+bounded root bootstrap and enabled linger. `root-bootstrap.json` records sanitized
+source inventory/private materialization; `resumed-preflight.json` records verified
+resumption, with working bounded sudo.
 
-Original reboot captures and the pre-existing patch are byte-preserved using the
-repository's per-file whitespace attributes. New command logs normalize trailing
-whitespace only; validation outcomes are unchanged.
+The initial storage attempt failed because SeaweedFS's wrapper tried chown/su-exec
+under dropped capabilities. The corrected direct binary invocation preserved
+upstream mini flags/FIPS behavior without extra capabilities or broader permissions.
+Both attempts are retained. The full candidate subsequently passed against isolated
+native PostgreSQL and Redis, ports and storage before the rootful project was stopped.
+
+`offline-copy.json` proves unchanged source bytes/modes/relative links and matching
+copied trees. Only destination ownership was mapped. `cutover-acceptance.json`,
+`rootless-stack-restart.json` and `rootless-docker-restart.json` retain application
+identity/health proof. `operator-without-docker-group.json` proves a fresh UID 1000
+identity can operate the stack while the legacy socket denies access. Existing
+login sessions may retain cached supplemental groups until a new session/reboot.
+
+The pre-existing root:docker permission experiment is preserved as a patch and
+superseded in desired state. Original reboot evidence in the adjacent
+`d1-infrastructure-reboot` experiment proves **rootful foundation reboot PASS**,
+not rootless boot or full D1.G. Original captures and that patch are byte-preserved
+using per-file whitespace attributes. New command logs normalize trailing whitespace.

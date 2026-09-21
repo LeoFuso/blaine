@@ -10,7 +10,7 @@ milestones retain evidence. Historical plans are not current acceptance claims.
 | Progress and evidence | [Milestone index](milestones/README.md), [kernel progress](milestones/cognitive-kernel-progress.md) |
 | Task controls | [TaskSpec](contracts/task-spec.md), [operations](contracts/task-operations.md), [examples](contracts/task-examples.md) |
 | Authority and evidence | [Frontier dispatch](contracts/frontier-dispatch.md), [ExecutionEvent](contracts/execution-event.md) |
-| D1 operations | [Infrastructure foundation](platform-infrastructure.md), [backup checkpoint](platform-d1.md), [operations/recovery](platform-operations.md), [Grafana Cloud activation](platform-grafana-cloud.md) |
+| D1 operations | [Infrastructure foundation](platform-infrastructure.md), [rootless operations/reboot gate](platform-rootless-docker.md), [backup checkpoint](platform-d1.md), [operations/recovery](platform-operations.md), [Grafana Cloud activation](platform-grafana-cloud.md) |
 | D2 Personal Agent | [Control surface and acceptance](daily-driver-d2.md) |
 | Agent procedures | [BLAINE.md](../BLAINE.md), [skill convention](../skills/SKILL.md) |
 | Historical direction/research | [Original product exploration](agentic-development-kit.md), [Multica carveout](research/multica-carveout.md), [Graphify carveout](research/graphify-carveout.md) |

@@ -1,0 +1,52 @@
+{
+  "status": "STOP",
+  "observed_at": "2026-09-21T13:29:22.763496+00:00",
+  "binding": "TaskSpec draft retained; no durable Blaine Task submitted; explicit user-authorized local execution",
+  "reason": "sudo -n true failed; no interactive prompting permitted; protected source metadata and live secret copies unavailable",
+  "infrastructure_foundation_reboot": "PASS: rootful topology only; changed boot identity and automatic healthy recovery",
+  "rootless_basic_runtime": "PASS",
+  "rootless_host_network_native_loopback": "PASS: PostgreSQL/Redis TCP and legacy Langfuse health reached from rootless host-network probe",
+  "rootless_storage_candidate": "PASS: isolated S3 bytes and ClickHouse row retained across Compose and automatic Docker restarts",
+  "rootless_full_candidate": "NOT RUN: isolated Langfuse dependencies and protected source access pending",
+  "rootless_migration": "NOT CUT OVER",
+  "rootless_reboot": "PENDING: separate explicit human authorization after migration acceptance",
+  "D1.G": "INCOMPLETE: Blaine/Restate/vLLM/MIRIX service and recovery adoption pending",
+  "host_changes": [
+    "Imported existing SeaweedFS and ClickHouse image versions into rootless daemon",
+    "Created private synthetic candidate storage and credentials outside Git; stopped containers and retained state",
+    "Restarted rootless Docker for bounded storage acceptance; automatic candidate recovery passed",
+    "Staged rootless Compose, preflight and disabled user blaine-infra unit; no activation marker or live secrets"
+  ],
+  "unchanged": [
+    "healthy rootful Blaine stack and source persistent data",
+    "native PostgreSQL, Redis and Alloy",
+    "/etc/blaine permissions and secrets",
+    "sudoers",
+    "paused backup and historical backup filesystem",
+    "ADR 0019 and inference runtime"
+  ],
+  "linger": "no",
+  "docker_group_membership": "leofuso remains a member in account and current session",
+  "rootful_docker": "running and still required by Blaine; no unrelated running workload; stopped hello-world preserved",
+  "candidate_left": "stopped; all original and candidate persistent data retained",
+  "next_root_actions": [
+    "sudo /usr/bin/python3 infra/rootless/bootstrap-secrets.py > experiments/d1-rootless-docker-adoption/evidence/root-bootstrap.json",
+    "sudo loginctl enable-linger leofuso",
+    "loginctl show-user leofuso -p Linger"
+  ],
+  "not_authorized_or_performed": [
+    "reboot",
+    "push",
+    "sudoers edits",
+    "backup resume",
+    "inference adoption"
+  ],
+  "validation": "validation.json",
+  "limitations": [
+    "Privileged source ownership inventory remains unavailable; earlier rootful values are historical evidence",
+    "No original S3/ClickHouse/Langfuse identities compared against migrated state",
+    "No full four-service rootless candidate or systemd stack acceptance",
+    "Linger and docker-group cleanup pending",
+    "Machine is not yet ready for rootless reboot acceptance"
+  ]
+}

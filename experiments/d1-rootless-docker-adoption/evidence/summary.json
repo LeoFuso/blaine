@@ -1,52 +1,49 @@
 {
-  "status": "STOP",
-  "observed_at": "2026-09-21T13:29:22.763496+00:00",
-  "binding": "TaskSpec draft retained; no durable Blaine Task submitted; explicit user-authorized local execution",
-  "reason": "sudo -n true failed; no interactive prompting permitted; protected source metadata and live secret copies unavailable",
-  "infrastructure_foundation_reboot": "PASS: rootful topology only; changed boot identity and automatic healthy recovery",
-  "rootless_basic_runtime": "PASS",
-  "rootless_host_network_native_loopback": "PASS: PostgreSQL/Redis TCP and legacy Langfuse health reached from rootless host-network probe",
-  "rootless_storage_candidate": "PASS: isolated S3 bytes and ClickHouse row retained across Compose and automatic Docker restarts",
-  "rootless_full_candidate": "NOT RUN: isolated Langfuse dependencies and protected source access pending",
-  "rootless_migration": "NOT CUT OVER",
-  "rootless_reboot": "PENDING: separate explicit human authorization after migration acceptance",
-  "D1.G": "INCOMPLETE: Blaine/Restate/vLLM/MIRIX service and recovery adoption pending",
+  "status": "PASS",
+  "observed_at": "2026-09-21T17:27:52.385020+00:00",
+  "binding": "TaskSpec remains unsubmitted; explicitly authorized local execution and evidence, no durable Task ID",
+  "rootless_migration": "PASS: full candidate, coherent offline copy, cutover, user stack/Docker restart and operator/group acceptance",
+  "infrastructure_foundation_reboot": "PASS: earlier rootful topology only; recorded changed boot identity and automatic recovery",
+  "rootless_reboot": "PENDING: machine ready for a separately human-authorized reboot; none performed",
+  "D1.G": "INCOMPLETE: Blaine/Restate/vLLM/MIRIX service/recovery adoption pending",
+  "topology": "linger -> user@1000 -> rootless docker.service + user blaine-infra.service -> SeaweedFS, ClickHouse, Langfuse Web and Worker; native PostgreSQL/Redis/Alloy",
+  "source_identity_preserved": {
+    "s3_objects": 7,
+    "clickhouse_synthetic_rows": 2,
+    "original_langfuse_trace_observations": 2
+  },
   "host_changes": [
-    "Imported existing SeaweedFS and ClickHouse image versions into rootless daemon",
-    "Created private synthetic candidate storage and credentials outside Git; stopped containers and retained state",
-    "Restarted rootless Docker for bounded storage acceptance; automatic candidate recovery passed",
-    "Staged rootless Compose, preflight and disabled user blaine-infra unit; no activation marker or live secrets"
+    "User-confirmed bootstrap materialized four private operator secrets and enabled linger; results independently verified",
+    "Imported the same deployed image versions into rootless Docker",
+    "Proved a full candidate with independent native database, Redis, ports and storage; candidate stopped and state retained",
+    "Stopped only the rootful Blaine project at accepted cutover; copied complete object/ClickHouse state offline with fingerprints and mapped ownership only on copies",
+    "Started and enabled rootless user stack, exercised stack and Docker restarts and recorded retained identities",
+    "Disabled legacy system stack owner; retained an explicit default-context rollback unit",
+    "Removed leofuso from docker group, preserved other memberships and proved operation in a fresh identity without the group",
+    "Restored /etc/blaine host configuration to private root ownership; secret source bytes/modes preserved",
+    "Added allowlisted rootless user-unit journal collection and restarted native Alloy once; collection/persistence passed"
   ],
+  "rootful_docker": "running, installed and unused by Blaine; no running rootful containers; stopped hello-world retained",
+  "rootful_blaine_unit": "disabled/inactive",
+  "rootless_user_units": "docker and blaine-infra enabled/active",
+  "linger": "yes",
+  "docker_group_account_membership": "removed",
+  "existing_session_caveat": "old login/user-manager processes may retain cached groups until a new session or the separately authorized reboot",
+  "fresh_operator_test": "PASS: rootless Docker/Compose/systemctl --user work; rootful socket denied",
+  "rollback": "original /srv tree retained unchanged but now stale; reconcile later accepted writes before any rollback",
+  "retained_candidates": "stopped storage/full candidate containers, private state, native candidate database; isolated Redis stopped",
   "unchanged": [
-    "healthy rootful Blaine stack and source persistent data",
-    "native PostgreSQL, Redis and Alloy",
-    "/etc/blaine permissions and secrets",
-    "sudoers",
-    "paused backup and historical backup filesystem",
-    "ADR 0019 and inference runtime"
+    "native PostgreSQL/Redis processes and live database/queue locations",
+    "ADR 0019 and inference selection; no model installation/benchmark",
+    "paused backup timer and historical backup filesystem",
+    "sudoers; no NOPASSWD"
   ],
-  "linger": "no",
-  "docker_group_membership": "leofuso remains a member in account and current session",
-  "rootful_docker": "running and still required by Blaine; no unrelated running workload; stopped hello-world preserved",
-  "candidate_left": "stopped; all original and candidate persistent data retained",
-  "next_root_actions": [
-    "sudo /usr/bin/python3 infra/rootless/bootstrap-secrets.py > experiments/d1-rootless-docker-adoption/evidence/root-bootstrap.json",
-    "sudo loginctl enable-linger leofuso",
-    "loginctl show-user leofuso -p Linger"
-  ],
-  "not_authorized_or_performed": [
-    "reboot",
-    "push",
-    "sudoers edits",
-    "backup resume",
-    "inference adoption"
-  ],
+  "next_root_actions": [],
   "validation": "validation.json",
   "limitations": [
-    "Privileged source ownership inventory remains unavailable; earlier rootful values are historical evidence",
-    "No original S3/ClickHouse/Langfuse identities compared against migrated state",
-    "No full four-service rootless candidate or systemd stack acceptance",
-    "Linger and docker-group cleanup pending",
-    "Machine is not yet ready for rootless reboot acceptance"
-  ]
+    "Rootless boot recovery not yet tested; requires separate reboot authorization",
+    "Full D1.G and complete backup recovery remain outside this accepted migration"
+  ],
+  "push": "not performed",
+  "reboot": "not performed"
 }

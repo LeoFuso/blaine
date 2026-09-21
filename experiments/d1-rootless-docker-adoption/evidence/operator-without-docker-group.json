@@ -1,0 +1,23 @@
+{
+  "uid": 1000,
+  "supplementary_groups": [
+    "adm",
+    "cdrom",
+    "sudo",
+    "dip",
+    "plugdev",
+    "users",
+    "lpadmin",
+    "lxd",
+    "ollama",
+    "leofuso"
+  ],
+  "rootful_docker_group_present": false,
+  "rootless_cli": "blaine-infra-rootless-langfuse-worker-1 Up 2 minutes (healthy)\nblaine-infra-rootless-langfuse-web-1 Up 2 minutes (healthy)\nblaine-infra-rootless-clickhouse-1 Up 2 minutes (healthy)\nblaine-infra-rootless-object-storage-1 Up 2 minutes (healthy)",
+  "user_systemd": "active\nactive",
+  "rootless_security": "[\"name=seccomp,profile=builtin\",\"name=rootless\",\"name=cgroupns\"]",
+  "legacy_socket_access": "DENIED as expected",
+  "compose_without_docker_group": "PASS",
+  "status": "PASS",
+  "identity_setup": "sudo -u only establishes fresh OS groups for this check; all runtime commands execute as UID 1000 without sudo"
+}

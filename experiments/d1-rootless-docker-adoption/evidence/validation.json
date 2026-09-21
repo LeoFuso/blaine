@@ -1,109 +1,151 @@
 {
-  "observed_at": "2026-09-21T13:28:43.720949+00:00",
+  "observed_at": "2026-09-21T17:33:20.139536+00:00",
+  "status": "PASS",
+  "initial_checkpoint_commit": "15c6551",
   "checks": {
-    "syntax-infrastructure": {
+    "syntax-accepted-infrastructure": {
       "status": "PASS",
-      "exit_code": 0,
-      "expected_exit_code": 0
+      "exit_code": 0
     },
-    "syntax-infrastructure-rootful": {
+    "syntax-accepted-rootless-host": {
       "status": "PASS",
-      "exit_code": 0,
-      "expected_exit_code": 0
+      "exit_code": 0
     },
-    "syntax-rootless-host": {
+    "syntax-accepted-infrastructure-rootful": {
       "status": "PASS",
-      "exit_code": 0,
-      "expected_exit_code": 0
+      "exit_code": 0
     },
-    "syntax-host": {
+    "syntax-accepted-host": {
       "status": "PASS",
-      "exit_code": 0,
-      "expected_exit_code": 0
+      "exit_code": 0
     },
-    "guard-legacy-rootful": {
+    "systemd-accepted-user": {
       "status": "PASS",
-      "exit_code": 2,
-      "expected_exit_code": 2
+      "exit_code": 0
     },
-    "guard-premature-activation": {
+    "systemd-accepted-legacy": {
       "status": "PASS",
-      "exit_code": 2,
-      "expected_exit_code": 2
+      "exit_code": 0
     },
-    "systemd-user-verify": {
+    "alloy-accepted-config": {
       "status": "PASS",
-      "exit_code": 0,
-      "expected_exit_code": 0,
-      "warning": "Existing package spice-vdagent.service has StandardError in Install; Blaine unit has no diagnostic."
-    },
-    "systemd-legacy-verify": {
-      "status": "PASS",
-      "exit_code": 0,
-      "expected_exit_code": 0
+      "exit_code": 0
     },
     "git-diff-check": {
       "status": "PASS",
-      "exit_code": 0,
-      "expected_exit_code": 0
+      "exit_code": 0
     },
     "platform-tests": {
       "status": "PASS",
-      "count": 23,
-      "command": "python3 -m unittest discover -s tests/platform -v"
+      "count": 28,
+      "evidence": "platform-tests-resumed.txt",
+      "scope": "platform fixtures and migration security boundaries; no live backup or inference work"
     },
-    "ansible-scratch-first": {
+    "full-candidate": {
       "status": "PASS",
-      "recap": "localhost                  : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+      "evidence": "full-candidate.json"
     },
-    "ansible-scratch-second": {
+    "candidate-docker-restart": {
       "status": "PASS",
-      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+      "evidence": "candidate-docker-restart.json"
     },
-    "ansible-scratch-check": {
+    "offline-copy": {
       "status": "PASS",
-      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+      "evidence": "offline-copy.json"
     },
-    "ansible-operator-first": {
+    "cutover-acceptance": {
       "status": "PASS",
-      "recap": "localhost                  : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+      "evidence": "cutover-acceptance.json"
     },
-    "ansible-operator-second": {
+    "rootless-stack-restart": {
       "status": "PASS",
-      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+      "evidence": "rootless-stack-restart.json"
     },
-    "compose-config": {
+    "systemd-docker-recovery": {
       "status": "PASS",
-      "scope": "full rootless template with private synthetic env files, quiet mode; no live secret rendering"
+      "evidence": "systemd-docker-recovery.json"
     },
-    "staged-runtime": {
+    "rootless-docker-restart": {
       "status": "PASS",
-      "files_match_repository": true,
-      "private_mode": "0600",
-      "activation_marker": false,
-      "services_started": false
+      "evidence": "rootless-docker-restart.json"
+    },
+    "operator-without-docker-group": {
+      "status": "PASS",
+      "evidence": "operator-without-docker-group.json"
+    },
+    "alloy-rootless-journal": {
+      "status": "PASS",
+      "evidence": "alloy-rootless-journal.json"
+    },
+    "accepted-host": {
+      "status": "PASS",
+      "evidence": "accepted-host.json"
+    },
+    "ansible-scratch-resumed-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0"
+    },
+    "ansible-scratch-resumed-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0"
+    },
+    "ansible-operator-accepted-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=12   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-operator-accepted-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=12   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-host-accepted-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=14   changed=7    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0"
+    },
+    "ansible-host-accepted-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=12   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0"
+    },
+    "guard-unaccepted-activation-resumed": {
+      "status": "PASS",
+      "result": "refused before mutation"
+    },
+    "guard-scratch-activation-resumed": {
+      "status": "PASS",
+      "result": "refused before mutation"
+    },
+    "compose-accepted-config": {
+      "status": "PASS",
+      "scope": "quiet validation using actual private runtime secrets"
+    },
+    "runtime-matches-desired-state": {
+      "status": "PASS"
     },
     "adr0019-preserved": {
       "status": "PASS",
-      "unchanged": true
+      "original_commit": "74b2993"
     },
-    "secret-review": {
+    "secret-scan": {
       "status": "PASS",
-      "files_scanned": 63,
-      "known_fixture_values_scanned": 8,
-      "scope": "all modified/untracked nonignored files; known candidate credentials absent; no live root-only secrets accessed; reboot evidence credential keyword scan clean"
+      "files_scanned": 55,
+      "scope": "modified and untracked nonignored review files; actual private runtime values, encoded Basic auth and synthetic candidate credentials absent; values never emitted"
     },
-    "local-markdown-links": {
+    "documentation-links": {
       "status": "PASS",
-      "scope": "relative file targets in modified/untracked Markdown; external URLs and anchor semantics excluded"
+      "scope": "relative file targets in changed Markdown; external URLs/anchor semantics excluded"
+    },
+    "reboot-validation-tooling": {
+      "status": "PASS",
+      "command": "uv run --no-project --python 3.13 --with boto3==1.42.70 python",
+      "note": "Does not depend on a /tmp virtualenv surviving reboot"
     }
   },
-  "not_run": [
-    "privileged live convergence",
-    "live secret comparison",
-    "full Langfuse candidate",
-    "live data migration",
-    "rootless stack systemd restart",
-    "rootless reboot"
+  "systemd_warning": "Existing spice-vdagent user package unit has an unrelated StandardError directive in Install; no Blaine unit diagnostic.",
+  "not_performed": [
+    "rootless real host reboot",
+    "full D1.G service adoption",
+    "backup resume or historical disk changes",
+    "inference adoption or benchmarking",
+    "sudoers changes",
+    "push"
   ]
 }

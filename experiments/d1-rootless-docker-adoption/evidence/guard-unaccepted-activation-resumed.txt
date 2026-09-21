@@ -1,0 +1,22 @@
+
+PLAY [Stage the D1 rootless operator runtime (activation is a separate cutover)] ***
+
+TASK [Require operator staging with explicit safe scope] ***********************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Require recorded acceptance and a disabled legacy owner before activation] ***
+[ERROR]: Task failed: Module failed: non-zero return code
+Origin: /home/leofuso/workspace/blaine/infra/ansible/infrastructure.yml:20:7
+
+18         fail_msg: Activation requires the real accepted host; scratch staging never starts services
+19
+20     - name: Require recorded acceptance and a disabled legacy owner before activation
+         ^ column 7
+
+fatal: [localhost]: FAILED! => {"changed": false, "cmd": ["/usr/bin/python3", "-c", "import json, subprocess\nfrom pathlib import Path\nmarker = Path.home() / '.config/blaine/infra/migration-accepted.json'\nassert json.loads(marker.read_text())['status'] == 'PASS', 'STOP: migration acceptance absent'\nassert subprocess.run(['systemctl','is-active','--quiet','blaine-infra']).returncode != 0, 'STOP: legacy owner active'\nstate = subprocess.run(['systemctl','is-enabled','blaine-infra'], capture_output=True, text=True).stdout.strip()\nassert state in ['disabled','masked'], 'STOP: legacy owner can still start at boot'\n"], "delta": "0:00:00.056894", "end": "2026-09-21 14:13:45.043848", "msg": "non-zero return code", "rc": 1, "start": "2026-09-21 14:13:44.986954", "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    assert json.loads(marker.read_text())['status'] == 'PASS', 'STOP: migration acceptance absent'\n                      ~~~~~~~~~~~~~~~~^^\n  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 788, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:\n         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 772, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/leofuso/.config/blaine/infra/migration-accepted.json'", "stderr_lines": ["Traceback (most recent call last):", "  File \"<string>\", line 4, in <module>", "    assert json.loads(marker.read_text())['status'] == 'PASS', 'STOP: migration acceptance absent'", "                      ~~~~~~~~~~~~~~~~^^", "  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 788, in read_text", "    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:", "         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", "  File \"/usr/lib/python3.14/pathlib/__init__.py\", line 772, in open", "    return io.open(self, mode, buffering, encoding, errors, newline)", "           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", "FileNotFoundError: [Errno 2] No such file or directory: '/home/leofuso/.config/blaine/infra/migration-accepted.json'"], "stdout": "", "stdout_lines": []}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
