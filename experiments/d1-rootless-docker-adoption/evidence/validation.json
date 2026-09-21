@@ -1,0 +1,109 @@
+{
+  "observed_at": "2026-09-21T13:28:43.720949+00:00",
+  "checks": {
+    "syntax-infrastructure": {
+      "status": "PASS",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "syntax-infrastructure-rootful": {
+      "status": "PASS",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "syntax-rootless-host": {
+      "status": "PASS",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "syntax-host": {
+      "status": "PASS",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "guard-legacy-rootful": {
+      "status": "PASS",
+      "exit_code": 2,
+      "expected_exit_code": 2
+    },
+    "guard-premature-activation": {
+      "status": "PASS",
+      "exit_code": 2,
+      "expected_exit_code": 2
+    },
+    "systemd-user-verify": {
+      "status": "PASS",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "warning": "Existing package spice-vdagent.service has StandardError in Install; Blaine unit has no diagnostic."
+    },
+    "systemd-legacy-verify": {
+      "status": "PASS",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "git-diff-check": {
+      "status": "PASS",
+      "exit_code": 0,
+      "expected_exit_code": 0
+    },
+    "platform-tests": {
+      "status": "PASS",
+      "count": 23,
+      "command": "python3 -m unittest discover -s tests/platform -v"
+    },
+    "ansible-scratch-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-scratch-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-scratch-check": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-operator-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-operator-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "compose-config": {
+      "status": "PASS",
+      "scope": "full rootless template with private synthetic env files, quiet mode; no live secret rendering"
+    },
+    "staged-runtime": {
+      "status": "PASS",
+      "files_match_repository": true,
+      "private_mode": "0600",
+      "activation_marker": false,
+      "services_started": false
+    },
+    "adr0019-preserved": {
+      "status": "PASS",
+      "unchanged": true
+    },
+    "secret-review": {
+      "status": "PASS",
+      "files_scanned": 63,
+      "known_fixture_values_scanned": 8,
+      "scope": "all modified/untracked nonignored files; known candidate credentials absent; no live root-only secrets accessed; reboot evidence credential keyword scan clean"
+    },
+    "local-markdown-links": {
+      "status": "PASS",
+      "scope": "relative file targets in modified/untracked Markdown; external URLs and anchor semantics excluded"
+    }
+  },
+  "not_run": [
+    "privileged live convergence",
+    "live secret comparison",
+    "full Langfuse candidate",
+    "live data migration",
+    "rootless stack systemd restart",
+    "rootless reboot"
+  ]
+}

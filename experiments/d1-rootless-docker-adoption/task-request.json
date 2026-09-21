@@ -1,0 +1,64 @@
+{
+  "objective": "Execute the supplied D1 rootless migration specification: prove an isolated rootless candidate before preserving/copying state and cutting over; record actual evidence, desired state and local commits.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Authorized migration scope and constraints",
+      "source": "experiments/d1-rootless-docker-adoption/task-specification.md",
+      "sharing": "local-only"
+    },
+    {
+      "need": "Current repository, host, daemon, service and protected data inventory",
+      "source": "/home/leofuso/workspace/blaine",
+      "freshness": "observe before mutation",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit task workspace",
+    "inspect local host",
+    "rootless Docker operation",
+    "bounded host administration when sudo -n succeeds",
+    "local git commits"
+  ],
+  "autonomy": {
+    "allowed": [
+      "isolated candidate validation",
+      "reversible user runtime staging",
+      "coherent cutover only after full candidate PASS",
+      "bounded sudo host actions when noninteractive authentication succeeds",
+      "local commits"
+    ],
+    "ask_before": [
+      "a later host reboot"
+    ],
+    "forbidden": [
+      "interactive sudo by agent",
+      "sudoers changes or NOPASSWD",
+      "weaken secret permissions",
+      "disrupt rootful stack before candidate PASS",
+      "delete persistent data",
+      "touch historical backup",
+      "resume backup or inference work",
+      "push or rewrite history"
+    ]
+  },
+  "cloud": {
+    "policy": "ask"
+  },
+  "completion": [
+    {
+      "criterion": "All four rootless services preserve native dependencies and retained data identities without rootful socket access",
+      "evidence": "isolated full candidate and post-cutover health, object bytes, ClickHouse rows and Langfuse roundtrip"
+    },
+    {
+      "criterion": "User systemd/linger owns normal operations and rootful duplicate is disabled after acceptance",
+      "evidence": "unit/linger/group observations and controlled restart evidence"
+    },
+    {
+      "criterion": "Repository accurately records desired state, reboot scope, acceptance limitations and local commits",
+      "evidence": "validation record and local Git history"
+    }
+  ]
+}

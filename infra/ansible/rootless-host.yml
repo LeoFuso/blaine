@@ -1,0 +1,33 @@
+---
+- name: Verify rootless host prerequisites and enable user-manager boot persistence
+  hosts: blaine
+  gather_facts: false
+  vars:
+    blaine_operator_user: leofuso
+  tasks:
+    - name: Verify installed rootless prerequisite packages
+      ansible.builtin.command:
+        argv: [dpkg-query, -W, '-f=${Status}', '{{ item }}']
+      loop: [docker-ce-rootless-extras, uidmap]
+      register: prerequisite
+      changed_when: false
+      failed_when: prerequisite.rc != 0 or prerequisite.stdout != 'install ok installed'
+
+    - name: Verify subordinate identity allocation exists
+      ansible.builtin.command:
+        argv: [/usr/bin/grep, '-E', '^{{ blaine_operator_user }}:[0-9]+:[0-9]+$', '{{ item }}']
+      loop: [/etc/subuid, /etc/subgid]
+      changed_when: false
+
+    - name: Inspect linger
+      ansible.builtin.command:
+        argv: [loginctl, show-user, '{{ blaine_operator_user }}', '-p', Linger, '--value']
+      register: linger
+      changed_when: false
+
+    - name: Enable linger for the normal operator
+      ansible.builtin.command:
+        argv: [loginctl, enable-linger, '{{ blaine_operator_user }}']
+      when: linger.stdout != 'yes'
+      changed_when: true
+      # Run with bounded sudo. No docker-group grant, sudoers edits or daemon stops.

@@ -32,7 +32,7 @@
         state: directory
         mode: "{{ item.mode }}"
         owner: "{{ 'root' if blaine_prefix == '' else omit }}"
-        group: "{{ 'root' if blaine_prefix == '' else omit }}"
+        group: "{{ item.group | default('root') if blaine_prefix == '' else omit }}"
       loop:
         - {path: /etc/blaine, mode: '0700'}
         - {path: /usr/local/lib/blaine, mode: '0755'}

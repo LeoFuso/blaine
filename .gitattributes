@@ -21,3 +21,7 @@ experiments/kernel-increment-8/evidence/verified-resolution/acceptance/server.tx
 experiments/kernel-increment-8/hybrid/workflow.diff whitespace=-blank-at-eol
 experiments/kernel-increment-8/progression/app.diff whitespace=-blank-at-eol,-blank-at-eof
 experiments/kernel-increment-9/evidence/acceptance/server.txt whitespace=-blank-at-eol
+# D1 original reboot captures and the supplied pre-existing patch stay byte-exact.
+experiments/d1-infrastructure-reboot/evidence/before-compose.txt whitespace=-blank-at-eol
+experiments/d1-infrastructure-reboot/evidence/after-compose.txt whitespace=-blank-at-eol
+experiments/d1-rootless-docker-adoption/evidence/preexisting-operator-permission-experiment.patch whitespace=-blank-at-eol,-blank-at-eof

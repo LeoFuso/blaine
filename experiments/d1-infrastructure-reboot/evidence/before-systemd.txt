@@ -1,0 +1,15 @@
+--- docker.service
+enabled
+active
+--- blaine-infra.service
+enabled
+active
+--- alloy.service
+enabled
+active
+--- postgresql@18-main.service
+enabled-runtime
+active
+--- redis-server.service
+enabled
+active

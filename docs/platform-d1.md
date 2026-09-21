@@ -1,6 +1,9 @@
 # D1 — Long-lived platform foundation
 
-**Current: D1 IN PROGRESS — infrastructure foundation PASS; backup PAUSED.**
+**Current: D1 IN PROGRESS — infrastructure foundation and rootful infrastructure-only
+host reboot PASS; backup PAUSED. Rootless migration STOP at sudo authentication.**
+See [rootless state, decisions and exact next actions](platform-rootless-docker.md).
+Rootless reboot acceptance is pending. ADR 0019 is preserved; inference is not resumed.
 See [infrastructure acceptance](platform-infrastructure.md), [Grafana Cloud activation](platform-grafana-cloud.md)
 and [remaining D1 service/recovery work](roadmap/001-blaine-development-roadmap.md#d1).
 SeaweedFS Object Storage is now deployed. Blaine/Restate/vLLM/MIRIX service

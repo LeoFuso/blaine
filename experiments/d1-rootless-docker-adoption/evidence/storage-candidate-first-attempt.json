@@ -1,0 +1,10 @@
+{
+  "scope": "synthetic storage compatibility; full candidate NOT RUN",
+  "state_path": "/home/leofuso/.local/share/blaine/rootless-storage-candidate-20260921T132029Z",
+  "observed_at": "20260921T132029Z",
+  "checks": {},
+  "status": "FAIL",
+  "candidate_left": "stopped; all data and private fixture secrets retained",
+  "failure": "SeaweedFS image wrapper attempts recursive chown then su-exec from namespace UID 0; cap_drop ALL rejects both. No source data touched.",
+  "correction": "Invoke /usr/bin/weed directly with logtostderr=true and preserve GODEBUG=fips140=on; no capabilities or secret permissions widened."
+}

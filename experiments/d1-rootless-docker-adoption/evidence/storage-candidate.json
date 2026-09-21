@@ -1,0 +1,31 @@
+{
+  "scope": "synthetic storage compatibility; full candidate NOT RUN",
+  "state_path": "/home/leofuso/.local/share/blaine/rootless-storage-candidate-20260921T132344Z",
+  "observed_at": "20260921T132344Z",
+  "checks": {
+    "initial_storage": "PASS",
+    "object_sha256": "6c5caf3fb5114e14a0ddb076d3daa59d394124608ae37ba5465df0ca5fc4b75d",
+    "clickhouse_version": "26.4.5.143",
+    "compose_restart_persistence": "PASS",
+    "docker_restart_automatic_storage_recovery": "PASS",
+    "ownership": {
+      "objects": {
+        "uid": 1000,
+        "gid": 1000,
+        "mode": "0o700"
+      },
+      "clickhouse/data": {
+        "uid": 100100,
+        "gid": 100100,
+        "mode": "0o700"
+      },
+      "clickhouse/logs": {
+        "uid": 100100,
+        "gid": 100100,
+        "mode": "0o700"
+      }
+    }
+  },
+  "status": "PASS",
+  "candidate_left": "stopped; all data and private fixture secrets retained"
+}

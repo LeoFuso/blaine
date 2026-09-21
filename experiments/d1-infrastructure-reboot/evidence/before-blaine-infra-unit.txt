@@ -1,3 +1,4 @@
+# /etc/systemd/system/blaine-infra.service
 [Unit]
 Description=Blaine local infrastructure Compose deployment
 Requires=docker.service postgresql@18-main.service redis-server.service
@@ -9,9 +10,9 @@ RequiresMountsFor=/srv/blaine/infra
 Type=oneshot
 RemainAfterExit=yes
 WorkingDirectory=/etc/blaine/infra
-ExecStart=/usr/bin/docker --context default compose up --detach --wait --wait-timeout 300
-ExecStop=/usr/bin/docker --context default compose stop --timeout 60
-ExecReload=/usr/bin/docker --context default compose up --detach --wait --wait-timeout 300
+ExecStart=/usr/bin/docker compose up --detach --wait --wait-timeout 300
+ExecStop=/usr/bin/docker compose stop --timeout 60
+ExecReload=/usr/bin/docker compose up --detach --wait --wait-timeout 300
 TimeoutStartSec=600
 TimeoutStopSec=300
 UMask=0077

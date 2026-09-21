@@ -1,0 +1,4 @@
+blaine-infra-langfuse-worker-1	project=blaine-infra
+blaine-infra-langfuse-web-1	project=blaine-infra
+blaine-infra-object-storage-1	project=blaine-infra
+blaine-infra-clickhouse-1	project=blaine-infra

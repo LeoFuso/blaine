@@ -1,5 +1,11 @@
 # ADR 0018 — Blaine Local Platform, Durability and Observability Architecture
 
+> Packaging update, 2026-09-21: [ADR 0020](0020-rootless-docker-operator-runtime.md)
+> selects rootless Docker under user systemd + linger for the four-container D1
+> infrastructure. It supersedes rootful/docker-group operating assumptions and
+> narrows container packaging preferences below. Durability, Task ownership and
+> observability boundaries remain unchanged; migration acceptance is separate.
+
 **Status:** Proposed for acceptance
 **Date:** 2026-09-20
 **Scope:** Blaine runtime, local infrastructure, durability, backup, host configuration, ingress and observability

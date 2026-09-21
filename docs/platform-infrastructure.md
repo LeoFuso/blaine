@@ -1,5 +1,14 @@
 # D1 infrastructure foundation
 
+**2026-09-21: infrastructure-only host reboot PASS (rootful topology). Rootless
+migration STOP at sudo authentication; rootful stack remains healthy and required.**
+Read the [rootless migration runbook](platform-rootless-docker.md) and
+[ADR 0020](decisions/0020-rootless-docker-operator-runtime.md) for current desired
+state, staged user units, namespace ownership and the exact root-action handoff.
+Rootless reboot and full D1.G remain unproven. Backup stays PAUSED; ADR 0019 and
+inference adoption are unchanged. The deployment details below describe the
+still-running legacy foundation, not a claim that rootless cutover happened.
+
 Infrastructure acceptance **PASS**: all four containers and native Alloy are healthy;
 Docker, stack and Alloy restarts retained synthetic state. See the
 [credential-free evidence](../infra/validation-d1-infrastructure.json).
@@ -17,7 +26,7 @@ Selection checked against current official sources on 2026-09-20:
 | Component | Selected version | Reason / compatibility |
 |---|---|---|
 | Docker Engine / CLI | 29.8.1 | Official Ubuntu resolute apt packages, no Desktop or convenience installer |
-| Compose plugin | 5.5.1 | Official Docker apt package; sudo administration, no group/login prerequisite |
+| Compose plugin | 5.5.1 | Official Docker apt package; legacy sudo administration, rootless operator model selected by ADR 0020 |
 | containerd / Buildx | 2.3.5 / 0.37.1 | Explicit official package pins |
 | SeaweedFS | 4.47 | Apache-2.0, maintained release dated September 14, single-process `weed mini` |
 | ClickHouse | 26.4.5.143 | Langfuse v4 requires >=25.12 and recommends 26.4; single-node, UTC |
@@ -129,15 +138,20 @@ packages, upgrade the host, change groups, or reboot. `infra/ansible/infrastruct
 captures package intent, directories, Compose, systemd, Alloy and operator scripts.
 The prior backup play remains separate and unchanged.
 
+Historical rootful bootstrap / rollback reference only. Do not replay during the
+rootless migration. The legacy play requires an explicit guard; setting it here
+is not authorization to disrupt the healthy stack. Normal staging now uses the
+operator rootless play in the linked runbook.
+
 ```sh
 sudo python3 infra/bootstrap-packages.py
-sudo ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml
+sudo ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure-rootful.yml -e blaine_allow_legacy_rootful=true
 sudo python3 /usr/local/lib/blaine/infrastructure-secrets.py
-sudo docker compose -f /etc/blaine/infra/compose.yaml pull --quiet
+sudo docker --context default compose -f /etc/blaine/infra/compose.yaml pull --quiet
 sudo systemctl daemon-reload
 # Use a Python environment containing boto3; see versions/evidence for acceptance tools.
 sudo /path/to/validation-python infra/accept-infrastructure.py
-sudo ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure.yml -e blaine_activate=true
+sudo ansible-playbook -i infra/ansible/inventory.ini infra/ansible/infrastructure-rootful.yml -e blaine_allow_legacy_rootful=true -e blaine_activate=true
 ```
 
 Review native unit drift before a daemon reload. First-time acceptance starts stores,
@@ -168,7 +182,7 @@ fail-closed safeguards retained, no accepted physical PostgreSQL generation/rest
 and the earlier PostgreSQL/systemd execution failure deferred. The timer stays
 disabled/inactive. This is not an infrastructure blocker.
 
-Full-machine reboot recovery is **PENDING**. Cloud/off-site backup, full recovery,
+Infrastructure-foundation full-host reboot recovery is **PASS** for the rootful topology; rootless reboot recovery and full D1.G remain **PENDING**. Cloud/off-site backup, full recovery,
 public ingress, extensive dashboards and real cognitive instrumentation are deferred.
 Blaine/Restate still need an accepted stable long-lived deployment; terminal-owned
 vLLM and MIRIX were not adopted or restarted. Redis's separate ephemeral/durable
@@ -194,5 +208,5 @@ The implementation commit is `48b077d`, integrated into local main by fast-forwa
 final cleanup evidence is recorded in the subsequent Git commit. No push occurred.
 
 **PASS applies to this infrastructure slice.** Grafana Cloud remains configured
-for future activation; backup remains paused, reboot recovery pending, and the
+for future activation; backup remains paused, rootless reboot recovery pending, and the
 Daily Driver ownership gaps listed above remain open.

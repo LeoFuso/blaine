@@ -1,0 +1,5 @@
+NAME                             IMAGE                                                 COMMAND                  SERVICE           CREATED        STATUS                   PORTS
+blaine-infra-clickhouse-1        clickhouse/clickhouse-server:26.4.5.143               "/entrypoint.sh"         clickhouse        19 hours ago   Up 8 minutes (healthy)   127.0.0.1:8123->8123/tcp, 127.0.0.1:9000->9000/tcp, 9009/tcp
+blaine-infra-langfuse-web-1      docker.langfuse.com/langfuse/langfuse:4.38.0          "dumb-init -- ./web/…"   langfuse-web      19 hours ago   Up 7 minutes (healthy)   
+blaine-infra-langfuse-worker-1   docker.langfuse.com/langfuse/langfuse-worker:4.38.0   "dumb-init -- ./work…"   langfuse-worker   19 hours ago   Up 7 minutes (healthy)   
+blaine-infra-object-storage-1    chrislusf/seaweedfs:4.47                              "/entrypoint.sh mini…"   object-storage    19 hours ago   Up 8 minutes (healthy)   7333/tcp, 8080/tcp, 8888/tcp, 9333/tcp, 18080/tcp, 18888/tcp, 19333/tcp, 127.0.0.1:8333->8333/tcp

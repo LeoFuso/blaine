@@ -5,7 +5,7 @@
   "live_acceptance": {
     "status": "PASS",
     "backup": "PAUSED",
-    "reboot": "PENDING",
+    "reboot": "PASS: infrastructure foundation/rootful topology, 2026-09-21; see infrastructure_reboot",
     "checks": {
       "docker_version": "29.8.1",
       "compose_version": "5.5.1",
@@ -203,7 +203,7 @@
   "grafana_cloud": "CONFIGURED FOR FUTURE ACTIVATION; remote exporter inactive, no runtime cloud credentials",
   "backup": "PAUSED; timer disabled/inactive, prior failed service has no process; no disk/backup acceptance work performed",
   "deferred": [
-    "full-machine reboot",
+    "rootless topology reboot and full D1.G acceptance",
     "complete PostgreSQL plus Object Storage backup/restore",
     "cloud/off-site backup",
     "stable Blaine/Restate/vLLM/MIRIX adoption",
@@ -229,5 +229,22 @@
     "implementation_integrated_into_local_main": "fast-forward verified",
     "final_evidence_commit": "recorded in Git history and fast-forwarded with this evidence",
     "push": "not performed"
+  },
+  "infrastructure_reboot": {
+    "status": "PASS",
+    "scope": "rootful infrastructure foundation only; not D1.G or rootless boot",
+    "before_boot_id": "55f6e9ad-7915-472d-aaf5-7c9d689c3747",
+    "after_boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+    "evidence": "experiments/d1-infrastructure-reboot/evidence",
+    "automatic_recovery": true,
+    "failed_units": 0
+  },
+  "rootless_migration": {
+    "status": "STOP",
+    "reason": "sudo noninteractive authentication unavailable; protected source inventory and secret materialization pending",
+    "rootful_stack": "healthy and active; no cutover",
+    "evidence": "experiments/d1-rootless-docker-adoption/evidence",
+    "rootless_reboot": "PENDING; requires a later explicitly authorized reboot",
+    "D1.G": "INCOMPLETE; Blaine/Restate/vLLM/MIRIX adoption pending"
   }
 }

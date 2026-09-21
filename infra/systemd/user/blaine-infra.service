@@ -1,0 +1,29 @@
+[Unit]
+Description=Blaine rootless infrastructure (ADR 0020)
+Requires=docker.service
+After=docker.service
+PartOf=docker.service
+StartLimitIntervalSec=600
+StartLimitBurst=30
+# Written only at the deliberate cutover boundary after full candidate PASS.
+ConditionPathExists=%h/.config/blaine/infra/cutover-approved
+RequiresMountsFor=%h/.local/share/blaine/infra
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=10
+WorkingDirectory=%h/.config/blaine/infra
+Environment=BLAINE_STATE_DIR=%h/.local/share/blaine/infra
+Environment=BLAINE_SECRET_DIR=%h/.config/blaine/secrets
+ExecStartPre=/usr/bin/python3 %h/.config/blaine/infra/preflight.py
+ExecStart=/usr/bin/docker --context rootless compose -f compose.yaml up --detach --wait --wait-timeout 300
+ExecStop=/usr/bin/docker --context rootless compose -f compose.yaml stop --timeout 60
+ExecReload=/usr/bin/docker --context rootless compose -f compose.yaml up --detach --wait --wait-timeout 300
+TimeoutStartSec=600
+TimeoutStopSec=300
+UMask=0077
+
+[Install]
+WantedBy=default.target

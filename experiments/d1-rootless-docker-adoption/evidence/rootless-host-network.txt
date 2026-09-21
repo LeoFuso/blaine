@@ -1,0 +1,7 @@
+uid=0(root) gid=0(root) groups=0(root),0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10(wheel),11(floppy),20(dialout),26(tape),27(video)
+         0       1000          1
+         1     100000      65536
+native TCP 5432 PASS
+native TCP 6379 PASS
+{"status":"OK","version":"4.38.0"}
+{"status":"ok"}

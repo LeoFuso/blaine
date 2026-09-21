@@ -1,0 +1,21 @@
+
+PLAY [Own the bounded D1 local infrastructure] *********************************
+
+TASK [Refuse legacy rootful convergence unless explicitly requested for rollback] ***
+[ERROR]: Task failed: Action failed: ADR 0020 selects infrastructure.yml rootless staging; legacy live convergence requires explicit rollback authorization
+Origin: /home/leofuso/workspace/blaine/infra/ansible/infrastructure-rootful.yml:28:7
+
+26       - {src: ../bootstrap-packages.py, dest: /usr/local/lib/blaine/bootstrap-packages.py, mode: '0755'}
+27   tasks:
+28     - name: Refuse legacy rootful convergence unless explicitly requested for rollback
+         ^ column 7
+
+fatal: [localhost]: FAILED! => {
+    "assertion": "blaine_prefix != '' or (blaine_allow_legacy_rootful | bool)",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "ADR 0020 selects infrastructure.yml rootless staging; legacy live convergence requires explicit rollback authorization"
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0

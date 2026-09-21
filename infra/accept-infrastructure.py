@@ -18,12 +18,14 @@ import urllib.error
 import urllib.request
 from urllib.parse import urlencode
 
-COMPOSE = ['docker', 'compose', '-f', '/etc/blaine/infra/compose.yaml']
+COMPOSE = ['docker', '--context', 'default', 'compose', '-f', '/etc/blaine/infra/compose.yaml']
 EVIDENCE = Path('/var/lib/blaine-platform/infrastructure-acceptance.json')
 report = {'status': 'INCOMPLETE', 'backup': 'PAUSED', 'reboot': 'PENDING', 'checks': {}}
 
 
 def command(args):
+    if args[0] == 'docker' and '--context' not in args:
+        args = ['docker', '--context', 'default', *args[1:]]
     p = subprocess.run(args, text=True, capture_output=True, timeout=600)
     if p.returncode:
         # Dependency errors can contain connection strings. Do not print raw logs.

@@ -134,7 +134,14 @@ when evidence demonstrates that it blocks v0; do not import an entire later cycl
 <a id="d1"></a>
 ## D1 — Long-Lived Platform Runtime
 
-**STATUS: IN PROGRESS — infrastructure foundation PASS. Backup: PAUSED.**
+**STATUS: IN PROGRESS — infrastructure foundation and infrastructure-only rootful
+host reboot PASS. Rootless migration: STOP at sudo authentication. Backup: PAUSED.**
+
+The [rootless migration checkpoint](../platform-rootless-docker.md) and
+[ADR 0020](../decisions/0020-rootless-docker-operator-runtime.md) select user systemd
+and linger. Rootful Blaine remains healthy until full rootless candidate acceptance.
+Rootless reboot acceptance is pending. D1.C/inference work does not resume in this
+migration; preserve ADR 0019.
 
 **Why:** the kernel can be durable while Blaine still depends on open terminals
 and undocumented machine state. D1 makes the machine an understandable long-lived
@@ -152,7 +159,7 @@ Langfuse Web and Langfuse Worker. Native PostgreSQL and Redis are reused; native
 Grafana Alloy collects local telemetry. systemd owns the top-level Compose stack
 and Alloy; pragmatic Ansible records desired state. Stack, Docker and Alloy
 restart/persistence smoke tests passed, including synthetic storage and Langfuse
-roundtrips. This does not claim a full-machine reboot or real cognitive traffic.
+roundtrips. A real infrastructure-only reboot passed on 2026-09-21 with a new boot ID and automatic recovery. It does not prove rootless boot recovery, full D1.G, or real cognitive traffic.
 
 Persistent locations are explicit: `/srv/blaine/infra/objects` includes SeaweedFS
 metadata/filer/volumes; ClickHouse uses `/srv/blaine/infra/clickhouse`; native
