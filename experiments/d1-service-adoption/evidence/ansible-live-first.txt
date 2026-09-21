@@ -1,0 +1,114 @@
+PLAY [Stage accepted non-root Blaine services without starting candidates] *****
+
+TASK [Require bounded scratch or real operator paths] **************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Observe operator identity] ***********************************************
+ok: [localhost]
+
+TASK [Refuse root service staging] *********************************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Reject redirected installation paths] ************************************
+ok: [localhost]
+
+TASK [Create private deployment directories] ***********************************
+ok: [localhost] => (item=/home/leofuso/.config/blaine/services)
+ok: [localhost] => (item=/home/leofuso/.config/blaine/inference)
+ok: [localhost] => (item=/home/leofuso/.local/share/blaine/runtime/bin)
+ok: [localhost] => (item=/home/leofuso/.local/share/blaine/runtime/app/runtime/kernel)
+ok: [localhost] => (item=/home/leofuso/.config/systemd/user)
+ok: [localhost] => (item=/home/leofuso/.local/bin)
+
+TASK [Stage inference configuration and launcher] ******************************
+ok: [localhost] => (item=../inference/candidate.json)
+ok: [localhost] => (item=../inference/serve.py)
+
+TASK [Stage operational service configuration] *********************************
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/durable-check.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/register-runtime.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/observe.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/wait-ready.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/cognition-check.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-launch.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-model.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-state.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-check.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/object-check.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/reboot-check.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/process-ownership.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/runtime.json)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/restate.toml)
+
+TASK [Stage persistent user units without enabling them] ***********************
+ok: [localhost] => (item=generation)
+ok: [localhost] => (item=embedding)
+ok: [localhost] => (item=mirix)
+ok: [localhost] => (item=restate)
+ok: [localhost] => (item=runtime)
+
+TASK [Stage the actual accepted application modules] ***************************
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/personal_runtime.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/interactive.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/personal_agent.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/task.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/personal_acp.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/app.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/acp_agent.py)
+
+TASK [Stage existing kernel modules and schemas] *******************************
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/frontier.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/project_knowledge.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic_bridge.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/workspace.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic_provider.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/contracts.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/cognition.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/human.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/execution.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/context.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/artifacts.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/events.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic_human.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/model.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/memory.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/frontier_context.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/worker_routing.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/procedure.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/__init__.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/workflow.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/control.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/youtrack.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/worker.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/event_sinks.py)
+ok: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic-human-request-v1.json)
+
+TASK [Stage the pinned Restate binary] *****************************************
+ok: [localhost]
+
+TASK [Explain activation and state boundaries] *********************************
+ok: [localhost] => {
+    "msg": "Staging only. No state copy, dependency installation or secret change. Activation requires blaine_activate=true and accepted live evidence; preserved Restate state is handled explicitly by the adoption runbook."
+}
+
+TASK [Install the actual Personal Agent ACP entrypoint] ************************
+ok: [localhost]
+
+TASK [Require accepted live evidence before enabling runtime ownership] ********
+ok: [localhost]
+
+TASK [Adopt accepted services under the user manager] **************************
+ok: [localhost] => (item=generation)
+ok: [localhost] => (item=embedding)
+ok: [localhost] => (item=mirix)
+ok: [localhost] => (item=restate)
+ok: [localhost] => (item=runtime)
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=15   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

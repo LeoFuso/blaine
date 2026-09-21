@@ -1,0 +1,4 @@
+#!/bin/sh
+# Stable ACP stdio entrypoint; durable work remains in the user services.
+cd "$HOME/.local/share/blaine/runtime/app" || exit 1
+exec "$HOME/.local/share/blaine/runtime/env/bin/python" -m runtime.personal_acp "$@"

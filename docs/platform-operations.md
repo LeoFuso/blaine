@@ -7,6 +7,11 @@ current operator topology, namespace storage rules, normal operations and rollba
 The historical backup instructions below remain paused. Rootless reboot and
 full D1.G remain pending; no reboot is authorized by documenting these gates.
 
+For current inference/MIRIX/Restate/Blaine operations, retained-state evidence,
+known shutdown limits and the exact later reboot procedure, use the
+[service operations runbook](platform-services.md). All five adopted units are
+enabled; no manual terminal or root is needed for normal runtime operation.
+
 Read the [current infrastructure foundation](platform-infrastructure.md),
 [roadmap D1 gates](roadmap/001-blaine-development-roadmap.md#d1), and
 [historical backup checkpoint](platform-d1.md) first. Commands below

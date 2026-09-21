@@ -1,0 +1,13 @@
+{
+  "checkpoint_card": "https://huggingface.co/nvidia/Qwen3.8-27B-NVFP4/blob/482ca0f3832238542f8f5295dde86b5f22711d80/README.md",
+  "upstream_runtime": "https://github.com/vllm-project/vllm/tree/c3b48446349569512749db7f6e2164aa8a33437d",
+  "observations": [
+    "Official model card recommends vLLM nightly, Blackwell, qwen3 reasoning and qwen3_coder tools; no minimum release specified.",
+    "Installed pinned source recognizes Qwen3_5ForConditionalGeneration and modelopt_mixed with per-layer FP8/NVFP4.",
+    "Selected Python 3.13.15, torch 2.13.0+cu132 supports sm_120. Driver 595.91.07 supports CUDA 13.2.",
+    "Initial candidate loaded weights into 19.05 GiB; failed graph capture because nvcc was absent. Installing isolated CUDA 13.2 compiler packages; context fallback not triggered by a missing compiler."
+  ],
+  "adopted": false,
+  "scope": "Historical initial candidate requirements, before compiler/runtime acceptance",
+  "superseded_by": "inference-summary.json"
+}

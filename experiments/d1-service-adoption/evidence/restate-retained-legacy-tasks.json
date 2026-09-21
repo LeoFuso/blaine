@@ -1,0 +1,367 @@
+{
+  "task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130": {
+    "task_id": "task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130",
+    "objective": "Small deterministic remote input",
+    "accepted_spec": {
+      "kind": "TaskSpec",
+      "payload": {
+        "autonomy": {
+          "allowed": [
+            "text.stats"
+          ]
+        },
+        "capabilities": [
+          "text.stats"
+        ],
+        "completion": [
+          {
+            "criterion": "Exact deterministic objective summary",
+            "evidence": {
+              "artifact": "answer",
+              "sha256": "1376873d22b5f31c6d61bfa250bae2793c1a22cde1200d261d355b4e80d7a9f2"
+            }
+          }
+        ],
+        "objective": "Small deterministic remote input"
+      },
+      "version": 1
+    },
+    "request_digest": "187c260b70fd7a592306875ba490b5ea5898ad5840a08d25eb0073689e4970d4",
+    "lifecycle": "COMPLETED",
+    "revision": 1,
+    "blocking_dependency": null,
+    "children": {},
+    "artifacts": {
+      "answer": "artifact://task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130/sha256:1376873d22b5f31c6d61bfa250bae2793c1a22cde1200d261d355b4e80d7a9f2"
+    },
+    "result_ref": "artifact://task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130/sha256:3f6e18b5bdc66e836a7d4e59ec33337aded29ae7f8d45c02d4321d3bfd13b7b0",
+    "completion": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Exact deterministic objective summary",
+            "detail": "Exact artifact digest verified",
+            "evidence_ref": "artifact://task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130/sha256:1376873d22b5f31c6d61bfa250bae2793c1a22cde1200d261d355b4e80d7a9f2",
+            "outcome": "satisfied"
+          }
+        ],
+        "outcome": "satisfied"
+      },
+      "version": 1
+    },
+    "result": {
+      "kind": "TaskResult",
+      "payload": {
+        "artifacts": {
+          "answer": "artifact://task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130/sha256:1376873d22b5f31c6d61bfa250bae2793c1a22cde1200d261d355b4e80d7a9f2"
+        },
+        "completion_ref": "artifact://task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130/sha256:a2df956e642215c93db12acb1be4e004636d98448eb4616f95a9c49bd02ff0f9",
+        "concerns": [],
+        "outcome": "COMPLETED",
+        "task_id": "task-81db8ebbbbc69c6c6ad4a6aa92b76e0c08af547da236b9e2c9dbe1d8285a8130"
+      },
+      "version": 1
+    },
+    "pending_human_decision": null,
+    "pending_workspace_read": null
+  },
+  "task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01": {
+    "task_id": "task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01",
+    "objective": "Continue the bounded Task?",
+    "accepted_spec": {
+      "kind": "TaskSpec",
+      "payload": {
+        "autonomy": {
+          "allowed": [
+            "human.request"
+          ]
+        },
+        "capabilities": [
+          "human.request"
+        ],
+        "completion": [
+          {
+            "criterion": "Scoped human response recorded",
+            "evidence": {
+              "artifact": "response",
+              "request": {
+                "kind": "HumanDecisionRequest",
+                "payload": {
+                  "allowed_responses": [
+                    "YES",
+                    "NO"
+                  ],
+                  "origin_task_id": "task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01",
+                  "question": "Continue the bounded Task?",
+                  "request_id": "decision-1",
+                  "revision": 0,
+                  "task_id": "task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01"
+                },
+                "version": 1
+              },
+              "verifier": "human_response"
+            }
+          }
+        ],
+        "objective": "Continue the bounded Task?"
+      },
+      "version": 1
+    },
+    "request_digest": "f4da7a136fda304ff9f66024510a8e3c649776d19eea3806c72480a80cf15c61",
+    "lifecycle": "COMPLETED",
+    "revision": 1,
+    "blocking_dependency": null,
+    "children": {},
+    "artifacts": {
+      "human-request-decision-1": "artifact://task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01/sha256:63fbfbbcb0bceeac8cfb0d472d20c532df3bed0b5fec5400e443c8b340b4d71a",
+      "response": "artifact://task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01/sha256:9cd6c2f9f93f88db8dbc4007388768f7c5907d3699dd69e74337e492396d59e4"
+    },
+    "result_ref": "artifact://task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01/sha256:94b02cdd61532833684ef19e72c90c907d8c71b9ac20298a2acc22bd3f7a7bd4",
+    "completion": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Scoped human response recorded",
+            "detail": "Scoped response accepted and allowed value independently verified",
+            "evidence_ref": "artifact://task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01/sha256:9cd6c2f9f93f88db8dbc4007388768f7c5907d3699dd69e74337e492396d59e4",
+            "outcome": "satisfied"
+          }
+        ],
+        "outcome": "satisfied"
+      },
+      "version": 1
+    },
+    "result": {
+      "kind": "TaskResult",
+      "payload": {
+        "artifacts": {
+          "human-request-decision-1": "artifact://task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01/sha256:63fbfbbcb0bceeac8cfb0d472d20c532df3bed0b5fec5400e443c8b340b4d71a",
+          "response": "artifact://task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01/sha256:9cd6c2f9f93f88db8dbc4007388768f7c5907d3699dd69e74337e492396d59e4"
+        },
+        "completion_ref": "artifact://task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01/sha256:8a2e5caf83e5ddd51677cdaedb3aeed599dd1f88f4b67e4bf73a324b3ebe440b",
+        "concerns": [],
+        "outcome": "COMPLETED",
+        "task_id": "task-79a5478768d2447431a90f7f4549df735f50ad541371464c248abc7522dc3a01"
+      },
+      "version": 1
+    },
+    "pending_human_decision": null,
+    "pending_workspace_read": null
+  },
+  "task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935": {
+    "task_id": "task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935",
+    "objective": "Await explicit cancellation?",
+    "accepted_spec": {
+      "kind": "TaskSpec",
+      "payload": {
+        "autonomy": {
+          "allowed": [
+            "human.request"
+          ]
+        },
+        "capabilities": [
+          "human.request"
+        ],
+        "completion": [
+          {
+            "criterion": "Scoped human response recorded",
+            "evidence": {
+              "artifact": "response",
+              "request": {
+                "kind": "HumanDecisionRequest",
+                "payload": {
+                  "allowed_responses": [
+                    "YES",
+                    "NO"
+                  ],
+                  "origin_task_id": "task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935",
+                  "question": "Await explicit cancellation?",
+                  "request_id": "decision-1",
+                  "revision": 0,
+                  "task_id": "task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935"
+                },
+                "version": 1
+              },
+              "verifier": "human_response"
+            }
+          }
+        ],
+        "objective": "Await explicit cancellation?"
+      },
+      "version": 1
+    },
+    "request_digest": "3a71a16f15a62eb2a577962e31a90dc31cb70e5e3a5689dee480680b048f3605",
+    "lifecycle": "CANCELLED",
+    "revision": 0,
+    "blocking_dependency": null,
+    "children": {},
+    "artifacts": {
+      "human-request-decision-1": "artifact://task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935/sha256:743773190a42deb28d6e8214a031b2c1892787b31f5bc70d041f4944a91e90e7"
+    },
+    "result_ref": "artifact://task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935/sha256:29c029d62d9b860c0d150e64ad8125103d0f97699b6c510aecc72fc292c4f626",
+    "completion": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Scoped human response recorded",
+            "detail": "Required artifact is missing",
+            "evidence_ref": null,
+            "outcome": "unsatisfied"
+          }
+        ],
+        "outcome": "unsatisfied"
+      },
+      "version": 1
+    },
+    "result": {
+      "kind": "TaskResult",
+      "payload": {
+        "artifacts": {
+          "human-request-decision-1": "artifact://task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935/sha256:743773190a42deb28d6e8214a031b2c1892787b31f5bc70d041f4944a91e90e7"
+        },
+        "completion_ref": "artifact://task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935/sha256:5a6975035d4f39e3e5c313fa64559d498327ac7ee2fe1ea3c35e784932ceadcf",
+        "concerns": [
+          "Execution stopped: cancelled"
+        ],
+        "outcome": "CANCELLED",
+        "task_id": "task-8b47045eb7b8ca42aa967f33ee1d014ba89f8d1ac207426b482d34b5c0d90935"
+      },
+      "version": 1
+    },
+    "pending_human_decision": null,
+    "pending_workspace_read": null
+  },
+  "task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08": {
+    "task_id": "task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08",
+    "objective": "Read disposable project README through authorized ACP",
+    "accepted_spec": {
+      "kind": "TaskSpec",
+      "payload": {
+        "autonomy": {
+          "allowed": [
+            "workspace.read"
+          ]
+        },
+        "capabilities": [
+          "workspace.read"
+        ],
+        "completion": [
+          {
+            "criterion": "Exact fixture bytes",
+            "evidence": {
+              "artifact": "answer",
+              "sha256": "f5f8c0c283156167b28a09dd2c8ec0720ede14f26d2b9b41d46ebe15125798ca"
+            }
+          }
+        ],
+        "objective": "Read disposable project README through authorized ACP"
+      },
+      "version": 1
+    },
+    "request_digest": "58ba9e0fa876600a9e5f4858ad7e05b10291b5394d6e9424762282b29ed82673",
+    "lifecycle": "COMPLETED",
+    "revision": 1,
+    "blocking_dependency": null,
+    "children": {},
+    "artifacts": {
+      "answer": "artifact://task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08/sha256:f5f8c0c283156167b28a09dd2c8ec0720ede14f26d2b9b41d46ebe15125798ca"
+    },
+    "result_ref": "artifact://task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08/sha256:4cdedf1390eb10fe1c25e06ab15abd2a11603d25f25af24471484f5e74c4aafc",
+    "completion": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Exact fixture bytes",
+            "detail": "Exact artifact digest verified",
+            "evidence_ref": "artifact://task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08/sha256:f5f8c0c283156167b28a09dd2c8ec0720ede14f26d2b9b41d46ebe15125798ca",
+            "outcome": "satisfied"
+          }
+        ],
+        "outcome": "satisfied"
+      },
+      "version": 1
+    },
+    "result": {
+      "kind": "TaskResult",
+      "payload": {
+        "artifacts": {
+          "answer": "artifact://task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08/sha256:f5f8c0c283156167b28a09dd2c8ec0720ede14f26d2b9b41d46ebe15125798ca"
+        },
+        "completion_ref": "artifact://task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08/sha256:5ebd5e30a9c62c7662da1fbd904d5ee7dbcde403e97c3b0cfc215db2c0e34d91",
+        "concerns": [],
+        "outcome": "COMPLETED",
+        "task_id": "task-21a3230e03772a58aff1b3709a9e232850916337e1fba95c434076b6668c6e08"
+      },
+      "version": 1
+    },
+    "pending_human_decision": null,
+    "pending_workspace_read": null
+  },
+  "task-62d6c2330036f64bcf71b95791743d6c77c38e0d7c8cbedcbc525c77c57cf0ee": {
+    "task_id": "task-62d6c2330036f64bcf71b95791743d6c77c38e0d7c8cbedcbc525c77c57cf0ee",
+    "objective": "Read disposable project README through authorized ACP",
+    "accepted_spec": {
+      "kind": "TaskSpec",
+      "payload": {
+        "autonomy": {
+          "allowed": []
+        },
+        "capabilities": [
+          "workspace.read"
+        ],
+        "completion": [
+          {
+            "criterion": "Exact fixture bytes",
+            "evidence": {
+              "artifact": "answer",
+              "sha256": "f5f8c0c283156167b28a09dd2c8ec0720ede14f26d2b9b41d46ebe15125798ca"
+            }
+          }
+        ],
+        "objective": "Read disposable project README through authorized ACP"
+      },
+      "version": 1
+    },
+    "request_digest": "06a4c3569197524093570b8fc0c2c13393d5b63ca8efcc1f6539d927ef731451",
+    "lifecycle": "FAILED",
+    "revision": 1,
+    "blocking_dependency": null,
+    "children": {},
+    "artifacts": {},
+    "result_ref": "artifact://task-62d6c2330036f64bcf71b95791743d6c77c38e0d7c8cbedcbc525c77c57cf0ee/sha256:036962a5f762612e857db94680ded23b15a2d5812531f88aaa3b99d2df998dcd",
+    "completion": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Exact fixture bytes",
+            "detail": "Required artifact is missing",
+            "evidence_ref": null,
+            "outcome": "unsatisfied"
+          }
+        ],
+        "outcome": "unsatisfied"
+      },
+      "version": 1
+    },
+    "result": {
+      "kind": "TaskResult",
+      "payload": {
+        "artifacts": {},
+        "completion_ref": "artifact://task-62d6c2330036f64bcf71b95791743d6c77c38e0d7c8cbedcbc525c77c57cf0ee/sha256:cc269cace8c5b6d21ef1587dbde9e4325f2a67571522ddcfeef5908ec379f176",
+        "concerns": [
+          "Execution stopped: No deterministic continuation; completion criteria remain unmet"
+        ],
+        "outcome": "FAILED",
+        "task_id": "task-62d6c2330036f64bcf71b95791743d6c77c38e0d7c8cbedcbc525c77c57cf0ee"
+      },
+      "version": 1
+    },
+    "pending_human_decision": null,
+    "pending_workspace_read": null
+  }
+}

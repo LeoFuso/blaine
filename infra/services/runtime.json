@@ -1,0 +1,12 @@
+{
+  "cognition": {
+    "endpoint": "http://127.0.0.1:8000/v1",
+    "model": "nvidia/Qwen3.8-27B-NVFP4"
+  },
+  "memory": {
+    "client_id": "client-df3da0d9",
+    "user_id": "probe-leofuso",
+    "endpoint": "http://127.0.0.1:8531"
+  },
+  "goose": "/home/leofuso/.local/bin/goose"
+}

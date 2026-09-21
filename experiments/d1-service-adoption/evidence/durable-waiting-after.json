@@ -1,0 +1,89 @@
+{
+  "task_id": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92",
+  "objective": "Synthetic D1 waiting: record the authorized acceptance response?",
+  "accepted_spec": {
+    "kind": "TaskSpec",
+    "payload": {
+      "autonomy": {
+        "allowed": [
+          "human.request"
+        ]
+      },
+      "capabilities": [
+        "human.request"
+      ],
+      "completion": [
+        {
+          "criterion": "Scoped human response recorded",
+          "evidence": {
+            "artifact": "response",
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "YES",
+                  "NO"
+                ],
+                "origin_task_id": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92",
+                "question": "Synthetic D1 waiting: record the authorized acceptance response?",
+                "request_id": "decision-1",
+                "revision": 0,
+                "task_id": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92"
+              },
+              "version": 1
+            },
+            "verifier": "human_response"
+          }
+        }
+      ],
+      "objective": "Synthetic D1 waiting: record the authorized acceptance response?"
+    },
+    "version": 1
+  },
+  "request_digest": "7e69e7be5eb62fa8c9c1e7196151131d40af3135b87621f58ea246a81f2b4254",
+  "lifecycle": "WAITING",
+  "revision": 0,
+  "blocking_dependency": {
+    "wait_id": "decision-1",
+    "input_type": "human_response",
+    "task_revision": 0,
+    "request_ref": "artifact://task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92/sha256:375af5350629f520549d5990a830d2228c73e091cb4a4678310b2cb57e756205"
+  },
+  "children": {},
+  "artifacts": {
+    "human-request-decision-1": "artifact://task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92/sha256:375af5350629f520549d5990a830d2228c73e091cb4a4678310b2cb57e756205"
+  },
+  "result_ref": null,
+  "completion": {
+    "kind": "CompletionEvaluation",
+    "payload": {
+      "criteria": [
+        {
+          "criterion": "Scoped human response recorded",
+          "detail": "Required artifact is missing",
+          "evidence_ref": null,
+          "outcome": "unsatisfied"
+        }
+      ],
+      "outcome": "unsatisfied"
+    },
+    "version": 1
+  },
+  "result": null,
+  "pending_human_decision": {
+    "kind": "HumanDecisionRequest",
+    "payload": {
+      "allowed_responses": [
+        "YES",
+        "NO"
+      ],
+      "origin_task_id": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92",
+      "question": "Synthetic D1 waiting: record the authorized acceptance response?",
+      "request_id": "decision-1",
+      "revision": 0,
+      "task_id": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92"
+    },
+    "version": 1
+  },
+  "pending_workspace_read": null
+}

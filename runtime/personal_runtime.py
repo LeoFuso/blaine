@@ -1,5 +1,6 @@
-"""Private D2 deployment of the existing kernel. No frontier/model adapter."""
+"""Private Personal Agent deployment; optional operator-selected local adapters."""
 import asyncio
+import json
 import os
 from pathlib import Path
 
@@ -17,14 +18,25 @@ def no_unnecessary_cognition(packet):
     raise restate.TerminalError('No deterministic continuation; completion criteria remain unmet')
 
 
-def application(directory):
+def application(directory, deployment=None):
     store = ArtifactStore(directory / 'artifacts')
-    return restate.app([create_workflow(store, no_unnecessary_cognition,
-        Capabilities(store, directory / 'fixture.sqlite'),
+    cognitive, worker, providers = no_unnecessary_cognition, None, []
+    if deployment is not None:
+        from runtime.kernel.model import LocalModelCognition
+        from runtime.kernel.memory import MirixContext
+        from runtime.kernel.worker import GooseWorker
+        cognitive = LocalModelCognition(**deployment['cognition'])
+        providers = [MirixContext(**deployment['memory'])]
+        worker = GooseWorker(Path(deployment['goose']), directory / 'workers',
+                             model=deployment['cognition']['model'])
+    return restate.app([create_workflow(store, cognitive,
+        Capabilities(store, directory / 'fixture.sqlite', worker=worker), providers=providers,
         event_publisher=JsonlEventPublisher(directory / 'events.jsonl'))])
 
 
 if __name__ == '__main__':
     config = Config()
     config.bind = ['127.0.0.1:49080']
-    asyncio.run(serve(application(Path(os.environ.get('BLAINE_D2_DATA', '.local/d2'))), config))
+    deployment_path = os.environ.get('BLAINE_DEPLOYMENT_CONFIG')
+    deployment = json.loads(Path(deployment_path).read_text()) if deployment_path else None
+    asyncio.run(serve(application(Path(os.environ.get('BLAINE_D2_DATA', '.local/d2')), deployment), config))

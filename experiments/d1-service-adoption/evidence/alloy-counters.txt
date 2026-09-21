@@ -1,0 +1,5 @@
+loki_source_journal_target_lines_total{component_id="loki.source.journal.blaine_embedding",component_path="/"} 455
+loki_source_journal_target_lines_total{component_id="loki.source.journal.blaine_generation",component_path="/"} 721
+loki_source_journal_target_lines_total{component_id="loki.source.journal.blaine_mirix",component_path="/"} 153
+loki_source_journal_target_lines_total{component_id="loki.source.journal.blaine_restate",component_path="/"} 2086
+loki_source_journal_target_lines_total{component_id="loki.source.journal.blaine_runtime",component_path="/"} 8

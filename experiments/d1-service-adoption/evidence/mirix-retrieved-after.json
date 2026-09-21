@@ -1,0 +1,10 @@
+[
+  {
+    "memory_type": "semantic",
+    "id": "sem_CWMT",
+    "name": "D1Persistence_61e17b6f3500",
+    "summary": "Synthetic internal persistence project",
+    "details": "Synthetic internal project named D1Persistence_61e17b6f3500, created to check durable semantic memory across service restarts (Blaine D1 persistence). Its release marker is exactly D1_AMBER_61E17B6F3500. This is disposable experiment data, not identity, policy, or Task lifecycle state. Tree path: ['experiments', 'd1'].",
+    "source": "operator-authorized D1 fixture"
+  }
+]

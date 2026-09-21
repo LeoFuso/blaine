@@ -16,8 +16,8 @@ requires disabling or uninstalling that daemon to close this migration.
 The earlier boot ID changed from `55f6e9ad-7915-472d-aaf5-7c9d689c3747` to
 `4e64cd04-43eb-45ef-b493-15fb67cc8072`, with automatic healthy recovery and zero
 failed units. This migration performed no reboot. **D1.G remains incomplete**:
-Blaine, Restate, vLLM and MIRIX service/recovery adoption remains pending. Backup
-is PAUSED and ADR 0019/inference work is unchanged.
+Blaine, Restate, vLLM and MIRIX live service/recovery adoption has since passed;
+see [current services and D1.G evidence](platform-services.md). Backup remains PAUSED.
 
 ## Active topology and ownership
 
@@ -61,8 +61,8 @@ cannot order directly against system-manager units: preflight checks dependency
 TCP readiness, Compose waits for application health, and systemd bounds retries.
 The later real reboot must still validate startup ordering.
 
-Alloy now includes separate journal sources restricted to UID 1000 and the two
-exact user units. Collection counters and persisted log records passed. Alloy
+Alloy includes separate journal sources restricted to UID 1000 and the two
+rootless units; the service-adoption pass added the five exact Blaine user units. Collection counters and persisted log records passed. Alloy
 was restarted once for that configuration; PostgreSQL and Redis kept their process
 identities. No cloud exporter was activated. See the
 [journal component contract](https://grafana.com/docs/alloy/latest/reference/components/loki/loki.source.journal/).

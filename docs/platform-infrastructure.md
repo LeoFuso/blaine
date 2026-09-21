@@ -5,10 +5,10 @@ The active stack now runs under the normal operator's rootless Docker and user
 systemd, with linger enabled. The old system stack is disabled/inactive; Docker
 rootful remains installed and unused by Blaine. Read the [migration/runbook and
 evidence](platform-rootless-docker.md) and [ADR 0020](decisions/0020-rootless-docker-operator-runtime.md).
-Rootless reboot and full D1.G remain pending. Backup stays PAUSED. Subsequent
-inference candidate validation is in progress under the ADR 0019 amendment;
-it does not yet establish persistent service adoption. See the
-[complete-platform startup gap](platform-d1.md#ready-at-login--required-outcome-not-yet-achieved).
+Rootless reboot and full D1.G remain pending. Backup stays PAUSED. D1.A/B/C/D
+service adoption now passed live acceptance, including 131072-token Qwen, retained
+MIRIX memory, Restate Tasks and the actual Blaine runtime. See the
+[service topology and prepared reboot proof](platform-services.md).
 
 Infrastructure acceptance **PASS**: all four containers and native Alloy are healthy;
 Docker, stack and Alloy restarts retained synthetic state. See the

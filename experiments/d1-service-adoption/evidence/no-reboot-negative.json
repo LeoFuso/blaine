@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "expected_rejection": "unchanged boot ID",
+  "verifier_return_code": 1,
+  "verifier_report": {
+    "status": "STOP",
+    "scope": "post-reboot",
+    "observed_at": "2026-09-21T21:14:39.682687+00:00",
+    "checks": {},
+    "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+    "failure_type": "AssertionError"
+  }
+}

@@ -206,7 +206,6 @@
     "rootless topology reboot and full D1.G acceptance",
     "complete PostgreSQL plus Object Storage backup/restore",
     "cloud/off-site backup",
-    "stable Blaine/Restate/vLLM/MIRIX adoption",
     "Redis profile split",
     "public ingress",
     "real cognitive traffic instrumentation"
@@ -249,6 +248,16 @@
     "linger": "enabled",
     "evidence": "experiments/d1-rootless-docker-adoption/evidence",
     "rootless_reboot": "PENDING; requires a later explicitly authorized reboot",
-    "D1.G": "INCOMPLETE; Blaine/Restate/vLLM/MIRIX adoption pending"
+    "D1.G": "PENDING host reboot; A/B/C/D live adoption now accepted"
+  },
+  "service_adoption": {
+    "status": "PASS",
+    "scope": "D1.A/B/C/D live adoption; controlled stops/restarts, not host reboot or Daily Driver acceptance",
+    "evidence": "experiments/d1-service-adoption/evidence",
+    "context_boundary": 131072,
+    "D1.G": "PREPARED, NOT EXECUTED",
+    "backup": "PAUSED",
+    "runtime_stop": "Bounded systemd SIGKILL after 60s; same Task state retained; graceful shutdown not claimed",
+    "temporary_sudo": "Current temporary authorization left untouched for human cleanup; prior cleanup record above is historical"
   }
 }

@@ -1,47 +1,32 @@
 # D1 — Long-lived platform foundation
 
-**Current: D1 IN PROGRESS — infrastructure foundation and rootful infrastructure-only
-host reboot PASS; rootless migration PASS; backup PAUSED.**
-See [rootless state, decisions and remaining reboot acceptance](platform-rootless-docker.md).
-Rootless reboot acceptance is pending. D1.C inference acceptance now PASS, including the 131072-token boundary and
-controlled service restarts; see the
-[ADR 0019 operational amendment](decisions/0019-local-inference-serving-baseline.md).
-See [infrastructure acceptance](platform-infrastructure.md), [Grafana Cloud activation](platform-grafana-cloud.md)
-and [remaining D1 service/recovery work](roadmap/001-blaine-development-roadmap.md#d1).
-SeaweedFS Object Storage is now deployed. Blaine/Restate/MIRIX service
-adoption and full reboot acceptance remain incomplete. No backup acceptance is implied.
+**Current: D1 IN PROGRESS. D1.A/B/C/D live service adoption PASS; rootless
+migration PASS; D1.G host reboot PENDING; backup PAUSED.**
 
-## Ready at login — required outcome, not yet achieved
+See the [accepted service topology, exact versions, state paths and D1.G procedure](platform-services.md),
+[infrastructure foundation](platform-infrastructure.md), and
+[rootless migration](platform-rootless-docker.md). Preserved ADR 0019 records the
+accepted 131072-token, one-generation inference configuration.
 
-The operator reaffirmed the end goal on 2026-09-21: after boot, logging in must
-find Blaine ready to accept work and recover its existing durable Tasks, including
-Restate, MIRIX, inference and their storage dependencies. No terminal commands or
-manual service starts should be required. User systemd with linger starts services
-at boot independently of interactive login; logout must not stop the platform.
+## Ready at login — configured and live-tested; host reboot pending
 
-Observed at 2026-09-21 17:15 America/Sao_Paulo:
+The linger-enabled user manager owns rootless Docker, infrastructure, generation,
+embeddings, MIRIX, Restate and the actual Blaine runtime. All seven user units are
+enabled. Native PostgreSQL, Redis and Alloy retain automatic startup. Readiness,
+controlled restarts, the same semantic memory and durable Tasks, explicit Task
+resume and a preserved human WAITING state passed. A real cognitive Task recalled
+MIRIX content and produced independently verified evidence.
 
-| Component | Persistent automatic startup | Current acceptance |
-|---|---|---|
-| Rootless Docker + object storage/ClickHouse/Langfuse | Enabled, linger enabled | Infrastructure restarts passed; rootless host reboot pending |
-| PostgreSQL 18, Redis, Alloy | Automatic native services | Infrastructure foundation accepted |
-| Qwen + BGE-M3 | Both persistent user units enabled | D1.C PASS: 131072 context, single generation, coexistence, Goose/Worker and controlled restarts |
-| MIRIX | No persistent unit installed | Launcher staged only; retained-memory restart proof pending |
-| Restate | No persistent unit installed | Deployment/state-path selection and durable recovery proof pending |
-| Blaine application/runtime | No persistent unit installed | Accepted entrypoint adoption and same-Task resume proof pending |
+This is the configured ready-at-login topology. Automatic recovery across a host
+reboot remains unproven until the separately authorized D1.G procedure runs.
+Hypercorn needed systemd's bounded termination during the controlled stop; state
+recovery passed, but graceful shutdown is not claimed. Current ArtifactStore
+remains the actual local immutable store, alongside independently verified object
+storage; no nonexistent S3 runtime adapter is implied.
 
-“Ready” requires dependency readiness, correct Restate deployment registration,
-and application capability, not merely an active systemd process. Preserve the
-actual Restate journal, artifact paths and MIRIX identity. After controlled
-restarts, inspect the same synthetic Task and demonstrate its continuation;
-Tasks waiting for a human/external dependency must retain that wait, not invent
-an answer or broaden authority. MIRIX semantic memory remains separate from
-Restate's durable Task state.
-
-Final D1.G must repeat that proof across a separately authorized host reboot,
-with the same Task, semantic-memory and object-storage identities. Until then,
-do not report the complete platform as automatically recovered or D1 as PASS.
-Backup remains PAUSED. No reboot or push was performed by this status update.
+[Persistent synthetic identities and read-only post-reboot verifier](platform-services.md#d1g--later-human-authorized-reboot-procedure)
+are ready. No reboot, push, backup unpause or timer enable occurred in this pass.
+The following backup material is historical and does not override this status.
 
 ## Historical backup checkpoint (pause still active)
 

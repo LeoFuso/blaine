@@ -10,7 +10,7 @@ exist, and how to resume without prior conversation history.
 
 The Cognitive Kernel program (Increments 1–12) is complete. Current development
 is Daily Driver Enablement: D1's infrastructure foundation and rootless migration
-passed, with remaining service adoption and reboot acceptance pending; D2's Personal Agent control surface passed its
+passed, and D1.A/B/C/D live service adoption passed; host reboot acceptance remains pending; D2's Personal Agent control surface passed its
 bounded acceptance. Live IntelliJ/code work is D3, not yet proven.
 
 Restate owns Task lifecycle and recovery. Models propose bounded semantic work;
@@ -29,6 +29,7 @@ unnecessary paid frontier inference; cloud dispatch remains authority-controlled
 | [TaskSpec](docs/contracts/task-spec.md) and [Task operations](docs/contracts/task-operations.md) | Request and control contracts |
 | [Frontier dispatch](docs/contracts/frontier-dispatch.md) and [ExecutionEvent](docs/contracts/execution-event.md) | Authority/context boundary and forensic evidence |
 | [Platform foundation](docs/platform-infrastructure.md) and [rootless operations](docs/platform-rootless-docker.md) | D1 installed stack, rootless migration PASS and pending reboot acceptance |
+| [Adopted runtime services](docs/platform-services.md) | Models, enabled units, retained memory/Tasks and prepared D1.G reboot proof |
 | [Operations/recovery](docs/platform-operations.md) and [Grafana Cloud activation](docs/platform-grafana-cloud.md) | Operator procedures, paused backup and future activation |
 | [Personal Agent / D2](docs/daily-driver-d2.md) | Private ACP control surface, usage, acceptance and live-workspace limits |
 | [Agent instructions](BLAINE.md) and [skills](skills/SKILL.md) | Conversational triage and Task operation procedures |

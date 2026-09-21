@@ -1,0 +1,67 @@
+{
+  "task_id": "task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0",
+  "objective": "D1 durable service persistence proof",
+  "accepted_spec": {
+    "kind": "TaskSpec",
+    "payload": {
+      "autonomy": {
+        "allowed": [
+          "text.stats"
+        ]
+      },
+      "capabilities": [
+        "text.stats"
+      ],
+      "completion": [
+        {
+          "criterion": "Exact deterministic objective summary",
+          "evidence": {
+            "artifact": "answer",
+            "sha256": "c76ceb3af451b8cffb8b419a109204422107145633bff09f831373c49c31d111"
+          }
+        }
+      ],
+      "objective": "D1 durable service persistence proof"
+    },
+    "version": 1
+  },
+  "request_digest": "313c5d660440f6d267b99082d4d82aa757d856db6225c653b7c0b8997fe03a12",
+  "lifecycle": "COMPLETED",
+  "revision": 1,
+  "blocking_dependency": null,
+  "children": {},
+  "artifacts": {
+    "answer": "artifact://task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0/sha256:c76ceb3af451b8cffb8b419a109204422107145633bff09f831373c49c31d111"
+  },
+  "result_ref": "artifact://task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0/sha256:817cf7996934a37d93e7e283f60537ff5401582ecb3db56d71876baf7ee106b7",
+  "completion": {
+    "kind": "CompletionEvaluation",
+    "payload": {
+      "criteria": [
+        {
+          "criterion": "Exact deterministic objective summary",
+          "detail": "Exact artifact digest verified",
+          "evidence_ref": "artifact://task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0/sha256:c76ceb3af451b8cffb8b419a109204422107145633bff09f831373c49c31d111",
+          "outcome": "satisfied"
+        }
+      ],
+      "outcome": "satisfied"
+    },
+    "version": 1
+  },
+  "result": {
+    "kind": "TaskResult",
+    "payload": {
+      "artifacts": {
+        "answer": "artifact://task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0/sha256:c76ceb3af451b8cffb8b419a109204422107145633bff09f831373c49c31d111"
+      },
+      "completion_ref": "artifact://task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0/sha256:473cdf8639c6e09a58ed76472f5cd960372c606130d77804b24d4bebb937a786",
+      "concerns": [],
+      "outcome": "COMPLETED",
+      "task_id": "task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0"
+    },
+    "version": 1
+  },
+  "pending_human_decision": null,
+  "pending_workspace_read": null
+}

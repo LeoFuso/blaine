@@ -141,17 +141,19 @@ The [rootless migration checkpoint](../platform-rootless-docker.md) and
 [ADR 0020](../decisions/0020-rootless-docker-operator-runtime.md) select user systemd
 and linger. Full candidate, coherent offline copy, cutover and controlled restarts passed.
 The rootless user stack and linger are enabled; the legacy system owner is disabled.
-Rootless reboot acceptance is pending. The subsequent service-adoption pass has
-resumed D1.C candidate validation with bounded resources and the amended
-[ADR 0019](../decisions/0019-local-inference-serving-baseline.md): one generation,
-128k target, concurrent GPU embeddings, no benchmark program or hybrid CPU/GPU
-investigation. Restate, MIRIX and Blaine still lack accepted persistent units.
+D1.A/B/C/D live service adoption is now PASS: five enabled user units, 131072-token
+Qwen with one generation, concurrent GPU embeddings, Goose/Worker, retained MIRIX
+memory, retained Restate Tasks and actual Blaine cognitive/resume evidence.
+No benchmark program or hybrid CPU/GPU investigation was introduced.
+[Operational evidence and exact reboot procedure](../platform-services.md) preserve
+[ADR 0019](../decisions/0019-local-inference-serving-baseline.md).
+D1.G host reboot remains pending and D1.F backup remains PAUSED.
 
 **User-visible completion:** after boot, the operator logs in to a ready Blaine
 that can recover and continue its existing durable Tasks without manual service
 starts. User systemd + linger must start all adopted services independently of
 login. Dependency readiness and same-Task recovery are required in addition to
-enabled units. See the [current startup gap and acceptance](../platform-d1.md#ready-at-login--required-outcome-not-yet-achieved).
+enabled units. See the [current startup gap and acceptance](../platform-d1.md#ready-at-login--configured-and-live-tested-host-reboot-pending).
 
 **Why:** the kernel can be durable while Blaine still depends on open terminals
 and undocumented machine state. D1 makes the machine an understandable long-lived
@@ -211,6 +213,9 @@ backup data must remain untouched. Cloud/off-site backup is deferred.
 
 ### D1.A — Blaine service adoption
 
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
+
 **Goal:** run actual Blaine application/runtime services under stable systemd
 ownership rather than terminals. Select the accepted application entrypoint and
 record release, config, secret references, state/artifact paths and dependencies;
@@ -223,6 +228,9 @@ with D1.B so application registration and runtime ownership agree.
 
 ### D1.B — Restate service adoption
 
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
+
 **Goal:** one stable long-lived Restate runtime with systemd ownership and an
 explicit durable state directory. Inventory existing instances and registrations
 before adoption; no accidental second runtime may mask a failed service.
@@ -234,6 +242,9 @@ D2 process-restart evidence is useful input, not host-service adoption evidence.
 
 ### D1.C — vLLM service adoption
 
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
+
 **Goal:** replace the observed terminal-owned local inference process with
 systemd ownership while capturing the actual version, model and serving config.
 Do not change model behavior or introduce a benchmark program in this slice.
@@ -244,6 +255,9 @@ by a bounded authorized check. Account for any separate embedding service and GP
 resource dependencies actually used by the adopted configuration.
 
 ### D1.D — MIRIX service adoption
+
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
 
 **Goal:** apply the same long-lived operational treatment to MIRIX. Observe its
 actual process/dependency setup; preserve its PostgreSQL/object dependencies and
@@ -642,8 +656,8 @@ operator procedures; this document owns development direction and dependencies.
 
 - **Track A: D3 — Live IntelliJ / Real Code Task.** Start with D3.A, a safe live
   read-only proof; then D3.B and D3.C only after their preceding gates pass.
-- **Track B: continue D1 long-lived service adoption:** Blaine, Restate, vLLM and
-  MIRIX; then controlled recovery/reboot acceptance with explicit reboot authorization.
+- **Track B: D1.A/B/C/D live adoption accepted.** Run the prepared D1.G reboot
+  acceptance only with explicit human authorization; backup stays PAUSED.
 - **Backup: PAUSED.** Preserve historical backup data; no live backup completion claimed.
 - **Grafana Cloud: CONFIGURED FOR FUTURE ACTIVATION.** Human credential/bootstrap
   procedure prepared; remote delivery inactive/unproven.

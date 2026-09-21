@@ -12,7 +12,8 @@ for process in Path('/proc').iterdir():
         cmd=(process/'cmdline').read_bytes().split(b'\0')
         text=b' '.join(cmd)
         labels=[]
-        if any(b'vllm' in x for x in cmd[:2]) or b'VLLM::' in text:labels.append('inference')
+        if (any(x.startswith(b'vllm.') or x == b'vllm' or x.endswith(b'/bin/vllm') for x in cmd)
+                or b'VLLM::' in b' '.join(cmd[:2])):labels.append('inference')
         if cmd and Path(cmd[0].decode(errors='replace')).name=='restate-server':labels.append('restate')
         if b'scripts/start_server.py' in cmd:labels.append('mirix')
         if b'runtime.personal_runtime' in cmd:labels.append('blaine')

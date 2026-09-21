@@ -1,0 +1,154 @@
+{
+  "observed_at": "2026-09-21T20:36:26.312519+00:00",
+  "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+  "services": {
+    "blaine-qwen-candidate.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "transient",
+      "InvocationID": "d5f18c1dc4bf46d4b16e7dd417de4d47",
+      "MainPID": "332639",
+      "NRestarts": "0",
+      "ControlGroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-qwen-candidate.service",
+      "MemoryCurrent": "3781292032",
+      "MemoryPeak": "4576587776",
+      "CPUQuotaPerSecUSec": "8s",
+      "MemoryHigh": "23622320128",
+      "MemoryMax": "30064771072",
+      "MemorySwapMax": "0",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.swap.current": "0\n",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1\n",
+      "cpu.stat": "usage_usec 92414405\nuser_usec 88421351\nsystem_usec 3993053\nnice_usec 87933000\ncore_sched.force_idle_usec 0\nnr_periods 1022\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+      "cgroup.procs": "332639\n332770\n332771\n"
+    },
+    "blaine-embedding-candidate.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "transient",
+      "InvocationID": "fc5af6fb886746f486a3502e50e123f9",
+      "MainPID": "307408",
+      "NRestarts": "0",
+      "ControlGroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-embedding-candidate.service",
+      "MemoryCurrent": "4058185728",
+      "MemoryPeak": "5303590912",
+      "CPUQuotaPerSecUSec": "2s",
+      "MemoryHigh": "5368709120",
+      "MemoryMax": "6442450944",
+      "MemorySwapMax": "0",
+      "memory.events": "low 0\nhigh 19940\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.swap.current": "0\n",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=3.68 total=471654796\nfull avg10=0.00 avg60=0.00 avg300=3.68 total=471632350\n",
+      "cpu.stat": "usage_usec 27834618\nuser_usec 25018886\nsystem_usec 2815732\nnice_usec 18916000\ncore_sched.force_idle_usec 0\nnr_periods 9378\nnr_throttled 19\nthrottled_usec 1640217\nnr_bursts 0\nburst_usec 0\n",
+      "cgroup.procs": "307408\n307609\n307610\n"
+    }
+  },
+  "http": {
+    "http://127.0.0.1:8000/health": {
+      "status": 200,
+      "body": null
+    },
+    "http://127.0.0.1:8000/v1/models": {
+      "status": 200,
+      "body": {
+        "object": "list",
+        "data": [
+          {
+            "id": "nvidia/Qwen3.8-27B-NVFP4",
+            "object": "model",
+            "created": 1790022986,
+            "owned_by": "vllm",
+            "root": "nvidia/Qwen3.8-27B-NVFP4",
+            "parent": null,
+            "max_model_len": 131072,
+            "permission": [
+              {
+                "id": "modelperm-a280edb3e3a56f4f",
+                "object": "model_permission",
+                "created": 1790022986,
+                "allow_create_engine": false,
+                "allow_sampling": true,
+                "allow_logprobs": true,
+                "allow_search_indices": false,
+                "allow_view": true,
+                "allow_fine_tuning": false,
+                "organization": "*",
+                "group": null,
+                "is_blocking": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "http://127.0.0.1:8001/health": {
+      "status": 200,
+      "body": null
+    },
+    "http://127.0.0.1:8001/v1/models": {
+      "status": 200,
+      "body": {
+        "object": "list",
+        "data": [
+          {
+            "id": "BAAI/bge-m3",
+            "object": "model",
+            "created": 1790022986,
+            "owned_by": "vllm",
+            "root": "BAAI/bge-m3",
+            "parent": null,
+            "max_model_len": 8192,
+            "permission": [
+              {
+                "id": "modelperm-a7149dd538396522",
+                "object": "model_permission",
+                "created": 1790022986,
+                "allow_create_engine": false,
+                "allow_sampling": true,
+                "allow_logprobs": true,
+                "allow_search_indices": false,
+                "allow_view": true,
+                "allow_fine_tuning": false,
+                "organization": "*",
+                "group": null,
+                "is_blocking": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "http://127.0.0.1:8531/health": {
+      "error": "URLError"
+    },
+    "http://127.0.0.1:49070/deployments": {
+      "error": "URLError"
+    }
+  },
+  "gpu": {
+    "exit_code": 0,
+    "stdout": "NVIDIA GeForce RTX 5090, 595.91.07, 29380 MiB, 32607 MiB"
+  },
+  "gpu_processes": {
+    "exit_code": 0,
+    "stdout": "8565, ptyxis, 68 MiB\n294719, /opt/google/chrome/chrome --type=gpu-process --ozone-platform=wayland --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=294673 --enable-crash-reporter=30576066-e2de-4daf-9289-4795272da4e8? --change-stack-guard-on-fork=enable --gpu-preferences=YAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAASAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAQAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --metrics-shmem-handle=4?i?15540171937474958177?2988380771444144049?262144 --field-trial-handle=3?i?2623807984629060738?9729282822163728683?262144 --variations-seed-version --pseudonymization-salt-handle=7?i?10045790782040071119?6633881399434918090?4 --trace-process-track-uuid=3190708988185955192, 209 MiB\n307610, VLLM::EngineCore, 2410 MiB\n332771, VLLM::EngineCore, 26272 MiB"
+  },
+  "meminfo": {
+    "MemTotal": "62347804 kB",
+    "MemAvailable": "47160508 kB",
+    "SwapTotal": "8388604 kB",
+    "SwapFree": "6999476 kB"
+  },
+  "containers": {
+    "exit_code": 0,
+    "stdout": "blaine-infra-rootless-langfuse-worker-1 Up 3 hours (healthy)\nblaine-infra-rootless-langfuse-web-1 Up 3 hours (healthy)\nblaine-infra-rootless-clickhouse-1 Up 3 hours (healthy)\nblaine-infra-rootless-object-storage-1 Up 3 hours (healthy)"
+  },
+  "linger": {
+    "exit_code": 0,
+    "stdout": "Linger=yes"
+  },
+  "backup_timer": {
+    "exit_code": 1,
+    "stdout": "disabled"
+  }
+}

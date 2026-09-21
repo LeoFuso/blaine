@@ -1,0 +1,240 @@
+{
+  "observed_at": "2026-09-21T21:12:46.820275+00:00",
+  "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+  "services": {
+    "blaine-generation.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "dd8c4b9e3f2f413d8f46984ffba426a4",
+      "MainPID": "346389",
+      "NRestarts": "0",
+      "ControlGroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-generation.service",
+      "MemoryCurrent": "3848888320",
+      "MemoryPeak": "3850756096",
+      "CPUQuotaPerSecUSec": "8s",
+      "MemoryHigh": "23622320128",
+      "MemoryMax": "30064771072",
+      "MemorySwapMax": "0",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.swap.current": "0\n",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "cpu.stat": "usage_usec 38950853\nuser_usec 36360822\nsystem_usec 2590030\nnice_usec 28974000\ncore_sched.force_idle_usec 0\nnr_periods 10643\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+      "cgroup.procs": "346389\n346429\n346430\n"
+    },
+    "blaine-embedding.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "4de1bfe28c1347edaba7b98a5a60d8af",
+      "MainPID": "346052",
+      "NRestarts": "0",
+      "ControlGroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-embedding.service",
+      "MemoryCurrent": "3843620864",
+      "MemoryPeak": "5340884992",
+      "CPUQuotaPerSecUSec": "2s",
+      "MemoryHigh": "5368709120",
+      "MemoryMax": "6442450944",
+      "MemorySwapMax": "0",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.swap.current": "0\n",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "cpu.stat": "usage_usec 24653698\nuser_usec 21425745\nsystem_usec 3227953\nnice_usec 15584000\ncore_sched.force_idle_usec 0\nnr_periods 9657\nnr_throttled 22\nthrottled_usec 2333654\nnr_bursts 0\nburst_usec 0\n",
+      "cgroup.procs": "346052\n346174\n346175\n"
+    },
+    "blaine-mirix.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "ecc8b9da33d548a7b455734c64a4df22",
+      "MainPID": "356517",
+      "NRestarts": "0",
+      "ControlGroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-mirix.service",
+      "MemoryCurrent": "157356032",
+      "MemoryPeak": "171061248",
+      "CPUQuotaPerSecUSec": "4s",
+      "MemoryHigh": "3221225472",
+      "MemoryMax": "5368709120",
+      "MemorySwapMax": "infinity",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.swap.current": "0\n",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "cpu.stat": "usage_usec 1776578\nuser_usec 1685707\nsystem_usec 90870\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 639\nnr_throttled 1\nthrottled_usec 2100757\nnr_bursts 0\nburst_usec 0\n",
+      "cgroup.procs": "356517\n"
+    },
+    "blaine-restate.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "c419d0c2f1604708b757a849a3b6c122",
+      "MainPID": "358882",
+      "NRestarts": "0",
+      "ControlGroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-restate.service",
+      "MemoryCurrent": "241201152",
+      "MemoryPeak": "248397824",
+      "CPUQuotaPerSecUSec": "infinity",
+      "MemoryHigh": "3221225472",
+      "MemoryMax": "4294967296",
+      "MemorySwapMax": "infinity",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.swap.current": "0\n",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "cpu.stat": "usage_usec 3897184\nuser_usec 3203098\nsystem_usec 694086\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+      "cgroup.procs": "358882\n"
+    },
+    "blaine-runtime.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled",
+      "InvocationID": "6a914b78631e4ecb8f758ed788e427c7",
+      "MainPID": "360671",
+      "NRestarts": "0",
+      "ControlGroup": "/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-runtime.service",
+      "MemoryCurrent": "33026048",
+      "MemoryPeak": "47009792",
+      "CPUQuotaPerSecUSec": "infinity",
+      "MemoryHigh": "1073741824",
+      "MemoryMax": "2147483648",
+      "MemorySwapMax": "infinity",
+      "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\nsock_throttled 0\n",
+      "memory.swap.current": "0\n",
+      "memory.pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "cpu.stat": "usage_usec 368567\nuser_usec 338795\nsystem_usec 29772\nnice_usec 0\ncore_sched.force_idle_usec 0\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\nnr_bursts 0\nburst_usec 0\n",
+      "cgroup.procs": "360671\n"
+    }
+  },
+  "http": {
+    "http://127.0.0.1:8000/health": {
+      "status": 200,
+      "body": null
+    },
+    "http://127.0.0.1:8000/v1/models": {
+      "status": 200,
+      "body": {
+        "object": "list",
+        "data": [
+          {
+            "id": "nvidia/Qwen3.8-27B-NVFP4",
+            "object": "model",
+            "created": 1790025166,
+            "owned_by": "vllm",
+            "root": "nvidia/Qwen3.8-27B-NVFP4",
+            "parent": null,
+            "max_model_len": 131072,
+            "permission": [
+              {
+                "id": "modelperm-985b4036a6898280",
+                "object": "model_permission",
+                "created": 1790025166,
+                "allow_create_engine": false,
+                "allow_sampling": true,
+                "allow_logprobs": true,
+                "allow_search_indices": false,
+                "allow_view": true,
+                "allow_fine_tuning": false,
+                "organization": "*",
+                "group": null,
+                "is_blocking": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "http://127.0.0.1:8001/health": {
+      "status": 200,
+      "body": null
+    },
+    "http://127.0.0.1:8001/v1/models": {
+      "status": 200,
+      "body": {
+        "object": "list",
+        "data": [
+          {
+            "id": "BAAI/bge-m3",
+            "object": "model",
+            "created": 1790025166,
+            "owned_by": "vllm",
+            "root": "BAAI/bge-m3",
+            "parent": null,
+            "max_model_len": 8192,
+            "permission": [
+              {
+                "id": "modelperm-a04be27a9b28655f",
+                "object": "model_permission",
+                "created": 1790025166,
+                "allow_create_engine": false,
+                "allow_sampling": true,
+                "allow_logprobs": true,
+                "allow_search_indices": false,
+                "allow_view": true,
+                "allow_fine_tuning": false,
+                "organization": "*",
+                "group": null,
+                "is_blocking": false
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "http://127.0.0.1:8531/health": {
+      "status": 200,
+      "body": {
+        "status": "healthy",
+        "service": "mirix-api",
+        "skill_trigger_session_threshold": 5,
+        "message_retain_last_n_sessions": 5
+      }
+    },
+    "http://127.0.0.1:49070/deployments": {
+      "status": 200,
+      "body": {
+        "deployments": [
+          {
+            "id": "dp_14peR41suUIf4mt0pR1oRy1",
+            "uri": "http://127.0.0.1:49080/",
+            "protocol_type": "BidiStream",
+            "http_version": "HTTP/2.0",
+            "created_at": "2026-09-20T18:16:43.774000000Z",
+            "min_protocol_version": 5,
+            "max_protocol_version": 7,
+            "sdk_version": "restate-sdk-python/1.0.5",
+            "services": [
+              {
+                "name": "CognitiveTaskV1",
+                "revision": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "gpu": {
+    "exit_code": 0,
+    "stdout": "NVIDIA GeForce RTX 5090, 595.91.07, 29254 MiB, 32607 MiB"
+  },
+  "gpu_processes": {
+    "exit_code": 0,
+    "stdout": "8565, ptyxis, 68 MiB\n294719, /opt/google/chrome/chrome --type=gpu-process --ozone-platform=wayland --render-node-override=/dev/dri/renderD128 --crashpad-handler-pid=294673 --enable-crash-reporter=30576066-e2de-4daf-9289-4795272da4e8? --change-stack-guard-on-fork=enable --gpu-preferences=YAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAASAAAAAAAAAABAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAMAAAAAQAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAA== --shared-files --metrics-shmem-handle=4?i?15540171937474958177?2988380771444144049?262144 --field-trial-handle=3?i?2623807984629060738?9729282822163728683?262144 --variations-seed-version --pseudonymization-salt-handle=7?i?10045790782040071119?6633881399434918090?4 --trace-process-track-uuid=3190708988185955192, 145 MiB\n346175, VLLM::EngineCore, 1954 MiB\n346430, VLLM::EngineCore, 26676 MiB"
+  },
+  "meminfo": {
+    "MemTotal": "62347804 kB",
+    "MemAvailable": "46289620 kB",
+    "SwapTotal": "8388604 kB",
+    "SwapFree": "7064280 kB"
+  },
+  "containers": {
+    "exit_code": 0,
+    "stdout": "blaine-infra-rootless-langfuse-worker-1 Up 4 hours (healthy)\nblaine-infra-rootless-langfuse-web-1 Up 4 hours (healthy)\nblaine-infra-rootless-clickhouse-1 Up 4 hours (healthy)\nblaine-infra-rootless-object-storage-1 Up 4 hours (healthy)"
+  },
+  "linger": {
+    "exit_code": 0,
+    "stdout": "Linger=yes"
+  },
+  "backup_timer": {
+    "exit_code": 1,
+    "stdout": "disabled"
+  }
+}

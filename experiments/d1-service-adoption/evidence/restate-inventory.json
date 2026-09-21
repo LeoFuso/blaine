@@ -1,0 +1,20 @@
+{
+  "observed_at": "2026-09-21T20:38:47.679102+00:00",
+  "active_restate_listener_at_inventory": false,
+  "state_sources": [
+    {
+      "path": "/home/leofuso/workspace/blaine/.local/002/restate-data",
+      "files": 63,
+      "bytes": 812108,
+      "role": "legacy interactive experiment"
+    },
+    {
+      "path": "/home/leofuso/workspace/blaine-personal-agent/.local/d2-post-sync-native/restate-data",
+      "files": 57,
+      "bytes": 925450,
+      "role": "accepted D2 native acceptance journal"
+    }
+  ],
+  "selection": "Retain inactive accepted D2 post-sync journal and artifact bytes in a stable deployment copy; keep all source directories untouched.",
+  "restate_binary_sha256": "388336a1a3929c4ae20701d3c4d587af3ff348b9f81f97a3774515826c40aae5"
+}

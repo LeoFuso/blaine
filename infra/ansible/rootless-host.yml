@@ -128,7 +128,8 @@
             current = Path('/etc/alloy/config.alloy').read_bytes()
             desired = Path(sys.argv[1]).read_bytes()
             old_local = 'a57350e91a008894456895e1eabceae8d23edd6098c53ec050a77bb4c188a300'
-            assert current == desired or hashlib.sha256(current).hexdigest() == old_local, 'STOP: unrecognized active Alloy config'
+            rootless_local = '5ae47311983fa197d98873b8dbd434d4e759b88e02eb488c58df5753920413f1'
+            assert current == desired or hashlib.sha256(current).hexdigest() in [old_local, rootless_local], 'STOP: unrecognized active Alloy config'
           - '{{ playbook_dir }}/../alloy/config.alloy'
       changed_when: false
       when: blaine_rootless_accepted | bool

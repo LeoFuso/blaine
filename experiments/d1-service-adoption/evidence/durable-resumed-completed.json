@@ -1,0 +1,84 @@
+{
+  "task_id": "task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e",
+  "objective": "Synthetic D1 resume: record the authorized acceptance response?",
+  "accepted_spec": {
+    "kind": "TaskSpec",
+    "payload": {
+      "autonomy": {
+        "allowed": [
+          "human.request"
+        ]
+      },
+      "capabilities": [
+        "human.request"
+      ],
+      "completion": [
+        {
+          "criterion": "Scoped human response recorded",
+          "evidence": {
+            "artifact": "response",
+            "request": {
+              "kind": "HumanDecisionRequest",
+              "payload": {
+                "allowed_responses": [
+                  "YES",
+                  "NO"
+                ],
+                "origin_task_id": "task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e",
+                "question": "Synthetic D1 resume: record the authorized acceptance response?",
+                "request_id": "decision-1",
+                "revision": 0,
+                "task_id": "task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e"
+              },
+              "version": 1
+            },
+            "verifier": "human_response"
+          }
+        }
+      ],
+      "objective": "Synthetic D1 resume: record the authorized acceptance response?"
+    },
+    "version": 1
+  },
+  "request_digest": "50d6d824a1f6820db303ab1b86deca62d5ba6767a1dd1231ce87860cdce847f2",
+  "lifecycle": "COMPLETED",
+  "revision": 1,
+  "blocking_dependency": null,
+  "children": {},
+  "artifacts": {
+    "human-request-decision-1": "artifact://task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e/sha256:4638c68f8fc2e0ea81b4511bca453ed83764714684eb13f54fa20fb555441493",
+    "response": "artifact://task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e/sha256:e9a140b8fdcdad9f0efe053b617fdb440b62225f4b57ba36dddab998f4c23bac"
+  },
+  "result_ref": "artifact://task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e/sha256:3c7d658cc35c5d0b80882c8235a16c4c285d9b00095fafc75103de070c53be8e",
+  "completion": {
+    "kind": "CompletionEvaluation",
+    "payload": {
+      "criteria": [
+        {
+          "criterion": "Scoped human response recorded",
+          "detail": "Scoped response accepted and allowed value independently verified",
+          "evidence_ref": "artifact://task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e/sha256:e9a140b8fdcdad9f0efe053b617fdb440b62225f4b57ba36dddab998f4c23bac",
+          "outcome": "satisfied"
+        }
+      ],
+      "outcome": "satisfied"
+    },
+    "version": 1
+  },
+  "result": {
+    "kind": "TaskResult",
+    "payload": {
+      "artifacts": {
+        "human-request-decision-1": "artifact://task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e/sha256:4638c68f8fc2e0ea81b4511bca453ed83764714684eb13f54fa20fb555441493",
+        "response": "artifact://task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e/sha256:e9a140b8fdcdad9f0efe053b617fdb440b62225f4b57ba36dddab998f4c23bac"
+      },
+      "completion_ref": "artifact://task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e/sha256:2ffc3145010fe9639f28fc1e9c57e5a77163df7d0f8cbf887003424402254477",
+      "concerns": [],
+      "outcome": "COMPLETED",
+      "task_id": "task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e"
+    },
+    "version": 1
+  },
+  "pending_human_decision": null,
+  "pending_workspace_read": null
+}

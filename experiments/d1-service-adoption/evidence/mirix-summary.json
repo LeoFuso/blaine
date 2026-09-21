@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "original_memories_unchanged": 3,
+  "database_identity_preserved": true,
+  "agent_ids_preserved": true,
+  "embedding_configs_preserved": true,
+  "restart": "mirix-restart.json",
+  "fixture": "mirix-fixture.json",
+  "before": "mirix-before.json",
+  "after": "mirix-after.json",
+  "finding": "First ingestion did not persist a fact. Explicit concept insertion did; search uses cosine-distance threshold 0.5 (0.3 was overly restrictive). HTTP processed alone is not acceptance."
+}

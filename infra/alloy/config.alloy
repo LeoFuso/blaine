@@ -29,7 +29,7 @@ loki.source.journal "platform" {
   forward_to = [otelcol.receiver.loki.local.receiver]
 }
 // User units have _SYSTEMD_USER_UNIT, not the system manager's unit field.
-// Keep the operator and two unit names explicit; do not collect arbitrary user logs.
+// Keep the operator and unit names explicit; do not collect arbitrary user logs.
 loki.source.journal "rootless_docker" {
   matches = "_UID=1000 _SYSTEMD_USER_UNIT=docker.service"
   max_age = "1h"
@@ -40,6 +40,36 @@ loki.source.journal "rootless_infra" {
   matches = "_UID=1000 _SYSTEMD_USER_UNIT=blaine-infra.service"
   max_age = "1h"
   labels = {job = "blaine-rootless-journal", unit = "blaine-infra.service"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
+loki.source.journal "blaine_generation" {
+  matches = "_UID=1000 _SYSTEMD_USER_UNIT=blaine-generation.service"
+  max_age = "1h"
+  labels = {job = "blaine-services-journal", unit = "blaine-generation.service"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
+loki.source.journal "blaine_embedding" {
+  matches = "_UID=1000 _SYSTEMD_USER_UNIT=blaine-embedding.service"
+  max_age = "1h"
+  labels = {job = "blaine-services-journal", unit = "blaine-embedding.service"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
+loki.source.journal "blaine_mirix" {
+  matches = "_UID=1000 _SYSTEMD_USER_UNIT=blaine-mirix.service"
+  max_age = "1h"
+  labels = {job = "blaine-services-journal", unit = "blaine-mirix.service"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
+loki.source.journal "blaine_restate" {
+  matches = "_UID=1000 _SYSTEMD_USER_UNIT=blaine-restate.service"
+  max_age = "1h"
+  labels = {job = "blaine-services-journal", unit = "blaine-restate.service"}
+  forward_to = [otelcol.receiver.loki.local.receiver]
+}
+loki.source.journal "blaine_runtime" {
+  matches = "_UID=1000 _SYSTEMD_USER_UNIT=blaine-runtime.service"
+  max_age = "1h"
+  labels = {job = "blaine-services-journal", unit = "blaine-runtime.service"}
   forward_to = [otelcol.receiver.loki.local.receiver]
 }
 otelcol.receiver.loki "local" {

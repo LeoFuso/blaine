@@ -1,0 +1,67 @@
+{
+  "task_id": "task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708",
+  "objective": "For project D1Persistence_61e17b6f3500, retrieve its release marker from semantic memory and write only that exact marker into artifact answer, with no newline.",
+  "accepted_spec": {
+    "kind": "TaskSpec",
+    "payload": {
+      "autonomy": {
+        "allowed": [
+          "artifact.write"
+        ]
+      },
+      "capabilities": [
+        "artifact.write"
+      ],
+      "completion": [
+        {
+          "criterion": "Exact known semantic fact recalled",
+          "evidence": {
+            "artifact": "answer",
+            "sha256": "a89ecf49c79bcb45b4187cf1fdb195a74620d593216c3a83373c648c0b06b7d6"
+          }
+        }
+      ],
+      "objective": "For project D1Persistence_61e17b6f3500, retrieve its release marker from semantic memory and write only that exact marker into artifact answer, with no newline."
+    },
+    "version": 1
+  },
+  "request_digest": "53f5e3262f78917981b05b581a026f9e18930ea6e4216b8101e9744a5db753c7",
+  "lifecycle": "COMPLETED",
+  "revision": 1,
+  "blocking_dependency": null,
+  "children": {},
+  "artifacts": {
+    "answer": "artifact://task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708/sha256:a89ecf49c79bcb45b4187cf1fdb195a74620d593216c3a83373c648c0b06b7d6"
+  },
+  "result_ref": "artifact://task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708/sha256:55ab1f5a18f82bf33d73998604bcb5c1010aa97a9d54fd4b8e219d2c56227799",
+  "completion": {
+    "kind": "CompletionEvaluation",
+    "payload": {
+      "criteria": [
+        {
+          "criterion": "Exact known semantic fact recalled",
+          "detail": "Exact artifact digest verified",
+          "evidence_ref": "artifact://task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708/sha256:a89ecf49c79bcb45b4187cf1fdb195a74620d593216c3a83373c648c0b06b7d6",
+          "outcome": "satisfied"
+        }
+      ],
+      "outcome": "satisfied"
+    },
+    "version": 1
+  },
+  "result": {
+    "kind": "TaskResult",
+    "payload": {
+      "artifacts": {
+        "answer": "artifact://task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708/sha256:a89ecf49c79bcb45b4187cf1fdb195a74620d593216c3a83373c648c0b06b7d6"
+      },
+      "completion_ref": "artifact://task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708/sha256:5574443e4b2c2daaca8d631061b0c9171b94b9feca88479c3cf618aa75f03041",
+      "concerns": [],
+      "outcome": "COMPLETED",
+      "task_id": "task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708"
+    },
+    "version": 1
+  },
+  "pending_human_decision": null,
+  "pending_workspace_read": null
+}

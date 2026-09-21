@@ -1,0 +1,14 @@
+# Stable adoption of the retained D2 native journal, never a parallel probe.
+cluster-name = "blaine-d2"
+node-name = "d2"
+base-dir = "/home/leofuso/.local/share/blaine/runtime/restate-data"
+bind-ip = "127.0.0.1"
+bind-port = 45122
+advertised-host = "127.0.0.1"
+listen-mode = "tcp"
+auto-provision = true
+default-journal-retention = "7 days"
+[admin]
+bind-address = "127.0.0.1:49070"
+[ingress]
+bind-address = "127.0.0.1:48080"
