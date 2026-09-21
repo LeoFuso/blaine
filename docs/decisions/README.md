@@ -106,3 +106,4 @@ ADR’s own status before treating it as an accepted constraint.
 - [ADR 0016 — Agent harnesses are replaceable execution capabilities](0016-agent-harnesses-are-replaceable-execution-capabilities.md)
 - [ADR 0017 — Human–Agent Work Coordination Plane](0017-human-agent-work-coordination-plane.md)
 - [ADR 0018 — Blaine Local Platform, Durability and Observability Architecture](0018-local-platform-durability-and-observability.md)
+- [ADR 0019 — Local inference serving baseline](0019-local-inference-serving-baseline.md)
