@@ -1,0 +1,16 @@
+{
+  "objective": "Implement only E0.B Tailscale prerequisite detection, supported installation assistance, native authentication and read-only diagnostics in the isolated Blaine client worktree; preserve E0.A and subsequent E0 boundaries.",
+  "mode": "interactive",
+  "context": [{"need":"Accepted E0 design, ADR 0022, E0.A implementation/evidence and current roadmap", "source":"docs/personal-agent-hub.md", "sharing":"local-only"}],
+  "capabilities": ["read repository", "edit task workspace", "read public web", "execute deterministic tests and builds", "read local Tailscale status", "create local git commit"],
+  "autonomy": {
+    "allowed": ["implement E0.B", "read-only live acceptance", "retain non-secret evidence", "one coherent local commit"],
+    "forbidden": ["logout or disrupt the current tailnet", "live installation or authentication mutation on this host", "persist credentials", "install a second WSL daemon", "Blaine host discovery", "IntelliJ configuration", "push", "merge"]
+  },
+  "completion": [
+    {"criterion":"Development-host detection, authenticated doctor state and idempotent connect are correct", "evidence":"Redacted before/after status and read-only subprocess trace"},
+    {"criterion":"Install/auth/error/cancellation/platform state machines are covered without host mutation", "evidence":"Deterministic Go tests, race checks and isolated terminal fixture"},
+    {"criterion":"E0.A ACP/stdout properties and standalone builds remain green", "evidence":"Retained ACP regression and four cross-build hashes"},
+    {"criterion":"Platform support and remaining E0 gates are reported honestly", "evidence":"Client guide, Hub/roadmap status and E0.B evidence report"}
+  ]
+}

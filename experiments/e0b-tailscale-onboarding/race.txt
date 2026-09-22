@@ -1,0 +1,8 @@
+?   	blaine.local/client/cmd/blaine	[no test files]
+ok  	blaine.local/client/internal/buildinfo	1.005s
+ok  	blaine.local/client/internal/cli	1.010s
+ok  	blaine.local/client/internal/connect	1.008s
+ok  	blaine.local/client/internal/doctor	1.007s
+?   	blaine.local/client/internal/fixture	[no test files]
+ok  	blaine.local/client/internal/platform	1.010s
+ok  	blaine.local/client/internal/process	10.226s

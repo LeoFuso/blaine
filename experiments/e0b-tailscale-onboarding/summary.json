@@ -1,0 +1,32 @@
+{
+  "result": "PARTIAL",
+  "development_platform": "PASS: native Ubuntu amd64, already authenticated",
+  "full_e0_complete": false,
+  "macos": "PARTIAL: designed/build/fixture verified, runtime unverified",
+  "wsl": "STOP: host reuse needs live spike; bounded diagnostics implemented",
+  "top_level_tests_passed": 43,
+  "connect_state_machine_cases": 19,
+  "race": "PASS",
+  "vet": "PASS",
+  "acp_regression": "PASS",
+  "cross_builds": {
+    "blaine-darwin-amd64": "bfe07a19f02c7625ae9b37f80373c39a47242b9652036dbe4add9cf06d94cc9d",
+    "blaine-darwin-arm64": "70d3f04c8175204cc3353c7f67cca7866c44d24b0082f1e82fe380546b55e7aa",
+    "blaine-linux-amd64": "58e3be7135ae397ff0043222df5337716724886ce54f812ca1559b7333f18926",
+    "blaine-linux-arm64": "9e2bdbbc34c495affaa7a9ede87304c02c5da7455a03803f4a4cd8bb702d7260"
+  },
+  "live_result": "PASS",
+  "live_install_or_login_attempted": false,
+  "credentials_persisted_or_exposed": false,
+  "logout_or_tailnet_disruption": false,
+  "blaine_host_discovery_implemented": false,
+  "intellij_configuration_implemented": false,
+  "push_or_merge_performed": false,
+  "durable_task_submitted": false,
+  "remaining_slices": [
+    "E0.C",
+    "E0.D",
+    "E0.E",
+    "E0.F"
+  ]
+}

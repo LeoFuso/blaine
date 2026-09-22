@@ -26,6 +26,7 @@ func TestExitPriority(t *testing.T) {
 }
 func TestFoundationNeverReadyOrMutating(t *testing.T) {
 	root := t.TempDir()
+	t.Setenv("PATH", root)
 	t.Setenv("HOME", root)
 	t.Setenv("XDG_CONFIG_HOME", filepath.Join(root, "config"))
 	t.Setenv("XDG_STATE_HOME", filepath.Join(root, "state"))
@@ -53,6 +54,7 @@ func TestFoundationNeverReadyOrMutating(t *testing.T) {
 }
 func TestInvalidDirectory(t *testing.T) {
 	root := t.TempDir()
+	t.Setenv("PATH", root)
 	file := filepath.Join(root, "file")
 	if err := os.WriteFile(file, []byte("secret-marker"), 0600); err != nil {
 		t.Fatal(err)

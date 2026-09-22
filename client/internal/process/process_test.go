@@ -30,6 +30,46 @@ func TestHelperProcess(t *testing.T) {
 		return
 	}
 	switch os.Args[index] {
+	case "foreground-parent", "foreground-cancel":
+		before, e := terminalGroup(os.Stdin)
+		if e != nil {
+			os.Exit(10)
+		}
+		child := helperSpec("tty-read")
+		child.Foreground = true
+		ctx := context.Background()
+		if os.Args[index] == "foreground-cancel" {
+			var cancel context.CancelFunc
+			ctx, cancel = context.WithTimeout(ctx, 100*time.Millisecond)
+			defer cancel()
+			child = helperSpec("stubborn")
+			child.Foreground = true
+		}
+		data, code, err := Capture(ctx, child, os.Stdin, nil)
+		after, e := terminalGroup(os.Stdin)
+		success := err == nil && code == 0 && string(data) == "accepted\n"
+		if os.Args[index] == "foreground-cancel" {
+			success = ctx.Err() == context.DeadlineExceeded && code == 130
+		}
+		if !success || e != nil || before != after {
+			fmt.Println("FAIL", code, err, before, after, string(data))
+			os.Exit(11)
+		}
+		fmt.Println("FOREGROUND_PASS")
+		os.Exit(0)
+	case "tty-read":
+		tty, err := os.OpenFile("/dev/tty", os.O_RDWR, 0)
+		if err != nil {
+			os.Exit(12)
+		}
+		fmt.Fprintln(tty, "TTY_PROMPT")
+		b := make([]byte, 64)
+		n, err := tty.Read(b)
+		if err != nil || string(b[:n]) != "fixture-answer\n" {
+			os.Exit(13)
+		}
+		fmt.Println("accepted")
+		os.Exit(0)
 	case "echo":
 		fmt.Fprintln(os.Stderr, "helper diagnostic")
 		_, err := io.Copy(os.Stdout, os.Stdin)
@@ -41,6 +81,9 @@ func TestHelperProcess(t *testing.T) {
 		os.Exit(23)
 	case "signal":
 		syscall.Kill(os.Getpid(), syscall.SIGKILL)
+	case "environment":
+		fmt.Println(os.Getenv("BLAINE_TEST_CHILD_MODE"))
+		os.Exit(0)
 	case "argv":
 		for _, arg := range os.Args[index+1:] {
 			fmt.Fprintln(os.Stdout, arg)
@@ -67,7 +110,7 @@ func TestHelperProcess(t *testing.T) {
 	os.Exit(9)
 }
 func helperSpec(mode string, args ...string) Spec {
-	return Spec{os.Args[0], append([]string{"-test.run=TestHelperProcess", "--", "--process-helper", mode}, args...)}
+	return Spec{Executable: os.Args[0], Args: append([]string{"-test.run=TestHelperProcess", "--", "--process-helper", mode}, args...)}
 }
 func files(t *testing.T, data []byte) Streams {
 	t.Helper()
@@ -145,7 +188,7 @@ func TestEarlyExitWithOpenStdin(t *testing.T) {
 }
 func TestStartFailureAndPreCancelled(t *testing.T) {
 	s := files(t, nil)
-	for _, spec := range []Spec{{"relative", nil}, {"/nonexistent/blaine-fixture", nil}} {
+	for _, spec := range []Spec{{Executable: "relative"}, {Executable: "/nonexistent/blaine-fixture"}} {
 		if code, err := Run(context.Background(), spec, s); code != 1 || err == nil {
 			t.Fatal(code, err)
 		}

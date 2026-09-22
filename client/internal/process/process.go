@@ -17,13 +17,15 @@ import (
 type Spec struct {
 	Executable string
 	Args       []string
+	Env        []string // Optional child-only overrides; never rendered as diagnostics.
+	Foreground bool     // Only host setup needing a controlling terminal, never ACP.
 }
 type Streams struct{ In, Out, Err *os.File }
 
 // Run starts no shell and owns a new POSIX process group on Linux, macOS and WSL.
 // Cancellation hard-stops the entire group; transport cleanup is not Task cancel.
 // Descendants must stay in this group (no daemonizing/setsid transport helpers).
-func Run(ctx context.Context, spec Spec, streams Streams) (int, error) {
+func Run(ctx context.Context, spec Spec, streams Streams) (code int, resultErr error) {
 	if !filepath.IsAbs(spec.Executable) || streams.In == nil || streams.Out == nil || streams.Err == nil {
 		return 1, errors.New("absolute executable and all three stdio files are required")
 	}
@@ -31,8 +33,25 @@ func Run(ctx context.Context, spec Spec, streams Streams) (int, error) {
 		return 130, ctx.Err()
 	}
 	cmd := exec.CommandContext(ctx, spec.Executable, spec.Args...)
+	if len(spec.Env) > 0 {
+		cmd.Env = append(os.Environ(), spec.Env...)
+	}
 	cmd.Stdin, cmd.Stdout, cmd.Stderr = streams.In, streams.Out, streams.Err
 	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
+	if spec.Foreground {
+		restore, err := borrowTerminal(streams.In)
+		if err != nil {
+			return 1, err
+		}
+		defer func() {
+			if err := restore(); err != nil {
+				code, resultErr = 1, err
+			}
+		}()
+		// Ctty is the child's descriptor index; stdin is inherited at descriptor 0.
+		cmd.SysProcAttr.Foreground = true
+		cmd.SysProcAttr.Ctty = 0
+	}
 	kill := func() error {
 		err := syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
 		if errors.Is(err, syscall.ESRCH) {

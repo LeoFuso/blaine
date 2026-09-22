@@ -14,6 +14,7 @@ import (
 func invoke(t *testing.T, args ...string) (int, string, string) {
 	t.Helper()
 	root := t.TempDir()
+	t.Setenv("PATH", root)
 	open := func(name string) *os.File {
 		f, err := os.Create(filepath.Join(root, name))
 		if err != nil {
@@ -44,7 +45,7 @@ func TestCommandsAndVersion(t *testing.T) {
 	if code != 0 || json.Unmarshal([]byte(out), &value) != nil || value["client_version"] != "0.1.0-dev" || err != "" {
 		t.Fatal(code, out, err)
 	}
-	for _, cmd := range []string{"connect", "disconnect"} {
+	for _, cmd := range []string{"disconnect"} {
 		code, out, err = invoke(t, cmd)
 		if code != 2 || !strings.Contains(out, `"status":"NOT_IMPLEMENTED"`) || err != "" {
 			t.Fatal(code, out, err)
@@ -61,6 +62,29 @@ func TestAllMalformedACPKeepsStdoutEmpty(t *testing.T) {
 	code, out, err := invoke(t, "acp")
 	if code != 2 || out != "" || !strings.Contains(err, "NOT_CONFIGURED") {
 		t.Fatal(code, out, err)
+	}
+}
+func TestConnectNonInteractive(t *testing.T) {
+	code, out, _ := invoke(t, "connect", "--non-interactive")
+	if code != 2 || strings.Contains(out, "Network prerequisite ready") {
+		t.Fatal(code, out)
+	}
+}
+func TestDoctorHumanJSONParity(t *testing.T) {
+	_, out, _ := invoke(t, "doctor", "--json")
+	var r struct {
+		Checks []struct{ ID, Status, Code, Summary, Remediation string }
+	}
+	if err := json.Unmarshal([]byte(out), &r); err != nil {
+		t.Fatal(err)
+	}
+	_, human, _ := invoke(t, "doctor")
+	for _, c := range r.Checks {
+		for _, part := range []string{c.ID, c.Status, c.Code, c.Summary, c.Remediation} {
+			if !strings.Contains(human, part) {
+				t.Fatalf("missing %q", part)
+			}
+		}
 	}
 }
 func TestDoctorJSON(t *testing.T) {

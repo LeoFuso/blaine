@@ -76,7 +76,7 @@ func Detect(goos, arch, home, release string, env func(string) string) (Platform
 	return p, nil
 }
 
-// LookPath is the single external-executable discovery hook. E0.A needs none.
+// LookPath is the external-executable discovery hook for native prerequisites.
 func (p Platform) LookPath(name string) (string, error) { return exec.LookPath(name) }
 
 // InspectDirectory never creates files or asserts write access from mode bits.

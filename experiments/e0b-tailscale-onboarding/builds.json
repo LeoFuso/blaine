@@ -1,0 +1,72 @@
+{
+  "toolchain": "go version go1.27.1 linux/amd64",
+  "build_commit": "503d56231e55183a0707ecf0eece8c2cc2223f29-dirty",
+  "client_version": "0.1.0-e0b",
+  "linux_amd64_has_no_dynamic_interpreter": true,
+  "cgo_enabled": false,
+  "artifacts": [
+    {
+      "name": "blaine-darwin-amd64",
+      "bytes": 7310432,
+      "sha256": "bfe07a19f02c7625ae9b37f80373c39a47242b9652036dbe4add9cf06d94cc9d",
+      "format": "Mach-O 64-bit x86_64 executable, flags:<|DYLDLINK|PIE>",
+      "repeat_build_identical": true
+    },
+    {
+      "name": "blaine-darwin-arm64",
+      "bytes": 6776866,
+      "sha256": "70d3f04c8175204cc3353c7f67cca7866c44d24b0082f1e82fe380546b55e7aa",
+      "format": "Mach-O 64-bit arm64 executable, flags:<|DYLDLINK|PIE>",
+      "repeat_build_identical": true
+    },
+    {
+      "name": "blaine-linux-amd64",
+      "bytes": 7164028,
+      "sha256": "58e3be7135ae397ff0043222df5337716724886ce54f812ca1559b7333f18926",
+      "format": "ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped",
+      "repeat_build_identical": true
+    },
+    {
+      "name": "blaine-linux-arm64",
+      "bytes": 6684796,
+      "sha256": "9e2bdbbc34c495affaa7a9ede87304c02c5da7455a03803f4a4cd8bb702d7260",
+      "format": "ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, stripped",
+      "repeat_build_identical": true
+    }
+  ],
+  "client_source_sha256": {
+    "client/README.md": "a16c8e4a230fdb90f7754ee302ab0ce841aa6c718883f96d149494eaeb30ea6a",
+    "client/build.sh": "9a305944d7782763d587b805a6b5b2a04a1ddb2245babece8a841cd8bcc468bf",
+    "client/cmd/blaine/main.go": "7ea1531c9d924e7013770c7a7ef255352f90f1f069bd964ca11ac98dd4aea266",
+    "client/go.mod": "21d882a30dfb26d8283bd65ba72359172d10b269d277333d27cb94ea9aa12a3a",
+    "client/internal/buildinfo/buildinfo.go": "355e237278d452b2b8aa9c9075f266cc41bce4c939c193bc8347ab95e927110a",
+    "client/internal/buildinfo/buildinfo_test.go": "b8fd269c7c1d21340cfac754f0f8c9abcc91595d9cb4ec03e656822b0e7442a2",
+    "client/internal/cli/cli.go": "56a6e15cb8330465ba03029ae18aad17e06ca3a501080eba0f8ddbfd16ce2526",
+    "client/internal/cli/cli_test.go": "c4f6a4e13ba02e9b73a35d08d6531a2d9dcf7afc228dcc3178f1bc369f2efd7a",
+    "client/internal/cli/timeout.go": "944a177cc3e0139d4bec986b0a906cec5d2e54ddcaba6a1e8114f7dc4dfa5027",
+    "client/internal/connect/connect.go": "e18c0625e561c5a9ba837e6509de3c49bdee4b01c4ebc7257a17fbe325382ab1",
+    "client/internal/connect/connect_test.go": "11f87146e27da901f38501dab0010020587617f241d0f89fce25cbb9497cf37d",
+    "client/internal/doctor/doctor.go": "1332495583eee9b56f1eb0d5e09ad21131c852fdb578b780b8beab69bae9cbe4",
+    "client/internal/doctor/doctor_test.go": "db78f27c441c7f001058e7ea1f6fe0408ae6fa529ef05e953d7d47f5e2e96c3b",
+    "client/internal/fixture/fixture.go": "8ca749a72712867e3ada314aba58305a674b1770936ce1d9efd4ebf6139dd340",
+    "client/internal/platform/download_test.go": "85b3aa1477d0b69fa94a3a965e5e216c656689a52691d13230c64a67a3e866ea",
+    "client/internal/platform/install.go": "ff7f76300d7c9b9558c3bcbfaed12a9d8dec9ec09f231a2fd7300e713540c240",
+    "client/internal/platform/install_test.go": "13fa4994caf5f7f94038aa079322a03df9f7c3141d1be3ecaf0e1e256117edc6",
+    "client/internal/platform/platform.go": "f420d019d8274ddef590b5896ab2e4a2030218a3ffb961b005196bbf2fdf063c",
+    "client/internal/platform/platform_test.go": "0c98736337ebcde9a4e8ba8bcf709c8f0da4fc433539a1e3dc61d413551e97e2",
+    "client/internal/platform/tailscale.go": "3c99aac54802fd04f992126198ac4b03ae734ee50a522a7eb70990898d48c57c",
+    "client/internal/platform/tailscale_test.go": "d472ad11b30eb0052567f0b572c56627b0abe4187e67b3f563a085bd08e32ccf",
+    "client/internal/process/capture.go": "bb57553c0c3012d1e6afa1055ed4ae24948d0ebc3c72721db2e36ba1e777aea3",
+    "client/internal/process/capture_test.go": "7a45db57185ab0f8432cbe6858e57a53bdb3d8ea29fbbc8448419672015498fb",
+    "client/internal/process/process.go": "226dda9089c0254c735d38f73cbeb3abee8e2a1ef8a59f5cf3e08aa1c6a665d1",
+    "client/internal/process/process_test.go": "034fe2366b1818d118aeb1e42b6b9453d9403b64fb7a5fafb20c64dc7ad4308c",
+    "client/internal/process/terminal.go": "405c5cc9d5db476652e0e84230cad1f0a05bad30b2d460babf83ae5ca52d8cfb",
+    "client/internal/process/terminal_test.go": "f024becdd765910c9cafb62dcd403aa29bdf3cbc61052f777c5add1643d099b2"
+  },
+  "build_only": [
+    "linux/arm64",
+    "darwin/amd64",
+    "darwin/arm64"
+  ],
+  "wsl2_runtime_proven": false
+}

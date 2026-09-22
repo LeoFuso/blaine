@@ -2,6 +2,7 @@
 package doctor
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -51,7 +52,9 @@ func Exit(checks []Check) int {
 	return code
 }
 
-func Inspect() Report {
+func Inspect() Report { return InspectContext(context.Background()) }
+
+func InspectContext(ctx context.Context) Report {
 	now := time.Now().UTC().Format(time.RFC3339)
 	r := Report{SchemaVersion: 1, Timestamp: now, Overall: "NOT_READY"}
 	add := func(id, status, code, summary, remediation string) {
@@ -64,8 +67,9 @@ func Inspect() Report {
 	} else {
 		add("platform", "PASS", "OK", fmt.Sprintf("%s/%s", p.Kind, p.Arch), "")
 		if p.Kind == "wsl" {
-			add("wsl_version", "UNKNOWN", "WSL_UNVERIFIED", "WSL markers detected; WSL2 and Windows interop are unverified", "E0.B requires native Windows/WSL2 inspection.")
+			add("wsl_version", "UNKNOWN", "WSL_UNVERIFIED", "WSL markers detected; WSL2 and Windows interop are unverified", "Verify the selected distribution with wsl.exe --list --verbose on Windows; guest route proof remains required.")
 		}
+		r.Checks = append(r.Checks, NetworkChecks(p.Tailscale().Inspect(ctx), now)...)
 		for _, path := range []struct{ id, value string }{{"config_directory", filepath.Dir(p.Paths.ConfigFile)}, {"state_directory", p.Paths.StateDir}} {
 			exists, err := platform.InspectDirectory(path.value)
 			if err != nil {
@@ -73,22 +77,54 @@ func Inspect() Report {
 			} else if exists {
 				add(path.id, "PASS", "OK", "Directory exists; no write attempted", "")
 			} else {
-				add(path.id, "PASS", "OK", "Location valid; directory absent and not needed in E0.A", "")
+				add(path.id, "PASS", "OK", "Location valid; no client state needs to be written", "")
 			}
 		}
 	}
 	if executable, err := os.Executable(); err != nil || !filepath.IsAbs(executable) {
 		add("execution", "FAIL", "LOCAL_INVALID", "Cannot resolve running executable", "Run an installed standalone binary.")
 	} else {
-		add("execution", "PASS", "OK", "Standalone executable resolved; no external commands required in E0.A", "")
+		add("execution", "PASS", "OK", "Standalone executable resolved", "")
 	}
 	// Stable check IDs are the extension boundary. Replace each placeholder with
 	// actual read-only observation in its owning slice; never infer downstream PASS.
-	for _, id := range []string{"connection", "tailscale", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
-		add(id, "UNKNOWN", "NOT_IMPLEMENTED", "Not implemented in E0.A", "Requires later E0 slices; onboarding is unavailable.")
+	for _, id := range []string{"connection", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
+		add(id, "UNKNOWN", "NOT_IMPLEMENTED", "Not implemented in E0.B", "Requires E0.C–E0.F; network readiness alone is not Blaine onboarding.")
 	}
 	if Exit(r.Checks) == 0 {
 		r.Overall = "READY"
 	}
 	return r
+}
+
+// NetworkChecks is shared by both doctor renderers and never includes raw
+// command output, identities, health text, IP addresses or authentication URLs.
+func NetworkChecks(n platform.Network, now string) []Check {
+	status := "FAIL"
+	if n.Ready {
+		status = "PASS"
+	}
+	summary := "Network prerequisite is not ready"
+	if n.Ready {
+		summary = "Local Tailscale network prerequisite ready"
+	}
+	checks := []Check{{"tailscale", status, n.Code, summary, n.Guidance, now}}
+	add := func(id, value string, ok bool) {
+		state, code := "UNKNOWN", "LOCAL_INVALID"
+		if ok {
+			state, code = "PASS", "OK"
+		}
+		checks = append(checks, Check{id, state, code, value, "", now})
+	}
+	add("tailscale_installation", n.Installed, n.Installed == "present" || n.Installed == "app-present")
+	add("tailscale_owner", n.Owner, true)
+	add("tailscale_cli", fmt.Sprintf("available=%t", n.CLI), n.CLI)
+	add("tailscale_daemon", n.Daemon, n.Daemon == "available")
+	add("tailscale_auth", n.Auth, n.Auth == "authenticated")
+	add("tailscale_device", fmt.Sprintf("%s; tailnet_visible=%t; addresses=%d; health_warnings=%d; version=%s", n.Device, n.Tailnet, n.Addresses, n.HealthWarnings, n.Version), n.Device == "online" && n.Tailnet && n.Addresses > 0 && n.HealthWarnings == 0)
+	add("wsl_environment", fmt.Sprintf("detected=%t", n.WSL), true)
+	if n.WSL {
+		add("wsl_host_reuse", n.HostReuse, false)
+	}
+	return checks
 }

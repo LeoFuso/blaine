@@ -3,22 +3,26 @@
 package cli
 
 import (
+	"bufio"
 	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 
 	"blaine.local/client/internal/buildinfo"
+	"blaine.local/client/internal/connect"
 	"blaine.local/client/internal/doctor"
 	"blaine.local/client/internal/fixture"
+	"blaine.local/client/internal/platform"
 	"blaine.local/client/internal/process"
 )
 
 func Run(ctx context.Context, args []string, streams process.Streams) int {
 	diagnostic := func(s string) { fmt.Fprintln(streams.Err, "blaine: "+s) }
 	usage := func() int {
-		diagnostic("usage: blaine version [--json] | doctor [--json] | connect | disconnect | acp [--fixture echo|exit-23|wait]")
+		diagnostic("usage: blaine version [--json] | doctor [--json] | connect [--non-interactive] | disconnect | acp [--fixture echo|exit-23|wait]")
 		return 64
 	}
 	if len(args) == 0 {
@@ -26,6 +30,47 @@ func Run(ctx context.Context, args []string, streams process.Streams) int {
 	}
 	if args[0] == "acp" {
 		return acp(ctx, args[1:], streams, diagnostic, usage)
+	}
+	if args[0] == "connect" {
+		if len(args) > 2 || (len(args) == 2 && args[1] != "--non-interactive") {
+			return usage()
+		}
+		p, err := platform.Current()
+		if err != nil {
+			diagnostic(err.Error())
+			return 2
+		}
+		if os.Geteuid() == 0 {
+			diagnostic("Run Blaine as your normal user. Only prerequisite installation may request sudo.")
+			return 2
+		}
+		nonInteractive := len(args) == 2
+		if !process.IsTerminal(streams.In) {
+			nonInteractive = true
+		}
+		reader := bufio.NewReader(streams.In)
+		confirm := func(prompt string) bool {
+			if _, err := fmt.Fprint(streams.Out, prompt); err != nil {
+				return false
+			}
+			answer := make(chan bool, 1)
+			go func() {
+				line, err := reader.ReadSlice('\n')
+				if err != nil || len(line) > 64 {
+					answer <- false
+					return
+				}
+				value := strings.ToLower(strings.TrimSpace(string(line)))
+				answer <- value == "" || value == "y" || value == "yes"
+			}()
+			select {
+			case <-ctx.Done():
+				return false
+			case yes := <-answer:
+				return yes
+			}
+		}
+		return connect.Run(ctx, p.Tailscale(), connect.UI{In: streams.In, Out: streams.Out, Confirm: confirm, NonInteractive: nonInteractive})
 	}
 	jsonMode := len(args) == 2 && args[1] == "--json"
 	if len(args) != 1 && !jsonMode {
@@ -50,7 +95,7 @@ func Run(ctx context.Context, args []string, streams process.Streams) int {
 		}
 		return 0
 	case "doctor":
-		report := doctor.Inspect()
+		report := doctor.InspectContext(ctx)
 		if jsonMode {
 			if writeJSON(report) != 0 {
 				return 1
@@ -61,13 +106,18 @@ func Run(ctx context.Context, args []string, streams process.Streams) int {
 					diagnostic("output write failed")
 					return 1
 				}
+				if check.Remediation != "" {
+					if _, err := fmt.Fprintln(streams.Out, "  "+check.Remediation); err != nil {
+						return 1
+					}
+				}
 			}
-			if _, err := fmt.Fprintln(streams.Out, report.Overall+" — E0.A foundation only; onboarding is not implemented."); err != nil {
+			if _, err := fmt.Fprintln(streams.Out, report.Overall+" — E0.B network checks only; Blaine host onboarding remains unimplemented."); err != nil {
 				return 1
 			}
 		}
 		return doctor.Exit(report.Checks)
-	case "connect", "disconnect":
+	case "disconnect":
 		if jsonMode {
 			return usage()
 		}

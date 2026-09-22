@@ -1,13 +1,16 @@
 # Personal Agent Hub — E0 through E3
 
 **Design checkpoint: 2026-09-21. Status: architecture and implementation handoff;
-E0.A foundation implemented; full E0–E3 remain unaccepted.**
+E0.A foundation and E0.B network prerequisite implemented; full E0–E3 remain unaccepted.**
 
 The [E0.A client guide](../client/README.md) and
 [isolated evidence](../experiments/e0a-blaine-client/README.md) record the five-command
 skeleton, Go selection, platform paths and byte/process proof. Linux amd64 runtime
-passed; macOS/WSL2 runtime and all onboarding remain unvalidated. Command contracts
-below describe the complete target, beyond this foundation.
+passed. [E0.B evidence](../experiments/e0b-tailscale-onboarding/README.md) adds native
+Linux Tailscale detection, doctor and idempotent network readiness PASS. Linux
+install/login mutations are fixture-tested; macOS is design/build/fixture-only,
+and WSL host reuse is STOP pending a live spike. E0.C–E0.F remain. Command contracts
+below describe the complete target, beyond these slices.
 
 Blaine is the persistent Personal Agent. A workstation is a registered execution
 surface, and IntelliJ/ACP is its first interactive surface. The next product
@@ -321,7 +324,9 @@ selected tailnet route works. [Windows executable interop](https://learn.microso
 [WSL networking](https://learn.microsoft.com/en-us/windows/wsl/networking).
 
 The following is a **proposed detection/probe sequence**, to be verified on a real
-WSL2 workstation in E0.B/C/F. No WSL/Windows live investigation occurred here.
+WSL2 workstation in E0.B/C/F. No WSL/Windows live investigation occurred in the design or E0.B implementation.
+E0.B implements only bounded PATH-based host CLI observation and diagnostics; it
+explicitly withholds guest-network readiness until this spike can run.
 
 1. Detect a WSL environment from kernel/runtime markers and distro metadata;
    verify WSL2 and the exact selected distribution via trusted `wsl.exe` interop
@@ -376,8 +381,8 @@ JetBrains version pair are open E0.E decisions, not implemented commands.
 ## Command contracts
 
 Command behavior in this section describes the complete E0 target. The
-[E0.A command subset](../client/README.md#commands-and-exits) is implemented with
-explicit unavailable results for networking/onboarding; no full E0 claim follows.
+[E0.A/B command subset](../client/README.md#commands-and-exits) implements network
+prerequisites only; Blaine host onboarding remains unavailable and no full E0 claim follows.
 Optional flags remain small: `connect --host NAME` for
 first-use override and `doctor --json` for automation; normal operation needs
 neither a host argument nor raw transport knowledge. Use a release/operator
