@@ -13,6 +13,7 @@ owns delivery status; [architecture](../architecture.md) owns current boundaries
 | [Task examples](task-examples.md) | Illustrative applications of TaskSpec; not a separate schema or authority grant. |
 | [Frontier dispatch](frontier-dispatch.md) | Paid-worker authority, context projection and dispatch evidence. |
 | [ExecutionEvent](execution-event.md) | Versioned forensic metadata; never Task lifecycle authority. |
+| [Worker execution boundary](worker-execution-boundary.md) | Continuation boundary, adapter capability honesty, synchronous control and asynchronous telemetry; never Task authority. |
 
 [Lifecycle/evidence](../policies/task-completion-and-lifecycle.md) and
 [local-first/context](../policies/local-first-and-context.md) policies apply across

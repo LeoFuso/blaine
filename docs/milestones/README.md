@@ -11,6 +11,7 @@ limitations; their historical “next” instructions do not override that roadm
 | D1.C inference | [Accepted local services, 128k](038-d1-local-inference.md) | [21 checks](../../experiments/d1-service-adoption/evidence/inference-summary.json) |
 | D1 platform | [Live service adoption PASS; D1.G pending](039-d1-service-adoption.md) | [Infrastructure validation](../../infra/validation-d1-infrastructure.json) |
 | D1 backup | [PAUSED checkpoint](../platform-d1.md); no accepted physical backup/restore | [Volume preservation](../../infra/volume-preparation-d1.json) |
+| Worker execution boundary | [Instrumentation and continuation boundary](040-worker-execution-instrumentation.md) | [Evidence summary](../../experiments/worker-execution-instrumentation/evidence/evidence-summary.json) |
 | D2 Personal Agent | [PASS within documented fixture scope](../daily-driver-d2.md) | [Acceptance](../../experiments/daily-driver-d2/evidence/summary.json), [validation](../../experiments/daily-driver-d2/evidence/validation.json), [post-sync native acceptance](../../experiments/daily-driver-d2/evidence/post-sync-native-summary.json) |
 
 ## Planned product milestones

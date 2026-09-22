@@ -1,0 +1,373 @@
+{
+ "version": 1,
+ "increment": "worker execution instrumentation and continuation boundary",
+ "contract": "docs/contracts/worker-execution-boundary.md",
+ "paid_cloud_inference_calls": 0,
+ "frontier_dispatch_grants_consumed": 0,
+ "capability_vocabulary": [
+  "continuation.observe",
+  "continuation.admit",
+  "continuation.steer",
+  "execution.interrupt",
+  "model.observe",
+  "tool.observe",
+  "model.rebind",
+  "effort.rebind"
+ ],
+ "support_levels": [
+  "OBSERVED",
+  "INFERRED",
+  "UNSUPPORTED"
+ ],
+ "granularities": [
+  "continuation",
+  "agent_turn",
+  "worker_dispatch"
+ ],
+ "semantic_supervisor": {
+  "implemented": false,
+  "observer_used": "deterministic recording observer",
+  "jev_validation": "NOT PERFORMED",
+  "jev_part_of_acceptance": false,
+  "jev_reason": "no Jev credential was readable from this execution environment",
+  "jev_secret_name_discrepancy": "the inspected integration expects TYPESAFE_API_KEY while the existing secret is stored as JEV_API_KEY; no secret was read, renamed or emitted by this increment",
+  "boundary_useful_without_jev": true
+ },
+ "workers": [
+  {
+   "worker": "blaine-kernel-loop",
+   "harness": "Blaine durable CognitiveTaskV1 loop on Restate",
+   "integration_status": "instrumented in the kernel; the adopted runtime entrypoint can select it",
+   "inference_used": "local loopback serving only; zero paid cloud inference",
+   "served_model": "nvidia/Qwen3.8-27B-NVFP4",
+   "evidence_class": "live",
+   "tasks_executed": [
+    "boundary-live-001",
+    "boundary-delivery-001",
+    "boundary-delivery-002"
+   ],
+   "lifecycles": {
+    "boundary-live-001": "COMPLETED",
+    "boundary-delivery-001": "COMPLETED",
+    "boundary-delivery-002": "FAILED"
+   },
+   "boundaries_observed": {
+    "boundary-live-001": 2,
+    "boundary-delivery-001": 2,
+    "boundary-delivery-002": 2
+   },
+   "journaled_boundary_steps": [
+    "continuation/1",
+    "continuation/2"
+   ],
+   "model_invocations_observed": {
+    "boundary-delivery-001": 2,
+    "boundary-delivery-002": 4
+   },
+   "model_invocation_outcomes": {
+    "boundary-delivery-001": [
+     "validated"
+    ],
+    "boundary-delivery-002": [
+     "rejected",
+     "validated"
+    ]
+   },
+   "per_invocation_token_usage_observed": true,
+   "tool_invocations_observed": {
+    "boundary-live-001": 2
+   },
+   "model_invocation_records_source": "adapter audit written inside the journaled step",
+   "tool_invocation_records_source": "journaled ExecutionEvent ledger",
+   "synchronous_admission_before_each_continuation": true,
+   "recovery": {
+    "point": "SIGKILL after the second boundary admission was journaled",
+    "observer_consultations_total": 2,
+    "consultations_before_kill": 2,
+    "historical_boundaries_replayed": [
+     0,
+     1
+    ],
+    "historical_boundaries_recomputed": [],
+    "distinct_processes_consulting_observer": 1
+   },
+   "otlp_delivery": {
+    "collector": "http://127.0.0.1:4318",
+    "span_count": 26,
+    "span_kinds": {
+     "verifier": 9,
+     "boundary_control": 4,
+     "model_invocation": 6,
+     "tool_execution": 5,
+     "point_in_time_event": 2
+    },
+    "content_capture": "disabled; metadata, digests and counters only"
+   },
+   "model_retry_visibility": {
+    "task_id": "boundary-delivery-002",
+    "lifecycle": "FAILED",
+    "concerns": [
+     "Execution stopped: ValueError('Invalid model CognitiveDecision')"
+    ],
+    "model_invocation_spans_at_one_continuation": 3
+   },
+   "at_least_once_physical_duplication": {
+    "task_id": "boundary-live-001",
+    "tool_execution_spans": 2,
+    "distinct_capability_call_ids": [
+     "boundary-live-001/2"
+    ],
+    "journaled_capability_finished_events": 2
+   },
+   "correlation_ids_available": [
+    "task_id",
+    "run_id",
+    "model_invocation_id",
+    "capability_call_id",
+    "continuation index",
+    "evidence digest"
+   ],
+   "correlation_ids_absent": [
+    "agent_turn_id (the loop has no provider turn concept)"
+   ],
+   "capabilities": {
+    "continuation.admit": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "continuation.observe": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "continuation.steer": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "effort.rebind": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    },
+    "execution.interrupt": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "model.observe": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "model.rebind": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    },
+    "tool.observe": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    }
+   },
+   "unsupported_or_unknown": [
+    "effort.rebind",
+    "model.rebind"
+   ]
+  },
+  {
+   "worker": "codex-app-server",
+   "harness": "Codex CLI 0.155.1 app-server over stdio",
+   "integration_status": "observation adapter in this experiment; not a registered Blaine worker binding",
+   "inference_used": "local loopback serving only; zero paid cloud inference",
+   "served_model": "nvidia/Qwen3.8-27B-NVFP4",
+   "evidence_class": "live",
+   "cases_executed": [
+    "approval",
+    "boundaries",
+    "interrupt",
+    "steer"
+   ],
+   "boundaries_observed": {
+    "boundaries": 3,
+    "steer": 2,
+    "interrupt": 1,
+    "approval": 2
+   },
+   "boundary_marker": "thread/tokenUsage/updated",
+   "model_invocations_observed": {
+    "boundaries": 3,
+    "steer": 2,
+    "interrupt": 1,
+    "approval": 2
+   },
+   "tool_invocations_observed": {
+    "boundaries": 2,
+    "steer": 1,
+    "interrupt": 0,
+    "approval": 1
+   },
+   "per_invocation_token_usage_observed": true,
+   "correlation_ids_available": [
+    "task_id",
+    "worker_dispatch_id",
+    "worker_session_id",
+    "agent_turn_id",
+    "capability_call_id (harness item id)"
+   ],
+   "correlation_ids_absent": [
+    "model_invocation_id (no harness identifier; position only)"
+   ],
+   "steering": {
+    "capability": "turn/steer",
+    "accepted_while_tool_active": true,
+    "acceptance_latency_ms": 0.4,
+    "requested_at_boundary_index": 0,
+    "consumed_at_boundary_index": 1,
+    "consumed_after_boundary_marker_ms": 0.4
+   },
+   "interruption": {
+    "capability": "turn/interrupt",
+    "turn_status": "interrupted",
+    "unterminated_tool_items": 1,
+    "terminal_tool_event_emitted": false
+   },
+   "synchronous_client_callback": {
+    "exists": true,
+    "relation_to_boundary": "pre_tool_execution",
+    "blocking_confirmed": true,
+    "client_delay_held_ms": 3000,
+    "turn_status_after_hold": "completed"
+   },
+   "capabilities": {
+    "continuation.admit": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    },
+    "continuation.observe": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "continuation.steer": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "effort.rebind": {
+     "support": "OBSERVED",
+     "granularity": "agent_turn",
+     "evidence": "protocol"
+    },
+    "execution.interrupt": {
+     "support": "OBSERVED",
+     "granularity": "agent_turn",
+     "evidence": "live"
+    },
+    "model.observe": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    },
+    "model.rebind": {
+     "support": "OBSERVED",
+     "granularity": "agent_turn",
+     "evidence": "protocol"
+    },
+    "tool.observe": {
+     "support": "OBSERVED",
+     "granularity": "continuation",
+     "evidence": "live"
+    }
+   },
+   "unsupported_or_unknown": [
+    "continuation.admit"
+   ],
+   "unknown_events": {
+    "boundaries": 140,
+    "steer": 564,
+    "interrupt": 159,
+    "approval": 65
+   },
+   "malformed_events": {
+    "boundaries": 0,
+    "steer": 0,
+    "interrupt": 0,
+    "approval": 0
+   }
+  },
+  {
+   "worker": "goose-worker",
+   "harness": "Goose CLI one-shot bounded text dispatch",
+   "integration_status": "existing registered worker seam; session span added, no internal boundary exists",
+   "inference_used": "local loopback serving only",
+   "evidence_class": "source",
+   "boundaries_observed": 0,
+   "model_invocations_observed": "not reported by the harness",
+   "tool_invocations_observed": 0,
+   "correlation_ids_available": [
+    "task_id",
+    "worker_dispatch_id",
+    "worker_session_id (attempt id)",
+    "capability_call_id"
+   ],
+   "correlation_ids_absent": [
+    "agent_turn_id",
+    "model_invocation_id"
+   ],
+   "capabilities": {
+    "continuation.admit": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    },
+    "continuation.observe": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    },
+    "continuation.steer": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    },
+    "effort.rebind": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    },
+    "execution.interrupt": {
+     "support": "OBSERVED",
+     "granularity": "worker_dispatch",
+     "evidence": "live"
+    },
+    "model.observe": {
+     "support": "INFERRED",
+     "granularity": "worker_dispatch",
+     "evidence": "live"
+    },
+    "model.rebind": {
+     "support": "OBSERVED",
+     "granularity": "worker_dispatch",
+     "evidence": "live"
+    },
+    "tool.observe": {
+     "support": "UNSUPPORTED",
+     "granularity": null,
+     "evidence": "none"
+    }
+   },
+   "unsupported_or_unknown": [
+    "continuation.admit",
+    "continuation.observe",
+    "continuation.steer",
+    "effort.rebind",
+    "tool.observe"
+   ],
+   "note": "No live boundary probe applies: a single-turn dispatch with tools disabled has no internal continuation to observe. This row records that honestly instead of emulating one."
+  }
+ ]
+}

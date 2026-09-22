@@ -101,14 +101,38 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
 
 
 class Capabilities:
-    def __init__(self, store: ArtifactStore, fixture_database: Path, card_reader=None, worker=None):
+    def __init__(self, store: ArtifactStore, fixture_database: Path, card_reader=None, worker=None,
+                 recorder=None):
         self.store = store
         self.card_reader = card_reader
         self.worker = worker
+        # Optional diagnostics only. No capability outcome depends on it.
+        from runtime.kernel.instrument import safe
+        self.recorder = safe(recorder)
         self.fixture_database = fixture_database
         fixture_database.parent.mkdir(parents=True, exist_ok=True)
         with sqlite3.connect(fixture_database) as db:
             db.execute("CREATE TABLE IF NOT EXISTS effects (operation_id TEXT PRIMARY KEY, request BLOB NOT NULL, receipt TEXT NOT NULL)")
+
+    def dispatch_worker(self, packet: dict, operation: str, task_id: str) -> dict:
+        """One external Worker execution. A worker session is not a Task.
+
+        The session span measures the dispatch Blaine actually owns. Boundaries
+        internal to the Worker are only observable when its adapter exposes them.
+        """
+        from runtime.kernel.instrument import ExecutionIdentity
+        with self.recorder.span('invoke_agent worker', kind='worker_session', attributes={
+                **ExecutionIdentity(task_id=task_id, run_id=None,
+                                    worker_dispatch_id='dispatch:' + operation).attributes(),
+                'gen_ai.operation.name': 'invoke_agent',
+                'gen_ai.agent.id': getattr(self.worker, 'adapter_id', 'worker')}) as span:
+            result = self.worker(packet, operation)
+            if isinstance(result, dict):
+                span.set(**{'blaine.worker.outcome': str(result.get('outcome')),
+                            'blaine.worker_session_id': str(result.get('attempt_id'))})
+                if result.get('outcome') != 'success':
+                    span.fail('worker_outcome_' + str(result.get('outcome')))
+            return result
 
     def execute(self, request: dict) -> dict:
         """Called only after admission; fixture row is the effect, not a Task ledger."""
@@ -138,7 +162,7 @@ class Capabilities:
                         raise ValueError('Worker input artifact exceeds budget')
                     packet = json.loads(raw)
                     validate_packet(packet, task_id)
-                    result = self.worker(packet, operation)
+                    result = self.dispatch_worker(packet, operation, task_id)
                     ref = self.store.put_json(task_id, result)
                     output = {'worker_outcome':result['outcome'], 'attempt_id':result['attempt_id'],
                               'evidence_ref':ref}

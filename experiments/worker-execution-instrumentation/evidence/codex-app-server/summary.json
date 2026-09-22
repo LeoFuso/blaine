@@ -1,0 +1,54 @@
+{
+ "version": 1,
+ "protocol": "codex-cli-0.155.1",
+ "adapter_id": "codex-app-server",
+ "inference": "local loopback serving only; zero paid cloud inference",
+ "model": "nvidia/Qwen3.8-27B-NVFP4",
+ "endpoint": "http://127.0.0.1:8000/v1",
+ "evidence_class": "live",
+ "cases": {
+  "approval": {
+   "outcome": "OBSERVED",
+   "runtime_s": 5.3,
+   "record_count": 93,
+   "client_callback_timings": [
+    {
+     "received_at_ms": 1740.8,
+     "method": "item/commandExecution/requestApproval",
+     "answered_after_ms": 3000
+    }
+   ],
+   "boundaries": 2,
+   "model_invocations": 2,
+   "tool_invocations": 1,
+   "turn_status": "completed"
+  },
+  "boundaries": {
+   "outcome": "OBSERVED",
+   "runtime_s": 3.4,
+   "record_count": 169,
+   "boundaries": 3,
+   "model_invocations": 3,
+   "tool_invocations": 2,
+   "turn_status": "completed"
+  },
+  "interrupt": {
+   "outcome": "OBSERVED",
+   "runtime_s": 5.4,
+   "record_count": 179,
+   "boundaries": 1,
+   "model_invocations": 1,
+   "tool_invocations": 0,
+   "turn_status": "interrupted"
+  },
+  "steer": {
+   "outcome": "OBSERVED",
+   "runtime_s": 15.9,
+   "record_count": 592,
+   "boundaries": 2,
+   "model_invocations": 2,
+   "tool_invocations": 1,
+   "turn_status": "completed"
+  }
+ }
+}

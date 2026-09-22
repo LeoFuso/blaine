@@ -731,6 +731,16 @@ operator procedures; this document owns development direction and dependencies.
   This is separate from OBS-001 and does not change D1.G's Cloud independence.
 - **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
 - **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
+- **Worker execution boundary: user-directed increment, PASS within its evidence.**
+  A provider-neutral continuation boundary, adapter capability claims and an
+  OpenTelemetry telemetry path now exist, with a synchronous control hook where an
+  adapter genuinely provides one. Codex app-server exposes observation, steering and
+  interruption but **not** synchronous continuation admission, which is declared
+  UNSUPPORTED rather than emulated. This changes no workstream status, adopts no
+  worker binding and builds no supervisor or dashboard. See
+  [milestone 040](../milestones/040-worker-execution-instrumentation.md) and the
+  [boundary contract](../contracts/worker-execution-boundary.md). Selective semantic
+  supervision, steering policy and rebinding policy remain unstarted.
 
 This checkpoint includes E0.A/B only; it does not claim full E0–E3/D3 acceptance,
 adopt services, change Platform D1 infrastructure, unpause backup or authorize a reboot.

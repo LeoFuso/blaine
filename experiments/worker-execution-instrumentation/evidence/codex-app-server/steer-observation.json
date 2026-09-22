@@ -1,0 +1,147 @@
+{
+ "protocol": "codex-app-server/0.155.1",
+ "thread_id": "01a0c70c-4352-7d01-b816-f07823d40d55",
+ "turn_id": "01a0c70c-4356-7333-8134-82aa9d952ec6",
+ "turn_status": "completed",
+ "boundaries": [
+  {
+   "index": 0,
+   "reason": "tool_results",
+   "model_invocations": 1,
+   "tool_invocations": 1,
+   "tools_in_previous_continuation": [
+    "call_836c5e4bcf8957aa"
+   ],
+   "observed_at_ms": 9857.7,
+   "marker": "thread/tokenUsage/updated",
+   "synchronous_admission": false
+  },
+  {
+   "index": 1,
+   "reason": "model_result",
+   "model_invocations": 2,
+   "tool_invocations": 1,
+   "tools_in_previous_continuation": [],
+   "observed_at_ms": 15399.3,
+   "marker": "thread/tokenUsage/updated",
+   "synchronous_admission": false
+  }
+ ],
+ "model_invocations": [
+  {
+   "model_invocation_index": 0,
+   "turn_id": "01a0c70c-4356-7333-8134-82aa9d952ec6",
+   "input_tokens": 8256,
+   "output_tokens": 250,
+   "cached_input_tokens": 7840,
+   "cache_write_input_tokens": 0,
+   "reasoning_output_tokens": 197,
+   "observed_at_ms": 9857.7
+  },
+  {
+   "model_invocation_index": 1,
+   "turn_id": "01a0c70c-4356-7333-8134-82aa9d952ec6",
+   "input_tokens": 8576,
+   "output_tokens": 365,
+   "cached_input_tokens": 7840,
+   "cache_write_input_tokens": 0,
+   "reasoning_output_tokens": 356,
+   "observed_at_ms": 15399.3
+  }
+ ],
+ "tool_invocations": [
+  {
+   "item_id": "call_836c5e4bcf8957aa",
+   "tool_type": "commandExecution",
+   "started_at_ms": 3993.5,
+   "boundary_index": 0,
+   "status": "completed",
+   "exit_code": 0,
+   "duration_ms": 5864,
+   "completed_at_ms": 9857.6,
+   "tool_name": "commandExecution",
+   "request_digest": "4ab11250c1bd8a425bc9432d07ee3c5693979addf4165e6bb34282a6580664a3"
+  }
+ ],
+ "steering": [
+  {
+   "control": "turn/steer",
+   "phase": "consumed",
+   "requested_at_ms": 3993.7,
+   "boundary_index_at_request": 0,
+   "tool_active_at_request": true,
+   "accepted_at_ms": 3994.1,
+   "turn_id": "01a0c70c-4356-7333-8134-82aa9d952ec6",
+   "consumed_at_ms": 9858.1,
+   "consumed_at_boundary_index": 1
+  }
+ ],
+ "approvals": [],
+ "unknown_events": 564,
+ "malformed_events": 0,
+ "unterminated_tool_items": [],
+ "capabilities": {
+  "version": 1,
+  "adapter_id": "codex-app-server",
+  "worker_family": "codex-cli-0.155.1",
+  "capabilities": {
+   "continuation.admit": {
+    "capability": "continuation.admit",
+    "support": "UNSUPPORTED",
+    "granularity": null,
+    "evidence": "none",
+    "note": "Codex never waits for the client at a continuation boundary."
+   },
+   "continuation.observe": {
+    "capability": "continuation.observe",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "thread/tokenUsage/updated marks one boundary per model invocation."
+   },
+   "continuation.steer": {
+    "capability": "continuation.steer",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "turn/steer is accepted mid-tool and consumed at the next boundary."
+   },
+   "effort.rebind": {
+    "capability": "effort.rebind",
+    "support": "OBSERVED",
+    "granularity": "agent_turn",
+    "evidence": "protocol",
+    "note": "turn/start accepts an effort override; no mid-turn rebinding exists."
+   },
+   "execution.interrupt": {
+    "capability": "execution.interrupt",
+    "support": "OBSERVED",
+    "granularity": "agent_turn",
+    "evidence": "live",
+    "note": "turn/interrupt ends the active turn as interrupted."
+   },
+   "model.observe": {
+    "capability": "model.observe",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "Per-invocation input/cached/output/reasoning tokens are reported."
+   },
+   "model.rebind": {
+    "capability": "model.rebind",
+    "support": "OBSERVED",
+    "granularity": "agent_turn",
+    "evidence": "protocol",
+    "note": "turn/start accepts a model override; no mid-turn rebinding exists."
+   },
+   "tool.observe": {
+    "capability": "tool.observe",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "Item lifecycle exposes tool status, exit code and duration."
+   }
+  },
+  "undeclared": []
+ }
+}

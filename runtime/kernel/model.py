@@ -7,6 +7,7 @@ import urllib.request
 from urllib.parse import urlsplit
 
 from runtime.kernel.contracts import MAX_PACKET, encode, unpack, validate_decision
+from runtime.kernel.instrument import model_attributes
 
 
 def obj(properties, required=None):
@@ -81,12 +82,29 @@ def strict_json(content):
     return json.loads(content, object_pairs_hook=pairs, parse_constant=invalid_constant)
 
 
+def observed_usage(usage: dict | None) -> dict:
+    """Normalize OpenAI-compatible usage into the neutral token vocabulary.
+
+    Absent counters stay absent. No value is estimated from text length.
+    """
+    usage = usage if isinstance(usage, dict) else {}
+    details = usage.get('prompt_tokens_details')
+    observed = {'input_tokens': usage.get('prompt_tokens'), 'output_tokens': usage.get('completion_tokens')}
+    if isinstance(details, dict):
+        observed['cached_input_tokens'] = details.get('cached_tokens')
+    return {k: v for k, v in observed.items() if type(v) is int and v >= 0}
+
+
 @dataclass(frozen=True)
 class LocalModelCognition:
     endpoint: str = 'http://127.0.0.1:8000/v1'
     model: str = 'Qwen/Qwen3.5-9B'
     transport: Callable[[dict], dict] | None = None
     audit: Callable[[dict], None] | None = None
+    # No standardized GenAI provider value exists for a self-hosted
+    # OpenAI-compatible server, so the served deployment is named explicitly.
+    provider: str = 'local.vllm'
+    accepts_observation: bool = True
 
     def __post_init__(self):
         address = urlsplit(self.endpoint)
@@ -104,7 +122,7 @@ class LocalModelCognition:
                 raise ValueError('Model response exceeds transport bound')
             return strict_json(data)
 
-    def __call__(self, packet: dict) -> dict:
+    def __call__(self, packet: dict, observe=None) -> dict:
         turn = unpack(packet, 'CognitiveTurn')
         guidance = SYSTEM + '\nRequired output JSON Schema (guidance only; emit an instance, not the schema):\n' + encode(decision_schema(turn)).decode()
         body = {'model': self.model, 'messages': [{'role': 'system', 'content': guidance},
@@ -114,6 +132,14 @@ class LocalModelCognition:
         record = {'turn_id': turn['turn_id'], 'model': self.model,
                   'packet_bytes': len(encode(packet)), 'request_bytes': len(encode(body)),
                   'usage': response.get('usage'), 'response_id': response.get('id')}
+        if observe is not None:
+            # Metadata only: identifiers, model, token counts and a content digest.
+            # The prompt and the completion themselves are never attributes.
+            finish = (response.get('choices') or [{}])[0].get('finish_reason')
+            observe(**model_attributes(provider=self.provider, request_model=self.model,
+                response_model=response.get('model'), response_id=response.get('id'),
+                finish_reason=finish if isinstance(finish, str) else None,
+                usage=observed_usage(response.get('usage'))))
         try:
             choices = response.get('choices', [])
             if len(choices) != 1 or choices[0].get('finish_reason') != 'stop':
@@ -125,6 +151,9 @@ class LocalModelCognition:
             if not isinstance(content, str) or len(content.encode()) > MAX_PACKET:
                 raise ValueError('Invalid or oversized model content')
             record['content_sha256'] = hashlib.sha256(content.encode()).hexdigest()
+            if observe is not None:
+                observe(**{'blaine.model.output_sha256': record['content_sha256'],
+                           'blaine.model.output_bytes': len(content.encode())})
             decision = strict_json(content)
             value = validate_decision(decision)
             if any(value[key] != turn[key] for key in ('task_id', 'task_revision', 'turn_id')):

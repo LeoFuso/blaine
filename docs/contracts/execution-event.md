@@ -34,10 +34,17 @@ There is no guarantee of telemetry delivery during sink failure.
 
 A run is scoped to the existing Restate invocation; it is not a trace.
 Causation links connect successive recorded semantic observations within that run.
-No trace/span or retry attempt is fabricated. The current runtime has no exposed
-OTel span context; the envelope can carry real correlation when instrumentation
-provides it. Producer provenance identifies the recording application component;
-it does not pretend deterministic/scripted decisions are model inference.
+No trace/span or retry attempt is fabricated. The envelope can carry real
+correlation when instrumentation provides it. The separate
+[worker execution boundary](worker-execution-boundary.md) seam now emits
+OpenTelemetry spans for physical execution attempts; those spans and these events
+are deliberately different records. A span describes one physical attempt and may
+repeat under a durable retry or replay; an ExecutionEvent describes one committed
+semantic observation, deduplicated by its stable `event_id`. Neither reads the
+other, and populating this envelope's trace/span fields from that seam remains
+future work rather than an implemented guarantee. Producer provenance identifies
+the recording application component; it does not pretend deterministic/scripted
+decisions are model inference.
 Worker attempt references are carried when the existing capability result supplies them.
 
 Payload references reuse exact artifacts already persisted by the kernel.

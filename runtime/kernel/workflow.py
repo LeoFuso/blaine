@@ -15,6 +15,9 @@ from runtime.kernel.contracts import (
 from runtime.kernel.execution import Capabilities, evaluate, policy_gate
 from runtime.kernel.human import human_requirement, validate_response
 from runtime.kernel.events import ExecutionEventPublisher, event_identity, safe_prepare, safe_publish
+from runtime.kernel.instrument import (
+    ExecutionIdentity, Instrumentation, evidence_digest, model_attributes, tool_attributes,
+)
 
 CognitiveAdapter = Callable[[dict], dict]
 # Deployment-injected probe hook, never selected by a Task/model or exposed by
@@ -26,8 +29,12 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                     capabilities: Capabilities, providers: Sequence[ContextProvider] = (),
                     checkpoint: Checkpoint | None = None,
                     event_publisher: ExecutionEventPublisher | None = None,
-                    event_producer_revision: str | None = None) -> restate.Workflow:
+                    event_producer_revision: str | None = None,
+                    instrumentation: Instrumentation | None = None) -> restate.Workflow:
     workflow = restate.Workflow("CognitiveTaskV1")
+    # Deployment-selected diagnostics and boundary control. The default bundle is
+    # inert: no span, no event, no extra journal entry, no behavior change.
+    instruments = instrumentation or Instrumentation()
 
     @workflow.main(workflow_retention=timedelta(days=7))
     async def run(ctx: restate.WorkflowContext, request: dict) -> dict:
@@ -87,6 +94,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
         await emit('start', 'task.started', 'RUNNING', 'blaine.kernel.workflow', refs={'parent_task_id': parent['task_id']} if parent else None, payload_refs=(state['spec_ref'],))
         concerns = []
         prepared_packet = None
+        tool_invocations, last_tool_outcome = 0, None
         async def await_input(action):
             state["wait"] = {"wait_id": action["wait_id"], "input_type": action["input_type"],
                              "task_revision": state["revision"], "promise": f"input/{state['iteration']}/{action['wait_id']}"}
@@ -119,7 +127,14 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             # Completion is a verifier-authorized lifecycle transition. A model
             # proposal is neither necessary nor sufficient to authorize it.
             label = f"{phase}/{state['iteration']}"
-            evaluation = await step(f"progress/{label}", evaluate,
+            def verify(spec, state, store):
+                with instruments.recorder.span('blaine.verifier', kind='verifier', attributes={
+                        **ExecutionIdentity(task_id=task_id, run_id='run:' + ctx.request().id).attributes(),
+                        'blaine.verifier.phase': phase}) as span:
+                    result = evaluate(spec=spec, state=state, store=store)
+                    span.set(**{'blaine.verifier.outcome': result['payload']['outcome']})
+                    return result
+            evaluation = await step(f"progress/{label}", verify,
                 spec=spec, state=deepcopy(state), store=store)
             state['completion_ref'] = await retain(f"progress-evidence/{label}", evaluation)
             if evaluation['payload']['outcome'] == 'satisfied':
@@ -136,6 +151,17 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                 if state['lifecycle'] == 'COMPLETED':
                     break
                 state = {**state, "iteration": iteration}
+                # A continuation boundary: prior model/tool activity is incorporated
+                # and the next model continuation has not started. Blaine owns this
+                # loop, so the admission runs synchronously here, before cognition.
+                if instruments.enabled:
+                    await step(f'continuation/{iteration}', instruments.admit, payload={
+                        'identity': {'task_id': task_id, 'run_id': 'run:' + ctx.request().id,
+                                     'model_invocation_id': f'{task_id}/{iteration}'},
+                        'index': iteration - 1, 'reason': 'session_start' if iteration == 1 else 'tool_results',
+                        'model_invocations': iteration - 1, 'tool_invocations': tool_invocations,
+                        'last_tool_outcome': last_tool_outcome,
+                        'evidence_digest': evidence_digest(state['artifacts'])})
                 packet = prepared_packet or await step(f"context/{iteration}", reconstruct,
                                                        state=deepcopy(state), spec=spec, store=store, providers=providers)
                 prepared_packet = None
@@ -146,10 +172,20 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                     await checkpoint(ctx, "before_cognition", deepcopy(state))
 
                 def decide() -> dict:
-                    raw = cognitive(deepcopy(packet))
-                    if len(encode(raw)) > MAX_PACKET:
-                        raise restate.TerminalError("Decision exceeds size limit", status_code=400)
-                    return raw
+                    # Spans wrap the physical call inside the journaled step, so a
+                    # replay that consumes the journal never fabricates inference.
+                    with instruments.recorder.span(None, kind='model_invocation', attributes={
+                            **ExecutionIdentity(task_id=task_id, run_id='run:' + ctx.request().id,
+                                model_invocation_id=f'{task_id}/{iteration}').attributes(),
+                            'blaine.continuation.index': iteration - 1,
+                            **model_attributes(provider=getattr(cognitive, 'provider', 'blaine.cognition'),
+                                               request_model=getattr(cognitive, 'model', 'scripted'))}) as span:
+                        raw = (cognitive(deepcopy(packet), observe=span.set)
+                               if getattr(cognitive, 'accepts_observation', False) else cognitive(deepcopy(packet)))
+                        if len(encode(raw)) > MAX_PACKET:
+                            span.fail('decision_size_limit')
+                            raise restate.TerminalError("Decision exceeds size limit", status_code=400)
+                        return raw
 
                 # The semantic output is journaled before validation, effect
                 # admission or handoff. Replay consumes it without calling cognition.
@@ -181,8 +217,24 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                                 "task_id": task_id, "operation_id": state["decision_id"],
                                 "capability": action["capability"], "input": action["input"],
                             }
-                            observation = await step(f"capability/{iteration}", capabilities.execute,
+                            def execute_capability(request):
+                                with instruments.recorder.span(None, kind='tool_execution', attributes={
+                                        **ExecutionIdentity(task_id=task_id, run_id='run:' + ctx.request().id,
+                                            capability_call_id=state['decision_id']).attributes(),
+                                        'blaine.continuation.index': iteration - 1,
+                                        **tool_attributes(name=action['capability'],
+                                                          call_id=state['decision_id'],
+                                                          tool_type='blaine.capability')}) as span:
+                                    result = capabilities.execute(request)
+                                    outcome = result['payload']['outcome']
+                                    span.set(**{'blaine.tool.outcome': outcome})
+                                    if outcome != 'success':
+                                        span.fail('capability_failure')
+                                    return result
+                            observation = await step(f"capability/{iteration}", execute_capability,
                                                      request=message("CapabilityRequest", capability_request))
+                            tool_invocations += 1
+                            last_tool_outcome = observation['payload']['outcome']
                             state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
                             state['observation_ref'] = await retain(f'effect-observation/{iteration}', observation)
                             ctx.set('task', message('TaskState', state))

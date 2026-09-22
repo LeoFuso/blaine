@@ -1,0 +1,9 @@
+# OPTIONAL telemetry dependencies. NOT installed in the adopted service
+# environment: runtime/kernel/telemetry_otel.py degrades to the inert default
+# recorder when these are absent, so the running deployment is unchanged.
+# Adopting them is a separate operational decision with its own acceptance.
+opentelemetry-api==1.41.0
+opentelemetry-exporter-otlp-proto-http==1.41.0
+opentelemetry-proto==1.41.0
+opentelemetry-sdk==1.41.0
+opentelemetry-semantic-conventions==0.62b0

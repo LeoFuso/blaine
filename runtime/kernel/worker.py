@@ -33,6 +33,7 @@ class GooseWorker:
     proxy: str | None = None
     started: object = None  # trusted deployment observer; never selected by cognition
     model: str = 'Qwen/Qwen3.5-9B'  # operator deployment choice, never WorkerInput
+    adapter_id: str = 'goose-worker'  # identifies the declared capability profile
 
     def __call__(self, packet, operation_id):
         validate_packet(packet, packet['payload']['task_id'])
