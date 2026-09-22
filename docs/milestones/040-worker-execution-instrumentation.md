@@ -78,12 +78,11 @@ acceptance. It was never a success criterion, and the boundary is fully useful
 without it: the demonstrated observer is deterministic and the seam accepts any
 replaceable participant.
 
-One naming discrepancy is recorded for whoever attempts that validation later.
-The inspected integration path expects the environment variable `TYPESAFE_API_KEY`,
-while the existing secret is currently stored under the name `JEV_API_KEY`. Neither
-variable was readable from this increment's execution environment, and no secret
-was read, renamed, moved or emitted here. Reconciling the two names is a separate
-operational decision, not part of this merge.
+`TYPESAFE_API_KEY` is the authoritative runtime name for that credential, in the
+secret store and in any future integration. No Jev credential was readable from
+this increment's execution environment, and no secret value was read or emitted
+here. No code reads the variable today, so no compatibility alias exists and none
+should be added until an implementation actually needs one.
 
 ## Limits
 

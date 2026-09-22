@@ -178,9 +178,9 @@ def main():
             'jev_validation': 'NOT PERFORMED',
             'jev_part_of_acceptance': False,
             'jev_reason': 'no Jev credential was readable from this execution environment',
-            'jev_secret_name_discrepancy': ('the inspected integration expects TYPESAFE_API_KEY while the '
-                                            'existing secret is stored as JEV_API_KEY; no secret was read, '
-                                            'renamed or emitted by this increment'),
+            'jev_secret_variable': 'TYPESAFE_API_KEY',
+            'jev_secret_handling': ('authoritative runtime name; no alias exists because no code reads it, '
+                                    'and no secret value was read or emitted by this increment'),
             'boundary_useful_without_jev': True},
         'workers': [kernel_entry(), codex_entry(), goose_entry()],
     }
