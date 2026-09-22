@@ -1,0 +1,51 @@
+{
+  "status": "PARTIAL",
+  "e0c_accepted": false,
+  "task_spec_submitted": false,
+  "target": {
+    "host": "blaine",
+    "ssh_user": "leofuso"
+  },
+  "offline": {
+    "go_tests": "PASS",
+    "race": "PASS",
+    "vet": "PASS",
+    "host_boundary_tests": "PASS",
+    "standalone_regression": "PASS",
+    "repeat_build_targets": [
+      "blaine-darwin-amd64",
+      "blaine-darwin-arm64",
+      "blaine-linux-amd64",
+      "blaine-linux-arm64"
+    ]
+  },
+  "live": {
+    "scope": "native Linux amd64 development host only",
+    "second_workstation": "PENDING/BLOCKED: user has not designated one",
+    "remote_peer_identity": "NOT_PROVEN",
+    "production_host_dispatch": "NOT_IMPLEMENTED",
+    "production_host_deployment": "NOT_PERFORMED",
+    "remote_acp": "NOT_PROVEN",
+    "readiness": {
+      "runtime": "PASS",
+      "restate": "PASS",
+      "mirix": "UNKNOWN",
+      "generation": "PASS",
+      "embeddings": "PASS"
+    },
+    "profile_persisted": false,
+    "network_unchanged": true,
+    "ssh_known_hosts_unchanged": true,
+    "tailscale_preferences_unchanged": true
+  },
+  "platforms": {
+    "linux_amd64": "local runtime observations; remote acceptance pending",
+    "linux_arm64": "build only",
+    "macos_amd64_arm64": "design/build only",
+    "windows_wsl2": "design/Linux build only; guest route pending"
+  },
+  "next_canonical_slice": "E0.D Registration, after E0.C acceptance",
+  "later_slices_implemented": false,
+  "push": false,
+  "merge": false
+}

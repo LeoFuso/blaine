@@ -1,7 +1,7 @@
 # Personal Agent Hub — E0 through E3
 
 **Design checkpoint: 2026-09-21. Status: architecture and implementation handoff;
-E0.A foundation and E0.B network prerequisite implemented; full E0–E3 remain unaccepted.**
+E0.A foundation and E0.B network prerequisite implemented; E0.C PARTIAL; full E0–E3 remain unaccepted.**
 
 The [E0.A client guide](../client/README.md) and
 [isolated evidence](../experiments/e0a-blaine-client/README.md) record the five-command
@@ -9,7 +9,12 @@ skeleton, Go selection, platform paths and byte/process proof. Linux amd64 runti
 passed. [E0.B evidence](../experiments/e0b-tailscale-onboarding/README.md) adds native
 Linux Tailscale detection, doctor and idempotent network readiness PASS. Linux
 install/login mutations are fixture-tested; macOS is design/build/fixture-only,
-and WSL host reuse is STOP pending a live spike. E0.C–E0.F remain. Command contracts
+and WSL host reuse is STOP pending a live spike.
+[E0.C evidence](../experiments/personal-agent-hub/e0c/README.md) records profile,
+strict transport/handshake and framing fixtures plus local host observations.
+Second-workstation peer binding, production host dispatch/deployment and remote
+ACP acceptance remain pending; MIRIX dependency readiness is UNKNOWN. E0.D–F
+are untouched. Command contracts
 below describe the complete target, beyond these slices.
 
 Blaine is the persistent Personal Agent. A workstation is a registered execution
@@ -381,8 +386,9 @@ JetBrains version pair are open E0.E decisions, not implemented commands.
 ## Command contracts
 
 Command behavior in this section describes the complete E0 target. The
-[E0.A/B command subset](../client/README.md#commands-and-exits) implements network
-prerequisites only; Blaine host onboarding remains unavailable and no full E0 claim follows.
+[implemented command subset](../client/README.md#commands-and-exits) includes
+network prerequisites and a gated E0.C host candidate; production host onboarding
+remains unavailable and no full E0 claim follows.
 Optional flags remain small: `connect --host NAME` for
 first-use override and `doctor --json` for automation; normal operation needs
 neither a host argument nor raw transport knowledge. Use a release/operator
@@ -982,7 +988,7 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 | --- | --- | --- | --- | --- |
 | E0.A Client skeleton/package — [foundation PASS](../experiments/e0a-blaine-client/README.md) | Settle Go recommendation; proposed `client/cmd/blaine`, `client/internal/platform` Linux/macOS/WSL adapters, versioned config model and portable artifact/install notes. Five-command surface with explicit unavailable stubs for later behavior. | Install executable in a clean Linux user environment; version works without repo/language runtime; config/path and stdio/signal fixtures cover all three platform boundaries; live portability explicitly scoped. | Packaging requires hidden runtime/repo, stdout corruption, unsafe config migration. | This design; no live host required. |
 | E0.B Tailscale state/login | Proposed platform prerequisite adapters; supported install assistance, native status/login, macOS approvals, Windows host inspection from WSL. | On available targets, prove install/missing/expired/login states; macOS native approval and WSL2 host status/topology probes; no changed unrelated preferences. Record untested targets. | Needs admin token/permanent root, duplicate WSL daemon, wrong tailnet, unsupported install or cannot distinguish auth/host/guest reachability. | E0.A; authorized test workstation. |
-| E0.C Host/transport/handshake | Proposed transport adapter and installed host connection entrypoint; versioned handshake/readiness schema. | Verify actual SSH mode/host/peer identity and clean stdio; mismatch/offline/check-mode tests; measure WSL path and any real forwarding need separately. | Untrusted claimed device identity, public endpoint, incompatible protocol accepted, unsafe SSH fallback. | E0.A/B; host profile and bounded host-entrypoint deployment authorization. |
+| E0.C Host/transport/handshake — [PARTIAL](../experiments/personal-agent-hub/e0c/README.md) | Proposed transport adapter and installed host connection entrypoint; versioned handshake/readiness schema. | Verify actual SSH mode/host/peer identity and clean stdio; mismatch/offline/check-mode tests; measure WSL path and any real forwarding need separately. | Untrusted claimed device identity, public endpoint, incompatible protocol accepted, unsafe SSH fallback. | E0.A/B; host profile and bounded host-entrypoint deployment authorization. |
 | E0.D Registration | Proposed PostgreSQL migration/repository and client registration receipt. | Register/replay after response loss and restart: one identity; copied UUID on another device denied; revoke/re-pair explicit. | New Task ledger, registration grants workspace scope, unknown outcome reported success. | E0.C; existing PostgreSQL access scoped to registry. |
 | E0.E IntelliJ config | Proposed client IDE config adapter and merge fixtures. | Actual IntelliJ with a second agent, closed/running merge/reload; correct OS user config and stable launcher; test supported Windows/WSL arrangement before that platform PASS. | Overwrites unrelated fields, managed installation blocks agents, version unsupported. | E0.A/C/D; supported IDE installation. |
 | E0.F Doctor/connect acceptance | Integrate state flow, diagnostics, disconnect and release artifact; proposed E0 acceptance report. | New-workstation journey and E0 positive/negative matrix per implemented platform, twice-run connect, read-only doctor; mark other targets unverified. | False READY, any missing identity/config/stdio invariant; no live IntelliJ evidence. | E0.A–E; closes only explicitly validated platform scope of E0. |

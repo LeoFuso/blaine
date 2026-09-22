@@ -135,14 +135,18 @@ bounded product architecture. **E0.A is PASS for the isolated client foundation*
 **E0.B development-platform PASS; cross-platform PARTIAL** adds real Tailscale
 detection, read-only doctor and idempotent network readiness on Ubuntu amd64.
 Four standalone builds and install/auth fixtures passed; macOS runtime remains
-unverified and WSL host reuse is STOP pending a live spike. Full Blaine onboarding,
+unverified and WSL host reuse is STOP pending a live spike.
+**E0.C PARTIAL** ([evidence](../../experiments/personal-agent-hub/e0c/README.md)) adds
+profile/transport/handshake/framing fixtures and local read-only host observations;
+trusted second-peer binding, production dispatch and remote ACP remain pending.
+Full Blaine onboarding,
 remote effects and coding E2E remain unvalidated.
 Accepted platform/runtime capabilities are inputs, not a reason to reopen their
 entire workstreams. Workstation and worker remain independent.
 
 | Milestone | Status / product outcome | Dependencies and D-series mapping |
 | --- | --- | --- |
-| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; full E0 remains unaccepted.** Small portable client, supported prerequisite assistance, native Tailscale login, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. E0.A/B client/network boundary implemented; E0.C is next. macOS runtime and WSL reuse remain gated. |
+| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PARTIAL; full E0 remains unaccepted.** Small portable client, supported prerequisite assistance, native Tailscale login, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. E0.C remains gated on second-peer identity, readiness and remote ACP; E0.D registration follows acceptance. macOS runtime and WSL reuse remain gated. |
 | E1 — Remote Workspace Read | **DESIGNED.** Actual second-workstation IntelliJ read, confined paths and evidence in the same durable Task across reconnect. | E0; delivers D3.A product proof. Live client capability/confinement gates remain open. |
 | E2 — Remote Workspace Effects | **DESIGNED.** Conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
 | E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |
@@ -708,10 +712,12 @@ operator procedures; this document owns development direction and dependencies.
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux
   network prerequisite PASS / cross-platform PARTIAL**
-  ([evidence](../../experiments/e0b-tailscale-onboarding/README.md)). Next is **E0.C**:
-  host profile/discovery, trusted transport peer binding, handshake and remote ACP
-  framing gates. macOS runtime and WSL guest route proof remain open; E0.B did not
-  implement host discovery or IntelliJ configuration. Use the
+  ([evidence](../../experiments/e0b-tailscale-onboarding/README.md)). **E0.C PARTIAL**
+  ([evidence](../../experiments/personal-agent-hub/e0c/README.md)): profile, strict
+  transport/handshake and framing candidate tested; no designated second workstation.
+  Complete trusted peer binding, host dispatch/deployment, readiness and remote ACP
+  acceptance before **E0.D Registration**, the next canonical slice. macOS runtime
+  and WSL guest route proof remain open. E0.D+ was not implemented. Use the
   [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
   E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
   D3 history is preserved; no E-series product milestone is claimed live PASS.
@@ -732,5 +738,5 @@ operator procedures; this document owns development direction and dependencies.
 - **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
 - **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
 
-This checkpoint includes E0.A/B only; it does not claim full E0–E3/D3 acceptance,
+This checkpoint includes E0.A/B and partial E0.C; it does not claim full E0–E3/D3 acceptance,
 adopt services, change Platform D1 infrastructure, unpause backup or authorize a reboot.

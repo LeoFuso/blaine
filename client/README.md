@@ -1,12 +1,16 @@
-# Blaine workstation client — E0.A / E0.B
+# Blaine workstation client — E0.A / E0.B / E0.C
 
 A standalone client foundation, separate from the Python Personal Agent under
-`runtime/`. This implements **E0.A and the E0.B network prerequisite slice** from the
+`runtime/`. This implements **E0.A, E0.B and a PARTIAL E0.C candidate** from the
 [Hub design](../docs/personal-agent-hub.md) and
 [ADR 0022](../docs/decisions/0022-workstation-personal-agent-client.md).
 Tailscale detection, installation assistance and native login are implemented.
-Blaine host discovery, handshake, registration, IntelliJ configuration and remote
-ACP remain unavailable. Full E0 is not accepted.
+E0.C adds explicit MagicDNS profile resolution, strict SSH transport, handshake
+validation and guarded ACP framing. Production peer binding and remote launch are
+still unavailable; no second workstation was designated. See the
+[E0.C contract](../docs/contracts/host-connection.md) and
+[evidence](../experiments/personal-agent-hub/e0c/README.md). Registration and IntelliJ
+configuration remain later slices. Full E0 is not accepted.
 
 ## Commands and exits
 
@@ -15,9 +19,9 @@ ACP remain unavailable. Full E0 is not accepted.
 | `blaine version` | One line: `blaine VERSION protocol=1 commit=COMMIT go=GO_VERSION platform=OS/ARCH`; exit 0. Offline, no config access. |
 | `blaine version --json` | One JSON object with `schema_version: 1`, `client_version`, `protocol_version`, `build_commit`, `go_version`, `os`, `arch`; exit 0. |
 | `blaine doctor [--json]` | Read-only foundation plus real Tailscale installation, owner, CLI/daemon, authentication and device/network observations. Full onboarding stays NOT_READY; ordinarily exit 2. |
-| `blaine connect [--non-interactive]` | Idempotent E0.B network preparation; exit 0 only for local network prerequisite readiness. Interactive install/login confirmation; redirected stdin is automatically non-interactive. |
+| `blaine connect [--non-interactive] [--host NAME]` | E0.B network preparation, then explicit/cached host handshake. First use qualifies a short name using native MagicDNS metadata and defaults SSH user to the local account. Failed handshake preserves configuration. Even a fixture-valid host stays NOT_READY (exit 2), awaiting E0.D/E. |
 | `blaine disconnect` | JSON `{ "schema_version": 1, "command": "…", "status": "NOT_IMPLEMENTED", "milestone": "E0.A" }`; exit 2, no effects. |
-| `blaine acp` | Empty stdout, NOT_CONFIGURED diagnostic on stderr, exit 2. Safe to launch, but not yet a working ACP agent. |
+| `blaine acp` | Requires a verified profile and fresh host handshake, then guarded remote framing. Missing profile returns NOT_CONFIGURED with empty stdout. Production host peer binding remains gated, so no working remote-agent claim. |
 | `blaine acp --fixture echo` | Bounded subprocess byte roundtrip, operational diagnostics on stderr. No ACP handshake/parser or networking. |
 | `blaine acp --fixture exit-23` | Same process relay, child exit 23 propagated. |
 | `blaine acp --fixture wait` | Wait until cancellation or the fixed five-second deadline; exits 130 or 124. |
@@ -26,21 +30,26 @@ Unknown commands, extra positional arguments and unsupported flags return 64 wit
 usage on stderr. No arbitrary executable/shell CLI option exists. ACP stdout is
 empty on usage/configuration failures. Exit 1 means an internal/start/I/O failure. Connect returns 2 for declined actions,
 failed prerequisites or manual remediation, 124 for timeouts and 130 for cancellation.
-`connect --non-interactive` only inspects, never installs, logs in or prompts.
+`connect --non-interactive` never installs, logs in or prompts. E0.C may persist the
+first profile only after verified host identity and readiness. Host/control failure
+returns 3; incompatible protocol/features returns 4; local/trust/config action returns 2.
 Normal child exits pass through; child signal exits use 128 + signal number.
-SIGINT and SIGTERM cancellation of the launcher both return 130 after cleanup.
+The raw byte fixture retains its accepted cancellation exits. The new framed
+bridge reports a lost/invalid connection nonzero after cleanup; it never replays a
+prompt or changes a Task lifecycle.
 
 `version` metadata defaults to `0.1.0-dev`, commit `unknown` in an unparameterized
-`go build`. Protocol 1 is the **reserved Blaine handshake version**, not a claim
-that handshake or ACP version negotiation exists. The release build embeds
-`0.1.0-e0b` and an explicit source commit. JSON schema 1 is the output envelope.
+`go build`. Protocol 1 is the Blaine handshake version, independent of ACP negotiation.
+The E0.C verification build embeds `0.1.0-e0c` and an explicit source commit.
+JSON schema 1 is the output envelope.
 
 Doctor retains the versioned schema 1 report (`timestamp`, `overall`, `checks`).
 Both renderers use identical observations and remediation. Overall remains
-`NOT_READY` because E0.C–E0.F checks are still UNKNOWN/NOT_IMPLEMENTED, even when
+`NOT_READY` because required host/registration/IDE gates remain open, even when
 `tailscale` is PASS. Doctor never initiates login, browser launch, package install,
 service start or client-state writes. Directory checks still do not certify future
-write permissions or read config contents.
+write permissions. Doctor reads an existing profile and attempts its bounded
+handshake; it never creates a profile or modifies SSH known-host trust.
 
 Tailscale checks are `tailscale`, `tailscale_installation`, `tailscale_owner`,
 `tailscale_cli`, `tailscale_daemon`, `tailscale_auth`, `tailscale_device`,
@@ -120,9 +129,11 @@ Linux artifact and selected distro's home, never a guessed Windows profile.
 | Transient process state | Optional `$XDG_RUNTIME_DIR/blaine/`; otherwise memory | Memory; future temporary files must use a private OS temporary directory |
 | Secrets | Native Tailscale/SSH stores; any justified future pairing secret uses an OS credential store | Same; native OS credential store for a justified future secret |
 
-**E0.A/B persist no Blaine client state.** No config file, client identity, registration, secret,
-log or local database is created. Config contents and their versioned schema will
-be introduced with the first real consumer; E0.A establishes locations only.
+**E0.A/B introduced no persisted state.** E0.C adds schema-1 host/client/server
+metadata after successful verification, private permissions, atomic first publish
+and rejection of existing/concurrently created destinations. It does not implement
+re-pairing, registration, logs or a database. No live profile was persisted because
+the production identity gate is unresolved.
 Relative XDG overrides fail validation. Future writes must use restrictive
 permissions, atomic replacement and concurrency checks per the existing design.
 Do not put secrets in normal config/state. Optional macOS file logs would belong
@@ -157,14 +168,17 @@ The fixture self-execs the same installed binary with the internal
 echo accepts at most 1 MiB (one extra byte is read/emitted to detect overflow, then
 exit 1). `wait` exists only to exercise cancellation/deadlines. The fixture carries
 arbitrary bytes, including invalid UTF-8, as a purity test; it is **not ACP protocol
-validation**. No remote stdout is admitted in E0.A. E0.C must implement the accepted
-remote framing/banner rejection and handshake gates before enabling real ACP.
+validation**. The E0.C candidate adds a separate strict NDJSON frame relay with correlation,
+size/pending-request bounds and banner rejection. It strips advertised client
+capabilities and rejects MCP/host capability calls; no workspace authority exists.
+Its real-pipe tests are fixtures, not remote Tailscale/ACP acceptance.
 
 Non-protocol prerequisite commands use bounded in-memory capture around the same
 process primitive. Raw status/authentication output is never persisted. Child-only
 environment overrides support the documented macOS CLI mode without changing the
 parent environment. Foreground terminal borrowing applies only to installation;
-ACP continues to inherit its byte streams directly. Package managers and native
+The E0.A raw fixture still inherits streams directly; the E0.C candidate validates
+complete frames in bounded pipes before forwarding. Package managers and native
 apps may launch OS-owned services outside the transport process-group contract;
 cancellation never claims to roll back or stop those services.
 

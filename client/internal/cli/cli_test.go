@@ -53,7 +53,7 @@ func TestCommandsAndVersion(t *testing.T) {
 	}
 }
 func TestAllMalformedACPKeepsStdoutEmpty(t *testing.T) {
-	for _, args := range [][]string{nil, {"unknown"}, {"version", "extra"}, {"doctor", "--json", "extra"}, {"connect", "--host", "anything"}, {"disconnect", "extra"}, {"acp", "--json"}, {"acp", "--fixture"}, {"acp", "--fixture", "bogus"}, {"acp", "--fixture", "echo", "extra"}, {"acp", "--fixture-worker", "bogus"}, {"acp", "--exec", "/bin/sh"}} {
+	for _, args := range [][]string{nil, {"unknown"}, {"version", "extra"}, {"doctor", "--json", "extra"}, {"connect", "--host"}, {"disconnect", "extra"}, {"acp", "--json"}, {"acp", "--fixture"}, {"acp", "--fixture", "bogus"}, {"acp", "--fixture", "echo", "extra"}, {"acp", "--fixture-worker", "bogus"}, {"acp", "--exec", "/bin/sh"}} {
 		code, out, err := invoke(t, args...)
 		if code != 64 || out != "" || err == "" {
 			t.Fatal(args, code, out, err)

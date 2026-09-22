@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"blaine.local/client/internal/buildinfo"
+	"blaine.local/client/internal/connection"
 	"blaine.local/client/internal/platform"
 )
 
@@ -80,6 +81,21 @@ func InspectContext(ctx context.Context) Report {
 				add(path.id, "PASS", "OK", "Location valid; no client state needs to be written", "")
 			}
 		}
+		profile, e := connection.Load(p.Paths.ConfigFile)
+		if e != nil {
+			add("connection", "UNKNOWN", "NOT_CONFIGURED", "Verified host profile unavailable", "Run blaine connect --host NAME; existing invalid configuration must be reviewed.")
+		} else if _, e = (connection.SSH{Platform: p}).Handshake(ctx, profile); e != nil {
+			code := "REMOTE_UNAVAILABLE"
+			if connection.Exit(e) == 4 {
+				code = "INCOMPATIBLE"
+			}
+			if connection.Exit(e) == 2 {
+				code = "LOCAL_INVALID"
+			}
+			add("connection", "FAIL", code, "Current host handshake did not pass", "Check host trust, peer binding, compatibility and remote readiness with the operator.")
+		} else {
+			add("connection", "PASS", "OK", "Current private host handshake verified", "Registration and IDE acceptance remain separate gates.")
+		}
 	}
 	if executable, err := os.Executable(); err != nil || !filepath.IsAbs(executable) {
 		add("execution", "FAIL", "LOCAL_INVALID", "Cannot resolve running executable", "Run an installed standalone binary.")
@@ -88,7 +104,7 @@ func InspectContext(ctx context.Context) Report {
 	}
 	// Stable check IDs are the extension boundary. Replace each placeholder with
 	// actual read-only observation in its owning slice; never infer downstream PASS.
-	for _, id := range []string{"connection", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
+	for _, id := range []string{"registration", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
 		add(id, "UNKNOWN", "NOT_IMPLEMENTED", "Not implemented in E0.B", "Requires E0.C–E0.F; network readiness alone is not Blaine onboarding.")
 	}
 	if Exit(r.Checks) == 0 {
