@@ -1,26 +1,18 @@
 # D1 — Long-lived platform foundation
 
-**Metrics slice CONCLUDED / ACCEPTED as best-effort asynchronous Cloud transport.**
-Live delivery, temporary network buffering/retry, same-process reconnect/drain and
-Cloud-independent Alloy startup passed. Restart replay remains NOT GUARANTEED /
-FAIL; lossless durability is NOT CLAIMED. This does not block D1.G.
-Follow-up [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3) is Upstream /
-Backlog. See the [live inventory and validated PromQL](platform-observability-inventory.md).
-
-**Fleet slice, 2026-09-21: activation STOPPED.** Native Alloy 1.19.2 registration
-failure prevents offline initial startup. Local Alloy was restored and verified;
-D1.A/B/C/D and all prepared D1.G identities remain accepted/unchanged. See the
-[Fleet findings and BWS runbook](platform-grafana-cloud.md). No reboot occurred.
-
-**Current: D1 IN PROGRESS. D1.A/B/C/D live service adoption PASS; rootless
-migration PASS; D1.G host reboot PENDING; backup PAUSED.**
-
-See the [accepted service topology, exact versions, state paths and D1.G procedure](platform-services.md),
-[infrastructure foundation](platform-infrastructure.md), and
-[rootless migration](platform-rootless-docker.md). Preserved ADR 0019 records the
-accepted 131072-token, one-generation inference configuration.
+> Legacy D1 checkpoint and paused backup history. Current program status belongs
+> to the [roadmap](roadmap/001-blaine-development-roadmap.md#d1); current application
+> topology, versions, state paths and D1.G procedure belong to
+> [platform services](platform-services.md). Use [rootless operations](platform-rootless-docker.md)
+> for active infrastructure ownership, [observability inventory](platform-observability-inventory.md)
+> for coverage and [Grafana Cloud](platform-grafana-cloud.md) for Fleet/data-plane
+> operation. The dated observations below are preserved evidence, not fresh health
+> or authorization. Historical inventories and “next” instructions may be superseded.
 
 ## Ready at login — configured and live-tested; host reboot pending
+
+Historical service-adoption checkpoint; consult [platform services](platform-services.md)
+for the current procedure and the roadmap for acceptance status.
 
 The linger-enabled user manager owns rootless Docker, infrastructure, generation,
 embeddings, MIRIX, Restate and the actual Blaine runtime. All seven user units are

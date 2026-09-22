@@ -1,5 +1,13 @@
 # Durable Cognitive Loop — architecture checkpoint
 
+> Historical architecture checkpoint with adopted increment amendments. Original
+> proposal/status/next-step language below describes its checkpoint, not current
+> program authority. Read [current architecture](../architecture.md), the
+> [roadmap](../roadmap/001-blaine-development-roadmap.md) and
+> [contract index](../contracts/README.md) first. Preserve referenced amendments
+> and evidence; extraction of remaining kernel contract material is deferred.
+
+
 > Increment 12 implements the approved bounded parallel topology: native joined
 > Restate child calls, explicit parent relationships, ALL_TERMINAL fan-in, bounded
 > outcome references and independent completion. The sequential child form remains

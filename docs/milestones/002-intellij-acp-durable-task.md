@@ -1,5 +1,11 @@
 # Milestone 002 — Interactive Durable Task over ACP
 
+> Historical checkpoint: preserve its successful IntelliJ/WSL/Tailscale SSH run
+> and original setup details. Current [Hub design](../personal-agent-hub.md) replaces
+> manual transport configuration as the product direction and separately gates
+> current IDE/WSL compatibility. This report is not a current onboarding runbook.
+
+
 Architectural validation spike. Local and IntelliJ validation have both passed.
 No LLM is involved.
 

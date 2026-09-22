@@ -13,6 +13,18 @@ limitations; their historical “next” instructions do not override that roadm
 | D1 backup | [PAUSED checkpoint](../platform-d1.md); no accepted physical backup/restore | [Volume preservation](../../infra/volume-preparation-d1.json) |
 | D2 Personal Agent | [PASS within documented fixture scope](../daily-driver-d2.md) | [Acceptance](../../experiments/daily-driver-d2/evidence/summary.json), [validation](../../experiments/daily-driver-d2/evidence/validation.json), [post-sync native acceptance](../../experiments/daily-driver-d2/evidence/post-sync-native-summary.json) |
 
+## Planned product milestones
+
+[Personal Agent Hub](../personal-agent-hub.md#milestone-acceptance) defines E0–E3;
+these entries are design/navigation references, not new PASS reports.
+
+| Milestone | Target proof | Relationship |
+| --- | --- | --- |
+| E0 | Workstation connect/doctor/ACP onboarding, portable Linux/macOS/WSL2 design | Consumes D1 availability and D2 controls |
+| E1 | Live IntelliJ confined read on a second workstation, same Task after reconnect | D3.A product proof |
+| E2 | Bounded remote write/exec and deterministic completion evidence | D3.B capability/effect proof |
+| E3 | Java 25 Gradle coding E2E with genuine human response and same-Task resume | Synthetic precursor to D3.C; not full D7 |
+
 Numbered reports in this directory retain earlier architecture/runtime experiments
 and kernel progression. Consult the relevant report and its artifacts rather than
 inferring live deployment or broader product readiness from a PASS label.

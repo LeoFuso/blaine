@@ -1,5 +1,13 @@
 # Daily Driver D2 — Personal Agent / Remote Task Intake
 
+This is the implemented D2 binding/usage guide and its bounded evidence record.
+[Personal Agent Hub E0–E3](personal-agent-hub.md) owns the next workstation/client
+product design; the [roadmap](roadmap/001-blaine-development-roadmap.md) owns current
+sequencing. Historical SSH/worktree launch examples here remain reproduction
+instructions, not the future client onboarding contract. Existing Task contracts
+remain normative within their documented implementation limits.
+
+
 D2 exposes the current `CognitiveTaskV1` kernel through a stateless Personal
 Agent binding and ACP stdio adapter. It supports small deterministic work,
 authoritative inspection, typed human responses, explicit cancellation, and

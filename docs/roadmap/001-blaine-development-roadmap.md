@@ -1,6 +1,6 @@
 # Blaine development roadmap and repository handoff
 
-**Living checkpoint: 2026-09-20. Current program: Daily Driver Enablement.**
+**Living checkpoint: 2026-09-21. Current program: Daily Driver Enablement / Personal Agent Hub E0–E3.**
 
 This is Blaine's authoritative **living development program**, handoff for future
 human/agent sessions, and record of intended sequencing and dependencies. It is
@@ -16,8 +16,10 @@ block before selecting an increment.
 This checkpoint is based on kernel milestones through 037, D1 infrastructure
 acceptance (`48b077d`, `e642966`) and its activation runbook (`e2d9134`), and D2
 implementation/validation (`d7a492f`, `658fef5`). These are repository evidence,
-not a fresh claim about host health. A clone supplies the program and evidence;
-it does not supply secrets, machine state, or authorization to mutate the host.
+not a fresh claim about host health. The Hub checkpoint adds design and sequencing
+only; it does not change platform acceptance. See the
+[documentation authority map](../README.md). A clone supplies the program and
+evidence; it does not supply secrets, machine state, or host mutation authority.
 
 ## Product destination
 
@@ -117,11 +119,44 @@ experience as a whole.
 | --- | --- | --- |
 | D1 — long-lived platform runtime | **IN PROGRESS — infrastructure foundation PASS** | Stable service ownership and operational recovery |
 | D2 — Personal Agent / remote intake | **PASS**, bounded control/fixture scope | Durable work accessible without kernel probes |
-| D3 — live IntelliJ / real code Tasks | **NEXT**, not started | Useful work in the existing trusted project environment |
+| D3 — live IntelliJ / real code Tasks | **PLANNED through E1–E3**, not live-accepted | Useful work in the existing trusted project environment; E0 connection comes first |
 | D4 — reusable capability system | **PLANNED** | Reuse without a monolithic Personal Agent integration layer |
 | D5 — human interaction channels | **PLANNED** | Notifications and asynchronous remote decisions |
 | D6 — operational/cognitive observability | **PARTIALLY IMPLEMENTED / ACCELERATED BY D1** | Diagnose real Tasks using the existing stack |
 | D7 — v0 acceptance | **PLANNED** | Evidence that the combined product is a Daily Driver |
+
+### Near-term product sequence — Personal Agent Hub E0–E3
+
+The [canonical Hub design](../personal-agent-hub.md) and
+[ADR 0022](../decisions/0022-workstation-personal-agent-client.md) define the next
+bounded product architecture. This is a documentation checkpoint: no client,
+onboarding, remote effect or coding E2E implementation was started by this slice.
+Accepted platform/runtime capabilities are inputs, not a reason to reopen their
+entire workstreams. Workstation and worker remain independent.
+
+| Milestone | Status / product outcome | Dependencies and D-series mapping |
+| --- | --- | --- |
+| E0 — Connect a Workstation | **DESIGNED; implementation next.** Small portable client, supported prerequisite assistance, native Tailscale login, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. First slice E0.A skeleton/package/platform boundary. |
+| E1 — Remote Workspace Read | **DESIGNED.** Actual second-workstation IntelliJ read, confined paths and evidence in the same durable Task across reconnect. | E0; delivers D3.A product proof. Live client capability/confinement gates remain open. |
+| E2 — Remote Workspace Effects | **DESIGNED.** Conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
+| E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |
+
+D1 remains platform/runtime work; D2 remains bounded remote intake; D3 remains live
+IntelliJ/real code Tasks. Their historical definitions and evidence are unchanged.
+E0–E3 are product/E2E gates consuming those capabilities, not renamed D milestones.
+Post-v0 Cycle E (advanced multi-worker patterns) is also unchanged.
+
+Tailscale is an external prerequisite, not a Blaine subsystem. The portable client
+uses platform-specific install/status/login/IDE adapters. WSL2 defaults to native
+Windows Tailscale, with real guest connectivity and IDE compatibility still to be
+proven. No duplicate WSL daemon or speculative forwarding configuration.
+
+New platform/observability work is **not on the E0–E3 critical path** without an
+observed blocker. Perfect Task-level OTel, Cloud logs/traces, Fleet, telemetry
+restart durability (OBS-001), backup continuation and full D1.G acceptance are not
+implicit prerequisites. Existing services must be ready for the exercised path;
+fix a demonstrated availability/identity/safety blocker narrowly and retain its
+evidence. D7 keeps its broader operational acceptance requirements.
 
 ### Explicitly not blockers for Daily Driver v0
 
@@ -339,7 +374,11 @@ service adoption or a general natural-language coding agent.
 <a id="d3"></a>
 ## D3 — Live IntelliJ / Real Code Tasks
 
-**STATUS: NEXT — not started by this checkpoint.**
+**STATUS: PLANNED — delivered through the E1–E3 product gates after E0 connection.**
+
+D3.A/B/C retain their historical meaning below. E1 delivers D3.A, E2 supplies
+D3.B effects, and E3 is a synthetic full-loop proof that prepares D3.C rather than
+automatically closing real-work readiness. See the [Hub acceptance/decomposition](../personal-agent-hub.md).
 
 **Why:** this is the minimum practical threshold for Daily Driver use. Blaine must
 work on repositories in the trusted company/work laptop environment, which already
@@ -586,12 +625,12 @@ A future human/agent should be able to resume from `main` without this conversat
    local links and `git diff --check`; do not run live models/infra just for a docs pass.
 8. Record **PASS or STOP** against acceptance. Update the selected milestone and this
    roadmap's status, evidence links, dependencies, unknowns and current-next block.
-9. Synchronize with latest local main, inspect concurrent changes, stop on semantic
-   conflicts, and revalidate affected scope. Integrate safe/coherent state quickly
-   with bounded commits and fast-forward main when safe; never overwrite concurrent work.
-10. Push main once accepted and authorized, then verify local and remote HEADs.
-    This roadmap checkpoint explicitly authorizes its push; it is not blanket
-    authorization for future live effects, credentials, reboots or frontier dispatches.
+9. Inspect concurrent changes and stop on semantic conflicts; revalidate affected
+   scope. Commit coherent bounded work. Integrate into main only within the current
+   task's authorization; never overwrite concurrent work or infer merge permission.
+10. Publish only when the current task explicitly authorizes it, then verify the
+    authorized result. Historical checkpoint permissions are not standing authority.
+    This Hub design slice requires one local commit and explicitly forbids push/merge.
 
 **STOP is not failure.** It is expected when evidence reveals ownership ambiguity,
 a lifecycle seam, an authority seam, source-of-truth ambiguity or a missing contract.
@@ -611,10 +650,11 @@ shared publication step, not permission to edit another feature worktree.
 
 ## Next-step decision guide
 
-The default sequence is outstanding **D1 service-operational work → D3 → D4 → D5 →
-D6 remaining wiring → D7**. D1 and D3 can progress as separate owned tracks where
-dependencies allow; the ordering does not require completing paused backup before
-a safe D3 read-only proof. Operational reliability still gates final v0 acceptance.
+The default product sequence is **E0 → E1 → E2 → E3 → remaining D3.C / D4 / D5 /
+D6 work as justified → D7**. D1 operations remain a separate track; an observed
+service/safety blocker can interrupt the affected product slice. Paused backup,
+Fleet, Cloud logs/traces, perfect Task-level OTel and telemetry restart durability
+are not E0–E3 prerequisites. Operational reliability still gates final v0 acceptance.
 
 | Evidence observed | Bounded priority adjustment |
 | --- | --- |
@@ -635,6 +675,7 @@ explicit decision closes it.
 
 | Unknown | Evidence needed to resolve it |
 | --- | --- |
+| Hub client/platform/provider choices | [Explicit Hub open questions](../personal-agent-hub.md#open-questions), including WSL2/IDE live gates and safe write/exec |
 | Final Capability Registry scope/shape | D3/D4 packaging, admission, versioning and cross-Task reuse experience |
 | Redis profile separation | Actual cache/queue persistence, eviction and recovery requirements |
 | When project graph belongs in the context path | Measured retrieval benefit with trustworthy freshness/provenance |
@@ -657,8 +698,11 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track A: D3 — Live IntelliJ / Real Code Task.** Start with D3.A, a safe live
-  read-only proof; then D3.B and D3.C only after their preceding gates pass.
+- **Track A: Personal Agent Hub E0–E3.** Start with **E0.A only**: packaged client
+  skeleton, Linux/macOS/WSL2 platform/config boundary and clean stdio proof. Use
+  the [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
+  E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
+  D3 history is preserved; no E-series product milestone is claimed live PASS.
 - **Track B: D1.A/B/C/D live adoption accepted.** Run the prepared D1.G reboot
   acceptance only with explicit human authorization; backup stays PAUSED.
 - **Backup: PAUSED.** Preserve historical backup data; no live backup completion claimed.
@@ -668,13 +712,14 @@ operator procedures; this document owns development direction and dependencies.
   tracks future durability investigation in Upstream/Backlog. Fleet remains
   DEFERRED / STOP; logs/traces export is inactive. See the
   [live inventory and validated PromQL](../platform-observability-inventory.md).
-- **Blaine observability coverage: PARTIAL, not complete.** The next coverage
-  slice maps/emits vLLM, physical GPU and user-service metrics first, then
-  runtime/infrastructure/application-specific metrics. See the
-  [prioritized source → Alloy → Cloud map](../platform-observability-inventory.md#next-steps--increase-coverage-not-transport-durability).
+- **Blaine observability coverage:** current coverage/gaps and its independent
+  operational follow-ups live in the [observability inventory](../platform-observability-inventory.md)
+  and [GPU/vLLM runbook](../platform-gpu-vllm-telemetry.md). Additional coverage is
+  outside the E0–E3 critical path unless a concrete product blocker requires it.
   This is separate from OBS-001 and does not change D1.G's Cloud independence.
 - **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
 - **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
 
-This checkpoint records the program and handoff only. It does not start D3, adopt
-services, change Platform D1 infrastructure, unpause backup or authorize a reboot.
+This checkpoint records the program and Hub design only. It does not implement
+E0–E3/D3, adopt services, change Platform D1 infrastructure, unpause backup or
+authorize a reboot.

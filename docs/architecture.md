@@ -1,11 +1,15 @@
 # Blaine architecture
 
-Blaine is a personal agentic work system with a conversational control plane over
-durable Tasks. The [product architecture](agentic-development-kit.md) gives the
-historical product direction; the [living roadmap](roadmap/001-blaine-development-roadmap.md)
-records current sequencing and acceptance. This document maps ownership. Current
-[ADRs](decisions/README.md) take precedence over older exploratory topology and
-routing examples; Proposed ADRs remain proposals.
+Blaine is the persistent Personal Agent: a conversational control plane over
+durable Tasks, semantic memory, replaceable workers and separately authorized
+execution surfaces. This document owns current system architecture and boundaries.
+The [roadmap](roadmap/001-blaine-development-roadmap.md) owns implementation status
+and sequencing; the [documentation map](README.md) identifies other authorities.
+
+The [Personal Agent Hub design](personal-agent-hub.md) is canonical for workstation
+connection and E0–E3. Its client/registration/effect additions are planned, not
+claims about the deployed system. [Accepted ADRs](decisions/README.md) explain
+architectural choices; [contracts](contracts/README.md) define normative interfaces.
 
 ```text
 User / interactive client
@@ -16,7 +20,7 @@ TaskSpec / transport-neutral controls (D2 ACP binding)
          |
 Durable Runtime (currently Restate) -- replaceable workers and verifiers
          |
-Task evidence / external sources
+Task evidence / external sources / workspace capability providers
 ```
 
 ## Ownership
@@ -29,12 +33,19 @@ Task evidence / external sources
 | Policy | Shared safety, context, cloud, and verification guidance | `docs/policies/` |
 | Durable Runtime | Durable state, timers, retries, signals, recovery, lifecycle enforcement | Current implementation: Restate; evaluated by ADR 0003 |
 | Workers/verifiers | Bounded execution and evidence checks | Replaceable execution adapters; deterministic completion verification |
+| Workstation / interactive surface | Local workspace, toolchain and IDE context; scoped capability execution independent of worker selection | [D2 implemented boundary](daily-driver-d2.md); [Hub planned client boundary](personal-agent-hub.md) |
+| External applications | Own their resources and expose independently authorized capabilities to Tasks | Existing capability/policy boundary; no ambient authority from a connected surface |
 
-The instruction harness expresses semantic procedures. The [D2 implementation](daily-driver-d2.md)
-binds transport-neutral controls to durable kernel Tasks through the official ACP SDK.
-Its bounded acceptance includes a workspace fixture; live IntelliJ investigation,
-edits and test execution remain D3. Contracts describe intent and guarantees; consult
-D2 documentation for the implemented surface and its supported scope.
+The instruction harness expresses semantic procedures. The transport-neutral
+Personal Agent binds controls to durable kernel Tasks; ACP is one client adapter.
+Surface/session availability never establishes Task state, completion or approval.
+A connected surface supplies only capabilities it implements and the Task is
+allowed to use. Worker identity does not determine the execution location.
+
+For the implemented control subset, configuration and evidence limits, read the
+[D2 binding guide](daily-driver-d2.md). Current delivery status lives only in the
+[roadmap](roadmap/001-blaine-development-roadmap.md); historical proof lives in
+[milestones](milestones/README.md) and referenced experiment artifacts.
 
 ## Memory and context
 

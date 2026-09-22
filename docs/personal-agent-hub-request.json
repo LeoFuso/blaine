@@ -1,0 +1,57 @@
+{
+  "objective": "Design and document Personal Agent Hub E0 through E3 with Linux/macOS/Windows+WSL2 portability and a bounded documentation authority reconciliation, preserving runtime ownership and D-series history, with one local commit and no implementation.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Current repository architecture, D2 evidence, roadmap and documentation conventions",
+      "source": "git:898e016",
+      "sharing": "local-only"
+    },
+    {
+      "need": "Current public JetBrains ACP and Tailscale contracts",
+      "freshness": "checked 2026-09-21",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository and history",
+    "read public documentation",
+    "edit design documentation",
+    "validate documentation",
+    "create one local commit"
+  ],
+  "autonomy": {
+    "allowed": [
+      "documentation and ADR changes",
+      "roadmap/navigation reconciliation",
+      "read-only source investigation",
+      "local documentation validation",
+      "one coherent local commit"
+    ],
+    "forbidden": [
+      "implement client or runtime effects",
+      "onboard workstations",
+      "mutate host services",
+      "push",
+      "merge",
+      "modify other worktrees"
+    ]
+  },
+  "cloud": {
+    "policy": "ask"
+  },
+  "completion": [
+    {
+      "criterion": "Canonical Hub architecture defines E0-E3, accepted/recommended/open decisions, command contracts, security boundaries and implementation slices including external Tailscale prerequisite assistance and all three platform targets",
+      "evidence": "Review docs/personal-agent-hub.md and ADR 0022 against the requested design acceptance"
+    },
+    {
+      "criterion": "Roadmap and navigation preserve existing architectural ownership and D-series history",
+      "evidence": "Documentation diff and resolved local links"
+    },
+    {
+      "criterion": "Documentation-only change is validated and committed locally without publication",
+      "evidence": "JSON and link/anchor checks, git diff --check, documentation-only changed-file list and local commit identity"
+    }
+  ]
+}

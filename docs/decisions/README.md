@@ -1,6 +1,9 @@
 # Architecture Decision Records
 
-This directory records architectural decisions for Blaine.
+This directory records architectural decisions and rationale for Blaine, including
+superseded choices. It does not own current operational status. Follow the
+[documentation map](../README.md), [architecture](../architecture.md) and
+[roadmap](../roadmap/001-blaine-development-roadmap.md) for their respective roles.
 
 ADRs capture decisions that materially constrain the architecture, including:
 
@@ -108,6 +111,8 @@ ADR’s own status before treating it as an accepted constraint.
 - [ADR 0018 — Blaine Local Platform, Durability and Observability Architecture](0018-local-platform-durability-and-observability.md)
 - [ADR 0019 — Local inference serving baseline](0019-local-inference-serving-baseline.md)
 - [ADR 0020 — Rootless Docker operator runtime](0020-rootless-docker-operator-runtime.md)
-
-[ADR 0021](0021-fleet-observability-control-plane.md) records the accepted Fleet
-control-plane direction and the native startup-safety deployment STOP.
+- [ADR 0021 — Fleet Observability Control Plane](0021-fleet-observability-control-plane.md)
+  records Fleet direction and its validation checkpoint; current operations are in
+  the [Cloud runbook](../platform-grafana-cloud.md).
+- [ADR 0022 — Workstation Connection and Personal Agent Client Architecture](0022-workstation-personal-agent-client.md)
+  records the accepted Hub boundary; validation remains pending E0–E3.
