@@ -662,10 +662,17 @@ operator procedures; this document owns development direction and dependencies.
 - **Track B: D1.A/B/C/D live adoption accepted.** Run the prepared D1.G reboot
   acceptance only with explicit human authorization; backup stays PAUSED.
 - **Backup: PAUSED.** Preserve historical backup data; no live backup completion claimed.
-- **Grafana Cloud data plane: PARTIAL.** Native metrics delivery/readback and offline
-  startup proved; pending pre-restart sample replay remains unaccepted. Logs and
-  traces stay local. Fleet control plane stays DEFERRED / STOP.
-  See [observability acceptance](../platform-grafana-cloud.md).
+- **Grafana Cloud metrics: ACCEPTED best-effort; current slice CONCLUDED.**
+  Live delivery, network retry/drain and offline local startup passed. Restart
+  replay remains unguaranteed, not a D1.G blocker. [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3)
+  tracks future durability investigation in Upstream/Backlog. Fleet remains
+  DEFERRED / STOP; logs/traces export is inactive. See the
+  [live inventory and validated PromQL](../platform-observability-inventory.md).
+- **Blaine observability coverage: PARTIAL, not complete.** The next coverage
+  slice maps/emits vLLM, physical GPU and user-service metrics first, then
+  runtime/infrastructure/application-specific metrics. See the
+  [prioritized source → Alloy → Cloud map](../platform-observability-inventory.md#next-steps--increase-coverage-not-transport-durability).
+  This is separate from OBS-001 and does not change D1.G's Cloud independence.
 - **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
 - **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
 

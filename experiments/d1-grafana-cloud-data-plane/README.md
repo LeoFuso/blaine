@@ -1,6 +1,11 @@
 # D1 Grafana Cloud data-plane slice
 
-**PARTIAL — metrics delivery active; restart-durable replay NOT accepted.**
+**CONCLUDED / ACCEPTED best-effort — technical experiment PARTIAL; restart replay NOT accepted.**
+
+The human accepted this operating scope. [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3)
+tracks future durability; it does not keep this slice open or block D1.G.
+[Closure and live inventory](../d1-observability-closure/README.md) supersede the
+work-status interpretation, without changing historical experiment evidence.
 Fleet remains DEFERRED / STOP. The existing native Alloy service remains the only
 collector; no `remotecfg`, supervisor, datastore or broker was introduced.
 

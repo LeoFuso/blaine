@@ -1,0 +1,45 @@
+{
+  "deployed_source_matches": {
+    "personal_runtime.py": true,
+    "kernel/model.py": true,
+    "kernel/memory.py": true,
+    "kernel/workflow.py": true,
+    "kernel/event_sinks.py": true
+  },
+  "user_units": {
+    "blaine-generation": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "346389",
+      "otel_environment_key_names": []
+    },
+    "blaine-embedding": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "346052",
+      "otel_environment_key_names": []
+    },
+    "blaine-mirix": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "356517",
+      "otel_environment_key_names": []
+    },
+    "blaine-restate": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "358882",
+      "otel_environment_key_names": []
+    },
+    "blaine-runtime": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "360671",
+      "otel_environment_key_names": []
+    }
+  },
+  "alloy_enabled": "enabled",
+  "backup_timer_active": "inactive",
+  "backup_timer_enabled": "disabled",
+  "active_config_sha256": "2c0168ecb501f0c9553e59a9ec91b367150afc714d7ce18999db8d29bb6bdb5d"
+}

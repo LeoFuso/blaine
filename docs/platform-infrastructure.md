@@ -1,9 +1,11 @@
 # D1 infrastructure foundation
 
-**Metrics data plane: PARTIAL (2026-09-21).** Cloud metrics delivery and offline Alloy startup passed;
-WAL records survive restart but pending older samples are not replayed by this
-version. Restart-durable delivery remains unaccepted. Fleet stays STOPPED; D1.G does not require Cloud availability.
-See [data-plane acceptance](platform-grafana-cloud.md#independent-cloud-data-plane--2026-09-21).
+**Metrics slice CONCLUDED / ACCEPTED as best-effort asynchronous Cloud transport.**
+Live delivery, temporary network buffering/retry, same-process reconnect/drain and
+Cloud-independent Alloy startup passed. Restart replay remains NOT GUARANTEED /
+FAIL; lossless durability is NOT CLAIMED. This does not block D1.G.
+Follow-up [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3) is Upstream /
+Backlog. See the [live inventory and validated PromQL](platform-observability-inventory.md).
 
 **2026-09-21: rootless migration PASS; infrastructure-only rootful host reboot PASS.**
 The active stack now runs under the normal operator's rootless Docker and user

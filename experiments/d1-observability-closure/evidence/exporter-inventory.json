@@ -1,0 +1,63 @@
+{
+  "containers": [
+    "blaine-infra-rootless-langfuse-worker-1",
+    "blaine-infra-rootless-langfuse-web-1",
+    "blaine-infra-rootless-clickhouse-1",
+    "blaine-infra-rootless-object-storage-1"
+  ],
+  "langfuse_otlp": [
+    {
+      "container": "blaine-infra-rootless-langfuse-worker-1",
+      "otel_key_names": [],
+      "tracing_key_names": [
+        "NEXT_TELEMETRY_DISABLED",
+        "TELEMETRY_ENABLED"
+      ]
+    },
+    {
+      "container": "blaine-infra-rootless-langfuse-web-1",
+      "otel_key_names": [],
+      "tracing_key_names": [
+        "NEXT_TELEMETRY_DISABLED",
+        "TELEMETRY_ENABLED"
+      ]
+    }
+  ],
+  "vllm_help": [
+    "# HELP vllm:num_requests_running Number of requests in model execution batches.",
+    "# HELP vllm:num_requests_waiting Number of requests waiting to be processed.",
+    "# HELP vllm:kv_cache_usage_perc KV-cache usage. 1 means 100 percent usage.",
+    "# HELP vllm:prompt_tokens_total Number of prefill tokens processed.",
+    "# HELP vllm:generation_tokens_total Number of generation tokens processed.",
+    "# HELP vllm:time_to_first_token_seconds Histogram of time to first token in seconds.",
+    "# HELP vllm:inter_token_latency_seconds Histogram of inter-token latency in seconds.",
+    "# HELP vllm:e2e_request_latency_seconds Histogram of e2e request latency in seconds.",
+    "# HELP vllm:request_queue_time_seconds Histogram of time spent in WAITING phase for request."
+  ],
+  "vllm_labels": {
+    "vllm:num_requests_running": [
+      "engine",
+      "model_name"
+    ],
+    "vllm:num_requests_waiting": [
+      "engine",
+      "model_name"
+    ],
+    "vllm:kv_cache_usage_perc": [
+      "engine",
+      "model_name"
+    ],
+    "vllm:prompt_tokens_total": [
+      "engine",
+      "model_name"
+    ],
+    "vllm:generation_tokens_total": [
+      "engine",
+      "model_name"
+    ],
+    "vllm:e2e_request_latency_seconds": [],
+    "vllm:time_to_first_token_seconds": [],
+    "vllm:inter_token_latency_seconds": [],
+    "vllm:request_queue_time_seconds": []
+  }
+}

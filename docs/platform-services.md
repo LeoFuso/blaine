@@ -154,7 +154,9 @@ Existing host CPU/RAM/load/disk/network/systemd metrics and Alloy self metrics
 continue every 30 seconds, with bounded local OTLP retention. GPU use and cgroup
 OOM/swap counters are sampled in acceptance evidence; there is no dedicated GPU
 exporter, new alerting project or automatic end-to-end Task health monitor.
-Grafana Cloud metrics delivery is active; pending pre-restart WAL samples are
+Grafana Cloud metrics delivery is active and accepted as best-effort; this slice
+is concluded, with restart durability tracked in [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3).
+See the [live inventory](platform-observability-inventory.md). Pending pre-restart WAL samples are
 not replayed by this version. Logs/traces remain local. The [Fleet slice](platform-grafana-cloud.md)
 proved BWS/API access but STOPPED activation on Alloy 1.19.2 offline-start failure;
 the exact local collector config was restored. Backups are still PAUSED, timer disabled/inactive.
@@ -195,7 +197,7 @@ The following procedure is ready for the operator's later explicit authorization
    restart, seed or respond to anything.
 4. Check native Alloy readiness and local telemetry. D1.G can PASS while Cloud
    is unreachable; asynchronous metrics reconnect, once separately accepted, is
-   supporting evidence only. Current metrics data-plane validation is PARTIAL
+   supporting evidence only. Current metrics work is concluded/accepted best-effort; technical validation is PARTIAL
    (Cloud delivery/offline startup pass; pending pre-restart sample replay fails). Fleet reconnect is optional
    supporting evidence only if separately accepted/activated before that reboot;
    it is currently STOPPED and is never a Blaine correctness dependency.

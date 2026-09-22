@@ -1,0 +1,2226 @@
+{
+  "observed_at": 1790036600.3765798,
+  "queries": {
+    "cpu_percent": {
+      "query": "100 * (1 - avg by (instance) (rate(node_cpu_seconds_total{environment=\"blaine-dev\",host=\"blaine\",mode=\"idle\"}[5m])))",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "2.1613425925924856"
+          ]
+        }
+      ]
+    },
+    "cpu_by_core_percent": {
+      "query": "100 * (1 - avg by (instance,cpu) (rate(node_cpu_seconds_total{environment=\"blaine-dev\",host=\"blaine\",mode=\"idle\"}[5m])))",
+      "status": "success",
+      "series_count": 32,
+      "result": [
+        {
+          "metric": {
+            "cpu": "0",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "2.562962962962312"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "10",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "3.548148148146102"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "12",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.8148148148153465"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "14",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.1111111111111072"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "18",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.38148148148104966"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "2",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.1037037037021857"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "21",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.23703703703681356"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "22",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.22222222222167964"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "24",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.170370370371665"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "29",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.9481481481499743"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "3",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "6.266666666666021"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "30",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.8444444444440147"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "5",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.6259259259267846"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "8",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "2.722222222221682"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "1",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "2.170370370370578"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "11",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "11.388888888888882"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "13",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.781481481480618"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "15",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.0333333333336525"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "16",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.5333333333341961"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "17",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.47777777777809893"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "19",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.21481481481545606"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "20",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.22592592592614036"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "23",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.28888888888845"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "25",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "3.744444444444661"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "26",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.0074074074078343"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "27",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "6.26296296296156"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "28",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "1.0444444444443368"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "31",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.7592592592576386"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "4",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.6222222222223239"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "6",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.40370370370240716"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "7",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "0.35185185185346857"
+          ]
+        },
+        {
+          "metric": {
+            "cpu": "9",
+            "instance": "blaine"
+          },
+          "value": [
+            1790036600.206,
+            "13.292592592592378"
+          ]
+        }
+      ]
+    },
+    "load_1m": {
+      "query": "node_load1{environment=\"blaine-dev\",host=\"blaine\"}",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_load1",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.206,
+            "0.51"
+          ]
+        }
+      ]
+    },
+    "load_5m": {
+      "query": "node_load5{environment=\"blaine-dev\",host=\"blaine\"}",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_load5",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.179,
+            "0.34"
+          ]
+        }
+      ]
+    },
+    "load_15m": {
+      "query": "node_load15{environment=\"blaine-dev\",host=\"blaine\"}",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_load15",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.201,
+            "0.3"
+          ]
+        }
+      ]
+    },
+    "memory_used_percent": {
+      "query": "100 * (1 - node_memory_MemAvailable_bytes{environment=\"blaine-dev\",host=\"blaine\"} / node_memory_MemTotal_bytes{environment=\"blaine-dev\",host=\"blaine\"})",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.223,
+            "27.943341837669212"
+          ]
+        }
+      ]
+    },
+    "memory_available_bytes": {
+      "query": "node_memory_MemAvailable_bytes{environment=\"blaine-dev\",host=\"blaine\"}",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_memory_MemAvailable_bytes",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.231,
+            "46003961856"
+          ]
+        }
+      ]
+    },
+    "swap_used_bytes": {
+      "query": "node_memory_SwapTotal_bytes{environment=\"blaine-dev\",host=\"blaine\"} - node_memory_SwapFree_bytes{environment=\"blaine-dev\",host=\"blaine\"}",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.243,
+            "1329029120"
+          ]
+        }
+      ]
+    },
+    "filesystem_used_percent": {
+      "query": "100 * (1 - node_filesystem_avail_bytes{environment=\"blaine-dev\",host=\"blaine\",fstype!~\"tmpfs|devtmpfs|overlay|squashfs\"} / node_filesystem_size_bytes{environment=\"blaine-dev\",host=\"blaine\",fstype!~\"tmpfs|devtmpfs|overlay|squashfs\"})",
+      "status": "success",
+      "series_count": 3,
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "/dev/nvme0n1p1",
+            "environment": "blaine-dev",
+            "fstype": "vfat",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "mountpoint": "/boot/efi"
+          },
+          "value": [
+            1790036600.245,
+            "48.3123779296875"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "/dev/nvme0n1p5",
+            "environment": "blaine-dev",
+            "fstype": "ext4",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "mountpoint": "/"
+          },
+          "value": [
+            1790036600.245,
+            "16.236645916121283"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "/dev/sda1",
+            "environment": "blaine-dev",
+            "fstype": "ext4",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "mountpoint": "/srv/blaine-backup"
+          },
+          "value": [
+            1790036600.245,
+            "8.44048972865089"
+          ]
+        }
+      ]
+    },
+    "filesystem_available_bytes": {
+      "query": "node_filesystem_avail_bytes{environment=\"blaine-dev\",host=\"blaine\",fstype!~\"tmpfs|devtmpfs|overlay|squashfs\"}",
+      "status": "success",
+      "series_count": 3,
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_filesystem_avail_bytes",
+            "asserts_env": "blaine-dev",
+            "device": "/dev/nvme0n1p1",
+            "environment": "blaine-dev",
+            "fstype": "vfat",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "mountpoint": "/boot/efi"
+          },
+          "value": [
+            1790036600.257,
+            "52030464"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_avail_bytes",
+            "asserts_env": "blaine-dev",
+            "device": "/dev/nvme0n1p5",
+            "environment": "blaine-dev",
+            "fstype": "ext4",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "mountpoint": "/"
+          },
+          "value": [
+            1790036600.257,
+            "1276008673280"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_avail_bytes",
+            "asserts_env": "blaine-dev",
+            "device": "/dev/sda1",
+            "environment": "blaine-dev",
+            "fstype": "ext4",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "mountpoint": "/srv/blaine-backup"
+          },
+          "value": [
+            1790036600.257,
+            "449654714368"
+          ]
+        }
+      ]
+    },
+    "disk_read_bytes_per_second": {
+      "query": "rate(node_disk_read_bytes_total{environment=\"blaine-dev\",host=\"blaine\",device=~\"nvme.*|sd[a-z]+\"}[5m])",
+      "status": "success",
+      "series_count": 3,
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "nvme0n1",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.263,
+            "6250.1925925925925"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "sda",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.263,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "sdb",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.263,
+            "0"
+          ]
+        }
+      ]
+    },
+    "disk_write_bytes_per_second": {
+      "query": "rate(node_disk_written_bytes_total{environment=\"blaine-dev\",host=\"blaine\",device=~\"nvme.*|sd[a-z]+\"}[5m])",
+      "status": "success",
+      "series_count": 3,
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "nvme0n1",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.294,
+            "743120.5925925926"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "sda",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.294,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "sdb",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.294,
+            "0"
+          ]
+        }
+      ]
+    },
+    "network_receive_bytes_per_second": {
+      "query": "rate(node_network_receive_bytes_total{environment=\"blaine-dev\",host=\"blaine\",device!=\"lo\"}[5m])",
+      "status": "success",
+      "series_count": 7,
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "br-a7562c4fb30e",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.282,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "docker0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.282,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "eno1",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.282,
+            "10894.714814814814"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "enp11s0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.282,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "enx6c1ff72122b0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.282,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "tailscale0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.282,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "wlp9s0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.282,
+            "0"
+          ]
+        }
+      ]
+    },
+    "network_transmit_bytes_per_second": {
+      "query": "rate(node_network_transmit_bytes_total{environment=\"blaine-dev\",host=\"blaine\",device!=\"lo\"}[5m])",
+      "status": "success",
+      "series_count": 7,
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "br-a7562c4fb30e",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.291,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "docker0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.291,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "eno1",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.291,
+            "18275.5962962963"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "enp11s0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.291,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "enx6c1ff72122b0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.291,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "tailscale0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.291,
+            "22.666666666666668"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "device": "wlp9s0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.291,
+            "0"
+          ]
+        }
+      ]
+    },
+    "systemd_failed_count": {
+      "query": "sum(node_systemd_unit_state{environment=\"blaine-dev\",host=\"blaine\",state=\"failed\"})",
+      "status": "success",
+      "series_count": 1,
+      "result": [
+        {
+          "metric": {},
+          "value": [
+            1790036600.316,
+            "0"
+          ]
+        }
+      ]
+    },
+    "systemd_failed_units": {
+      "query": "node_systemd_unit_state{environment=\"blaine-dev\",host=\"blaine\",state=\"failed\"} == 1",
+      "status": "success",
+      "series_count": 0,
+      "result": []
+    },
+    "systemd_service_active": {
+      "query": "node_systemd_unit_state{environment=\"blaine-dev\",host=\"blaine\",name=~\"alloy.service|postgresql.*|redis.*|user@1000.service\",state=\"active\"}",
+      "status": "success",
+      "series_count": 5,
+      "result": [
+        {
+          "metric": {
+            "__name__": "node_systemd_unit_state",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "name": "alloy.service",
+            "state": "active",
+            "type": "simple"
+          },
+          "value": [
+            1790036600.329,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_unit_state",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "name": "postgresql.service",
+            "state": "active",
+            "type": "oneshot"
+          },
+          "value": [
+            1790036600.329,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_unit_state",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "name": "postgresql@18-main.service",
+            "state": "active",
+            "type": "forking"
+          },
+          "value": [
+            1790036600.329,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_unit_state",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "name": "redis-server.service",
+            "state": "active",
+            "type": "notify"
+          },
+          "value": [
+            1790036600.329,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_unit_state",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix",
+            "name": "user@1000.service",
+            "state": "active",
+            "type": "notify-reload"
+          },
+          "value": [
+            1790036600.329,
+            "1"
+          ]
+        }
+      ]
+    },
+    "blaine_user_service_series": {
+      "query": "node_systemd_unit_state{environment=\"blaine-dev\",host=\"blaine\",name=~\"blaine-(generation|embedding|mirix|restate|runtime).service\"}",
+      "status": "success",
+      "series_count": 0,
+      "result": []
+    },
+    "gpu_series": {
+      "query": "count by (__name__) ({__name__=~\"(?i).*(dcgm|nvidia|gpu|cuda|nvml).*\"})",
+      "status": "success",
+      "series_count": 0,
+      "result": []
+    },
+    "vllm_cloud_series": {
+      "query": "count by (__name__) ({__name__=~\"vllm:.*\"})",
+      "status": "success",
+      "series_count": 0,
+      "result": []
+    },
+    "cloud_scrape_health": {
+      "query": "up{environment=\"blaine-dev\",host=\"blaine\"}",
+      "status": "success",
+      "series_count": 2,
+      "result": [
+        {
+          "metric": {
+            "__name__": "up",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/self"
+          },
+          "value": [
+            1790036600.349,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790036600.349,
+            "1"
+          ]
+        }
+      ]
+    },
+    "host_metric_names": {
+      "query": "count by (__name__) ({environment=\"blaine-dev\",host=\"blaine\",job=\"integrations/unix\"})",
+      "status": "success",
+      "series_count": 129,
+      "result": [
+        {
+          "metric": {
+            "__name__": "asserts:resource"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_discard_time_seconds_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_free_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "7"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_load1"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_load15"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Active_anon_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Active_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Active_file_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_AnonPages_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Balloon_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Bounce_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_CommitLimit_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_DirectMap4k_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_FileHugePages_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_FilePmdMapped_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_HugePages_Free"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_HugePages_Surp"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_HugePages_Total"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Hugepagesize_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Hugetlb_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_KernelStack_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_MemAvailable_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_MemFree_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_MemTotal_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Percpu_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_SUnreclaim_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_SecPageTables_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_ShmemPmdMapped_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Shmem_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Slab_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_SwapTotal_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_VmallocChunk_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_VmallocUsed_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_WritebackTmp_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_uname_info"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_duration_seconds"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_samples_post_metric_relabeling"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_samples_scraped"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_series_added"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_cpu_seconds_total"
+          },
+          "value": [
+            1790036600.358,
+            "256"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_ata_rotation_rate_rpm"
+          },
+          "value": [
+            1790036600.358,
+            "2"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_ata_write_cache"
+          },
+          "value": [
+            1790036600.358,
+            "2"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_ata_write_cache_enabled"
+          },
+          "value": [
+            1790036600.358,
+            "2"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_discarded_sectors_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_discards_completed_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_discards_merged_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_flush_requests_time_seconds_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_flush_requests_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_info"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_io_now"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_io_time_seconds_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_io_time_weighted_seconds_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_read_bytes_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_read_time_seconds_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_reads_completed_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_reads_merged_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_write_time_seconds_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_writes_completed_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_writes_merged_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_disk_written_bytes_total"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_exporter_build_info"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_avail_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "7"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_device_error"
+          },
+          "value": [
+            1790036600.358,
+            "9"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_files"
+          },
+          "value": [
+            1790036600.358,
+            "7"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_files_free"
+          },
+          "value": [
+            1790036600.358,
+            "7"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_readonly"
+          },
+          "value": [
+            1790036600.358,
+            "9"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_filesystem_size_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "7"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_load5"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_AnonHugePages_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Buffers_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Cached_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_CmaFree_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_CmaTotal_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Committed_AS_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_DirectMap1G_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_DirectMap2M_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Dirty_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_HardwareCorrupted_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_HugePages_Rsvd"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Inactive_anon_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Inactive_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Inactive_file_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_KReclaimable_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Mapped_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Mlocked_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_NFS_Unstable_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_PageTables_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_SReclaimable_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_ShmemHugePages_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_SwapCached_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_SwapFree_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Unaccepted_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Unevictable_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_VmallocTotal_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Writeback_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Zswap_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_memory_Zswapped_bytes"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_bytes_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_compressed_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_drop_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_errs_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_fifo_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_frame_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_multicast_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_receive_packets_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_bytes_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_carrier_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_colls_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_compressed_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_drop_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_errs_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_fifo_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_network_transmit_packets_total"
+          },
+          "value": [
+            1790036600.358,
+            "8"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_scrape_collector_duration_seconds"
+          },
+          "value": [
+            1790036600.358,
+            "9"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_scrape_collector_success"
+          },
+          "value": [
+            1790036600.358,
+            "9"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_socket_accepted_connections_total"
+          },
+          "value": [
+            1790036600.358,
+            "41"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_socket_current_connections"
+          },
+          "value": [
+            1790036600.358,
+            "41"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_socket_refused_connections_total"
+          },
+          "value": [
+            1790036600.358,
+            "41"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_system_running"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_timer_last_trigger_seconds"
+          },
+          "value": [
+            1790036600.358,
+            "19"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_unit_state"
+          },
+          "value": [
+            1790036600.358,
+            "1835"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_units"
+          },
+          "value": [
+            1790036600.358,
+            "5"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_systemd_version"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_time_clocksource_available_info"
+          },
+          "value": [
+            1790036600.358,
+            "3"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_time_clocksource_current_info"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_time_seconds"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "node_time_zone_offset_seconds"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "promhttp_metric_handler_errors_total"
+          },
+          "value": [
+            1790036600.358,
+            "2"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up"
+          },
+          "value": [
+            1790036600.358,
+            "1"
+          ]
+        }
+      ]
+    }
+  }
+}

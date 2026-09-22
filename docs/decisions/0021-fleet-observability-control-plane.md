@@ -81,3 +81,20 @@ Retention/queue/input limits are explicit, but are not a hard filesystem quota. 
 This does not weaken the Fleet STOP. Fleet reconsideration still requires native
 offline startup, later reconnect and local config continuity. D1.G does not depend
 on either Cloud availability or a future governed Fleet capability.
+
+## Operational closure — accepted best-effort semantics
+
+The human accepts the current data plane and closes this slice. Grafana Cloud is
+a **best-effort asynchronous observability sink**. Live delivery, bounded temporary
+network buffering/retry, same-process reconnect/drain and Cloud-independent local
+startup are PASS. Replay across Alloy process restart is NOT GUARANTEED / FAIL;
+lossless durable transport is NOT CLAIMED. The technical experiment remains PARTIAL,
+not an indefinitely open adoption task. Historical evidence in commit `254e09b`
+is unchanged. D1.G remains independent of Cloud and of stronger telemetry durability.
+
+[OBS-001 / YouTrack NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3) is the explicit
+Upstream/Backlog follow-up. It records future native Alloy fixes, stable persistent
+queues, `prometheus.write.queue` only when mature, or explicit bounded-loss acceptance
+if stronger durability is unjustified. No local Prometheus/Mimir/Loki/Tempo is to
+be introduced merely to solve it. No investigation is implemented in this closure.
+See [current coverage and verified queries](../platform-observability-inventory.md).

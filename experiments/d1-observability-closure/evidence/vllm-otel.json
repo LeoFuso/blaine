@@ -1,0 +1,70 @@
+{
+  "config_path": "~/.config/blaine/inference/candidate.json",
+  "installed_observability_source": "/home/leofuso/.local/share/blaine/inference/envs/vllm-c3b484463/lib/python3.13/site-packages/vllm/config/observability.py",
+  "support_source_lines": [
+    {
+      "line": 36,
+      "text": "otlp_traces_endpoint: str | None = None"
+    },
+    {
+      "line": 39,
+      "text": "collect_detailed_traces: list[DetailedTraceModules] | None = None"
+    },
+    {
+      "line": 101,
+      "text": "return self.collect_detailed_traces is not None and ("
+    },
+    {
+      "line": 102,
+      "text": "\"model\" in self.collect_detailed_traces"
+    },
+    {
+      "line": 103,
+      "text": "or \"all\" in self.collect_detailed_traces"
+    },
+    {
+      "line": 109,
+      "text": "return self.collect_detailed_traces is not None and ("
+    },
+    {
+      "line": 110,
+      "text": "\"worker\" in self.collect_detailed_traces"
+    },
+    {
+      "line": 111,
+      "text": "or \"all\" in self.collect_detailed_traces"
+    },
+    {
+      "line": 139,
+      "text": "@field_validator(\"otlp_traces_endpoint\")"
+    },
+    {
+      "line": 141,
+      "text": "def _validate_otlp_traces_endpoint(cls, value: str | None) -> str | None:"
+    },
+    {
+      "line": 148,
+      "text": "\"'otlp_traces_endpoint'. Ensure OpenTelemetry packages are \""
+    },
+    {
+      "line": 155,
+      "text": "if self.collect_detailed_traces and not self.otlp_traces_endpoint:"
+    },
+    {
+      "line": 157,
+      "text": "\"collect_detailed_traces requires `--otlp-traces-endpoint` to be set.\""
+    }
+  ],
+  "services": {
+    "generation": {
+      "configured_otlp_traces_endpoint": false,
+      "live_otlp_traces_argument": false,
+      "live_detailed_traces_argument": false
+    },
+    "embedding": {
+      "configured_otlp_traces_endpoint": false,
+      "live_otlp_traces_argument": false,
+      "live_detailed_traces_argument": false
+    }
+  }
+}

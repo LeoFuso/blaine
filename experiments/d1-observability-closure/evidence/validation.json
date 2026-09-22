@@ -1,0 +1,18 @@
+{
+  "cloud_queries_succeeded": 22,
+  "required_host_queries_returned_series": true,
+  "expected_empty_results": [
+    "systemd_failed_units (zero failed units)",
+    "blaine_user_service_series (coverage gap)",
+    "gpu_series (not configured)",
+    "vllm_cloud_series (not scraped)"
+  ],
+  "local_endpoints_checked": 4,
+  "markdown_local_links_checked": 174,
+  "missing_links": [],
+  "json_syntax": "PASS",
+  "live_alloy_config_unchanged": true,
+  "implementation_tests": "Not rerun: no serving/configuration implementation changed; actual read-only live/backend checks used",
+  "D1_retained_state": "PASS",
+  "youtrack_issue": "NCP-3; created and read back"
+}

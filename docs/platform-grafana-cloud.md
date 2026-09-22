@@ -10,12 +10,12 @@ adoption claim. D1.A/B/C/D remain accepted; D1.G has not run; backup is PAUSED.
 
 ## Independent Cloud data plane — 2026-09-21
 
-**PARTIAL: native metrics delivery active; restart-durable replay NOT accepted.**
-The BWS Metrics token was materialized and a unique metric was queried in Cloud.
-The existing Alloy starts and restarts with an unavailable exporter; local
-telemetry continues. WAL samples remain on disk, but the installed Prometheus WAL
-watcher filters samples older than its startup time. Cloud readback failed for
-those pre-restart outage samples. Retention on disk is not upstream replay.
+**Metrics slice CONCLUDED / ACCEPTED as best-effort asynchronous Cloud transport.**
+Live delivery, temporary network buffering/retry, same-process reconnect/drain and
+Cloud-independent Alloy startup passed. Restart replay remains NOT GUARANTEED /
+FAIL; lossless durability is NOT CLAIMED. This does not block D1.G.
+Follow-up [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3) is Upstream /
+Backlog. See the [live inventory and validated PromQL](platform-observability-inventory.md).
 
 [Data-plane evidence and exact guarantees](../experiments/d1-grafana-cloud-data-plane/README.md)
 record the failed restart proof, fixed-config network test, queue/input/retention

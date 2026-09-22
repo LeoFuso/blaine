@@ -30,7 +30,8 @@ unnecessary paid frontier inference; cloud dispatch remains authority-controlled
 | [Frontier dispatch](docs/contracts/frontier-dispatch.md) and [ExecutionEvent](docs/contracts/execution-event.md) | Authority/context boundary and forensic evidence |
 | [Platform foundation](docs/platform-infrastructure.md) and [rootless operations](docs/platform-rootless-docker.md) | D1 installed stack, rootless migration PASS and pending reboot acceptance |
 | [Adopted runtime services](docs/platform-services.md) | Models, enabled units, retained memory/Tasks and prepared D1.G reboot proof |
-| [Metrics data plane](experiments/d1-grafana-cloud-data-plane/README.md) | Metrics delivery active; offline startup proven; pending restart replay unaccepted |
+| [Live observability inventory](docs/platform-observability-inventory.md) | Actual host/GPU/vLLM/log/trace coverage and Cloud-validated PromQL |
+| [Metrics data plane](experiments/d1-grafana-cloud-data-plane/README.md) | CONCLUDED / accepted best-effort; restart durability tracked as OBS-001 |
 | [Fleet control plane](docs/platform-grafana-cloud.md) | BWS/native configuration prepared; activation STOPPED on Alloy offline-start safety |
 | [Operations/recovery](docs/platform-operations.md) and [Grafana Cloud activation](docs/platform-grafana-cloud.md) | Operator procedures, paused backup and future activation |
 | [Personal Agent / D2](docs/daily-driver-d2.md) | Private ACP control surface, usage, acceptance and live-workspace limits |
