@@ -1,5 +1,10 @@
 # D1 infrastructure foundation
 
+**Metrics data plane: PARTIAL (2026-09-21).** Cloud metrics delivery and offline Alloy startup passed;
+WAL records survive restart but pending older samples are not replayed by this
+version. Restart-durable delivery remains unaccepted. Fleet stays STOPPED; D1.G does not require Cloud availability.
+See [data-plane acceptance](platform-grafana-cloud.md#independent-cloud-data-plane--2026-09-21).
+
 **2026-09-21: rootless migration PASS; infrastructure-only rootful host reboot PASS.**
 The active stack now runs under the normal operator's rootless Docker and user
 systemd, with linger enabled. The old system stack is disabled/inactive; Docker
@@ -128,13 +133,15 @@ labels. No application/personal cognitive traffic was connected.
 Local OTLP JSON files rotate at 20 MiB with three backups and three-day retention.
 This is a bounded diagnostic baseline, not a query backend or backup. The file
 exporter is explicitly `public-preview` in Alloy 1.19.2; that stability flag is
-captured in the package environment. Remote export is absent from active config.
+captured in the package environment. Native metrics remote-write now augments
+local collection; Cloud delivery works, but restart-durable replay is unaccepted.
 
 Fleet Management is the selected remote observability control-plane direction,
 but native activation is **STOPPED**: Alloy 1.19.2 fails its initial load if Fleet
 registration is unavailable. The exact local config was restored and validated.
-BWS/Keyring materialization and Fleet read-API authentication passed; Cloud
-metrics/logs/traces remain inactive and unvalidated. See the [current runbook](platform-grafana-cloud.md).
+BWS/Keyring materialization and Fleet read-API authentication passed. The later
+independent data-plane slice activated metrics with Cloud readback; logs/traces
+remain local, and pre-restart pending metrics are not replayed. See the [current runbook](platform-grafana-cloud.md).
 No remote pipeline was changed and no accepted D1 runtime was redesigned.
 
 ## Reproducible deployment and acceptance
@@ -198,6 +205,6 @@ rule was created. The running platform does not depend on this temporary privile
 The implementation commit is `48b077d`, integrated into local main by fast-forward;
 final cleanup evidence is recorded in the subsequent Git commit. No push occurred.
 
-**PASS applies to the infrastructure foundation and rootless migration.** Grafana Cloud remains configured
-for future activation; backup remains paused, rootless reboot recovery pending, and the
+**PASS applies to the infrastructure foundation and rootless migration.** Grafana metrics export is active with
+PARTIAL data-plane acceptance (restart replay unaccepted); backup remains paused, rootless reboot recovery pending, and the
 Daily Driver ownership gaps listed above remain open.

@@ -2,9 +2,31 @@
 
 **2026-09-21: Fleet runtime adoption STOPPED on native Alloy 1.19.2 startup safety.**
 Existing local Alloy remains active/enabled and its exact accepted configuration
-was restored. Fleet is the accepted architectural direction in
+was restored during the Fleet slice; the later metrics slice now augments it.
+Fleet is the accepted architectural direction in
 [ADR 0021](decisions/0021-fleet-observability-control-plane.md), not an operational
 adoption claim. D1.A/B/C/D remain accepted; D1.G has not run; backup is PAUSED.
+
+
+## Independent Cloud data plane — 2026-09-21
+
+**PARTIAL: native metrics delivery active; restart-durable replay NOT accepted.**
+The BWS Metrics token was materialized and a unique metric was queried in Cloud.
+The existing Alloy starts and restarts with an unavailable exporter; local
+telemetry continues. WAL samples remain on disk, but the installed Prometheus WAL
+watcher filters samples older than its startup time. Cloud readback failed for
+those pre-restart outage samples. Retention on disk is not upstream replay.
+
+[Data-plane evidence and exact guarantees](../experiments/d1-grafana-cloud-data-plane/README.md)
+record the failed restart proof, fixed-config network test, queue/input/retention
+bounds, native source and binary dependency metadata. Normal optional metrics
+export is enabled; logs/traces remain local. Fleet stays DEFERRED / STOP.
+
+Endpoint and Hosted Metrics ID are public versioned Alloy configuration. Only
+`GRAFANA_CLOUD_METRICS_API_KEY` belongs in BWS and root-only local runtime material;
+normal restart reads it without Keyring/BWS interaction. D1.G may PASS with Cloud
+unreachable. Reconnect/new metrics are supporting evidence; unsent pre-reboot
+metrics must not be assumed to replay in this version.
 
 ## Observed state
 
@@ -21,7 +43,7 @@ adoption claim. D1.A/B/C/D remain accepted; D1.G has not run; backup is PAUSED.
 | Fleet enrollment / healthy collector in Fleet | NOT ACTIVATED / NOT PROVEN |
 | Remote config assignment | NOT EXERCISED; no remote pipeline changed |
 | Local telemetry after restoration | PASS: host metrics, five user journal sources, synthetic metric/log/trace persisted |
-| Cloud metrics / logs / traces | All INACTIVE / UNVALIDATED |
+| Cloud metrics / logs / traces | Metrics ACTIVE with Cloud readback; restart durability NOT ACCEPTED. Logs/traces INACTIVE |
 | OpAMP Supervisor / second OTel Collector / generated installer | NOT ADOPTED / NOT INTRODUCED / NOT RUN |
 
 [Sanitized evidence](../experiments/d1-grafana-fleet/README.md) separates these
@@ -67,8 +89,9 @@ through **BWS 2.1.0**, reusing its atomic root-only writer:
    0700 directory. The BWS bootstrap never reaches this file or systemd.
 
 Materialization was performed and verified. The file is **not referenced by the
-active Alloy unit**, and the Fleet fragment remains inactive. Therefore no secret
-was loaded into the running collector and no enrollment is implied.
+active Alloy unit**, and the Fleet fragment remains inactive. Therefore no Fleet secret
+was loaded into the collector and no enrollment is implied. The independent
+metrics secret is now referenced by its own protected EnvironmentFile.
 
 ```sh
 # Explicit operator maintenance/rotation, not a boot requirement:
@@ -93,9 +116,9 @@ no sudo or open terminal. Temporary sudoers authorization was left untouched.
 
 ## Fleet and telemetry are separate
 
-BWS contains the three Fleet keys, but no Grafana telemetry ingestion credentials.
-The active collector has no Cloud exporter or Cloud activation marker. No separate
-Prometheus/Loki exporters or redundant unified OTLP exporter were introduced.
+At the Fleet checkpoint, BWS contained only Fleet keys and all Cloud exporters
+were inactive. The subsequent data-plane slice added only the Metrics secret and
+native Prometheus remote-write. No Loki or unified OTLP exporter was activated.
 
 Existing Grafana-generated remote defaults reference:
 
@@ -111,8 +134,13 @@ these automatic matchers so Blaine does not inherit unintended exporters. The
 proposed host-only exclusions were not applied after the startup STOP was found.
 No Tempo/OTLP destination or trace ingestion credential was established. Do not
 reuse the Fleet instance ID as a telemetry username or assume its token has write
-scopes. The existing inactive unified OTLP fragment can remain the simple delivery
-option once actual endpoint/username/scoped credentials are available and reviewed.
+scopes. The inactive unified OTLP fragment remains historical preparation. Metrics now
+select native Prometheus remote-write independently. Logs/traces stay inactive.
+The existing OTLP fragment has a 1000-request in-memory queue and 60-second retry
+window, with no persistent storage configured; no durable trace guarantee exists.
+Native Loki WAL remains experimental and is not selected in this slice. See
+[OTLP queue semantics](https://grafana.com/docs/alloy/latest/reference/components/otelcol/otelcol.exporter.otlphttp/)
+and [Loki WAL status](https://grafana.com/docs/alloy/latest/reference/components/loki/loki.write/).
 
 Later delivery acceptance needs independent backend readback of a unique metric,
 log and trace. Local HTTP acceptance, exporter counters, Fleet API authentication
@@ -121,10 +149,12 @@ telemetry and remote alerting remain unaccepted. No Task-success monitor was add
 
 ## Recovery and later D1.G
 
-The active local file still exactly matches `infra/alloy/config.alloy`. Its protected
-pre-test copy is `/etc/blaine/infra/alloy-pre-fleet.alloy`. No ongoing fallback
-service is required because the unsafe remote block is not activated. Fleet can
-be unreachable without affecting the restored local startup configuration.
+The local bootstrap source remains `infra/alloy/config.alloy`. Active configuration
+now composes that source with the versioned metrics fragment and bounded scrape
+inputs using `activate-metrics`; Fleet remains absent. The protected pre-Fleet
+copy remains `/etc/blaine/infra/alloy-pre-fleet.alloy`. No ongoing fallback service
+is needed: unavailable metrics transport retries asynchronously while local
+startup proceeds. Metrics retention/replay limitations are explicit above.
 
 The [D1.G procedure](platform-services.md#d1g--later-human-authorized-reboot-procedure)
 retains the original object, MIRIX memory and WAITING Task identities. The fresh

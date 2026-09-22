@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "scope": "pre-reboot",
+  "observed_at": "2026-09-21T23:47:04.780413+00:00",
+  "checks": {
+    "enabled_user_services_and_native_readiness": "PASS",
+    "readiness_models_and_deployment": "PASS",
+    "four_rootless_containers_healthy": "PASS",
+    "same_object_hash": {
+      "bucket": "blaine-artifacts",
+      "key": "d1-service-adoption/0d7e1cc1b2934465826f4390b0299582.txt",
+      "sha256": "40e84b4f42e87d108b84e2a56e53e86f76b1618e57fe29aa781f73fbb9f03556"
+    },
+    "same_semantic_memory": [
+      "sem_CWMT"
+    ],
+    "original_memories_and_artifact_bytes": "PASS",
+    "same_durable_tasks_and_wait": {
+      "waiting": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92",
+      "resume": "task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e",
+      "small": "task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0"
+    },
+    "no_duplicate_runtime_or_terminal_owner": "PASS",
+    "backup": "PAUSED; timer disabled/inactive"
+  },
+  "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+  "gpu": "29362 MiB, 32607 MiB"
+}

@@ -1,5 +1,10 @@
 # D1 platform operations and recovery gates
 
+**Metrics data plane: PARTIAL (2026-09-21).** Cloud metrics delivery and offline Alloy startup passed;
+WAL records survive restart but pending older samples are not replayed by this
+version. Restart-durable delivery remains unaccepted. Fleet stays STOPPED; D1.G does not require Cloud availability.
+See [data-plane acceptance](platform-grafana-cloud.md#independent-cloud-data-plane--2026-09-21).
+
 **Fleet slice, 2026-09-21: activation STOPPED.** Native Alloy 1.19.2 registration
 failure prevents offline initial startup. Local Alloy was restored and verified;
 D1.A/B/C/D and all prepared D1.G identities remain accepted/unchanged. See the

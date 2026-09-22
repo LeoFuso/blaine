@@ -1,0 +1,16 @@
+{
+  "status": "PARTIAL",
+  "scope": "Native Alloy asynchronous metrics data plane",
+  "evidence": "experiments/d1-grafana-cloud-data-plane/evidence/summary.json",
+  "network_recovery": "experiments/d1-grafana-cloud-data-plane/evidence/transport.json",
+  "restart_replay_failure": "experiments/d1-grafana-cloud-data-plane/evidence/cloud.json",
+  "implementation": "experiments/d1-grafana-cloud-data-plane/evidence/replay-source.json",
+  "metrics_delivery": "ACTIVE / VERIFIED",
+  "restart_durable_replay": "NOT ACCEPTED",
+  "logs_delivery": "INACTIVE",
+  "traces_delivery": "INACTIVE",
+  "Fleet": "DEFERRED / STOP",
+  "D1.A/B/C/D": "ACCEPTED",
+  "D1.G": "NOT EXECUTED; Cloud is optional",
+  "backup": "PAUSED"
+}

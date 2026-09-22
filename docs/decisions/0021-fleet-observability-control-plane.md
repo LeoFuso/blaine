@@ -61,3 +61,23 @@ with a reviewed supported implementation, then repeat enrollment, identity,
 remote-assignment and outage acceptance. Do not work around this STOP by silently
 introducing a new supervisor or upgrading/replacing the collector in this slice.
 No UI operation or ingestion token alone fixes this runtime behavior.
+
+## Independent data-plane decision — 2026-09-21
+
+Grafana Cloud ingestion and Fleet configuration are separate planes. Select
+native `prometheus.remote_write` for asynchronous metrics, with Alloy as local
+collection/processing and bounded transport boundary. Cloud is a best-effort sink,
+never Task/artifact authority or a boot prerequisite. No local metrics database,
+second collector or queue service is added. Local Git/Ansible bootstrap remains
+authoritative. Nonsecret destinations/instance IDs belong in versioned config;
+BWS holds only new secret values, materialized locally for noninteractive restart.
+
+Operational acceptance is PARTIAL: the installed collector started offline,
+retried, preserved local output and retained samples through restart. Cloud
+readback passed for live metrics. Pending pre-restart samples remained in the WAL
+but failed upstream readback: the pinned watcher filters samples older than its
+startup. Restart-durable delivery is NOT accepted; disk presence is not replay.
+Retention/queue/input limits are explicit, but are not a hard filesystem quota. See [data-plane evidence](../../experiments/d1-grafana-cloud-data-plane/README.md).
+This does not weaken the Fleet STOP. Fleet reconsideration still requires native
+offline startup, later reconnect and local config continuity. D1.G does not depend
+on either Cloud availability or a future governed Fleet capability.

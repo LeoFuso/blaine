@@ -1,0 +1,21 @@
+{
+  "validation_exit": 0,
+  "systemd_verify_exit": 0,
+  "service": [
+    "ActiveState=active",
+    "SubState=running",
+    "UnitFileState=enabled",
+    "NRestarts=0",
+    "EnvironmentFiles=/etc/default/alloy (ignore_errors=no)",
+    "EnvironmentFiles=/etc/blaine/secrets/grafana-metrics.env (ignore_errors=no)",
+    "EnvironmentFiles=/etc/blaine/secrets/grafana-cloud.env (ignore_errors=yes)",
+    "User=alloy"
+  ],
+  "secret_file": "/etc/blaine/secrets/grafana-metrics.env",
+  "secret_mode": "0o600",
+  "secret_owner_uid": 0,
+  "secret_parent_mode": "0o700",
+  "fleet_block_loaded": false,
+  "runtime_network_auth_bootstrap": false,
+  "spool_filesystem_free_bytes": 1277397803008
+}

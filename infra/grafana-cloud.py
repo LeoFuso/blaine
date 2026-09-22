@@ -17,6 +17,20 @@ ENV_FILE = Path('/etc/blaine/secrets/grafana-cloud.env')
 FLEET_FIELDS = ('GRAFANA_CLOUD_FM_URL', 'GRAFANA_CLOUD_FM_INSTANCE_ID', 'GRAFANA_CLOUD_FM_API_KEY')
 FLEET_PROJECT = 'ac68b692-2150-45da-ab69-b4ca0085935a'
 FLEET_ENV_FILE = Path('/etc/blaine/secrets/grafana-fleet.env')
+METRICS_FIELDS = ('GRAFANA_CLOUD_METRICS_API_KEY',)
+METRICS_ENV_FILE = Path('/etc/blaine/secrets/grafana-metrics.env')
+
+
+def validate_metrics(values):
+    if set(values) != set(METRICS_FIELDS):
+        raise ValueError('Only the Hosted Metrics API key belongs in secret material')
+    for value in values.values():
+        if not isinstance(value, str) or not value or re.search(r'[\s\x00"\'`$\\]', value):
+            raise ValueError('Invalid metrics environment value')
+    token = values[METRICS_FIELDS[0]]
+    if len(token) < 20 or any(x in token.lower() for x in ('placeholder', 'replace', 'changeme')):
+        raise ValueError('Metrics token is missing or a placeholder')
+    return values
 
 
 def validate_fleet(values):
@@ -36,6 +50,14 @@ def validate_fleet(values):
 
 
 def fleet_from_bws():
+    return selected_from_bws(FLEET_FIELDS, validate_fleet)
+
+
+def metrics_from_bws():
+    return selected_from_bws(METRICS_FIELDS, validate_metrics)
+
+
+def selected_from_bws(fields, validator):
     # The bootstrap token stays only in memory and the short-lived BWS child env.
     keyring = subprocess.run(['secret-tool', 'lookup', 'service', 'leofuso-lab',
                               'credential', 'bws-access-token'], capture_output=True, text=True, timeout=15)
@@ -46,10 +68,10 @@ def fleet_from_bws():
                             env=env, capture_output=True, text=True, timeout=45)
     if result.returncode:
         raise RuntimeError('BWS project read failed; diagnostics suppressed')
-    rows = [row for row in json.loads(result.stdout) if row.get('key') in FLEET_FIELDS]
-    if len(rows) != 3 or len({row['key'] for row in rows}) != 3:
-        raise RuntimeError('Fleet fields absent or duplicated in the selected BWS project')
-    return validate_fleet({row['key']: row['value'] for row in rows})
+    rows = [row for row in json.loads(result.stdout) if row.get('key') in fields]
+    if len(rows) != len(fields) or len({row['key'] for row in rows}) != len(fields):
+        raise RuntimeError('Requested fields absent or duplicated in the selected BWS project')
+    return validator({row['key']: row['value'] for row in rows})
 
 
 
@@ -90,15 +112,76 @@ def atomic(path, data, mode):
             os.unlink(name)
 
 
+def compose_metrics(base, fragment):
+    source = '[otelcol.receiver.prometheus.local.receiver]'
+    if base.count(source) != 2 or 'remotecfg' in base:
+        raise RuntimeError('Unexpected local metrics topology; review before composition')
+    base = base.replace(source, '[otelcol.receiver.prometheus.local.receiver, prometheus.remote_write.grafana_metrics.receiver]')
+    # Two fixed local targets. Bound accepted input as well as WAL age/queue.
+    base = base.replace('  scrape_interval = "30s"',
+                        '  scrape_interval = "30s"\n  sample_limit = 5000\n  body_size_limit = "2MiB"\n  target_limit = 1')
+    return base + '\n' + fragment
+
+
+def activate_metrics():
+    if os.geteuid() != 0:
+        raise RuntimeError('This action requires bounded sudo')
+    if Path('/etc/blaine/infra/cloud.enabled').exists():
+        raise RuntimeError('Refuse to overwrite an active legacy Cloud composition')
+    secret = METRICS_ENV_FILE
+    if secret.resolve() != secret or secret.stat().st_uid != 0 or secret.stat().st_mode & 0o077:
+        raise RuntimeError('Metrics secret must be root-owned private local material')
+    values = validate_metrics(dict(line.split('=', 1) for line in secret.read_text().splitlines() if line))
+    base = Path('/etc/blaine/infra/alloy-local.alloy').read_text()
+    desired = compose_metrics(base, Path('/etc/blaine/infra/metrics.alloy.inactive').read_text())
+    active = Path('/etc/alloy/config.alloy')
+    previous = active.read_text()
+    if previous not in (base, desired):
+        raise RuntimeError('Refuse to overwrite unknown Alloy configuration')
+    candidate = Path('/etc/alloy/blaine-candidate.alloy')
+    atomic(candidate, desired, 0o644)
+    result = subprocess.run(['alloy', 'validate', '--stability.level=public-preview', str(candidate)],
+                            env=dict(os.environ, **values), capture_output=True)
+    if result.returncode:
+        candidate.unlink()
+        raise RuntimeError('Metrics validation failed; active configuration unchanged')
+    dropin = Path('/etc/systemd/system/alloy.service.d/blaine-metrics.conf')
+    unit = '[Service]\nEnvironmentFile=/etc/blaine/secrets/grafana-metrics.env\n'
+    if dropin.exists() and dropin.read_text() != unit:
+        candidate.unlink()
+        raise RuntimeError('Refuse unknown metrics service override')
+    old_dropin = dropin.read_text() if dropin.exists() else None
+    try:
+        atomic(dropin, unit, 0o644)
+        os.replace(candidate, active)
+        subprocess.run(['systemctl', 'daemon-reload'], check=True, capture_output=True)
+        subprocess.run(['systemctl', 'restart', 'alloy'], check=True, capture_output=True, timeout=60)
+    except Exception:
+        atomic(active, previous, 0o644)
+        if old_dropin is None:
+            dropin.unlink(missing_ok=True)
+        else:
+            atomic(dropin, old_dropin, 0o644)
+        subprocess.run(['systemctl', 'daemon-reload'], check=True, capture_output=True)
+        subprocess.run(['systemctl', 'restart', 'alloy'], check=True, capture_output=True, timeout=60)
+        raise RuntimeError('Metrics activation failed; previous local configuration restored') from None
+    atomic(Path('/etc/blaine/infra/metrics.enabled'), 'Native asynchronous metrics; Cloud delivery requires separate evidence.\n', 0o600)
+    print('Native metrics activated; verify local readiness and Cloud readback separately.')
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('action', choices=['status', 'placeholder', 'materialize', 'write-env', 'activate', 'deactivate', 'materialize-fleet', 'write-fleet-env', 'activate-fleet'])
+    p.add_argument('action', choices=['status', 'placeholder', 'materialize', 'write-env', 'activate', 'deactivate', 'materialize-fleet', 'write-fleet-env', 'activate-fleet', 'materialize-metrics', 'write-metrics-env', 'activate-metrics'])
     action = p.parse_args().action
+    if action == 'activate-metrics':
+        activate_metrics()
+        return
     if action == 'activate-fleet':
         raise RuntimeError('STOP: Alloy 1.19.2 native Fleet registration failure prevents local startup; offline-start acceptance is required before activation')
-    if action == 'materialize-fleet':
-        values = fleet_from_bws()
-        subprocess.run(['sudo', '-n', '/usr/bin/python3', '/usr/local/lib/blaine/grafana-cloud.py', 'write-fleet-env'],
+    if action in ('materialize-fleet', 'materialize-metrics'):
+        values = fleet_from_bws() if action == 'materialize-fleet' else metrics_from_bws()
+        writer = 'write-fleet-env' if action == 'materialize-fleet' else 'write-metrics-env'
+        subprocess.run(['sudo', '-n', '/usr/bin/python3', '/usr/local/lib/blaine/grafana-cloud.py', writer],
                        input=json.dumps(values), text=True, check=True)
         return
     if action in ('status', 'placeholder', 'materialize'):
@@ -129,8 +212,11 @@ def main():
         return
     if os.geteuid() != 0:
         raise RuntimeError('This action requires bounded sudo')
-    if action in ('write-env', 'write-fleet-env'):
-        if action == 'write-fleet-env':
+    if action in ('write-env', 'write-fleet-env', 'write-metrics-env'):
+        if action == 'write-metrics-env':
+            values = validate_metrics(json.load(sys.stdin))
+            destination, fields = METRICS_ENV_FILE, METRICS_FIELDS
+        elif action == 'write-fleet-env':
             values = validate_fleet(json.load(sys.stdin))
             destination, fields = FLEET_ENV_FILE, FLEET_FIELDS
         else:
@@ -143,6 +229,8 @@ def main():
         atomic(destination, ''.join(f'{k}={values[k]}\n' for k in fields), 0o600)
         print('Runtime environment materialized; exporter remains inactive.')
         return
+    if Path('/etc/blaine/infra/metrics.enabled').exists():
+        raise RuntimeError('Metrics is active; refuse legacy OTLP activation/deactivation overwrite')
     base = Path('/etc/blaine/infra/alloy-local.alloy').read_text()
     env = os.environ.copy()
     if action == 'activate':

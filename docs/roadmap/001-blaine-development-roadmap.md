@@ -185,7 +185,8 @@ Object namespaces are `blaine-artifacts`, `langfuse-events` and `langfuse-media`
 with separate scoped access. The [Fleet control-plane slice](../platform-grafana-cloud.md)
 reached **STOP for activation** on native Alloy 1.19.2 offline-start failure.
 BWS/Keyring materialization and Fleet read-API access passed; local Alloy is restored
-and Cloud telemetry remains inactive/unvalidated. No D1.G identity was replaced.
+after that slice. The independent data-plane slice now exports metrics with Cloud
+readback; restart-durable replay is unaccepted. No D1.G identity was replaced.
 [ADR 0021](../decisions/0021-fleet-observability-control-plane.md) records the direction
 without claiming adoption. Resolve and prove offline startup before enrollment;
 do not introduce an alternate supervisor or reopen inference. Temporary maintenance
@@ -661,8 +662,10 @@ operator procedures; this document owns development direction and dependencies.
 - **Track B: D1.A/B/C/D live adoption accepted.** Run the prepared D1.G reboot
   acceptance only with explicit human authorization; backup stays PAUSED.
 - **Backup: PAUSED.** Preserve historical backup data; no live backup completion claimed.
-- **Grafana Cloud: CONFIGURED FOR FUTURE ACTIVATION.** Human credential/bootstrap
-  procedure prepared; remote delivery inactive/unproven.
+- **Grafana Cloud data plane: PARTIAL.** Native metrics delivery/readback and offline
+  startup proved; pending pre-restart sample replay remains unaccepted. Logs and
+  traces stay local. Fleet control plane stays DEFERRED / STOP.
+  See [observability acceptance](../platform-grafana-cloud.md).
 - **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
 - **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
 

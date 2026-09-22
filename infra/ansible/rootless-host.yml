@@ -125,6 +125,7 @@
             from pathlib import Path
             import hashlib, sys
             assert not Path('/etc/blaine/infra/cloud.enabled').exists(), 'STOP: merge rootless journal sources into the active cloud composition explicitly'
+            assert not Path('/etc/blaine/infra/metrics.enabled').exists(), 'STOP: preserve the accepted native metrics composition; stage/reconcile it with grafana-metrics.yml and the existing materializer'
             current = Path('/etc/alloy/config.alloy').read_bytes()
             desired = Path(sys.argv[1]).read_bytes()
             old_local = 'a57350e91a008894456895e1eabceae8d23edd6098c53ec050a77bb4c188a300'

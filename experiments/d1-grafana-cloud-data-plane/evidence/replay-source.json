@@ -1,0 +1,15 @@
+{
+  "go_version": "go1.26.7",
+  "selected_embedded_build_metadata": [
+    "dep\tgithub.com/prometheus/prometheus\tv0.313.2\th1:1EqGCHPc7wZPEHpoaaeIxDhMSRQTblZncR2cUXrMg2A=",
+    "build\tvcs.revision=becfd489a7bb459c0496893b555fb87a003296b1",
+    "build\tvcs.modified=false"
+  ],
+  "source_references": [
+    "https://github.com/grafana/alloy/blob/v1.19.2/internal/component/prometheus/remotewrite/remote_write.go",
+    "https://github.com/prometheus/prometheus/blob/v0.313.2/tsdb/wlog/watcher.go",
+    "https://github.com/prometheus/prometheus/blob/v0.313.2/storage/remote/write.go"
+  ],
+  "finding": "WAL watcher sets start timestamp to now at loop start and forwards only later samples; queue config changes also create a new queue. Disk presence is not replay proof.",
+  "metadata_method": "ELF .go.buildinfo section, not embedded helper binaries"
+}
