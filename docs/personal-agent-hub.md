@@ -1,7 +1,13 @@
 # Personal Agent Hub — E0 through E3
 
 **Design checkpoint: 2026-09-21. Status: architecture and implementation handoff;
-E0–E3 are planned, not implemented or accepted.**
+E0.A foundation implemented; full E0–E3 remain unaccepted.**
+
+The [E0.A client guide](../client/README.md) and
+[isolated evidence](../experiments/e0a-blaine-client/README.md) record the five-command
+skeleton, Go selection, platform paths and byte/process proof. Linux amd64 runtime
+passed; macOS/WSL2 runtime and all onboarding remain unvalidated. Command contracts
+below describe the complete target, beyond this foundation.
 
 Blaine is the persistent Personal Agent. A workstation is a registered execution
 surface, and IntelliJ/ACP is its first interactive surface. The next product
@@ -369,8 +375,10 @@ JetBrains version pair are open E0.E decisions, not implemented commands.
 
 ## Command contracts
 
-Command behavior in this section is proposed for implementation. No command is
-claimed available today. Optional flags remain small: `connect --host NAME` for
+Command behavior in this section describes the complete E0 target. The
+[E0.A command subset](../client/README.md#commands-and-exits) is implemented with
+explicit unavailable results for networking/onboarding; no full E0 claim follows.
+Optional flags remain small: `connect --host NAME` for
 first-use override and `doctor --json` for automation; normal operation needs
 neither a host argument nor raw transport knowledge. Use a release/operator
 connection profile containing the stable host name when available. If no profile
@@ -914,7 +922,10 @@ Task runtime or require a full ACP agent implementation just to bridge stdio.
 | Rust | Compiled executable with strong control over local enforcement; dependencies/build targets and development cost must be justified. `cargo install` builds/distributes through Cargo and is not an end-user standalone release by itself. [Cargo installation](https://doc.rust-lang.org/cargo/commands/cargo-install.html). | Viable if later enforcement demands or established maintainer experience justify it; no demonstrated E0 advantage over Go. |
 | Existing shell / Java runtime | Shell is already used for host entrypoints but becomes difficult for safe structured config/state/error handling. A Java client would require a runtime/bundle before workstation onboarding; the E3 project's JDK is not an E0 prerequisite. | Keep shell as packaging glue, not core client. Do not choose Java solely because IntelliJ/E3 uses it. |
 
-E0.A should settle language by producing a small packaged executable that can
+E0.A selected Go with a standalone build and stdio/process proof; see the
+[language decision](../experiments/e0a-blaine-client/language.md). The remaining
+platform runtime gates below still apply. The language gate calls for an executable
+that can
 roundtrip platform-native config and relay clean stdio/exit signals; explicitly
 test macOS path discovery and Windows-to-WSL argument/encoding boundaries in
 fixtures before claiming live support. It should not become a
@@ -964,7 +975,7 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 
 | Slice | Goal and likely components | Live acceptance / retained proof | STOP conditions | Dependencies |
 | --- | --- | --- | --- | --- |
-| E0.A Client skeleton/package | Settle Go recommendation; proposed `client/cmd/blaine`, `client/internal/platform` Linux/macOS/WSL adapters, versioned config model and portable artifact/install notes. Five-command surface with explicit unavailable stubs for later behavior. | Install executable in a clean Linux user environment; version works without repo/language runtime; config/path and stdio/signal fixtures cover all three platform boundaries; live portability explicitly scoped. | Packaging requires hidden runtime/repo, stdout corruption, unsafe config migration. | This design; no live host required. |
+| E0.A Client skeleton/package — [foundation PASS](../experiments/e0a-blaine-client/README.md) | Settle Go recommendation; proposed `client/cmd/blaine`, `client/internal/platform` Linux/macOS/WSL adapters, versioned config model and portable artifact/install notes. Five-command surface with explicit unavailable stubs for later behavior. | Install executable in a clean Linux user environment; version works without repo/language runtime; config/path and stdio/signal fixtures cover all three platform boundaries; live portability explicitly scoped. | Packaging requires hidden runtime/repo, stdout corruption, unsafe config migration. | This design; no live host required. |
 | E0.B Tailscale state/login | Proposed platform prerequisite adapters; supported install assistance, native status/login, macOS approvals, Windows host inspection from WSL. | On available targets, prove install/missing/expired/login states; macOS native approval and WSL2 host status/topology probes; no changed unrelated preferences. Record untested targets. | Needs admin token/permanent root, duplicate WSL daemon, wrong tailnet, unsupported install or cannot distinguish auth/host/guest reachability. | E0.A; authorized test workstation. |
 | E0.C Host/transport/handshake | Proposed transport adapter and installed host connection entrypoint; versioned handshake/readiness schema. | Verify actual SSH mode/host/peer identity and clean stdio; mismatch/offline/check-mode tests; measure WSL path and any real forwarding need separately. | Untrusted claimed device identity, public endpoint, incompatible protocol accepted, unsafe SSH fallback. | E0.A/B; host profile and bounded host-entrypoint deployment authorization. |
 | E0.D Registration | Proposed PostgreSQL migration/repository and client registration receipt. | Register/replay after response loss and restart: one identity; copied UUID on another device denied; revoke/re-pair explicit. | New Task ledger, registration grants workspace scope, unknown outcome reported success. | E0.C; existing PostgreSQL access scoped to registry. |
@@ -981,7 +992,8 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 | E3.B Human response/resume | Bind existing HumanDecision to user surface with matching revision/digest and durable identity. | Real human answers actual unresolved choice; disconnect/new surface retrieves wait and resumes same Task; stale/wrong replies denied. | Auto-response, cosmetic decision, replacement Task or widened authorization. | E3.A. |
 | E3.C Coding E2E/result | Run full fixture workflow through effects, deterministic verification and user result projection. | Java 25 build/tests, allowed diff, human evidence, fresh CompletionEvaluation and terminal Task/result; negative verifier case retained. | No workstation provenance, missing genuine human cycle/evidence, host checkout, unintended writes. | E3.B and E2 effects; closes E3, not D7. |
 
-**Proposed first implementation request:** E0.A only. Create the small packaged
+**Original first implementation request (now completed within E0.A scope):**
+E0.A only. Create the small packaged
 client skeleton, platform interface and config contract for Linux/macOS/WSL2;
 prove initial native Linux installation/version and clean stdio behavior, exercise
 the other platform boundaries in fixtures, and record the language decision and

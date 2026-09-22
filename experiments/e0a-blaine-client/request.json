@@ -1,0 +1,17 @@
+{
+  "objective": "Implement E0.A only: a portable standalone workstation Blaine client skeleton with version, read-only doctor foundation and proven ACP stdio/process lifecycle infrastructure.",
+  "mode": "interactive",
+  "context": [{"need": "Accepted Hub design, ADR 0022, roadmap, D2 implementation and contracts", "source": "git:7286bfd21dfd128af28e0a3d6735d665a9850843", "sharing": "local-only"}],
+  "capabilities": ["read repository", "edit isolated worktree", "build and test local fixtures", "download official build toolchain", "create one local commit"],
+  "autonomy": {
+    "allowed": ["bounded client implementation and documentation", "offline tests and standalone cross-builds", "one local commit"],
+    "forbidden": ["networking or Tailscale onboarding", "remote host connection", "workstation registration", "IntelliJ configuration", "server/runtime changes", "push", "merge"]
+  },
+  "cloud": {"policy": "ask"},
+  "completion": [
+    {"criterion": "Five-command skeleton and platform-native non-secret config boundary", "evidence": "client source, unit tests and README"},
+    {"criterion": "ACP byte purity, stderr isolation, child status and cancellation cleanup", "evidence": "process tests and built-binary acceptance"},
+    {"criterion": "Standalone Linux run and Linux/macOS cross-builds with embedded metadata", "evidence": "artifact hashes, build commands and smoke output"},
+    {"criterion": "Focused validation, bounded evidence, accurate roadmap and local-only commit", "evidence": "test/static/race/link/diff checks and git commit"}
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "toolchain": "go version go1.27.1 linux/amd64",
+  "build_commit": "7286bfd21dfd128af28e0a3d6735d665a9850843-dirty",
+  "linux_amd64_has_no_dynamic_interpreter": true,
+  "artifacts": [
+    {
+      "name": "blaine-darwin-amd64",
+      "bytes": 2939904,
+      "sha256": "4432dac749a92114f1d4903f8dd97c9c10f09a01dc051276cff9803b0e27a6cb",
+      "format": "Mach-O 64-bit x86_64 executable, flags:<|DYLDLINK|PIE>",
+      "repeat_build_identical": true
+    },
+    {
+      "name": "blaine-darwin-arm64",
+      "bytes": 2801970,
+      "sha256": "714d4891ca08c3858ad83468ed3322b28227b3e32464e3f7e66ea59cd0201a8d",
+      "format": "Mach-O 64-bit arm64 executable, flags:<|DYLDLINK|PIE>",
+      "repeat_build_identical": true
+    },
+    {
+      "name": "blaine-linux-amd64",
+      "bytes": 2961532,
+      "sha256": "b0ad7596b51c3be3ad4dbd80ed5f5b5bf82a019fb04e1935aad15c8f4500e62a",
+      "format": "ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped",
+      "repeat_build_identical": true
+    },
+    {
+      "name": "blaine-linux-arm64",
+      "bytes": 2883708,
+      "sha256": "1a193ed785fcf45f6aec51ddfd8d5bf51a6a8912bd6f3828a6f0673817749b2c",
+      "format": "ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, stripped",
+      "repeat_build_identical": true
+    }
+  ],
+  "client_source_sha256": {
+    "client/README.md": "1b031d2107b6ff46ba71a8ae13ec00601179f25a339c6383661e2f69e7498ac1",
+    "client/build.sh": "62df4c6882e9563f80fcb6ab98aadb9863056486df88aafd1e8f3e9d4e8c4851",
+    "client/cmd/blaine/main.go": "7ea1531c9d924e7013770c7a7ef255352f90f1f069bd964ca11ac98dd4aea266",
+    "client/go.mod": "21d882a30dfb26d8283bd65ba72359172d10b269d277333d27cb94ea9aa12a3a",
+    "client/internal/buildinfo/buildinfo.go": "355e237278d452b2b8aa9c9075f266cc41bce4c939c193bc8347ab95e927110a",
+    "client/internal/buildinfo/buildinfo_test.go": "b8fd269c7c1d21340cfac754f0f8c9abcc91595d9cb4ec03e656822b0e7442a2",
+    "client/internal/cli/cli.go": "0abb4b31a474660a3bc6fb76b7679bfd15e5dd022cdb0fa247b51aa56be02ff5",
+    "client/internal/cli/cli_test.go": "f12ba74f2b5780797c41413ff842e0fd9e3cc91f2379582b49789747286c1009",
+    "client/internal/cli/timeout.go": "944a177cc3e0139d4bec986b0a906cec5d2e54ddcaba6a1e8114f7dc4dfa5027",
+    "client/internal/doctor/doctor.go": "d412cfe5064b633b7e56ba72d96d4caef6c9ecca1cef57a43b85c9b42fa9ce94",
+    "client/internal/doctor/doctor_test.go": "168a5344f16019a997aa5faf5c4e3110f65cd3fc35b13dd614ac7c3c5c9cdb3b",
+    "client/internal/fixture/fixture.go": "8ca749a72712867e3ada314aba58305a674b1770936ce1d9efd4ebf6139dd340",
+    "client/internal/platform/platform.go": "88990b914ac89183e86325e263ff0a9a88e92e9a310b2d4813273a473d64cce9",
+    "client/internal/platform/platform_test.go": "0c98736337ebcde9a4e8ba8bcf709c8f0da4fc433539a1e3dc61d413551e97e2",
+    "client/internal/process/process.go": "f8b9fc9dd29dd78aa92ebd062deb209bb315a38dcb72de62211e27a8296cabad",
+    "client/internal/process/process_test.go": "fd29b657c0cd4a2126e61b93a4b201d2ab08a4e25dbca707aefcf7aa64a29b69"
+  },
+  "runtime_proven": [
+    "linux/amd64"
+  ],
+  "build_only": [
+    "linux/arm64",
+    "darwin/amd64",
+    "darwin/arm64"
+  ],
+  "wsl2_runtime_proven": false
+}
