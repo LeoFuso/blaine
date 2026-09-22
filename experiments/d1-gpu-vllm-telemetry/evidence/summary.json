@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "branch": "d1-gpu-vllm-telemetry",
+  "base_commit": "ab7e5a98e80aafe0f8343b10396e8fee6d7696ad",
+  "vllm_endpoints": {
+    "generation": "http://127.0.0.1:8000/metrics",
+    "embedding": "http://127.0.0.1:8001/metrics"
+  },
+  "gpu_endpoint": "http://127.0.0.1:9400/metrics",
+  "exporter_version": "4.8.4",
+  "dcgm_version": "4.6.1",
+  "cloud_catalog_queries_validated": 39,
+  "cloud_new_series_observed": 507,
+  "gpu_hardware_series": 16,
+  "platform_tests_passed": 41,
+  "ansible_live_second_changed": 0,
+  "new_exporter_restarts": 1,
+  "alloy_restarts": 2,
+  "inference_restarts": 0,
+  "reboot": false,
+  "fleet_activation": false,
+  "logs_traces_changes": false,
+  "application_otel_changes": false,
+  "rootful_docker_dependency": false,
+  "push": false,
+  "merge": false,
+  "likely_same_file_merge_conflicts": [],
+  "live_integration_boundary": "Preserve the marked platform block when the concurrent OTel owner deploys its Alloy changes. Existing base bytes preserved by this slice.",
+  "known_limitation": "Existing accepted remote-write restart replay is not guaranteed."
+}

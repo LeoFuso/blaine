@@ -1,0 +1,234 @@
+{
+  "observed_at": 1790039248.0208318,
+  "boot_unchanged": true,
+  "services_unchanged": true,
+  "unowned_alloy_bytes_unchanged": true,
+  "fleet_inactive": true,
+  "single_existing_remote_write": true,
+  "backup_unchanged": true,
+  "host_and_new_cloud_up": {
+    "query": "up{host=\"blaine\",environment=\"blaine-dev\"}",
+    "status": "success",
+    "result": [
+      {
+        "metric": {
+          "__name__": "up",
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "127.0.0.1:8000",
+          "job": "blaine/vllm",
+          "model": "nvidia/Qwen3.8-27B-NVFP4",
+          "role": "generation",
+          "service": "blaine-generation"
+        },
+        "value": [
+          1790039248.052,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "127.0.0.1:8001",
+          "job": "blaine/vllm",
+          "model": "BAAI/bge-m3",
+          "role": "embedding",
+          "service": "blaine-embedding"
+        },
+        "value": [
+          1790039248.052,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "127.0.0.1:9400",
+          "job": "blaine/gpu",
+          "model": "NVIDIA GeForce RTX 5090",
+          "role": "gpu",
+          "service": "blaine-gpu-exporter"
+        },
+        "value": [
+          1790039248.052,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "blaine",
+          "job": "integrations/self"
+        },
+        "value": [
+          1790039248.052,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "blaine",
+          "job": "integrations/unix"
+        },
+        "value": [
+          1790039248.052,
+          "1"
+        ]
+      }
+    ]
+  },
+  "post_restart_freshness": {
+    "query": "time() - timestamp(up{host=\"blaine\",job=~\"blaine/(vllm|gpu)\"})",
+    "status": "success",
+    "result": [
+      {
+        "metric": {
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "127.0.0.1:8000",
+          "job": "blaine/vllm",
+          "model": "nvidia/Qwen3.8-27B-NVFP4",
+          "role": "generation",
+          "service": "blaine-generation"
+        },
+        "value": [
+          1790039248.073,
+          "13.746000051498413"
+        ]
+      },
+      {
+        "metric": {
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "127.0.0.1:8001",
+          "job": "blaine/vllm",
+          "model": "BAAI/bge-m3",
+          "role": "embedding",
+          "service": "blaine-embedding"
+        },
+        "value": [
+          1790039248.073,
+          "8.227999925613403"
+        ]
+      },
+      {
+        "metric": {
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "127.0.0.1:9400",
+          "job": "blaine/gpu",
+          "model": "NVIDIA GeForce RTX 5090",
+          "role": "gpu",
+          "service": "blaine-gpu-exporter"
+        },
+        "value": [
+          1790039248.073,
+          "4.586999893188477"
+        ]
+      }
+    ]
+  },
+  "post_restart_gpu": {
+    "query": "DCGM_FI_DEV_GPU_UTIL{host=\"blaine\",job=\"blaine/gpu\"}",
+    "status": "success",
+    "result": [
+      {
+        "metric": {
+          "__name__": "DCGM_FI_DEV_GPU_UTIL",
+          "environment": "blaine-dev",
+          "gpu": "0",
+          "host": "blaine",
+          "instance": "127.0.0.1:9400",
+          "job": "blaine/gpu",
+          "model": "NVIDIA GeForce RTX 5090",
+          "role": "gpu",
+          "service": "blaine-gpu-exporter"
+        },
+        "value": [
+          1790039248.091,
+          "1"
+        ]
+      }
+    ]
+  },
+  "config_validation": {
+    "exit_code": 0,
+    "stdout": ""
+  },
+  "accepted_inference": {
+    "vllm_version": "0.29.1rc1.dev401+gc3b484463",
+    "vllm_commit": "c3b48446349569512749db7f6e2164aa8a33437d",
+    "torch": "2.13.0+cu132",
+    "cuda_build": "13.2",
+    "models": {
+      "generation": {
+        "repository": "nvidia/Qwen3.8-27B-NVFP4",
+        "revision": "482ca0f3832238542f8f5295dde86b5f22711d80"
+      },
+      "embedding": {
+        "repository": "BAAI/bge-m3",
+        "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+      }
+    }
+  },
+  "inference_health": {
+    "8000": {
+      "http_status": 200,
+      "body_empty": true
+    },
+    "8001": {
+      "http_status": 200,
+      "body_empty": true
+    }
+  },
+  "local_wal": {
+    "exit_code": 0,
+    "series": 507,
+    "vllm_present": true,
+    "gpu_present": true
+  },
+  "cardinality": {
+    "series_count": 507,
+    "label_names": [
+      "__name__",
+      "asserts_env",
+      "engine",
+      "environment",
+      "finished_reason",
+      "gpu",
+      "host",
+      "instance",
+      "job",
+      "le",
+      "model",
+      "reason",
+      "role",
+      "service"
+    ],
+    "cloud_enrichment": {
+      "asserts_env": "blaine-dev"
+    },
+    "unexpected_labels": []
+  },
+  "local_metrics_file": {
+    "vllm_metrics": 240,
+    "gpu_metrics": 144
+  }
+}

@@ -1,0 +1,2149 @@
+{
+  "observed_at": 1790039043.780475,
+  "catalog": {
+    "gpu_utilization_percent": {
+      "query": "DCGM_FI_DEV_GPU_UTIL{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_GPU_UTIL",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.238,
+            "2"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_vram_used_percent": {
+      "query": "100 * DCGM_FI_DEV_FB_USED{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"} / (DCGM_FI_DEV_FB_USED{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"} + DCGM_FI_DEV_FB_FREE{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"} + DCGM_FI_DEV_FB_RESERVED{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"})",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.242,
+            "90.10611543887629"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_vram_used_gib": {
+      "query": "DCGM_FI_DEV_FB_USED{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"} / 1024",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.241,
+            "28.69140625"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_vram_free_gib": {
+      "query": "DCGM_FI_DEV_FB_FREE{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"} / 1024",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.243,
+            "2.6630859375"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_temperature_c": {
+      "query": "DCGM_FI_DEV_GPU_TEMP{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_GPU_TEMP",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.272,
+            "44"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_power_w": {
+      "query": "DCGM_FI_DEV_POWER_USAGE{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_POWER_USAGE",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.268,
+            "37.534"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_power_limit_w": {
+      "query": "DCGM_FI_DEV_POWER_MGMT_LIMIT{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_POWER_MGMT_LIMIT",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.267,
+            "600"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_memory_activity_percent": {
+      "query": "DCGM_FI_DEV_MEM_COPY_UTIL{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_MEM_COPY_UTIL",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.273,
+            "9"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_sm_clock_mhz": {
+      "query": "DCGM_FI_DEV_SM_CLOCK{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_SM_CLOCK",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.287,
+            "517"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_memory_clock_mhz": {
+      "query": "DCGM_FI_DEV_MEM_CLOCK{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_MEM_CLOCK",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.294,
+            "405"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_throttle_reason_bitmask": {
+      "query": "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.293,
+            "0"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_pcie_tx_bytes_per_second": {
+      "query": "DCGM_FI_PROF_PCIE_TX_BYTES{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_PROF_PCIE_TX_BYTES",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.303,
+            "14108596"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_pcie_rx_bytes_per_second": {
+      "query": "DCGM_FI_PROF_PCIE_RX_BYTES{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_PROF_PCIE_RX_BYTES",
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.305,
+            "27913603"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "gpu_thermal_throttled_seconds_per_second": {
+      "query": "rate(DCGM_FI_DEV_THERMAL_VIOLATION{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"}[5m]) / 1e9",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.31,
+            "0"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "vllm_running_requests": {
+      "query": "sum by (host,service,role,model) (vllm:num_requests_running{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\"})",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.321,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.321,
+            "0"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "vllm_waiting_requests": {
+      "query": "sum by (host,service,role,model) (vllm:num_requests_waiting{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\"})",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.328,
+            "0"
+          ]
+        },
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.328,
+            "0"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_kv_cache_percent": {
+      "query": "100 * max by (host,service,role,model) (vllm:kv_cache_usage_perc{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"})",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.326,
+            "0"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "vllm_prompt_tokens_per_second": {
+      "query": "sum by (host,service,role,model) (rate(vllm:prompt_tokens_total{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\"}[5m]))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.33,
+            "0.9128184242424243"
+          ]
+        },
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.33,
+            "0.18238400000000002"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_tokens_per_second": {
+      "query": "sum by (host,service,role,model) (rate(vllm:generation_tokens_total{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m]))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.35,
+            "1.825843717171717"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_prefix_cache_hit_percent": {
+      "query": "100 * sum by (host,service,role,model) (rate(vllm:prefix_cache_hits_total{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])) / (sum by (host,service,role,model) (rate(vllm:prefix_cache_queries_total{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])) > 0)",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.359,
+            "0"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "embedding_requests_per_second": {
+      "query": "sum by (host,service,role,model) (rate(vllm:request_success_total{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"embedding\",finished_reason=\"stop\"}[5m]))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.352,
+            "0.0038001555555555555"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "telemetry_scrape_up": {
+      "query": "up{host=\"blaine\",environment=\"blaine-dev\",job=~\"blaine/(vllm|gpu)\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "up",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "127.0.0.1:8000",
+            "job": "blaine/vllm",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.356,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "127.0.0.1:8001",
+            "job": "blaine/vllm",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.356,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.356,
+            "1"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "host_and_alloy_scrape_up": {
+      "query": "up{host=\"blaine\",environment=\"blaine-dev\",job!~\"blaine/(vllm|gpu)\"}",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "up",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/self"
+          },
+          "value": [
+            1790039043.374,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "blaine",
+            "job": "integrations/unix"
+          },
+          "value": [
+            1790039043.374,
+            "1"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_ttft_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:time_to_first_token_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.379,
+            "0.07"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_ttft_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:time_to_first_token_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.374,
+            "0.079"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_e2e_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:e2e_request_latency_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.39,
+            "7.5699187820708875"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_e2e_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:e2e_request_latency_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.404,
+            "9.882458544762596"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_inter_token_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:inter_token_latency_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.402,
+            "0.0175"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_inter_token_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:inter_token_latency_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.628,
+            "0.02425"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_request_tpot_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:request_time_per_output_token_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.41,
+            "0.0175"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_request_tpot_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:request_time_per_output_token_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.429,
+            "0.02425"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_queue_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:request_queue_time_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.435,
+            "0.15"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_queue_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:request_queue_time_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.442,
+            "0.285"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_prefill_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:request_prefill_time_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.456,
+            "0.15"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_prefill_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:request_prefill_time_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.471,
+            "0.285"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_decode_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:request_decode_time_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.462,
+            "7.5"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "generation_decode_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:request_decode_time_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"generation\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.488,
+            "9.75"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "embedding_e2e_p50_seconds": {
+      "query": "histogram_quantile(0.5, sum by (le,host,service,role,model) (rate(vllm:e2e_request_latency_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"embedding\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.481,
+            "0.15"
+          ]
+        }
+      ],
+      "finite_values": true
+    },
+    "embedding_e2e_p95_seconds": {
+      "query": "histogram_quantile(0.95, sum by (le,host,service,role,model) (rate(vllm:e2e_request_latency_seconds_bucket{host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\",role=\"embedding\"}[5m])))",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "host": "blaine",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.507,
+            "0.285"
+          ]
+        }
+      ],
+      "finite_values": true
+    }
+  },
+  "proof": {
+    "vllm_families": {
+      "query": "count by (__name__,service) ({host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/vllm\"})",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "scrape_samples_post_metric_relabeling",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_samples_scraped",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_series_added",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:e2e_request_latency_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:e2e_request_latency_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:e2e_request_latency_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:inter_token_latency_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:kv_cache_usage_perc",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_preemptions_total",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_requests_waiting",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:prefix_cache_hits_total",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:prefix_cache_queries_total",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_decode_time_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_decode_time_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_decode_time_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_generation_tokens_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_generation_tokens_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_inference_time_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prefill_time_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prefill_time_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prefill_time_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prefill_time_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prompt_tokens_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_queue_time_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_queue_time_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_success_total",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "5"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_time_per_output_token_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_time_per_output_token_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:time_to_first_token_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:time_to_first_token_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:time_to_first_token_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:time_to_first_token_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_duration_seconds",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_duration_seconds",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_samples_post_metric_relabeling",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_samples_scraped",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_series_added",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:e2e_request_latency_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:e2e_request_latency_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:e2e_request_latency_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:generation_tokens_total",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:generation_tokens_total",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:inter_token_latency_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "20"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:inter_token_latency_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "20"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:inter_token_latency_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:inter_token_latency_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:inter_token_latency_seconds_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:kv_cache_usage_perc",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_preemptions_total",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_requests_running",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_requests_running",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_requests_waiting",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_requests_waiting_by_reason",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "2"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:num_requests_waiting_by_reason",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "2"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:prefix_cache_hits_total",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:prefix_cache_queries_total",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:prompt_tokens_total",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:prompt_tokens_total",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_decode_time_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_decode_time_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_decode_time_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_generation_tokens_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "17"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_generation_tokens_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "13"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_generation_tokens_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_generation_tokens_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_inference_time_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_inference_time_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_inference_time_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_inference_time_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_inference_time_seconds_sum",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prefill_time_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prefill_time_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prompt_tokens_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "17"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prompt_tokens_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "13"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prompt_tokens_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prompt_tokens_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_prompt_tokens_sum",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_queue_time_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_queue_time_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "22"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_queue_time_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_queue_time_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_success_total",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "5"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_time_per_output_token_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "20"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_time_per_output_token_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "20"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_time_per_output_token_seconds_count",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:request_time_per_output_token_seconds_count",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:time_to_first_token_seconds_bucket",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.648,
+            "23"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "vllm:time_to_first_token_seconds_bucket",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.648,
+            "23"
+          ]
+        }
+      ]
+    },
+    "gpu_families": {
+      "query": "count by (__name__) ({host=\"blaine\",environment=\"blaine-dev\",job=\"blaine/gpu\"})",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_FB_USED"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_PCIE_REPLAY_COUNTER"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_POWER_MGMT_LIMIT"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_POWER_VIOLATION"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_THERMAL_VIOLATION"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_PROF_PCIE_TX_BYTES"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_duration_seconds"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_samples_post_metric_relabeling"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_series_added"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "up"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_FB_FREE"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_FB_RESERVED"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_GPU_TEMP"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_GPU_UTIL"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_MEM_CLOCK"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_MEM_COPY_UTIL"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_POWER_USAGE"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_DEV_SM_CLOCK"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "DCGM_FI_PROF_PCIE_RX_BYTES"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        },
+        {
+          "metric": {
+            "__name__": "scrape_samples_scraped"
+          },
+          "value": [
+            1790039043.668,
+            "1"
+          ]
+        }
+      ]
+    },
+    "generation_increase": {
+      "query": "increase(vllm:generation_tokens_total{host=\"blaine\",job=\"blaine/vllm\",role=\"generation\"}[5m])",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "engine": "0",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "127.0.0.1:8000",
+            "job": "blaine/vllm",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.687,
+            "548.7988363636364"
+          ]
+        }
+      ]
+    },
+    "embedding_increase": {
+      "query": "increase(vllm:request_success_total{host=\"blaine\",job=\"blaine/vllm\",role=\"embedding\",finished_reason=\"stop\"}[5m])",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "engine": "0",
+            "environment": "blaine-dev",
+            "finished_reason": "stop",
+            "host": "blaine",
+            "instance": "127.0.0.1:8001",
+            "job": "blaine/vllm",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.702,
+            "1.14238"
+          ]
+        }
+      ]
+    },
+    "gpu_load_seen": {
+      "query": "max_over_time(DCGM_FI_DEV_GPU_UTIL{host=\"blaine\",job=\"blaine/gpu\"}[5m])",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.724,
+            "99"
+          ]
+        }
+      ]
+    },
+    "gpu_idle_seen": {
+      "query": "min_over_time(DCGM_FI_DEV_GPU_UTIL{host=\"blaine\",job=\"blaine/gpu\"}[5m])",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "environment": "blaine-dev",
+            "gpu": "0",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.748,
+            "0"
+          ]
+        }
+      ]
+    },
+    "freshness_seconds": {
+      "query": "time() - timestamp(up{host=\"blaine\",job=~\"blaine/(vllm|gpu)\"})",
+      "status": "success",
+      "result": [
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "127.0.0.1:8000",
+            "job": "blaine/vllm",
+            "model": "nvidia/Qwen3.8-27B-NVFP4",
+            "role": "generation",
+            "service": "blaine-generation"
+          },
+          "value": [
+            1790039043.773,
+            "19.444999933242798"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "127.0.0.1:8001",
+            "job": "blaine/vllm",
+            "model": "BAAI/bge-m3",
+            "role": "embedding",
+            "service": "blaine-embedding"
+          },
+          "value": [
+            1790039043.773,
+            "13.92799997329712"
+          ]
+        },
+        {
+          "metric": {
+            "asserts_env": "blaine-dev",
+            "environment": "blaine-dev",
+            "host": "blaine",
+            "instance": "127.0.0.1:9400",
+            "job": "blaine/gpu",
+            "model": "NVIDIA GeForce RTX 5090",
+            "role": "gpu",
+            "service": "blaine-gpu-exporter"
+          },
+          "value": [
+            1790039043.773,
+            "5.286999940872192"
+          ]
+        }
+      ]
+    }
+  }
+}

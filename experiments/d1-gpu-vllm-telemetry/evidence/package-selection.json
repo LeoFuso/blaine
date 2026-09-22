@@ -1,0 +1,14 @@
+[
+  {
+    "Package": "datacenter-gpu-manager-4-core",
+    "Version": "1:4.6.1-1",
+    "Filename": "./datacenter-gpu-manager-4-core_4.6.1-1_amd64.deb",
+    "SHA256": "75cb5c40079aceee83ca291d6129a30e0110319015e6b54b3fbdcf1a9ec2c998"
+  },
+  {
+    "Package": "datacenter-gpu-manager-exporter",
+    "Version": "4.8.4.3955-1",
+    "Filename": "./datacenter-gpu-manager-exporter_4.8.4.3955-1_amd64.deb",
+    "SHA256": "78dae98dfd53e571463afe920ec98eaec80f587145ae090d10b162ad3c0bb6cb"
+  }
+]

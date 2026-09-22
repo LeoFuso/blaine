@@ -1,0 +1,120 @@
+---
+- name: Own bounded RTX 5090 and vLLM infrastructure telemetry
+  hosts: blaine
+  gather_facts: false
+  vars:
+    blaine_prefix: ""
+    blaine_activate: false
+    nvidia_repository: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64
+    telemetry_packages:
+      - file: datacenter-gpu-manager-4-core_4.6.1-1_amd64.deb
+        sha256: 75cb5c40079aceee83ca291d6129a30e0110319015e6b54b3fbdcf1a9ec2c998
+      - file: datacenter-gpu-manager-exporter_4.8.4.3955-1_amd64.deb
+        sha256: 78dae98dfd53e571463afe920ec98eaec80f587145ae090d10b162ad3c0bb6cb
+  tasks:
+    - name: Enforce the staging and activation boundary
+      ansible.builtin.assert:
+        that:
+          - blaine_prefix == '' or blaine_prefix is match('^/tmp/blaine-telemetry-[A-Za-z0-9_-]+$')
+          - not (blaine_activate | bool) or blaine_prefix == ''
+
+    - name: Verify the accepted native host before package installation
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - |
+            import os, pathlib, subprocess
+            assert os.geteuid() == 0
+            assert 'VERSION_ID="26.04"' in pathlib.Path('/etc/os-release').read_text()
+            assert subprocess.check_output(['dpkg', '--print-architecture'], text=True).strip() == 'amd64'
+            gpu = subprocess.check_output(['nvidia-smi', '--query-gpu=name,driver_version', '--format=csv,noheader'], text=True).strip()
+            assert gpu == 'NVIDIA GeForce RTX 5090, 595.91.07', 'Revalidate GPU/driver support before deployment'
+            for unit in ['nvidia-dcgm', 'nvidia-dcgm-exporter']:
+                assert subprocess.run(['systemctl', 'is-active', '--quiet', unit]).returncode != 0, 'Existing exporter/engine owner; stop'
+            for package, version in [('datacenter-gpu-manager-4-core', '1:4.6.1-1'), ('datacenter-gpu-manager-exporter', '4.8.4.3955-1')]:
+                result = subprocess.run(['dpkg-query', '-W', '-f=${Status} ${Version}', package], capture_output=True, text=True)
+                assert result.returncode != 0 or result.stdout == 'install ok installed ' + version, 'Unexpected package version; no automatic downgrade'
+      changed_when: false
+      when: blaine_activate | bool
+
+    - name: Create only telemetry-owned directories
+      ansible.builtin.file:
+        path: '{{ blaine_prefix }}{{ item }}'
+        state: directory
+        mode: '0755'
+      loop:
+        - /var/cache/blaine-telemetry
+        - /etc/dcgm-exporter
+        - /usr/local/lib/blaine
+        - /etc/systemd/system
+
+    - name: Create protected infrastructure staging directory
+      ansible.builtin.file:
+        path: '{{ blaine_prefix }}/etc/blaine/infra'
+        state: directory
+        mode: '0700'
+
+    - name: Retrieve the exact official tested package pair
+      ansible.builtin.get_url:
+        url: '{{ nvidia_repository }}/{{ item.file }}'
+        dest: '/var/cache/blaine-telemetry/{{ item.file }}'
+        checksum: 'sha256:{{ item.sha256 }}'
+        mode: '0644'
+      loop: '{{ telemetry_packages }}'
+      when: blaine_activate | bool
+
+    - name: Install only DCGM core and official exporter without service autostart
+      ansible.builtin.apt:
+        deb: '/var/cache/blaine-telemetry/{{ item.file }}'
+        install_recommends: false
+        policy_rc_d: 101
+      environment:
+        NEEDRESTART_MODE: l
+      loop: '{{ telemetry_packages }}'
+      when: blaine_activate | bool
+
+    - name: Stage bounded exporter counters and dedicated native unit
+      ansible.builtin.copy:
+        src: '{{ item.src }}'
+        dest: '{{ blaine_prefix }}{{ item.dest }}'
+        mode: '0644'
+      loop:
+        - {src: ../telemetry/gpu-counters.csv, dest: /etc/dcgm-exporter/blaine-counters.csv}
+        - {src: ../systemd/blaine-gpu-exporter.service, dest: /etc/systemd/system/blaine-gpu-exporter.service}
+      register: gpu_staged
+
+    - name: Stage separately owned Alloy fragment and reconciler
+      ansible.builtin.copy:
+        src: '{{ item.src }}'
+        dest: '{{ blaine_prefix }}{{ item.dest }}'
+        mode: '0644'
+      loop:
+        - {src: ../alloy/platform-telemetry.alloy, dest: /etc/blaine/infra/platform-telemetry.alloy}
+        - {src: ../telemetry/reconcile-alloy.py, dest: /usr/local/lib/blaine/platform-telemetry.py}
+
+    - name: Start the only GPU exporter with unprivileged embedded DCGM
+      ansible.builtin.systemd_service:
+        name: blaine-gpu-exporter
+        daemon_reload: '{{ gpu_staged.changed }}'
+        enabled: true
+        state: "{{ 'restarted' if gpu_staged.changed else 'started' }}"
+      when: blaine_activate | bool
+
+    - name: Verify hardware metrics before wiring Alloy
+      ansible.builtin.uri:
+        url: http://127.0.0.1:9400/metrics
+        return_content: true
+      register: gpu_response
+      until: gpu_response.status == 200 and 'DCGM_FI_DEV_GPU_UTIL{' in gpu_response.content
+      retries: 10
+      delay: 1
+      changed_when: false
+      when: blaine_activate | bool
+
+    - name: Validate and reconcile only the platform block and restart Alloy if changed
+      ansible.builtin.command:
+        argv: [/usr/bin/python3, /usr/local/lib/blaine/platform-telemetry.py, --apply]
+      register: alloy_result
+      changed_when: "alloy_result.stdout.startswith('CHANGED;')"
+      when: blaine_activate | bool

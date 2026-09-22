@@ -1,0 +1,53 @@
+// Infrastructure only. Reuse the accepted Cloud transport and local metrics sink.
+prometheus.scrape "vllm" {
+  targets = [
+    {__address__ = "127.0.0.1:8000", host = "blaine", service = "blaine-generation", role = "generation", model = "nvidia/Qwen3.8-27B-NVFP4"},
+    {__address__ = "127.0.0.1:8001", host = "blaine", service = "blaine-embedding", role = "embedding", model = "BAAI/bge-m3"},
+  ]
+  job_name = "blaine/vllm"
+  scrape_interval = "15s"
+  scrape_timeout = "5s"
+  sample_limit = 1500
+  body_size_limit = "1MiB"
+  target_limit = 2
+  forward_to = [prometheus.relabel.vllm.receiver]
+}
+
+prometheus.relabel "vllm" {
+  forward_to = [otelcol.receiver.prometheus.local.receiver, prometheus.remote_write.grafana_metrics.receiver]
+  // Preserve bounded operational families; discard cache configuration info,
+  // Python/process instrumentation, request parameter histograms and created gauges.
+  rule {
+    source_labels = ["__name__"]
+    regex = "up|scrape_.*|vllm:(num_requests_running|num_requests_waiting|num_requests_waiting_by_reason|kv_cache_usage_perc|prefix_cache_(queries|hits)_total|num_preemptions_total|prompt_tokens_total|generation_tokens_total|request_success_total|(request_prompt_tokens|request_generation_tokens|time_to_first_token_seconds|inter_token_latency_seconds|request_time_per_output_token_seconds|e2e_request_latency_seconds|request_queue_time_seconds|request_inference_time_seconds|request_prefill_time_seconds|request_decode_time_seconds)_(bucket|sum|count))"
+    action = "keep"
+  }
+  rule {
+    action = "labelkeep"
+    regex = "__name__|job|instance|host|service|role|model|engine|le|finished_reason|reason"
+  }
+}
+
+prometheus.scrape "gpu" {
+  targets = [{__address__ = "127.0.0.1:9400", host = "blaine", service = "blaine-gpu-exporter", role = "gpu", model = "NVIDIA GeForce RTX 5090"}]
+  job_name = "blaine/gpu"
+  scrape_interval = "5s"
+  scrape_timeout = "4s"
+  sample_limit = 100
+  body_size_limit = "128KiB"
+  target_limit = 1
+  forward_to = [prometheus.relabel.gpu.receiver]
+}
+
+prometheus.relabel "gpu" {
+  forward_to = [otelcol.receiver.prometheus.local.receiver, prometheus.remote_write.grafana_metrics.receiver]
+  rule {
+    source_labels = ["__name__"]
+    regex = "up|scrape_.*|DCGM_FI_DEV_(GPU_UTIL|MEM_COPY_UTIL|FB_USED|FB_FREE|FB_RESERVED|GPU_TEMP|POWER_USAGE|POWER_MGMT_LIMIT|SM_CLOCK|MEM_CLOCK|CLOCK_THROTTLE_REASONS|PCIE_REPLAY_COUNTER|POWER_VIOLATION|THERMAL_VIOLATION)|DCGM_FI_PROF_PCIE_(TX|RX)_BYTES"
+    action = "keep"
+  }
+  rule {
+    action = "labelkeep"
+    regex = "__name__|job|instance|host|service|role|model|gpu"
+  }
+}

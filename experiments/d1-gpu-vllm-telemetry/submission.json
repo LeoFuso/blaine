@@ -1,0 +1,4 @@
+{
+  "submitted": false,
+  "reason": "No configured development-work execution binding. D2 supports bounded deterministic capabilities, not this infrastructure implementation. Work is interactive under explicit user authorization; no durable runtime state claimed."
+}

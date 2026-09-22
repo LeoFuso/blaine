@@ -1,0 +1,29 @@
+[Unit]
+Description=Blaine GPU hardware metrics (official NVIDIA DCGM Exporter)
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+User=nvidia-dcgm
+Group=nvidia-dcgm
+ExecStart=/usr/bin/dcgm-exporter -f /etc/dcgm-exporter/blaine-counters.csv -a 127.0.0.1:9400 -c 5000 -n -d g:0 --watch-max-keep-age=1m
+Environment=DCGM_HOME_DIR=/var/lib/blaine-gpu-exporter
+StateDirectory=blaine-gpu-exporter
+WorkingDirectory=/var/lib/blaine-gpu-exporter
+Restart=on-failure
+RestartSec=10s
+NoNewPrivileges=true
+CapabilityBoundingSet=
+AmbientCapabilities=
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+UMask=0027
+
+[Install]
+WantedBy=multi-user.target
