@@ -610,6 +610,15 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
+**2026-09-23: complementary III.G Graphify structural utility PASS.**
+[Milestone](../milestones/053-track-iii-g-graphify-structural-utility.md) and
+[evidence](../../experiments/track-iii-graphify/README.md): twenty frozen questions on
+pinned Spring Kafka/Jackson, combined +9 distinct required targets over bounded source
+exploration, eight exploration-request reductions, no stale/forbidden output, <=1995
+bytes. Value is corpus-dependent; overload precision and validation costs remain limits.
+Classification **ADAPT / ON-DEMAND**, not production adoption. III.10 remains the
+planned sequence close; III.8 FAIL and III.8R PASS are unchanged.
+
 **2026-09-23: III.10 context propagation PASS within the offline fixture.**
 [Milestone 052](../milestones/052-track-iii-10-context-propagation.md) records 12 frozen
 handoff/checkpoint/second-process cases, 1,460 independent checks, zero content/metadata
@@ -840,10 +849,11 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.10 propagation PASS; stopped before production integration.**
+- **Track III: III.10 PASS; complementary III.G structural utility PASS.**
   [Evidence and post-track recommendation](../../experiments/track-iii-010/README.md).
   III.8 FAIL and III.8R PASS remain separate. Architecture consolidation/contract review
-  is recommended for separate authorization; no implementation or hard gate is implied.
+  is recommended for separate authorization, including III.G on-demand structural
+  capability/cost findings; no implementation or hard gate is implied.
   Other product/operational priorities are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof

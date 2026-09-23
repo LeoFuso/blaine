@@ -1,0 +1,192 @@
+{
+  "actual_raw_edge": {
+    "_origin": "ast",
+    "confidence": "INFERRED",
+    "confidence_score": 0.85,
+    "context": "call",
+    "relation": "calls",
+    "source": "spring_kafka_src_main_java_org_springframework_kafka_core_defaultkafkaconsumerfactory_defaultkafkaconsumerfactory_createkafkaconsumer",
+    "source_file": "spring-kafka/src/main/java/org/springframework/kafka/core/DefaultKafkaConsumerFactory.java",
+    "source_location": "L436",
+    "target": "spring_kafka_src_main_java_org_springframework_kafka_core_kafkaresourcefactory_kafkaresourcefactory_checkbootstrap",
+    "weight": 1.0
+  },
+  "correct": {
+    "assembly_seconds": 4.06589824706316e-05,
+    "candidate_answers": [],
+    "condition": "B",
+    "confidence_selected": {},
+    "discovery": [
+      {
+        "edges_traversed": 0,
+        "native_calls": [
+          "graphify.build.build_from_json",
+          "graphify.serve._bfs"
+        ],
+        "native_text": null,
+        "nodes_traversed": 0,
+        "requests": 1,
+        "seconds": 0.053698314004577696,
+        "source_files_opened": [],
+        "traversal_limit_exceeded": false
+      }
+    ],
+    "exploration_files": [],
+    "exploration_requests": 1,
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "packet_bytes": 215,
+    "query": "CONTROL-INFERRED",
+    "raw_candidates": [],
+    "repo": "spring-kafka",
+    "selected": [],
+    "source_revalidation_files": []
+  },
+  "query": {
+    "depth": 1,
+    "direction": "out",
+    "end": "org.springframework.kafka.core.KafkaResourceFactory#checkBootstrap/1",
+    "group": "TRAP_CONTROL",
+    "id": "CONTROL-INFERRED",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "calls"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.core.DefaultKafkaConsumerFactory#createKafkaConsumer/4",
+    "text": "Does the four-argument createKafkaConsumer directly call checkBootstrap? A merged overload node is not source evidence for that claim."
+  },
+  "unsafe": {
+    "assembly_seconds": 7.494899909943342e-05,
+    "candidate_answers": [
+      {
+        "steps": [
+          {
+            "confidence": [
+              "INFERRED"
+            ],
+            "index_revisions": [
+              "B"
+            ],
+            "mechanisms": [
+              "G"
+            ],
+            "relation": "calls",
+            "source": "org.springframework.kafka.core.DefaultKafkaConsumerFactory#createKafkaConsumer/4",
+            "target": "org.springframework.kafka.core.KafkaResourceFactory#checkBootstrap/1"
+          }
+        ],
+        "target": "org.springframework.kafka.core.KafkaResourceFactory#checkBootstrap/1"
+      }
+    ],
+    "condition": "B",
+    "confidence_selected": {
+      "INFERRED": 1
+    },
+    "discovery": [
+      {
+        "edges_traversed": 1,
+        "native_calls": [
+          "graphify.build.build_from_json",
+          "graphify.serve._bfs",
+          "graphify.serve._shortest_path_text"
+        ],
+        "native_text": "Shortest path (1 hops):\n  .createKafkaConsumer() --calls [INFERRED]--> .checkBootstrap()",
+        "nodes_traversed": 2,
+        "requests": 1,
+        "seconds": 0.13046388799557462,
+        "source_files_opened": [],
+        "traversal_limit_exceeded": false
+      }
+    ],
+    "exploration_files": [],
+    "exploration_requests": 1,
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "INFERRED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 1
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/core/DefaultKafkaConsumerFactory.java",
+          "DefaultKafkaConsumerFactory#createKafkaConsumer/4",
+          339,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/core/KafkaResourceFactory.java",
+          "KafkaResourceFactory#checkBootstrap/1",
+          56,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "packet_bytes": 491,
+    "query": "CONTROL-INFERRED",
+    "raw_candidates": [
+      {
+        "confidence": "INFERRED",
+        "index_revision": "B",
+        "mechanisms": [
+          "G"
+        ],
+        "raw_index": 14181,
+        "relation": "calls",
+        "source": "org.springframework.kafka.core.DefaultKafkaConsumerFactory#createKafkaConsumer/4",
+        "target": "org.springframework.kafka.core.KafkaResourceFactory#checkBootstrap/1"
+      }
+    ],
+    "repo": "spring-kafka",
+    "selected": [
+      {
+        "steps": [
+          {
+            "confidence": [
+              "INFERRED"
+            ],
+            "index_revisions": [
+              "B"
+            ],
+            "mechanisms": [
+              "G"
+            ],
+            "relation": "calls",
+            "source": "org.springframework.kafka.core.DefaultKafkaConsumerFactory#createKafkaConsumer/4",
+            "target": "org.springframework.kafka.core.KafkaResourceFactory#checkBootstrap/1"
+          }
+        ],
+        "target": "org.springframework.kafka.core.KafkaResourceFactory#checkBootstrap/1"
+      }
+    ],
+    "source_revalidation_files": [
+      "spring-kafka/src/main/java/org/springframework/kafka/core/DefaultKafkaConsumerFactory.java",
+      "spring-kafka/src/main/java/org/springframework/kafka/core/KafkaResourceFactory.java"
+    ]
+  }
+}

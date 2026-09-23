@@ -177,6 +177,29 @@ changed. III.8 remains FAIL; III.8R remains its separate recovery PASS. Recommen
 separately authorized architecture consolidation and contract gap review before any
 integration slice. No subsequent increment or production implementation is started.
 
+## III.G complementary structural utility — 2026-09-23
+
+[III.G](../../milestones/053-track-iii-g-graphify-structural-utility.md) is **PASS** on
+20 frozen source-oracled questions across pinned Spring Kafka and Jackson Databind.
+Unlike III.8/8R's saturated structural corpus, combined lexical plus real pinned
+Graphify adds nine unique required targets over bounded source exploration, eight on
+Jackson and one on Spring. Eight multi-hop/impact questions need fewer exploration
+requests with Graphify at equal-or-better coverage. All direct targets survive; normal
+packets emit no stale/forbidden references and remain <=1995 bytes.
+
+Classification: **ADAPT / ON-DEMAND**. Graphify alone misses two call chains; local
+query latency is higher than lexical and source validation has cost. Real INFERRED
+overload misattribution and stale-index mutations are caught. EXTRACTED and INFERRED
+are provenance, not authority. The optional isolation mutation did not emit a leak
+because packet selection omitted its protected candidate; it is inconclusive, not a
+claimed successful control. Source validity/security checks still govern normal output.
+
+This supports considering a bounded structural capability behind Blaine authority,
+not unrestricted Graphify MCP, always-on adoption or proven runtime-impact analysis.
+III.10 remains the planned sequence close, III.G its explicitly authorized carveout.
+III.8 FAIL / III.8R PASS and all historical evidence remain unchanged. Final architecture
+consolidation and production decisions require separate authorization.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

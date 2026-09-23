@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/collect.py",
+    "--child",
+    "jackson-databind",
+    "/tmp/blaine-iii-g/jackson-databind-extract",
+    "/tmp/blaine-iii-g/jackson-databind-cache",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/indexes/jackson-databind/B"
+  ],
+  "commit": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+  "exit_code": 0,
+  "mode": "full graph rebuild with existing parse cache; not incremental graph update",
+  "repo": "jackson-databind",
+  "revision": "B",
+  "stderr": "",
+  "stdout": "  AST extraction: 17/17 uncached files (100%)\n",
+  "wall_seconds": 5.751784501015209
+}

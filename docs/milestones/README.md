@@ -6,7 +6,7 @@ limitations; their historical “next” instructions do not override that roadm
 
 | Program | Latest accepted checkpoint | Evidence |
 | --- | --- | --- |
-| Track III — Hierarchical Context, Memory & Verified Learning | [III.10 propagation PASS](052-track-iii-10-context-propagation.md); III.8 FAIL / III.8R PASS preserved | [Twelve transfer cases and three caught mutations](../../experiments/track-iii-010/evidence/summary.json); no production integration |
+| Track III — Hierarchical Context, Memory & Verified Learning | [III.10 propagation PASS](052-track-iii-10-context-propagation.md); [III.G structural utility PASS](053-track-iii-g-graphify-structural-utility.md); III.8 FAIL / III.8R PASS preserved | [III.G: twenty questions, +9 combined targets](../../experiments/track-iii-graphify/evidence/summary.json); ADAPT / ON-DEMAND; no production integration |
 | Cognitive Kernel 1–12 | COMPLETE: [progress and increment index](cognitive-kernel-progress.md), [Increment 12](037-cognitive-kernel-increment-12-parallel-children.md) | [Parallel children](../../experiments/kernel-increment-12/evidence/summary.json) |
 | Frontier boundary | [Increment 11 PASS / CLOSED](036-cognitive-kernel-increment-11-live-pass.md) | [Authorized live probe 002](../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json) |
 | D1.C inference | [Accepted local services, 128k](038-d1-local-inference.md) | [21 checks](../../experiments/d1-service-adoption/evidence/inference-summary.json) |
