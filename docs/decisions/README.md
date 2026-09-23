@@ -120,6 +120,8 @@ ADR’s own status before treating it as an accepted constraint.
   fixes Bitwarden as source of truth and removes the secret manager from the
   runtime path; operations live in the [secrets runbook](../platform-secrets.md).
 - [ADR 0024 — Local-first execution with bounded authorized escalation](0024-local-first-execution-with-bounded-escalation.md)
-  is **Proposed**: it makes local-first execution with trusted escalation the
-  active policy, corrects the capability/binding authority distinction, and
-  records classifier and heuristic pre-routing as future work.
+  is **Accepted** for its mechanism: local-first execution with trusted
+  escalation is the active policy and the capability/binding authority
+  distinction is enforced. No production remote binding is provisioned, so
+  escalation currently denies as unavailable; classifier and heuristic
+  pre-routing remain future work.

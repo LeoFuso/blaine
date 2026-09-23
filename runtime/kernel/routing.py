@@ -29,10 +29,16 @@ from runtime.kernel.contracts import MAX_TURNS, encode, fields, identifier, text
 POLICY = 'local-first-bounded-escalation'
 POLICY_VERSION = 1
 LOCAL_BINDING = 'local'
-# Below MAX_TURNS on purpose, so an admitted escalation still has budget to
-# continue inside the same Task rather than inheriting an exhausted loop.
-LOCAL_TURN_BUDGET = 8
-REPEATED_REJECTION_LIMIT = 3
+
+# Initial experimental defaults, not architectural invariants. They were chosen
+# to be plausible, not derived from measurement, and revising them is ordinary
+# configuration rather than an architectural decision: observed outcomes produce
+# evidence, evidence prompts a threshold review, and the review is a deliberate
+# edit here. Both values are recorded in every routing record, so evidence
+# gathered under one setting stays interpretable after the setting changes.
+LOCAL_TURN_BUDGET = 8          # below MAX_TURNS, so an admitted escalation
+                               # still has budget inside the same Task
+REPETITION_THRESHOLD = 3       # consecutive refusals with unchanged evidence
 
 ESCALATION_REASONS = {'local_turn_budget_reached', 'repeated_verifier_rejection'}
 ADMISSIONS = {'admitted', 'denied_no_grant', 'denied_not_authorized', 'denied_binding_unavailable'}
@@ -99,8 +105,8 @@ def escalation_condition(iteration: int, verifier_history: list[str]) -> str | N
     """Deterministic conditions only, computed from state Blaine already keeps."""
     if iteration >= LOCAL_TURN_BUDGET:
         return 'local_turn_budget_reached'
-    recent = verifier_history[-REPEATED_REJECTION_LIMIT:]
-    if len(recent) == REPEATED_REJECTION_LIMIT and len(set(recent)) == 1:
+    recent = verifier_history[-REPETITION_THRESHOLD:]
+    if len(recent) == REPETITION_THRESHOLD and len(set(recent)) == 1:
         return 'repeated_verifier_rejection'
     return None
 
@@ -157,7 +163,10 @@ class RoutingRecord:
             'initial_binding': self.initial_binding, 'final_binding': self.final_binding,
             'started_local': self.initial_binding == LOCAL_BINDING,
             'local_turns': self.local_turns, 'total_turns': self.total_turns,
+            # Recorded so a record stays interpretable after a threshold changes.
             'max_turns': MAX_TURNS, 'local_turn_budget': LOCAL_TURN_BUDGET,
+            'repetition_threshold': REPETITION_THRESHOLD,
+            'thresholds_are': 'initial experimental defaults, revisable from observed evidence',
             'escalated': self.escalated, 'escalation_iteration': self.escalation_iteration,
             'escalation_reason': self.escalation_reason,
             'escalation_admission': self.escalation_admission,

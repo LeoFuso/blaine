@@ -577,12 +577,44 @@ and escalation is a deterministic recommendation that only the trusted boundary
 admits. It exists to produce the evidence a smarter pre-router would have to beat.
 
 ```text
-CURRENT:   Policy C — local-first + bounded escalation
-FUTURE:    Policy B — deterministic heuristic pre-routing
-           Policy A — classifier pre-routing (Jev)
-FUTURE:    controlled downgrade sampling to evaluate remote recommendations
-TARGET:    cost to successful completion, not classifier accuracy
+Policy C — local-first + bounded authorized escalation     CURRENT BASELINE
+  implementation ........................................  COMPLETE
+  local execution .......................................  LIVE
+  escalation detection ..................................  LIVE
+  authority enforcement .................................  LIVE
+  escalation evidence ...................................  LIVE
+  remote escalation path ................................  IMPLEMENTED
+  remote binding ........................................  NOT PROVISIONED
+
+Policy B — deterministic heuristic pre-routing .........  FUTURE WORK
+Policy A — classifier pre-routing (Jev) ................  INTEGRATED CANDIDATE,
+                                                           NOT ADOPTED, FUTURE WORK
+Controlled downgrade sampling ..........................  FUTURE WORK
+C1 — failure classification ............................  FUTURE WORK
+C4 — cost to successful completion ......................  FUTURE WORK
 ```
+
+The distinction that matters most: **the escalation mechanism is implemented and
+validated, and production remote escalation is not provisioned.** No deployment
+configures an escalation binding, so the trusted boundary currently resolves every
+recommendation to `denied_binding_unavailable`. That is the deployment state, not
+a defect, and it is recorded in each routing record:
+
+```text
+local execution -> escalation condition -> trusted admission
+                -> no provisioned remote binding -> denied_binding_unavailable
+```
+
+The first deployment to provision a remote binding can use that denial count as
+one signal that the binding became reachable. No live Qwen-to-remote execution has
+been demonstrated; the live acceptance showed local completion under an external
+grant with no paid provider invocation.
+
+The local turn budget and repetition threshold are **initial experimental
+defaults**, not architectural invariants. Both are recorded in every routing
+record so evidence gathered under one setting stays interpretable after it
+changes. Revising them is a deliberate configuration change informed by observed
+outcomes, not an ADR for each numeric adjustment.
 
 | Slice | Plan and evidence gate |
 | --- | --- |
@@ -758,13 +790,16 @@ operator procedures; this document owns development direction and dependencies.
 - **Jev: integration PASS, NOT adopted.** One real authenticated invocation exists
   and Jev changes no routing outcome. C3's comparison is still unstarted; see
   [milestone 041](../milestones/041-jev-provider-candidate.md).
-- **Policy C — local-first execution with bounded escalation: implemented, Proposed ADR.**
-  Every eligible Task starts on the local binding, escalation is deterministic and
-  trusted, and each Task retains authoritative routing evidence that a
-  deterministic report reads. Effective capability authority is now the request
-  intersected with an external grant, closing a real gap where a top-level Task
-  declared its own authority. Policies A and B remain future work; nothing routes
-  by classifier or heuristic. See [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
+- **Policy C — local-first execution with bounded escalation: COMPLETE.**
+  [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
+  is accepted for its mechanism. Every eligible Task starts on the local binding,
+  escalation is deterministic and trusted, and each Task retains authoritative
+  routing evidence that a deterministic report reads. Effective capability
+  authority is now the request intersected with an external grant, closing a real
+  gap where a top-level Task declared its own authority. **No production remote
+  binding is provisioned**, so escalation currently denies as unavailable by
+  design. Policies A and B remain future work; nothing routes by classifier or
+  heuristic. See [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
 - **Worker execution boundary: user-directed increment, PASS within its evidence.**
   A provider-neutral continuation boundary, adapter capability claims and an
   OpenTelemetry telemetry path now exist, with a synchronous control hook where an

@@ -20,9 +20,11 @@ sys.path.insert(0, str(ROOT))
 from runtime.kernel.artifacts import ArtifactStore  # noqa: E402
 from runtime.kernel.routing import POLICY, POLICY_VERSION  # noqa: E402
 
-# Below this many observations the report states insufficiency instead of
-# publishing a rate. The gate is deterministic; no model decides it.
-MINIMUM_SAMPLE = 20
+# Below this many observations the report refuses to publish an operational
+# aggregate. It is a guardrail against reading too much into a handful of Tasks,
+# not a claim of statistical significance, and no confidence interval or
+# hypothesis test is implied. The gate is deterministic; no model decides it.
+MINIMUM_REPORTING_SAMPLE = 20
 REFERENCE = re.compile(r'artifact://([A-Za-z0-9_-]{1,80})/sha256:[0-9a-f]{64}')
 
 
@@ -117,16 +119,17 @@ def summarize(records, skipped, cutoff):
         'escalation_reasons': dict(sorted(reasons.items())),
         'escalation_admissions': dict(sorted(admissions.items())),
         'unreadable_records': skipped,
-        'minimum_sample': MINIMUM_SAMPLE,
+        'minimum_reporting_sample': MINIMUM_REPORTING_SAMPLE,
     }
     # Denominators are explicit, and an insufficient sample is reported rather
     # than dressed up as a finding.
-    report['sufficiency'] = ('INSUFFICIENT_SAMPLE' if len(records) < MINIMUM_SAMPLE
-                             else 'SUFFICIENT_FOR_RATES')
+    report['sufficiency'] = ('INSUFFICIENT_SAMPLE' if len(records) < MINIMUM_REPORTING_SAMPLE
+                             else 'ABOVE_REPORTING_THRESHOLD')
     report['interpretation_limits'] = [
         'escalation records that another tier was required, not that local inference was incapable',
         'failure causes are unclassified; raw provenance is retained for later attribution',
         'rates describe the retained population above, not any wider workload',
+        'the reporting threshold guards against premature interpretation; it is not statistical significance',
     ]
     return report
 

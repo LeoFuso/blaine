@@ -1,13 +1,23 @@
 # Policy C — local-first execution with bounded authorized escalation
 
-**2026-09-23 — implemented and validated. [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
-remains Proposed until the operator accepts it.**
+**2026-09-23 — COMPLETE. [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
+is Accepted for its mechanism; no production remote binding is provisioned.**
 
-Track II set out to make Jev useful and instead found the prior question: nobody
-had measured whether remote work was necessary. This increment answers that by
-making local-first execution the active policy and retaining the evidence a
-smarter router would later have to beat. No classifier and no heuristic routes
-anything.
+| Component | Status |
+| --- | --- |
+| Implementation | COMPLETE |
+| Local execution | LIVE |
+| Escalation detection | LIVE |
+| Authority enforcement | LIVE |
+| Escalation evidence | LIVE |
+| Remote escalation path | IMPLEMENTED |
+| **Remote binding** | **NOT PROVISIONED** |
+
+The work began as an attempt to make a classifier useful and found the prior
+question: nobody had measured whether remote work was necessary. This increment
+answers that by making local-first execution the active policy and retaining the
+evidence a smarter router would later have to beat. No classifier and no
+heuristic routes anything.
 
 Evidence: [live probe and report](../../experiments/policy-c-local-first/README.md).
 
@@ -96,5 +106,34 @@ recommending remote for everything, is documented and unimplemented. Cost to
 successful completion belongs to C4. Failure classification belongs to C1; this
 increment retains provenance and classifies nothing.
 
-No production deployment configures an escalation binding yet, so escalation is
-currently always denied as unavailable — which is recorded, not hidden.
+## Current production behaviour
+
+No deployment configures an escalation binding, so the trusted boundary resolves
+every recommendation to `denied_binding_unavailable`:
+
+```text
+local execution -> escalation condition -> trusted admission
+                -> no provisioned remote binding -> denied_binding_unavailable
+```
+
+That denial is the expected deployment state, not a defect in Policy C. It is
+recorded in the routing record rather than hidden, and the first deployment to
+provision a remote binding can use the denial count as one signal that the
+binding became reachable.
+
+No live local-to-remote execution has been demonstrated. The live acceptance
+showed local completion under an external grant with no paid provider call, and
+the admission path was exercised against a fixture escalation adapter.
+
+## Thresholds are experimental defaults
+
+The local turn budget of 8 within a 16-turn ceiling, and the repetition threshold
+of 3, are plausible starting values rather than measured ones. They are ordinary
+module constants, and both are recorded in every routing record so evidence
+gathered under one setting remains interpretable after it changes. Revising them
+is a deliberate configuration change informed by observed outcomes, not an
+architectural decision.
+
+The report's `MINIMUM_REPORTING_SAMPLE` of 20 is a guardrail against reading too
+much into a handful of Tasks. It is **not** a statistical significance threshold,
+and no confidence interval or hypothesis test is implied.

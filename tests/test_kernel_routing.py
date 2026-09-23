@@ -19,7 +19,8 @@ from runtime.kernel.contracts import (
 from runtime.kernel.event_sinks import JsonlEventPublisher
 from runtime.kernel.execution import Capabilities, policy_gate
 from runtime.kernel.routing import (
-    LOCAL_BINDING, LOCAL_TURN_BUDGET, POLICY, admit_escalation, effective_capabilities,
+    LOCAL_BINDING, LOCAL_TURN_BUDGET, POLICY, REPETITION_THRESHOLD, admit_escalation,
+    effective_capabilities,
     escalation_condition, narrow_grant, validate_grant,
 )
 
@@ -258,6 +259,10 @@ class RoutingEvidenceTests(unittest.IsolatedAsyncioTestCase):
             state = ctx.saved['task']['payload']
             record = store.read_json('control', state['routing_ref'])['payload']
             self.assertEqual(record['policy'], POLICY)
+            # Thresholds travel with the record so it survives their revision.
+            self.assertEqual(record['local_turn_budget'], LOCAL_TURN_BUDGET)
+            self.assertEqual(record['repetition_threshold'], REPETITION_THRESHOLD)
+            self.assertIn('experimental defaults', record['thresholds_are'])
             self.assertEqual(record['outcome'], 'COMPLETED')
             self.assertTrue(record['started_local'])
             self.assertFalse(record['escalated'])
@@ -291,6 +296,11 @@ class RoutingEvidenceTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(report['sufficiency'], 'INSUFFICIENT_SAMPLE')
             self.assertEqual(report['unreadable_records'], 0)
             self.assertIn('sampling_rule', report)
+            # A reporting guardrail, never a significance claim.
+            self.assertEqual(report['minimum_reporting_sample'],
+                             report_module.MINIMUM_REPORTING_SAMPLE)
+            self.assertTrue(any('not statistical significance' in limit
+                                for limit in report['interpretation_limits']))
 
     async def test_escalation_provenance_survives_for_later_attribution(self):
         request = message('TaskRequest', {'task_spec': spec(), 'initial_action': writes('DRAFT')[0],

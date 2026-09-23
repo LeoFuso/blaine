@@ -35,6 +35,10 @@ It reported one Task, a local completion rate of 1.0, and
 insufficient rather than presented as a finding. Every number carries its
 sampling rule and its denominator.
 
+`MINIMUM_REPORTING_SAMPLE` is a guardrail against premature interpretation, not a
+statistical significance threshold; no confidence interval or hypothesis test is
+implied by it.
+
 ## Reproduction
 
 Needs the adopted loopback serving endpoint on `127.0.0.1:8000`, the
@@ -55,5 +59,10 @@ PYTHONPATH=.:tests python3 -m unittest discover -s tests -p 'test_kernel_routing
 
 One Task is not a measurement of local capability. It demonstrates that the
 mechanism and the evidence path work end to end. The ratio Policy C exists to
-produce needs accumulated real usage, and no production deployment configures an
-escalation binding yet, so escalation is currently always denied as unavailable.
+produce needs accumulated real usage.
+
+**No live local-to-remote execution is shown here.** This probe demonstrates
+local completion under an external grant with no paid provider call. No
+deployment provisions a remote binding, so escalation currently resolves to
+`denied_binding_unavailable` by design, and the admission path is exercised by
+fixtures in `tests/test_kernel_routing.py` rather than by a real remote tier.

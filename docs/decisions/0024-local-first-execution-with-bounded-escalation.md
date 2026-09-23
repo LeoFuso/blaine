@@ -1,7 +1,7 @@
 # ADR 0024 — Local-first execution with bounded authorized escalation
 
-**Status:** Proposed  
-**Validation:** Unvalidated
+**Status:** Accepted  
+**Validation:** Integration — mechanism validated; no production remote binding provisioned
 
 Supersedes this ADR's own earlier draft, which centred historical restricted
 replay and stated an authority invariant that did not match the implemented
@@ -163,6 +163,21 @@ escalation continues inside the same Task under the unchanged CompletionVerifier
 that routing evidence survives in authoritative storage; and that a deterministic
 report derives local-completion and escalation metrics from that evidence and
 reports an insufficient sample explicitly.
+
+**Every criterion above is met**, by the twenty controls in
+[`tests/test_kernel_routing.py`](../../tests/test_kernel_routing.py) and one live
+run against real Restate and the adopted local serving deployment recorded in
+[milestone 042](../milestones/042-policy-c-local-first-escalation.md). No paid
+provider call was required, as this section's minimal-validation scope states.
+
+Two limits are part of the acceptance rather than exceptions to it. **No
+production deployment provisions a remote binding**, so admission was
+demonstrated against a fixture escalation adapter and production currently
+resolves every recommendation to `denied_binding_unavailable`; that denial is the
+expected deployment state, observable in the routing record, and not a defect.
+And whether the retained fields are *sufficient* to decide a future routing
+question cannot be proven before evidence accumulates: the mechanism that retains
+them is accepted here, the sufficiency of what it retains is not yet tested.
 
 ### Not required for validation
 
