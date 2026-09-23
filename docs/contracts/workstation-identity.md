@@ -1,7 +1,7 @@
 # E0.D workstation identity, inventory and presence
 
 Implementation status: **PARTIAL — deterministic acceptance passed; live E0.D
-deployment and designated-peer acceptance pending**. [Evidence](../../experiments/personal-agent-hub/e0d/README.md).
+edge deployed; designated-peer acceptance pending**. [Evidence](../../experiments/personal-agent-hub/e0d/README.md).
 E0.C remains PASS. No E0.E/F or E1 capability acceptance is implied.
 
 ## Three boundaries

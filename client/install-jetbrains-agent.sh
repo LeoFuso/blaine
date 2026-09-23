@@ -3,7 +3,7 @@
 set -eu
 
 main() {
-  release=v0.1.0-alpha.3
+  release=v0.1.0-alpha.4
   mode=install
   case $# in
     0) ;;
@@ -66,7 +66,7 @@ main() {
   printf 'checksum: verified (%s)\n' "$actual"
   chmod 700 "$stage/$asset"
   metadata=$("$stage/$asset" version)
-  case $metadata in "blaine ${release#v} protocol=1 commit="*" platform=$os/$arch") ;; *) echo 'Release/platform metadata mismatch' >&2; return 1 ;; esac
+  case $metadata in "blaine ${release#v} protocol=2 commit="*" platform=$os/$arch") ;; *) echo 'Release/platform metadata mismatch' >&2; return 1 ;; esac
   # Validate existing ACP configuration before replacing an installed executable.
   "$stage/$asset" integration jetbrains check >/dev/null
   mkdir -p "$bin_dir"

@@ -1,0 +1,26 @@
+{
+  "status": "PASS_LOCAL_FIXTURES",
+  "go_version": "go1.27.1",
+  "tsnet_version": "v1.102.4",
+  "pgx_version": "v5.11.0",
+  "checks": [
+    "gofmt",
+    "Go tests",
+    "Go race",
+    "go vet",
+    "disposable PostgreSQL registry and operator inventory tests with race",
+    "installer fixtures",
+    "host/readiness regressions",
+    "offline client checks",
+    "reproducible four-target builds and exact metadata",
+    "seven deployment staging fixtures",
+    "legacy profile upgrade and IP/name-independent binding race tests"
+  ],
+  "platforms_build_verified": [
+    "linux/amd64",
+    "linux/arm64",
+    "darwin/amd64",
+    "darwin/arm64"
+  ],
+  "runtime_scope": "Linux amd64 fixtures and private Hub edge deployment. Primary Mac E0.D acceptance is pending. E0.C evidence remains accepted."
+}

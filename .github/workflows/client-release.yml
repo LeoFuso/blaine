@@ -38,9 +38,9 @@ jobs:
           cat > "$RUNNER_TEMP/client-release-notes.md" <<'NOTES'
           Alpha workstation-client candidate. E0 and the Blaine client are not stable or accepted.
 
-          Direct-transport prerelease: embedded tsnet plus the private Blaine application protocol. Includes persisted client identity, signed handshake, binary streams, cancellation/reconnect, validated WSL MTU handling and Go-owned JetBrains custom ACP registration. Alpha.2 was the first direct-transport release; alpha.3 corrects the auxiliary Kotlin ACP envelope discriminator rejected during real JetBrains launch. Alpha.1 is historical SSH product-transport evidence; no automatic SSH fallback exists. No E0.D+ capabilities are enabled.
+          Direct-transport prerelease: embedded tsnet plus the private Blaine application protocol. Includes persisted client identity, signed handshake, binary streams, cancellation/reconnect, validated WSL MTU handling and Go-owned JetBrains custom ACP registration. Alpha.2 was the first direct-transport release; alpha.3 corrects the auxiliary Kotlin ACP envelope discriminator rejected during real JetBrains launch. Alpha.1 is historical SSH product-transport evidence; no automatic SSH fallback exists. E0.D adds automatic PostgreSQL workstation inventory/presence and signed protocol-2 registration receipts. Tailscale remains admission authority; registration grants no workspace/file/terminal capability.
 
-          E0.C remains PARTIAL. Designated macOS and WSL transport evidence exists; real IntelliJ-launched ACP/auth, remaining identity lifecycle, narrow tailnet policy and durable host deployment gates remain separate.
+          E0.C is PASS on the primary Mac, including real IntelliJ, narrow tailnet policy and persistent Hub deployment. E0.D live registration/reconnect acceptance is recorded separately. A release/build is not live acceptance; full E0.E/E0.F and Windows IntelliJ/WSL acceptance remain separate gates.
 
           Assets: Linux amd64/arm64 and Darwin amd64/arm64. Windows+WSL2 uses the Linux client; no native Windows binary. Build verification is not macOS/WSL live acceptance. No macOS signing/notarization is claimed.
 

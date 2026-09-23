@@ -1,19 +1,28 @@
 # Install the Blaine workstation client alpha
 
 **v0.1.0-alpha.2** is the first direct-transport prerelease: embedded tsnet plus
-Blaine's private application protocol. E0.C remains PARTIAL. The alpha is not a
-stable client or proof of real IntelliJ acceptance. **v0.1.0-alpha.1 is historical
+Blaine's private application protocol. E0.C is PASS, including its designated Mac
+IntelliJ acceptance. Full E0 and the client are not stable/accepted. **v0.1.0-alpha.1 is historical
 SSH-transport evidence and must not be used for current product acceptance.**
 
-## Current development onboarding
+## E0.D installer candidate (not published)
+
+This worktree prepares **v0.1.0-alpha.4**, including protocol-2 automatic
+workstation registration receipts. Publication requires separate operator
+authorization and has **not** occurred. Do not execute the alpha.4 URL below until
+its release is verified. The existing public alpha.3 installer remains available
+at its historical tag and works with the compatible Hub, but cannot expose the
+new receipt or supply architecture metadata.
+
+## Development onboarding after publication
 
 On macOS or Linux (including the designated Ubuntu WSL2 environment):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.3/client/install-jetbrains-agent.sh | sh
+curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.4/client/install-jetbrains-agent.sh | sh
 ```
 
-The current target is **alpha.3**, which fixes the auxiliary `type` field rejected
+The prepared target is **alpha.4**. Alpha.3 fixed the auxiliary `type` field rejected
 by alpha.2 during real JetBrains launch. [Alpha.3 delivery evidence](../experiments/personal-agent-hub/e0c-direct/alpha3-delivery.json)
 records publication and validation status. The earlier
 [alpha.2 evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
@@ -22,7 +31,7 @@ publication has **not** happened and remains the final distribution direction.
 
 The shell bootstrap requires a POSIX shell, curl, and `sha256sum` (Linux) or
 `shasum` (macOS). **It requires no Python, Go, Node, system Tailscale or SSH.**
-It detects the platform, downloads the exact alpha.3 asset and public
+It detects the platform, downloads the exact alpha.4 asset and public
 `checksums.txt`, requires exactly one matching SHA-256 entry, and compares bytes
 before executing or installing the binary. No `latest` alias or local candidate
 fallback is used. Checksum failure leaves the installed binary unchanged.
@@ -41,7 +50,7 @@ or shell-profile editing is required. The installer prints the client version,
 exact build commit, checksum, executable path and registration result.
 
 Open IntelliJ **AI Chat** and select **Blaine**. Restart the IDE if it has not
-reloaded the configuration. For E0.C, disable **Pass custom MCP servers** and
+reloaded the configuration. For E0.D, keep disabled **Pass custom MCP servers** and
 **Pass IntelliJ MCP server** for Blaine in Agents settings. Existing agents' global
 MCP policy is preserved; fresh configuration starts with MCP exposure disabled.
 The client advertises no E1/E2 workspace capabilities. Authentication, when needed,
@@ -56,7 +65,7 @@ Checksums provide download integrity, not signing or build attestation.
 ## Status and Go-owned JetBrains integration
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.3/client/install-jetbrains-agent.sh | sh -s -- --check
+curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.4/client/install-jetbrains-agent.sh | sh -s -- --check
 "$HOME/.local/bin/blaine" integration jetbrains check --json
 "$HOME/.local/bin/blaine" integration jetbrains install
 "$HOME/.local/bin/blaine" version
@@ -96,7 +105,7 @@ client operation; this installer does not reset it.
 
 ## Delivery and validation
 
-The official [GitHub Release](https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.3)
+The official [GitHub Release](https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.4)
 contains the four raw binaries above and one `checksums.txt`. Existing repository
 workflows remain authoritative:
 
@@ -106,7 +115,7 @@ workflows remain authoritative:
   offline client regressions and reproducibility checks.
 - Tag publication: `.github/workflows/client-release.yml`; explicit `v0.x.y-alpha.N`
   tags become prereleases, never the stable latest release. Embedded client version
-  omits `v`; protocol version remains independently versioned at 1.
+  omits `v`; Blaine protocol version is independently versioned at 2; ACP remains version 1.
 - Go is pinned to **1.27.1**. Ordinary CI has read-only permissions; only the release
   publication job has `contents: write`. Compilation requires no secret.
 - Actions provides commit-build artifacts with the same binary names and a
@@ -114,7 +123,7 @@ workflows remain authoritative:
 - Native signing/notarization and GitHub build attestation remain deferred
   hardening; Actions archive digests are not being represented as attestations.
 - Changie/changelog automation remains explicitly deferred. No self-updater,
-  native Windows binary, custom JetBrains plugin or E0.D+ implementation is added.
+  native Windows binary or custom JetBrains plugin is added. E0.D adds inventory and presence only; E0.E/F acceptance and workspace capabilities remain separate.
 
 The old manual alpha.1 instructions remain in Git history and the
 [historical delivery evidence](../experiments/personal-agent-hub/e0c/delivery.md).
