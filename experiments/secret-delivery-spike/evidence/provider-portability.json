@@ -1,0 +1,155 @@
+{
+ "version": 1,
+ "alias": "runtime_secrets",
+ "consumer": "jev",
+ "secret": "TYPESAFE_API_KEY",
+ "destination_redirected_for_safety": "<scratch>/portability-destinations",
+ "stages": [
+  {
+   "stage": "bitwarden",
+   "alias_uri": "bws://<project-uuid>",
+   "alias_add_exit": 0,
+   "outcome": "written",
+   "safe": true,
+   "mode": "0600",
+   "keys": [
+    "TYPESAFE_API_KEY"
+   ],
+   "sha256_prefix": "5931fb7bed7f"
+  },
+  {
+   "stage": "dotenv-fixture",
+   "alias_uri": "dotenv://<fixture>",
+   "alias_add_exit": 0,
+   "outcome": "written",
+   "safe": true,
+   "mode": "0600",
+   "keys": [
+    "TYPESAFE_API_KEY"
+   ],
+   "sha256_prefix": "1aa66bf9678a"
+  }
+ ],
+ "substitution_changed_the_value": true,
+ "undeclared_secret_excluded": true,
+ "runtime_boundary": {
+  "exit_code": 0,
+  "declared": true,
+  "undeclared": false
+ },
+ "unchanged_across_substitution": {
+  "jev_provider_source": true,
+  "consumer_declaration": true,
+  "materialization_wrapper_source": true,
+  "secretspec_manifest": true,
+  "local_destination": "<scratch>/portability-destinations/jev.env",
+  "runtime_contract": "KEY=value environment file consumed by the same launcher"
+ },
+ "configuration_delta": {
+  "before": [
+   "[defaults.providers]",
+   "runtime_secrets = \"bws://<project-uuid>\""
+  ],
+  "after": [
+   "[defaults.providers]",
+   "runtime_secrets = \"dotenv://<fixture>\""
+  ]
+ },
+ "value_printed": false,
+ "backend_alias_occupancy": {
+  "method": "each backend probed through the same alias boundary without real credentials; failures are configuration failures, never \"backend not found\"",
+  "bws": {
+   "built_in": true,
+   "uri": "bws://<project-uuid>",
+   "bootstrap": "BWS_ACCESS_TOKEN or provider credential",
+   "evidence": "OBSERVED live"
+  },
+  "vault": {
+   "built_in": true,
+   "uri": "vault://<host>:<port>/<mount>/<path>",
+   "bootstrap": "token provider credential, VAULT_TOKEN or ~/.vault-token",
+   "path_in_uri_accepted": true,
+   "evidence": "OBSERVED URI/bootstrap contract; no live Vault"
+  },
+  "openbao": {
+   "built_in": true,
+   "uri": "openbao://<host>:<port>/<mount>/<path>",
+   "bootstrap": "token provider credential, BAO_TOKEN or VAULT_TOKEN",
+   "path_in_uri_accepted": true,
+   "evidence": "OBSERVED URI/bootstrap contract; no live OpenBao"
+  },
+  "awssm": {
+   "built_in": true,
+   "uri": "awssm://<region>",
+   "bootstrap": "standard AWS credential provider chain",
+   "path_in_uri_accepted": false,
+   "addressing_note": "awssm URIs take no path; a secret is addressed with per-secret ref = { item = ... } in the manifest",
+   "evidence": "OBSERVED refusal of a path"
+  },
+  "dotenv": {
+   "built_in": true,
+   "uri": "dotenv://<file>",
+   "bootstrap": "none",
+   "evidence": "OBSERVED live"
+  },
+  "keyring": {
+   "built_in": true,
+   "uri": "keyring://",
+   "bootstrap": "OS keyring",
+   "evidence": "OBSERVED backend present"
+  }
+ },
+ "migration_delta": {
+  "bws_to_vault": {
+   "alias_uri": "bws://<project-uuid> -> vault://<host>:<port>/<mount>/<path>",
+   "bootstrap": "BWS_ACCESS_TOKEN -> VAULT_TOKEN or token credential",
+   "manifest_change": "none expected; the mount path lives in the alias URI",
+   "blaine_code_change": "none",
+   "consumer_change": "none",
+   "runtime_change": "none",
+   "confidence": "INFERRED from the accepted URI grammar and bootstrap contract; not live-tested"
+  },
+  "bws_to_awssm": {
+   "alias_uri": "bws://<project-uuid> -> awssm://<region>",
+   "bootstrap": "BWS_ACCESS_TOKEN -> AWS credential provider chain",
+   "manifest_change": "REQUIRED unless the AWS secret is named exactly as the declared key: per-secret ref = { item = \"<aws-secret-name>\" }",
+   "blaine_code_change": "none",
+   "consumer_change": "none",
+   "runtime_change": "none",
+   "confidence": "OBSERVED that a path is refused and a ref is demanded; the no-ref-when-names-match mitigation is INFERRED"
+  }
+ },
+ "leaking_backend_assumptions": [
+  {
+   "assumption": "secret naming and path semantics",
+   "leaks_into": "the SecretSpec manifest, not Blaine code",
+   "detail": "Vault and OpenBao carry mount/path in the alias URI, while AWS demands a per-secret ref. A manifest carrying an AWS-shaped ref stopped resolving against the dotenv backend in this test, so ref is backend-coupling rather than neutral addressing.",
+   "evidence": "OBSERVED: the same fixture resolved without ref and reported \"required but not set\" with ref"
+  },
+  {
+   "assumption": "bootstrap credential identity",
+   "leaks_into": "the alias definition and operator procedure",
+   "detail": "BWS_ACCESS_TOKEN, VAULT_TOKEN, BAO_TOKEN and the AWS chain are different bootstraps. Blaine withholds all of them from consumers identically, but the rotation runbook names the one in use."
+  },
+  {
+   "assumption": "region and namespace",
+   "leaks_into": "the alias URI",
+   "detail": "AWS needs a region; Vault and OpenBao need host, mount and optionally a namespace."
+  },
+  {
+   "assumption": "secret versions",
+   "leaks_into": "unverified",
+   "detail": "AWS and Vault expose versioned secrets. Nothing in this spike exercised version pinning, and Blaine does not model a version today."
+  },
+  {
+   "assumption": "write capability",
+   "leaks_into": "provisioning only",
+   "detail": "Blaine only reads. secretspec set and delete differ across backends but are outside the materialization path used here."
+  }
+ ],
+ "verdict": {
+  "portability_at_blaine_code_level": "PROVED for substitution; no Blaine source byte changed across a live backend swap",
+  "portability_at_declaration_level": "Vault and OpenBao expected to need only an alias change; AWS additionally needs a per-secret manifest ref unless names match",
+  "blaine_code_change_required_for_aws_or_vault": false
+ }
+}

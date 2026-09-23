@@ -81,6 +81,49 @@ routing. Zero interactive authentication events during the run, and the provider
 source contains zero references to Bitwarden, the keyring, `secret-tool` or
 SecretSpec.
 
+## 5. Provider-portability acceptance
+
+[provider-portability.json](evidence/provider-portability.json)
+
+The logical consumer contract was held fixed — consumer `jev`, secret
+`TYPESAFE_API_KEY`, same declaration, same wrapper, same runtime boundary — and
+only the backend behind a `runtime_secrets` alias was substituted. Destinations
+were redirected to a scratch root so the working credential was never touched.
+
+| Stage | Backend | Result |
+| --- | --- | --- |
+| 1 | Bitwarden Secrets Manager, live | Materialized `0600`, declared key only |
+| 2 | dotenv fixture, synthetic value | Materialized `0600`, declared key only, different value |
+
+The substitution genuinely took effect (the resolved digests differ), an
+undeclared key in the fixture was excluded, and the runtime launcher then handed
+the consumer its declared key and nothing else. Across the swap, the Jev provider
+source, the consumer declaration, the materialization wrapper source and the
+SecretSpec manifest were all byte-identical, and the configuration delta was a
+single line.
+
+`awssm`, `vault` and `openbao` are built into 0.20.0 and can occupy the same
+alias: each failed on configuration, never on "backend not found".
+
+| Migration | Alias change | Bootstrap change | Manifest change | Blaine code change |
+| --- | --- | --- | --- | --- |
+| BWS → Vault / OpenBao | `vault://<host>:<port>/<mount>/<path>` | `VAULT_TOKEN` or `BAO_TOKEN` | none expected | **none** |
+| BWS → AWS Secrets Manager | `awssm://<region>` | AWS credential chain | **per-secret `ref = { item = … }`** unless the AWS secret is named exactly as the key | **none** |
+
+### What still leaks
+
+The honest limit is addressing, and it lands in the manifest rather than in
+Blaine. Vault and OpenBao accepted a mount path inside the alias URI, while
+`awssm` explicitly refused a path and demanded a per-secret `ref`. That `ref` is
+not neutral: a manifest carrying one stopped resolving against the dotenv
+backend, where the same fixture had resolved without it. Bootstrap identity,
+region and namespace also live in the alias, and secret versioning is modelled by
+neither Blaine nor this spike.
+
+Vault and OpenBao results are **INFERRED** from the accepted URI grammar and
+bootstrap contract; no live Vault or OpenBao was available. Only BWS and dotenv
+were substituted live.
+
 ## What this spike deliberately does not do
 
 It selects no materialization engine, changes no consumer, replaces no working
