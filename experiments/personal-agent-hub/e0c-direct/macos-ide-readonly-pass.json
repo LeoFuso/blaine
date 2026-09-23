@@ -62,13 +62,13 @@
   },
   "remaining_transport_gates": [
     "Effective least-privilege tailnet policy remains unverified; Hub node allowlist is not proof of outbound isolation.",
-    "Private candidate Hub is active but a transient service with RuntimeMaxUSec=1d; persistent deployment readiness remains open.",
-    "Remaining transport identity lifecycle evidence: actual revocation/reset, reboot and WSL binary-upgrade reuse."
+    "Private candidate Hub is active but a transient service with RuntimeMaxUSec=1d; persistent deployment readiness remains open."
   ],
   "remaining_platform_gates": [
     "Windows-hosted IntelliJ -> WSL Linux agent launch and public alpha.3 installer still need live proof. Prior WSL direct binary/ACP/signal and automatic-MTU evidence is preserved; missing latest metadata record remains explicit."
   ],
   "future_ui": "ACP configOptions documented as requested session policy only; no options implemented or advertised.",
   "e0c": "PARTIAL",
-  "e0d": "BLOCKED_NOT_STARTED"
+  "e0d": "BLOCKED_NOT_STARTED",
+  "gate_reconciliation": "Primary Mac satisfies minimum persistent transport peer proof. Extended registration/revoke/reset/re-enrollment is E0.D; full second Windows/WSL IDE acceptance is E0.F. No retrospective requirement to duplicate primary acceptance."
 }

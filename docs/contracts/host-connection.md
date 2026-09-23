@@ -11,6 +11,22 @@ the previous SSH product-transport contract, retained in Git and the
 SSH is still useful for administration. Protocol version 1 is pre-stability: the
 new `blaine.e0c.v1` WebSocket endpoint is not the old SSH control invocation.
 
+## E0.C closure boundary
+
+The designated macOS workstation is the primary live E0.C peer. Its measured
+restart/reconnect and binary-replacement reuse of the same tsnet node and Blaine
+installation identity satisfies the minimum persistent transport identity gate.
+The real IDE read-only round trip and preserved Task after IDE quit are accepted
+transport evidence. Full registration, explicit revoke/reset/re-enrollment beyond
+that minimum proof belong to E0.D; full second Windows/WSL IntelliJ acceptance
+belongs to E0.F. Separate reboot/lifecycle observations are not newly added E0.C
+blockers. Existing WSL transport evidence remains valid within its measured scope.
+
+After this reconciliation, the only open E0.C closure gates are effective narrow
+tailnet authorization for the private Hub service and canonical persistent Hub
+service deployment. Neither app allowlisting alone nor a one-day transient service
+closes those respective gates. No later slice is implemented by closing them.
+
 ## Discovery and independent trust boundaries
 
 Public embedded deployment metadata nominates `blaine.tail0f2ece.ts.net:7443`, the

@@ -334,8 +334,10 @@ changes against an existing receipt fail closed. State must remain in the native
 user home; do not put WSL credentials on a shared Windows download mount.
 
 The application identity and tsnet node are stable across ordinary process/binary
-replacement. Mac production-candidate binary upgrade reuse is now measured; reboot
-and WSL candidate lifecycle remain live gates. The spike
+replacement. Mac production-candidate binary upgrade reuse is measured and closes
+the minimum E0.C persistent transport-peer proof. Extended registration and explicit
+revoke/reset/re-enrollment lifecycle belongs to E0.D; full second-peer Windows/WSL
+IDE acceptance belongs to E0.F. Reboot is not an additional E0.C closure gate. The spike
 already measured node reuse across Mac binary revisions; that is not silently
 promoted into candidate evidence. Loss/copy of credentials requires revocation;
 filesystem permissions do not protect against a compromised same-user process.
@@ -371,15 +373,17 @@ must authorize only the two designated product installations. The experimental
 spike nodes are not silently imported or deleted. No additional download is needed
 for that review. [OPERATOR.md](OPERATOR.md) contains the subsequent exact IDE entries.
 
-E0.C remains PARTIAL after the Mac IDE gate passes. Still required: effective narrow
-tailnet policy evidence; remaining live transport identity lifecycle checks
-(revocation/reset, reboot and WSL binary-upgrade identity); and persistent host
-deployment readiness. The active private listener is a transient user service with
+E0.C remains PARTIAL after the Mac IDE gate passes for exactly two remaining gates:
+effective narrow tailnet policy evidence and persistent host deployment readiness.
+The primary Mac's same-node/application identity across restart, reconnect and
+binary replacement already satisfies the minimum transport identity requirement.
+Registration and explicit revoke/reset/re-enrollment beyond this minimum belong to
+E0.D. The active private listener is a transient user service with
 a one-day runtime limit, not evidence of persistence across host restart. Existing
 exact-node admission is not proof that clients cannot reach other tailnet services.
 
 Separately retain the WSL automatic-MTU report metadata limitation and unverified
-Windows-hosted IntelliJ-to-WSL execution/public installer path. Prior WSL transport
+Windows-hosted IntelliJ-to-WSL execution/public installer path under E0.F. Prior WSL transport
 and signal PASS evidence remains valid; a Mac IDE PASS does not certify that IDE
 topology. Full fresh IDE auth/onboarding remains distinct from reuse of the enrolled
 Mac installation. No conversational semantics or config-options work is needed to

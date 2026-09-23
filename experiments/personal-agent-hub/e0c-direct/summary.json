@@ -28,5 +28,14 @@
   "public_installer": "Alpha.3 PASS public Linux temporary-home checks. Mac public installation operator-reported and real IDE read-only exchange confirmed; exact Mac installer transcript and Windows/WSL public installer remain unretained/unverified.",
   "task_independence_macos_ide": "PASS live: existing human-WAITING Task unchanged after real IDE read-only round trip and operator Cmd+Q; same private session ended OK.",
   "host_deployment_persistence": "PENDING: active transient user service; RuntimeMaxUSec=1d",
-  "future_session_controls": "Documented ACP configOptions direction only; requests remain bounded by Workspace/Task authority and PolicyGate; no options advertised."
+  "future_session_controls": "Documented ACP configOptions direction only; requests remain bounded by Workspace/Task authority and PolicyGate; no options advertised.",
+  "e0c_remaining_gates": [
+    "Effective narrow tailnet authorization for the private Hub service",
+    "Canonical persistent Hub direct-transport service"
+  ],
+  "minimum_persistent_transport_identity": "PASS primary Mac: same node and application identity across process restarts, reconnects and binary replacement; no new reboot gate.",
+  "later_slice_gates": {
+    "E0.D": "Workstation registration lifecycle and explicit revoke/reset/re-enrollment beyond minimum transport identity proof.",
+    "E0.F": "Full real IntelliJ acceptance on designated second Windows/WSL workstation."
+  }
 }
