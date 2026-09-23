@@ -24,10 +24,14 @@ invocations one for one. Nothing attributes a prompt to Bitwarden, to `bws`, to
 `secret-tool` or to materialization: the 21:30–21:36 materialization window
 contains zero authentication events.
 
-**Host side effect, reported not repaired.** `/var/lib/systemd/credential.secret`
+**Host side effect, reported and then reverted.** `/var/lib/systemd/credential.secret`
 did not exist before the evaluation and was created at 21:27 (root:root, 0400)
-after an operator polkit authentication. It is the standard systemd host key and
-was left in place for the operator to decide on, not removed unilaterally.
+after an operator polkit authentication. It was reported rather than removed
+unilaterally, and removed later with operator authorization once three
+preconditions were checked: no unit references `SetCredentialEncrypted` or
+`LoadCredentialEncrypted`, `/etc/credstore` and `/etc/credstore.encrypted` are
+both empty, and nothing predating the key could depend on it. The host is back to
+its pre-evaluation state.
 
 **Correction.** The earlier reading — identical output across key modes, root able
 to decrypt, therefore nominal encryption — was wrong. The host key was created

@@ -47,7 +47,13 @@
   "ownership": "root:root 0400, 4112 bytes",
   "existed_before": false,
   "journal_note": "systemd-creds warned the file is not located on encrypted media",
-  "action_taken": "none; reported for operator decision rather than removed unilaterally"
+  "action_taken": "removed with operator authorization on 2026-09-22",
+  "removal_preconditions_checked": [
+   "no unit on the host references SetCredentialEncrypted or LoadCredentialEncrypted",
+   "/etc/credstore and /etc/credstore.encrypted are both empty",
+   "the key was created at 21:27:54 by this evaluation, so nothing predating it could depend on it"
+  ],
+  "host_state": "restored to its pre-evaluation state; the file is absent again"
  },
  "correction_to_previous_interpretation": {
   "previous_claim": "systemd-creds produced identical output for every key mode and another identity decrypted it, therefore its encryption was nominal",
