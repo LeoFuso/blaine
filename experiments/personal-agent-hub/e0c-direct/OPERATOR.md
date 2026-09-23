@@ -32,6 +32,15 @@ used for the spike. Do not disable Gatekeeper globally.
 
 ## Real JetBrains launch — after the transport batch
 
+**Current bounded exception:** alpha.2 launched on the Mac but failed on the local
+ACP envelope's auxiliary `type` field. The operator authorized installing a fresh
+Mac candidate built from the committed fix to prove the real IDE session before
+publishing alpha.3. Use that candidate's checksum and exact commit metadata for
+this test; preserve the existing stable launcher, ACP registration and private
+installation state. The public installer remains unchanged and still selects
+alpha.2. Do not rerun it over the candidate while performing this acceptance.
+
+
 Use the [public alpha.2 development installer](../../../client/INSTALL.md#current-development-onboarding).
 It verifies the released platform asset and delegates configuration to
 `blaine integration jetbrains install`. Do not use alpha.1 or local candidate

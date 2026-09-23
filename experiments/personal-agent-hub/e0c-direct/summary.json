@@ -15,7 +15,7 @@
   "task_state_unchanged": true,
   "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
   "wsl_candidate": "PASS live with detailed diagnostic-MTU/native-home reports; operator also confirmed PASS for requested normal-launch automatic-MTU candidate 478a0f1. New host logs corroborate complete binary/ACP sessions; exact latest client metadata/MTU-source report not supplied.",
-  "jetbrains_candidate": "PENDING",
+  "jetbrains_candidate": "Mac alpha.2 installation and launch operator-reported; ACP failed on auxiliary envelope type field. Minimal correction passes local/full regressions; exact-commit candidate real IDE session pending.",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "v0.1.0-alpha.2 PUBLISHED from cd6b43f04a0d39ca84ae091f93d57343775d374a; first direct-transport prerelease; E0.C remains PARTIAL",
   "e0d": "BLOCKED",

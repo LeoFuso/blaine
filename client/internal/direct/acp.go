@@ -115,6 +115,10 @@ func ACP(parent context.Context, root string, streams process.Streams) error {
 			return e
 		}
 		var request struct {
+			// Some Kotlin ACP serializers emit a class discriminator alongside
+			// JSON-RPC. It carries no authority: dispatch/correlation still use
+			// the method/id validated by the guard, never this auxiliary field.
+			Type    string          `json:"type,omitempty"`
 			JSONRPC string          `json:"jsonrpc"`
 			ID      json.RawMessage `json:"id"`
 			Method  string          `json:"method"`

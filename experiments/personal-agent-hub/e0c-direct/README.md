@@ -232,6 +232,24 @@ remain pending. Publication does not establish
 real IntelliJ launch/auth. E0.C remains PARTIAL and E0.D is blocked. ACP Registry,
 not this development bootstrap, remains the final distribution direction.
 
+## Alpha.2 real IDE launch and local envelope correction
+
+The designated Mac operator installed through the public alpha.2 path, restarted
+IntelliJ and selected Blaine. The process launched but exited with code 3:
+`json: unknown field "type"`. This is **not** a successful real IDE ACP session.
+The exact error was reproduced with the published Linux asset and a reconstructed,
+non-sensitive initialize envelope. No captured IDE payload or credentials are
+retained. [Correction evidence](acp-envelope-fix.json) distinguishes the live report
+from fixture evidence and records passing full client regressions.
+
+The correction accepts an optional auxiliary string `type` in the local ACP
+request envelope. It grants no capabilities and does not change tsnet, server
+identity, private handshake validation, JSON ambiguity checks or protocol versions.
+The operator explicitly authorized an exact-commit Mac candidate **before** any
+alpha.3 publication. This controlled exception to public-release acceptance does
+not change the public installer or authorize publication of another release.
+The next gate is a real IntelliJ-launched ACP session through the private Hub.
+
 ## Identity and policy lifecycle
 
 Private storage: `direct-v1/identity.key` (0600 Ed25519 seed), `tsnet/` (0700 and

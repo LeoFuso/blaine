@@ -24,7 +24,7 @@
   "attestation": "Deferred; SHA-256 integrity and source-tagged Actions build, no signing/notarization claim",
   "changie": "Deferred",
   "historical_release": "v0.1.0-alpha.1: superseded SSH product transport; excluded from new primary acceptance",
-  "macos_public_installer_ide": "PENDING_OPERATOR",
+  "macos_public_installer_ide": "Operator reports public installation, Blaine visible/selected and process launched; ACP FAIL with exit 3: unknown field type. Local correction tested; real fixed IDE session pending.",
   "wsl_public_installer_ide": "PENDING_OPERATOR",
   "e0c": "PARTIAL",
   "e0d": "BLOCKED",

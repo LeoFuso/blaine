@@ -1,0 +1,35 @@
+{
+  "status": "PASS_LOCAL_REGRESSIONS_LIVE_IDE_PENDING",
+  "observed_release": "v0.1.0-alpha.2",
+  "observed_source_commit": "cd6b43f04a0d39ca84ae091f93d57343775d374a",
+  "primary_peer": "Leonardos-MacBook-Pro.local / darwin/arm64",
+  "ide": "IntelliJ IDEA 2026.2.3 / IU-262.10968.63",
+  "ai_assistant": "262.10968.97",
+  "operator_report": "Public installation completed; IDE restarted; Blaine selected; ACP process exited unexpectedly with code 3 and json: unknown field type",
+  "installation_limit": "Operator reported successful installation/selection; exact Mac installer checksum/version output was not supplied",
+  "fixture_reproduction": {
+    "binary": "Checksum-verified public alpha.2 Linux amd64 asset",
+    "input": "Reconstructed JSON-RPC initialize request containing an auxiliary top-level type string",
+    "exit": 3,
+    "stderr": "blaine: json: unknown field \"type\"",
+    "scope": "Local fixture matching the reported error, not a captured IDE request"
+  },
+  "correction": "Accept an optional string type in the local ACP request envelope; dispatch and correlation still use validated method/id. Private handshake decoding remains closed-schema.",
+  "validation": {
+    "specific_frontend_regressions": "PASS: discriminator ignored for authority; initialization and correlated AUTH_REQUIRED response without creating private network state",
+    "negative_regressions": "PASS: malformed type, duplicate keys, incompatible versions, unrelated unknown fields, forbidden MCP and extra private-handshake field rejected",
+    "full_client_ci": "PASS: formatting, Go tests/race/vet, installer fixtures, host/offline regressions and four reproducible builds",
+    "retained_local_log": "/tmp/blaine-acp-type-validation.log",
+    "live_fixed_mac_ide": "PENDING"
+  },
+  "sources": [
+    "https://github.com/agentclientprotocol/kotlin-sdk/blob/5305de383ef553b7f8197566e41918cd2ffd6209/acp-model/src/commonMain/kotlin/com/agentclientprotocol/rpc/JsonRpc.kt",
+    "https://agentclientprotocol.com/protocol/v1/extensibility"
+  ],
+  "scope_note": "The type field is a serializer compatibility accommodation, not a required ACP extension or an application identity claim. The actual IDE field value was not captured.",
+  "next_gate": "Operator-authorized exact-commit darwin-arm64 candidate through real IntelliJ ACP and direct Hub session",
+  "public_installer": "UNCHANGED: still pinned to alpha.2",
+  "alpha3": "NOT_TAGGED_OR_PUBLISHED",
+  "e0c": "PARTIAL",
+  "e0d": "BLOCKED"
+}
