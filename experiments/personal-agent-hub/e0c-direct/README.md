@@ -224,7 +224,11 @@ the prior valid config. The actual Windows IDE/WSL launch topology is kept expli
 
 The operator authorized alpha.2 publication despite remaining E0.C gates to enable
 public-installer IDE acceptance. [Alpha.2 delivery](alpha2-delivery.json) records
-source, build, release and actual platform evidence. Publication does not establish
+source, build, release and actual platform evidence. Alpha.2 publication and the
+[public Linux installer](alpha2-public-installer.json) passed: all four published
+binaries match the local exact-source builds, and installation/check/reinstallation
+preserved an existing agent in an isolated home. Mac and WSL operator/IDE proof
+remain pending. Publication does not establish
 real IntelliJ launch/auth. E0.C remains PARTIAL and E0.D is blocked. ACP Registry,
 not this development bootstrap, remains the final distribution direction.
 

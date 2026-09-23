@@ -1,22 +1,128 @@
 {
-  "status": "PREPARED_NOT_PUBLISHED",
+  "status": "PUBLISHED_AND_PUBLIC_LINUX_INSTALLER_PASS",
   "tag": "v0.1.0-alpha.2",
   "semantics": "First direct-tsnet/private-Blaine-transport alpha; prerelease, not latest/stable; E0.C still PARTIAL",
-  "source_commit": null,
+  "source_commit": "cd6b43f04a0d39ca84ae091f93d57343775d374a",
   "go": "1.27.1",
   "protocol_version": 1,
   "installer": "client/install-jetbrains-agent.sh",
   "installer_default": "v0.1.0-alpha.2",
   "installer_python_dependency": false,
-  "go_commands": ["blaine integration jetbrains install", "blaine integration jetbrains check [--json]"],
+  "go_commands": [
+    "blaine integration jetbrains install",
+    "blaine integration jetbrains check [--json]"
+  ],
   "release_workflow": ".github/workflows/client-release.yml",
   "ci_workflow": ".github/workflows/client-ci.yml",
-  "assets": ["blaine-darwin-arm64", "blaine-darwin-amd64", "blaine-linux-amd64", "blaine-linux-arm64", "checksums.txt"],
+  "assets": [
+    "blaine-darwin-arm64",
+    "blaine-darwin-amd64",
+    "blaine-linux-amd64",
+    "blaine-linux-arm64",
+    "checksums.txt"
+  ],
   "attestation": "Deferred; SHA-256 integrity and source-tagged Actions build, no signing/notarization claim",
   "changie": "Deferred",
   "historical_release": "v0.1.0-alpha.1: superseded SSH product transport; excluded from new primary acceptance",
   "macos_public_installer_ide": "PENDING_OPERATOR",
   "wsl_public_installer_ide": "PENDING_OPERATOR",
   "e0c": "PARTIAL",
-  "e0d": "BLOCKED"
+  "e0d": "BLOCKED",
+  "ci": {
+    "status": "PASS",
+    "run_id": 35904748370,
+    "url": "https://github.com/LeoFuso/blaine/actions/runs/35904748370",
+    "artifacts": [
+      {
+        "digest": "sha256:94daae96ccc9d1c297db541c2de577a6276fa940fd84b726b5c998ef758967dd",
+        "expired": false,
+        "id": 10771266589,
+        "name": "blaine-darwin-amd64"
+      },
+      {
+        "digest": "sha256:61c12afab8dfc43cfc54df4a8ae82aec9648ad8ad58ff74be8abcf245ecb0b70",
+        "expired": false,
+        "id": 10771261605,
+        "name": "blaine-linux-amd64"
+      },
+      {
+        "digest": "sha256:6f93fb9c741bdc2f8616bb8e6197df7d1678d1ac879e0d73ab51b8fdaf707d67",
+        "expired": false,
+        "id": 10770623022,
+        "name": "blaine-linux-arm64"
+      },
+      {
+        "digest": "sha256:d8078b1c7ab6f02485a2c0069308f6a816ba921ff9a2da9bcc1bd52cc0653b94",
+        "expired": false,
+        "id": 10770503101,
+        "name": "client-validation"
+      },
+      {
+        "digest": "sha256:9278ed3b575cda034f90bafebc5fb072fbb36c18153d057ff8a3d0a12fab9802",
+        "expired": false,
+        "id": 10770453444,
+        "name": "blaine-checksums"
+      },
+      {
+        "digest": "sha256:23a70525b234833265099c8019c1b20f9e1ffa8477b803564e896e2ea5102026",
+        "expired": false,
+        "id": 10770204948,
+        "name": "blaine-darwin-arm64"
+      }
+    ]
+  },
+  "release_run": {
+    "status": "PASS",
+    "run_id": 35905646570,
+    "url": "https://github.com/LeoFuso/blaine/actions/runs/35905646570"
+  },
+  "validation": {
+    "local_full_client_ci": "PASS: Go formatting/tests/race/vet, host and offline regressions, four reproducible builds",
+    "installer_fixture_tests": 8,
+    "no_python_path": "PASS: fixture workstation PATH contains no Python executable",
+    "exact_commit_go_integration": "PASS: real Linux executable in temporary home; preserve unrelated agent, check/install/repeat/check, exact backup",
+    "initial_sandbox_attempt": "Loopback fixture listen denied by sandbox; rerun with scoped permission passed"
+  },
+  "macos_environment": {
+    "source": "operator supplied About/plugin versions",
+    "intellij": "2026.2.3",
+    "build": "IU-262.10968.63",
+    "ai_assistant": "262.10968.97",
+    "os": "macOS 26.6.2",
+    "arch": "arm64",
+    "license_and_diagnostic_identifiers": "not retained"
+  },
+  "release_url": "https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.2",
+  "published_at": "2026-09-23T19:01:03Z",
+  "prerelease": true,
+  "public_installer_url": "https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.2/client/install-jetbrains-agent.sh",
+  "checksums": {
+    "blaine-darwin-arm64": "5a6961c2e06c82cb97add433002fd9508ed73c9f6d054d2293ed0a137d137cdc",
+    "blaine-darwin-amd64": "e9b43d6b7edaf83e6bf8a7de3fa5feb7924630c08890703219cc5da374e6559f",
+    "blaine-linux-amd64": "c3579a72d928129bd817fea6ec7e6734bb0cd82a839d872b0951b0c98d6a49ce",
+    "blaine-linux-arm64": "eb3badf52f4e841a2b16ccf782247bb1f27596fee627c42538e84331518fbbce",
+    "checksums.txt": "f27c2d52332d2861f0f683e6d38dd56d151fcbcdcee575111105e76ca1909b26"
+  },
+  "public_linux_installer": "PASS: actual public download, checksum, source/metadata validation, temporary-home install/check/reinstall and unrelated-agent/backup preservation",
+  "exact_build_metadata": {
+    "schema_version": 1,
+    "client_version": "0.1.0-alpha.2",
+    "protocol_version": 1,
+    "build_commit": "cd6b43f04a0d39ca84ae091f93d57343775d374a",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "release_assets_match_local_exact_commit_builds": true,
+  "installer_public_source_matches_tag": true,
+  "publication_via": "Existing tag-driven GitHub Actions; no manual binary upload",
+  "remaining_gates": [
+    "Real public-alpha.2 Mac installer and IntelliJ ACP + direct-Hub session",
+    "Public-alpha.2 installer on designated WSL and actual Windows IDE/WSL launch",
+    "Remaining reboot/revocation identity lifecycle evidence",
+    "Effective narrow tailnet policy",
+    "Durable host deployment readiness"
+  ],
+  "branch_merge": "Deferred until acceptance; main is not force-rewritten or changed by release publication",
+  "generated_binaries_committed": false
 }

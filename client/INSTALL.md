@@ -13,9 +13,9 @@ On macOS or Linux (including the designated Ubuntu WSL2 environment):
 curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.2/client/install-jetbrains-agent.sh | sh
 ```
 
-The tag URL becomes available when alpha.2 publication completes; consult the
+The alpha.2 tag, assets and installer are public. The
 [release evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
-for measured publication status. This is development scaffolding. ACP Registry
+records the exact source, checksums, Actions runs and public Linux installer proof. This is development scaffolding. ACP Registry
 publication has **not** happened and remains the final distribution direction.
 
 The shell bootstrap requires a POSIX shell, curl, and `sha256sum` (Linux) or
