@@ -14,7 +14,7 @@
   "local_actual_acp": "initialize, new session, EOF and abrupt disconnect passed through fixture transport",
   "task_state_unchanged": true,
   "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
-  "wsl_candidate": "PARTIAL: admitted node reused; host-correlated signed initial/probe handshakes PASS (68/61 ms); first complete 1 MiB frame missing at host probe deadline, client write timed out. Binary echo/ACP/signals unproved; root cause unresolved.",
+  "wsl_candidate": "PARTIAL: two live direct binary/ACP probes PASS with TS_DEBUG_MTU=1200 on eth0 MTU 1280. Node/application IDs reused; signals not reached because mkfifo failed under /mnt/c. Native-home repeat pending.",
   "jetbrains_candidate": "PENDING",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "NOT_PUBLISHED",
@@ -22,5 +22,6 @@
   "task_independence_macos": "PASS bounded live evidence: controlled Restate Task remains WAITING with identical authoritative state after both successful Mac ACP signal terminations",
   "stdio_correction": "PASS local Linux regression suite and four-target builds; PASS designated macOS arm64 live signal batch",
   "macos_identity": "PASS reuse across process restarts and dadb3c5 -> 77a974c binary replacement; reboot/revocation pending",
-  "task_independence_wsl": "Controlled Task remains WAITING with identical authoritative state after failed WSL transport probe; successful WSL ACP-session independence still pending"
+  "task_independence_wsl": "PASS bounded live evidence: controlled Restate Task remained WAITING with identical authoritative state after two real WSL ACP sessions ended",
+  "wsl_product_mtu": "OPEN: diagnostic override proves viability; default binary still fails on measured WSL interface. Automatic adapter handling and repeat without manual override required."
 }

@@ -23,7 +23,14 @@ cp -- "$asset" "$HOME/.local/bin/blaine.e0c-candidate"
 chmod 755 "$HOME/.local/bin/blaine.e0c-candidate"
 mv -f -- "$HOME/.local/bin/blaine.e0c-candidate" "$HOME/.local/bin/blaine"
 client="$HOME/.local/bin/blaine"
-report="$(mktemp -d ./reports-e0c-direct-XXXXXX)"
+# Downloads may be on DrvFS (/mnt/c). Keep Unix FIFOs and reports in the native
+# user home, separate from private installation state; check before live probes.
+report="$(mktemp -d "$HOME/blaine-e0c-reports-XXXXXX")"
+if ! mkfifo "$report/stdio-preflight" || [[ ! -p "$report/stdio-preflight" ]]; then
+  echo "STOP: acceptance requires FIFO support in the native user home; reports: $report" >&2
+  exit 2
+fi
+rm "$report/stdio-preflight"
 "$client" version --json | tee "$report/version.json"
 # Doctor is read-only and correctly remains NOT_READY before E0.D–F.
 set +e

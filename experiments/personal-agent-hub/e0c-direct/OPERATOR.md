@@ -12,6 +12,14 @@ connections, then opens real ACP sessions and tests SIGINT/SIGTERM exit 130.
 Normal close preserves identity. Browser login is expected for this
 new product installation; the experimental spike identity is not silently imported.
 
+The repository script now creates its report directory and signal-test FIFOs under
+the native user home, independently of the download location, and checks FIFO support
+before connecting. Earlier candidate packages used the extraction directory; for
+those packages, copy the four package files to a fresh directory under the Linux home
+before running in WSL. This preserves the package checksums and installation identity.
+The measured `mkfifo: File exists` stop under `/mnt/c` occurred before signal tests;
+it is not evidence of an ACP signal failure.
+
 On first enrollment, the host may return `TRANSPORT_DENIED`. Send the generated
 report containing the public `node_id` and `workstation_id`; the host operator will
 add only the verified designated node to its transport allowlist. Rerun the same
