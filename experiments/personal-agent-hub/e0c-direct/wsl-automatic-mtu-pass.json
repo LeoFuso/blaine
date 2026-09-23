@@ -1,0 +1,176 @@
+{
+  "status": "PASS_OPERATOR_REPORTED_NORMAL_LAUNCH_BATCH",
+  "source": "Operator confirmation of requested bash accept.sh without TS_DEBUG_MTU, plus independent Hub events and Restate read",
+  "requested_candidate_commit": "478a0f1a86d1e31084212545a23b6fb641366845",
+  "requested_command": "bash accept.sh",
+  "designated_peer": "ST00251 / Ubuntu WSL2",
+  "observed_node": "nPvKcFBuW821CNTRL",
+  "operator_report": "PASS for the requested normal-launch acceptance batch",
+  "capture_limit": "Operator supplied a concise PASS acknowledgement, not this run\u2019s version/MTU/identity JSON or report directory. Commit and automatic-MTU provenance are operator-reported through the requested experiment, not independently recoverable from the host log. The new host window contains two successful batches; no unsupported one-to-one assignment to a client report is made.",
+  "host_window": {
+    "signed_handshake_sessions": [
+      {
+        "event": "private_session",
+        "stage": "handshake_complete",
+        "mode": "handshake",
+        "session_id": "489faaaebebeabc5f035d674e20226ca",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 67,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "handshake_complete",
+        "mode": "handshake",
+        "session_id": "49841ac10ad57dfda96d07a463f53e59",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 63,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "handshake_complete",
+        "mode": "handshake",
+        "session_id": "620a27cebe6678e45c2044551ab66251",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 69,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "handshake_complete",
+        "mode": "handshake",
+        "session_id": "246e9aebb314cc16e939809cdea01f00",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 64,
+        "outcome": "OK"
+      }
+    ],
+    "complete_binary_echoes": [
+      {
+        "event": "private_session",
+        "stage": "probe_echo_complete",
+        "mode": "probe",
+        "session_id": "da571c7f1100930ed26412a747b08b3b",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "payload_bytes": 1048576,
+        "elapsed_ms": 87,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "probe_echo_complete",
+        "mode": "probe",
+        "session_id": "afcc13458ad30d8613d24ea08429d919",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "payload_bytes": 1048576,
+        "elapsed_ms": 89,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "probe_echo_complete",
+        "mode": "probe",
+        "session_id": "5f7eb022ca361fbc49ba5d27571ed4bd",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "payload_bytes": 1048576,
+        "elapsed_ms": 85,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "probe_echo_complete",
+        "mode": "probe",
+        "session_id": "44f114d8e8f3d7b530900104a07a2d44",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "payload_bytes": 1048576,
+        "elapsed_ms": 89,
+        "outcome": "OK"
+      }
+    ],
+    "acp_session_endings": [
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "a34b4c0db38df55b974beca90ea8f7b0",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 292,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "a18604382ff1bceb3cf37c2194c779df",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 303,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "e92a64b679b59a1ab271ce30ba45a71e",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 634,
+        "outcome": "TRANSPORT_ERROR"
+      },
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "2df543c7bb6d8dae53905b81e7c67d68",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 1052,
+        "outcome": "TRANSPORT_ERROR"
+      },
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "3d2313fbdcd2fa6646b5876725b18f18",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 296,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "fe7c91e9c99f65e5ad07ad474bf87f20",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 292,
+        "outcome": "OK"
+      },
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "a98af4e1694008ce83223575e60620e5",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 734,
+        "outcome": "TRANSPORT_ERROR"
+      },
+      {
+        "event": "private_session",
+        "stage": "session_finished",
+        "mode": "acp",
+        "session_id": "1fb5d09ece6da78eb65f099f6fd4fa30",
+        "peer_node": "nPvKcFBuW821CNTRL",
+        "elapsed_ms": 1015,
+        "outcome": "TRANSPORT_ERROR"
+      }
+    ]
+  },
+  "task_independence": "Authoritative WAITING state exactly matches the pre-WSL snapshot",
+  "remaining": [
+    "Retain exact client metadata/MTU-source report for the final acceptance dossier",
+    "Real Blaine JetBrains launch/auth on Mac and Windows IDE with WSL process",
+    "Reboot/revocation and remaining identity lifecycle checks",
+    "Effective narrow tailnet ACL and durable host deployment readiness"
+  ],
+  "e0c": "PARTIAL",
+  "e0d": "BLOCKED",
+  "new_release": "NOT_PUBLISHED"
+}

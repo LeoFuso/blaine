@@ -3,8 +3,9 @@
 The operator selected embedded tsnet plus a direct Blaine application transport on
 2026-09-23. Implementation and [evidence](../../experiments/personal-agent-hub/e0c-direct/README.md)
 are **PARTIAL**; designated Mac transport/ACP probes and corrected OS-signal cleanup
-passed. WSL transport/ACP/signals passed with a diagnostic MTU override; normal-launch
-MTU handling and integrated acceptance remain pending. This supersedes
+passed. WSL transport/ACP/signals passed with a diagnostic MTU override and the
+operator reported a subsequent normal-launch automatic-MTU PASS; its exact client
+metadata record and integrated acceptance remain pending. This supersedes
 the previous SSH product-transport contract, retained in Git and the
 [prior E0.C evidence](../../experiments/personal-agent-hub/e0c/README.md). Tailscale
 SSH is still useful for administration. Protocol version 1 is pre-stability: the
@@ -118,4 +119,5 @@ actionable network error. Explicit diagnostic overrides are validated and identi
 as such in connection evidence; normal use requires no environment variable.
 Connection observations report `embedded_mtu` and `mtu_source`. The application
 frame limit remains 1 MiB. IPv6-only paths are unverified; acceptance here uses the
-canonical private IPv4 Hub listener. Automatic selection still needs a live repeat.
+canonical private IPv4 Hub listener. The operator reported a normal-launch PASS;
+the final acceptance dossier still needs that run's exact MTU-source metadata.

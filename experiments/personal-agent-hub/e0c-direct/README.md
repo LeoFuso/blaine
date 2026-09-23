@@ -53,7 +53,7 @@ new session correlation and the same installation/node; requests are not replaye
 | Actual installed PersonalACP subprocess over new relay | PASS local integration | Real Python ACP SDK/runtime initialize + session/new + EOF cleanup over loopback fixture transport; no remote peer or Task claim. |
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
 | macOS production candidate | PASS live transport/ACP signal batch | Corrected commit `77a974c` passed two direct runs and real remote ACP SIGINT/SIGTERM exit 130. Node/application identity survived process restarts and binary replacement from `dadb3c5`. JetBrains, reboot/revocation and policy gates remain separate. |
-| WSL production candidate | PASS live transport/ACP/signals with diagnostic MTU | Candidate `77a974c` passed two full direct probes and SIGINT/SIGTERM exit 130 with `TS_DEBUG_MTU=1200` and FIFOs in the native home. Both identities reused. Automatic product MTU handling still needs a normal-launch candidate repeat. |
+| WSL production candidate | PASS live batch; normal-launch PASS operator-reported | Detailed `77a974c` diagnostic-MTU reports prove binary/ACP/signals. The operator also confirmed PASS for requested `478a0f1` normal launch; new host logs corroborate complete binary/ACP sessions. Exact latest client metadata/MTU-source JSON remains to be retained. |
 | Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
 | Task independence | PASS bounded live Mac/WSL + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, both Mac ACP signal terminations, and two real WSL remote ACP sessions ending with the MTU override. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
@@ -196,6 +196,19 @@ process-descendant cleanup test; the PID was absent after test cleanup, five tar
 package repetitions passed, and the subsequent full suite passed. That initial
 observation remains unexplained and is retained as a validation limitation. Process
 cleanup implementation was not changed by the MTU correction.
+
+The operator subsequently confirmed that the requested **normal** `bash accept.sh`
+batch passed with the automatic-MTU candidate. The
+[normal-launch checkpoint](wsl-automatic-mtu-pass.json) distinguishes this concise
+confirmation from the earlier full client transcripts: the exact new version,
+MTU-source JSON and report-directory name were not supplied. Independently read
+host logs contain four further complete 1 MiB echoes, authenticated sessions for
+the same designated node and ACP session teardown. This window contains two batches;
+it is not falsely assigned to a single unavailable client report. The
+[Task state](task-after-wsl-automatic-mtu.json) is still identical to the pre-WSL
+snapshot. The normal-launch result is operator-reported PASS; the final dossier
+must retain the exact client metadata/MTU-source record. Real JetBrains launch/auth
+and remaining lifecycle, policy and host-deployment gates stay open.
 
 ## Identity and policy lifecycle
 
