@@ -138,9 +138,13 @@ Four standalone builds and install/auth fixtures passed; macOS runtime remains
 unverified and WSL host reuse is STOP pending a live spike.
 **E0.C PARTIAL** ([migration evidence](../../experiments/personal-agent-hub/e0c-direct/README.md))
 now implements the operator-selected embedded tsnet/direct private transport.
-Local protocol/identity/process regressions, real host ACP integration and dependency
-readiness passed; designated Mac/WSL candidate and real JetBrains gates remain open.
-Prior SSH and E0.A/B evidence keeps its original scope. No new release or E0.D work.
+Local protocol/identity/process regressions, host readiness and designated Mac/WSL
+direct binary/ACP/signal batches passed within their recorded scope. Public alpha.3
+plus the host ACP compatibility corrections now has a real Mac IntelliJ read-only
+round trip and clean-session-end/Task-independence proof. Effective narrow tailnet
+policy, persistent host deployment and remaining transport identity lifecycle checks
+remain open; Windows IntelliJ-to-WSL integration is separately unverified.
+Prior SSH and E0.A/B evidence keeps its original scope. E0.D has not started.
 Full Blaine onboarding,
 remote effects and coding E2E remain unvalidated.
 Accepted platform/runtime capabilities are inputs, not a reason to reopen their
@@ -148,7 +152,7 @@ entire workstreams. Workstation and worker remain independent.
 
 | Milestone | Status / product outcome | Dependencies and D-series mapping |
 | --- | --- | --- |
-| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PARTIAL; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. E0.C remains gated on second-peer identity, readiness and remote ACP; E0.D registration follows acceptance. macOS runtime and WSL reuse remain gated. |
+| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PARTIAL; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. E0.C policy, persistent deployment and remaining transport identity lifecycle gates remain open; Windows IDE/WSL integration is separately pending. E0.D registration follows acceptance. |
 | E1 — Remote Workspace Read | **DESIGNED.** Actual second-workstation IntelliJ read, confined paths and evidence in the same durable Task across reconnect. | E0; delivers D3.A product proof. Live client capability/confinement gates remain open. |
 | E2 — Remote Workspace Effects | **DESIGNED.** Conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
 | E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |

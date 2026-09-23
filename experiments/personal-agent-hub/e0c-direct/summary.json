@@ -15,7 +15,7 @@
   "task_state_unchanged": true,
   "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
   "wsl_candidate": "PASS live with detailed diagnostic-MTU/native-home reports; operator also confirmed PASS for requested normal-launch automatic-MTU candidate 478a0f1. New host logs corroborate complete binary/ACP sessions; exact latest client metadata/MTU-source report not supplied.",
-  "jetbrains_candidate": "Mac alpha.3 real IDE prompt/response exchange confirmed by operator and direct host handshake. Host correction 2949105 accepts baseline resource links as inert context; greeting reaches existing D2 control help. Read-only durable control operation through IDE remains pending.",
+  "jetbrains_candidate": "PASS bounded real macOS IntelliJ launch/session/read-only inspect e0c -> UNAVAILABLE; same direct ACP session ended OK and controlled Task state remained identical. See macos-ide-readonly-pass.json. Windows IDE/WSL integration remains unverified.",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "v0.1.0-alpha.3 PUBLISHED from 1d718a18582d3a82635131d16f8c8d171d193759; bounded ACP envelope correction; E0.C still PARTIAL",
   "e0d": "BLOCKED",
@@ -25,5 +25,8 @@
   "task_independence_wsl": "PASS bounded live: authoritative WAITING Task state unchanged after both WSL ACP probe sessions and SIGINT/SIGTERM terminations",
   "wsl_product_mtu": "Implemented and locally validated; normal-launch batch PASS operator-reported. Requested command had no MTU override. Final dossier still needs exact client metadata/MTU-source record.",
   "automatic_mtu_validation": "Final complete client CI PASS, including race/vet/offline regressions and four reproducible target builds. Initial preexisting process-cleanup test failure recorded; five targeted repetitions and final full run passed.",
-  "public_installer": "Alpha.3 PASS public Linux temporary-home install/check/reinstall and typed ACP initialize fixture; real Mac/WSL IDE acceptance pending"
+  "public_installer": "Alpha.3 PASS public Linux temporary-home checks. Mac public installation operator-reported and real IDE read-only exchange confirmed; exact Mac installer transcript and Windows/WSL public installer remain unretained/unverified.",
+  "task_independence_macos_ide": "PASS live: existing human-WAITING Task unchanged after real IDE read-only round trip and operator Cmd+Q; same private session ended OK.",
+  "host_deployment_persistence": "PENDING: active transient user service; RuntimeMaxUSec=1d",
+  "future_session_controls": "Documented ACP configOptions direction only; requests remain bounded by Workspace/Task authority and PolicyGate; no options advertised."
 }

@@ -1,0 +1,74 @@
+{
+  "status": "PASS_MACOS_REAL_IDE_READONLY_ROUND_TRIP_AND_TASK_INDEPENDENCE",
+  "scope": "Existing read-only Hub control through actual IntelliJ ACP and embedded tsnet/direct private transport; no new conversation semantics or workspace capability.",
+  "primary_peer": {
+    "hostname": "Leonardos-MacBook-Pro.local",
+    "platform": "darwin/arm64",
+    "node_id": "nEEbpyYWN921CNTRL"
+  },
+  "ide": {
+    "version": "IntelliJ IDEA 2026.2.3",
+    "build": "IU-262.10968.63",
+    "ai_assistant": "262.10968.97",
+    "os": "macOS 26.6.2"
+  },
+  "release": "v0.1.0-alpha.3",
+  "client_source_commit": "1d718a18582d3a82635131d16f8c8d171d193759",
+  "host_adapter_commit": "2949105",
+  "metadata_limit": "Public installation and selection operator-reported; exact Mac installer/version transcript not supplied for this run.",
+  "request": "inspect e0c",
+  "operation": "Existing PersonalACP command -> PersonalAgent.inspect -> Restate CognitiveTaskV1/e0c/inspect",
+  "operator_rendered_response": "UNAVAILABLE",
+  "interpretation": "The existing read-only handler executed successfully for an uncreated Task identity. UNAVAILABLE is the expected domain result, not a transport or dependency failure. The query does not submit, cancel or resume a Task.",
+  "events": [
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "session_id": "fb11d8f1eda0e19c580e450cc2bc9dcd",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "mode": "acp",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790193325265850"
+    },
+    {
+      "event_type": "personal_agent.control",
+      "outcome": "accepted",
+      "task_id": "e0c",
+      "step_id": "inspect",
+      "journal_timestamp_us": "1790193580908778"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "session_id": "fb11d8f1eda0e19c580e450cc2bc9dcd",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "mode": "acp",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790193649361103"
+    }
+  ],
+  "correlation_limit": "Transport events contain the live session/node ID. Existing control event has operation/task/outcome but no transport session ID; correlation uses ordered journal observations plus the operator request/response report. No raw ACP payload was captured.",
+  "acp_initialization": "Inferred from successfully established real IDE session and returned prompt update; required client/host initialization precedes the relay by implementation contract.",
+  "no_workspace_effects": "E0 relay advertises no client effects, rejects host-to-IDE requests, and permits only passive session/update. Existing inspect handler performs only host Restate read. Resource-link notice confirms context was not used; negative fixtures cover no filesystem/terminal invocation. No independent IDE tool-call trace was collected.",
+  "operator_end": "Operator confirmed full IntelliJ quit with Cmd+Q.",
+  "host_end": "Same ACP session emitted session_finished outcome OK after inspect.",
+  "task_independence": {
+    "task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844",
+    "lifecycle": "WAITING",
+    "authoritative_state_identical": true,
+    "canonical_state_sha256": "2493b7c5c18ec6c7c3ee4ea12fb91d26081a0e91e76c088869a2cf042bc88245",
+    "snapshot": "task-after-ide-quit.json",
+    "limit": "Preservation of the existing human-WAITING Task, not active-inference continuation."
+  },
+  "remaining_transport_gates": [
+    "Effective least-privilege tailnet policy remains unverified; Hub node allowlist is not proof of outbound isolation.",
+    "Private candidate Hub is active but a transient service with RuntimeMaxUSec=1d; persistent deployment readiness remains open.",
+    "Remaining transport identity lifecycle evidence: actual revocation/reset, reboot and WSL binary-upgrade reuse."
+  ],
+  "remaining_platform_gates": [
+    "Windows-hosted IntelliJ -> WSL Linux agent launch and public alpha.3 installer still need live proof. Prior WSL direct binary/ACP/signal and automatic-MTU evidence is preserved; missing latest metadata record remains explicit."
+  ],
+  "future_ui": "ACP configOptions documented as requested session policy only; no options implemented or advertised.",
+  "e0c": "PARTIAL",
+  "e0d": "BLOCKED_NOT_STARTED"
+}

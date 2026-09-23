@@ -1,5 +1,5 @@
 {
-  "status": "PARTIAL_LIVE_IDE_CONTROL_HELP_RECEIVED",
+  "status": "PASS_BOUNDED_MACOS_IDE_READONLY_ROUND_TRIP",
   "release": "v0.1.0-alpha.3",
   "release_source": "1d718a18582d3a82635131d16f8c8d171d193759",
   "operator_report": "Installed public client, selected Blaine in IntelliJ, sent hello, received Unknown session or non-text request.",
@@ -25,7 +25,7 @@
   },
   "controlled_task_unchanged": true,
   "scope": "No client binary/installer/release, transport authorization, Task lifecycle or workspace capability changes.",
-  "next_action": "Send the existing controlled Task inspect command in the current IDE chat; no reinstall or restart is needed.",
+  "next_action": "Complete remaining E0.C policy, transport-identity lifecycle and host deployment gates; no additional greeting/control-help correction required.",
   "e0c": "PARTIAL",
   "e0d": "BLOCKED",
   "followup": {
@@ -70,5 +70,6 @@
     "result": "PASS bounded real IDE prompt/response exchange: baseline resource-link context no longer prevents the text from reaching the existing command parser.",
     "limit": "Greeting is not a supported D2 control command, so help remains an application error. No general conversation/coding behavior or successful durable control operation is claimed.",
     "next_gate": "Read-only inspect of the existing controlled WAITING Task through this real IDE session."
-  }
+  },
+  "acceptance_evidence": "macos-ide-readonly-pass.json"
 }

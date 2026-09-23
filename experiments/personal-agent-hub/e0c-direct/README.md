@@ -54,7 +54,7 @@ new session correlation and the same installation/node; requests are not replaye
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
 | macOS production candidate | PASS live transport/ACP signal batch | Corrected commit `77a974c` passed two direct runs and real remote ACP SIGINT/SIGTERM exit 130. Node/application identity survived process restarts and binary replacement from `dadb3c5`. JetBrains, reboot/revocation and policy gates remain separate. |
 | WSL production candidate | PASS live batch; normal-launch PASS operator-reported | Detailed `77a974c` diagnostic-MTU reports prove binary/ACP/signals. The operator also confirmed PASS for requested `478a0f1` normal launch; new host logs corroborate complete binary/ACP sessions. Exact latest client metadata/MTU-source JSON remains to be retained. |
-| Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
+| Real Blaine JetBrains launch/session | PASS bounded macOS read-only round trip | Public alpha.3 plus host adapter correction: `inspect e0c` rendered `UNAVAILABLE`; host recorded accepted inspect and same-session clean close. Controlled Task unchanged. Fresh IDE-owned auth and Windows IDE/WSL launch remain separate unverified cases. |
 | Task independence | PASS bounded live Mac/WSL + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, both Mac ACP signal terminations, and two real WSL remote ACP sessions ending with the MTU override. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
 
@@ -299,6 +299,32 @@ returned as an application error; this is not evidence of general conversation o
 a successful Task operation. The next bounded check is read-only inspection of the
 existing controlled WAITING Task from the same IDE session. E0.C remains PARTIAL.
 
+### Real macOS read-only IntelliJ acceptance
+
+The operator then sent the shorter supported read-only command `inspect e0c` and
+reported `UNAVAILABLE` rendered in IntelliJ. The Hub recorded the accepted inspect
+operation between handshake and clean completion of the same Mac ACP session.
+`UNAVAILABLE` is the expected domain response for this uncreated Task ID; it is not
+a transport failure. No Task was submitted or changed by the query. The command-help
+response to the earlier greeting is likewise not classified as a transport failure.
+
+After the operator quit IntelliJ completely, the host recorded `session_finished`
+with `outcome: OK`. An independent authoritative read showed the existing controlled
+human-WAITING Task had exactly the same state as before the IDE query. This closes
+the bounded real Mac IDE launch/session/read-only-response/disconnect gate. See
+[measured evidence and limits](macos-ide-readonly-pass.json) and the
+[post-quit Task snapshot](task-after-ide-quit.json). The existing control event has no
+session ID; its association uses ordered host observations and the operator report,
+not a newly claimed per-operation cryptographic receipt. Initialization follows from
+the live session succeeding through the mandatory initialization path.
+
+No filesystem/terminal effect was authorized: the transport guard still rejects
+host-to-IDE requests, inspect uses host Restate only, and resource links stay inert.
+This does not prove workspace capabilities, general conversation, model selection,
+new IDE-owned authentication or Windows IDE/WSL integration. `configOptions` is now
+documented in the canonical plan as future requested session policy, bounded by
+Workspace/Task authority and PolicyGate; no option is implemented or advertised.
+
 ## Identity and policy lifecycle
 
 Private storage: `direct-v1/identity.key` (0600 Ed25519 seed), `tsnet/` (0700 and
@@ -345,12 +371,21 @@ must authorize only the two designated product installations. The experimental
 spike nodes are not silently imported or deleted. No additional download is needed
 for that review. [OPERATOR.md](OPERATOR.md) contains the subsequent exact IDE entries.
 
-Still required: WSL reports; half-open/revocation behavior on
-those platforms; reboot and WSL upgrade identity observation; host deployment persistence;
-least-privilege policy evidence; real JetBrains launch/auth; and the unrelated durable
-Task surviving session termination. Do not publish another prerelease or call E0.C
-PASS before its live gates pass. E0.D remains blocked and is the next canonical slice
-only after E0.C acceptance. E0.E/F still own full onboarding/configuration acceptance.
+E0.C remains PARTIAL after the Mac IDE gate passes. Still required: effective narrow
+tailnet policy evidence; remaining live transport identity lifecycle checks
+(revocation/reset, reboot and WSL binary-upgrade identity); and persistent host
+deployment readiness. The active private listener is a transient user service with
+a one-day runtime limit, not evidence of persistence across host restart. Existing
+exact-node admission is not proof that clients cannot reach other tailnet services.
+
+Separately retain the WSL automatic-MTU report metadata limitation and unverified
+Windows-hosted IntelliJ-to-WSL execution/public installer path. Prior WSL transport
+and signal PASS evidence remains valid; a Mac IDE PASS does not certify that IDE
+topology. Full fresh IDE auth/onboarding remains distinct from reuse of the enrolled
+Mac installation. No conversational semantics or config-options work is needed to
+complete this read-only operation. E0.D remains blocked and is the next canonical
+slice only after E0.C acceptance; it is not started automatically. E0.E/F still own
+full onboarding/configuration acceptance.
 
 Retained observations: [host readiness](host-readiness.json), [real ACP subprocess](installed-acp.txt),
 [Task before](task-before.json), [Task after local disconnect](task-after-local-disconnect.json),

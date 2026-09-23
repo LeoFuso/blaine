@@ -565,6 +565,28 @@ client/build/protocol versions with no network or filesystem mutation.
 
 ## Capability and workspace contracts
 
+### Future session controls in the IDE
+
+ACP `configOptions` is the intended future UI surface for Blaine session controls:
+available Hub models, read-only mode, approval mode and bounded execution. Blaine
+will supply enforceable choices; the IDE presents supported controls and sends
+selections through `session/set_config_option`. Boolean controls require the
+corresponding advertised client support; actual target IDE behavior must be verified.
+[ACP session configuration](https://agentclientprotocol.com/protocol/v1/session-config-options).
+This is a documented direction, not an E0 implementation or acceptance gate.
+Do not advertise a mode, model choice or capability before Blaine can enforce it.
+
+A selection requests session policy; it does not confer authority. Effective
+capability remains bounded by implementation, live negotiation, local Workspace
+scope, Task authority and PolicyGate. A session change must not silently broaden
+existing durable Task grants. Restate retains Task lifecycle independently of the
+selector or IDE session. E1/E2 own workspace read/write/execution enforcement.
+
+Prompt `resource_link` data is independent of these selectors and capability
+advertisements. E0 accepts links as inert references with an explicit unused-context
+notice. Receiving a URI or context from the IDE does not authorize resolving,
+reading or executing it; resource consumption remains subject to the E1 boundary.
+
 ### Negotiation matrix
 
 Protocol support, IDE support and Blaine support are separate evidence columns.
