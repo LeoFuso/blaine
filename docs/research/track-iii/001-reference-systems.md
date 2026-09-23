@@ -135,6 +135,26 @@ its extraction/security/freshness composition holds. Known-corpus recovery does 
 establish broad generalization, snippet adequacy or production adoption. III.9 remains
 unstarted and requires separate authorization; no earlier result is rewritten.
 
+## III.9 advisory behavior — 2026-09-23
+
+[III.9](../../milestones/051-track-iii-9-novelty-simplicity-advisory.md) is **PASS** on
+12 frozen synthetic proposals, with unchanged III.8R selection and real local Qwen
+cognition. Both paired repetitions reduce duplicate choices from 4/4 to 0/4 while
+preserving 4/4 legitimate additions and 4/4 material near-match distinctions. Generic
+novelty/simplicity guidance is held constant; scoped current workspace evidence is
+the variable. No verdict that a candidate is equivalent is injected into normal advice.
+
+False contract presentation causes incorrect near-match reuse in both negative-control
+runs. Discovery validity is insufficient if presentation loses or falsifies material
+distinctions. The result supports bounded advisory behavior, not hard blocking,
+arbitrary equivalence detection or universal architectural quality improvement.
+Structural incremental utility and the simplicity wording's separate causal effect
+remain unproven. Source-family normalization remains a diversity heuristic only.
+
+III.8 remains FAIL and III.8R remains its separate PASS recovery. No earlier evidence,
+Memory/provenance/security/promotion semantics or production runtime was changed.
+III.10 lineage-transfer research is proposed, unstarted and requires separate authorization.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

@@ -610,11 +610,18 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
-**2026-09-23: III.8R PASS on the original frozen III.8 corpus and thresholds.**
+**2026-09-23: III.9 novelty/simplicity advisory PASS within its synthetic corpus.**
+[Milestone 051](../milestones/051-track-iii-9-novelty-simplicity-advisory.md) records
+two local-model paired repetitions: duplicate choices 4/4 → 0/4, legitimate additions
+and near-match distinctions 4/4 → 4/4. Falsified contract presentation causes incorrect
+reuse in both mutation runs. 58 Qwen calls, 2012-byte maximum advisory, no stale or
+forbidden input. This supports advisory behavior, not a production hard gate.
+
+**III.8R remains PASS on the original frozen III.8 corpus and thresholds.**
 [Milestone 050](../milestones/050-track-iii-8r-narrow-consumption-recovery.md) records
 three additional required targets per revision with one predeclared recovery policy,
 all exact hits preserved, fresh fallback restored and three caught mutations.
-Complete responses remain within 2048 bytes. III.9 is unstarted.
+Complete responses remain within 2048 bytes. Its separately authorized III.9 follows below.
 
 **III.8 remains FAIL under its frozen workspace-discovery thresholds.**
 [Milestone 049](../milestones/049-track-iii-8-workspace-discovery.md) records one
@@ -648,7 +655,7 @@ The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-
 covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
 III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
 III.9 Novelty/Simplicity gates and III.10 durable/distributed lineage.
-III.9–III.10 remain future experiments, not implementation commitments or authorization.
+III.10 remains a future experiment, not an implementation commitment or authorization.
 
 **III.2 executed** the user-assigned 11-context tree with literal read/write
 oracles, forged-binding/direct-ID/malformed-input checks and an isolated mutation.
@@ -706,13 +713,21 @@ post-outcome ranking tuning occurred. Fresh lexical fallback retains all four ex
 hits against stale derived data. Freshness, isolation and late-invalidation mutations
 are caught. Structural incremental retrieval utility remains unproven on this corpus.
 
-**Next recommendation:** III.9 may now be separately authorized as a bounded advisory
-experiment. The [exact proposal](../../experiments/track-iii-008r/README.md#interpretation-and-recommendation)
-compares novelty/simplicity advice for 12 duplicate, legitimate and near-match
-abstraction proposals under equal local-model/action budgets and current 2 KiB
-packets. Source-family diversity is not semantic equivalence or edit-blocking
-permission. **III.9 is not started.** No production dependency or runtime adoption
-occurred; historical III.1–III.8 results retain their original scope.
+**III.9 executed** 12 frozen abstraction proposals with advisory OFF/ON, identical
+local Qwen cognition and three-action budgets, in two reversed-order repetitions.
+The actual III.8R selector is unchanged, bound only to new synthetic data. Semantic
+candidate evidence enables four fewer duplicate choices per repetition without
+legitimate-addition or near-match losses. A fixed false contract excerpt causes two
+incorrect reuses and a nonzero oracle check. Advice remains derived evidence; current
+contracts remain primary. Structural incremental utility is still unproven without
+ablation, and source-family diversity is not evidence of contract equivalence.
+
+**Next proposal: III.10**, the [bounded lineage-transfer experiment](../../experiments/track-iii-009/README.md#exact-proposed-iii10-experiment--not-started):
+12 local-handoff/checkpoint-resume/second-process cases with trusted bindings, current
+policy/evidence revalidation, scope/provenance oracles and caught tampering mutations.
+**III.10 is not started and requires explicit authorization.** No production lifecycle,
+authentication, hard gate or runtime adoption follows from these synthetic results;
+all historical III.1–III.8R outcomes retain their original scope.
 
 ## How to resume development
 
@@ -810,10 +825,10 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.8R bounded recovery PASS; III.8 FAIL preserved.**
-  [Evidence and III.9 proposal](../../experiments/track-iii-008r/README.md).
-  III.9 may be separately authorized but remains unstarted. No runtime/dependency
-  adoption. Product and operational priorities below are unchanged.
+- **Track III: III.9 advisory PASS; stopped at its boundary.**
+  [Evidence and III.10 proposal](../../experiments/track-iii-009/README.md).
+  III.8 FAIL and III.8R PASS remain separate. III.10 requires explicit authorization;
+  no hard gate or runtime adoption. Other product/operational priorities are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux
