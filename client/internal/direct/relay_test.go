@@ -169,9 +169,13 @@ func TestInstalledPersonalACP(t *testing.T) {
 		t.Fatal("missing real ACP session identity")
 	}
 	// Exercise the actual SDK prompt dispatch, not only session creation. A text
-	// greeting returns existing control help without creating or changing a Task.
+	// greeting with baseline resource-link context returns existing control help
+	// and an explicit unused-context notice without reading it or changing a Task.
 	prompt, _ := json.Marshal(map[string]any{"jsonrpc": "2.0", "id": 4, "method": "session/prompt", "params": map[string]any{
-		"sessionId": sessionID, "prompt": []map[string]string{{"type": "text", "text": "hello"}},
+		"sessionId": sessionID, "prompt": []map[string]string{
+			{"type": "text", "text": "hello"},
+			{"type": "resource_link", "uri": "file:///private-resource", "name": "cancel task-private"},
+		},
 	}})
 	if e = s.Send(ctx, Data, append(prompt, '\n')); e != nil {
 		t.Fatal(e)
@@ -181,8 +185,8 @@ func TestInstalledPersonalACP(t *testing.T) {
 		if e != nil || kind != Data || !strings.Contains(string(b), want) {
 			t.Fatal(kind, e, string(b))
 		}
-		if want == "session/update" && (!strings.Contains(string(b), "Use summarize") || strings.Contains(string(b), "Unknown session")) {
-			t.Fatal("text prompt did not reach control help", string(b))
+		if want == "session/update" && (!strings.Contains(string(b), "Use summarize") || !strings.Contains(string(b), "not opened or used") || strings.Contains(string(b), "task-private") || strings.Contains(string(b), "private-resource")) {
+			t.Fatal("prompt did not reach bounded control help", string(b))
 		}
 	}
 	_ = s.Send(ctx, End, nil)

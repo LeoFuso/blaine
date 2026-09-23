@@ -274,6 +274,22 @@ passed. The existing controlled Restate Task's authoritative state remains ident
 This diagnostic change requires a fresh host ACP process, not another client release.
 Real IDE repetition remains pending; E0.C is PARTIAL and E0.D remains blocked.
 
+The next real Mac repetition resolved that ambiguity: the safe host diagnostic
+reported `known_session: true`, one text block and one resource-link block. The
+operator received the specific non-text rejection. This is an adapter compatibility
+defect: baseline ACP requires resource-link input support without optional prompt
+capabilities. It is not a failed session or a workspace access grant.
+
+The host correction accepts resource links as inert references and explicitly tells
+the user they were not opened or used. Only text blocks enter the existing command
+parser; link metadata cannot become commands. No URI is fetched, and link-only
+prompts do not execute controls. Images, audio and embedded resources remain denied.
+Twenty-six host tests passed, including hostile link metadata and unknown-session
+cases. The installed Python adapter also passed a text-plus-link prompt, response
+and cleanup through the direct fixture relay. This is host-only code: the public
+alpha.3 client/installer and release assets remain unchanged. A fresh real IDE
+session is still required to validate the corrected path; no E0.D/E1 work is added.
+
 ## Identity and policy lifecycle
 
 Private storage: `direct-v1/identity.key` (0600 Ed25519 seed), `tsnet/` (0700 and

@@ -63,6 +63,16 @@ ACP mode carries complete newline-delimited JSON-RPC frames and applies its exis
 correlation and capability guard. ACP initialization strips client capabilities;
 nonempty MCP forwarding and server-initiated client effects are denied.
 
+ACP prompt content is distinct from negotiated client capabilities. The host accepts
+baseline text and resource-link blocks, as required by the
+[ACP initialization contract](https://agentclientprotocol.com/protocol/v1/initialization).
+In E0.C, resource links are inert references: their URIs are never resolved and
+their names/descriptions/metadata never become executable control text. The response
+explicitly states that attached resource context was not used. Only text blocks enter
+the existing bounded control parser. A link-only prompt cannot initiate an operation;
+unadvertised image/audio/embedded-resource input still rejects before dispatch.
+Accepting a reference grants no filesystem, MCP, terminal or Task authority.
+
 A connection is capped at 30 minutes in this candidate; client reconnect creates a
 fresh authenticated session and never replays operations. An ACP session uses a
 fixed host Python entrypoint, with direct inherited pipe descriptors and a new
