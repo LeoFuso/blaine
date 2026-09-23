@@ -1,0 +1,58 @@
+{
+ "version": 1,
+ "question": "What generated the Ubuntu authentication prompts during the previous agent session?",
+ "method": "journald metadata correlation against the session command timeline; no credential contents inspected",
+ "attributed": [
+  {
+   "prompt_source": "polkit, agent dialog rendered by gnome-shell (PID 6899)",
+   "triggering_operation": "unprivileged systemd-creds encrypt/decrypt during the at-rest tool evaluation",
+   "mechanism": "systemd 259 runs unprivileged systemd-creds through privileged systemd-creds@N-...service helper units, each authorized by polkit",
+   "observed_occurrences": 8,
+   "observed_window": "2026-09-22T21:27:47-03:00 to 2026-09-22T21:29:23-03:00",
+   "expected": false,
+   "required_for_materialization": false,
+   "required_for_runtime": false
+  },
+  {
+   "prompt_source": "GDM / gkr-pam login keyring unlock",
+   "triggering_operation": "operator desktop login or screen unlock",
+   "mechanism": "gdm-password unlocks the login keyring with the account password",
+   "observed_occurrences": 7,
+   "observed_window": "2026-09-21T20:20:49-03:00 to 2026-09-22T21:48:29-03:00",
+   "expected": true,
+   "required_for_materialization": "only when the login keyring is locked at materialization time",
+   "required_for_runtime": false
+  },
+  {
+   "prompt_source": "sudo",
+   "triggering_operation": "read-only inspection of root-owned Alloy configuration and secret directory listings",
+   "mechanism": "sudo -n, non-interactive; existing passwordless maintenance configuration was used and not modified",
+   "observed_occurrences": 9,
+   "expected": true,
+   "required_for_materialization": false,
+   "required_for_runtime": false
+  }
+ ],
+ "not_attributed_to": [
+  "Bitwarden Secrets Manager: no authentication event coincides with any bws invocation",
+  "secret-tool: the login keyring was already unlocked, so no unlock prompt was raised",
+  "materialization: zero authentication events in the 21:30-21:36 materialization window",
+  "package installation: no package manager transaction ran in the session",
+  "browser authentication: no such event observed"
+ ],
+ "host_side_effect": {
+  "path": "/var/lib/systemd/credential.secret",
+  "created_at": "2026-09-22T21:27",
+  "created_by": "the systemd-creds evaluation, after operator polkit authentication",
+  "ownership": "root:root 0400, 4112 bytes",
+  "existed_before": false,
+  "journal_note": "systemd-creds warned the file is not located on encrypted media",
+  "action_taken": "none; reported for operator decision rather than removed unilaterally"
+ },
+ "correction_to_previous_interpretation": {
+  "previous_claim": "systemd-creds produced identical output for every key mode and another identity decrypted it, therefore its encryption was nominal",
+  "why_it_was_wrong": "the host key did not exist when the test began; each unprivileged call created or used it through a polkit-authorized privileged helper, and root could decrypt simply because root owns that key file",
+  "corrected_conclusion": "systemd-creds encryption was real, but unprivileged use requires polkit authorization on this host, so a systemd user service could not decrypt a credential without an interactive desktop prompt",
+  "effect_on_decision": "systemd-creds remains rejected, for a stronger and more accurate reason: it violates the non-negotiable no-Polkit-at-runtime requirement"
+ }
+}

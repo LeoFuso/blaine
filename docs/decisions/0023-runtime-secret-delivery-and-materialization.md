@@ -1,7 +1,15 @@
 # ADR 0023 — Runtime Secret Delivery and Materialization
 
-**Status:** Accepted  
+**Status:** Accepted, with three questions reopened  
 **Validation:** Integration — first consumer materialized and accepted live
+
+> **Provisional sections.** The lifecycle above the local credential is accepted
+> and unchanged. Three choices are reopened pending an operator decision: the
+> materialization engine (this ADR's own resolver versus SecretSpec), the
+> local-at-rest representation, and the systemd-creds rejection rationale, which
+> the [correction spike](../../experiments/secret-delivery-spike/README.md)
+> showed was right in outcome but wrong in reasoning. Treat the tool-evaluation
+> table and the at-rest paragraph as provisional until that decision lands.
 
 ## Context
 
@@ -71,8 +79,8 @@ implements no cryptography.
 | --- | --- | --- |
 | `bws` | 2.1.0, installed and already proven by the Grafana path | **Adopted** as the remote client, used only at materialization time |
 | GNOME Keyring | existing operator convention | **Retained** for the bootstrap credential only; never materialized to a consumer |
-| systemd credentials | systemd 259 with `systemd-creds` present | **Rejected for at-rest protection.** On this host `/var/lib/systemd/credential.secret` is absent and the operator has no `tss` group access, and `--with-key=null`, `host`, `tpm2` and `host+tpm2` all produced identical output that another identity decrypted. The encryption would have been nominal |
-| SecretSpec | absent from the host; previously researched | **Considered, not adopted.** Its documented model resolves secrets from the provider at process launch, which would put remote resolution on the normal startup path |
+| systemd credentials | systemd 259 with `systemd-creds` present | **Rejected — corrected rationale.** The original reading, that its encryption was nominal, was wrong: the host key was created during the test and really was used. The accurate disqualifier is that unprivileged `systemd-creds` requires polkit authorization on this host, so a systemd user service could not decrypt without an interactive desktop prompt. See the [correction spike](../../experiments/secret-delivery-spike/README.md) |
+| SecretSpec | **0.20.0 stable, live-spiked** | **Reopened.** The earlier dismissal relied on old research and was never put to the operator. A live spike passed all ten requirements, including BWS resolution through the existing keyring bootstrap and composition with this ADR's atomic activation. Engine selection is an open operator decision |
 | SOPS / age | absent from the host | **Deferred.** Real at-rest encryption needs a key that must itself be readable non-interactively at boot, which reduces to the same local trust boundary while adding key distribution |
 
 A `0600` file was therefore selected because the alternatives on this host either

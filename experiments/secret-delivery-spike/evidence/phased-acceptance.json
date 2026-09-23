@@ -1,0 +1,66 @@
+{
+ "version": 1,
+ "phases": [
+  {
+   "phase": "A_explicit_materialization",
+   "seconds": 2.73,
+   "operator_authentication_requested": false,
+   "authentication_subsystems": {},
+   "materialization_succeeded": true,
+   "outcome": "unchanged",
+   "expected_interactive": "only if the login keyring is locked"
+  },
+  {
+   "phase": "B_verify_local_material",
+   "seconds": 2.0,
+   "operator_authentication_requested": false,
+   "authentication_subsystems": {},
+   "destination_exists": true,
+   "mode": "0600",
+   "owner_only": true,
+   "declared_keys": [
+    "TYPESAFE_API_KEY"
+   ],
+   "undeclared_keys": [],
+   "credential_available_through_runtime_boundary": true,
+   "contacted_secret_manager": false
+  },
+  {
+   "phase": "C_runtime_restart_without_secret_manager",
+   "seconds": 2.03,
+   "operator_authentication_requested": false,
+   "authentication_subsystems": {},
+   "consumer_exit_code": 0,
+   "blocked_tools": [
+    "secret-tool",
+    "bws",
+    "secretspec",
+    "systemd-creds",
+    "pkexec",
+    "sudo"
+   ],
+   "blocked_tool_invoked": false,
+   "declared_credential_available": true,
+   "declared_credential_non_empty": true,
+   "bootstrap_leaked": false,
+   "desktop_session_variables_present": {
+    "DISPLAY": false,
+    "DBUS_SESSION_BUS_ADDRESS": false
+   }
+  },
+  {
+   "phase": "D_non_interactive_session_independence",
+   "seconds": 2.03,
+   "operator_authentication_requested": false,
+   "authentication_subsystems": {},
+   "consumer_exit_code": 0,
+   "credential_available_without_session": true,
+   "session_variables_inherited": [],
+   "credential_owner_uid": 1000,
+   "process_uid": 1000,
+   "reads_only_local_file": "/home/leofuso/.config/blaine/secrets/jev.env"
+  }
+ ],
+ "outcome": "PASS",
+ "values_recorded": false
+}
