@@ -53,7 +53,7 @@ new session correlation and the same installation/node; requests are not replaye
 | Actual installed PersonalACP subprocess over new relay | PASS local integration | Real Python ACP SDK/runtime initialize + session/new + EOF cleanup over loopback fixture transport; no remote peer or Task claim. |
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
 | macOS production candidate | PASS live transport/ACP signal batch | Corrected commit `77a974c` passed two direct runs and real remote ACP SIGINT/SIGTERM exit 130. Node/application identity survived process restarts and binary replacement from `dadb3c5`. JetBrains, reboot/revocation and policy gates remain separate. |
-| WSL production candidate | PARTIAL live enrollment; transport batch PENDING | Candidate `77a974c` checksum passed. Browser enrollment produced the designated installation node; the host correctly denied it before allowlisting. Independent host node/principal review completed; repeat handshake/stream/ACP/signals pending. |
+| WSL production candidate | PARTIAL live; probe write timeout | Candidate `77a974c` checksum passed and admitted node reused. Initial handshake completed by executable control-flow inference; a subsequent probe write timed out before binary/ACP/signal proof. Host-stage diagnosis and repeat pending. |
 | Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
 | Task independence | PASS bounded live Mac + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, the initial Mac failure, and both successful Mac ACP signal terminations. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
@@ -111,6 +111,25 @@ candidate listener was restarted and all five dependency checks passed. No tailn
 ACL, system Tailscale, runtime or Restate service was changed. The controlled Task
 remained WAITING before the repeat. The WSL stream, ACP and signal gates are still
 pending; this temporary admission review is not E0.D registration.
+
+The [first admitted WSL repeat](wsl-direct-write-timeout.json) reused both IDs but
+exited 3 with `failed to write msg: failed to write frame: context deadline exceeded`.
+Only the probe scope was emitted. The executable enters that probe after completing
+the initial authenticated handshake and its Exit frame; this is a control-flow
+inference, not a captured final CONNECTED receipt. Existing diagnostics cannot
+separate the probe's own handshake write from its first binary write. Do not call
+this a DNS, SSH authorization, WSL topology or downstream-readiness failure.
+The host remained active and all dependency checks passed afterward. The
+[controlled Task snapshot](task-after-wsl-timeout.json) remained unchanged.
+
+The candidate host now has bounded stage observations for authenticated handshakes,
+probe greeting/receive/echo and session completion: elapsed time, byte count, public
+peer/session IDs and fixed error categories only. Frame contents, raw errors, auth
+URLs and credential material are excluded; at most 32 probe-stage events are emitted
+per session, plus handshake and completion events. Tests cover stage reporting,
+byte counts and error/payload redaction; all client Go tests with race detection and
+vet passed. No protocol, timeout, authorization or workstation binary changes are
+made for this diagnosis. No cause or successful WSL stream is claimed yet.
 
 ## Identity and policy lifecycle
 

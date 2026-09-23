@@ -17,6 +17,7 @@ import (
 	"os/exec"
 	"os/signal"
 	"path/filepath"
+	"sync"
 	"syscall"
 	"time"
 
@@ -96,6 +97,12 @@ func run() error {
 		return fmt.Errorf("listener address not owned")
 	}
 	host := &direct.Host{Bootstrap: bootstrap, Key: key, Slots: make(chan struct{}, 8)}
+	var diagnosticMu sync.Mutex
+	host.Observe = func(event direct.Observation) {
+		diagnosticMu.Lock()
+		defer diagnosticMu.Unlock()
+		_ = json.NewEncoder(os.Stderr).Encode(event)
+	}
 	host.Peer = func(parent context.Context, remote string) (direct.Peer, error) {
 		bounded, cancel := context.WithTimeout(parent, 3*time.Second)
 		defer cancel()

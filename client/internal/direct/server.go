@@ -20,6 +20,7 @@ type Host struct {
 	Readiness func(context.Context) map[string]string
 	ACP       func(context.Context, *Session) error
 	Slots     chan struct{}
+	Observe   func(Observation)
 }
 
 func ServerHandshake(ctx context.Context, c *websocket.Conn, h *Host, peer Peer) (*Session, Hello, error) {
@@ -91,11 +92,15 @@ func (h *Host) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if c.Subprotocol() != Subprotocol {
 		return
 	}
+	start := time.Now()
+	h.observe(start, peer, "", "", "handshake_start", 0, nil)
 	s, hello, e := ServerHandshake(ctx, c, h, peer)
 	if e != nil {
+		h.observe(start, peer, "", "", "handshake_failed", 0, e)
 		c.Close(websocket.StatusPolicyViolation, "Blaine handshake rejected")
 		return
 	}
+	h.observe(start, peer, hello.Mode, s.ID, "handshake_complete", 0, nil)
 	stop := context.AfterFunc(ctx, func() { c.CloseNow() })
 	defer stop()
 	if hello.Mode == "acp" {
@@ -125,27 +130,42 @@ func (h *Host) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 	switch hello.Mode {
 	case "handshake":
-		_ = s.Send(ctx, Exit, []byte{0})
+		e = s.Send(ctx, Exit, []byte{0})
 	case "probe":
-		_ = serveProbe(ctx, s)
+		observationsLeft := 32
+		e = serveProbeObserved(ctx, s, func(stage string, size int, err error) {
+			if observationsLeft > 0 {
+				observationsLeft--
+				h.observe(start, peer, hello.Mode, s.ID, stage, size, err)
+			}
+		})
 	case "acp":
 		if h.ACP != nil {
-			_ = h.ACP(ctx, s)
+			e = h.ACP(ctx, s)
 		}
 	}
+	h.observe(start, peer, hello.Mode, s.ID, "session_finished", 0, e)
 }
 
 // Authenticated bounded diagnostic; no filesystem, model, workspace or Task.
 // The same framing primitive carries ACP, while probe bytes span all 256 values.
 func serveProbe(ctx context.Context, s *Session) error {
+	return serveProbeObserved(ctx, s, func(string, int, error) {})
+}
+func serveProbeObserved(ctx context.Context, s *Session, observe func(string, int, error)) error {
 	ctx, cancel := context.WithTimeout(ctx, 15*time.Second)
 	defer cancel()
-	if e := s.Send(ctx, Data, []byte{0, 1, 13, 10, 127, 128, 255}); e != nil {
+	observe("probe_greeting_start", 7, nil)
+	e := s.Send(ctx, Data, []byte{0, 1, 13, 10, 127, 128, 255})
+	observe("probe_greeting_complete", 7, e)
+	if e != nil {
 		return e
 	}
 	total := 0
 	for {
+		observe("probe_receive_start", 0, nil)
 		kind, b, e := s.Receive(ctx)
+		observe("probe_receive_complete", len(b), e)
 		if e != nil {
 			return e
 		}
@@ -155,7 +175,10 @@ func serveProbe(ctx context.Context, s *Session) error {
 			if total > 4<<20 {
 				return errors.New("PROBE_LIMIT")
 			}
-			if e = s.Send(ctx, Data, b); e != nil {
+			observe("probe_echo_start", len(b), nil)
+			e = s.Send(ctx, Data, b)
+			observe("probe_echo_complete", len(b), e)
+			if e != nil {
 				return e
 			}
 		case End:

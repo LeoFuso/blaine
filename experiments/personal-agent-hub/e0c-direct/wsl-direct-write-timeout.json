@@ -1,0 +1,51 @@
+{
+  "status": "PARTIAL",
+  "source": "Operator-provided WSL accept.sh transcript and reports-e0c-direct-2q4919",
+  "observed_at": "2026-09-23T17:27:11Z",
+  "candidate": {
+    "client_version": "0.1.0-e0c-direct",
+    "build_commit": "77a974c31b622983bc24c7316e690d4caeafca3c",
+    "protocol_version": 1,
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64",
+    "package_checksums": "binary, accept.sh and OPERATOR.md reported OK"
+  },
+  "peer": "ST00251 / Ubuntu WSL2",
+  "identity": {
+    "node_id": "nPvKcFBuW821CNTRL",
+    "node_reused": true,
+    "workstation_id": "ws-c5c659bfb5a2364ba3c33f0b86054732"
+  },
+  "attempt": 1,
+  "probe_output": {
+    "scope": "E0.C private transport; no registration or workspace effects"
+  },
+  "error": "failed to write msg: failed to write frame: context deadline exceeded",
+  "exit": 3,
+  "first_handshake": "Completed by inference from exact executable control flow: VerifyTransport and its report execute only after initial authenticated handshake and clean Exit frame. No final CONNECTED receipt was emitted.",
+  "probe_handshake_or_binary_write": "UNRESOLVED: existing output does not identify which probe write timed out",
+  "binary_stream": "NOT_PROVED",
+  "remote_acp": "NOT_REACHED",
+  "os_signals": "NOT_REACHED",
+  "second_attempt": "NOT_REACHED",
+  "doctor": {
+    "overall": "NOT_READY",
+    "platform": "wsl/amd64",
+    "wsl_version": "UNKNOWN / WSL_UNVERIFIED: doctor did not inspect Windows distribution version or interop",
+    "connection": "UNKNOWN: stored identity exists; no fresh probe"
+  },
+  "host_followup": {
+    "candidate_listener": "active/running; zero restarts reported at inspection",
+    "window_logs": "No session-stage observations in previous host executable",
+    "readiness": {
+      "runtime": "PASS",
+      "restate": "PASS",
+      "mirix": "PASS",
+      "generation": "PASS",
+      "embeddings": "PASS"
+    },
+    "controlled_task": "WAITING; authoritative state identical to pre-WSL snapshot"
+  },
+  "next": "Add bounded, redacted host stage observations and repeat the same WSL binary; do not change timeouts, identity checks or topology without evidence."
+}
