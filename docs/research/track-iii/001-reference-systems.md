@@ -155,6 +155,28 @@ III.8 remains FAIL and III.8R remains its separate PASS recovery. No earlier evi
 Memory/provenance/security/promotion semantics or production runtime was changed.
 III.10 lineage-transfer research is proposed, unstarted and requires separate authorization.
 
+## III.10 propagation semantics — 2026-09-23
+
+[III.10](../../milestones/052-track-iii-10-context-propagation.md) is **PASS** on 12
+frozen local-handoff/checkpoint/second-process cases. The receiver reconstructs access
+from trusted current state; serialized execution/context references are not credentials.
+Historical scopes, policy snapshots, packets, provenance claims and successful receipts
+cannot confer current authority. Current policy can remove a previously visible entry;
+current topology can replace its permitted ancestry. Memory is queried again on resume.
+
+Trusted declaration, unverified observation and verified success/failure semantics
+survive serialization without elevation. Correlation may propagate but grants no
+access. Whole-tree validity remains independent of read boundaries. Isolated controls
+trusting serialized scope, stale policy or provenance produce actual caught violations.
+Complete responses remain bounded; zero forbidden content/metadata enters normal exports.
+
+This assumes harness-owned state/route issuance and an atomic snapshot per operation;
+it does not prove production authentication, concurrency, crash consistency, remote
+transport or revocation dissemination. No production contracts or earlier evidence are
+changed. III.8 remains FAIL; III.8R remains its separate recovery PASS. Recommend a
+separately authorized architecture consolidation and contract gap review before any
+integration slice. No subsequent increment or production implementation is started.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

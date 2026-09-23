@@ -610,6 +610,13 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
+**2026-09-23: III.10 context propagation PASS within the offline fixture.**
+[Milestone 052](../milestones/052-track-iii-10-context-propagation.md) records 12 frozen
+handoff/checkpoint/second-process cases, 1,460 independent checks, zero content/metadata
+leaks and three caught scope/policy/provenance mutations. Receivers reconstruct access
+from trusted current state; serialization is not authority. Maximum complete response
+1696 bytes. No production integration or subsequent increment has started.
+
 **2026-09-23: III.9 novelty/simplicity advisory PASS within its synthetic corpus.**
 [Milestone 051](../milestones/051-track-iii-9-novelty-simplicity-advisory.md) records
 two local-model paired repetitions: duplicate choices 4/4 → 0/4, legitimate additions
@@ -654,8 +661,8 @@ work, not just initial prompt injection.
 The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-iii-sequence-and-open-risks)
 covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
 III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
-III.9 Novelty/Simplicity gates and III.10 durable/distributed lineage.
-III.10 remains a future experiment, not an implementation commitment or authorization.
+III.9 Novelty/Simplicity advisory and III.10 local/checkpoint/process lineage.
+Remote-machine and production integration remain unproven and unauthorized.
 
 **III.2 executed** the user-assigned 11-context tree with literal read/write
 oracles, forged-binding/direct-ID/malformed-input checks and an isolated mutation.
@@ -722,12 +729,20 @@ incorrect reuses and a nonzero oracle check. Advice remains derived evidence; cu
 contracts remain primary. Structural incremental utility is still unproven without
 ablation, and source-family diversity is not evidence of contract equivalence.
 
-**Next proposal: III.10**, the [bounded lineage-transfer experiment](../../experiments/track-iii-009/README.md#exact-proposed-iii10-experiment--not-started):
-12 local-handoff/checkpoint-resume/second-process cases with trusted bindings, current
-policy/evidence revalidation, scope/provenance oracles and caught tampering mutations.
-**III.10 is not started and requires explicit authorization.** No production lifecycle,
-authentication, hard gate or runtime adoption follows from these synthetic results;
-all historical III.1–III.8R outcomes retain their original scope.
+**III.10 executed** 12 deterministic transfer cases across local participants,
+checkpoint/resume and actual second OS processes. P2 removes prior P1 visibility;
+T2 reparenting replaces old ancestry; missing current evidence invalidates old success.
+Memory is re-queried, trusted provenance survives, and correlation grants no authority.
+Scope, stale-policy and provenance mutations cause actual caught violations. Whole-tree
+validation and per-operation trusted snapshots are explicit; concurrency, crash
+consistency, production authentication and remote-machine transport remain unproved.
+
+**Recommended post-Track-III work, not started:** separately authorize an architecture
+consolidation and contract gap review for reference issuance/resolution, current
+policy/topology freshness and atomicity, scoped diagnostics/evidence and per-operation
+enforcement ownership. Propose a minimal integration slice with acceptance criteria
+for human review before implementation. No production lifecycle, authentication, hard
+gate or runtime adoption follows automatically; all historical results retain scope.
 
 ## How to resume development
 
@@ -825,10 +840,11 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.9 advisory PASS; stopped at its boundary.**
-  [Evidence and III.10 proposal](../../experiments/track-iii-009/README.md).
-  III.8 FAIL and III.8R PASS remain separate. III.10 requires explicit authorization;
-  no hard gate or runtime adoption. Other product/operational priorities are unchanged.
+- **Track III: III.10 propagation PASS; stopped before production integration.**
+  [Evidence and post-track recommendation](../../experiments/track-iii-010/README.md).
+  III.8 FAIL and III.8R PASS remain separate. Architecture consolidation/contract review
+  is recommended for separate authorization; no implementation or hard gate is implied.
+  Other product/operational priorities are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux

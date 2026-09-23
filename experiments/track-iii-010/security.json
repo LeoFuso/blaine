@@ -1,0 +1,41 @@
+{
+  "content_canaries": [
+    "SIBLING_CONTENT_CANARY",
+    "DESCENDANT_CONTENT_CANARY",
+    "ROOT_PROTECTED_CONTENT_CANARY",
+    "EMPLOYER_CONTENT_CANARY",
+    "RAW_SUCCESS_LOG_CANARY",
+    "RAW_FAILURE_LOG_CANARY"
+  ],
+  "metadata_canaries": [
+    "sibling-private",
+    "descendant-private",
+    "protected-root",
+    "protected-x",
+    "task-x",
+    "task-sibling",
+    "employer-x",
+    "binding-evidence",
+    "private_audit"
+  ],
+  "restricted_by_state": {
+    "NARROW_POLICY": {
+      "content": [
+        "Checkpoint-era project guidance."
+      ],
+      "metadata": [
+        "old-rule"
+      ]
+    },
+    "REPARENT": {
+      "content": [
+        "Checkpoint-era project guidance."
+      ],
+      "metadata": [
+        "old-rule",
+        "project-old"
+      ]
+    }
+  },
+  "scope": "Canaries apply to externally visible receiving artifacts, not trusted input fixtures or legitimately visible pre-checkpoint historical packets."
+}
