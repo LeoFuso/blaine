@@ -14,7 +14,7 @@
   "local_actual_acp": "initialize, new session, EOF and abrupt disconnect passed through fixture transport",
   "task_state_unchanged": true,
   "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
-  "wsl_candidate": "PARTIAL: exact product node admitted and reused; initial handshake completed by executable control-flow inference; subsequent probe write timed out before binary/ACP/signal evidence. Cause pending host stage diagnostics and repeat.",
+  "wsl_candidate": "PARTIAL: admitted node reused; host-correlated signed initial/probe handshakes PASS (68/61 ms); first complete 1 MiB frame missing at host probe deadline, client write timed out. Binary echo/ACP/signals unproved; root cause unresolved.",
   "jetbrains_candidate": "PENDING",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "NOT_PUBLISHED",

@@ -53,7 +53,7 @@ new session correlation and the same installation/node; requests are not replaye
 | Actual installed PersonalACP subprocess over new relay | PASS local integration | Real Python ACP SDK/runtime initialize + session/new + EOF cleanup over loopback fixture transport; no remote peer or Task claim. |
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
 | macOS production candidate | PASS live transport/ACP signal batch | Corrected commit `77a974c` passed two direct runs and real remote ACP SIGINT/SIGTERM exit 130. Node/application identity survived process restarts and binary replacement from `dadb3c5`. JetBrains, reboot/revocation and policy gates remain separate. |
-| WSL production candidate | PARTIAL live; probe write timeout | Candidate `77a974c` checksum passed and admitted node reused. Initial handshake completed by executable control-flow inference; a subsequent probe write timed out before binary/ACP/signal proof. Host-stage diagnosis and repeat pending. |
+| WSL production candidate | PARTIAL live; binary write timeout located | Candidate `77a974c` reused the admitted node. Host `8d3889d` confirmed initial and probe handshakes in 68/61 ms, then sent the greeting. The first complete 1 MiB frame did not arrive before the 15-second host deadline; client write timed out. Binary echo/ACP/signals remain unproved. |
 | Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
 | Task independence | PASS bounded live Mac + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, the initial Mac failure, and both successful Mac ACP signal terminations. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
@@ -130,6 +130,22 @@ per session, plus handshake and completion events. Tests cover stage reporting,
 byte counts and error/payload redaction; all client Go tests with race detection and
 vet passed. No protocol, timeout, authorization or workstation binary changes are
 made for this diagnosis. No cause or successful WSL stream is claimed yet.
+
+The [repeat with host-stage correlation](wsl-direct-timeout-correlated.json) now
+proves both signed handshakes at the host, for the admitted WSL node. The initial
+session ended normally; the probe sent its seven-byte binary greeting and waited
+for the next frame until its 15-second deadline. No echo began. The exact client
+code validates that greeting before attempting the 1 MiB write, which returned the
+reported timeout. The logger does not measure partial TCP bytes: failure to receive
+a complete application frame is not evidence of zero packets arriving.
+
+The cause remains unresolved. The next read-only workstation observation is
+`ip -o link show`. Current [official Tailscale WSL guidance](https://tailscale.com/docs/install/windows/wsl2)
+documents packet-size limitations, including a 1280-byte underlying interface MTU
+and encrypted traffic crossing Windows-owned Tailscale. This motivates inspection;
+it does not establish either condition for this embedded-tsnet run. No daemon
+installation, interface change, debug override, deadline extension or topology
+change has been made. Effective path MTU and offload behavior remain hypotheses.
 
 ## Identity and policy lifecycle
 
