@@ -1,0 +1,56 @@
+{
+  "revision": 4,
+  "scope": "Isolated stream fixture: bounded expected-peer wait and node-observation reporting correction; no production release",
+  "go_version": "go1.27.1",
+  "tsnet": "v1.102.4",
+  "validation": {
+    "format": "PASS",
+    "go_vet": "PASS",
+    "go_test_race": "PASS; stream/auth/deadline/sanitized errors/expected-peer readiness/baseline persistence"
+  },
+  "sources": {
+    "auth.go": "e5a1f7be0cf689f66b5360473e9febe6e5ed14dcf8c193efd4399a10002af594",
+    "diagnostics.go": "f0a63a978f8a8ce257ea3936e840164bb1a8af930a8d434c5db1bcb9bcdbdef4",
+    "diagnostics_test.go": "f1c0e7c3cecb0a682b70e8eadd5ee722ad8f37776632ea35b187ea856f67127c",
+    "go.mod": "412a2f718fb73eae32d60a96e0e50ce5be3ba00bcba22a155a4bd9066212d565",
+    "go.sum": "b3a6023b18f99482027c7710d857afabc1b7e28c2fa4d520c1c9c5bf195b22e4",
+    "main.go": "97c3b10acac027ff1419880da6bd9e46c56e7d48351b6d19cb822023f34e5751",
+    "main_test.go": "d0007fde5d2078c33ef3ac23a5ac351736cb528e969b76d5f25c3306bf8f9bc7",
+    "readiness.go": "30bff2c78e43225cd4a459fc3f6c92524341a32f49fa4bf2c5ac9412e277663f",
+    "readiness_test.go": "3286b86d8d533a62f9a0d121495ee897a40606a51bba956984f2df4fc55acc2b"
+  },
+  "builds": [
+    {
+      "target": "darwin-arm64",
+      "binary_bytes": 20357154,
+      "sha256": "1a3aecaea0e38dc0f9c5c92f19270bed9baf4f0f741bf39768bb80ec111e8835",
+      "archive": "blaine-spike-stream-darwin-arm64.tar.gz",
+      "archive_sha256": "f976483056e560fa3ae5dacdedf82cc5a4063b84151d8b47d4e83b22622aff2c",
+      "runtime_verified": false
+    },
+    {
+      "target": "darwin-amd64",
+      "binary_bytes": 21780032,
+      "sha256": "23bac99b2d2c93c8346a59c57474005bf9388ec077a630aefe65feea554ccc5e",
+      "archive": "blaine-spike-stream-darwin-amd64.tar.gz",
+      "archive_sha256": "04d66d0a53515ceb86983310780d9c5f156c39969bfe8f05aa7c82d1ecc2011a",
+      "runtime_verified": false
+    },
+    {
+      "target": "linux-amd64",
+      "binary_bytes": 21954720,
+      "sha256": "fdfff38bf91ddc3686a2f251b3975d26e1dc47d507eaff58d85c7c817b7e365e",
+      "archive": "blaine-spike-stream-linux-amd64.tar.gz",
+      "archive_sha256": "dfe5aeee461e19fa9b54ae703dd02efbf7b2d82987c475c2418b7a5a8da861a2",
+      "runtime_verified": false
+    },
+    {
+      "target": "linux-arm64",
+      "binary_bytes": 20381856,
+      "sha256": "e4d878f472e7f41f6a5f040e6652a50a60d98d97d8eda7e8c31508432601e111",
+      "archive": "blaine-spike-stream-linux-arm64.tar.gz",
+      "archive_sha256": "6e53f6c87060e05e7ad932619620cb4244bb7c3ec39cf7c55a0043a7aa150614",
+      "runtime_verified": false
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "objective": "Evaluate JetBrains ACP provisioning/authentication and embedded tsnet plus direct private transport against the existing E0.C Tailscale SSH model; retain evidence and stop for an operator architecture decision.",
+  "mode": "interactive",
+  "capabilities": [
+    "read public official documentation",
+    "edit isolated experiment files",
+    "build and run bounded fixtures",
+    "coordinate designated macOS and WSL2 experiments"
+  ],
+  "autonomy": {
+    "allowed": [
+      "isolated reversible fixtures",
+      "private controlled test service",
+      "interactive authentication on the designated peers"
+    ],
+    "forbidden": [
+      "production adapter changes",
+      "new public client release",
+      "public registry submission",
+      "public listener",
+      "persistent root daemon",
+      "broad ACL changes",
+      "E0.D+ implementation",
+      "automatic architecture adoption"
+    ]
+  },
+  "completion": [
+    {
+      "criterion": "Provisioning and ACP authentication contracts verified",
+      "evidence": "Pinned official sources, registry validation, isolated auth fixture and explicit live IDE gaps"
+    },
+    {
+      "criterion": "tsnet evaluated on designated macOS and WSL2 peers",
+      "evidence": "Versioned Go program, platform builds, operator-run live results or explicit blockers"
+    },
+    {
+      "criterion": "Stream semantics and identity/lifecycle costs compared",
+      "evidence": "Bounded duplex/binary/cancellation/disconnect tests and decision table"
+    }
+  ]
+}

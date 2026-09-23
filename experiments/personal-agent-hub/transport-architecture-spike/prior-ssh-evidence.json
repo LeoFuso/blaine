@@ -1,0 +1,42 @@
+{
+  "scope": "Preserved prior E0.C evidence; not a live ACP/Blaine handshake acceptance",
+  "operator_reported_mac": {
+    "peer": "leonardos-macbook-pro",
+    "architecture": "arm64",
+    "release": "v0.1.0-alpha.1",
+    "release_commit": "ca4a6b2e31d58bc649257700a87efd8a1c326b96",
+    "checksum": "operator confirmed; raw checksum not supplied in conversation",
+    "doctor_network": "PASS",
+    "release_connect": "LOCAL_INVALID before SSH; local Unix username wrongly used for remote account",
+    "tailscale_ssh_hostname_and_user": [
+      "blaine",
+      "leofuso"
+    ],
+    "browser_check": "completed login; no manual fingerprint prompt",
+    "stdin_stdout_stderr_and_remote_exit_23": "PASS operator-reported",
+    "binary_probe_hex": "00 01 0d 0a 7f 80 ff matched",
+    "stdout_stderr_separation": "PASS operator-reported",
+    "SIGINT_remote_sleep": "sleep survived; manually terminated afterward",
+    "SIGINT_remote_cat": "remote PID absent in host observation",
+    "SIGTERM_local_ssh": "wrapper and SSH absent on Mac; remote cat absent in host observation"
+  },
+  "host_observed": {
+    "RunSSH": true,
+    "DNSName": "blaine.tail0f2ece.ts.net",
+    "IP": "100.94.139.5",
+    "ssh_policy": "effective rule included designated Mac/Windows addresses; holdAndDelegate; Unix user mapping wildcard same-name",
+    "authorized_keys": "not part of adapter path; public-key auth disabled"
+  },
+  "operator_reported_wsl": {
+    "DNS": "PASS historical",
+    "TCP22": "PASS historical",
+    "ssh_check": "observed but cancelled at that time",
+    "current_wrapper_spike": "not executed"
+  },
+  "boundaries": [
+    "No production host peer resolver/dispatch success",
+    "No real Blaine handshake or remote ACP proven",
+    "No WSL wrapper or tsnet proof",
+    "No unrelated devices used"
+  ]
+}

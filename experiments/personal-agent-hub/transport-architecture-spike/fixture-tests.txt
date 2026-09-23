@@ -1,0 +1,23 @@
+=== RUN   TestStreamPrimitive
+    main_test.go:28: map[binary_roundtrip_bytes:1048576 explicit_cancellation:true fresh_connection_after_disconnect:true read_deadline:true server_initiated_binary:true server_observed_disconnect:true status:PASS_FIXTURE]
+--- PASS: TestStreamPrimitive (0.49s)
+=== RUN   TestAgentAuthFixture
+--- PASS: TestAgentAuthFixture (0.00s)
+=== RUN   TestAuthDeadline
+--- PASS: TestAuthDeadline (0.02s)
+PASS
+ok  	blaine.local/transport-spike	1.526s
+
+Revision 4 validation (2026-09-23; retained summary of the actual tool run):
+Go 1.27.1; go test -race -count=1 -v ./...: PASS, 1.738s.
+TestDiagnosticErrorsDoNotExposeRawMaterial: PASS.
+TestStreamPrimitive: PASS.
+TestAgentAuthFixture: PASS.
+TestAuthDeadline: PASS.
+TestWaitForExpectedHub: PASS (Running alone insufficient; delayed peer arrival;
+  cancellation; wrong tailnet; changed local node; wrong expected Hub name).
+TestObservationBaselineDoesNotRequireStream: PASS (create/reuse; changed identity
+  rejected without overwriting baseline; mode 0600).
+go vet ./...: PASS.
+gofmt applied; four-target builds PASS, checksums in stream-builds.json.
+These are local fixture results, not revision-4 live workstation acceptance.
