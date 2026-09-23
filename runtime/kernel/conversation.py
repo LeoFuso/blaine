@@ -45,17 +45,33 @@ class KeyProvider:
     """Loads and caches the KEK from a local runtime credential file.
 
     The KEK is a 32-byte key stored at:
-      <data_dir>/conversation-kek.key  (mode 0600)
+      <key_dir>/conversation-kek.key  (mode 0600, parent dir 0700)
+
+    Key material is stored OUTSIDE the Conversation data directory to
+    preserve backup isolation: a data-only backup of conversation.sqlite
+    does not contain the key needed to decrypt it.
+
+    Default key location: ~/.config/blaine/secrets/ (existing Blaine
+    secret boundary). Override with BLAINE_CONVERSATION_KEY_DIR env var.
+
+    Initialization rule:
+      - If the key file exists: load it.
+      - If the key file is missing AND the store is empty: generate a new KEK.
+      - If the key file is missing AND encrypted data exists: FAIL CLOSED.
+        Never silently regenerate a key over existing encrypted data.
 
     It is never stored in the database, never logged, never committed.
-    If the file does not exist, a new KEK is generated and persisted.
     """
 
-    def __init__(self, data_dir: Path):
-        self._key_file = data_dir / 'conversation-kek.key'
+    def __init__(self, key_dir: Path):
+        self._key_file = key_dir / 'conversation-kek.key'
         self._kek: bytes | None = None
 
-    def load_or_create(self) -> bytes:
+    def has_existing_key(self) -> bool:
+        """Check if a KEK file exists (without loading it)."""
+        return self._key_file.exists()
+
+    def load_or_create(self, store_has_data: bool = False) -> bytes:
         if self._kek is not None:
             return self._kek
         if self._key_file.exists():
@@ -63,15 +79,33 @@ class KeyProvider:
             if len(self._kek) != AES_KEY_SIZE:
                 raise ValueError('KEK file has invalid size')
         else:
+            if store_has_data:
+                raise KeyError(
+                    'Conversation KEK is missing but encrypted data exists. '
+                    'Refusing to generate a replacement key. '
+                    'Restore the original key from your separate key backup. '
+                    'Key location: ' + str(self._key_file)
+                )
             self._kek = secrets.token_bytes(AES_KEY_SIZE)
             self._key_file.parent.mkdir(parents=True, exist_ok=True)
+            os.chmod(self._key_file.parent, 0o700)
             self._key_file.write_bytes(self._kek)
             os.chmod(self._key_file, 0o600)
         return self._kek
 
+    def load(self, store_has_data: bool = False) -> bytes:
+        """Load the KEK, failing closed if missing and data exists."""
+        if self._kek is not None:
+            return self._kek
+        return self.load_or_create(store_has_data=store_has_data)
+
     @property
     def kek(self) -> bytes:
         return self.load_or_create()
+
+    @property
+    def key_path(self) -> Path:
+        return self._key_file
 
 
 # --- Envelope Encryption ---
@@ -167,13 +201,37 @@ class ConversationService:
                               created_at, result_surfaced)
     """
 
-    def __init__(self, data_dir: Path):
+    def __init__(self, data_dir: Path, key_dir: Path | None = None):
         self._data_dir = data_dir
         self._db_path = data_dir / 'conversation.sqlite'
-        self._crypto = ConversationCrypto(KeyProvider(data_dir))
+        # Key material lives OUTSIDE the data directory (backup isolation).
+        # Default: ~/.config/blaine/secrets/ (existing Blaine secret boundary).
+        # Override: BLAINE_CONVERSATION_KEY_DIR env var.
+        if key_dir is None:
+            env_key_dir = os.environ.get('BLAINE_CONVERSATION_KEY_DIR')
+            if env_key_dir:
+                key_dir = Path(env_key_dir)
+            else:
+                key_dir = Path.home() / '.config' / 'blaine' / 'secrets'
+        self._key_provider = KeyProvider(key_dir)
+        self._data_dir.mkdir(parents=True, exist_ok=True)
         self._db = sqlite3.connect(str(self._db_path), check_same_thread=False)
         self._db.execute('PRAGMA journal_mode=WAL')
         self._init_schema()
+        # Key initialization:
+        # - If encrypted data exists: the key MUST be present (fail closed).
+        # - If the store is empty: generate a new key (first-time setup).
+        if self._store_has_data():
+            self._key_provider.load(store_has_data=True)
+        else:
+            self._key_provider.load_or_create(store_has_data=False)
+        self._crypto = ConversationCrypto(self._key_provider)
+
+    def _store_has_data(self) -> bool:
+        """Check if encrypted Conversation data already exists."""
+        row = self._db.execute(
+            'SELECT 1 FROM conversation_messages LIMIT 1').fetchone()
+        return row is not None
 
     def _init_schema(self):
         self._db.executescript('''
