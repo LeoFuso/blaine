@@ -62,6 +62,15 @@ The invariants are:
 - **No new ledger.** The comparison row is the two verdicts plus the observed
   turn and token counts, joined through the retained spec identity and the
   existing ExecutionEvent evidence.
+- **The grant travels in the request envelope, never in the TaskSpec.** The
+  envelope is built by trusted code and already carries operator data the spec
+  does not, such as the accepted intake action; a child's grant is derived from
+  its parent by narrowing only, exactly as capabilities already are.
+- **The comparison reads permanent evidence, never the durable runtime.** Restate
+  retains a workflow and its journal for seven days, so a multi-week accumulation
+  read from runtime state would silently shrink instead of failing. Artifacts are
+  content-addressed and do not expire, and the ExecutionEvent sink is append-only;
+  those are the sources of record.
 
 This ADR decides how the number is obtained. It deliberately does **not** decide
 the routing policy that the number should produce. A bare error-rate threshold
@@ -91,8 +100,17 @@ as a capability limit; without that distinction the ratio will understate what
 local inference can do.
 
 Making authority a first-class per-Task input is the one architectural change
-this requires. It is bounded, and it is the same input the frontier contract
-already defines; today it exists only as an experiment fixture.
+this requires. It is one field in an envelope that already exists and is already
+trusted, it introduces no lifecycle owner, store, scheduler or vocabulary, and it
+is the same input the frontier contract already defines; today it exists only as
+an experiment fixture. Wiring it when the remote path is first enabled is cheap;
+adding it afterwards is a refactor of live behaviour.
+
+Replays are ordinary Tasks, so the durable runtime keeps owning scheduling and
+recovery and nothing new supervises them. Whatever triggers a replay batch is a
+client of the Task boundary rather than an owner of it, and batches stay small and
+opportunistic because local serving runs one generation at a time and replays must
+never compete with live work.
 
 ## Validation
 
