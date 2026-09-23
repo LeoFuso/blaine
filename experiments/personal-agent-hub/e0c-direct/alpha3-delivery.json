@@ -1,14 +1,20 @@
 {
-  "status": "PREPARED_NOT_PUBLISHED",
+  "status": "PUBLISHED_PUBLIC_INSTALLER_AND_TYPED_ACP_FIXTURE_PASS",
   "tag": "v0.1.0-alpha.3",
-  "source_commit": null,
+  "source_commit": "1d718a18582d3a82635131d16f8c8d171d193759",
   "fix_commit": "eb6db8020e600dced3b1ef95fea4975cb98a20fd",
   "scope": "Auxiliary Kotlin ACP envelope type compatibility and public installer target update; no transport/authentication/registration redesign",
   "authorization": "Operator explicitly authorized public alpha.3 instead of transferring the local Mac candidate",
   "go": "1.27.1",
   "protocol": 1,
   "release_workflow": ".github/workflows/client-release.yml",
-  "assets": ["blaine-darwin-arm64", "blaine-darwin-amd64", "blaine-linux-amd64", "blaine-linux-arm64", "checksums.txt"],
+  "assets": [
+    "blaine-darwin-arm64",
+    "blaine-darwin-amd64",
+    "blaine-linux-amd64",
+    "blaine-linux-arm64",
+    "checksums.txt"
+  ],
   "local_correction_regressions": "PASS full client suite; exact fix commit candidate also initialized the reconstructed typed envelope without network identity creation",
   "public_installer": "Shell only, checksum before binary execution, Go-owned JetBrains configuration, default alpha.3",
   "macos_real_fixed_ide": "PENDING_OPERATOR",
@@ -17,5 +23,35 @@
   "attestation_signing": "No claim; existing deferred hardening",
   "changie": "Deferred",
   "e0c": "PARTIAL",
-  "e0d": "BLOCKED"
+  "e0d": "BLOCKED",
+  "release_url": "https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.3",
+  "published_at": "2026-09-23T19:36:54Z",
+  "prerelease": true,
+  "ci_and_publication": {
+    "status": "PASS",
+    "run": 35909877236,
+    "url": "https://github.com/LeoFuso/blaine/actions/runs/35909877236",
+    "scope": "Established shared client validation/build job followed by release publication job"
+  },
+  "checksums": {
+    "blaine-darwin-arm64": "33761791538e87af7a0af118e5c1c6867f2ec5043fe5f6015f654aa5e31e5ca9",
+    "blaine-darwin-amd64": "f25a7a972b9ce01e6f987dcc944a621406c8d978fa59a9c265a382209f08cd7c",
+    "blaine-linux-amd64": "782f451c5421ff7186ccb9550cab3f1aca906323d758a917319d9caa42ca1827",
+    "blaine-linux-arm64": "36509335de58a044634e26fcbe1cf8df181a538f4fafef748287e3760fb4e7b5",
+    "checksums.txt": "85238720f05074fd28234046faac07a2863df8e4cd614bcdffd641b6d2fe5852"
+  },
+  "metadata": {
+    "schema_version": 1,
+    "client_version": "0.1.0-alpha.3",
+    "protocol_version": 1,
+    "build_commit": "1d718a18582d3a82635131d16f8c8d171d193759",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "public_installer_command": "curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.3/client/install-jetbrains-agent.sh | sh",
+  "public_linux_proof": "PASS: public download, checksum, install/check/reinstall with existing agent and backup preserved; reconstructed typed initialize succeeds on installed release binary",
+  "published_assets_match_local_exact_source_builds": true,
+  "generated_binaries_committed": false,
+  "remaining": "Real designated Mac IntelliJ session through tsnet/direct Hub remains pending; E0.C is not accepted from installer/fixture evidence"
 }

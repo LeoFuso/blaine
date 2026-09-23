@@ -17,7 +17,7 @@
   "wsl_candidate": "PASS live with detailed diagnostic-MTU/native-home reports; operator also confirmed PASS for requested normal-launch automatic-MTU candidate 478a0f1. New host logs corroborate complete binary/ACP sessions; exact latest client metadata/MTU-source report not supplied.",
   "jetbrains_candidate": "Mac alpha.2 installation and launch operator-reported; ACP failed on auxiliary envelope type field. Minimal correction passes local/full regressions; exact-commit candidate real IDE session pending.",
   "effective_narrow_tailnet_policy": "PENDING",
-  "new_release": "v0.1.0-alpha.2 PUBLISHED from cd6b43f04a0d39ca84ae091f93d57343775d374a; first direct-transport prerelease; E0.C remains PARTIAL",
+  "new_release": "v0.1.0-alpha.3 PUBLISHED from 1d718a18582d3a82635131d16f8c8d171d193759; bounded ACP envelope correction; E0.C still PARTIAL",
   "e0d": "BLOCKED",
   "task_independence_macos": "PASS bounded live evidence: controlled Restate Task remains WAITING with identical authoritative state after both successful Mac ACP signal terminations",
   "stdio_correction": "PASS local Linux regression suite and four-target builds; PASS designated macOS arm64 live signal batch",
@@ -25,5 +25,5 @@
   "task_independence_wsl": "PASS bounded live: authoritative WAITING Task state unchanged after both WSL ACP probe sessions and SIGINT/SIGTERM terminations",
   "wsl_product_mtu": "Implemented and locally validated; normal-launch batch PASS operator-reported. Requested command had no MTU override. Final dossier still needs exact client metadata/MTU-source record.",
   "automatic_mtu_validation": "Final complete client CI PASS, including race/vet/offline regressions and four reproducible target builds. Initial preexisting process-cleanup test failure recorded; five targeted repetitions and final full run passed.",
-  "public_installer": "PASS live public Linux amd64 install/check/reinstall in isolated home; Mac and WSL operator/IDE acceptance pending"
+  "public_installer": "Alpha.3 PASS public Linux temporary-home install/check/reinstall and typed ACP initialize fixture; real Mac/WSL IDE acceptance pending"
 }

@@ -250,7 +250,9 @@ alpha.3 publication. This controlled exception to public-release acceptance does
 not change the public installer or authorize publication of another release.
 The operator subsequently authorized alpha.3 publication to avoid another local
 ZIP transfer. The public installer target is now alpha.3; [delivery status](alpha3-delivery.json)
-records measured results. The next gate remains a real IntelliJ-launched ACP
+records measured results: tag-driven CI/publication passed, all four public assets
+match exact-source local builds, and the public Linux installer plus reconstructed
+typed ACP initialize passed in an isolated home. The next gate remains a real IntelliJ-launched ACP
 session through the private Hub. No successful fixed Mac IDE session is inferred
 from the local tests or release publication.
 
