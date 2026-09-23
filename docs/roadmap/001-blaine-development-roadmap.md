@@ -573,7 +573,7 @@ context must not be misclassified as model capability failure.
 | --- | --- |
 | C1 — Failure taxonomy | Candidate distinctions: capability insufficient, context insufficient, policy denied, worker failure, tool failure, invalid output, external dependency and verifier rejection. Do not freeze categories before real cases support them. |
 | C2 — Escalation semantics | Specify who judges previous capability insufficient and what evidence warrants escalation. Separate runtime lifecycle, routing recommendation, authority limits and verifier ownership; no omnipotent escalation subsystem or self-issued grants. |
-| C3 — Jev vs Qwen carveout | Jev remains a candidate only. Use approximately 20–30 real Blaine Tasks to compare routing/workload classification, decision error, latency and cost. Preserve fixtures and evaluation labels; adoption requires measured benefit. |
+| C3 — Jev vs Qwen carveout | **Provider integration exists; the comparison does not.** Jev remains a candidate only: it plugs into the existing `WorkloadClassifier` and boundary-observer seams, runs in shadow mode so no routing outcome changes, and has one real authenticated invocation ([milestone 041](../milestones/041-jev-provider-candidate.md)). The comparison record shape and aggregation rules are prepared and run nothing. Still required: approximately 20–30 real Blaine Tasks comparing classification, decision error, latency and cost, with retained fixtures and evaluation labels. Adoption requires measured benefit and a human review; do not rebuild the provider. |
 | C4 — Cost-to-success routing | Optimize expected total cost to successful completion, not the cheapest invocation. Include retries, failure probability, escalation, runtime and observed cost where known; retain uncertainty for hidden accounting. |
 | C5 — Learning-assisted routing | Begin offline: history → proposed policy → evaluation → human/promoted policy. No uncontrolled online self-modification initially. |
 
@@ -686,7 +686,7 @@ explicit decision closes it.
 | Redis profile separation | Actual cache/queue persistence, eviction and recovery requirements |
 | When project graph belongs in the context path | Measured retrieval benefit with trustworthy freshness/provenance |
 | Need for semantic condensation | FULL/SELECTED/COMPILED fidelity results showing a remaining deterministic gap |
-| Whether Jev merits adoption | Approximately 20–30 real Task comparisons against Qwen |
+| Whether Jev merits adoption | Approximately 20–30 real Task comparisons against Qwen; the provider and the comparison harness now exist, the comparison does not |
 | Precise escalation ownership/semantics | Real failure cases, attribution and a bounded recommendation/authority contract |
 | Eventual custom UI | Concrete operator friction that ACP and remote channels cannot reasonably address |
 | Complete backup/off-site strategy | PostgreSQL/Object Storage coverage, Restate recovery needs, isolated restores, agreed recovery objectives and later off-site requirements |
@@ -731,6 +731,16 @@ operator procedures; this document owns development direction and dependencies.
   This is separate from OBS-001 and does not change D1.G's Cloud independence.
 - **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
 - **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
+- **Secret delivery: ADR 0023 accepted.** Bitwarden is the source of truth and not
+  a runtime dependency; SecretSpec 0.20.0 resolves declared secrets behind one
+  alias while Blaine keeps the consumer allowlist, atomic activation, verification
+  and rotation reporting. Services and bounded processes start from local `0600`
+  credentials with the secret manager, the keyring and a desktop session all
+  unavailable. Credentials remain plaintext at rest, recorded as an accepted
+  limitation. See the [secrets runbook](../platform-secrets.md).
+- **Jev: integration PASS, NOT adopted.** One real authenticated invocation exists
+  and Jev changes no routing outcome. C3's comparison is still unstarted; see
+  [milestone 041](../milestones/041-jev-provider-candidate.md).
 - **Worker execution boundary: user-directed increment, PASS within its evidence.**
   A provider-neutral continuation boundary, adapter capability claims and an
   OpenTelemetry telemetry path now exist, with a synchronous control hook where an

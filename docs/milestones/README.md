@@ -12,6 +12,8 @@ limitations; their historical “next” instructions do not override that roadm
 | D1 platform | [Live service adoption PASS; D1.G pending](039-d1-service-adoption.md) | [Infrastructure validation](../../infra/validation-d1-infrastructure.json) |
 | D1 backup | [PAUSED checkpoint](../platform-d1.md); no accepted physical backup/restore | [Volume preservation](../../infra/volume-preparation-d1.json) |
 | Worker execution boundary | [Instrumentation and continuation boundary](040-worker-execution-instrumentation.md) | [Evidence summary](../../experiments/worker-execution-instrumentation/evidence/evidence-summary.json) |
+| Secret delivery | [ADR 0023](../decisions/0023-runtime-secret-delivery-and-materialization.md) accepted; SecretSpec resolver adopted | [Acceptance](../../infra/validation-secret-delivery.json), [correction spike](../../experiments/secret-delivery-spike/README.md), [runbook](../platform-secrets.md) |
+| Jev routing candidate | [Integration PASS; NOT adopted, NOT the default router](041-jev-provider-candidate.md) | [Live authenticated call](../../experiments/jev-provider-carveout/evidence/live/summary.json) |
 | D2 Personal Agent | [PASS within documented fixture scope](../daily-driver-d2.md) | [Acceptance](../../experiments/daily-driver-d2/evidence/summary.json), [validation](../../experiments/daily-driver-d2/evidence/validation.json), [post-sync native acceptance](../../experiments/daily-driver-d2/evidence/post-sync-native-summary.json) |
 
 ## Planned product milestones
