@@ -38,7 +38,7 @@ jobs:
           cat > "$RUNNER_TEMP/client-release-notes.md" <<'NOTES'
           Alpha workstation-client candidate. E0 and the Blaine client are not stable or accepted.
 
-          First direct-transport prerelease: embedded tsnet plus the private Blaine application protocol. Includes persisted client identity, signed handshake, binary streams, cancellation/reconnect, validated WSL MTU handling and Go-owned JetBrains custom ACP registration. Alpha.1 is historical SSH product-transport evidence; no automatic SSH fallback exists. No E0.D+ capabilities are enabled.
+          Direct-transport prerelease: embedded tsnet plus the private Blaine application protocol. Includes persisted client identity, signed handshake, binary streams, cancellation/reconnect, validated WSL MTU handling and Go-owned JetBrains custom ACP registration. Alpha.2 was the first direct-transport release; alpha.3 corrects the auxiliary Kotlin ACP envelope discriminator rejected during real JetBrains launch. Alpha.1 is historical SSH product-transport evidence; no automatic SSH fallback exists. No E0.D+ capabilities are enabled.
 
           E0.C remains PARTIAL. Designated macOS and WSL transport evidence exists; real IntelliJ-launched ACP/auth, remaining identity lifecycle, narrow tailnet policy and durable host deployment gates remain separate.
 

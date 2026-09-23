@@ -3,7 +3,7 @@
 set -eu
 
 main() {
-  release=v0.1.0-alpha.2
+  release=v0.1.0-alpha.3
   mode=install
   case $# in
     0) ;;

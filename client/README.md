@@ -4,8 +4,10 @@ Small standalone Go workstation client, separate from the durable Python runtime
 The operator selected embedded tsnet and a direct private application transport.
 **E0.C is PARTIAL; full E0 is unaccepted.** `v0.1.0-alpha.1` is historical SSH
 transport evidence. `v0.1.0-alpha.2` is the first direct-transport prerelease;
-[delivery evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
-records actual publication/validation status. Use the [public installer](INSTALL.md)
+[alpha.2 evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
+records its publication and subsequent IDE envelope failure. The current installer
+target is alpha.3 with the bounded ACP compatibility fix; [delivery status](../experiments/personal-agent-hub/e0c-direct/alpha3-delivery.json)
+distinguishes publication from pending real IDE acceptance. Use the [public installer](INSTALL.md)
 for new IDE acceptance, never alpha.1 or a local candidate fallback.
 
 The [canonical Hub plan](../docs/personal-agent-hub.md),

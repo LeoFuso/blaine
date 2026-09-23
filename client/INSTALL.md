@@ -10,17 +10,19 @@ SSH-transport evidence and must not be used for current product acceptance.**
 On macOS or Linux (including the designated Ubuntu WSL2 environment):
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.2/client/install-jetbrains-agent.sh | sh
+curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.3/client/install-jetbrains-agent.sh | sh
 ```
 
-The alpha.2 tag, assets and installer are public. The
-[release evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
-records the exact source, checksums, Actions runs and public Linux installer proof. This is development scaffolding. ACP Registry
+The current target is **alpha.3**, which fixes the auxiliary `type` field rejected
+by alpha.2 during real JetBrains launch. [Alpha.3 delivery evidence](../experiments/personal-agent-hub/e0c-direct/alpha3-delivery.json)
+records publication and validation status. The earlier
+[alpha.2 evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
+remains historical; installation success did not establish an IDE ACP session. This is development scaffolding. ACP Registry
 publication has **not** happened and remains the final distribution direction.
 
 The shell bootstrap requires a POSIX shell, curl, and `sha256sum` (Linux) or
 `shasum` (macOS). **It requires no Python, Go, Node, system Tailscale or SSH.**
-It detects the platform, downloads the exact alpha.2 asset and public
+It detects the platform, downloads the exact alpha.3 asset and public
 `checksums.txt`, requires exactly one matching SHA-256 entry, and compares bytes
 before executing or installing the binary. No `latest` alias or local candidate
 fallback is used. Checksum failure leaves the installed binary unchanged.
@@ -54,7 +56,7 @@ Checksums provide download integrity, not signing or build attestation.
 ## Status and Go-owned JetBrains integration
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.2/client/install-jetbrains-agent.sh | sh -s -- --check
+curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.3/client/install-jetbrains-agent.sh | sh -s -- --check
 "$HOME/.local/bin/blaine" integration jetbrains check --json
 "$HOME/.local/bin/blaine" integration jetbrains install
 "$HOME/.local/bin/blaine" version
@@ -94,7 +96,7 @@ client operation; this installer does not reset it.
 
 ## Delivery and validation
 
-The official [GitHub Release](https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.2)
+The official [GitHub Release](https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.3)
 contains the four raw binaries above and one `checksums.txt`. Existing repository
 workflows remain authoritative:
 

@@ -36,7 +36,7 @@ case "$url" in */checksums.txt) cp "$TEST_MANIFEST" "$dest";; *) cp "$TEST_PAYLO
         self.payload.write_text('''#!/bin/sh
 printf '%s\\n' "$*" >> "$TEST_EXECUTED"
 case "$1" in
- version) printf 'blaine 0.1.0-alpha.2 protocol=1 commit=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa go=go1.27.1 platform=%s/%s\\n' "$TEST_GOOS" "$TEST_GOARCH";;
+ version) printf 'blaine 0.1.0-alpha.3 protocol=1 commit=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa go=go1.27.1 platform=%s/%s\\n' "$TEST_GOOS" "$TEST_GOARCH";;
  integration) [ "${TEST_BAD_CONFIG:-}" != yes ] || exit 2;;
  *) exit 99;;
 esac
@@ -71,7 +71,7 @@ esac
                 self.assertEqual(result.returncode, 0, result.stderr)
                 self.assertIn('checksum: verified', result.stdout)
                 self.assertIn('integration jetbrains install', self.executed.read_text())
-                self.assertIn('/v0.1.0-alpha.2/blaine-' + goos + '-' + arch, (self.root / 'urls').read_text())
+                self.assertIn('/v0.1.0-alpha.3/blaine-' + goos + '-' + arch, (self.root / 'urls').read_text())
                 self.assertTrue((self.home / '.local/bin/blaine').is_file())
 
     def test_corrupt_download_never_executes_or_replaces(self):

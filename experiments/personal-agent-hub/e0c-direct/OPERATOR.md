@@ -32,22 +32,15 @@ used for the spike. Do not disable Gatekeeper globally.
 
 ## Real JetBrains launch — after the transport batch
 
-**Current bounded exception:** alpha.2 launched on the Mac but failed on the local
-ACP envelope's auxiliary `type` field. The operator authorized installing a fresh
-Mac candidate built from the committed fix to prove the real IDE session before
-publishing alpha.3. Use that candidate's checksum and exact commit metadata for
-this test; preserve the existing stable launcher, ACP registration and private
-installation state. The public installer remains unchanged and still selects
-alpha.2. Do not rerun it over the candidate while performing this acceptance.
-
-
-Use the [public alpha.2 development installer](../../../client/INSTALL.md#current-development-onboarding).
-It verifies the released platform asset and delegates configuration to
-`blaine integration jetbrains install`. Do not use alpha.1 or local candidate
-packages for new primary IDE acceptance. Retain `blaine version` and
-`blaine integration jetbrains check --json` output. No manual JSON edits or Python
-runtime are required. Public publication status is recorded separately from live
-IDE acceptance in [alpha.2 delivery](alpha2-delivery.json).
+**Current acceptance target: alpha.3.** Alpha.2 launched on the designated Mac but
+rejected the local ACP envelope's auxiliary `type` field. The correction was
+committed and a reproducible Mac candidate built. The operator then authorized
+public alpha.3 delivery instead of another local ZIP transfer. Use the
+[public development installer](../../../client/INSTALL.md#current-development-onboarding)
+for alpha.3; do not repeat the pinned alpha.2 installer URL. Preserve existing
+registration and private installation identity. No manual JSON editing is needed.
+[Delivery evidence](alpha3-delivery.json) records actual publication status;
+real IntelliJ ACP/direct-Hub success remains a separate pending gate.
 
 Use the installed stable AI Assistant's custom ACP agent mechanism. The installer
 preserves existing `agent_servers` entries and reuses an existing Blaine entry.

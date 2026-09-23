@@ -1,0 +1,21 @@
+{
+  "status": "PREPARED_NOT_PUBLISHED",
+  "tag": "v0.1.0-alpha.3",
+  "source_commit": null,
+  "fix_commit": "eb6db8020e600dced3b1ef95fea4975cb98a20fd",
+  "scope": "Auxiliary Kotlin ACP envelope type compatibility and public installer target update; no transport/authentication/registration redesign",
+  "authorization": "Operator explicitly authorized public alpha.3 instead of transferring the local Mac candidate",
+  "go": "1.27.1",
+  "protocol": 1,
+  "release_workflow": ".github/workflows/client-release.yml",
+  "assets": ["blaine-darwin-arm64", "blaine-darwin-amd64", "blaine-linux-amd64", "blaine-linux-arm64", "checksums.txt"],
+  "local_correction_regressions": "PASS full client suite; exact fix commit candidate also initialized the reconstructed typed envelope without network identity creation",
+  "public_installer": "Shell only, checksum before binary execution, Go-owned JetBrains configuration, default alpha.3",
+  "macos_real_fixed_ide": "PENDING_OPERATOR",
+  "wsl_alpha3": "PENDING_OPERATOR",
+  "alpha2": "Preserved immutable historical release; real Mac IDE launch failed on type field",
+  "attestation_signing": "No claim; existing deferred hardening",
+  "changie": "Deferred",
+  "e0c": "PARTIAL",
+  "e0d": "BLOCKED"
+}

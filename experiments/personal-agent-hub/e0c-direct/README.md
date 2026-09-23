@@ -248,7 +248,11 @@ identity, private handshake validation, JSON ambiguity checks or protocol versio
 The operator explicitly authorized an exact-commit Mac candidate **before** any
 alpha.3 publication. This controlled exception to public-release acceptance does
 not change the public installer or authorize publication of another release.
-The next gate is a real IntelliJ-launched ACP session through the private Hub.
+The operator subsequently authorized alpha.3 publication to avoid another local
+ZIP transfer. The public installer target is now alpha.3; [delivery status](alpha3-delivery.json)
+records measured results. The next gate remains a real IntelliJ-launched ACP
+session through the private Hub. No successful fixed Mac IDE session is inferred
+from the local tests or release publication.
 
 ## Identity and policy lifecycle
 
