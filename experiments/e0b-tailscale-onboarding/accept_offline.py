@@ -24,7 +24,7 @@ def read_line(stream):
     return stream.readline()
 
 
-def run(binary):
+def run(binary, direct=False):
     with tempfile.TemporaryDirectory(prefix='blaine-e0b-offline-') as directory:
         root = Path(directory)
         installed = root / 'blaine'
@@ -53,13 +53,18 @@ def run(binary):
                    if c['id'] in ['remote_blaine', 'restate', 'mirix', 'qwen', 'intellij_acp'])
         assert list((root / 'home').iterdir()) == [], 'doctor created config/state'
 
-        for command in ['disconnect']:
+        for command in ([] if direct else ['disconnect']):
             result = invoke(command)
             assert result.returncode == 2 and json.loads(result.stdout)['status'] == 'NOT_IMPLEMENTED'
         missing = invoke('connect', '--non-interactive')
         assert missing.returncode == 2 and b'Network prerequisite ready' not in missing.stdout
-        assert next(c for c in report['checks'] if c['id'] == 'tailscale')['code'] == 'INSTALL_REQUIRED'
-        for args in [('acp',), ('acp', '--unknown'), ('acp', '--fixture', 'invalid'),
+        if direct:
+            assert next(c for c in report['checks'] if c['id'] == 'transport')['code'] == 'OK'
+            assert invoke('acp').returncode == 0
+            assert invoke('disconnect', '--logout').returncode == 0
+        else:
+            assert next(c for c in report['checks'] if c['id'] == 'tailscale')['code'] == 'INSTALL_REQUIRED'
+        for args in ([] if direct else [('acp',)]) + [('acp', '--unknown'), ('acp', '--fixture', 'invalid'),
                      ('acp', '--fixture', 'echo', 'extra')]:
             result = invoke(*args)
             assert result.returncode in (2, 64) and result.stdout == b'' and result.stderr
@@ -138,5 +143,5 @@ def run(binary):
 
 
 if __name__ == '__main__':
-    result = run(Path(sys.argv[1]).resolve())
+    result = run(Path(sys.argv[1]).resolve(), direct="--direct" in sys.argv[2:])
     print(json.dumps(result, indent=2))

@@ -1,0 +1,29 @@
+test_fixture_negotiation_and_unknown_readiness (tests.test_host_connection.HostConnectionTests.test_fixture_negotiation_and_unknown_readiness) ... ok
+test_identity_protocol_and_claim_rejections (tests.test_host_connection.HostConnectionTests.test_identity_protocol_and_claim_rejections) ... ok
+test_malformed_input (tests.test_host_connection.HostConnectionTests.test_malformed_input) ... ok
+test_production_cannot_accept_spoofed_environment (tests.test_host_connection.HostConnectionTests.test_production_cannot_accept_spoofed_environment) ... ok
+test_readiness_does_not_infer_runtime_health (tests.test_host_connection.HostConnectionTests.test_readiness_does_not_infer_runtime_health) ... ok
+test_liveness_does_not_substitute_for_memory_readiness (tests.test_direct_readiness.DirectReadinessTests.test_liveness_does_not_substitute_for_memory_readiness) ... ok
+test_errors_are_protocol_updates (tests.test_acp.Bridge.test_errors_are_protocol_updates) ... ok
+test_status_reads_runtime_without_local_task (tests.test_acp.Bridge.test_status_reads_runtime_without_local_task) ... ok
+test_uncertain_create_preserves_id (tests.test_acp.Bridge.test_uncertain_create_preserves_id) ... ok
+test_multiline_objective_and_signal (tests.test_acp.Commands.test_multiline_objective_and_signal) ... ok
+test_rejects_empty_and_path_injection (tests.test_acp.Commands.test_rejects_empty_and_path_injection) ... ok
+test_no_read_without_pending_authorized_request (tests.test_personal_agent.ACP.test_no_read_without_pending_authorized_request) ... ok
+test_wrong_project_cannot_receive_read (tests.test_personal_agent.ACP.test_wrong_project_cannot_receive_read) ... ok
+test_capability_is_not_authority (tests.test_personal_agent.Controls.test_capability_is_not_authority) ... ok
+test_controls_route_without_cached_state (tests.test_personal_agent.Controls.test_controls_route_without_cached_state) ... ok
+test_definite_rejection_is_not_reported_as_transport_loss (tests.test_personal_agent.Controls.test_definite_rejection_is_not_reported_as_transport_loss) ... ok
+test_human_request_is_bound_to_stable_identity (tests.test_personal_agent.Controls.test_human_request_is_bound_to_stable_identity) ... ok
+test_identity_and_idempotent_retry_conflict (tests.test_personal_agent.Controls.test_identity_and_idempotent_retry_conflict) ... ok
+test_private_binding_and_strict_fields (tests.test_personal_agent.Controls.test_private_binding_and_strict_fields) ... ok
+test_small_request_is_existing_spec_and_capability (tests.test_personal_agent.Controls.test_small_request_is_existing_spec_and_capability) ... ok
+test_uncertain_submission_keeps_recoverable_identity (tests.test_personal_agent.Controls.test_uncertain_submission_keeps_recoverable_identity) ... ok
+test_workspace_effect_cannot_expand_accepted_scope (tests.test_personal_agent.Controls.test_workspace_effect_cannot_expand_accepted_scope) ... ok
+test_workspace_scope_and_response_binding (tests.test_personal_agent.Controls.test_workspace_scope_and_response_binding) ... ok
+test_default_remains_deterministic_and_operator_selects_local_adapters (tests.test_personal_runtime.DeploymentTests.test_default_remains_deterministic_and_operator_selects_local_adapters) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.020s
+
+OK

@@ -23,9 +23,9 @@ echo 'PASS: gofmt' > "$out/validation/format.txt"
 "$BLAINE_GO" -C client test -race -count=1 ./... | tee "$out/validation/race.txt"
 "$BLAINE_GO" -C client vet ./...
 echo 'PASS: go vet' > "$out/validation/vet.txt"
-python3 -m unittest tests.test_host_connection -v 2>&1 | tee "$out/validation/host-tests.txt"
+python3 -m unittest tests.test_host_connection tests.test_direct_readiness -v 2>&1 | tee "$out/validation/host-tests.txt"
 client/build.sh "$out/bin" | tee "$out/validation/build.txt"
 client/build.sh "$out/rebuild" >> "$out/validation/build.txt"
-python3 experiments/e0b-tailscale-onboarding/accept_offline.py "$out/bin/blaine-linux-amd64" > "$out/validation/offline.json"
+python3 experiments/e0b-tailscale-onboarding/accept_offline.py "$out/bin/blaine-linux-amd64" --direct > "$out/validation/offline.json"
 python3 client/verify-build.py "$out"
 git diff --check

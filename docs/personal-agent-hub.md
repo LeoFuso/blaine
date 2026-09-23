@@ -13,11 +13,23 @@ and WSL host reuse is STOP pending a live spike.
 [E0.C evidence](../experiments/personal-agent-hub/e0c/README.md) records profile,
 strict transport/handshake and framing fixtures plus local host observations.
 Second-workstation peer binding, production host dispatch/deployment and remote
-ACP acceptance remain pending; MIRIX dependency readiness is UNKNOWN. E0.D–F
+ACP acceptance remained pending at that checkpoint; MIRIX readiness was UNKNOWN.
+The migration evidence below records the subsequent bounded dependency proof. E0.D–F
 are untouched. [Supporting client delivery](../experiments/personal-agent-hub/e0c/delivery.md)
 now provides proven Actions Artifacts and the public `v0.1.0-alpha.1` prerelease;
 it does not close those live gates. Command contracts
 below describe the complete target, beyond these slices.
+
+**Selected E0.C transport correction (2026-09-23):** embedded tsnet plus a direct
+private Blaine protocol replaces SSH as the product path. The operator selected
+this after the [Mac/WSL spike](../experiments/personal-agent-hub/transport-architecture-spike/README.md).
+The [implementation evidence](../experiments/personal-agent-hub/e0c-direct/README.md)
+records local tests, real host ACP/readiness/Task-independence checks and pending
+candidate workstation/IDE gates. E0.C remains PARTIAL; E0.D is blocked. The
+[direct contract](contracts/host-connection.md) supersedes prior E0.C SSH/bootstrap
+and external-workstation-Tailscale mechanics below. Historical E0.A/B evidence
+keeps its original scope. Tailscale SSH remains for administration, not product
+transport. No release of the new transport has been published.
 
 Blaine is the persistent Personal Agent. A workstation is a registered execution
 surface, and IntelliJ/ACP is its first interactive surface. The next product
@@ -124,16 +136,16 @@ within the milestone gates. Acceptance of a design is not live validation.
 | A10 | External applications compose with workstation capabilities through the same durable Task model and separate resource authority. |
 | A11 | E0 closes without project mutation; E1 is read-only; E2 adds bounded effects; E3 proves natural-language coding with genuine human input and verified completion. |
 | A12 | Existing D-series history remains intact. New platform/observability work is outside the E0–E3 critical path unless an observed blocker requires a bounded fix. |
-| A13 | Tailscale is an external prerequisite. Blaine detects it, assists supported installation, invokes/guides native login and diagnoses connectivity; it does not wrap or replace its networking/authentication, persist login credentials or create an identity substitute. |
+| A13 | Selected correction: the workstation embeds tsnet with one private, stable, revocable node store per installation; no separate workstation CLI/daemon is required. Tailscale remains vendor private-network infrastructure, distinct from Blaine application identity and registration. |
 | A14 | E0 architecture targets Linux, native macOS and Windows development environments using WSL2. One platform boundary owns OS differences; implementation evidence may initially cover fewer platforms. |
-| A15 | Prefer native macOS Tailscale and native Windows Tailscale for WSL2. No second WSL daemon by default; OS/admin/browser prompts are acceptable and explicit, while Blaine itself stays unprivileged. |
+| A15 | Native macOS and Linux/WSL clients use userspace tsnet. No nested WSL daemon, TUN/root prerequisite or dependency on Windows Tailscale. Native browser approval remains explicit. Windows IDE → wsl.exe → Linux ACP stdio must be verified live. |
 
 ### Recommended
 
 Defaults to use when beginning a slice, with reconsideration criteria in
 [Open Questions](#open-questions): portable Go client; user-scoped binary/package;
-stable MagicDNS host profile; retain the proven Tailscale SSH path behind a small
-transport interface; PostgreSQL workstation registry; platform-native non-secret
+embedded single-Hub deployment profile and direct private transport;
+PostgreSQL workstation registry in E0.D; platform-native non-secret
 local state;
 explicit protocol compatibility; native Linux as the first live proof, with macOS
 and WSL2 equally represented in the design and separately gated for release;
@@ -202,15 +214,14 @@ host. Local user-approved scope must independently bound forwarded effects.
 | Identity | Recommended representation and source |
 | --- | --- |
 | Personal Agent / host | Stable server ID returned over verified transport, pinned to the configured host profile. DNS alone is not identity. |
-| Network principal | Tailscale device/user and SSH target user derived from trusted transport observations. Do not accept a claimed peer ID from request JSON. |
-| Client installation | Locally generated random client UUID; descriptive, not a credential. Reinstall with lost identity creates a new registration unless explicitly repaired. |
+| Network principal | Embedded Tailscale stable node and user/tag principal derived from the actual socket. Never accept a claimed peer ID from request JSON. |
+| Client installation | Persistent Blaine Ed25519 key and derived workstation ID, proven independently in the handshake and correlated with the observed tsnet node. Registration remains E0.D. Reinstall/reset requires explicit re-enrollment. |
 | Workstation registration | Server-issued ID tied to authenticated peer/device, client UUID, owner and status. Display name is not a key. |
 | Workspace | Registration ID + opaque workspace ID + locally canonical absolute root and path-platform tag. Two machines with `/home/user/project` are distinct. |
 | Surface/session | Ephemeral ACP session/connection ID and generation bound to registration/workspace. Recreated on reconnect. |
 | Task / operation | Existing durable Task ID and stable capability operation ID; neither derived from ACP session ID. |
 
-Network login establishes tailnet membership/transport identity under tailnet and
-SSH policies. Registration associates a particular installation with Blaine and
+Network login establishes tailnet membership/transport identity under tailnet policy. Registration associates a particular installation with Blaine and
 records compatibility/capabilities. Authorization is a separate Task-specific
 policy decision intersected with local workspace consent. Registration is not
 an OAuth provider, shared workstation secret, or blanket project grant.
@@ -234,8 +245,9 @@ identity, client/registration IDs and transport selection;
 backups and redacted diagnostics. Persist permissions restrictively; atomically
 replace owned files and detect concurrent changes. Store no private keys, login
 URLs, tokens, raw conversations or workspace contents in connection config.
-Tailscale and SSH retain their native credential stores; a future pairing secret,
-if proven necessary, uses an OS credential store. On macOS use
+The selected E0.C path stores its application seed and embedded tsnet credentials
+separately in private `state/direct-v1/` (0700 directories, 0600 files), never in
+non-secret configuration or reports. Normal close/upgrade preserves them. On macOS use
 `~/Library/Application Support/Blaine/config.json` and a
 separate `state/` beneath that application directory; bounded logs may use
 `~/Library/Logs/Blaine/`. On WSL keep the client config/state in the selected distro,
@@ -245,31 +257,22 @@ location so another default distro cannot redirect launches. No repository path 
 
 ### Handshake and compatibility
 
-Use a separate bounded control invocation over the same authenticated transport
-for handshake/readiness/registration; these are proposed operations, not existing
-CLI commands. They must not prepend JSON to ACP stdio. Install one stable host
-entrypoint rather than encode worktree script paths in the IDE. The current
-`scripts/run-personal-agent.sh` is implementation evidence, not the future public
-host installation path.
-
-Handshake request: client version, supported Blaine protocol range (initially one
-integer), expected server ID if paired, client UUID and optional registration ID.
-Response: server ID/version, supported range, selected protocol, authenticated
-peer binding, registration status, feature flags and bounded readiness results.
-ACP version negotiation remains separate. Require a nonempty protocol intersection
-and required feature flags; otherwise refuse launch with an actionable upgrade
-message including installed and supported versions. Never downgrade security or
-silently continue with incompatible semantics. Recheck registration/revocation
-when launching and before admitting effects. Unknown peer binding fails closed.
-
-The host boundary must establish source identity through a trusted transport
-mechanism (for example the SSH source connection mapped by local Tailscale peer
-lookup) and verify the intended SSH user. Whether the installed Tailscale SSH
-launcher exposes sufficient trusted data is an E0.C live gate. A caller-supplied
-environment variable alone is insufficient. Do not add a second identity system
-or shared bearer credential to bypass a failed gate.
+Use a bounded application handshake on the private WebSocket connection before
+ACP data. The embedded Hub public key/server ID and Tailscale stable Hub node are
+independent pins. The host derives caller identity from the accepted socket,
+requires proof of the installation's application key and binds that observation to
+a fresh session. This is not registration or a workspace grant. See the
+[direct transport contract](contracts/host-connection.md) for exact fields, limits,
+fail-closed readiness, framing and replay/reflection rejection. Registration and
+operation admission remain later slices; Task lifetime remains server-owned.
 
 ## Platform boundary and prerequisite installation
+
+The native installer/status details in this section preserve the accepted E0.B
+history. For the selected E0.C product path they are superseded by embedded
+userspace tsnet: no separate workstation Tailscale CLI/daemon and no nested WSL
+daemon. Platform paths, unprivileged operation and measured IDE execution
+location remain requirements. Do not run the historical installer as E0.C repair.
 
 E0 design supports **Linux, macOS and Windows+WSL2** through the same
 `blaine connect` journey. An initial implementation may prove a subset, but reports
@@ -405,10 +408,10 @@ An idempotent flow based on observed state, not a persistent onboarding workflow
 
 | Stage | Observation/action | Branch and recovery |
 | --- | --- | --- |
-| 1. Inspect | Select platform adapter; validate client/config, executable location, native Tailscale owner/CLI, SSH and IntelliJ presence. | Missing dependency: offer supported installation in the same flow with visible action/explicit OS privilege prompt, then re-detect; declined action remains resumable. Unsupported platform/config: STOP without overwriting. |
-| 2. Authenticate | Read the platform-owned Tailscale state (Windows host for WSL2). Reuse authenticated identity; guide native interactive login only when required. | Browser/device flow; no raw credentials, admin API key or auth-key provisioning. User completes login, then client rereads state. Do not reset existing tailnet preferences. |
+| 1. Inspect | Validate platform, executable, private installation state and IDE execution location. | Unsafe state or unsupported platform: STOP without overwriting. No system Tailscale prerequisite. |
+| 2. Authenticate | Reuse this installation’s embedded tsnet identity; ACP authentication or connect opens normal interactive login when necessary. | Browser flow; no long-lived admin/auth key. Protect persistent node credentials and never change system Tailscale preferences. |
 | 3. Resolve | Load persisted host, otherwise provisioned profile/explicit host. Resolve and test the selected host. | Offline/DNS/access failure: `REMOTE_UNAVAILABLE`, preserve previous configuration. No host guessing/fallback to public routes. |
-| 4. Secure transport | Verify intended peer and SSH host identity, negotiate noninteractive stdio transport. | Host identity change: STOP for explicit trusted re-pairing; never disable host-key checks. Check-mode reauthentication is completed in the terminal/browser, never inside ACP stdout. |
+| 4. Secure transport | Verify the expected Tailscale Hub node and signed Blaine server identity on the direct private endpoint. | Identity changes fail closed. No Unix account, SSH key/known_hosts input or shell framing. |
 | 5. Handshake | Check server identity, protocol compatibility and runtime readiness. | `INCOMPATIBLE` or `REMOTE_UNAVAILABLE`; registration is not proof of runtime readiness. No service restart or deployment mutation. |
 | 6. Register | Idempotent registration bound to authenticated device/client UUID. Persist receipt after authoritative success. | Lost response: look up/retry same identity; no duplicate registration. Revoked identity requires explicit re-pairing, not automatic resurrection. |
 | 7. Configure IDE | Merge owned Blaine agent entry with stable absolute local launcher. | Absent IntelliJ: retain connection, report `IDE_MISSING`, not full READY. Running IntelliJ: merge safely, report reload/restart action only if needed. Name conflict or malformed config: STOP with a reviewable proposed change. |
@@ -523,17 +526,17 @@ the JSON preserves all conditions. Inspection must never open a browser or modif
 
 ### `blaine acp`
 
-This is the stable launcher and transport adapter. Read the persisted profile,
-validate basic identity/registration/compatibility with bounded timeouts, then
-establish remote PersonalACP stdio. No onboarding, interactive login, repair or
-automatic update in this command. If action is needed, return a concise stderr
-message directing the human to `connect`/`doctor` and exit nonzero.
+This is the stable launcher and transport adapter. Standard ACP initialization
+exposes the agent-owned authentication method; an explicit ACP `authenticate`
+request may open the browser to enroll the embedded node. This replaces the former
+CLI-only login restriction. Authentication and connection diagnostics never appear
+as unframed stdout. Missing application registration remains a separate E0.D gate.
 
 No PTY. Keep stdin/stdout exclusively ACP JSON-RPC with correct framing,
 backpressure, request correlation and bidirectional client capability calls.
 Do not send banners, readiness JSON, shell output, debug prints or worker output
 into the protocol. Operational diagnostics go to stderr and optional bounded,
-redacted local logs. SSH diagnostics stay on stderr; command output becomes typed
+redacted local logs. Transport diagnostics stay on stderr; command output becomes typed
 capability evidence, never unframed stdout. An invalid/non-ACP remote stdout line
 fails the connection visibly; do not silently filter arbitrary banners and risk
 misinterpreting a stream. Unknown ACP extensions must not acquire authority.
@@ -990,7 +993,7 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 | --- | --- | --- | --- | --- |
 | E0.A Client skeleton/package — [foundation PASS](../experiments/e0a-blaine-client/README.md) | Settle Go recommendation; proposed `client/cmd/blaine`, `client/internal/platform` Linux/macOS/WSL adapters, versioned config model and portable artifact/install notes. Five-command surface with explicit unavailable stubs for later behavior. | Install executable in a clean Linux user environment; version works without repo/language runtime; config/path and stdio/signal fixtures cover all three platform boundaries; live portability explicitly scoped. | Packaging requires hidden runtime/repo, stdout corruption, unsafe config migration. | This design; no live host required. |
 | E0.B Tailscale state/login | Proposed platform prerequisite adapters; supported install assistance, native status/login, macOS approvals, Windows host inspection from WSL. | On available targets, prove install/missing/expired/login states; macOS native approval and WSL2 host status/topology probes; no changed unrelated preferences. Record untested targets. | Needs admin token/permanent root, duplicate WSL daemon, wrong tailnet, unsupported install or cannot distinguish auth/host/guest reachability. | E0.A; authorized test workstation. |
-| E0.C Host/transport/handshake — [PARTIAL](../experiments/personal-agent-hub/e0c/README.md) | Proposed transport adapter and installed host connection entrypoint; versioned handshake/readiness schema. | Verify actual SSH mode/host/peer identity and clean stdio; mismatch/offline/check-mode tests; measure WSL path and any real forwarding need separately. | Untrusted claimed device identity, public endpoint, incompatible protocol accepted, unsafe SSH fallback. | E0.A/B; host profile and bounded host-entrypoint deployment authorization. |
+| E0.C Host/transport/handshake — [PARTIAL](../experiments/personal-agent-hub/e0c-direct/README.md) | Embedded tsnet, internal Hub profile, private application endpoint, signed handshake and bounded binary/ACP session. | Real designated Mac and WSL identity reuse, handshake, binary stream, cancellation/disconnect/reconnect, narrow policy, host readiness, Task independence and real Blaine IDE launch evidence. | Claimed peer identity, public endpoint, failed application pin/protocol accepted, unsafe state or hidden transport fallback. | E0.A; accepted E0.B history; authorized designated peers and private host deployment. E0.D stays blocked until accepted. |
 | E0.D Registration | Proposed PostgreSQL migration/repository and client registration receipt. | Register/replay after response loss and restart: one identity; copied UUID on another device denied; revoke/re-pair explicit. | New Task ledger, registration grants workspace scope, unknown outcome reported success. | E0.C; existing PostgreSQL access scoped to registry. |
 | E0.E IntelliJ config | Proposed client IDE config adapter and merge fixtures. | Actual IntelliJ with a second agent, closed/running merge/reload; correct OS user config and stable launcher; test supported Windows/WSL arrangement before that platform PASS. | Overwrites unrelated fields, managed installation blocks agents, version unsupported. | E0.A/C/D; supported IDE installation. |
 | E0.F Doctor/connect acceptance | Integrate state flow, diagnostics, disconnect and release artifact; proposed E0 acceptance report. | New-workstation journey and E0 positive/negative matrix per implemented platform, twice-run connect, read-only doctor; mark other targets unverified. | False READY, any missing identity/config/stdio invariant; no live IntelliJ evidence. | E0.A–E; closes only explicitly validated platform scope of E0. |

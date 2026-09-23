@@ -1,232 +1,65 @@
-# Blaine workstation client — E0.A / E0.B / E0.C
+# Blaine workstation client — E0.C direct transport candidate
 
-A standalone client foundation, separate from the Python Personal Agent under
-`runtime/`. This implements **E0.A, E0.B and a PARTIAL E0.C candidate** from the
-[Hub design](../docs/personal-agent-hub.md) and
-[ADR 0022](../docs/decisions/0022-workstation-personal-agent-client.md).
-Tailscale detection, installation assistance and native login are implemented.
-E0.C adds explicit MagicDNS profile resolution, strict SSH transport, handshake
-validation and guarded ACP framing. Production peer binding and remote launch are
-still unavailable; no second workstation was designated. See the
-[E0.C contract](../docs/contracts/host-connection.md) and
-[evidence](../experiments/personal-agent-hub/e0c/README.md). Registration and IntelliJ
-configuration remain later slices. Full E0 is not accepted.
+Small standalone Go workstation client, separate from the durable Python runtime.
+The operator selected embedded tsnet and a direct private application transport.
+**E0.C is PARTIAL; full E0 is unaccepted.** The public `v0.1.0-alpha.1` remains the
+previous SSH candidate; no replacement release has been published.
 
-For workstation installation, use the [GitHub Release installation guide](INSTALL.md).
-No local build or copy from the Blaine host is required. Branch artifacts and
-release semantics are documented there; this client remains an alpha candidate.
+The [canonical Hub plan](../docs/personal-agent-hub.md),
+[ADR 0022](../docs/decisions/0022-workstation-personal-agent-client.md),
+[direct protocol contract](../docs/contracts/host-connection.md) and
+[migration evidence](../experiments/personal-agent-hub/e0c-direct/README.md)
+record the decision, exact boundaries and pending live gates. E0.A and E0.B evidence
+keeps its accepted historical scope. Old SSH/native onboarding modules and tests
+remain available for comparison; the normal product commands use the direct path.
 
-## Commands and exits
+## Commands
 
-| Invocation | Current behavior |
+| Command | Candidate behavior |
 | --- | --- |
-| `blaine version` | One line: `blaine VERSION protocol=1 commit=COMMIT go=GO_VERSION platform=OS/ARCH`; exit 0. Offline, no config access. |
-| `blaine version --json` | One JSON object with `schema_version: 1`, `client_version`, `protocol_version`, `build_commit`, `go_version`, `os`, `arch`; exit 0. |
-| `blaine doctor [--json]` | Read-only foundation plus real Tailscale installation, owner, CLI/daemon, authentication and device/network observations. Full onboarding stays NOT_READY; ordinarily exit 2. |
-| `blaine connect [--non-interactive] [--host NAME]` | E0.B network preparation, then explicit/cached host handshake. First use qualifies a short name using native MagicDNS metadata and defaults SSH user to the local account. Failed handshake preserves configuration. Even a fixture-valid host stays NOT_READY (exit 2), awaiting E0.D/E. |
-| `blaine disconnect` | JSON `{ "schema_version": 1, "command": "…", "status": "NOT_IMPLEMENTED", "milestone": "E0.A" }`; exit 2, no effects. |
-| `blaine acp` | Requires a verified profile and fresh host handshake, then guarded remote framing. Missing profile returns NOT_CONFIGURED with empty stdout. Production host peer binding remains gated, so no working remote-agent claim. |
-| `blaine acp --fixture echo` | Bounded subprocess byte roundtrip, operational diagnostics on stderr. No ACP handshake/parser or networking. |
-| `blaine acp --fixture exit-23` | Same process relay, child exit 23 propagated. |
-| `blaine acp --fixture wait` | Wait until cancellation or the fixed five-second deadline; exits 130 or 124. |
+| `blaine version [--json]` | Offline client/protocol/exact source commit/Go/platform metadata. |
+| `blaine doctor [--json]` | Read-only local checks, no embedded network start or state writes. Cached identity is not fresh connection evidence. Full E0 remains NOT_READY. |
+| `blaine connect` | Enroll/reuse this installation's tsnet node, discover the internal Hub candidate, validate network + Blaine identities/readiness, persist the verified profile. No host or Unix username input. CONNECTED does not mean E0 onboarding complete. |
+| `blaine connect --non-interactive` | Use existing enrollment; fail AUTH_REQUIRED instead of opening a browser. |
+| `blaine connect --verify-transport` | Additionally run bounded production-path binary, cancellation, deadline, reconnect and remote ACP session diagnostics; no Task/workspace effects. |
+| `blaine acp` | Standard local ACP frontend/authentication, then remote PersonalACP; stdout is only JSON-RPC. No workstation capabilities granted. |
+| `blaine disconnect --logout` | Explicit embedded-node logout; preserve identity/store for inspection. Does not affect system Tailscale or Tasks. |
+| `blaine disconnect --logout --reset-identity` | Confirm logout, then explicitly discard this installation's identities; later re-enrollment needs renewed host authorization. |
+| `blaine acp --fixture echo\|exit-23\|wait` | Accepted E0.A bounded direct-file-descriptor/process-group fixtures, unchanged. |
 
-Unknown commands, extra positional arguments and unsupported flags return 64 with
-usage on stderr. No arbitrary executable/shell CLI option exists. ACP stdout is
-empty on usage/configuration failures. Exit 1 means an internal/start/I/O failure. Connect returns 2 for declined actions,
-failed prerequisites or manual remediation, 124 for timeouts and 130 for cancellation.
-`connect --non-interactive` never installs, logs in or prompts. E0.C may persist the
-first profile only after verified host identity and readiness. Host/control failure
-returns 3; incompatible protocol/features returns 4; local/trust/config action returns 2.
-Normal child exits pass through; child signal exits use 128 + signal number.
-The raw byte fixture retains its accepted cancellation exits. The new framed
-bridge reports a lost/invalid connection nonzero after cleanup; it never replays a
-prompt or changes a Task lifecycle.
+Normal shutdown preserves node and application keys. One concurrent process may
+lease the installation; another returns INSTANCE_BUSY. No workstation broker,
+self-updater, background daemon or native Windows client is introduced. Linux/WSL
+state lives under `$XDG_STATE_HOME/blaine/direct-v1` (default `~/.local/state`);
+macOS uses `~/Library/Application Support/Blaine/state/direct-v1`. Private seed and
+node credentials require 0700 directories/0600 files, safe ownership and no links.
+Never send that state in acceptance reports. Reboot, upgrade and revocation claims
+must distinguish fixture/spike evidence from this candidate's live measurements.
 
-`version` metadata defaults to `0.1.0-dev`, commit `unknown` in an unparameterized
-`go build`. Protocol 1 is the Blaine handshake version, independent of ACP negotiation.
-The E0.C verification build embeds `0.1.0-e0c` and an explicit source commit.
-JSON schema 1 is the output envelope.
-
-Doctor retains the versioned schema 1 report (`timestamp`, `overall`, `checks`).
-Both renderers use identical observations and remediation. Overall remains
-`NOT_READY` because required host/registration/IDE gates remain open, even when
-`tailscale` is PASS. Doctor never initiates login, browser launch, package install,
-service start or client-state writes. Directory checks still do not certify future
-write permissions. Doctor reads an existing profile and attempts its bounded
-handshake; it never creates a profile or modifies SSH known-host trust.
-
-Tailscale checks are `tailscale`, `tailscale_installation`, `tailscale_owner`,
-`tailscale_cli`, `tailscale_daemon`, `tailscale_auth`, `tailscale_device`,
-`wsl_environment`, plus `wsl_host_reuse`/`wsl_version` on WSL. Device reporting is
-limited to online state, tailnet visibility, assigned-address count, health-warning
-count and validated version metadata. No peer/user/tailnet names, actual addresses,
-health text, login URLs or keys appear in doctor. Future check IDs remain
-`connection`, `remote_blaine`, `restate`, `mirix`, `qwen`, `intellij_acp`.
-
-Exit priority remains 1 internal, 4 incompatible, 2 local remediation/unimplemented,
-3 remote/unknown required readiness, then 0 only if every required check passes.
-Only connect's **network prerequisite** may be ready in this slice.
-
-## E0.B connection flow and installation trust
-
-Connect inspects first and returns immediately when already ready. Otherwise it
-offers an available installation action, re-inspects, then offers native login or
-reconnection. Every action is followed by observation; a successful child exit is
-not readiness evidence. Readiness requires Running, native TUN available, online
-self device, visible tailnet, assigned Tailscale addresses and no health warnings.
-This is local prerequisite proof; it does not certify a route to any Blaine host.
-Stopped devices can be reconnected without forcing reauthentication or resetting
-preferences. Device approval, offline state, health warnings, unknown/malformed
-status and unreachable service produce remediation and a nonzero exit.
-
-All command arguments are structured. Status probes take at most eight seconds;
-installation five minutes; authentication three minutes, including one-second
-readiness polling. Ctrl+C cancels the owned child; it never logs out or rolls back
-Tailscale identity. Partial package setup may remain after failure/cancellation and
-is reported for administrator repair. No automatic retries, sudoers changes,
-operator grants, tailnet policy changes or auth-key creation occur.
-
-| Platform | Implemented assistance | Current limits |
-| --- | --- | --- |
-| Linux | Resolve `tailscale` through PATH; `status --json` checks the daemon. On allowlisted Debian/Ubuntu, offer official APT repository/package installation using scoped sudo. Invoke unprivileged `tailscale up --timeout=3m` for native browser login/reconnect. | Hosts denying unprivileged Tailscale operations require administrator native onboarding (`sudo tailscale up`), outside Blaine. Blaine does not elevate login or persist operator privilege. Other distributions receive vendor package guidance. |
-| macOS | Prefer `/Applications/Tailscale.app`; inspect its embedded CLI using child-only `TAILSCALE_BE_CLI=1`, otherwise resolve PATH CLI. Distinguish app absent, app present without CLI, CLI-only ownership unknown, native authorization unavailable, login required and connected. Open official download page or native app after confirmation; poll native login completion. | Signed Standalone installer, VPN/system-extension and browser dialogs remain user/OS actions. No Homebrew daemon or unsupported headless setup. App outside `/Applications` requires ownership review. Runtime unverified. |
-| Windows + WSL | WSL markers select Windows ownership. Resolve `tailscale.exe` through inherited PATH and query bounded JSON status. A responding Linux CLI/daemon alongside it yields topology conflict. Give Windows-native install/login guidance. | Missing executable cannot distinguish host absence from disabled interop or PATH differences. No guessed `/mnt/c` path. Windows status never proves WSL2 version or guest reachability: reuse remains UNKNOWN, connect cannot succeed on WSL pending live verification. No nested daemon, network repair or Windows mutation. |
-
-APT assistance allowlists Ubuntu jammy/noble/questing/resolute and Debian
-bullseye/bookworm/trixie. It reuses an exact official `signed-by` source/key when
-present; otherwise downloads only the official public signing key from
-`https://pkgs.tailscale.com/stable/<distro>/<release>.noarmor.gpg` with verified
-HTTPS, no redirects and a 64 KiB limit. It generates the vendor's scoped source
-list and uses `sudo -k --` only for installing public repository metadata, APT
-update/install and (when detected) `systemctl start tailscaled`. APT signature
-checks are explicitly enforced. Existing differing/partial repository metadata
-requires review and is never overwritten. OS repository/package changes persist;
-Blaine's temporary public bootstrap files are removed. Nothing runs `curl | sh`.
-
-Sudo owns its password dialog directly on the controlling terminal. Its timestamp
-cache is neither reused nor updated by these commands; Blaine stays non-root.
-Installation commands borrow and restore foreground terminal ownership. No admin
-password passes through Blaine's reader or diagnostic sink.
-
-Linux login emits only strict `https://login.tailscale.com/a/<alphanumeric>` URLs
-to the interactive terminal, including when vendor output arrives in chunks.
-Other command output is withheld; login URLs are never written to disk or doctor.
-Opening a Linux browser is optional: the user opens the displayed URL. Custom
-control-server URLs require native Tailscale login outside Blaine. Normal Tailscale
-credentials remain exclusively in Tailscale-owned storage.
-
-The [installation decisions and primary sources](../experiments/e0b-tailscale-onboarding/mechanisms.md)
-record current Linux package choices, native macOS distributions, Homebrew
-cask/formula distinctions and WSL interop limits.
-
-## Platform and config boundary
-
-`internal/platform` owns detection, paths, executable discovery and Tailscale adapters.
-Linux kernel markers and WSL environment hints select the WSL adapter; they do
-not certify WSL version or interop. Native Windows is unsupported. WSL uses the
-Linux artifact and selected distro's home, never a guessed Windows profile.
-
-| Purpose | Linux / WSL distro | macOS |
-| --- | --- | --- |
-| Non-secret user configuration | `$XDG_CONFIG_HOME/blaine/config.json`, default `~/.config/blaine/config.json` | `~/Library/Application Support/Blaine/config.json` |
-| Durable local client state/receipts | `$XDG_STATE_HOME/blaine/`, default `~/.local/state/blaine/` | `~/Library/Application Support/Blaine/state/` |
-| Transient process state | Optional `$XDG_RUNTIME_DIR/blaine/`; otherwise memory | Memory; future temporary files must use a private OS temporary directory |
-| Secrets | Native Tailscale/SSH stores; any justified future pairing secret uses an OS credential store | Same; native OS credential store for a justified future secret |
-
-**E0.A/B introduced no persisted state.** E0.C adds schema-1 host/client/server
-metadata after successful verification, private permissions, atomic first publish
-and rejection of existing/concurrently created destinations. It does not implement
-re-pairing, registration, logs or a database. No live profile was persisted because
-the production identity gate is unresolved.
-Relative XDG overrides fail validation. Future writes must use restrictive
-permissions, atomic replacement and concurrency checks per the existing design.
-Do not put secrets in normal config/state. Optional macOS file logs would belong
-under `~/Library/Logs/Blaine/`, but no file logger exists now.
-
-The Tailscale adapter exposes inspection, installation planning/execution and
-native authentication to the small shared connect state machine. IDE ownership
-discovery and a Windows-to-WSL launcher remain later work; no plugin framework
-or second WSL daemon is introduced.
-
-## ACP and process contract
-
-`internal/process.Run` accepts an absolute executable, an argument vector and
-three `*os.File` streams. It uses `os/exec`, never `sh -c`, an allocated PTY, encoding
-conversion, line scanning or a protocol buffer. Stdio descriptors are inherited
-directly, preserving bytes, duplex streaming and OS backpressure; there are no
-stdin-copy goroutines to hang after early child exit. All CLI operational output
-in the ACP branch goes through its stderr diagnostic function. Future logging
-can replace that sink without gaining access to protocol stdout.
-
-Linux/macOS/WSL use a dedicated POSIX process group. Cancellation immediately
-SIGKILLs the group and waits/reaps the direct child; normal leader exit also kills
-remaining group members. Immediate termination is intentional for disposable
-transport resources, not workspace execution or durable Task cancellation.
-Helpers must remain in the owned group: daemonizing/`setsid` helpers are outside
-this primitive's contract. Orphan descendant zombies are reaped by the OS/init;
-tests distinguish terminated zombies from live processes. No promise is made
-about cleanup after SIGKILL of the launcher itself or a host crash.
-
-The fixture self-execs the same installed binary with the internal
-`acp --fixture-worker MODE` entrypoint. Both entrypoints are bounded to five seconds;
-echo accepts at most 1 MiB (one extra byte is read/emitted to detect overflow, then
-exit 1). `wait` exists only to exercise cancellation/deadlines. The fixture carries
-arbitrary bytes, including invalid UTF-8, as a purity test; it is **not ACP protocol
-validation**. The E0.C candidate adds a separate strict NDJSON frame relay with correlation,
-size/pending-request bounds and banner rejection. It strips advertised client
-capabilities and rejects MCP/host capability calls; no workspace authority exists.
-Its real-pipe tests are fixtures, not remote Tailscale/ACP acceptance.
-
-Non-protocol prerequisite commands use bounded in-memory capture around the same
-process primitive. Raw status/authentication output is never persisted. Child-only
-environment overrides support the documented macOS CLI mode without changing the
-parent environment. Foreground terminal borrowing applies only to installation;
-The E0.A raw fixture still inherits streams directly; the E0.C candidate validates
-complete frames in bounded pipes before forwarding. Package managers and native
-apps may launch OS-owned services outside the transport process-group contract;
-cancellation never claims to roll back or stop those services.
+Exit status: 0 for the requested successful connection/operation, 2 for local/auth
+remediation, 3 for unavailable/denied remote identity/transport/readiness, 4 for
+protocol incompatibility, 64 for usage, 130 for cancellation. The raw fixture keeps
+its original exit/signal/deadline contract. Loss of an ACP session never cancels,
+completes or restarts a durable Task, and no prompt is automatically replayed.
 
 ## Build and validation
 
-Use Go 1.27.1 for the recorded reproducible build (module language floor 1.23).
-Only the standard library is used. The compiler is a developer dependency; users
-need only the produced binary. From the repository root:
+Go is pinned in `.go-version` to **1.27.1**. Public modules are pinned in `go.mod`
+and `go.sum` (tsnet 1.102.4, coder/websocket 1.8.15); compile requires no secret.
+Fetch pinned modules once with `go -C client mod download`; `client/ci.sh` then
+uses offline module resolution for formatting, tests, race, vet, host checks,
+E0.A/B/C regressions and reproducible builds. Existing Actions workflows were
+extended, not replaced; ordinary CI remains contents:read. No release was invoked.
 
-```bash
-BLAINE_COMMIT="$(git rev-parse HEAD)" client/build.sh
-.local/e0b-artifacts/blaine-linux-amd64 version
-.local/e0b-artifacts/blaine-linux-amd64 doctor  # expected exit 2: full E0 is not ready
-```
+Build matrix: linux/amd64, linux/arm64, darwin/amd64, darwin/arm64. WSL2 consumes
+the Linux amd64 binary. Names remain `blaine-OS-ARCH`; one `checksums.txt` covers all
+four. Generated executables are ignored. The embedded stack increases binary size
+and dependency surface relative to the stdlib-only E0.A foundation.
 
-Append `-dirty` to the commit when building modified sources. `BLAINE_GO` may name
-an absolute Go executable. `BLAINE_VERSION` defaults to `0.1.0-e0b`. The build is
-`CGO_ENABLED=0`, `GOTOOLCHAIN=local`, `GOPROXY=off`, `-trimpath`, `-buildvcs=false`,
-with a cleared build ID and explicit version/commit linker values. There is no
-build timestamp. Pin source bytes, metadata and Go version to reproduce hashes.
-The script builds linux/amd64, darwin/amd64, darwin/arm64 and linux/arm64 into the
-ignored `.local/e0b-artifacts/` directory; binaries are not committed.
-
-```bash
-cd client
-go test ./...
-go test -race ./...  # requires a host C compiler for Go's race instrumentation
-go vet ./...
-```
-
-[Offline acceptance script](../experiments/e0b-tailscale-onboarding/accept_offline.py) copies the
-binary to a temporary directory outside the checkout and runs it with an empty
-command PATH and fresh home. It asserts byte/hash equality, stderr separation,
-streaming before EOF, errors, exit propagation, deadlines and signal cleanup.
-The [verification script](../experiments/e0b-tailscale-onboarding/verify.sh) reproduces the
-bounded build/test/evidence pass without internet or live services.
-
-| Target | Designed | Build-verified | Runtime-verified |
-| --- | --- | --- | --- |
-| Native Linux amd64 | Yes | Yes | Ubuntu 26.04.1, existing Tailscale 1.102.4: detection/doctor/idempotence PASS. Install/login mutation is fixture-only. |
-| Native Linux arm64 | Yes | Yes | No |
-| Native macOS amd64/arm64 | Yes | Yes | No; app/CLI/native UI paths remain PARTIAL. |
-| Windows + WSL2 amd64/arm64 | Windows-host ownership | Linux artifacts | No; host-network reuse STOP pending live spike. |
-
-Build proof is not runtime support. [E0.B evidence](../experiments/e0b-tailscale-onboarding/README.md)
-contains the live safe status projection, no-mutation command trace, deterministic
-state machines, ACP regression, hashes and remaining E0.C–E0.F gates.
+[Release installation](INSTALL.md) still documents the published alpha. The
+[local candidate batch](../experiments/personal-agent-hub/e0c-direct/OPERATOR.md)
+uses verified artifacts without a workstation build or SCP. The target provisioning
+UX is JetBrains launching `blaine acp`; current manual candidate setup is validation,
+not the final installer. Real Blaine-specific IDE launch/auth evidence remains
+required. Changelog tooling and provenance/signing hardening remain recorded
+release follow-ups; no changie automation or new prerelease is added here.

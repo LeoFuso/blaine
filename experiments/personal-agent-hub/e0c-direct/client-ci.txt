@@ -1,0 +1,348 @@
+?   	blaine.local/client/cmd/blaine	[no test files]
+?   	blaine.local/client/cmd/blaine-hub-transport	[no test files]
+=== RUN   TestStableVersion
+--- PASS: TestStableVersion (0.00s)
+PASS
+ok  	blaine.local/client/internal/buildinfo	0.001s
+=== RUN   TestCommandsAndVersion
+--- PASS: TestCommandsAndVersion (0.00s)
+=== RUN   TestAllMalformedACPKeepsStdoutEmpty
+--- PASS: TestAllMalformedACPKeepsStdoutEmpty (0.00s)
+=== RUN   TestConnectNonInteractive
+--- PASS: TestConnectNonInteractive (0.00s)
+=== RUN   TestDoctorHumanJSONParity
+--- PASS: TestDoctorHumanJSONParity (0.00s)
+=== RUN   TestDoctorJSON
+--- PASS: TestDoctorJSON (0.00s)
+PASS
+ok  	blaine.local/client/internal/cli	0.004s
+=== RUN   TestStateMachine
+=== RUN   TestStateMachine/already_ready
+=== RUN   TestStateMachine/install_login_ready
+=== RUN   TestStateMachine/install_ready
+=== RUN   TestStateMachine/install_declined
+=== RUN   TestStateMachine/installation_failure
+=== RUN   TestStateMachine/auth_required
+=== RUN   TestStateMachine/auth_decline
+=== RUN   TestStateMachine/auth_cancellation
+=== RUN   TestStateMachine/auth_timeout
+=== RUN   TestStateMachine/auth_failure
+=== RUN   TestStateMachine/successful_exit_is_not_readiness
+=== RUN   TestStateMachine/stopped_reconnect
+=== RUN   TestStateMachine/daemon_unavailable
+=== RUN   TestStateMachine/malformed
+=== RUN   TestStateMachine/windows_unavailable
+=== RUN   TestStateMachine/windows_logged_out
+=== RUN   TestStateMachine/native_authorization
+=== RUN   TestStateMachine/noninteractive_missing
+=== RUN   TestStateMachine/noninteractive_login
+--- PASS: TestStateMachine (0.00s)
+    --- PASS: TestStateMachine/already_ready (0.00s)
+    --- PASS: TestStateMachine/install_login_ready (0.00s)
+    --- PASS: TestStateMachine/install_ready (0.00s)
+    --- PASS: TestStateMachine/install_declined (0.00s)
+    --- PASS: TestStateMachine/installation_failure (0.00s)
+    --- PASS: TestStateMachine/auth_required (0.00s)
+    --- PASS: TestStateMachine/auth_decline (0.00s)
+    --- PASS: TestStateMachine/auth_cancellation (0.00s)
+    --- PASS: TestStateMachine/auth_timeout (0.00s)
+    --- PASS: TestStateMachine/auth_failure (0.00s)
+    --- PASS: TestStateMachine/successful_exit_is_not_readiness (0.00s)
+    --- PASS: TestStateMachine/stopped_reconnect (0.00s)
+    --- PASS: TestStateMachine/daemon_unavailable (0.00s)
+    --- PASS: TestStateMachine/malformed (0.00s)
+    --- PASS: TestStateMachine/windows_unavailable (0.00s)
+    --- PASS: TestStateMachine/windows_logged_out (0.00s)
+    --- PASS: TestStateMachine/native_authorization (0.00s)
+    --- PASS: TestStateMachine/noninteractive_missing (0.00s)
+    --- PASS: TestStateMachine/noninteractive_login (0.00s)
+=== RUN   TestRepeatedReadyNeverMutates
+--- PASS: TestRepeatedReadyNeverMutates (0.00s)
+=== RUN   TestOutputFailure
+--- PASS: TestOutputFailure (0.00s)
+PASS
+ok  	blaine.local/client/internal/connect	0.002s
+=== RUN   TestHandshake
+=== RUN   TestHandshake/server_mismatch
+=== RUN   TestHandshake/missing_identity
+=== RUN   TestHandshake/claimed_identity
+=== RUN   TestHandshake/wrong_user
+=== RUN   TestHandshake/incompatible
+=== RUN   TestHandshake/downgrade
+=== RUN   TestHandshake/missing_feature
+=== RUN   TestHandshake/missing_readiness
+=== RUN   TestHandshake/unknown_readiness
+=== RUN   TestHandshake/failed_readiness
+=== RUN   TestHandshake/revoked
+--- PASS: TestHandshake (0.00s)
+    --- PASS: TestHandshake/server_mismatch (0.00s)
+    --- PASS: TestHandshake/missing_identity (0.00s)
+    --- PASS: TestHandshake/claimed_identity (0.00s)
+    --- PASS: TestHandshake/wrong_user (0.00s)
+    --- PASS: TestHandshake/incompatible (0.00s)
+    --- PASS: TestHandshake/downgrade (0.00s)
+    --- PASS: TestHandshake/missing_feature (0.00s)
+    --- PASS: TestHandshake/missing_readiness (0.00s)
+    --- PASS: TestHandshake/unknown_readiness (0.00s)
+    --- PASS: TestHandshake/failed_readiness (0.00s)
+    --- PASS: TestHandshake/revoked (0.00s)
+=== RUN   TestProfile
+--- PASS: TestProfile (0.00s)
+=== RUN   TestPrivateTransport
+--- PASS: TestPrivateTransport (0.00s)
+=== RUN   TestControlSeparationAndDeadline
+--- PASS: TestControlSeparationAndDeadline (0.05s)
+=== RUN   TestFramedProcess
+=== RUN   TestFramedProcess/duplex
+=== RUN   TestFramedProcess/banner
+=== RUN   TestFramedProcess/exit
+=== RUN   TestFramedProcess/unanswered
+--- PASS: TestFramedProcess (0.00s)
+    --- PASS: TestFramedProcess/duplex (0.00s)
+    --- PASS: TestFramedProcess/banner (0.00s)
+    --- PASS: TestFramedProcess/exit (0.00s)
+    --- PASS: TestFramedProcess/unanswered (0.00s)
+=== RUN   TestFramedEOFAndBlockedOutput
+=== RUN   TestFramedEOFAndBlockedOutput/false
+=== RUN   TestFramedEOFAndBlockedOutput/true
+--- PASS: TestFramedEOFAndBlockedOutput (2.00s)
+    --- PASS: TestFramedEOFAndBlockedOutput/false (1.00s)
+    --- PASS: TestFramedEOFAndBlockedOutput/true (1.00s)
+=== RUN   TestHandshakeProcessFixtures
+=== RUN   TestHandshakeProcessFixtures/compatible
+=== RUN   TestHandshakeProcessFixtures/offline
+=== RUN   TestHandshakeProcessFixtures/host_key_mismatch
+=== RUN   TestHandshakeProcessFixtures/check-mode_action
+=== RUN   TestHandshakeProcessFixtures/check-mode_waiting
+=== RUN   TestHandshakeProcessFixtures/stdout_banner
+--- PASS: TestHandshakeProcessFixtures (0.10s)
+    --- PASS: TestHandshakeProcessFixtures/compatible (0.00s)
+    --- PASS: TestHandshakeProcessFixtures/offline (0.00s)
+    --- PASS: TestHandshakeProcessFixtures/host_key_mismatch (0.00s)
+    --- PASS: TestHandshakeProcessFixtures/check-mode_action (0.00s)
+    --- PASS: TestHandshakeProcessFixtures/check-mode_waiting (0.10s)
+    --- PASS: TestHandshakeProcessFixtures/stdout_banner (0.00s)
+PASS
+ok  	blaine.local/client/internal/connection	2.162s
+=== RUN   TestTransportPolicyBindsObservedNodeAndPrincipal
+--- PASS: TestTransportPolicyBindsObservedNodeAndPrincipal (0.00s)
+=== RUN   TestVerifiedProfileRejectsIdentityChange
+--- PASS: TestVerifiedProfileRejectsIdentityChange (0.00s)
+=== RUN   TestHandshakeAndBinaryStream
+--- PASS: TestHandshakeAndBinaryStream (0.00s)
+=== RUN   TestSignedIdentityAndVersionFailClosed
+--- PASS: TestSignedIdentityAndVersionFailClosed (0.00s)
+=== RUN   TestWrongClientProofAndDeniedPeer
+--- PASS: TestWrongClientProofAndDeniedPeer (0.00s)
+=== RUN   TestSessionCorrelationAndDisconnect
+--- PASS: TestSessionCorrelationAndDisconnect (0.00s)
+=== RUN   TestDependencyFailsOnBothSides
+--- PASS: TestDependencyFailsOnBothSides (0.00s)
+=== RUN   TestServerSignatureCannotBeReflectedAsClientProof
+--- PASS: TestServerSignatureCannotBeReflectedAsClientProof (0.00s)
+=== RUN   TestACPChild
+--- PASS: TestACPChild (0.00s)
+=== RUN   TestRelayEOFAndCancellation
+=== RUN   TestRelayEOFAndCancellation/EOF
+=== RUN   TestRelayEOFAndCancellation/cancel
+--- PASS: TestRelayEOFAndCancellation (0.00s)
+    --- PASS: TestRelayEOFAndCancellation/EOF (0.00s)
+    --- PASS: TestRelayEOFAndCancellation/cancel (0.00s)
+=== RUN   TestACPAuthFrontendWithoutNetwork
+--- PASS: TestACPAuthFrontendWithoutNetwork (0.00s)
+=== RUN   TestInstalledPersonalACP
+    relay_test.go:118: installed host SDK integration is opt-in
+--- SKIP: TestInstalledPersonalACP (0.00s)
+=== RUN   TestRelayCancellationUnblocksIdleInputAndBackpressuredOutput
+--- PASS: TestRelayCancellationUnblocksIdleInputAndBackpressuredOutput (0.00s)
+=== RUN   TestInstallationReuseAndExclusiveLease
+--- PASS: TestInstallationReuseAndExclusiveLease (0.00s)
+=== RUN   TestStateRejectsSymlinksAndPublicKeys
+--- PASS: TestStateRejectsSymlinksAndPublicKeys (0.00s)
+PASS
+ok  	blaine.local/client/internal/direct	0.019s
+=== RUN   TestExitPriority
+--- PASS: TestExitPriority (0.00s)
+=== RUN   TestFoundationNeverReadyOrMutating
+--- PASS: TestFoundationNeverReadyOrMutating (0.00s)
+=== RUN   TestInvalidDirectory
+--- PASS: TestInvalidDirectory (0.00s)
+PASS
+ok  	blaine.local/client/internal/doctor	0.002s
+?   	blaine.local/client/internal/fixture	[no test files]
+=== RUN   TestVendorKeyOriginLimitsAndRedirect
+=== RUN   TestVendorKeyOriginLimitsAndRedirect/vendor_key
+=== RUN   TestVendorKeyOriginLimitsAndRedirect/not_found
+=== RUN   TestVendorKeyOriginLimitsAndRedirect/oversized
+=== RUN   TestVendorKeyOriginLimitsAndRedirect/html
+=== RUN   TestVendorKeyOriginLimitsAndRedirect/redirect
+--- PASS: TestVendorKeyOriginLimitsAndRedirect (0.00s)
+    --- PASS: TestVendorKeyOriginLimitsAndRedirect/vendor_key (0.00s)
+    --- PASS: TestVendorKeyOriginLimitsAndRedirect/not_found (0.00s)
+    --- PASS: TestVendorKeyOriginLimitsAndRedirect/oversized (0.00s)
+    --- PASS: TestVendorKeyOriginLimitsAndRedirect/html (0.00s)
+    --- PASS: TestVendorKeyOriginLimitsAndRedirect/redirect (0.00s)
+=== RUN   TestMagicDNSQualification
+--- PASS: TestMagicDNSQualification (0.00s)
+=== RUN   TestInstallationPolicy
+--- PASS: TestInstallationPolicy (0.00s)
+=== RUN   TestInstallStructuredCommandsAndFailure
+=== RUN   TestInstallStructuredCommandsAndFailure/0
+=== RUN   TestInstallStructuredCommandsAndFailure/1
+=== RUN   TestInstallStructuredCommandsAndFailure/2
+=== RUN   TestInstallStructuredCommandsAndFailure/3
+=== RUN   TestInstallStructuredCommandsAndFailure/4
+--- PASS: TestInstallStructuredCommandsAndFailure (0.00s)
+    --- PASS: TestInstallStructuredCommandsAndFailure/0 (0.00s)
+    --- PASS: TestInstallStructuredCommandsAndFailure/1 (0.00s)
+    --- PASS: TestInstallStructuredCommandsAndFailure/2 (0.00s)
+    --- PASS: TestInstallStructuredCommandsAndFailure/3 (0.00s)
+    --- PASS: TestInstallStructuredCommandsAndFailure/4 (0.00s)
+=== RUN   TestDownloadFailureNeverMutates
+--- PASS: TestDownloadFailureNeverMutates (0.00s)
+=== RUN   TestMacInstallOpensOnlyVendorPage
+--- PASS: TestMacInstallOpensOnlyVendorPage (0.00s)
+=== RUN   TestExistingOfficialRepositoryIsReused
+--- PASS: TestExistingOfficialRepositoryIsReused (0.00s)
+=== RUN   TestDetectionAndPaths
+=== RUN   TestDetectionAndPaths/linux
+=== RUN   TestDetectionAndPaths/xdg
+=== RUN   TestDetectionAndPaths/mac
+=== RUN   TestDetectionAndPaths/wsl-kernel
+=== RUN   TestDetectionAndPaths/wsl-env-only-unverified
+--- PASS: TestDetectionAndPaths (0.00s)
+    --- PASS: TestDetectionAndPaths/linux (0.00s)
+    --- PASS: TestDetectionAndPaths/xdg (0.00s)
+    --- PASS: TestDetectionAndPaths/mac (0.00s)
+    --- PASS: TestDetectionAndPaths/wsl-kernel (0.00s)
+    --- PASS: TestDetectionAndPaths/wsl-env-only-unverified (0.00s)
+=== RUN   TestInvalidPlatformPaths
+--- PASS: TestInvalidPlatformPaths (0.00s)
+=== RUN   TestDirectoryInspectionReadOnly
+--- PASS: TestDirectoryInspectionReadOnly (0.00s)
+=== RUN   TestExecutableDiscovery
+--- PASS: TestExecutableDiscovery (0.00s)
+=== RUN   TestStatusProjection
+=== RUN   TestStatusProjection/authenticated
+=== RUN   TestStatusProjection/logged_out
+=== RUN   TestStatusProjection/no_state
+=== RUN   TestStatusProjection/approval
+=== RUN   TestStatusProjection/stopped
+=== RUN   TestStatusProjection/starting
+=== RUN   TestStatusProjection/unknown
+=== RUN   TestStatusProjection/malformed
+=== RUN   TestStatusProjection/empty
+=== RUN   TestStatusProjection/offline
+=== RUN   TestStatusProjection/expired
+=== RUN   TestStatusProjection/userspace
+=== RUN   TestStatusProjection/no_address
+=== RUN   TestStatusProjection/warnings_redacted
+--- PASS: TestStatusProjection (0.00s)
+    --- PASS: TestStatusProjection/authenticated (0.00s)
+    --- PASS: TestStatusProjection/logged_out (0.00s)
+    --- PASS: TestStatusProjection/no_state (0.00s)
+    --- PASS: TestStatusProjection/approval (0.00s)
+    --- PASS: TestStatusProjection/stopped (0.00s)
+    --- PASS: TestStatusProjection/starting (0.00s)
+    --- PASS: TestStatusProjection/unknown (0.00s)
+    --- PASS: TestStatusProjection/malformed (0.00s)
+    --- PASS: TestStatusProjection/empty (0.00s)
+    --- PASS: TestStatusProjection/offline (0.00s)
+    --- PASS: TestStatusProjection/expired (0.00s)
+    --- PASS: TestStatusProjection/userspace (0.00s)
+    --- PASS: TestStatusProjection/no_address (0.00s)
+    --- PASS: TestStatusProjection/warnings_redacted (0.00s)
+=== RUN   TestMissingAndDaemonFailure
+--- PASS: TestMissingAndDaemonFailure (0.00s)
+=== RUN   TestPlatformOwnership
+=== RUN   TestPlatformOwnership/darwin
+=== RUN   TestPlatformOwnership/wsl
+--- PASS: TestPlatformOwnership (0.00s)
+    --- PASS: TestPlatformOwnership/darwin (0.00s)
+    --- PASS: TestPlatformOwnership/wsl (0.00s)
+=== RUN   TestMacAppCLIAndAuthorization
+--- PASS: TestMacAppCLIAndAuthorization (0.00s)
+=== RUN   TestAuthenticationFilteringAndRecheck
+--- PASS: TestAuthenticationFilteringAndRecheck (0.00s)
+=== RUN   TestAuthenticationCancellationAndTimeout
+--- PASS: TestAuthenticationCancellationAndTimeout (0.00s)
+=== RUN   TestAuthenticationNoPermissionElevationOrLeak
+--- PASS: TestAuthenticationNoPermissionElevationOrLeak (0.00s)
+=== RUN   TestSensitiveStatusFieldsAreNeverProjected
+--- PASS: TestSensitiveStatusFieldsAreNeverProjected (0.00s)
+=== RUN   TestWindowsHostProcessUnavailable
+--- PASS: TestWindowsHostProcessUnavailable (0.00s)
+=== RUN   TestMacAuthenticationNativeAppThenObservedState
+--- PASS: TestMacAuthenticationNativeAppThenObservedState (0.00s)
+PASS
+ok  	blaine.local/client/internal/platform	0.004s
+=== RUN   TestCaptureBoundedAndLiteral
+--- PASS: TestCaptureBoundedAndLiteral (0.02s)
+=== RUN   TestForegroundRefusesNonTerminal
+--- PASS: TestForegroundRefusesNonTerminal (0.00s)
+=== RUN   TestChildEnvironmentOverride
+--- PASS: TestChildEnvironmentOverride (0.00s)
+=== RUN   TestHelperProcess
+--- PASS: TestHelperProcess (0.00s)
+=== RUN   TestBytePurityAndStderr
+--- PASS: TestBytePurityAndStderr (0.00s)
+=== RUN   TestStatusAndArgv
+--- PASS: TestStatusAndArgv (0.00s)
+=== RUN   TestEarlyExitWithOpenStdin
+--- PASS: TestEarlyExitWithOpenStdin (0.00s)
+=== RUN   TestStartFailureAndPreCancelled
+--- PASS: TestStartFailureAndPreCancelled (0.00s)
+=== RUN   TestCancellationAndDescendantCleanup
+=== RUN   TestCancellationAndDescendantCleanup/tree
+=== RUN   TestCancellationAndDescendantCleanup/tree-exit
+--- PASS: TestCancellationAndDescendantCleanup (0.01s)
+    --- PASS: TestCancellationAndDescendantCleanup/tree (0.01s)
+    --- PASS: TestCancellationAndDescendantCleanup/tree-exit (0.01s)
+=== RUN   TestCancellationWithBlockedStreams
+=== RUN   TestCancellationWithBlockedStreams/input
+=== RUN   TestCancellationWithBlockedStreams/output
+--- PASS: TestCancellationWithBlockedStreams (0.01s)
+    --- PASS: TestCancellationWithBlockedStreams/input (0.01s)
+    --- PASS: TestCancellationWithBlockedStreams/output (0.01s)
+=== RUN   TestForegroundTerminalAndRestoration
+--- PASS: TestForegroundTerminalAndRestoration (0.12s)
+PASS
+ok  	blaine.local/client/internal/process	0.163s
+=== RUN   TestACPFramingAndCorrelation
+--- PASS: TestACPFramingAndCorrelation (0.00s)
+=== RUN   TestACPRejectsBeforeForward
+--- PASS: TestACPRejectsBeforeForward (0.00s)
+=== RUN   TestInitializeDropsCapabilities
+--- PASS: TestInitializeDropsCapabilities (0.00s)
+=== RUN   TestStrictJSON
+--- PASS: TestStrictJSON (0.00s)
+PASS
+ok  	blaine.local/client/internal/wire	0.004s
+?   	blaine.local/client/cmd/blaine	[no test files]
+?   	blaine.local/client/cmd/blaine-hub-transport	[no test files]
+ok  	blaine.local/client/internal/buildinfo	1.004s
+ok  	blaine.local/client/internal/cli	1.012s
+ok  	blaine.local/client/internal/connect	1.007s
+ok  	blaine.local/client/internal/connection	3.176s
+ok  	blaine.local/client/internal/direct	2.120s
+ok  	blaine.local/client/internal/doctor	1.007s
+?   	blaine.local/client/internal/fixture	[no test files]
+ok  	blaine.local/client/internal/platform	1.011s
+ok  	blaine.local/client/internal/process	10.219s
+ok  	blaine.local/client/internal/wire	1.012s
+test_fixture_negotiation_and_unknown_readiness (tests.test_host_connection.HostConnectionTests.test_fixture_negotiation_and_unknown_readiness) ... ok
+test_identity_protocol_and_claim_rejections (tests.test_host_connection.HostConnectionTests.test_identity_protocol_and_claim_rejections) ... ok
+test_malformed_input (tests.test_host_connection.HostConnectionTests.test_malformed_input) ... ok
+test_production_cannot_accept_spoofed_environment (tests.test_host_connection.HostConnectionTests.test_production_cannot_accept_spoofed_environment) ... ok
+test_readiness_does_not_infer_runtime_health (tests.test_host_connection.HostConnectionTests.test_readiness_does_not_infer_runtime_health) ... ok
+test_liveness_does_not_substitute_for_memory_readiness (tests.test_direct_readiness.DirectReadinessTests.test_liveness_does_not_substitute_for_memory_readiness) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK
+BUILD linux/amd64
+BUILD darwin/amd64
+BUILD darwin/arm64
+BUILD linux/arm64
+PASS: four repeat builds, exact version/protocol/commit, static Linux binary, checksums.txt

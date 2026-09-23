@@ -1,0 +1,22 @@
+{
+  "status": "PARTIAL",
+  "scope": "local implementation and real host runtime; designated workstation candidate tests pending",
+  "go": "1.27.1",
+  "tsnet": "1.102.4",
+  "websocket": "1.8.15",
+  "host_readiness": {
+    "embeddings": "PASS",
+    "generation": "PASS",
+    "mirix": "PASS",
+    "restate": "PASS",
+    "runtime": "PASS"
+  },
+  "local_actual_acp": "initialize, new session, EOF and abrupt disconnect passed through fixture transport",
+  "task_state_unchanged": true,
+  "macos_candidate": "PENDING",
+  "wsl_candidate": "PENDING",
+  "jetbrains_candidate": "PENDING",
+  "effective_narrow_tailnet_policy": "PENDING",
+  "new_release": "NOT_PUBLISHED",
+  "e0d": "BLOCKED"
+}

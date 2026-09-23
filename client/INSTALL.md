@@ -1,5 +1,11 @@
 # Install the Blaine workstation client alpha
 
+> The published `v0.1.0-alpha.1` uses the previous E0.C transport candidate. The
+> selected embedded-tsnet migration is not published yet; its controlled local
+> candidate procedure is [here](../experiments/personal-agent-hub/e0c-direct/OPERATOR.md).
+> Do not treat the old release as evidence for the new transport.
+
+
 The first version is **v0.1.0-alpha.1**. This is an experimental prerelease, not
 stable E0/client acceptance. A binary requires no Go installation, repository
 checkout or copy from the Blaine host. Release availability and actual CI proof

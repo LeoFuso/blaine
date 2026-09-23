@@ -1,121 +1,93 @@
-# E0.C host connection contract v1 — PARTIAL implementation
+# E0.C direct private host connection — candidate v1
 
-The [canonical E0.C slice](../personal-agent-hub.md#implementation-decomposition)
-owns scope and acceptance. This contract records the implemented candidate wire
-format, not a new identity mechanism. [Evidence](../../experiments/personal-agent-hub/e0c/README.md)
-distinguishes fixtures, local observations and remaining live gates.
+The operator selected embedded tsnet plus a direct Blaine application transport on
+2026-09-23. Implementation and [evidence](../../experiments/personal-agent-hub/e0c-direct/README.md)
+are **PARTIAL**; designated-workstation acceptance remains pending. This supersedes
+the previous SSH product-transport contract, retained in Git and the
+[prior E0.C evidence](../../experiments/personal-agent-hub/e0c/README.md). Tailscale
+SSH is still useful for administration. Protocol version 1 is pre-stability: the
+new `blaine.e0c.v1` WebSocket endpoint is not the old SSH control invocation.
 
-## Profile and transport
+## Discovery and independent trust boundaries
 
-`connect --host NAME` selects one explicit MagicDNS host; no tailnet enumeration.
-The first SSH user defaults to the local OS account. This acceptance targets
-`blaine` / `leofuso`. A successful handshake atomically publishes a private config
-file with `schema_version: 1`, `host`, `ssh_user`, `transport: "tailscale-ssh"`,
-random client UUID metadata and the verified `server_id`. The UUID is not a
-credential. Failed negotiation writes nothing. Existing profiles are never
-silently replaced; identity changes or malformed/unsafe files require review.
-Native platform paths remain those established in E0.A. No tokens, keys,
-conversation, workspace content, registration or Task state are stored.
+Public embedded deployment metadata nominates `blaine.tail0f2ece.ts.net:7443`, the
+expected tailnet, stable Hub node ID, Blaine server ID and its Ed25519 public key.
+`blaine connect` requires no host, SSH user or manually trusted fingerprint.
+Discovery does not authenticate. Each TCP dial uses embedded tsnet and verifies
+its actual remote address against the expected Tailscale stable node ID. The host
+binds only its verified private Tailscale address; it cannot use a public listener.
 
-The adapter resolves the selected host once, rejects addresses outside Tailscale's
-IPv4/IPv6 ranges, and passes that resolved address to native OpenSSH. DNS provides
-routing, not identity. Strict native known-host trust is required under the profile
-host alias. On first use the operator must establish that trust through a separately
-verified native SSH procedure; Blaine neither accepts unknown keys nor edits trust.
-This trust bootstrap is not live-accepted in E0.C yet.
+The host calls native LocalAPI WhoIs on the accepted TCP socket, ignores forwarding
+headers and applies its exact principal/stable-node allowlist. Expired nodes fail.
+This is network admission, separate from possession of the Blaine installation key,
+future workstation registration, and per-operation Task/workspace authority.
+No E0.D registry or E1/E2 authority is created by this contract.
 
-OpenSSH receives no PTY, user SSH configuration, multiplexing, forwarded agent,
-port forwards, local commands, password/key fallback or interactive prompts.
-Authentication is restricted to `none`, as used by Tailscale SSH; ordinary sshd
-is not selected as a fallback. The chosen command is fixed:
+## Application handshake
 
-```text
-exec "$HOME/.local/bin/blaine-host-connection" handshake
-exec "$HOME/.local/bin/blaine-host-connection" acp
-```
+`GET /v1/session`, subprotocol `blaine.e0c.v1`, compression disabled. Redirects and
+browser-origin requests are denied. Control JSON is strict UTF-8, duplicate/unknown
+fields rejected, maximum 64 KiB, ten-second handshake deadline.
 
-The candidate host entrypoint is `runtime/host_connection.py`, installed only in
-a disposable test home in this checkpoint. It uses host Python standard-library
-facilities; the standalone workstation executable has no Python requirement.
-There is no production host installation or remote ACP launch claim. macOS uses
-native OpenSSH and native Tailscale routing by design. WSL refuses transport until
-the Windows-owned guest route and identity spike passes; no fallback or forwarding
-change is attempted.
+1. Client sends `schema`, `min_protocol`, `max_protocol`, `client_version`,
+   `expected_server_id`, `client_id`, `client_public_key`, random `nonce`, and
+   `mode` (`handshake`, `acp`, or bounded `probe`). Schema/protocol initially 1.
+2. Server returns `schema`, selected `protocol`, `server_id`, `server_version`,
+   `server_public_key`, random `session_id` and `nonce`, observed `peer`
+   (`node_id`, `principal_id`), `readiness`, `registration: not-implemented`, and
+   `signature`. The Ed25519 signature binds the complete hello/challenge transcript.
+   The client checks the independent embedded application pin and that the observed
+   client node is its own current embedded node.
+3. Client returns a signature over a domain-separated client-proof transcript.
+   Server checks key possession before acknowledging `session_id`, `status: CONNECTED`.
+   The workstation ID is `ws-` plus the first 128 bits of SHA-256(public key); server
+   ID uses `hub-` and the same derivation. IDs alone never authenticate.
 
-## Separate bounded handshake
+Both ends require PASS for runtime, Restate, MIRIX, generation and embeddings.
+UNKNOWN/FAIL cannot be bypassed by a request mode. The host uses bounded local
+read-only checks, including a semantic MIRIX query under its existing deployment
+identity. Memory content and credentials are never included in the handshake.
 
-Handshake is a separate control invocation, never prepended to ACP stdout.
-Client control operations have a five-second deadline and a 1 MiB output bound;
-host request parsing is bounded to 64 KiB. Duplicate keys, trailing JSON, unknown
-handshake fields and invalid UTF-8 are rejected. SSH diagnostics are not reflected
-into control JSON or exported diagnostics. An SSH/control failure asks the user
-to check trust, access, terminal check-mode reauthentication and the host installation.
-The current adapter cannot distinguish those failure causes from exit status
-alone; it reports `REMOTE_UNAVAILABLE` rather than inventing authentication state.
+## Session framing and lifecycle
 
-Request fields:
+Binary WebSocket messages contain one kind byte, 16 raw session-ID bytes, then up to
+1 MiB of payload. Kinds: `1 Data`, `2 End`, `3 Cancel`, `4 Exit`. End/Cancel have
+empty payloads; Exit carries one status byte. Wrong session, kind, size, text frame,
+malformed ACP or unmatched JSON-RPC response fails closed. WebSocket/TCP provide
+ordering and backpressure. Writes have bounded deadlines. No shell quoting/text
+conversion touches payloads. The bounded probe exchanges arbitrary binary values;
+ACP mode carries complete newline-delimited JSON-RPC frames and applies its existing
+correlation and capability guard. ACP initialization strips client capabilities;
+nonempty MCP forwarding and server-initiated client effects are denied.
 
-| Field | Meaning |
-| --- | --- |
-| `schema_version` | `1` |
-| `client_version` | Installed client version |
-| `protocol` | `{ "min": 1, "max": 1 }`; separate from ACP version |
-| `expected_server_id` | Empty on first use; pinned server ID afterward |
-| `client_id` | Random local installation metadata |
+A connection is capped at 30 minutes in this candidate; client reconnect creates a
+fresh authenticated session and never replays operations. An ACP session uses a
+fixed host Python entrypoint, with direct inherited pipe descriptors and a new
+process group. EOF has a five-second graceful child-exit bound. Transport failure,
+cancellation or deadline kills only that ACP group. Periodic peer revalidation and
+WebSocket ping detect idle loss; actual remote-revocation latency is not yet proved.
+The host runtime and Restate are independently owned services. No session teardown
+calls Task cancel/complete/approve, restarts a Task, or terminates those services.
 
-Response fields:
+## Installation state and commands
 
-| Field | Meaning |
-| --- | --- |
-| `schema_version`, `server_id`, `server_version` | Envelope and host installation identity/version |
-| `protocol`, `selected_protocol` | Server range and explicit intersection, initially `1` |
-| `peer` | `device_id`, `principal_id`, `ssh_user`, `source: "trusted-transport"` |
-| `registration_status` | `not-implemented` in this isolated slice; no registration receipt |
-| `features` | Required `handshake-v1`, `acp-ndjson`, `no-workspace-effects` |
-| `readiness` | `runtime`, `restate`, `mirix`, `generation`, `embeddings`: `PASS`, `FAIL`, `UNKNOWN` |
+One exclusive lease guards `direct-v1` under E0.A native state paths. Directories
+are private (0700); seed/metadata files are private regular files (0600), owned by
+the user, without symlink/hard-link redirection. Embedded credential files are also
+checked on reopen. A persistent application key gives the installation a stable
+name; a node baseline detects unexpected identity replacement. A verified private
+connection receipt binds deployment and installation metadata, but is not an E0.D
+registration receipt or proof of current readiness.
 
-The response's `peer` is an observation supplied by the trusted host boundary.
-A string saying `trusted-transport` is not itself proof. The production entrypoint
-currently refuses every invocation with `PEER_UNVERIFIED` and empty stdout;
-there is **no production peer resolver or successful handshake/ACP dispatch**.
-Pure negotiation functions accept injected observations only in unit tests. There
-is no CLI, environment or request-JSON fixture override. Supplying `SSH_CONNECTION`
-and then looking up that claimed address does not authenticate the caller.
-Implementing a verifiable resolver requires the designated second-workstation
-spike. No shared credential, alternate IdP, root requirement or guessed process
-ancestry was introduced to bypass it.
+`connect` authenticates interactively if necessary. `--non-interactive` fails on
+missing/expired enrollment. Optional `--verify-transport` runs the bounded binary,
+cancel/deadline/reconnect and real remote ACP initialize/session checks.
+`acp` uses standard agent-owned auth methods and `authenticate`; before authentication
+`session/new` returns auth-required. `doctor` remains read-only, does not start tsnet
+or write state and cannot report cached connection evidence as fresh readiness.
+`disconnect --logout` logs out embedded tsnet. Explicit `--reset-identity` additionally
+removes its application/node identity only after logout succeeds. Ordinary close
+never logs out or deletes identity. System Tailscale and unrelated Tasks are untouched.
 
-Every required readiness value must be PASS before the client persists a profile
-or launches ACP. Runtime discovery checks actual `CognitiveTaskV1` handlers;
-Restate checks the configured deployment ID/URI/service; model health and model
-lists are read without inference. Fixed loopback URLs disable proxies/redirects,
-with bounded parallel probes. Installed MIRIX `/health` is unconditional liveness,
-so it remains UNKNOWN pending a dependency-aware predicate. These checks are
-local fixture/live probe evidence, not a completed remote readiness operation.
-
-## ACP framing and lifecycle
-
-The candidate bridge admits bounded newline-delimited JSON-RPC 2.0 frames with
-strict JSON validation, request ID preservation, duplicate/outstanding ID bounds
-and matched responses. It rejects banners, partial/oversized frames, unmatched
-responses and malformed envelopes before those bytes reach the IDE. Supported
-frames retain their bytes, except initialization deliberately advertises empty
-client capabilities in E0. Nonempty MCP descriptors and host-initiated client
-capability calls are rejected; passive `session/update` notifications are allowed.
-No read, write or terminal capability can be acquired in this slice.
-
-EOF allows one second of graceful transport shutdown; cancellation, protocol
-failure or blocked drainage closes owned streams/processes. There is no automatic
-reconnect or replay. These are session resources, never Task cancellation,
-completion, approval or creation. The accepted raw E0.A byte fixture remains
-separate and unchanged; it is not remote ACP evidence.
-
-## Remaining acceptance
-
-Provide a designated second workstation, establish the native host-key trust,
-prove installed Tailscale SSH mode and a trusted source/device/principal/user
-binding, then complete the host dispatcher and install it at the stable path.
-Resolve MIRIX dependency readiness without treating liveness as health. Run real
-handshake/ACP stdio plus mismatch, offline and check-mode reauthentication tests.
-Fixtures cannot close those gates. E0.D registration follows accepted E0.C;
-E0.E IntelliJ and E0.F integrated onboarding remain untouched.
+Simultaneous Blaine processes fail `INSTANCE_BUSY`; no background broker, workstation
+runtime, updater, registration database, workspace effects or IDE plugin is added.

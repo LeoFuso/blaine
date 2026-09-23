@@ -136,9 +136,11 @@ bounded product architecture. **E0.A is PASS for the isolated client foundation*
 detection, read-only doctor and idempotent network readiness on Ubuntu amd64.
 Four standalone builds and install/auth fixtures passed; macOS runtime remains
 unverified and WSL host reuse is STOP pending a live spike.
-**E0.C PARTIAL** ([evidence](../../experiments/personal-agent-hub/e0c/README.md)) adds
-profile/transport/handshake/framing fixtures and local read-only host observations;
-trusted second-peer binding, production dispatch and remote ACP remain pending.
+**E0.C PARTIAL** ([migration evidence](../../experiments/personal-agent-hub/e0c-direct/README.md))
+now implements the operator-selected embedded tsnet/direct private transport.
+Local protocol/identity/process regressions, real host ACP integration and dependency
+readiness passed; designated Mac/WSL candidate and real JetBrains gates remain open.
+Prior SSH and E0.A/B evidence keeps its original scope. No new release or E0.D work.
 Full Blaine onboarding,
 remote effects and coding E2E remain unvalidated.
 Accepted platform/runtime capabilities are inputs, not a reason to reopen their
@@ -146,7 +148,7 @@ entire workstreams. Workstation and worker remain independent.
 
 | Milestone | Status / product outcome | Dependencies and D-series mapping |
 | --- | --- | --- |
-| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PARTIAL; full E0 remains unaccepted.** Small portable client, supported prerequisite assistance, native Tailscale login, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. E0.C remains gated on second-peer identity, readiness and remote ACP; E0.D registration follows acceptance. macOS runtime and WSL reuse remain gated. |
+| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PARTIAL; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. E0.C remains gated on second-peer identity, readiness and remote ACP; E0.D registration follows acceptance. macOS runtime and WSL reuse remain gated. |
 | E1 — Remote Workspace Read | **DESIGNED.** Actual second-workstation IntelliJ read, confined paths and evidence in the same durable Task across reconnect. | E0; delivers D3.A product proof. Live client capability/confinement gates remain open. |
 | E2 — Remote Workspace Effects | **DESIGNED.** Conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
 | E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |
@@ -156,10 +158,11 @@ IntelliJ/real code Tasks. Their historical definitions and evidence are unchange
 E0–E3 are product/E2E gates consuming those capabilities, not renamed D milestones.
 Post-v0 Cycle E (advanced multi-worker patterns) is also unchanged.
 
-Tailscale is an external prerequisite, not a Blaine subsystem. The portable client
-uses platform-specific install/status/login/IDE adapters. WSL2 defaults to native
-Windows Tailscale, with real guest connectivity and IDE compatibility still to be
-proven. No duplicate WSL daemon or speculative forwarding configuration.
+The selected E0.C path embeds tsnet in the workstation client; no separately
+installed workstation CLI/daemon or nested WSL daemon is required. Tailscale
+remains private network infrastructure, separate from Blaine application identity
+and registration. SSH remains administrative. Windows IntelliJ opening the WSL
+project requires live validation of its explicit Linux-client launch boundary.
 
 New platform/observability work is **not on the E0–E3 critical path** without an
 observed blocker. Perfect Task-level OTel, Cloud logs/traces, Fleet, telemetry

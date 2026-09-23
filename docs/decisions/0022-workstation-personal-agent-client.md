@@ -26,21 +26,32 @@ safe IntelliJ configuration. `doctor` is read-only. IntelliJ launches a stable
 local `blaine acp`; private transport implementation and host installation paths
 remain behind that launcher. ACP stdout contains protocol messages only.
 
-Use interactive Tailscale authentication for human workstations without requiring
-a long-lived tailnet administrative credential. Tailscale is an external
-prerequisite, not a Blaine networking/authentication subsystem. Assist installation
-through supported vendor/platform mechanisms with visible actions and explicit
-OS/admin approval, then validate. Never persist raw login credentials.
+**Selected correction, 2026-09-23:** embed stable tsnet in the Go workstation
+client and connect to a private Blaine application endpoint. Use interactive
+Tailscale browser enrollment, without a separately installed workstation CLI or
+daemon. One installation persists one stable, revocable node identity and its
+separate Blaine application key across process/reboot/upgrade. Store credentials
+privately; ordinary disconnect does not erase them. Tailscale network identity,
+Blaine application registration and ACP/provider authentication remain distinct.
+The handshake verifies both the expected Hub node and signed Blaine server identity.
 
-Target Linux, native macOS and Windows development environments using WSL2 through
-one small platform abstraction. Prefer native macOS Tailscale and native Windows
-Tailscale for WSL2; do not install a second WSL daemon by default. Keep config/path/
-subprocess handling portable and Blaine unprivileged. Native system/browser prompts
-are expected. Initial implementation may validate fewer platforms, but architecture
-and reporting must preserve all three targets. Separate network authentication,
-Blaine registration, and Task/workspace authorization. Connection never grants
-ambient filesystem or shell access. Require local scope enforcement in addition
-to host PolicyGate decisions before forwarding workspace effects.
+This replaces SSH for product transport, removing remote Unix accounts, remote
+shell/dispatcher framing and duplicated SSH trust plumbing from client onboarding.
+Tailscale SSH remains for administration/diagnostics. The previous adapter is kept
+until the new path passes acceptance. The decision follows measured Mac and WSL
+spike connectivity/identity reuse and aims to remove workstation prerequisites,
+align installation identity with future registration, and fit JetBrains provisioning.
+It does not claim the replacement's live acceptance is already complete.
+
+Target Linux, native macOS and Linux inside Windows WSL2. Embedded userspace
+connectivity needs no nested WSL daemon or TUN/root setup. The Windows IDE opening
+a WSL project must launch the Linux client through an explicitly verified boundary;
+project location alone does not establish agent execution location. No native
+Windows client, custom plugin or topology substitution is introduced. Separate
+designed, build-verified and runtime-verified platform claims. Connection grants
+no filesystem or execution authority; E1/E2 retain local and PolicyGate enforcement.
+ACP `authenticate` may own the normal browser enrollment UX; it does not register
+or authorize a workstation by itself.
 
 Keep workspaces and tool execution on their workstation, with scoped read/write/
 exec capabilities and admitted evidence. Do not require a host checkout, custom
@@ -117,8 +128,11 @@ CompletionEvaluation. Demonstrate wrong-workspace/policy rejection, preserved
 human WAITING, no host checkout, no ACP stdout contamination and no blind replay
 of uncertain effects. Worker output or a successful exit alone is insufficient.
 
-This ADR is unvalidated: prior Milestone 002 and D2 remain evidence only for their
-recorded scopes. This design slice does not run new live acceptance.
+Full E0–E3 validation remains open. The [transport spike](../../experiments/personal-agent-hub/transport-architecture-spike/README.md)
+and [E0.C migration](../../experiments/personal-agent-hub/e0c-direct/README.md) distinguish
+Mac/WSL spike proof, local candidate/runtime proof and pending candidate live gates.
+Real Blaine-specific JetBrains provisioning/auth validation is required before E0
+completion. E0.D registration has not been pulled forward.
 
 ### Not required for validation
 
