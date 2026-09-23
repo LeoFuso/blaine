@@ -30,6 +30,18 @@ records the bounded test of this refinement. The historical proposals and status
 below remain the III.1 checkpoint; the [roadmap](../../roadmap/001-blaine-development-roadmap.md#track-iii--hierarchical-context-memory--verified-learning)
 owns current sequencing.
 
+## III.4 isolation clarification — 2026-09-23
+
+[III.4](../../milestones/045-track-iii-4-bounded-security-context-isolation.md)
+provides a bounded executable check of structural lineage intersected with trusted
+security-domain visibility and policy. Shared ancestry and human provenance grant
+no cross-domain visibility. All supported derived/graph/cache/diagnostic paths must
+preserve source permissions, including identifiers and counts. Private root records
+are adversarial fixtures to test independent enforcement, not a relaxation of the
+shared-root recommendation below. Ordinary writes cannot create global knowledge.
+This checkpoint does not establish production security or declassification; historical
+III.1–III.3 results and their limits remain unchanged.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

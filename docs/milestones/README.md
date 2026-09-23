@@ -6,7 +6,7 @@ limitations; their historical “next” instructions do not override that roadm
 
 | Program | Latest accepted checkpoint | Evidence |
 | --- | --- | --- |
-| Track III — Hierarchical Context, Memory & Verified Learning | [III.3 continuous capability PASS](044-track-iii-3-continuous-memory-capability.md); III.4 unstarted | [394 checks and two failing controls](../../experiments/track-iii-003/evidence/summary.json); offline executable specification |
+| Track III — Hierarchical Context, Memory & Verified Learning | [III.4 bounded security isolation PASS](045-track-iii-4-bounded-security-context-isolation.md); III.5 unstarted | [1259 checks and two leakage controls](../../experiments/track-iii-004/evidence/summary.json); offline executable specification |
 | Cognitive Kernel 1–12 | COMPLETE: [progress and increment index](cognitive-kernel-progress.md), [Increment 12](037-cognitive-kernel-increment-12-parallel-children.md) | [Parallel children](../../experiments/kernel-increment-12/evidence/summary.json) |
 | Frontier boundary | [Increment 11 PASS / CLOSED](036-cognitive-kernel-increment-11-live-pass.md) | [Authorized live probe 002](../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json) |
 | D1.C inference | [Accepted local services, 128k](038-d1-local-inference.md) | [21 checks](../../experiments/d1-service-adoption/evidence/inference-summary.json) |
