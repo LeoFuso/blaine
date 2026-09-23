@@ -2,7 +2,8 @@
 
 The operator selected embedded tsnet plus a direct Blaine application transport on
 2026-09-23. Implementation and [evidence](../../experiments/personal-agent-hub/e0c-direct/README.md)
-are **PARTIAL**; designated-workstation acceptance remains pending. This supersedes
+are **PARTIAL**; designated Mac transport probes passed, but OS-signal cleanup
+requires a corrected-candidate repeat and WSL acceptance remains pending. This supersedes
 the previous SSH product-transport contract, retained in Git and the
 [prior E0.C evidence](../../experiments/personal-agent-hub/e0c/README.md). Tailscale
 SSH is still useful for administration. Protocol version 1 is pre-stability: the
@@ -68,6 +69,12 @@ cancellation or deadline kills only that ACP group. Periodic peer revalidation a
 WebSocket ping detect idle loss; actual remote-revocation latency is not yet proved.
 The host runtime and Restate are independently owned services. No session teardown
 calls Task cancel/complete/approve, restarts a Task, or terminates those services.
+
+The local ACP frontend/relay borrows inherited stdio through owned duplicates with
+nonblocking byte I/O and bounded POSIX poll. Context cancellation interrupts idle
+input and backpressured output without closing a blocking inherited descriptor
+from another goroutine. Cleanup joins relay goroutines, restores descriptor flags
+and closes only the duplicates. This leaves E0.A child descriptor forwarding intact.
 
 ## Installation state and commands
 

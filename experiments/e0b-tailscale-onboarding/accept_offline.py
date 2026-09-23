@@ -24,6 +24,65 @@ def read_line(stream):
     return stream.readline()
 
 
+def direct_signal_regression(installed, root, env):
+    """Inherited blocking descriptors, unlike Go's pollable os.Pipe fixtures.
+
+    Keep input open while waiting: communicate() would close it and mask the bug.
+    No authenticate/session request is sent, so this never starts a tsnet node.
+    """
+    results = []
+    for topology in ['pipe', 'fifo', 'backpressure']:
+        for sig in [signal.SIGINT, signal.SIGTERM]:
+            fifo = None
+            if topology == 'fifo':
+                path = root / ('input-' + sig.name)
+                os.mkfifo(path, 0o600)
+                fifo = os.open(path, os.O_RDWR)
+            process = subprocess.Popen([str(installed), 'acp'],
+                                       stdin=fifo if fifo is not None else subprocess.PIPE,
+                                       stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                       env=env, cwd=root, bufsize=0)
+            try:
+                request = (json.dumps({'jsonrpc': '2.0', 'id': 1, 'method': 'initialize',
+                                      'params': {'protocolVersion': 1}}) + '\n').encode()
+                os.write(fifo if fifo is not None else process.stdin.fileno(), request)
+                assert json.loads(read_line(process.stdout))['id'] == 1
+                if topology == 'backpressure':
+                    # A valid large string request ID produces a response larger
+                    # than the pipe capacity. Consume only one byte, then stop.
+                    request = (json.dumps({'jsonrpc': '2.0', 'id': 'x' * (512 << 10),
+                                          'method': 'unavailable'}) + '\n').encode()
+                    os.set_blocking(process.stdin.fileno(), False)
+                    deadline = time.monotonic() + 3
+                    offset = 0
+                    while offset < len(request):
+                        assert time.monotonic() < deadline, 'request input stalled'
+                        if select.select([], [process.stdin], [], .1)[1]:
+                            try:
+                                offset += os.write(process.stdin.fileno(), request[offset:])
+                            except BlockingIOError:
+                                pass
+                    assert select.select([process.stdout], [], [], 3)[0]
+                    assert os.read(process.stdout.fileno(), 1) == b'{'
+                start = time.monotonic()
+                process.send_signal(sig)
+                process.wait(timeout=2)
+                elapsed = time.monotonic() - start
+                assert process.returncode == 130, (topology, sig.name, process.returncode)
+                results.append({'stdio': topology, 'signal': sig.name, 'exit': 130,
+                                'elapsed_ms': round(elapsed * 1000), 'stdin_kept_open': True})
+            finally:
+                if process.poll() is None:
+                    process.kill()
+                    process.wait()
+                for stream in [process.stdin, process.stdout, process.stderr]:
+                    if stream is not None:
+                        stream.close()
+                if fifo is not None:
+                    os.close(fifo)
+    return results
+
+
 def run(binary, direct=False):
     with tempfile.TemporaryDirectory(prefix='blaine-e0b-offline-') as directory:
         root = Path(directory)
@@ -62,6 +121,7 @@ def run(binary, direct=False):
             assert next(c for c in report['checks'] if c['id'] == 'transport')['code'] == 'OK'
             assert invoke('acp').returncode == 0
             assert invoke('disconnect', '--logout').returncode == 0
+            direct_signals = direct_signal_regression(installed, root, env)
         else:
             assert next(c for c in report['checks'] if c['id'] == 'tailscale')['code'] == 'INSTALL_REQUIRED'
         for args in ([] if direct else [('acp',)]) + [('acp', '--unknown'), ('acp', '--fixture', 'invalid'),
@@ -139,6 +199,7 @@ def run(binary, direct=False):
                       'malformed_invocations_stdout_empty': True, 'exit_23_propagated': True,
                       'byte_limit_exit': oversize.returncode, 'deadline_exit': timeout.returncode},
             'signals': cleanup,
+            'direct_inherited_stdio_signals': direct_signals if direct else [],
         }
 
 

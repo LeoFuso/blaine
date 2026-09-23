@@ -52,15 +52,45 @@ new session correlation and the same installation/node; requests are not replaye
 | Identity | PASS fixture | Signed server identity, client proof, wrong key/node/protocol, replay/reflection and UNKNOWN dependency rejection; exclusive/private state and stable key/node baseline. |
 | Actual installed PersonalACP subprocess over new relay | PASS local integration | Real Python ACP SDK/runtime initialize + session/new + EOF cleanup over loopback fixture transport; no remote peer or Task claim. |
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
-| macOS / WSL production candidate | PENDING | Earlier spike reachability/identity evidence remains valid only for its recorded scope. No new-path workstation result yet. |
+| macOS production candidate | PARTIAL live | Two runs on the designated Mac reused the same node/application identity; signed handshake, 1 MiB duplex stream, protocol cancellation/deadline/reconnect/disconnect and actual remote ACP passed. Subsequent OS SIGINT cleanup failed; correction requires a live repeat. |
+| WSL production candidate | PENDING | Earlier spike reachability/identity evidence remains valid only for its recorded scope. |
 | Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
-| Task independence | PASS local runtime; workstation repetition PENDING | The same controlled Restate Task remained WAITING with identical authoritative state after a real ACP subprocess session was disconnected through the fixture transport. |
+| Task independence | PASS bounded live Mac + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect and after the Mac acceptance script terminated its ACP process. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
 
 The first native readiness run exposed an empty successful `/health` response
 handling defect in the new adapter. It was fixed and the exact production probe
 then returned all five PASS. The previous unconditional MIRIX `/health` remains
 insufficient; the new check exercises the configured retrieval path without writes.
+
+### macOS inherited-stdio defect
+
+The [Mac transcript](macos-direct-before-stdio-fix.json) uses candidate commit
+`dadb3c540b18bd943064f9b7a2a160cb3c3b3c2a`. Initial
+[enrollment](macos-enrollment.json) correctly failed closed until the host's exact
+node/principal allowlist authorized the designated product installation. Two later
+runs passed the direct transport probes. Both identities persisted, with distinct
+session IDs. The script then reported `STOP: ACP did not exit after SIGINT`; the
+operator confirmed empty stderr. SIGTERM was not reached. Protocol cancellation
+acknowledgement and graceful remote ACP EOF do not prove local OS-signal cleanup.
+
+The same hang was reproduced on Linux without network authentication: start the
+compiled client, initialize ACP, leave inherited stdin open, send SIGINT. Blocking
+inherited descriptors are not necessarily enrolled in Go's poller; closing one
+from a cancellation callback can wait indefinitely for its blocked read/write.
+The earlier `os.Pipe` tests did not reproduce this property.
+
+The correction uses owned descriptor duplicates, nonblocking byte I/O and bounded
+POSIX poll on Linux/macOS. Cancellation interrupts both idle input and backpressured
+output, including remote exit. It restores descriptor flags and leaves the original
+descriptors open. The existing E0.A child descriptor/process-group path is unchanged.
+Regression coverage exercises the compiled client with inherited pipes and a named
+FIFO, both signals while input remains open, and blocked output. Relay fixtures also
+exercise remote exit/disconnect with open blocking input. Mac runtime verification
+of this correction remains pending; no new prerelease is published.
+The [correction validation](stdio-fix-validation.json) records the passing complete
+local client CI suite, six inherited-stdio signal cases and four reproducible
+target builds. This is not a new GitHub Actions run or Mac runtime result.
 
 ## Identity and policy lifecycle
 
@@ -107,7 +137,7 @@ must authorize only the two designated product installations. The experimental
 spike nodes are not silently imported or deleted. No additional download is needed
 for that review. [OPERATOR.md](OPERATOR.md) contains the subsequent exact IDE entries.
 
-Still required: actual Mac and WSL reports; signal/half-open/revocation behavior on
+Still required: corrected Mac signal acceptance and WSL reports; half-open/revocation behavior on
 those platforms; reboot/upgrade identity observation; host deployment persistence;
 least-privilege policy evidence; real JetBrains launch/auth; and the unrelated durable
 Task surviving session termination. Do not publish another prerelease or call E0.C
@@ -116,7 +146,8 @@ only after E0.C acceptance. E0.E/F still own full onboarding/configuration accep
 
 Retained observations: [host readiness](host-readiness.json), [real ACP subprocess](installed-acp.txt),
 [Task before](task-before.json), [Task after local disconnect](task-after-local-disconnect.json),
-and [summary](summary.json). The controlled Task remains at its human wait for the
+[Task after Mac termination](task-after-macos-disconnect.json), and [summary](summary.json).
+The controlled Task remains at its human wait for the
 designated-workstation comparisons; it is not the implementation Task.
 
 [Local CI transcript](client-ci.txt) and [four-target build validation](build-validation.json)

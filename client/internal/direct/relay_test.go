@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"blaine.local/client/internal/process"
+	"golang.org/x/sys/unix"
 )
 
 func TestACPChild(t *testing.T) {
@@ -206,10 +207,10 @@ func TestRelayCancellationUnblocksIdleInputAndBackpressuredOutput(t *testing.T) 
 	if e != nil {
 		t.Fatal(e)
 	}
-	inR, inW, _ := os.Pipe()
+	inR, inW := blockingPipe(t)
 	defer inR.Close()
 	defer inW.Close()
-	outR, outW, _ := os.Pipe()
+	outR, outW := blockingPipe(t)
 	defer outR.Close()
 	defer outW.Close()
 	log, _ := os.Create(filepath.Join(t.TempDir(), "stderr"))
@@ -229,5 +230,53 @@ func TestRelayCancellationUnblocksIdleInputAndBackpressuredOutput(t *testing.T) 
 	case <-done:
 	case <-time.After(time.Second):
 		t.Fatal("client relay stuck on inherited stdio")
+	}
+}
+
+// Match blocking descriptors inherited by a real executable. os.Pipe enrolls its
+// files in Go's poller and hid the original Close/Read deadlock in this test.
+func blockingPipe(t *testing.T) (*os.File, *os.File) {
+	t.Helper()
+	var fds [2]int
+	if e := unix.Pipe(fds[:]); e != nil {
+		t.Fatal(e)
+	}
+	return os.NewFile(uintptr(fds[0]), "blocking-reader"), os.NewFile(uintptr(fds[1]), "blocking-writer")
+}
+
+func TestRelayRemoteExitUnblocksOpenInheritedInput(t *testing.T) {
+	for _, abrupt := range []bool{false, true} {
+		t.Run(map[bool]string{false: "exit", true: "disconnect"}[abrupt], func(t *testing.T) {
+			h, url, key := testHost(t)
+			h.ACP = func(ctx context.Context, s *Session) error {
+				if abrupt {
+					s.Close()
+					return nil
+				}
+				return s.Send(ctx, Exit, []byte{0})
+			}
+			ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+			defer cancel()
+			s, _, e := ClientHandshake(ctx, dialTest(t, url), key, h.Bootstrap, "fixture-node", "acp")
+			if e != nil {
+				t.Fatal(e)
+			}
+			inR, inW := blockingPipe(t)
+			defer inR.Close()
+			defer inW.Close()
+			outR, outW := blockingPipe(t)
+			defer outR.Close()
+			defer outW.Close()
+			done := make(chan error, 1)
+			go func() { done <- RelayClient(ctx, s, process.Streams{In: inR, Out: outW}) }()
+			select {
+			case e := <-done:
+				if (e != nil) != abrupt {
+					t.Fatal(e)
+				}
+			case <-time.After(time.Second):
+				t.Fatal("remote termination left input blocked")
+			}
+		})
 	}
 }

@@ -18,10 +18,15 @@ import (
 
 // ACP presents the standard agent-owned authentication method. It deliberately
 // advertises no workstation capabilities. Real registration remains E0.D.
-func ACP(ctx context.Context, root string, streams process.Streams) error {
-	stop := context.AfterFunc(ctx, func() { streams.In.Close(); streams.Out.Close() })
-	defer stop()
-	reader := bufio.NewReaderSize(streams.In, wire.Limit+1)
+func ACP(parent context.Context, root string, streams process.Streams) error {
+	ctx, cancel := context.WithCancel(parent)
+	defer cancel()
+	stdio, e := borrowStdio(ctx, streams)
+	if e != nil {
+		return errors.New("LOCAL_INVALID: ACP stdio cannot be made interruptible")
+	}
+	defer stdio.Close()
+	reader := bufio.NewReaderSize(stdio.In, wire.Limit+1)
 	guard := wire.NewSession()
 	var n *Network
 	var session *Session
@@ -157,7 +162,7 @@ func ACP(ctx context.Context, root string, streams process.Streams) error {
 				break
 			}
 			// Reader may already contain the next request: preserve all buffered bytes.
-			return relayClient(ctx, session, streams, io.MultiReader(bytes.NewReader(append([]byte(nil), line...)), reader))
+			return relayClient(ctx, cancel, session, io.MultiReader(bytes.NewReader(append([]byte(nil), line...)), reader), stdio.Out)
 		default:
 			fault = map[string]any{"code": -32601, "message": "Method unavailable before the authenticated session"}
 		}
@@ -172,7 +177,7 @@ func ACP(ctx context.Context, root string, streams process.Streams) error {
 		if e = guard.Validate(data, 1); e != nil {
 			return e
 		}
-		if _, e = streams.Out.Write(data); e != nil {
+		if _, e = stdio.Out.Write(data); e != nil {
 			return e
 		}
 	}

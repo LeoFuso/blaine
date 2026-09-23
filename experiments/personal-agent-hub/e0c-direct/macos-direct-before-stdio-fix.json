@@ -1,0 +1,84 @@
+{
+  "status": "PARTIAL",
+  "observed_date": "2026-09-23",
+  "source": "Operator-supplied macOS accept.sh transcript; not an independently retrieved report archive",
+  "peer": "Leonardos-MacBook-Pro.local",
+  "candidate": {
+    "client_version": "0.1.0-e0c-direct",
+    "protocol_version": 1,
+    "build_commit": "dadb3c540b18bd943064f9b7a2a160cb3c3b3c2a",
+    "go_version": "go1.27.1",
+    "os": "darwin",
+    "arch": "arm64"
+  },
+  "runs": [
+    {
+      "identity": {
+        "node_id": "nEEbpyYWN921CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-9f5788915e97f2dfb2fbcd1b4dbafd23"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "e0": "NOT_READY",
+        "peer": {
+          "node_id": "nEEbpyYWN921CNTRL",
+          "principal_id": "4301359180507170"
+        },
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "a766f588f518c2b0b103315cf1c49f50",
+        "status": "CONNECTED"
+      }
+    },
+    {
+      "identity": {
+        "node_id": "nEEbpyYWN921CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-9f5788915e97f2dfb2fbcd1b4dbafd23"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "e0": "NOT_READY",
+        "peer": {
+          "node_id": "nEEbpyYWN921CNTRL",
+          "principal_id": "4301359180507170"
+        },
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "80c56830c4e985130ffc26e9ddfa9c58",
+        "status": "CONNECTED"
+      }
+    }
+  ],
+  "local_acp_signals": {
+    "SIGINT": "FAIL: ACP did not exit within the script timeout; script kills the candidate process",
+    "stderr": "Operator confirmed empty",
+    "SIGTERM": "NOT_REACHED"
+  },
+  "interpretation": "Protocol cancellation/clean EOF passed; these do not prove OS-signal cleanup. E0.C remains PARTIAL. No release or E0.D acceptance."
+}

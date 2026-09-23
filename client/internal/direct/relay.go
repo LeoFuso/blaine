@@ -138,17 +138,24 @@ func RelayHost(parent context.Context, s *Session, spec process.Spec, diagnostic
 	return s.Send(ctx, Exit, []byte{byte(code)})
 }
 
-// RelayClient accepts inherited stdio files. Closing a session interrupts reads
-// without waiting for the IDE to produce another byte; no shell or text codec.
+// RelayClient adapts inherited descriptors to cancellable byte I/O. The same
+// lifetime covers idle input, backpressured output and remote disconnect.
 func RelayClient(parent context.Context, s *Session, streams process.Streams) error {
-	return relayClient(parent, s, streams, streams.In)
-}
-func relayClient(parent context.Context, s *Session, streams process.Streams, input io.Reader) error {
 	ctx, cancel := context.WithCancel(parent)
+	defer cancel()
+	stdio, e := borrowStdio(ctx, streams)
+	if e != nil {
+		return e
+	}
+	defer stdio.Close()
+	return relayClient(ctx, cancel, s, stdio.In, stdio.Out)
+}
+func relayClient(ctx context.Context, cancel context.CancelFunc, s *Session, input io.Reader, output io.Writer) error {
 	var wg sync.WaitGroup
-	defer func() { cancel(); s.Close(); streams.In.Close(); streams.Out.Close(); wg.Wait() }()
-	stop := context.AfterFunc(ctx, func() { s.Close(); streams.In.Close(); streams.Out.Close() })
+	defer func() { cancel(); s.Close(); wg.Wait() }()
+	stop := context.AfterFunc(ctx, func() { s.Close() })
 	defer stop()
+
 	sent := make(chan error, 1)
 	received := make(chan error, 1)
 	guard := wire.NewSession()
@@ -185,7 +192,7 @@ func relayClient(parent context.Context, s *Session, streams process.Streams, in
 			}
 			// A frame may contain multiple complete ACP lines; partial text cannot cross
 			// frame boundaries here. Binary diagnostics use the separate probe mode.
-			if e = guard.Forward(bytes.NewReader(b), streams.Out, 1); e != nil {
+			if e = guard.Forward(bytes.NewReader(b), output, 1); e != nil {
 				received <- e
 				return
 			}

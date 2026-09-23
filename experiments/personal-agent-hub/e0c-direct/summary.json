@@ -1,6 +1,6 @@
 {
   "status": "PARTIAL",
-  "scope": "local implementation and real host runtime; designated workstation candidate tests pending",
+  "scope": "Direct candidate implementation, real host runtime and two designated macOS transport runs; OS-signal defect under correction",
   "go": "1.27.1",
   "tsnet": "1.102.4",
   "websocket": "1.8.15",
@@ -13,10 +13,12 @@
   },
   "local_actual_acp": "initialize, new session, EOF and abrupt disconnect passed through fixture transport",
   "task_state_unchanged": true,
-  "macos_candidate": "PENDING",
+  "macos_candidate": "PARTIAL: stable identity, signed handshake, 1 MiB binary duplex, protocol cancellation/deadline/reconnect/disconnect and remote ACP passed twice; OS SIGINT cleanup failed",
   "wsl_candidate": "PENDING",
   "jetbrains_candidate": "PENDING",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "NOT_PUBLISHED",
-  "e0d": "BLOCKED"
+  "e0d": "BLOCKED",
+  "task_independence_macos": "PASS bounded live evidence: same controlled Restate Task remains WAITING with identical authoritative state after macOS script termination",
+  "stdio_correction": "PASS local Linux inherited-descriptor regressions/race/vet and four-target reproducible builds; live Mac repeat PENDING"
 }
