@@ -93,6 +93,29 @@ This bounded information-ablation result does not establish generated-lesson qua
 causal generalization or production readiness. Historical proposals below retain their
 III.1 scope; current sequencing remains in the roadmap.
 
+## III.8 workspace-discovery finding — 2026-09-23
+
+[III.8](../../milestones/049-track-iii-8-workspace-discovery.md) is **FAIL**: real local
+BGE-M3 and Graphify plus lexical retrieval add one distinct required target per
+revision, below two. Exact lexical results, source freshness, domain isolation and
+the corrected 2 KiB complete-response limit hold; the canonical reuse target is
+absent from final selection. Broad candidate recall alone does not prove useful
+narrow consumption. Graph relations added context but no new required target over
+the strong lexical baseline in this corpus.
+
+Workspace indexes remain derived views of current source, separate from historical
+Memory and authoritative evidence. Scope applies before ranking, statistics and
+traversal; freshness and structural assertions are revalidated against source.
+Retained mutation evidence exposes stale and forbidden references when these checks
+are bypassed. Fresh lexical evidence should retain independent freshness when a
+merged semantic/structural contribution is stale. Budget diagnostics as well as
+content; metadata consumes context and remains security-scoped.
+
+This experiment does not adopt Graphify/Claude Context, change Memory contracts or
+validate NoveltyGate. Ranking, chunking/noise and conservative fallback need further
+research before gate use. III.9 remains unstarted; historical proposals below retain
+their III.1 scope. No earlier increment's result has been rewritten.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

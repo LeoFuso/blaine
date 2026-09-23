@@ -1,0 +1,6 @@
+--- initial/discover.py
++++ discover.py
+@@ -97 +97,2 @@
+-            if len(wire(proposed))+1<=2048:packet=proposed
++            envelope={'packet':proposed,'diagnostic':{'status':proposed['status'],'selected':len(proposed['entries']),'partial':True}}
++            if len(wire(envelope))+2<=2048:packet=proposed

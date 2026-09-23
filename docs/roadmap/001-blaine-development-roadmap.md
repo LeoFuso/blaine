@@ -610,7 +610,13 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
-**2026-09-23: III.7 PASS within the fixed synthetic local-model workload.**
+**2026-09-23: III.8 FAIL under frozen workspace-discovery thresholds.**
+[Milestone 049](../milestones/049-track-iii-8-workspace-discovery.md) records one
+distinct non-lexical gain per revision, below two; exact hits, freshness, isolation
+and corrected full-response budget pass. The canonical reuse target was missed.
+A separately authorized III.8 follow-up is recommended; III.9 remains unstarted.
+
+**III.7 remains PASS within the fixed synthetic local-model workload.**
 [Milestone 048](../milestones/048-track-iii-7-learned-memory-utility.md) records two
 paired local-Qwen repetitions: matching 0/4 → 4/4, irrelevant and near-match 4/4 → 4/4.
 The failure-as-success rendering causes an actual incorrect commitment in both
@@ -636,7 +642,7 @@ The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-
 covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
 III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
 III.9 Novelty/Simplicity gates and III.10 durable/distributed lineage.
-III.8–III.10 remain future experiments, not implementation commitments or authorization.
+III.9–III.10 remain future experiments, not implementation commitments or authorization.
 
 **III.2 executed** the user-assigned 11-context tree with literal read/write
 oracles, forged-binding/direct-ID/malformed-input checks and an isolated mutation.
@@ -674,13 +680,22 @@ schema extension preserves verified success/failure provenance without changing 
 gate logic. The frozen III.5 prototype/history remains unchanged. This demonstrates
 finite synthetic utility, not universal improvement or automatic lesson generation.
 
-**Next proposal: III.8**, the
-[bounded workspace-discovery comparison](../../experiments/track-iii-007/README.md#exact-proposed-iii8-experiment--not-started).
-It would compare lexical-only and combined structural/semantic discovery over 12
-pinned queries and two source revisions, with 2 KiB packets, freshness and security
-oracles. **Not started; explicit authorization required.** Generated reflection quality,
-causal support, stale/conflicting memory, retrieval scaling and production schema
-contracts remain open. No runtime or provider adoption occurred.
+**III.8 executed** real local BGE-M3 and Graphify extraction alongside a token-based
+lexical baseline on 12 frozen queries and two immutable source snapshots. The
+[experiment](../../experiments/track-iii-008/README.md) records FAIL: combined semantic
+coverage improves 1/4 → 2/4, structural coverage stays 8/8, and exact lexical coverage
+stays 4/4 in each revision. Only one distinct new target survives the bounded packet;
+the canonical reuse and retry-policy targets are missed. No stale/forbidden output
+appears with enforcement; both leakage mutations are caught. Complete responses fit
+2048 bytes after a documented budget-only correction. Stale derived candidates can
+also suppress fresh lexical fallback in the conservative merged-candidate design.
+
+**Next recommendation:** separately authorize an III.8 follow-up on selection quality
+and independent freshness before relying on discovery for gates. The
+[exact III.9 proposal](../../experiments/track-iii-008/README.md#exact-proposed-iii9-experiment--not-started)
+compares bounded novelty/simplicity advice for duplicate, legitimate and near-match
+abstraction proposals. **III.9 is not started.** No production dependency or runtime
+adoption occurred; all historical III.1–III.7 results retain their original scope.
 
 ## How to resume development
 
@@ -778,10 +793,10 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.7 learned memory utility PASS; stopped at its boundary.**
-  [Evidence and proposed III.8](../../experiments/track-iii-007/README.md).
-  III.8 has not started and requires explicit authorization; no runtime changes
-  or dependency adoption. Product and operational priorities below are unchanged.
+- **Track III: III.8 workspace discovery FAIL; stopped at its boundary.**
+  [Evidence and conditional III.9 proposal](../../experiments/track-iii-008/README.md).
+  Recommend separately authorized III.8 follow-up; III.9 remains unstarted. No
+  runtime/dependency adoption. Product and operational priorities below are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux

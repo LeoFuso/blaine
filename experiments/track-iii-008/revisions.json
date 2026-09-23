@@ -1,0 +1,60 @@
+{
+  "A": {
+    "files": {
+      "employer-x/hidden.py": "83a28384f8c091e73cab83e1604578520bee186893b7115104883554ae7badff",
+      "personal/audit.py": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+      "personal/book.py": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+      "personal/contracts.py": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+      "personal/gate.py": "327402a6817eaeb28f7dd2911ab13256bbeff6b1908e9c64ad235bc821d01f50",
+      "personal/helpers.py": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+      "personal/identity.py": "32a063042df50ccde0d030012c243ccd022608bd50ba2aa05eed77296ac13655",
+      "personal/legacy.py": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+      "personal/notes/note_00.py": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+      "personal/notes/note_01.py": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+      "personal/notes/note_02.py": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+      "personal/notes/note_03.py": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+      "personal/notes/note_04.py": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+      "personal/notes/note_05.py": "93f1e948ce59ddc0912091eb2a7e80bd4cf443b6a8db2a33ebe4113fc3fbd701",
+      "personal/notes/note_06.py": "9c0f550268dfb7337ef069a9a4c7e6dd04c4b76ffab17942afb82e35688a8107",
+      "personal/notes/note_07.py": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+      "personal/notes/note_08.py": "fb4a1afd54c78717172798807ab02714e59a2e95c4a4e8f7b7e9048edcabcf2a",
+      "personal/notes/note_09.py": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+      "personal/notes/note_10.py": "0531f5bb083e04bcbcbee04fd9c9478a94e041c1171779c28e92a0fc3475e27c",
+      "personal/notes/note_11.py": "ca3d10886311deef09d18ee4c0fc890d5fd6aab7476ea29cffd3eea81b9bd67c",
+      "personal/publish.py": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+      "personal/settings.py": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+      "personal/transport.py": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+      "personal/workflow.py": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e"
+    },
+    "id": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+  },
+  "B": {
+    "files": {
+      "employer-x/hidden.py": "83a28384f8c091e73cab83e1604578520bee186893b7115104883554ae7badff",
+      "personal/adapters/parcel.py": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+      "personal/audit.py": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+      "personal/book.py": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+      "personal/contracts.py": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+      "personal/gate.py": "067a4f3d457fa539721f31651849469c053ff285668f34babb3731ac5057484a",
+      "personal/helpers.py": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+      "personal/identity.py": "65d1b43e370771997abad2cc30bb386cd44eef19b010a0a408669b4c41052bfd",
+      "personal/notes/note_00.py": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+      "personal/notes/note_01.py": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+      "personal/notes/note_02.py": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+      "personal/notes/note_03.py": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+      "personal/notes/note_04.py": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+      "personal/notes/note_05.py": "93f1e948ce59ddc0912091eb2a7e80bd4cf443b6a8db2a33ebe4113fc3fbd701",
+      "personal/notes/note_06.py": "9c0f550268dfb7337ef069a9a4c7e6dd04c4b76ffab17942afb82e35688a8107",
+      "personal/notes/note_07.py": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+      "personal/notes/note_08.py": "fb4a1afd54c78717172798807ab02714e59a2e95c4a4e8f7b7e9048edcabcf2a",
+      "personal/notes/note_09.py": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+      "personal/notes/note_10.py": "0531f5bb083e04bcbcbee04fd9c9478a94e041c1171779c28e92a0fc3475e27c",
+      "personal/notes/note_11.py": "ca3d10886311deef09d18ee4c0fc890d5fd6aab7476ea29cffd3eea81b9bd67c",
+      "personal/publish.py": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+      "personal/settings.py": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+      "personal/store.py": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+      "personal/workflow.py": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b"
+    },
+    "id": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+  }
+}

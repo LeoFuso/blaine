@@ -1,0 +1,29 @@
+{
+  "changed_call": [
+    "dispatch -> persist -> seal",
+    "dispatch -> checkpoint -> seal"
+  ],
+  "deleted": "personal/legacy.py::persist",
+  "moved_file": [
+    "personal/transport.py",
+    "personal/adapters/parcel.py"
+  ],
+  "renamed_symbols": [
+    [
+      "HandleFold",
+      "IdentityFold"
+    ],
+    [
+      "WindowGate",
+      "AttemptFence"
+    ]
+  ],
+  "replacement": "personal/store.py::checkpoint",
+  "unchanged": [
+    "DeliveryPort",
+    "StampBook",
+    "seal",
+    "retry_ceiling",
+    "READY_MARKER"
+  ]
+}

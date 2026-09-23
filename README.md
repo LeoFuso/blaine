@@ -25,7 +25,7 @@ unnecessary paid frontier inference; cloud dispatch remains authority-controlled
 | Start here | Purpose |
 | --- | --- |
 | [Development roadmap](docs/roadmap/001-blaine-development-roadmap.md) | Current program, priorities, dependencies and handoff |
-| [Track III: context, memory and verified learning](experiments/track-iii-007/README.md) | III.7 learned memory utility PASS; III.8 proposed and unstarted; no runtime adoption |
+| [Track III: context, memory and verified learning](experiments/track-iii-008/README.md) | III.8 workspace discovery FAIL: insufficient non-lexical gain; III.9 unstarted; no runtime adoption |
 | [Documentation map](docs/README.md) | Canonical sources: architecture, status, contracts, operations and historical evidence |
 | [Personal Agent Hub E0–E3](docs/personal-agent-hub.md) | Canonical workstation/client product design and implementation gates |
 | [Architecture](docs/architecture.md) and [ADR index](docs/decisions/README.md) | Ownership and architectural decisions; respect each ADR's status |
