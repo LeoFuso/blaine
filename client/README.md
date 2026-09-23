@@ -12,6 +12,10 @@ still unavailable; no second workstation was designated. See the
 [evidence](../experiments/personal-agent-hub/e0c/README.md). Registration and IntelliJ
 configuration remain later slices. Full E0 is not accepted.
 
+For workstation installation, use the [GitHub Release installation guide](INSTALL.md).
+No local build or copy from the Blaine host is required. Branch artifacts and
+release semantics are documented there; this client remains an alpha candidate.
+
 ## Commands and exits
 
 | Invocation | Current behavior |
