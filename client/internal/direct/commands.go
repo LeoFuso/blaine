@@ -21,7 +21,7 @@ func Connect(ctx context.Context, root string, interactive, verifyTransport bool
 	defer n.Close()
 	// Public identity observation helps the operator deploy the narrow host policy;
 	// it is neither credentials nor an E0.D registration receipt.
-	_ = json.NewEncoder(out).Encode(map[string]any{"workstation_id": n.Installation.ID(), "node_id": n.Node, "node_reused": n.Reused})
+	_ = json.NewEncoder(out).Encode(map[string]any{"workstation_id": n.Installation.ID(), "node_id": n.Node, "node_reused": n.Reused, "embedded_mtu": n.MTU.Value, "mtu_source": n.MTU.Source})
 	s, response, e := n.Connect(ctx, "handshake")
 	if e != nil {
 		return e
@@ -53,6 +53,9 @@ func Logout(parent context.Context, root string, reset bool) error {
 		return e
 	}
 	defer i.Close()
+	if _, e = prepareNetworkMTU(); e != nil {
+		return e
+	}
 	server := &tsnet.Server{Dir: filepath.Join(i.Dir, "tsnet"), Hostname: "blaine-" + strings.TrimPrefix(i.ID(), "ws-")[:12], UserLogf: func(string, ...any) {}, Logf: func(string, ...any) {}}
 	if e = server.Start(); e != nil {
 		return errors.New("LOGOUT_UNAVAILABLE: state preserved")

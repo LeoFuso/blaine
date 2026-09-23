@@ -3,7 +3,8 @@
 The operator selected embedded tsnet plus a direct Blaine application transport on
 2026-09-23. Implementation and [evidence](../../experiments/personal-agent-hub/e0c-direct/README.md)
 are **PARTIAL**; designated Mac transport/ACP probes and corrected OS-signal cleanup
-passed, while WSL and integrated acceptance remain pending. This supersedes
+passed. WSL transport/ACP/signals passed with a diagnostic MTU override; normal-launch
+MTU handling and integrated acceptance remain pending. This supersedes
 the previous SSH product-transport contract, retained in Git and the
 [prior E0.C evidence](../../experiments/personal-agent-hub/e0c/README.md). Tailscale
 SSH is still useful for administration. Protocol version 1 is pre-stability: the
@@ -98,3 +99,23 @@ never logs out or deletes identity. System Tailscale and unrelated Tasks are unt
 
 Simultaneous Blaine processes fail `INSTANCE_BUSY`; no background broker, workstation
 runtime, updater, registration database, workspace effects or IDE plugin is added.
+
+## WSL packet-size compatibility
+
+The designated WSL interface has MTU 1280. Default embedded settings completed
+handshakes but repeatedly stalled the 1 MiB frame; the same binary and identities
+passed full transport/ACP/signal acceptance with an internal MTU of 1200. Before
+embedded startup, the candidate now inspects the WSL default-route interface using
+read-only native APIs. Only the measured 1280 case selects 1200, leaving space for
+up to 80 bytes of encapsulation. Linux outside WSL and macOS retain SDK defaults.
+No interface, route, machine-wide environment, credential or system daemon changes.
+
+Pinned tsnet v1.102.4 exposes no per-Server MTU setting; the adapter uses its
+process-local `TS_DEBUG_MTU` lookup before `Server.Start`. This compatibility bridge
+is internal to the client and must be reviewed on SDK upgrades. Startup does not
+implement ongoing path-MTU adaptation. Unknown WSL default-route MTU fails with an
+actionable network error. Explicit diagnostic overrides are validated and identified
+as such in connection evidence; normal use requires no environment variable.
+Connection observations report `embedded_mtu` and `mtu_source`. The application
+frame limit remains 1 MiB. IPv6-only paths are unverified; acceptance here uses the
+canonical private IPv4 Hub listener. Automatic selection still needs a live repeat.

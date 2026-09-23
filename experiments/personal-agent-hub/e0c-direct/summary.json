@@ -14,7 +14,7 @@
   "local_actual_acp": "initialize, new session, EOF and abrupt disconnect passed through fixture transport",
   "task_state_unchanged": true,
   "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
-  "wsl_candidate": "PARTIAL: two live direct binary/ACP probes PASS with TS_DEBUG_MTU=1200 on eth0 MTU 1280. Node/application IDs reused; signals not reached because mkfifo failed under /mnt/c. Native-home repeat pending.",
+  "wsl_candidate": "PASS live transport/ACP signal batch with TS_DEBUG_MTU=1200 and native-home FIFOs: two 1 MiB probes, stable identity, real ACP and SIGINT/SIGTERM exit 130. Normal-launch automatic-MTU repeat remains pending.",
   "jetbrains_candidate": "PENDING",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "NOT_PUBLISHED",
@@ -22,6 +22,7 @@
   "task_independence_macos": "PASS bounded live evidence: controlled Restate Task remains WAITING with identical authoritative state after both successful Mac ACP signal terminations",
   "stdio_correction": "PASS local Linux regression suite and four-target builds; PASS designated macOS arm64 live signal batch",
   "macos_identity": "PASS reuse across process restarts and dadb3c5 -> 77a974c binary replacement; reboot/revocation pending",
-  "task_independence_wsl": "PASS bounded live evidence: controlled Restate Task remained WAITING with identical authoritative state after two real WSL ACP sessions ended",
-  "wsl_product_mtu": "OPEN: diagnostic override proves viability; default binary still fails on measured WSL interface. Automatic adapter handling and repeat without manual override required."
+  "task_independence_wsl": "PASS bounded live: authoritative WAITING Task state unchanged after both WSL ACP probe sessions and SIGINT/SIGTERM terminations",
+  "wsl_product_mtu": "Implemented and locally validated: WSL default-route MTU 1280 selects embedded MTU 1200 automatically; no OS network writes. Live no-override candidate repeat pending.",
+  "automatic_mtu_validation": "Final complete client CI PASS, including race/vet/offline regressions and four reproducible target builds. Initial preexisting process-cleanup test failure recorded; five targeted repetitions and final full run passed."
 }

@@ -53,7 +53,7 @@ new session correlation and the same installation/node; requests are not replaye
 | Actual installed PersonalACP subprocess over new relay | PASS local integration | Real Python ACP SDK/runtime initialize + session/new + EOF cleanup over loopback fixture transport; no remote peer or Task claim. |
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
 | macOS production candidate | PASS live transport/ACP signal batch | Corrected commit `77a974c` passed two direct runs and real remote ACP SIGINT/SIGTERM exit 130. Node/application identity survived process restarts and binary replacement from `dadb3c5`. JetBrains, reboot/revocation and policy gates remain separate. |
-| WSL production candidate | PARTIAL live; binary/ACP PASS with MTU override | Candidate `77a974c` passed two full direct probes with `TS_DEBUG_MTU=1200` after repeated default-setting timeouts on `eth0` MTU 1280. Both identities reused. Harness FIFO creation under `/mnt/c` stopped the later OS-signal tests; native-home repeat pending. Automatic product MTU handling remains open. |
+| WSL production candidate | PASS live transport/ACP/signals with diagnostic MTU | Candidate `77a974c` passed two full direct probes and SIGINT/SIGTERM exit 130 with `TS_DEBUG_MTU=1200` and FIFOs in the native home. Both identities reused. Automatic product MTU handling still needs a normal-launch candidate repeat. |
 | Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
 | Task independence | PASS bounded live Mac/WSL + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, both Mac ACP signal terminations, and two real WSL remote ACP sessions ending with the MTU override. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
@@ -159,7 +159,8 @@ smaller test payload, extended timeout, weakened identity gate or OS-interface e
 The pinned [upstream MTU implementation](https://github.com/tailscale/tailscale/blob/v1.102.4/net/tstun/mtu.go)
 accepts that diagnostic override and budgets up to 80 bytes for encapsulation.
 This temporary override is **not** the accepted production UX or an automatic
-adapter fix. A normal-launch candidate repeat and IPv6 limitations remain gates.
+adapter fix. A normal-launch candidate repeat remains a gate; IPv6-only paths are
+an unverified limitation.
 
 That run stopped before SIGINT at `mkfifo: File exists` in a newly created report
 directory under the Windows download mount. Its filesystem-level cause has not
@@ -169,6 +170,32 @@ The repository harness now places report/FIFO files under the native home and
 preflights FIFO creation before live probes. It does not touch installation keys,
 mount options or Windows configuration. Existing packages are unchanged and need
 no replacement for the native-home comparison. Shell syntax validation passed.
+
+The [native-home WSL repeat](wsl-mtu-signal-pass.json) then passed the entire batch:
+two 1 MiB binary probes with the expected SHA-256, real ACP sessions and both local
+OS signals exiting 130. The copied four package files retained their checksums;
+node/application identities were unchanged. The host confirmed all sessions ended
+and the [authoritative Task snapshot](task-after-wsl-signals.json) remained identical.
+This establishes signal acceptance with the diagnostic MTU override. It does not
+establish that the unchanged product defaults work on that interface.
+
+The automatic-MTU candidate correction inspects the WSL default-route interface
+without a CLI, OS network writes or elevated privileges. The measured MTU 1280 case
+sets embedded MTU 1200 before startup; other supported platforms keep their default.
+tsnet v1.102.4 has no per-Server MTU field, so the bridge uses its process-local
+`TS_DEBUG_MTU` lookup, isolated behind the client adapter. It is explicitly a pinned
+SDK dependency, with a subprocess test proving the actual SDK consumes the setting;
+it must be reviewed on dependency upgrades. Read/unknown-route failures fail closed;
+manual diagnostic overrides are bounded and marked separately in connection output.
+Normal startup needs no operator flag or environment variable. No live no-override
+result is claimed until the corrected candidate runs on the designated WSL peer.
+The [automatic-MTU validation](wsl-mtu-validation.json) records final local CI PASS:
+formatting, Go tests/race/vet, offline process/stdio regressions, host unit tests and
+four reproducible target builds. The initial complete run failed the preexisting
+process-descendant cleanup test; the PID was absent after test cleanup, five targeted
+package repetitions passed, and the subsequent full suite passed. That initial
+observation remains unexplained and is retained as a validation limitation. Process
+cleanup implementation was not changed by the MTU correction.
 
 ## Identity and policy lifecycle
 

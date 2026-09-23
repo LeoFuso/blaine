@@ -30,6 +30,7 @@ type Network struct {
 	Node         string
 	Reused       bool
 	Bootstrap    Bootstrap
+	MTU          networkMTU
 }
 
 func OpenNetwork(ctx context.Context, root string, b Bootstrap, interactive bool, diagnostics io.Writer) (*Network, error) {
@@ -54,6 +55,10 @@ func OpenNetwork(ctx context.Context, root string, b Bootstrap, interactive bool
 			n.Close()
 		}
 	}()
+	n.MTU, e = prepareNetworkMTU()
+	if e != nil {
+		return nil, e
+	}
 	ready, cancel := context.WithTimeout(ctx, 3*time.Minute)
 	defer cancel()
 	var once sync.Once
