@@ -48,6 +48,7 @@ semantic role rather than treating this as a date-based precedence ladder:
 | Infrastructure components and deployment foundation | [Platform infrastructure](platform-infrastructure.md) |
 | Active rootless ownership, normal operation and rollback | [Rootless operations](platform-rootless-docker.md) |
 | Actual telemetry coverage and known gaps | [Observability inventory](platform-observability-inventory.md) |
+| How credentials reach a running process | [Secret delivery](platform-secrets.md) |
 | GPU/vLLM collection and deployment | [GPU/vLLM telemetry](platform-gpu-vllm-telemetry.md) |
 | Fleet/Cloud configuration, activation restrictions and recovery | [Grafana Cloud runbook](platform-grafana-cloud.md) |
 | Backup/recovery procedures and paused historical work | [Operations/recovery](platform-operations.md), [legacy D1 checkpoint](platform-d1.md) |

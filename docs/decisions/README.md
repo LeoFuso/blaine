@@ -116,3 +116,6 @@ ADR’s own status before treating it as an accepted constraint.
   the [Cloud runbook](../platform-grafana-cloud.md).
 - [ADR 0022 — Workstation Connection and Personal Agent Client Architecture](0022-workstation-personal-agent-client.md)
   records the accepted Hub boundary; validation remains pending E0–E3.
+- [ADR 0023 — Runtime Secret Delivery and Materialization](0023-runtime-secret-delivery-and-materialization.md)
+  fixes Bitwarden as source of truth and removes the secret manager from the
+  runtime path; operations live in the [secrets runbook](../platform-secrets.md).
