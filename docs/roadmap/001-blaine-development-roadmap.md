@@ -569,11 +569,28 @@ failure should first challenge selection/condensation before blaming model abili
 Smarter routing needs real execution history. Model failure caused by inadequate
 context must not be misclassified as model capability failure.
 
+**Current baseline: Policy C — local-first execution with bounded authorized
+escalation**, accepted direction in [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
+and implemented in [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
+Every eligible Task starts locally, extra turns are a cost rather than a failure,
+and escalation is a deterministic recommendation that only the trusted boundary
+admits. It exists to produce the evidence a smarter pre-router would have to beat.
+
+```text
+CURRENT:   Policy C — local-first + bounded escalation
+FUTURE:    Policy B — deterministic heuristic pre-routing
+           Policy A — classifier pre-routing (Jev)
+FUTURE:    controlled downgrade sampling to evaluate remote recommendations
+TARGET:    cost to successful completion, not classifier accuracy
+```
+
 | Slice | Plan and evidence gate |
 | --- | --- |
 | C1 — Failure taxonomy | Candidate distinctions: capability insufficient, context insufficient, policy denied, worker failure, tool failure, invalid output, external dependency and verifier rejection. Do not freeze categories before real cases support them. |
-| C2 — Escalation semantics | Specify who judges previous capability insufficient and what evidence warrants escalation. Separate runtime lifecycle, routing recommendation, authority limits and verifier ownership; no omnipotent escalation subsystem or self-issued grants. |
-| C3 — Jev vs Qwen carveout | **Provider integration exists; the comparison does not.** Jev remains a candidate only: it plugs into the existing `WorkloadClassifier` and boundary-observer seams, runs in shadow mode so no routing outcome changes, and has one real authenticated invocation ([milestone 041](../milestones/041-jev-provider-candidate.md)). The comparison record shape and aggregation rules are prepared and run nothing. Still required: approximately 20–30 real Blaine Tasks comparing classification, decision error, latency and cost, with retained fixtures and evaluation labels. Adoption requires measured benefit and a human review; do not rebuild the provider. |
+| C2 — Escalation semantics | **Partially implemented by Policy C**: a deterministic recommendation, trusted admission, escalation as an outcome rather than a diagnosis, and no self-issued grant. Still open: who judges previous capability insufficient, and what evidence warrants escalation beyond the two deterministic conditions in use. |
+| C3 — Policy A, classifier pre-routing (Jev) | Jev is integrated, authenticated and **unadopted**; do not rebuild it and do not invent a use case for it. Adoption requires measured improvement against both Policy C and Policy B. Its existence is not a reason to place it in the runtime path. |
+| C3b — Policy B, deterministic heuristic pre-routing | A cheap baseline any classifier must beat. The heuristic is deliberately undefined: derive it from real Policy C escalation evidence rather than inventing rules in advance. |
+| C3c — Controlled exploration | Following a remote recommendation produces no evidence about whether local would have sufficed, so a router can become trivially conservative. A bounded downgrade sample must be randomized or explicitly defined, recorded, bounded, low-risk, distinguishable from normal routing, and unable to change policy automatically. |
 | C4 — Cost-to-success routing | Optimize expected total cost to successful completion, not the cheapest invocation. Include retries, failure probability, escalation, runtime and observed cost where known; retain uncertainty for hidden accounting. |
 | C5 — Learning-assisted routing | Begin offline: history → proposed policy → evaluation → human/promoted policy. No uncontrolled online self-modification initially. |
 
@@ -686,7 +703,7 @@ explicit decision closes it.
 | Redis profile separation | Actual cache/queue persistence, eviction and recovery requirements |
 | When project graph belongs in the context path | Measured retrieval benefit with trustworthy freshness/provenance |
 | Need for semantic condensation | FULL/SELECTED/COMPILED fidelity results showing a remaining deterministic gap |
-| Whether Jev merits adoption | Approximately 20–30 real Task comparisons against Qwen; the provider and the comparison harness now exist, the comparison does not |
+| Whether Jev merits adoption | Measured improvement against Policy C and Policy B on cost to successful completion. Policy C now produces that evidence as a side effect of normal operation; a valid outcome is that no pre-router is worth its complexity |
 | Precise escalation ownership/semantics | Real failure cases, attribution and a bounded recommendation/authority contract |
 | Eventual custom UI | Concrete operator friction that ACP and remote channels cannot reasonably address |
 | Complete backup/off-site strategy | PostgreSQL/Object Storage coverage, Restate recovery needs, isolated restores, agreed recovery objectives and later off-site requirements |
@@ -741,6 +758,13 @@ operator procedures; this document owns development direction and dependencies.
 - **Jev: integration PASS, NOT adopted.** One real authenticated invocation exists
   and Jev changes no routing outcome. C3's comparison is still unstarted; see
   [milestone 041](../milestones/041-jev-provider-candidate.md).
+- **Policy C — local-first execution with bounded escalation: implemented, Proposed ADR.**
+  Every eligible Task starts on the local binding, escalation is deterministic and
+  trusted, and each Task retains authoritative routing evidence that a
+  deterministic report reads. Effective capability authority is now the request
+  intersected with an external grant, closing a real gap where a top-level Task
+  declared its own authority. Policies A and B remain future work; nothing routes
+  by classifier or heuristic. See [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
 - **Worker execution boundary: user-directed increment, PASS within its evidence.**
   A provider-neutral continuation boundary, adapter capability claims and an
   OpenTelemetry telemetry path now exist, with a synchronous control hook where an

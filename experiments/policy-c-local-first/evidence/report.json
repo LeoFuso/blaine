@@ -1,0 +1,28 @@
+{
+ "policy": "local-first-bounded-escalation",
+ "policy_version": 1,
+ "window": "all retained evidence",
+ "source": "append-only execution events and content-addressed artifacts",
+ "sampling_rule": "every Task that retained a routing record in this window; not a sample",
+ "tasks_observed": 1,
+ "externally_bounded": 1,
+ "completed_locally": 1,
+ "escalation_recommended": 0,
+ "escalated": 0,
+ "completed_after_escalation": 0,
+ "failed": 0,
+ "local_completion_rate": 1.0,
+ "escalation_rate": 0.0,
+ "median_local_turns": 1,
+ "median_turns_before_escalation": null,
+ "escalation_reasons": {},
+ "escalation_admissions": {},
+ "unreadable_records": 0,
+ "minimum_sample": 20,
+ "sufficiency": "INSUFFICIENT_SAMPLE",
+ "interpretation_limits": [
+  "escalation records that another tier was required, not that local inference was incapable",
+  "failure causes are unclassified; raw provenance is retained for later attribution",
+  "rates describe the retained population above, not any wider workload"
+ ]
+}

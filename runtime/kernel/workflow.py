@@ -18,6 +18,10 @@ from runtime.kernel.events import ExecutionEventPublisher, event_identity, safe_
 from runtime.kernel.instrument import (
     ExecutionIdentity, Instrumentation, evidence_digest, model_attributes, tool_attributes,
 )
+from runtime.kernel.routing import (
+    LOCAL_BINDING, RoutingRecord, admit_escalation, effective_capabilities,
+    escalation_condition, narrow_grant, verifier_signature,
+)
 
 CognitiveAdapter = Callable[[dict], dict]
 # Deployment-injected probe hook, never selected by a Task/model or exposed by
@@ -30,7 +34,9 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                     checkpoint: Checkpoint | None = None,
                     event_publisher: ExecutionEventPublisher | None = None,
                     event_producer_revision: str | None = None,
-                    instrumentation: Instrumentation | None = None) -> restate.Workflow:
+                    instrumentation: Instrumentation | None = None,
+                    escalation_cognitive: CognitiveAdapter | None = None,
+                    escalation_binding: str | None = None) -> restate.Workflow:
     workflow = restate.Workflow("CognitiveTaskV1")
     # Deployment-selected diagnostics and boundary control. The default bundle is
     # inert: no span, no event, no extra journal entry, no behavior change.
@@ -40,7 +46,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
     async def run(ctx: restate.WorkflowContext, request: dict) -> dict:
         try:
             task_id = identifier(ctx.key())
-            spec, parent = accept_task_request(request, task_id)
+            spec, parent, grant = accept_task_request(request, task_id)
             for criterion in spec['completion']:
                 evidence = criterion['evidence']
                 if evidence.get('verifier') == 'human_response' and evidence['request']['payload']['task_id'] != task_id:
@@ -63,6 +69,11 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             "remaining_children": spec["autonomy"].get("child_tasks", 0), "children": {},
             "invocation_id": ctx.request().id,
             "request_digest": hashlib.sha256(encode(request)).hexdigest(),
+            # Policy C. The binding is execution context, never Task data, and a
+            # Task without an external grant is recorded as unbounded rather than
+            # silently treated as if it had been bounded.
+            "grant": grant, "binding": LOCAL_BINDING, "verifier_history": [],
+            "escalation": None, "local_turns": 0, "context_refs": [],
         }
         initial_action = request['payload'].get('initial_action') if request.get('kind') == 'TaskRequest' else None
         if initial_action is not None:
@@ -137,6 +148,11 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             evaluation = await step(f"progress/{label}", verify,
                 spec=spec, state=deepcopy(state), store=store)
             state['completion_ref'] = await retain(f"progress-evidence/{label}", evaluation)
+            if evaluation['payload']['outcome'] != 'satisfied':
+                # Bounded repetition memory; a deterministic escalation signal,
+                # not a judgement about why the verifier keeps refusing.
+                state['verifier_history'] = (state['verifier_history'] +
+                                             [verifier_signature(evaluation, state['artifacts'])])[-4:]
             if evaluation['payload']['outcome'] == 'satisfied':
                 state['lifecycle'] = 'COMPLETED'
             ctx.set('task', message('TaskState', state))
@@ -151,6 +167,23 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                 if state['lifecycle'] == 'COMPLETED':
                     break
                 state = {**state, "iteration": iteration}
+                if state['escalation'] is None:
+                    state['local_turns'] = iteration
+                    reason = escalation_condition(iteration, state['verifier_history'])
+                    if reason is not None:
+                        # A deterministic recommendation. Only the trusted boundary
+                        # admits it, and only a deployment supplies the binding.
+                        admission = admit_escalation(state['grant'],
+                                                     escalation_binding if escalation_cognitive else None)
+                        state['escalation'] = {'iteration': iteration, 'reason': reason,
+                                               'admission': admission['outcome'],
+                                               'binding': admission['binding']}
+                        if admission['outcome'] == 'admitted':
+                            state['binding'] = admission['binding']
+                        ctx.set('task', message('TaskState', state))
+                        await emit(f'escalation/{iteration}', 'policy.evaluated',
+                                   'allow' if admission['outcome'] == 'admitted' else 'deny',
+                                   'blaine.kernel.routing')
                 # A continuation boundary: prior model/tool activity is incorporated
                 # and the next model continuation has not started. Blaine owns this
                 # loop, so the admission runs synchronously here, before cognition.
@@ -166,6 +199,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                                                        state=deepcopy(state), spec=spec, store=store, providers=providers)
                 prepared_packet = None
                 state["context_ref"] = await retain(f"context-artifact/{iteration}", packet)
+                state['context_refs'] = (state['context_refs'] + [state['context_ref']])[-8:]
                 ctx.set("task", message("TaskState", state))
 
                 if checkpoint:
@@ -180,8 +214,12 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                             'blaine.continuation.index': iteration - 1,
                             **model_attributes(provider=getattr(cognitive, 'provider', 'blaine.cognition'),
                                                request_model=getattr(cognitive, 'model', 'scripted'))}) as span:
-                        raw = (cognitive(deepcopy(packet), observe=span.set)
-                               if getattr(cognitive, 'accepts_observation', False) else cognitive(deepcopy(packet)))
+                        # An admitted escalation rebinds cognition inside the same
+                        # Task. No second Task, no new lifecycle owner.
+                        adapter = (escalation_cognitive if state['escalation']
+                                   and state['escalation']['admission'] == 'admitted' else cognitive)
+                        raw = (adapter(deepcopy(packet), observe=span.set)
+                               if getattr(adapter, 'accepts_observation', False) else adapter(deepcopy(packet)))
                         if len(encode(raw)) > MAX_PACKET:
                             span.fail('decision_size_limit')
                             raise restate.TerminalError("Decision exceeds size limit", status_code=400)
@@ -204,7 +242,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
 
                 await emit(f'cognition/{iteration}', 'operation.prepared' if deterministic else 'cognition.decided', 'recorded', 'blaine.kernel.workflow',
                     refs={'decision_id': state['decision_id']}, payload_refs=(state['context_ref'], state['decision_ref']))
-                gate = policy_gate(decision, state, spec)
+                gate = policy_gate(decision, state, spec, state['grant'])
                 await emit(f'policy/{iteration}', 'policy.evaluated', gate['outcome'], 'blaine.kernel.execution.policy_gate',
                     refs={'decision_id': state['decision_id']})
                 if gate["outcome"] == "deny":
@@ -312,7 +350,8 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                             # Creating all native durable futures issues all calls before
                             # any await. Restate owns execution/recovery; no asyncio task pool.
                             calls = [ctx.workflow_call(run, key=child_id,
-                                arg=child_request(task_id, state['decision_id'], slot, child_spec))
+                                arg=child_request(task_id, state['decision_id'], slot, child_spec,
+                                                  narrow_grant(state['grant'], None)))
                                 for child_id, slot, child_spec, _ in pending]
                             for child_id, _, _, label in pending:
                                 await emit('child-created/' + label, 'task.child_created', 'recorded',
@@ -402,7 +441,27 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
         output = message("TaskResult", result)
         validate_result(output, task_id)
         state["result_ref"] = await retain("task-result", output)
+        # Authoritative routing evidence. Telemetry may be lost and durable
+        # runtime state expires, so what a later routing experiment needs is an
+        # artifact, discoverable through the append-only event record.
+        escalation = state['escalation']
+        record = RoutingRecord(
+            task_id=task_id, outcome=state['lifecycle'],
+            externally_bounded=state['grant'] is not None,
+            effective_capabilities=tuple(sorted(effective_capabilities(spec, state['grant']))),
+            initial_binding=LOCAL_BINDING, final_binding=state['binding'],
+            local_turns=state['local_turns'], total_turns=state['iteration'],
+            escalated=bool(escalation and escalation['admission'] == 'admitted'),
+            escalation_iteration=escalation['iteration'] if escalation else None,
+            escalation_reason=escalation['reason'] if escalation else None,
+            escalation_admission=escalation['admission'] if escalation else None,
+            completion_ref=state['completion_ref'], result_ref=state['result_ref'],
+            context_refs=tuple(state['context_refs']), concerns=tuple(concerns), usage=None)
+        routing_ref = await retain('routing-record', message('RoutingRecord', record.payload()))
+        state['routing_ref'] = routing_ref
         ctx.set("task", message("TaskState", state))
+        await emit('routing', 'artifact.produced', 'recorded', 'blaine.kernel.routing',
+                   refs={'artifact_ids': [routing_ref]})
         await emit('completion', 'completion.finished', state['lifecycle'], 'blaine.kernel.workflow',
             payload_refs=(state['completion_ref'], state['result_ref']))
         return output

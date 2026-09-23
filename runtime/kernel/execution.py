@@ -13,7 +13,15 @@ from runtime.kernel.contracts import (
 )
 
 
-def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
+def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None = None) -> dict:
+    """Admissibility under effective authority.
+
+    Effective capability authority is the TaskSpec's request intersected with an
+    externally supplied grant. An absent grant preserves existing behaviour, and
+    the routing evidence records that the Task was not externally bounded.
+    """
+    from runtime.kernel.routing import effective_capabilities
+    admissible = effective_capabilities(spec, grant)
     try:
         decision = validate_decision(raw)
         if (decision["task_id"] != state["task_id"] or
@@ -25,7 +33,7 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
         action = decision["next_action"]
         if action["type"] == "INVOKE_CAPABILITY":
             capability = action["capability"]
-            if capability not in CAPABILITIES or capability not in spec["capabilities"] or capability not in spec["autonomy"]["allowed"]:
+            if capability not in CAPABILITIES or capability not in admissible:
                 raise ValueError("Capability denied")
             value = action["input"]
             if capability == "artifact.write":
@@ -67,7 +75,7 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
                 fields(value, {"value"})
                 text(value["value"], 256)
         elif action['type'] == 'WAIT' and action['input_type'] == 'human_response':
-            if 'human.request' not in set(spec['capabilities']) & set(spec['autonomy']['allowed']):
+            if 'human.request' not in admissible:
                 raise ValueError('Human interaction denied')
             requirement = human_requirement(spec, action['wait_id'])
             request = requirement['request']
@@ -84,9 +92,10 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
             cost = sum(1 + child['autonomy'].get('child_tasks', 0) for _, child in children)
             if cost > state.get('remaining_children', 0):
                 raise ValueError('Child Task allocation exhausted')
-            authority = set(spec['capabilities']) & set(spec['autonomy']['allowed'])
+            # A child may only narrow effective authority, so the parent's own
+            # external bound propagates rather than being reset by the request.
             for slot, child in children:
-                if not set(child['autonomy']['allowed']) <= authority:
+                if not set(child['autonomy']['allowed']) <= admissible:
                     raise ValueError('Child Task cannot expand parent authority')
                 for criterion in child['completion']:
                     evidence = criterion['evidence']
