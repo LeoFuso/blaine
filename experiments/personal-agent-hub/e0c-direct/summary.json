@@ -1,6 +1,6 @@
 {
-  "status": "PARTIAL",
-  "scope": "Direct candidate implementation with measured macOS and WSL transport/ACP signal evidence; integrated and remaining lifecycle/policy/deployment acceptance pending",
+  "status": "PASS",
+  "scope": "E0.C accepted: primary Mac real IDE/direct transport, effective narrow tailnet policy, canonical persistent Hub edge and bounded Task independence. Full E0 remains incomplete.",
   "go": "1.27.1",
   "tsnet": "1.102.4",
   "websocket": "1.8.15",
@@ -16,26 +16,24 @@
   "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
   "wsl_candidate": "PASS live with detailed diagnostic-MTU/native-home reports; operator also confirmed PASS for requested normal-launch automatic-MTU candidate 478a0f1. New host logs corroborate complete binary/ACP sessions; exact latest client metadata/MTU-source report not supplied.",
   "jetbrains_candidate": "PASS bounded real macOS IntelliJ launch/session/read-only inspect e0c -> UNAVAILABLE; same direct ACP session ended OK and controlled Task state remained identical. See macos-ide-readonly-pass.json. Windows IDE/WSL integration remains unverified.",
-  "effective_narrow_tailnet_policy": "PENDING",
-  "new_release": "v0.1.0-alpha.3 PUBLISHED from 1d718a18582d3a82635131d16f8c8d171d193759; bounded ACP envelope correction; E0.C still PARTIAL",
-  "e0d": "BLOCKED",
+  "effective_narrow_tailnet_policy": "PASS applied policy with ten vendor assertions; fresh server read and live Hub packet-filter inspection prove the two designated application nodes can reach only Hub TCP7443. Human machine grants and SSH policy preserved.",
+  "new_release": "v0.1.0-alpha.3 PUBLISHED from 1d718a18582d3a82635131d16f8c8d171d193759; unchanged client used for final E0.C acceptance",
+  "e0d": "UNBLOCKED_NOT_STARTED",
   "task_independence_macos": "PASS bounded live evidence: controlled Restate Task remains WAITING with identical authoritative state after both successful Mac ACP signal terminations",
   "stdio_correction": "PASS local Linux regression suite and four-target builds; PASS designated macOS arm64 live signal batch",
-  "macos_identity": "PASS reuse across process restarts and dadb3c5 -> 77a974c binary replacement; reboot/revocation pending",
+  "macos_identity": "PASS minimum E0.C restart/reconnect/binary-upgrade identity; extended lifecycle is E0.D.",
   "task_independence_wsl": "PASS bounded live: authoritative WAITING Task state unchanged after both WSL ACP probe sessions and SIGINT/SIGTERM terminations",
   "wsl_product_mtu": "Implemented and locally validated; normal-launch batch PASS operator-reported. Requested command had no MTU override. Final dossier still needs exact client metadata/MTU-source record.",
   "automatic_mtu_validation": "Final complete client CI PASS, including race/vet/offline regressions and four reproducible target builds. Initial preexisting process-cleanup test failure recorded; five targeted repetitions and final full run passed.",
   "public_installer": "Alpha.3 PASS public Linux temporary-home checks. Mac public installation operator-reported and real IDE read-only exchange confirmed; exact Mac installer transcript and Windows/WSL public installer remain unretained/unverified.",
   "task_independence_macos_ide": "PASS live: existing human-WAITING Task unchanged after real IDE read-only round trip and operator Cmd+Q; same private session ended OK.",
-  "host_deployment_persistence": "PENDING: active transient user service; RuntimeMaxUSec=1d",
+  "host_deployment_persistence": "PASS canonical enabled, non-transient user edge without expiry; pin adopted, restart verified, final Mac IDE session passed. No host reboot claimed.",
   "future_session_controls": "Documented ACP configOptions direction only; requests remain bounded by Workspace/Task authority and PolicyGate; no options advertised.",
-  "e0c_remaining_gates": [
-    "Effective narrow tailnet authorization for the private Hub service",
-    "Canonical persistent Hub direct-transport service"
-  ],
+  "e0c_remaining_gates": [],
   "minimum_persistent_transport_identity": "PASS primary Mac: same node and application identity across process restarts, reconnects and binary replacement; no new reboot gate.",
   "later_slice_gates": {
     "E0.D": "Workstation registration lifecycle and explicit revoke/reset/re-enrollment beyond minimum transport identity proof.",
     "E0.F": "Full real IntelliJ acceptance on designated second Windows/WSL workstation."
-  }
+  },
+  "closure": "closure.json"
 }

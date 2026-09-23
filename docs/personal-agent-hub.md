@@ -1,7 +1,7 @@
 # Personal Agent Hub — E0 through E3
 
 **Design checkpoint: 2026-09-21. Status: architecture and implementation handoff;
-E0.A foundation and E0.B network prerequisite implemented; E0.C PARTIAL; full E0–E3 remain unaccepted.**
+E0.A foundation and E0.B network prerequisite implemented; E0.C PASS; full E0–E3 remain unaccepted.**
 
 The [E0.A client guide](../client/README.md) and
 [isolated evidence](../experiments/e0a-blaine-client/README.md) record the five-command
@@ -24,8 +24,10 @@ below describe the complete target, beyond these slices.
 private Blaine protocol replaces SSH as the product path. The operator selected
 this after the [Mac/WSL spike](../experiments/personal-agent-hub/transport-architecture-spike/README.md).
 The [implementation evidence](../experiments/personal-agent-hub/e0c-direct/README.md)
-records local tests, real host ACP/readiness/Task-independence checks and pending
-candidate workstation/IDE gates. E0.C remains PARTIAL; E0.D is blocked. The
+records local tests, live Mac/WSL transport, real Mac IDE read-only exchange,
+effective narrow tailnet policy and canonical persistent Hub deployment. E0.C is
+PASS; E0.D registration is unblocked and has not started. Full second-peer IDE
+acceptance belongs to E0.F. The
 [direct contract](contracts/host-connection.md) supersedes prior E0.C SSH/bootstrap
 and external-workstation-Tailscale mechanics below. Historical E0.A/B evidence
 keeps its original scope. Tailscale SSH remains for administration, not product
@@ -1018,7 +1020,7 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 | --- | --- | --- | --- | --- |
 | E0.A Client skeleton/package — [foundation PASS](../experiments/e0a-blaine-client/README.md) | Settle Go recommendation; proposed `client/cmd/blaine`, `client/internal/platform` Linux/macOS/WSL adapters, versioned config model and portable artifact/install notes. Five-command surface with explicit unavailable stubs for later behavior. | Install executable in a clean Linux user environment; version works without repo/language runtime; config/path and stdio/signal fixtures cover all three platform boundaries; live portability explicitly scoped. | Packaging requires hidden runtime/repo, stdout corruption, unsafe config migration. | This design; no live host required. |
 | E0.B Tailscale state/login | Proposed platform prerequisite adapters; supported install assistance, native status/login, macOS approvals, Windows host inspection from WSL. | On available targets, prove install/missing/expired/login states; macOS native approval and WSL2 host status/topology probes; no changed unrelated preferences. Record untested targets. | Needs admin token/permanent root, duplicate WSL daemon, wrong tailnet, unsupported install or cannot distinguish auth/host/guest reachability. | E0.A; authorized test workstation. |
-| E0.C Host/transport/handshake — [PARTIAL](../experiments/personal-agent-hub/e0c-direct/README.md) | Embedded tsnet, internal Hub profile, private application endpoint, signed handshake and bounded binary/ACP session. | Primary designated Mac: persistent peer identity across restart/reconnect, handshake, binary stream, cancellation/disconnect, narrow tailnet policy, persistent Hub service/readiness, Task independence and real Blaine IDE read-only round trip. Existing WSL transport evidence is additional; full second-workstation IDE acceptance belongs to E0.F. | Claimed peer identity, public endpoint, failed application pin/protocol accepted, unsafe state or hidden transport fallback. | E0.A; accepted E0.B history; authorized designated peers and private host deployment. E0.D stays blocked until accepted. |
+| E0.C Host/transport/handshake — [PASS](../experiments/personal-agent-hub/e0c-direct/README.md) | Embedded tsnet, internal Hub profile, private application endpoint, signed handshake and bounded binary/ACP session. | Primary designated Mac: persistent peer identity across restart/reconnect, handshake, binary stream, cancellation/disconnect, narrow tailnet policy, persistent Hub service/readiness, Task independence and real Blaine IDE read-only round trip. Existing WSL transport evidence is additional; full second-workstation IDE acceptance belongs to E0.F. | Claimed peer identity, public endpoint, failed application pin/protocol accepted, unsafe state or hidden transport fallback. | E0.A; accepted E0.B history; authorized designated peers and private host deployment. E0.C accepted; E0.D is next, not started. |
 | E0.D Registration | Proposed PostgreSQL migration/repository and client registration receipt. | Register/replay after response loss and restart: one identity; copied UUID on another device denied; explicit revoke/reset/re-enrollment lifecycle beyond E0.C transport identity proof. | New Task ledger, registration grants workspace scope, unknown outcome reported success. | E0.C; existing PostgreSQL access scoped to registry. |
 | E0.E IntelliJ config | Proposed client IDE config adapter and merge fixtures. | Actual IntelliJ with a second agent, closed/running merge/reload; correct OS user config and stable launcher; test supported Windows/WSL arrangement before that platform PASS. | Overwrites unrelated fields, managed installation blocks agents, version unsupported. | E0.A/C/D; supported IDE installation. |
 | E0.F Doctor/connect acceptance | Integrate state flow, diagnostics, disconnect and release artifact; proposed E0 acceptance report. | New-workstation journey and E0 positive/negative matrix per implemented platform, twice-run connect, read-only doctor; full real IntelliJ acceptance on the designated second Windows/WSL workstation; mark other targets unverified. | False READY, any missing identity/config/stdio invariant; no live IntelliJ evidence. | E0.A–E; closes only explicitly validated platform scope of E0. |

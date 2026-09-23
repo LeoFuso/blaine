@@ -2,8 +2,9 @@
 
 The operator selected embedded tsnet plus a direct Blaine application transport on
 2026-09-23. Implementation and [evidence](../../experiments/personal-agent-hub/e0c-direct/README.md)
-are **PARTIAL**; designated Mac transport/ACP probes and corrected OS-signal cleanup
-passed. WSL transport/ACP/signals passed with a diagnostic MTU override and the
+are **E0.C PASS**; designated Mac transport/ACP probes, corrected OS-signal cleanup,
+real IntelliJ read-only round trip and final deployment/policy proof passed. WSL
+transport/ACP/signals passed with a diagnostic MTU override and the
 operator reported a subsequent normal-launch automatic-MTU PASS; its exact client
 metadata record and integrated acceptance remain pending. This supersedes
 the previous SSH product-transport contract, retained in Git and the
@@ -22,10 +23,12 @@ that minimum proof belong to E0.D; full second Windows/WSL IntelliJ acceptance
 belongs to E0.F. Separate reboot/lifecycle observations are not newly added E0.C
 blockers. Existing WSL transport evidence remains valid within its measured scope.
 
-After this reconciliation, the only open E0.C closure gates are effective narrow
-tailnet authorization for the private Hub service and canonical persistent Hub
-service deployment. Neither app allowlisting alone nor a one-day transient service
-closes those respective gates. No later slice is implemented by closing them.
+The final [closure](../../experiments/personal-agent-hub/e0c-direct/closure.json)
+verifies effective narrow tailnet policy and canonical persistent Hub deployment,
+followed by the primary Mac repeating the real IDE round trip. Vendor policy tests
+and the live compiled filter prove the network restriction; an enabled, non-transient
+user service with existing linger replaces the one-day candidate. No actual host
+reboot is claimed. E0.D registration is unblocked and not implemented.
 
 ## Discovery and independent trust boundaries
 

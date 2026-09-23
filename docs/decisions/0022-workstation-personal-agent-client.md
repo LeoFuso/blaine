@@ -2,7 +2,7 @@
 
 **Status:** Accepted
 
-**Validation:** Unvalidated
+**Validation:** E0.C primary transport accepted; full E0–E3 validation remains open.
 
 **Date:** 2026-09-21
 
@@ -41,7 +41,9 @@ Tailscale SSH remains for administration/diagnostics. The previous adapter is ke
 until the new path passes acceptance. The decision follows measured Mac and WSL
 spike connectivity/identity reuse and aims to remove workstation prerequisites,
 align installation identity with future registration, and fit JetBrains provisioning.
-It does not claim the replacement's live acceptance is already complete.
+The [E0.C closure](../../experiments/personal-agent-hub/e0c-direct/closure.json)
+now records primary Mac live IDE acceptance, narrow effective network authorization
+and canonical persistent Hub deployment. It does not claim full E0 acceptance.
 
 Target Linux, native macOS and Linux inside Windows WSL2. Embedded userspace
 connectivity needs no nested WSL daemon or TUN/root setup. The Windows IDE opening
@@ -130,7 +132,9 @@ of uncertain effects. Worker output or a successful exit alone is insufficient.
 
 Full E0–E3 validation remains open. The [transport spike](../../experiments/personal-agent-hub/transport-architecture-spike/README.md)
 and [E0.C migration](../../experiments/personal-agent-hub/e0c-direct/README.md) distinguish
-Mac/WSL spike proof, local candidate/runtime proof and pending candidate live gates.
+Mac/WSL spike proof, local candidate/runtime proof and accepted primary Mac E0.C
+live gates, including persistent service and effective tailnet policy. E0.D registration
+is next and unblocked; full second Windows/WSL IDE acceptance remains E0.F.
 Real Blaine-specific JetBrains provisioning/auth validation is required before E0
 completion. E0.D registration has not been pulled forward.
 

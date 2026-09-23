@@ -136,13 +136,14 @@ bounded product architecture. **E0.A is PASS for the isolated client foundation*
 detection, read-only doctor and idempotent network readiness on Ubuntu amd64.
 Four standalone builds and install/auth fixtures passed; macOS runtime remains
 unverified and WSL host reuse is STOP pending a live spike.
-**E0.C PARTIAL** ([migration evidence](../../experiments/personal-agent-hub/e0c-direct/README.md))
+**E0.C PASS** ([migration evidence](../../experiments/personal-agent-hub/e0c-direct/README.md))
 now implements the operator-selected embedded tsnet/direct private transport.
 Local protocol/identity/process regressions, host readiness and designated Mac/WSL
 direct binary/ACP/signal batches passed within their recorded scope. Public alpha.3
 plus the host ACP compatibility corrections now has a real Mac IntelliJ read-only
 round trip and clean-session-end/Task-independence proof. Effective narrow tailnet
-policy and persistent host deployment are the only remaining E0.C blockers.
+policy and canonical persistent host deployment have now passed, followed by a
+repeat primary Mac IDE round trip under that final configuration.
 Minimum transport identity reuse has passed; registration/revoke/reset/re-enrollment
 belongs to E0.D and full Windows IntelliJ-to-WSL acceptance belongs to E0.F.
 Prior SSH and E0.A/B evidence keeps its original scope. E0.D has not started.
@@ -153,7 +154,7 @@ entire workstreams. Workstation and worker remain independent.
 
 | Milestone | Status / product outcome | Dependencies and D-series mapping |
 | --- | --- | --- |
-| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PARTIAL; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. Only E0.C narrow tailnet policy and persistent Hub deployment remain open. Registration lifecycle belongs to E0.D; full second-peer Windows IDE/WSL acceptance belongs to E0.F. E0.D registration follows acceptance. |
+| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PASS; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. E0.C narrow tailnet policy and canonical persistent Hub deployment passed. Registration lifecycle belongs to E0.D; full second-peer Windows IDE/WSL acceptance belongs to E0.F. E0.D registration is unblocked, not started. |
 | E1 — Remote Workspace Read | **DESIGNED.** Actual second-workstation IntelliJ read, confined paths and evidence in the same durable Task across reconnect. | E0; delivers D3.A product proof. Live client capability/confinement gates remain open. |
 | E2 — Remote Workspace Effects | **DESIGNED.** Conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
 | E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |
@@ -720,17 +721,17 @@ operator procedures; this document owns development direction and dependencies.
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux
   network prerequisite PASS / cross-platform PARTIAL**
-  ([evidence](../../experiments/e0b-tailscale-onboarding/README.md)). **E0.C PARTIAL**
-  ([evidence](../../experiments/personal-agent-hub/e0c/README.md)): profile, strict
-  transport/handshake and framing candidate tested; no designated second workstation.
-  Complete trusted peer binding, host dispatch/deployment, readiness and remote ACP
-  acceptance before **E0.D Registration**, the next canonical slice.
-  [Client delivery PASS](../../experiments/personal-agent-hub/e0c/delivery.md) supplies
-  Actions Artifacts and public `v0.1.0-alpha.1`; it is not E0 acceptance. macOS runtime
-  and WSL guest route proof remain open. E0.D+ was not implemented. Use the
-  [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
-  E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
-  D3 history is preserved; no E-series product milestone is claimed live PASS.
+  ([evidence](../../experiments/e0b-tailscale-onboarding/README.md)). **E0.C PASS**
+  ([closure](../../experiments/personal-agent-hub/e0c-direct/closure.json)): embedded
+  tsnet/direct transport, primary Mac real IntelliJ read-only round trip, persistent
+  identity/reconnect, narrow effective policy, canonical persistent Hub and bounded
+  Task independence. Public alpha.3 is the current proven client; alpha.1 is historical
+  SSH product-transport evidence. WSL transport proof retains its metadata limitation;
+  full Windows-hosted IntelliJ/WSL acceptance belongs to E0.F. **E0.D Registration**
+  is the next canonical slice, unblocked and not started. E0.D+ was not implemented.
+  Use the [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
+  Full E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
+  D3 history is preserved; no full E-series milestone is claimed live PASS.
 - **Track B: D1.A/B/C/D live adoption accepted.** Run the prepared D1.G reboot
   acceptance only with explicit human authorization; backup stays PAUSED.
 - **Backup: PAUSED.** Preserve historical backup data; no live backup completion claimed.

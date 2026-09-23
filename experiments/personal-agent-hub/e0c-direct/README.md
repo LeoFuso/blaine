@@ -1,15 +1,47 @@
-# E0.C embedded transport migration — PARTIAL
+# E0.C embedded transport migration — PASS
 
 The operator selected embedded tsnet plus a direct private Blaine application
 transport after the [bounded spike](../transport-architecture-spike/README.md).
 Tailscale SSH remains an administrative/diagnostic facility. The prior SSH adapter
 and its accepted fixture evidence are retained unchanged for comparison/rollback.
-No new release, public listener, system Tailscale installation, nested WSL daemon,
-E0.D registry, workspace capability or custom IDE plugin is introduced.
+Public alpha.3 is the accepted client; no new release was needed for final closure.
+No public listener, system Tailscale installation, nested WSL daemon, E0.D registry,
+workspace capability or custom IDE plugin was introduced.
 
 The [development request](request.json) is **unsubmitted**: no suitable durable
 implementation-work binding was available. Controlled runtime acceptance Tasks
 are separate test fixtures, not claims that this development request was submitted.
+
+## Final E0.C acceptance — 2026-09-23
+
+[Closure evidence](closure.json) records the primary Mac repeating `inspect e0c`
+in actual IntelliJ with public alpha.3 after both remaining gates closed. The
+operator confirmed `UNAVAILABLE` rendered and full IDE quit. The canonical edge
+logged the same Mac node's handshake, accepted read-only inspect and clean session
+end. The controlled Restate Task remained byte-equivalent at WAITING. No workspace
+resource or terminal capability was invoked; E0 context remains inert.
+
+- [Effective tailnet authorization](effective-tailnet-policy.json): saved policy
+  passed ten vendor assertions, a fresh policy read and live compiled Hub filter
+  verification. Only the two designated app nodes are restricted to Hub TCP 7443;
+  human-machine access and SSH policy are preserved. Exact address-to-node bindings
+  require review on future re-enrollment; this is not an E0.D registry.
+- [Persistent Hub](persistent-hub-service.json): source `c0e323b`, canonical user
+  service, enabled/non-transient, no one-day expiry, existing linger, adopted Hub
+  pin and immutable committed runtime snapshot. An isolated edge restart preserved
+  runtime/Restate PIDs and Task state. Boot configuration is verified; an actual
+  host reboot was not performed. See the [runbook](../../../docs/operations/hub-transport.md).
+- Minimum stable peer identity/reconnect was already proven on the Mac across
+  process restarts and binary replacement. Registration/revoke/reset/re-enrollment
+  beyond that proof belongs to E0.D; full second Windows/WSL IDE proof belongs to
+  E0.F. Neither is retroactively required for this primary E0.C acceptance.
+
+No E0.C gate remains open. **E0.D workstation registration is unblocked and has not
+started.** E0 overall remains incomplete. Mac arm64 is runtime/IDE verified; WSL
+amd64 transport/ACP/signals and reported automatic MTU acceptance retain their
+recorded limits. Darwin amd64/Linux arm64 are build-verified only. The chronological
+observations below retain failures and checkpoint limitations; this closure is the
+current status, not a claim that earlier candidates passed.
 
 ## Implementation and trust
 
@@ -56,7 +88,7 @@ new session correlation and the same installation/node; requests are not replaye
 | WSL production candidate | PASS live batch; normal-launch PASS operator-reported | Detailed `77a974c` diagnostic-MTU reports prove binary/ACP/signals. The operator also confirmed PASS for requested `478a0f1` normal launch; new host logs corroborate complete binary/ACP sessions. Exact latest client metadata/MTU-source JSON remains to be retained. |
 | Real Blaine JetBrains launch/session | PASS bounded macOS read-only round trip | Public alpha.3 plus host adapter correction: `inspect e0c` rendered `UNAVAILABLE`; host recorded accepted inspect and same-session clean close. Controlled Task unchanged. Fresh IDE-owned auth and Windows IDE/WSL launch remain separate unverified cases. |
 | Task independence | PASS bounded live Mac/WSL + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, both Mac ACP signal terminations, and two real WSL remote ACP sessions ending with the MTU override. This proves preservation of that Task, not continued execution of an active inference workload. |
-| Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
+| Effective narrow tailnet policy / persistent Hub | PASS final closure | Saved policy, vendor assertions, live compiled filter, canonical user service and final primary Mac IDE round trip. Extended revocation lifecycle is E0.D; no host reboot claimed. |
 
 The first native readiness run exposed an empty successful `/health` response
 handling defect in the new adapter. It was fixed and the exact production probe
@@ -357,7 +389,7 @@ a narrow new rule does not override an existing wildcard allow. Current candidat
 bootstrap does not self-assign tags or mutate policy. Host policy supports an exact
 trusted user principal or an explicit trusted tag plus named stable node IDs.
 The app allowlist is useful defense but does not prove that the node cannot reach
-other tailnet services. Effective tailnet least-privilege remains a measured gate.
+other tailnet services. Effective tailnet least-privilege is now verified for the two designated installations; see the final closure evidence.
 
 No auth key, OAuth client secret, auth URL, node credential or Hub private key belongs
 in source, reports or candidate archives. The Hub public pin is deployment metadata.
@@ -373,22 +405,18 @@ must authorize only the two designated product installations. The experimental
 spike nodes are not silently imported or deleted. No additional download is needed
 for that review. [OPERATOR.md](OPERATOR.md) contains the subsequent exact IDE entries.
 
-E0.C remains PARTIAL after the Mac IDE gate passes for exactly two remaining gates:
-effective narrow tailnet policy evidence and persistent host deployment readiness.
-The primary Mac's same-node/application identity across restart, reconnect and
-binary replacement already satisfies the minimum transport identity requirement.
-Registration and explicit revoke/reset/re-enrollment beyond this minimum belong to
-E0.D. The active private listener is a transient user service with
-a one-day runtime limit, not evidence of persistence across host restart. Existing
-exact-node admission is not proof that clients cannot reach other tailnet services.
+E0.C is PASS after effective narrow policy and canonical persistent deployment
+were validated and the primary Mac repeated its real IDE read-only round trip.
+Minimum identity reuse was already accepted. E0.D owns registration and extended
+revoke/reset/re-enrollment; no later-slice implementation was pulled forward.
 
 Separately retain the WSL automatic-MTU report metadata limitation and unverified
 Windows-hosted IntelliJ-to-WSL execution/public installer path under E0.F. Prior WSL transport
 and signal PASS evidence remains valid; a Mac IDE PASS does not certify that IDE
 topology. Full fresh IDE auth/onboarding remains distinct from reuse of the enrolled
 Mac installation. No conversational semantics or config-options work is needed to
-complete this read-only operation. E0.D remains blocked and is the next canonical
-slice only after E0.C acceptance; it is not started automatically. E0.E/F still own
+complete this read-only operation. E0.D is now unblocked as the next canonical
+slice; it is not started automatically. E0.E/F still own
 full onboarding/configuration acceptance.
 
 Retained observations: [host readiness](host-readiness.json), [real ACP subprocess](installed-acp.txt),

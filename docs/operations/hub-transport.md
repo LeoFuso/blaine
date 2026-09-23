@@ -61,3 +61,35 @@ edge invocation. Never run two listeners or restart the runtime/Restate to conce
 an edge failure. Preserve the existing key and Task state. Full workstation
 registration/re-enrollment remains E0.D; full second-workstation IDE acceptance is
 E0.F.
+
+## Measured deployment and narrow policy
+
+On 2026-09-23, commit `c0e323b39e5287eab4f28898c0da9b14848090b3` was
+staged twice with identical receipt and adopted Hub key. The canonical service is
+enabled, non-transient, active/running, with `RuntimeMaxUSec=infinity`; existing
+user linger remains enabled. An explicit edge restart preserved runtime/Restate
+PIDs and the controlled WAITING Task. No host reboot was performed.
+
+The [applied policy](../../experiments/personal-agent-hub/e0c-direct/applied-tailnet-policy.json)
+restricts the IPv4 and IPv6 addresses of the two measured Blaine application
+installations to the Hub's TCP 7443. It subtracts those exact sources from the
+previous broad grant, rather than adding an ineffective narrow grant beside it.
+The complement uses four /1 prefixes covering all IPv4/IPv6 space; the policy
+validator rejects /0 and wildcard elements inside an IP set. No other existing
+source is excluded. The human machine nodes are distinct from the application
+nodes, and the existing SSH check policy is unchanged.
+
+Ten policy assertions passed at save, followed by a fresh saved-policy read and
+[effective Hub packet-filter verification](../../experiments/personal-agent-hub/e0c-direct/effective-tailnet-policy.json).
+Detailed host route inspection showed only each node's own host routes and no
+advertised subnet/exit routes in the observed map. The first automatic approval
+review blocked saving until the source-set semantics and observed route scope
+were checked; the subsequent reviewed update succeeded. Invalid syntax and
+cross-family test drafts were rejected without changing the active policy.
+
+This is an exact-installation policy, not automated enrollment or a universal rule
+for every future Blaine installation. A changed/reassigned address requires review
+against the stable node ID and application identity before policy update. E0.D owns
+that registration/re-enrollment lifecycle. Hub admission still independently checks
+stable node/principal identity and the signed Blaine handshake. Tags remain an
+available future deployment choice, not a capability advertised by this client.
