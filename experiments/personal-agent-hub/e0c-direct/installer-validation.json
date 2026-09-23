@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-23",
+  "scope": "Development JetBrains custom ACP installer; no release, registry publication, registration semantics or workspace capabilities",
+  "installer": "client/install-jetbrains-agent.sh",
+  "status": "PASS_LOCAL_VALIDATION",
+  "validation": {
+    "isolated_contract_tests": 13,
+    "result": "PASS",
+    "covered": [
+      "Four-target platform selection and unsupported-platform rejection",
+      "Checksum rejection before candidate execution or installation",
+      "Missing or duplicate checksum entries rejected",
+      "Embedded platform and release metadata checks",
+      "Existing agent and extension field preservation",
+      "Existing Blaine candidate entry updated without duplication",
+      "Malformed and duplicate-key JSON rejected without changes",
+      "Idempotence and single bounded private backup",
+      "Symlink and hardlink rejection",
+      "Concurrent configuration change detected before replacement",
+      "Read-only status and piped shell entrypoint",
+      "Windows IDE WSL command arguments (fixture, not live IDE proof)",
+      "Historical release cannot silently replace a different installed version"
+    ],
+    "shell_syntax": "PASS installer and shared CI script",
+    "diff_check": "PASS",
+    "ci_integration": "Existing client/ci.sh runs installer tests; client/** already triggers Client CI",
+    "github_actions": "NOT_RUN: local changes are not pushed"
+  },
+  "official_release_live_download": {
+    "platform": "linux/amd64",
+    "source": "https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.1",
+    "asset": "blaine-linux-amd64",
+    "sha256": "edbc4354651541a4d3d5aec95072d0077c13c1c8592d0515885a39ed272c279f",
+    "embedded_version": "0.1.0-alpha.1",
+    "embedded_commit": "ca4a6b2e31d58bc649257700a87efd8a1c326b96",
+    "result": "PASS actual public download, checksum, version execution, isolated installation/configuration and read-only status",
+    "transport_limit": "Historical SSH release, not direct transport acceptance"
+  },
+  "actual_local_candidate": {
+    "platform": "linux/amd64",
+    "commit": "478a0f1a86d1e31084212545a23b6fb641366845",
+    "sha256": "dc8bbace5ade653de8c1c64580daf7e4ecdf141845dc71d4e5f52c973eda0b14",
+    "result": "PASS package checksum, metadata, isolated installation, existing-agent preservation, read-only status and repeated installation"
+  },
+  "limitations": [
+    "macOS and real Windows/WSL installer execution pending operator validation",
+    "Real JetBrains launch/auth remains pending",
+    "Python 3.8+ required; installer does not provision runtimes",
+    "Unsigned candidate and OS trust policy remain unchanged",
+    "Installer URL not public until an authorized repository push",
+    "Release checksum verification is not signing or build attestation"
+  ],
+  "e0c": "PARTIAL",
+  "e0d": "NOT_IMPLEMENTED"
+}

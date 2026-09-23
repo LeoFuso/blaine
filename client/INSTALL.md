@@ -5,6 +5,91 @@
 > candidate procedure is [here](../experiments/personal-agent-hub/e0c-direct/OPERATOR.md).
 > Do not treat the old release as evidence for the new transport.
 
+## Development JetBrains bootstrap
+
+[`install-jetbrains-agent.sh`](install-jetbrains-agent.sh) is a self-contained,
+user-local development installer. It requires **Python 3.8+** for structural JSON
+handling and **curl** for public release downloads. It does not install runtimes,
+Tailscale, SSH configuration or credentials. No sudo is needed or accepted.
+ACP Registry provisioning remains the product direction.
+
+From a checkout or a downloaded copy of this script:
+
+```sh
+sh ./install-jetbrains-agent.sh
+sh ./install-jetbrains-agent.sh --check
+```
+
+The default is the explicit published **v0.1.0-alpha.1**, not GitHub's latest
+release alias. The installer detects Darwin/Linux and arm64/amd64, downloads the
+matching raw binary and `checksums.txt` from `LeoFuso/blaine` GitHub Releases,
+requires exactly one matching SHA-256 entry, and verifies staged bytes **before
+execution or installation**. It then checks embedded version, platform, protocol
+and exact commit metadata and installs to `~/.local/bin/blaine`. An explicit future
+published alpha can be selected with `--release v0.x.y-alpha.N`.
+
+**Current E0.C acceptance must use the existing direct candidate**, because the
+published alpha still uses SSH. From the previously downloaded, trusted candidate
+package directory, run the downloaded installer with:
+
+```sh
+sh "$HOME/Downloads/install-jetbrains-agent.sh" --candidate-dir "$PWD"
+sh "$HOME/Downloads/install-jetbrains-agent.sh" --candidate-dir "$PWD" --check
+```
+
+This explicit alternative verifies that package's binary against its own
+`checksums.txt`; it makes no GitHub-release/provenance claim. It reuses the candidate
+already exercised on the designated peer. Do not use a manifest supplied by an
+untrusted source. The default old-alpha installation refuses to replace an existing
+different-version client, preventing accidental rollback of the direct candidate.
+
+The script registers **Blaine** in `~/.jetbrains/acp.json` using the absolute stable
+executable path and `args: ["acp"]`; PATH changes are unnecessary for IDE launch.
+On WSL it locates the Windows user's profile through Windows interop and updates
+the **Windows IDE's** configuration, using `wsl.exe --distribution <current distro>
+--exec /home/<user>/.local/bin/blaine acp`. It does not assume that opening a WSL
+project makes the IDE itself a Linux process. Missing Windows interop fails closed.
+Real WSL IDE interoperability is still pending: the current
+[JetBrains documentation](https://www.jetbrains.com/help/ai-assistant/acp.html)
+explicitly lists WSL as unsupported, so registration alone cannot establish PASS.
+
+Existing agents, global defaults and extension fields are preserved. An existing
+`Blaine` or `Blaine E0.C candidate` entry is updated in place; multiple such entries
+fail as ambiguous. Invalid/duplicate-key JSON, unexpected file types and symlinks
+fail before modification. A changed existing configuration gets one rolling
+`acp.json.blaine-backup` containing its previous exact bytes; that backup can contain
+existing agent credentials and must stay private. Repeating an unchanged install
+does not rewrite the binary/configuration/backup. Files are replaced atomically;
+the binary and configuration are separate replacements, not a two-file transaction.
+An interrupted installation can be rerun. Close the IDE configuration editor during
+installation; concurrent installer runs are locked and configuration changes during
+download are detected. Windows-hosted files ultimately rely on Windows user-profile
+ACLs; Unix mode bits alone are not a Windows confidentiality guarantee.
+
+`--check` performs no download, installation, directory creation or config writes.
+It reports platform, selected source/asset, installed version/commit/path,
+registration presence and whether executable/arguments match. It executes only the
+existing local `blaine version --json`, not a handshake or session.
+
+Open AI Chat and select Blaine after installation. For E0.C, turn off **Pass custom
+MCP servers** and **Pass IntelliJ MCP server** for Blaine in Agents settings. The
+installer disables these defaults only when creating a fresh configuration; it
+never changes existing agents' global policy. It neither opens an ACP session nor
+performs browser authentication automatically. macOS signing/notarization remains
+unproven; no system security settings or quarantine attributes are changed.
+
+Once this script is authorized and published to the repository, the pipe entrypoint
+can use a pinned, actually published commit. This is a **template, not a currently
+available installer URL** (this local change has not been pushed):
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/<published-commit>/client/install-jetbrains-agent.sh | sh
+```
+
+Until publication is authorized, use the local downloadable script. No release,
+registry submission, self-updater or changelog automation is introduced here.
+
+## Manual release installation
 
 The first version is **v0.1.0-alpha.1**. This is an experimental prerelease, not
 stable E0/client acceptance. A binary requires no Go installation, repository

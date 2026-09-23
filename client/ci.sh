@@ -23,6 +23,8 @@ echo 'PASS: gofmt' > "$out/validation/format.txt"
 "$BLAINE_GO" -C client test -race -count=1 ./... | tee "$out/validation/race.txt"
 "$BLAINE_GO" -C client vet ./...
 echo 'PASS: go vet' > "$out/validation/vet.txt"
+sh -n client/install-jetbrains-agent.sh
+python3 -m unittest discover -s client/tests -v 2>&1 | tee "$out/validation/installer-tests.txt"
 python3 -m unittest tests.test_host_connection tests.test_direct_readiness -v 2>&1 | tee "$out/validation/host-tests.txt"
 client/build.sh "$out/bin" | tee "$out/validation/build.txt"
 client/build.sh "$out/rebuild" >> "$out/validation/build.txt"

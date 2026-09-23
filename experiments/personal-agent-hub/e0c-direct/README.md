@@ -210,6 +210,25 @@ snapshot. The normal-launch result is operator-reported PASS; the final dossier
 must retain the exact client metadata/MTU-source record. Real JetBrains launch/auth
 and remaining lifecycle, policy and host-deployment gates stay open.
 
+## Development IDE installer checkpoint
+
+The operator requested a small installer before real IDE acceptance.
+[`client/install-jetbrains-agent.sh`](../../../client/install-jetbrains-agent.sh)
+downloads official release assets by default, verifies SHA-256 before execution,
+installs to the user-local stable path, and structurally merges a JetBrains custom
+ACP entry. For this acceptance, `--candidate-dir` explicitly consumes the already
+tested direct package; the public alpha remains the historical SSH implementation.
+No new release or repository push was performed. The installer is scaffolding;
+ACP Registry remains the distribution direction.
+
+[Local validation](installer-validation.json) records 13 isolated contract tests,
+one actual public release download/install in a temporary home, and installation,
+status and repeat installation using the actual Linux direct candidate. It does
+not claim real macOS/WSL installer or IDE launch evidence. Existing Client CI runs
+the added tests. JSON failure, checksum mismatch, duplicate entries and concurrent
+config edits fail closed; other agents and their policy are preserved. The operator
+can now perform real JetBrains acceptance without manually editing `acp.json`.
+
 ## Identity and policy lifecycle
 
 Private storage: `direct-v1/identity.key` (0600 Ed25519 seed), `tsnet/` (0700 and

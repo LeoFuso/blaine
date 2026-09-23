@@ -32,12 +32,21 @@ used for the spike. Do not disable Gatekeeper globally.
 
 ## Real JetBrains launch — after the transport batch
 
-Use the installed stable AI Assistant's custom ACP agent mechanism. Preserve every
-existing `agent_servers` entry in its `acp.json`; add only `Blaine E0.C candidate`.
+Use the [development installer](../../../client/INSTALL.md#development-jetbrains-bootstrap)
+with `--candidate-dir` pointing to the already downloaded acceptance package. It
+checks that candidate's SHA-256, installs to `~/.local/bin/blaine`, and merges the
+custom ACP entry without manual JSON editing. Do not use its default historical
+SSH release for this direct-transport acceptance. Run `--check` afterward to retain
+the actual installed version/path and registration status. No new binary download
+or public release is required. The installer is local until an authorized push.
+
+Use the installed stable AI Assistant's custom ACP agent mechanism. The installer
+preserves existing `agent_servers` entries and reuses an existing Blaine entry.
 Disable IDE MCP exposure for this test. Blaine rejects nonempty MCP descriptors and
 advertises no workstation file/terminal capability. Do not point at a real work
 project to test effects: there are no E1/E2 capabilities in this candidate.
 
+The following entries document the launch contract; the installer writes them.
 macOS command entry (use the actual absolute home path):
 
 ```json
