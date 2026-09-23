@@ -53,7 +53,7 @@ new session correlation and the same installation/node; requests are not replaye
 | Actual installed PersonalACP subprocess over new relay | PASS local integration | Real Python ACP SDK/runtime initialize + session/new + EOF cleanup over loopback fixture transport; no remote peer or Task claim. |
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
 | macOS production candidate | PASS live transport/ACP signal batch | Corrected commit `77a974c` passed two direct runs and real remote ACP SIGINT/SIGTERM exit 130. Node/application identity survived process restarts and binary replacement from `dadb3c5`. JetBrains, reboot/revocation and policy gates remain separate. |
-| WSL production candidate | PENDING | Earlier spike reachability/identity evidence remains valid only for its recorded scope. |
+| WSL production candidate | PARTIAL live enrollment; transport batch PENDING | Candidate `77a974c` checksum passed. Browser enrollment produced the designated installation node; the host correctly denied it before allowlisting. Independent host node/principal review completed; repeat handshake/stream/ACP/signals pending. |
 | Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
 | Task independence | PASS bounded live Mac + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, the initial Mac failure, and both successful Mac ACP signal terminations. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
@@ -101,6 +101,16 @@ binary upgrade. The [subsequent authoritative Task read](task-after-macos-signal
 matches the pre-test state exactly. `doctor` correctly remained NOT_READY: it does
 not probe connectivity, and E0.D registration and integrated onboarding are absent.
 This is operator-supplied live workstation evidence, distinct from local fixtures.
+
+The [WSL enrollment](wsl-enrollment.json) records the same corrected candidate in
+Ubuntu on ST00251. The new product node `nPvKcFBuW821CNTRL` was denied before its
+signed Blaine handshake, as expected. The host independently verified the exact
+node, expected principal, Linux platform and installation-derived name; only then
+was it added beside the designated Mac in the transport allowlist. The private
+candidate listener was restarted and all five dependency checks passed. No tailnet
+ACL, system Tailscale, runtime or Restate service was changed. The controlled Task
+remained WAITING before the repeat. The WSL stream, ACP and signal gates are still
+pending; this temporary admission review is not E0.D registration.
 
 ## Identity and policy lifecycle
 

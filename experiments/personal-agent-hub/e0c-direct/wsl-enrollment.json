@@ -1,0 +1,69 @@
+{
+  "observed_at": "2026-09-23T17:22:37.050015+00:00",
+  "status": "PARTIAL",
+  "source": "Operator WSL transcript plus independent Blaine host peer-map read",
+  "candidate": {
+    "version": "0.1.0-e0c-direct",
+    "commit": "77a974c31b622983bc24c7316e690d4caeafca3c",
+    "go": "go1.27.1",
+    "platform": "linux/amd64",
+    "package_checksums": "operator reported binary/script/documentation OK"
+  },
+  "designated_peer": "ST00251 / Ubuntu WSL2",
+  "topology": "Linux client in WSL; embedded tsnet; no nested system daemon installed",
+  "reported_installation": {
+    "node_id": "nPvKcFBuW821CNTRL",
+    "node_reused": false,
+    "workstation_id": "ws-c5c659bfb5a2364ba3c33f0b86054732"
+  },
+  "host_observation": {
+    "observed_at": "2026-09-23T17:22:37.050015+00:00",
+    "source": "Blaine host Tailscale peer map",
+    "peer": {
+      "ID": "nPvKcFBuW821CNTRL",
+      "HostName": "blaine-c5c659bfb5a2",
+      "DNSName": "blaine-c5c659bfb5a2.tail0f2ece.ts.net.",
+      "OS": "linux",
+      "UserID": 4301359180507170,
+      "TailscaleIPs": [
+        "100.73.122.62",
+        "fd7a:115c:a1e0::7928:7a3f"
+      ],
+      "Online": false,
+      "Expired": null,
+      "Tags": null
+    },
+    "matches_operator_report": true,
+    "expected_principal_matches": true
+  },
+  "observation_limit": "Peer map confirms authenticated network node/principal and expected application-derived name; physical workstation attribution comes from the designated operator run, not hardware attestation. Online=false was observed after the client exited.",
+  "first_attempt": {
+    "browser_enrollment": "operator flow reached authenticated node",
+    "result": "TRANSPORT_DENIED",
+    "exit": 3,
+    "signed_blaine_handshake": "NOT_REACHED",
+    "binary_stream": "NOT_REACHED",
+    "acp": "NOT_REACHED"
+  },
+  "host_change": {
+    "allowed_nodes": [
+      "nEEbpyYWN921CNTRL",
+      "nPvKcFBuW821CNTRL"
+    ],
+    "principal_restriction_retained": true,
+    "candidate_listener_restarted": true,
+    "tailnet_policy_changed": false,
+    "system_tailscale_changed": false,
+    "runtime_or_restate_restarted": false,
+    "e0d_registration_created": false
+  },
+  "readiness": {
+    "runtime": "PASS",
+    "restate": "PASS",
+    "mirix": "PASS",
+    "generation": "PASS",
+    "embeddings": "PASS"
+  },
+  "controlled_task_before_repeat": "WAITING",
+  "next": "Rerun the same accept.sh in Ubuntu WSL; no new package. Direct WSL handshake, stream, identity reuse and signals remain pending."
+}
