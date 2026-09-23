@@ -35,6 +35,22 @@ privately; ordinary disconnect does not erase them. Tailscale network identity,
 Blaine application registration and ACP/provider authentication remain distinct.
 The handshake verifies both the expected Hub node and signed Blaine server identity.
 
+**E0.D admission clarification, 2026-09-23:** Tailscale is the workstation
+admission authority in the current personal deployment. After a policy-authorized
+tsnet peer passes the existing Blaine handshake, register its proven installation
+automatically and idempotently. Registration owns durable identity/inventory,
+reconnect/presence and future capability association, not a second authentication
+system or manual operator approval. The temporary E0.C exact-node allowlist must
+not turn into a second enrollment queue. Preserve application identity/key proof,
+protocol validation and independent Task/workspace/PolicyGate authority.
+
+Strong device revocation remains at the Tailscale boundary. Blaine may retain
+retired/revoked product state and invalidate session routes, but cannot claim that
+a registry flag protects a Hub against an identity with administrative SSH access
+to that host. Additional Blaine approval requires a demonstrated threat and a
+separate decision. This clarifies the planned E0.D contract; registration remains
+unimplemented and the accepted E0.C deployment/evidence is unchanged.
+
 This replaces SSH for product transport, removing remote Unix accounts, remote
 shell/dispatcher framing and duplicated SSH trust plumbing from client onboarding.
 Tailscale SSH remains for administration/diagnostics. The previous adapter is kept

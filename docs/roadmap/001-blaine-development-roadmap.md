@@ -144,8 +144,12 @@ plus the host ACP compatibility corrections now has a real Mac IntelliJ read-onl
 round trip and clean-session-end/Task-independence proof. Effective narrow tailnet
 policy and canonical persistent host deployment have now passed, followed by a
 repeat primary Mac IDE round trip under that final configuration.
-Minimum transport identity reuse has passed; registration/revoke/reset/re-enrollment
-belongs to E0.D and full Windows IntelliJ-to-WSL acceptance belongs to E0.F.
+Minimum transport identity reuse has passed. E0.D owns automatic durable workstation
+identity/inventory, reconnect/presence and future capability association for peers
+already admitted by Tailscale and the existing Blaine handshake. It adds no second
+manual approval or authentication system. Tailscale owns strong device revocation;
+Blaine retirement/revocation is product state, not protection against retained Hub
+administrative SSH authority. Full Windows IntelliJ-to-WSL acceptance belongs to E0.F.
 Prior SSH and E0.A/B evidence keeps its original scope. E0.D has not started.
 Full Blaine onboarding,
 remote effects and coding E2E remain unvalidated.
@@ -777,7 +781,10 @@ operator procedures; this document owns development direction and dependencies.
   Task independence. Public alpha.3 is the current proven client; alpha.1 is historical
   SSH product-transport evidence. WSL transport proof retains its metadata limitation;
   full Windows-hosted IntelliJ/WSL acceptance belongs to E0.F. **E0.D Registration**
-  is the next canonical slice, unblocked and not started. E0.D+ was not implemented.
+  is the next canonical slice, unblocked and not started: automatic registration of
+  Tailscale-admitted peers, stable identity/inventory, reconnect/presence and future
+  capability association. No second manual Blaine admission boundary is planned.
+  Strong device revocation stays with Tailscale. E0.D+ was not implemented.
   Use the [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
   Full E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
   D3 history is preserved; no full E-series milestone is claimed live PASS.

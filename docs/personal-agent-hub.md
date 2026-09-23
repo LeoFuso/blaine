@@ -220,21 +220,24 @@ host. Local user-approved scope must independently bound forwarded effects.
 | --- | --- |
 | Personal Agent / host | Stable server ID returned over verified transport, pinned to the configured host profile. DNS alone is not identity. |
 | Network principal | Embedded Tailscale stable node and user/tag principal derived from the actual socket. Never accept a claimed peer ID from request JSON. |
-| Client installation | Persistent Blaine Ed25519 key and derived workstation ID, proven independently in the handshake and correlated with the observed tsnet node. Registration remains E0.D. Reinstall/reset requires explicit re-enrollment. |
-| Workstation registration | Server-issued ID tied to authenticated peer/device, client UUID, owner and status. Display name is not a key. |
+| Client installation | Persistent Blaine Ed25519 key and derived workstation ID, proven in the handshake and correlated with the observed tsnet node. A replacement identity must not take over another installation's registration or grants. |
+| Workstation registration | Durable Blaine inventory ID bound to the authenticated network peer and proven installation key; created automatically on first accepted connection. Display name and client UUID cannot authenticate or select another record. |
 | Workspace | Registration ID + opaque workspace ID + locally canonical absolute root and path-platform tag. Two machines with `/home/user/project` are distinct. |
 | Surface/session | Ephemeral ACP session/connection ID and generation bound to registration/workspace. Recreated on reconnect. |
 | Task / operation | Existing durable Task ID and stable capability operation ID; neither derived from ACP session ID. |
 
-Network login establishes tailnet membership/transport identity under tailnet policy. Registration associates a particular installation with Blaine and
-records compatibility/capabilities. Authorization is a separate Task-specific
-policy decision intersected with local workspace consent. Registration is not
-an OAuth provider, shared workstation secret, or blanket project grant.
+Tailscale is the workstation admission authority for the current personal
+deployment: the peer must be authenticated and authorized by the effective policy
+for the private Hub service. Tailnet membership alone is not service authorization.
+Blaine's existing handshake preserves server identity, installation-key proof and
+protocol validation. Registration records that accepted installation; it does not
+introduce another manual approval or authentication system. Task/workspace effects
+still require separate authority, PolicyGate enforcement and local consent.
 
 Recommended host registry: a small Blaine-owned PostgreSQL table with registration
-ID, client UUID, authenticated principal/device binding, display metadata,
-first/last seen, status/revocation revision, client/protocol versions and last
-observed capabilities. Uniqueness is scoped by owner and authenticated device plus
+ID, proven installation key/ID, authenticated principal/device binding, display
+metadata, first/last seen, product status/revision, client/protocol versions and
+future capability associations. Uniqueness is scoped by owner and authenticated device plus
 installation, so replayed registration returns the same row. Last seen is only an
 observation, not a liveness promise. Active ACP routes are ephemeral; current
 capabilities are negotiated on each connection. Restate stores the Task's selected
@@ -242,6 +245,50 @@ registration/workspace, grants, operation receipts and waits. PostgreSQL must no
 become a second Task ledger. This follows [ADR 0018 storage ownership](decisions/0018-local-platform-durability-and-observability.md),
 while preserving its documented implementation/validation status. MIRIX, Redis,
 telemetry and the local config are not registry authorities.
+
+### E0.D registration: identity, inventory and presence
+
+**Selected boundary:** automatically and idempotently register an authenticated,
+policy-authorized tsnet peer after the existing Blaine handshake succeeds. Both
+`connect` and an IDE-launched `acp` use this path; no separate enrollment command,
+operator approval queue or per-device Blaine allowlist is the target UX. The E0.C
+exact-node allowlist is a temporary acceptance/deployment control, not a second
+admission authority to carry into E0.D. Its replacement must preserve trusted
+socket-derived peer identity and effective narrow Tailscale service authorization.
+This is a design correction; the deployed E0.C control is not changed by this text.
+
+E0.D must prove:
+
+- First accepted connection creates one durable record and returns its receipt;
+  concurrent attempts, response loss and retries return the same registration.
+  Unauthenticated, policy-denied or invalid-handshake attempts create no record.
+- Reconnect, process restart and binary upgrade preserve the same registration
+  for the same authenticated peer/installation binding. A supplied UUID, display
+  name or copied receipt cannot claim another binding. Changed identities cannot
+  silently inherit a previous installation's workspace or Task authority.
+- Durable inventory survives connection loss. Current route/session generation
+  is ephemeral; last-seen and connected/disconnected/unknown presence are server
+  observations, not authentication or proof that a workstation is still available.
+  An old session closing must not invalidate a newer accepted route. `doctor`
+  remains read-only and does not register or refresh presence.
+- Future capability associations have an identity to refer to, but registration
+  and capability advertisements grant no workspace read/write/terminal authority.
+  Workstation disconnect changes availability, never durable Task lifecycle.
+
+Strong device revocation belongs to Tailscale for this deployment. Blaine may
+record retired/revoked product state, preserve inventory history and invalidate
+its own session routes; these are not independent device-security guarantees.
+A retired installation can return through an explicit connect and the same
+current Tailscale admission/handshake checks, without a second manual approval.
+Network revocation and later re-admission remain Tailscale decisions; do not
+silently transfer an old binding or its grants to a new node/key.
+
+In particular, an application registry flag cannot protect the Hub against an
+identity that retains administrative SSH authority over that host. Removing that
+authority requires action at the Tailscale/host administration boundary. Session
+teardown and policy-propagation latency must be measured, not described as instant
+revocation. A new Blaine approval boundary requires a demonstrated threat and a
+separate decision; it is not part of E0.D by default.
 
 Recommended Linux and WSL-distribution paths: `$XDG_CONFIG_HOME/blaine/config.json` (default
 `~/.config/blaine/config.json`) for schema version, connection profile, host/server
@@ -418,7 +465,7 @@ An idempotent flow based on observed state, not a persistent onboarding workflow
 | 3. Resolve | Load persisted host, otherwise provisioned profile/explicit host. Resolve and test the selected host. | Offline/DNS/access failure: `REMOTE_UNAVAILABLE`, preserve previous configuration. No host guessing/fallback to public routes. |
 | 4. Secure transport | Verify the expected Tailscale Hub node and signed Blaine server identity on the direct private endpoint. | Identity changes fail closed. No Unix account, SSH key/known_hosts input or shell framing. |
 | 5. Handshake | Check server identity, protocol compatibility and runtime readiness. | `INCOMPATIBLE` or `REMOTE_UNAVAILABLE`; registration is not proof of runtime readiness. No service restart or deployment mutation. |
-| 6. Register | Idempotent registration bound to authenticated device/client UUID. Persist receipt after authoritative success. | Lost response: look up/retry same identity; no duplicate registration. Revoked identity requires explicit re-pairing, not automatic resurrection. |
+| 6. Register | Automatically upsert durable inventory/presence for the policy-authorized network peer and proven installation key after handshake. Persist receipt after authoritative success. | Lost response: retry the same binding, return the same registration. No second manual approval. Tailscale controls revocation/re-admission; a changed binding cannot inherit an old identity or grants. |
 | 7. Configure IDE | Merge owned Blaine agent entry with stable absolute local launcher. | Absent IntelliJ: retain connection, report `IDE_MISSING`, not full READY. Running IntelliJ: merge safely, report reload/restart action only if needed. Name conflict or malformed config: STOP with a reviewable proposed change. |
 | 8. Diagnose | Perform the read-only doctor checks. | All required E0 checks pass: `READY`. Exact existing connection/config: `ALREADY_CONNECTED`, then current diagnostics. Repairable owned drift: repair only that entry and verify again. |
 
@@ -535,7 +582,8 @@ This is the stable launcher and transport adapter. Standard ACP initialization
 exposes the agent-owned authentication method; an explicit ACP `authenticate`
 request may open the browser to enroll the embedded node. This replaces the former
 CLI-only login restriction. Authentication and connection diagnostics never appear
-as unframed stdout. Missing application registration remains a separate E0.D gate.
+as unframed stdout. E0.D adds automatic durable registration after the accepted
+handshake; it does not require a separate manual pairing step before IDE use.
 
 No PTY. Keep stdin/stdout exclusively ACP JSON-RPC with correct framing,
 backpressure, request correlation and bidirectional client capability calls.
@@ -557,12 +605,14 @@ receipt and must not be presented as Task cancellation.
 ### `blaine disconnect` and `blaine version`
 
 `disconnect` disables local launches and active owned connections, removes only
-an unchanged client-owned ACP entry, and marks/revokes this registration remotely
-when reachable. If remote revocation cannot be confirmed, report local disconnect
-and revocation pending; do not claim global revocation. Future connect must
-reconcile explicitly. Preserve Task IDs/results and local workspace files; never
-cancel Tasks, log out all of Tailscale, delete credentials or affect other agents.
-Revocation and local blocking must be idempotent. `version` is an offline read of
+an unchanged client-owned ACP entry, and reports disconnected/retired product state
+when the Hub acknowledges it. If unreachable, report local disconnect and unknown
+remote presence; do not claim device revocation. Ordinary disconnect preserves
+installation identity for reconnect. Strong network revocation is a separate
+Tailscale operation, not a registry flag. Preserve Task IDs/results and workspace
+files; never cancel Tasks, log out system Tailscale, delete credentials or affect
+other agents implicitly. Product retirement and local cleanup are idempotent.
+`version` is an offline read of
 client/build/protocol versions with no network or filesystem mutation.
 
 ## Capability and workspace contracts
@@ -767,7 +817,7 @@ proof. Evidence trust is explicit about this execution boundary.
 | Pending read | Re-read only the still-authorized pending operation; duplicates may occur but accepted evidence is one-shot and cannot be replaced. Source changes are visible to the verifier. |
 | Pending write/exec | Inspect durable operation and available receipt; unknown outcome blocks redispatch. No promise of exactly-once remote execution from ACP alone. |
 | Workstation unavailable | Non-workspace Task steps may progress if independently authorized. Workspace-dependent work waits; no host checkout or alternate workstation substitution. |
-| Revoked/stale registration | Deny new effects; invalidate route. Last-seen age alone does not authorize or revoke. Fresh authentication/registration check is required. |
+| Retired, network-revoked or unavailable workstation | Invalidate the affected route; preserve inventory and Task state. Reconnect revalidates Tailscale admission, installation binding and session generation. Last-seen age or a product flag is not strong device revocation; future effects still require current grants. |
 | Multiple surfaces/devices | Task identity is global within the existing single-user namespace. Surface grants remain per registration/workspace. A status query elsewhere does not retarget effects. |
 
 Recommend one active effect route per Task/workspace with runtime-admitted route
@@ -934,7 +984,7 @@ is implied for routine defaults already authorized by an implementation request.
 | Q2 Installation/distribution — Recommended | E0.C supporting delivery now proves Actions Artifacts and an alpha GitHub Release; native packaging/signing and full product acceptance remain open. | E0 design: Linux/WSL binaries or packages and native macOS binary/package; trusted release checksums, stable user-level launcher and rollback. Initial release may validate fewer targets; dev install for iteration. | Enterprise policy requires managed package/signing: add `.deb`; macOS managed packaging/Homebrew can follow initial standalone distribution, with OS trust/signing requirements validated for the selected artifact. Bootstrap convenience is optional, never `curl \| sh` as the core. E0.A then E0.F. |
 | Q3 Host discovery — Recommended | Proven path uses an SSH alias. MagicDNS provides device names; no Blaine discovery API exists. | Provision stable MagicDNS FQDN in a connection profile, allow first `--host`, persist verified server identity. No tailnet enumeration/admin API. | Multiple hosts/failover becomes a real requirement or DNS unavailable; require explicit profile, not guessing. E0.C. |
 | Q4 SSH mode — Recommended | Milestone 002 explicitly proved Tailscale SSH through `/usr/bin/ssh`; D2 says existing SSH authentication. Current installed transport has not been observed here. | Preserve Tailscale SSH first behind a narrow interface; record mode explicitly. Normal SSH over Tailscale may be a configured adapter, not an automatic fallback. | Live host uses ordinary sshd or managed policy disallows Tailscale SSH; separately verify user mapping, host-key trust, auth, reauth and cleanup. E0.C. Migration is not free. |
-| Q5 Authentication/pairing — Open | Tailnet membership and SSH access do not grant workspace authority; no workstation pairing implementation exists. | Bind registration to transport-derived peer/device plus intended user; client UUID is only metadata. Reuse Tailscale/SSH identity, no second IdP. | Installed host cannot derive trusted source identity: STOP and choose the smallest verifiable pairing mechanism. E0.C/D before READY. |
+| Q5 Admission/registration — Selected | E0.C proves socket-derived tsnet identity and the Blaine handshake. Tailscale controls workstation admission; no durable registry is implemented yet. | Automatically register accepted peers for identity/inventory/presence. No second manual approval, IdP or SSH product transport. Preserve installation-key proof and Task/workspace authority boundaries. | A demonstrated threat not mitigated by Tailscale admission and the existing handshake warrants reviewing an additional boundary. Unverifiable peer identity remains STOP. E0.D. |
 | Q6 Registration storage — Recommended | PostgreSQL owns structured durable brain data; Restate owns Task execution; D2 has no device registry. | Small PostgreSQL registry as specified above; no new service/database instance or MIRIX registry. | Existing adopted application already provides a suitable identity/config repository; preserve ownership and migration/uniqueness guarantees. E0.D. |
 | Q7 Local config/secrets — Recommended | Host scripts use private local paths; no client config schema exists. | Versioned platform-native config/state (XDG Linux/WSL, Application Support macOS), restrictive permissions, native credential stores, no secrets in JSON. | A supported packaging mechanism changes location/credential needs. All platform paths defined in E0.A; live validation may be staged. |
 | Q8 IntelliJ installation — Open | Current official docs specify `~/.jetbrains/acp.json`; old live WSL path conflicts with current support statement. | Platform-specific IDE discovery and owned-entry merge; preserve others, test running IDE and Windows-to-WSL launcher arrangement. Native Linux may be first live proof. | Actual installed versions/schema/reload or managed restrictions differ. E0.E/F must record a supported version pair. |
@@ -983,8 +1033,8 @@ compromised trusted machine or provide a new enterprise security platform.
 | --- | --- | --- |
 | Compromised workstation | Treat content/capability replies as untrusted inputs; validate schema, size and operation identity. Workstation cannot authorize host/global effects. Its own evidence can still be fabricated; no attestation claim. | E0 identity, E1 evidence, E2/E3 verification. |
 | Compromised Blaine host | Independent local workspace consent and guard; deny unsolicited/out-of-scope filesystem/exec calls even over authenticated transport. Never forward workstation credentials. A host can still misuse already granted scope; keep it narrow/revocable. | E0 no ambient grants; E1 guard; E2 effect enforcement. |
-| Device removed from tailnet | New connections fail network policy; invalidate known revoked routes and check registration before effects. Existing session teardown/revocation latency must be measured, not assumed instantaneous. | E0.D revocation lifecycle; E0.F integrated negative probe; E1/E2 route invalidation. |
-| Stale registration | Last-seen is informational; fresh authenticated binding and active status required. Revoke explicitly; no automatic resurrection or grant inheritance on reinstall. | E0.D onward. |
+| Device removed from tailnet | Tailscale owns strong network revocation; Blaine reflects observed state and invalidates affected routes. Measure propagation/session teardown; a registry flag cannot neutralize retained administrative SSH authority over the Hub. | E0.D state reflection; E0.F integrated negative probe; E1/E2 route invalidation. |
+| Stale/retired inventory | Preserve durable identity/history; last-seen is informational. A fresh policy-authorized handshake can restore presence without manual Blaine approval. Reinstall or a changed binding cannot inherit old grants. | E0.D onward. |
 | Path traversal / link races | Canonical local workspace plus operation-time containment, narrow file set, negative traversal/symlink/hard-link probes; cwd string is not a sandbox. | E1 reads, E2 writes. |
 | Arbitrary command execution | Exact profile/args/env/cwd with reviewed build inputs, bounds and lifecycle; deny shell text. Trusted synthetic fixture initially; allowlist is not an OS sandbox. | E2/E3. |
 | Client impersonation | Server derives authenticated principal/device; UUID/path/name cannot authenticate. Detect copied UUID on another device, mismatched server and stale route generation. | E0.C/D, E1. |
@@ -1021,7 +1071,7 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 | E0.A Client skeleton/package — [foundation PASS](../experiments/e0a-blaine-client/README.md) | Settle Go recommendation; proposed `client/cmd/blaine`, `client/internal/platform` Linux/macOS/WSL adapters, versioned config model and portable artifact/install notes. Five-command surface with explicit unavailable stubs for later behavior. | Install executable in a clean Linux user environment; version works without repo/language runtime; config/path and stdio/signal fixtures cover all three platform boundaries; live portability explicitly scoped. | Packaging requires hidden runtime/repo, stdout corruption, unsafe config migration. | This design; no live host required. |
 | E0.B Tailscale state/login | Proposed platform prerequisite adapters; supported install assistance, native status/login, macOS approvals, Windows host inspection from WSL. | On available targets, prove install/missing/expired/login states; macOS native approval and WSL2 host status/topology probes; no changed unrelated preferences. Record untested targets. | Needs admin token/permanent root, duplicate WSL daemon, wrong tailnet, unsupported install or cannot distinguish auth/host/guest reachability. | E0.A; authorized test workstation. |
 | E0.C Host/transport/handshake — [PASS](../experiments/personal-agent-hub/e0c-direct/README.md) | Embedded tsnet, internal Hub profile, private application endpoint, signed handshake and bounded binary/ACP session. | Primary designated Mac: persistent peer identity across restart/reconnect, handshake, binary stream, cancellation/disconnect, narrow tailnet policy, persistent Hub service/readiness, Task independence and real Blaine IDE read-only round trip. Existing WSL transport evidence is additional; full second-workstation IDE acceptance belongs to E0.F. | Claimed peer identity, public endpoint, failed application pin/protocol accepted, unsafe state or hidden transport fallback. | E0.A; accepted E0.B history; authorized designated peers and private host deployment. E0.C accepted; E0.D is next, not started. |
-| E0.D Registration | Proposed PostgreSQL migration/repository and client registration receipt. | Register/replay after response loss and restart: one identity; copied UUID on another device denied; explicit revoke/reset/re-enrollment lifecycle beyond E0.C transport identity proof. | New Task ledger, registration grants workspace scope, unknown outcome reported success. | E0.C; existing PostgreSQL access scoped to registry. |
+| E0.D Workstation identity/inventory/presence | Proposed PostgreSQL migration/repository and automatic registration receipt after an accepted tsnet/Blaine handshake; future capability association hooks. | First connection/concurrent retry/response loss produce one registration; restart/reconnect/upgrade reuse it; copied identifiers cannot take over another binding; presence and stale-session fencing preserve inventory and Tasks. Retirement/revocation records reflect product/network state; Tailscale owns strong admission/revocation. | Second manual Blaine approval without a demonstrated threat; new Task ledger; registration grants workspace scope; unknown outcome reported success; registry revocation claimed to resist host-admin authority. | E0.C; effective narrow Tailscale admission; existing PostgreSQL access scoped to registry. |
 | E0.E IntelliJ config | Proposed client IDE config adapter and merge fixtures. | Actual IntelliJ with a second agent, closed/running merge/reload; correct OS user config and stable launcher; test supported Windows/WSL arrangement before that platform PASS. | Overwrites unrelated fields, managed installation blocks agents, version unsupported. | E0.A/C/D; supported IDE installation. |
 | E0.F Doctor/connect acceptance | Integrate state flow, diagnostics, disconnect and release artifact; proposed E0 acceptance report. | New-workstation journey and E0 positive/negative matrix per implemented platform, twice-run connect, read-only doctor; full real IntelliJ acceptance on the designated second Windows/WSL workstation; mark other targets unverified. | False READY, any missing identity/config/stdio invariant; no live IntelliJ evidence. | E0.A–E; closes only explicitly validated platform scope of E0. |
 | E1.A Workspace/operation boundary | Extend workspace contracts, route binding and proposed local guard/private envelope. | Real IntelliJ initialization captures versions/cwd/support; bind canonical workspace and authorization to one read request; wrong-device/session denied. | Task authority cannot be matched locally, no live read capability, ambiguous workspace. | E0 PASS; Q9/Q10/Q18 decisions. |

@@ -18,8 +18,9 @@ The designated macOS workstation is the primary live E0.C peer. Its measured
 restart/reconnect and binary-replacement reuse of the same tsnet node and Blaine
 installation identity satisfies the minimum persistent transport identity gate.
 The real IDE read-only round trip and preserved Task after IDE quit are accepted
-transport evidence. Full registration, explicit revoke/reset/re-enrollment beyond
-that minimum proof belong to E0.D; full second Windows/WSL IntelliJ acceptance
+transport evidence. Durable workstation identity, inventory, reconnect/presence and
+product lifecycle beyond that minimum proof belong to E0.D; full second
+Windows/WSL IntelliJ acceptance
 belongs to E0.F. Separate reboot/lifecycle observations are not newly added E0.C
 blockers. Existing WSL transport evidence remains valid within its measured scope.
 
@@ -44,6 +45,27 @@ headers and applies its exact principal/stable-node allowlist. Expired nodes fai
 This is network admission, separate from possession of the Blaine installation key,
 future workstation registration, and per-operation Task/workspace authority.
 No E0.D registry or E1/E2 authority is created by this contract.
+
+### E0.D handoff: admission is not registration approval
+
+Tailscale is the current personal deployment's workstation admission authority.
+E0.D should automatically register an authenticated, policy-authorized peer on its
+first accepted Blaine handshake, preserving the signed server/installation identity
+and protocol checks. Durable registration adds inventory, stable binding, presence
+and future capability association; it is not a second authentication system.
+
+The exact-node allowlist above describes the accepted E0.C implementation. It must
+not become a second manual per-workstation approval queue in E0.D. Replacing that
+temporary control must preserve trusted socket-derived identity and effective
+narrow Tailscale service authorization. No admission/deployment code is changed by
+this design clarification. See the [E0.D contract](../personal-agent-hub.md#e0d-registration-identity-inventory-and-presence).
+
+Tailscale owns strong device revocation. Blaine retirement/revocation fields reflect
+product state and can invalidate Blaine routes, but cannot protect against an
+identity retaining administrative SSH authority over the Hub. Last-seen is only
+an observation; reconnect must freshly validate the peer/key binding and must not
+grant workspace authority or alter durable Tasks. Any additional manual approval
+boundary needs a demonstrated threat and an explicit decision.
 
 ## Application handshake
 
