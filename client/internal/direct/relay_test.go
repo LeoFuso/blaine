@@ -8,6 +8,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 	"time"
 
@@ -137,6 +138,7 @@ func TestInstalledPersonalACP(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
+	var sessionID string
 	for _, request := range []string{
 		`{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":1,"clientCapabilities":{"fs":{"readTextFile":true}}}}`,
 		`{"jsonrpc":"2.0","id":2,"method":"session/new","params":{"cwd":"/e0c-no-workspace-access","mcpServers":[]}}`,
@@ -152,6 +154,35 @@ func TestInstalledPersonalACP(t *testing.T) {
 		var response map[string]json.RawMessage
 		if json.Unmarshal(b, &response) != nil || response["result"] == nil || response["error"] != nil {
 			t.Fatal(string(b))
+		}
+		var result struct {
+			SessionID string `json:"sessionId"`
+		}
+		if json.Unmarshal(response["result"], &result) != nil {
+			t.Fatal("invalid ACP result")
+		}
+		if result.SessionID != "" {
+			sessionID = result.SessionID
+		}
+	}
+	if sessionID == "" {
+		t.Fatal("missing real ACP session identity")
+	}
+	// Exercise the actual SDK prompt dispatch, not only session creation. A text
+	// greeting returns existing control help without creating or changing a Task.
+	prompt, _ := json.Marshal(map[string]any{"jsonrpc": "2.0", "id": 4, "method": "session/prompt", "params": map[string]any{
+		"sessionId": sessionID, "prompt": []map[string]string{{"type": "text", "text": "hello"}},
+	}})
+	if e = s.Send(ctx, Data, append(prompt, '\n')); e != nil {
+		t.Fatal(e)
+	}
+	for _, want := range []string{"session/update", "end_turn"} {
+		kind, b, e := s.Receive(ctx)
+		if e != nil || kind != Data || !strings.Contains(string(b), want) {
+			t.Fatal(kind, e, string(b))
+		}
+		if want == "session/update" && (!strings.Contains(string(b), "Use summarize") || strings.Contains(string(b), "Unknown session")) {
+			t.Fatal("text prompt did not reach control help", string(b))
 		}
 	}
 	_ = s.Send(ctx, End, nil)

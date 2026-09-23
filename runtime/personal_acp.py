@@ -1,4 +1,4 @@
-"""ACP adapter for D2 controls, usable over the established SSH stdio path."""
+"""Host-side ACP adapter for D2 controls, reached through the private relay."""
 import asyncio
 import json
 import logging
@@ -93,8 +93,24 @@ class PersonalACP(BlaineAgent):
 
     async def prompt(self, session_id, prompt, **kwargs):
         try:
-            if session_id not in self.sessions or any(not isinstance(block, TextContentBlock) for block in prompt):
-                raise ValueError('Unknown session or non-text request')
+            known_session = session_id in self.sessions
+            text_only = all(isinstance(block, TextContentBlock) for block in prompt)
+            if not known_session or not text_only:
+                # Diagnose IDE compatibility without recording prompts, resource URIs,
+                # metadata, or client-supplied session identifiers. Labels are bounded.
+                kinds = ('text', 'image', 'audio', 'resource_link', 'resource')
+                counts = {kind: 0 for kind in (*kinds, 'unknown')}
+                for block in prompt:
+                    kind = getattr(block, 'type', None)
+                    counts[kind if kind in kinds else 'unknown'] += 1
+                print(json.dumps({'event': 'acp_prompt_rejected',
+                    'known_session': known_session, 'block_counts': counts}),
+                    file=sys.stderr, flush=True)
+                if not known_session:
+                    raise ValueError('Unknown ACP session; start a new Blaine chat.')
+                raise ValueError('Only text control commands are supported in E0.C. '
+                                 'Remove attached IDE context/resources and retry. '
+                                 'No workspace operation was performed.')
             text = '\n'.join(block.text for block in prompt).strip()
             result = await self.command(text, session_id)
             output = json.dumps(result)

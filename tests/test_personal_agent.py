@@ -1,15 +1,19 @@
 import hashlib
+import io
+import json
 import unittest
+from contextlib import redirect_stderr
 from unittest.mock import AsyncMock, Mock
 from urllib.error import HTTPError
 
 from acp.schema import ClientCapabilities, FileSystemCapabilities
+from acp.agent.router import build_agent_router
 
 from runtime.kernel.contracts import accept_task_request, message
 from runtime.kernel.execution import policy_gate
 from runtime.kernel.workspace import validate_read, validate_read_result
 from runtime.personal_agent import ControlRejected, PersonalAgent, RestateBinding, decision_request, small_request, task_identity
-from runtime.personal_acp import PersonalACP
+from runtime.personal_acp import HELP, PersonalACP
 from runtime.task import summarize_objective
 from runtime.kernel.contracts import encode
 
@@ -107,6 +111,46 @@ class Controls(unittest.TestCase):
 
 
 class ACP(unittest.IsolatedAsyncioTestCase):
+    async def test_sdk_prompt_dispatch_and_fail_closed_diagnostics(self):
+        control = Mock()
+        control.execute.return_value = {'lifecycle': 'UNAVAILABLE'}
+        agent = PersonalACP(control)
+        agent.on_connect(AsyncMock())
+        router = build_agent_router(agent)
+        session = await router('session/new', {'cwd': '/fixture', 'mcpServers': []}, False)
+        cases = [
+            (session.session_id, [{'type': 'text', 'text': 'hello'}], HELP, None),
+            ('private-unknown-session', [{'type': 'text', 'text': 'private-prompt'}],
+             'Unknown ACP session', {'text': 1}),
+            (session.session_id, [{'type': 'text', 'text': 'inspect task-fixture'},
+                {'type': 'resource_link', 'uri': 'file:///private-resource', 'name': 'private-name'}],
+             'Only text control commands', {'text': 1, 'resource_link': 1}),
+            (session.session_id, [{'type': 'resource', 'resource': {
+                'uri': 'file:///private-resource', 'text': 'private-content'}}],
+             'Only text control commands', {'resource': 1}),
+        ]
+        for sid, blocks, expected, counts in cases:
+            with self.subTest(expected=expected, counts=counts):
+                diagnostic = io.StringIO()
+                with redirect_stderr(diagnostic):
+                    result = await router('session/prompt', {'sessionId': sid, 'prompt': blocks}, False)
+                self.assertEqual(result.stop_reason, 'end_turn')
+                update = agent.conn.session_update.call_args.kwargs['update']
+                self.assertIn(expected, json.loads(update.content.text)['error'])
+                control.execute.assert_not_called()
+                if counts is None:
+                    self.assertEqual(diagnostic.getvalue(), '')
+                else:
+                    event = json.loads(diagnostic.getvalue())
+                    self.assertEqual(event['event'], 'acp_prompt_rejected')
+                    self.assertEqual(event['known_session'], sid == session.session_id)
+                    self.assertEqual({k: v for k, v in event['block_counts'].items() if v}, counts)
+                    self.assertNotIn('private-', diagnostic.getvalue())
+        await router('session/prompt', {'sessionId': session.session_id, 'prompt': [
+            {'type': 'text', 'text': 'inspect task-fixture'}]}, False)
+        control.execute.assert_called_once_with({'operation': 'inspect', 'task_id': 'task-fixture'})
+        agent.conn.read_text_file.assert_not_called()
+
     async def test_no_read_without_pending_authorized_request(self):
         control = Mock()
         control.execute.return_value = {'pending_workspace_read': None}

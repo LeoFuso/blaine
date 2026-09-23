@@ -256,6 +256,24 @@ typed ACP initialize passed in an isolated home. The next gate remains a real In
 session through the private Hub. No successful fixed Mac IDE session is inferred
 from the local tests or release publication.
 
+The operator subsequently installed alpha.3 and sent a greeting through the real
+Mac IDE. The host recorded the designated Mac's successful direct ACP handshake;
+the IDE displayed `Unknown session or non-text request` from PersonalACP.
+[Prompt evidence](alpha3-ide-prompt.json) separates this live application rejection
+from the passing transport handshake. The old error combines two different causes,
+so it does not establish whether the IDE sent an unknown session or non-text context.
+Neither raw prompts nor IDE metadata were captured.
+
+The host now distinguishes those cases and emits only a known-session boolean and
+bounded content-type counts on stderr. It still rejects non-text prompts before
+control execution; no resource is silently dropped, dereferenced or granted as a
+workspace capability. Tests through the installed Python SDK and direct relay show
+that a valid text-only greeting reaches the existing control-command help, while
+unknown sessions and resource blocks fail closed. Twenty-five host regressions
+passed. The existing controlled Restate Task's authoritative state remains identical.
+This diagnostic change requires a fresh host ACP process, not another client release.
+Real IDE repetition remains pending; E0.C is PARTIAL and E0.D remains blocked.
+
 ## Identity and policy lifecycle
 
 Private storage: `direct-v1/identity.key` (0600 Ed25519 seed), `tsnet/` (0700 and

@@ -1,0 +1,31 @@
+{
+  "status": "PARTIAL_LIVE_IDE_PROMPT_REJECTED",
+  "release": "v0.1.0-alpha.3",
+  "release_source": "1d718a18582d3a82635131d16f8c8d171d193759",
+  "operator_report": "Installed public client, selected Blaine in IntelliJ, sent hello, received Unknown session or non-text request.",
+  "client_metadata_limit": "Latest Mac version/checksum output not supplied; release identification follows requested public installation and operator report.",
+  "ide": "IntelliJ IDEA 2026.2.3 / IU-262.10968.63; AI Assistant 262.10968.97; macOS 26.6.2 / arm64",
+  "host_observation": {
+    "event": "private_session",
+    "stage": "handshake_complete",
+    "peer_node": "nEEbpyYWN921CNTRL",
+    "session_id": "39960f8258fdc9bab159fc1cca221e65",
+    "mode": "acp",
+    "elapsed_ms": 78,
+    "outcome": "OK"
+  },
+  "interpretation": "Real designated Mac reached direct Hub ACP; operator received a host application rejection. This is not a successful control operation or completed E0.C acceptance.",
+  "root_cause": "UNRESOLVED: previous host error combined unknown session and non-text prompt blocks. No actual IDE prompt contents were captured.",
+  "local_sdk_fixture": "PASS: a valid new session and text-only hello reach existing control help; read-only inspect reaches mocked control. Unknown sessions and mixed/resource-only prompts reject before control execution.",
+  "host_diagnostic": "Separate actionable errors and bounded known-session/content-type counts on stderr only. No prompt text, resource URI, metadata or untrusted session identifier is logged. Text-only admission remains unchanged.",
+  "validation": {
+    "python_regressions": "25 PASS (ACP, personal agent/runtime, host connection/readiness)",
+    "actual_python_over_direct_relay": "PASS: initialize, session/new, text hello/update/end_turn, EOF and abrupt-disconnect cleanup",
+    "sandbox_note": "Initial sandboxed Python asyncio run stalled and was interrupted; the same bounded suite passed outside the sandbox."
+  },
+  "controlled_task_unchanged": true,
+  "scope": "No client binary/installer/release, transport authorization, Task lifecycle or workspace capability changes.",
+  "next_action": "Restart IntelliJ to launch a fresh host ACP process, send hello again, inspect only the safe rejection diagnostic if present.",
+  "e0c": "PARTIAL",
+  "e0d": "BLOCKED"
+}
