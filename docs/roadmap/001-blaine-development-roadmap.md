@@ -608,6 +608,36 @@ WorkerSessions, role-scoped ContextPackets, explicit authority and typed outcome
 Parent/child completion remains independent. Unconstrained multi-agent debate is
 not the default, and parallelism should answer measured workload needs.
 
+## Track III — Hierarchical Context, Memory & Verified Learning
+
+**2026-09-23: III.1 PASS within source-research scope.** The
+[reference-systems report](../research/track-iii/001-reference-systems.md) and
+[milestone 042](../milestones/042-track-iii-1-reference-systems.md) retain current
+upstream pins, mechanism classifications, architectural constraints and evidence
+limits. This independent research track does not reopen the Cognitive Kernel,
+alter D1/D2, worker execution or remote-execution work, or add a v0 prerequisite.
+Existing Track A/B and post-v0 cycle names are unchanged.
+
+The accepted primitive is a generic ContextNode tree: permitted knowledge inherits
+downward, writes stay in the current context, and upward promotion is explicit and
+gated. Security applies to every derived representation. Memory remains derived;
+Restate owns lifecycle, PolicyGate authority, and Completion Contracts verification.
+The research studies continuous runtime memory access and learning from verified
+work, not just initial prompt injection.
+
+The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-iii-sequence-and-open-risks)
+covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
+III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
+III.9 Novelty/Simplicity gates and III.10 durable/distributed lineage.
+These remain future experiments, not implementation commitments or authorization.
+
+**Next proposal: III.2**, the
+[isolated deterministic tree experiment](../research/track-iii/001-reference-systems.md#10-exact-proposed-iii2-experiment).
+It requires explicit authorization and uses only synthetic fixtures, literal
+visibility/write oracles and negative controls. No provider, database or runtime
+integration. Storage selection, declassification authority and lineage revision
+semantics remain open; no production dependency was adopted by III.1.
+
 ## How to resume development
 
 A future human/agent should be able to resume from `main` without this conversation:
@@ -704,6 +734,10 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
+- **Track III: III.1 source research PASS; stopped at its boundary.**
+  [Research and proposed III.2](../research/track-iii/001-reference-systems.md).
+  III.2 has not started and requires explicit authorization; no runtime changes
+  or dependency adoption. Product and operational priorities below are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux

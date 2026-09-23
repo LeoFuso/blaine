@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "increment": "III.1",
+  "reviewed_on": "2026-09-23",
+  "status": "PASS",
+  "status_scope": "Source-research acceptance, not a runtime CompletionVerifier receipt or provider security/quality test",
+  "task_submission": {
+    "submitted": false,
+    "task_id": null,
+    "reason": "No suitable research creation binding exposed; retained TaskSpec is an unsubmitted draft"
+  },
+  "hypotheses": [
+    {
+      "id": "III.1-H1",
+      "hypothesis": "Useful reference mechanisms can be separated from foreign lifecycle/security assumptions",
+      "assessment": "PASS",
+      "evidence": [
+        "docs/research/track-iii/001-reference-systems.md#7-mechanism-level-comparative-study"
+      ],
+      "basis": "Pinned source paths expose bounded retrieval, reflection/consolidation, retrieval adapters, workflow evaluation and provider plumbing; classifications identify required changes"
+    },
+    {
+      "id": "III.1-H2",
+      "hypothesis": "Accepted hierarchical knowledge model can be specified without weakening proven Blaine invariants",
+      "assessment": "PASS",
+      "evidence": [
+        "docs/research/track-iii/001-reference-systems.md#1-scope-method-and-evidence",
+        "docs/research/track-iii/001-reference-systems.md#3-generic-bounded-contextnode-hierarchy"
+      ],
+      "basis": "No conflict found in reviewed ownership/contracts; implementation validity deferred to later increments"
+    },
+    {
+      "id": "III.1-H3",
+      "hypothesis": "Evidence suffices to define an independently checkable bounded III.2 experiment",
+      "assessment": "PASS",
+      "evidence": [
+        "docs/research/track-iii/001-reference-systems.md#10-exact-proposed-iii2-experiment"
+      ],
+      "basis": "Literal expected sets, forbidden writes, scope bypass cases, malformed tree cases and mutation control specified; not executed"
+    }
+  ],
+  "decisive_source_observations": [
+    {
+      "id": "atomic-refresh",
+      "repository": "atomic-agent",
+      "path": "src/agent/agent-loop.ts",
+      "symbols": [
+        "refreshMemoryContext",
+        "invokeLessonLifecycle"
+      ],
+      "observation": "Memory refresh before and between steps; reply/finish yields lesson success. Older documentation alone is insufficient; turn success is not verified Task success."
+    },
+    {
+      "id": "atomic-expansion",
+      "repository": "atomic-agent",
+      "path": "src/memory/memory-context-provider.ts",
+      "symbols": [
+        "expandWithLinks",
+        "loadProcedures"
+      ],
+      "observation": "Base project filter is not passed to link hydration or procedure lookup in this provider. Source-path gap, no exploit executed."
+    },
+    {
+      "id": "mirix-outcomes",
+      "repository": "mirix",
+      "path": "mirix/services/session_experience_distiller.py",
+      "symbols": [
+        "SessionExperienceDistiller"
+      ],
+      "observation": "Learns pending experiences from sealed transcripts without external success/failure oracle."
+    },
+    {
+      "id": "mirix-scope",
+      "repository": "mirix",
+      "path": "mirix/database/filter_tags_query.py",
+      "symbols": [
+        "apply_filter_tags_sqlalchemy",
+        "_apply_scopes_sqla"
+      ],
+      "observation": "Separately supplied scopes filter reads; empty list denies; None omits scope filter; generic scope tag ignored."
+    },
+    {
+      "id": "graphify-derived",
+      "repository": "graphify",
+      "path": "graphify/build.py",
+      "symbols": [
+        "build_from_json",
+        "_is_ast_tier",
+        "dedupe_edges"
+      ],
+      "observation": "Graph/DiGraph build and provenance heuristics remain at new pin; historical freshness probes not rerun."
+    },
+    {
+      "id": "semantic-egress",
+      "repository": "claude-context",
+      "path": "packages/core/src/context.ts",
+      "symbols": [
+        "semanticSearch"
+      ],
+      "observation": "Hybrid dense/sparse RRF retrieval; logs query/path and embedding components."
+    },
+    {
+      "id": "skills-evaluation",
+      "repository": "agent-skills",
+      "path": "scripts/run-evals.js",
+      "symbols": [
+        "tokenize",
+        "stem"
+      ],
+      "observation": "Deterministic lexical trigger/routing proxy separate from opt-in model behavioral execution/grading."
+    },
+    {
+      "id": "simplicity",
+      "repository": "ponytail",
+      "path": "skills/ponytail/SKILL.md",
+      "symbols": [],
+      "observation": "Reuse/stdlib/native-first ladder and explicit safety exceptions; persona and shortest-diff goals are not accepted Blaine rules."
+    },
+    {
+      "id": "routing-accounting",
+      "repository": "omniroute",
+      "path": "open-sse/utils/usageTracking.ts",
+      "symbols": [
+        "carryEstimatedUsageMarker"
+      ],
+      "observation": "Estimated usage is distinguished from provider reports; plumbing does not establish Task/model suitability."
+    }
+  ],
+  "classifications": {
+    "atomic-agent": {
+      "ADAPT": [
+        "bounded recall/pointers",
+        "scoped candidate reflection",
+        "linked episodes",
+        "consolidation and advisory procedures"
+      ],
+      "OBSERVE": [
+        "hybrid recall",
+        "query rewriting",
+        "utility voting/decay"
+      ],
+      "REIMPLEMENT BEHIND BLAINE CONTRACT": [
+        "durable learning orchestration and admission"
+      ],
+      "REJECT": [
+        "turn completion as verified success",
+        "project filters as security authority",
+        "fire-and-forget as durable lifecycle"
+      ]
+    },
+    "mirix": {
+      "ADAPT": [
+        "existing memory storage/search",
+        "explicit experience states"
+      ],
+      "REIMPLEMENT BEHIND BLAINE CONTRACT": [
+        "lineage",
+        "verified outcome admission",
+        "promotion/declassification"
+      ],
+      "OBSERVE": [
+        "automated procedural evolution"
+      ],
+      "REJECT": [
+        "reusable secret values in Knowledge Vault"
+      ]
+    },
+    "graphify": {
+      "ADAPT": [
+        "structural source navigation"
+      ],
+      "OBSERVE": [
+        "broader provider adoption"
+      ],
+      "REJECT": [
+        "graph authority over source"
+      ]
+    },
+    "claude-context": {
+      "ADAPT": [
+        "hybrid retrieval",
+        "AST-aware chunking"
+      ],
+      "REIMPLEMENT BEHIND BLAINE CONTRACT": [
+        "code.semantic_search"
+      ],
+      "OBSERVE": [
+        "product as provider"
+      ]
+    },
+    "agent-skills": {
+      "ADOPT": [
+        "separate structural/routing/behavioral evaluation"
+      ],
+      "ADAPT": [
+        "progressive disclosure and workflow contracts"
+      ]
+    },
+    "ponytail": {
+      "ADAPT": [
+        "bounded simplicity critic"
+      ],
+      "REJECT": [
+        "persistent persona",
+        "LOC as quality objective",
+        "blanket single-implementation-interface veto"
+      ]
+    },
+    "omniroute": {
+      "OBSERVE": [
+        "provider plumbing candidate"
+      ],
+      "ADAPT": [
+        "health/quota/usage contracts"
+      ],
+      "REJECT": [
+        "outsourced cognitive suitability or authority",
+        "unrestricted fallback"
+      ]
+    }
+  },
+  "not_run": [
+    "III.2 evaluator",
+    "upstream tests/benchmarks",
+    "live services or memory seeding",
+    "Blaine runtime tests",
+    "model/embedding inference through external tools"
+  ],
+  "next_increment": {
+    "id": "III.2",
+    "started": false,
+    "authorization_required": true,
+    "specification": "docs/research/track-iii/001-reference-systems.md#10-exact-proposed-iii2-experiment"
+  },
+  "human_decision": {
+    "architectural_conflict": false,
+    "required_to_close_III_1": false,
+    "required_to_start_III_2": "Explicit authorization"
+  },
+  "limitations": [
+    "Targeted source inspection is not a complete security audit",
+    "No measured retrieval quality, token savings or utility improvement",
+    "No current deployed service state read",
+    "Historical Graphify/MIRIX results were not rerun",
+    "Production partitioning, revocation and declassification authority remain unresolved"
+  ],
+  "documentation_checks": {
+    "status": "PASS",
+    "json_files_parsed": 3,
+    "markdown_files_checked": 7,
+    "local_link_checks": 218,
+    "local_anchor_checks": 9,
+    "reference_link_uses": 56,
+    "upstream_file_hashes_checked": 61,
+    "upstream_repositories": 7,
+    "scope_exact_match": true,
+    "changed_files": [
+      "README.md",
+      "docs/README.md",
+      "docs/milestones/042-track-iii-1-reference-systems.md",
+      "docs/milestones/README.md",
+      "docs/research/track-iii/001-reference-systems.md",
+      "docs/roadmap/001-blaine-development-roadmap.md",
+      "experiments/track-iii-001/README.md",
+      "experiments/track-iii-001/evidence/review.json",
+      "experiments/track-iii-001/evidence/source-manifest.json",
+      "experiments/track-iii-001/request.json"
+    ],
+    "git_diff_check_exit": 0,
+    "errors": [],
+    "method": "Python stdlib JSON parsing; inline/reference local-link existence and heading/explicit-anchor resolution; upstream file SHA-256 and pinned URL checks; exact documentation/research allowlist; git diff --check plus new-file whitespace scan"
+  }
+}

@@ -6,6 +6,7 @@ limitations; their historical “next” instructions do not override that roadm
 
 | Program | Latest accepted checkpoint | Evidence |
 | --- | --- | --- |
+| Track III — Hierarchical Context, Memory & Verified Learning | [III.1 reference research PASS](042-track-iii-1-reference-systems.md); III.2 unstarted | [Source manifest](../../experiments/track-iii-001/evidence/source-manifest.json), [review](../../experiments/track-iii-001/evidence/review.json); source-review scope only |
 | Cognitive Kernel 1–12 | COMPLETE: [progress and increment index](cognitive-kernel-progress.md), [Increment 12](037-cognitive-kernel-increment-12-parallel-children.md) | [Parallel children](../../experiments/kernel-increment-12/evidence/summary.json) |
 | Frontier boundary | [Increment 11 PASS / CLOSED](036-cognitive-kernel-increment-11-live-pass.md) | [Authorized live probe 002](../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json) |
 | D1.C inference | [Accepted local services, 128k](038-d1-local-inference.md) | [21 checks](../../experiments/d1-service-adoption/evidence/inference-summary.json) |
