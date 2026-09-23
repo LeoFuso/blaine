@@ -7,7 +7,7 @@ import sqlite3
 from runtime.kernel.human import human_requirement, validate_request, validate_response
 from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.contracts import (
-    CAPABILITIES, MAX_CONTENT, SPECIALISTS, CapabilityRequest, CompletionEvaluation,
+    CAPABILITIES, LOCAL_SUMMARY_MARKER, MAX_CONTENT, SPECIALISTS, CapabilityRequest, CompletionEvaluation,
     TaskSpec, TaskState, encode, fields, identifier, message, text, unpack, validate_decision, validate_spec,
     child_task_id, spawn_specs,
 )
@@ -205,6 +205,29 @@ def evaluate(spec: TaskSpec, state: TaskState, store: ArtifactStore) -> dict:
                         raise ValueError('Artifact was not accepted through the human input boundary')
                     validate_response(json.loads(content), request, state['task_id'])
                     outcome, detail = 'satisfied', 'Scoped response accepted and allowed value independently verified'
+                elif expected.get('verifier') == LOCAL_SUMMARY_MARKER:
+                    # Bounded PoC verifier. A local model summarises the objective's
+                    # material by paraphrase, so a pre-known digest is impossible. The
+                    # objective instructed the model to END the summary with an exact
+                    # marker and to stay within a word budget, so those two properties
+                    # are the verifiable contract: the marker the model was told to
+                    # emit, and the bounded length. Both are checked independently of
+                    # the model's paraphrasing; objective is kept for audit/reporting.
+                    value = content.decode('utf-8', errors='replace')
+                    marker = expected['marker']
+                    has_marker = marker in value
+                    words = len(value.split())
+                    within = words <= expected['max_words']
+                    if has_marker and within:
+                        outcome, detail = 'satisfied', (
+                            f'Local-model summary verified: marker present, {words} words <= {expected["max_words"]}')
+                    else:
+                        parts = []
+                        if not has_marker:
+                            parts.append('marker absent')
+                        if not within:
+                            parts.append(f'{words} words > {expected["max_words"]}')
+                        outcome, detail = 'unsatisfied', 'Local-model summary failed: ' + '; '.join(parts)
                 else:
                     outcome = "satisfied" if hashlib.sha256(content).hexdigest() == expected["sha256"] else "unsatisfied"
                     detail = "Exact artifact digest verified" if outcome == "satisfied" else "Artifact does not match accepted digest"

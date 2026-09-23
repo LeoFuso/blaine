@@ -219,9 +219,15 @@ Remaining Daily Driver work: live IntelliJ filesystem-capability validation,
 normal natural-language investigation/refactor normalization and suitable
 completion criteria, broader bounded capability adapters, and host service
 deployment when separately authorized. Generic semantic Tasks are not claimed
-to execute in this deterministic D2 deployment. Completion contracts remain the
-existing exact-artifact/human-response subset. The control surface does not yet
-implement constraint modification, scheduling, or Task listing.
+to execute in this deterministic D2 deployment. The Personal Agent now has one
+**bounded PoC local-cognition entry path** (`local_summary_request` →
+`LocalModelCognition`): a bare `TaskSpec` with no deterministic action lets the
+kernel invoke the deployment's configured local model, and the `local_model_summary`
+verifier (marker present + bounded word count) completes it through the existing
+artifact-evidence path. It is a PoC fixture, not a general open-ended contract,
+and grants no authority. Beyond it, completion contracts remain the existing
+exact-artifact/human-response subset. The control surface does not yet implement
+constraint modification, scheduling, or Task listing.
 
 The development [TaskSpec draft](daily-driver-d2-request.json) was not submitted:
 the session had no configured development-work execution binding. The five

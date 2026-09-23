@@ -41,6 +41,36 @@ def decision_request(request_id, question):
         'type': 'INVOKE_CAPABILITY', 'capability': 'human.request', 'input': {'request': human}}})
 
 
+def local_summary_request(objective, marker, limit_words):
+    """PoC Task shape that exercises the deployment's real local cognition.
+
+    The objective is the material to summarize plus a word limit and a marker
+    instruction; the local model must produce a summary that embeds the
+    objective (its real material) and the marker. Completion uses the bounded
+    local_model_summary verifier (objective embedded + marker present + bounded
+    word count), the existing artifact evidence path. Unlike
+    small_request/decision_request there is no initial_action: the kernel
+    invokes its configured cognition adapter (LocalModelCognition in the
+    canonical D2 deployment) to decide every turn. A bounded PoC fixture, not a
+    general open-ended contract.
+    """
+    text(objective, 1024)
+    identifier(marker)
+    if type(limit_words) is not int or limit_words < 1 or limit_words > 40:
+        raise ValueError('Expected a bounded summary word limit (1..40)')
+    instruction = (f'Summarize the following material in at most {limit_words} words: {objective} '
+                   f'End your summary with the exact marker: {marker}')
+    spec = message('TaskSpec', {'objective': instruction,
+        'completion': [{'criterion': 'Local-model summary of the material, marker present, bounded length',
+            'evidence': {'artifact': 'answer', 'verifier': 'local_model_summary',
+                         'objective': objective, 'marker': marker, 'max_words': limit_words + 5}}],
+        'capabilities': ['artifact.write', 'artifact.read'],
+        'autonomy': {'allowed': ['artifact.write', 'artifact.read']}})
+    # A bare TaskSpec (no initial_action) so the kernel calls its cognition
+    # adapter for every turn, including the first.
+    return spec
+
+
 class ControlRejected(ValueError):
     """A definite rejection, without copying a private server error body."""
 

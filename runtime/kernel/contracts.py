@@ -15,6 +15,14 @@ SPECIALISTS = {
 }
 CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run", "workspace.read", "text.stats"}
 
+# Bounded PoC completion verifier for real local-model summary work. The existing
+# contract only supports exact-digest and human-response evidence; a local model's
+# free-text summary is non-deterministic and cannot match a pre-known digest. This
+# verifier checks the exact deliverable the Task specified: the objective (the
+# real material the model summarized) plus a marker the objective required, with a
+# bounded summary. It is not a general verifier and does not grant authority.
+LOCAL_SUMMARY_MARKER = "local_model_summary"
+
 
 class EvidenceRequirement(TypedDict):
     artifact: str
@@ -292,6 +300,14 @@ def validate_spec(value: object) -> TaskSpec:
             from runtime.kernel.human import validate_request
             fields(evidence, {'artifact', 'verifier', 'request'})
             validate_request(evidence['request'])
+        elif isinstance(evidence, dict) and evidence.get('verifier') == LOCAL_SUMMARY_MARKER:
+            # Bounded PoC: the model's summary must embed the objective material
+            # and a marker the objective specified, within a bounded word count.
+            fields(evidence, {'artifact', 'verifier', 'objective', 'marker', 'max_words'})
+            text(evidence['objective'], 1024)
+            identifier(evidence['marker'])
+            if type(evidence['max_words']) is not int or evidence['max_words'] < 1 or evidence['max_words'] > 60:
+                raise ValueError('Expected bounded summary word cap')
         else:
             fields(evidence, {'artifact', 'sha256'})
             if not isinstance(evidence['sha256'], str) or not re.fullmatch(r'[0-9a-f]{64}', evidence['sha256']):

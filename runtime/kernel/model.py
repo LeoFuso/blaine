@@ -81,6 +81,29 @@ def strict_json(content):
     return json.loads(content, object_pairs_hook=pairs, parse_constant=invalid_constant)
 
 
+def strip_fenced_json(content):
+    """Remove one optional outer markdown fence around the JSON payload.
+
+    Local models intermittently wrap the required CognitiveDecision JSON in a
+    single ``` / ```json fence even though the prompt forbids markdown. Only an
+    outer fence pair is removed; the payload is otherwise untouched and is still
+    passed to strict_json (duplicate fields, nonfinite values, etc.). If the
+    result does not parse as a single JSON value, the original content is
+    returned so the existing validator rejects it.
+    """
+    value = content.strip()
+    if value.startswith('```'):
+        first_line, _, body = value.partition('\n')
+        if first_line[3:].strip().lower() in ('', 'json') and body.rstrip().endswith('```'):
+            payload = body.rstrip()[:-3].strip()
+            try:
+                strict_json(payload)
+                return payload
+            except ValueError:
+                return content
+    return content
+
+
 @dataclass(frozen=True)
 class LocalModelCognition:
     endpoint: str = 'http://127.0.0.1:8000/v1'
@@ -125,7 +148,7 @@ class LocalModelCognition:
             if not isinstance(content, str) or len(content.encode()) > MAX_PACKET:
                 raise ValueError('Invalid or oversized model content')
             record['content_sha256'] = hashlib.sha256(content.encode()).hexdigest()
-            decision = strict_json(content)
+            decision = strict_json(strip_fenced_json(content))
             value = validate_decision(decision)
             if any(value[key] != turn[key] for key in ('task_id', 'task_revision', 'turn_id')):
                 raise ValueError('Model returned stale or misaddressed decision')

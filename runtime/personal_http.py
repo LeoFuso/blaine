@@ -5,8 +5,11 @@ routing, scheduling, memory, or Task-execution logic lives here. The bridge
 exists so a local UI can reach the D2 Personal Agent without an ACP client.
 
 Endpoints:
-    POST /create    {"request_id": "...", "text": "objective"}
-                    → creates a small deterministic Task (text.stats)
+    POST /create    {"request_id": "...", "text": "objective",
+                    "mode": "deterministic" | "local-summary", ...}
+                    mode deterministic (default): small deterministic Task (text.stats)
+                    mode local-summary: real local-cognition summary Task (PoC)
+                       → optional "marker" and "words" shape the bounded objective
     POST /inspect   {"task_id": "..."}
                     → returns current Task state
     POST /artifact  {"task_id": "...", "name": "answer"}
@@ -25,7 +28,7 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlsplit
 
 from runtime.personal_agent import (
-    PersonalAgent, RestateBinding, small_request, task_identity,
+    PersonalAgent, RestateBinding, small_request, local_summary_request, task_identity,
 )
 from runtime.kernel.contracts import identifier, text as bounded_text, MAX_PACKET
 
@@ -107,10 +110,18 @@ class BridgeHandler(BaseHTTPRequestHandler):
         if not objective:
             raise ValueError('text is required')
         bounded_text(objective, MAX_PACKET)
+        mode = body.get('mode', 'deterministic')
+        if mode == 'deterministic':
+            task_request = small_request(objective)
+        elif mode == 'local-summary':
+            task_request = local_summary_request(objective, body.get('marker', 'BLAINE_OK'),
+                                                int(body.get('words', 40)))
+        else:
+            raise ValueError('Unknown create mode')
         return get_control().execute({
             'operation': 'create',
             'request_id': request_id,
-            'task_request': small_request(objective),
+            'task_request': task_request,
         })
 
     def _inspect(self, body: dict) -> dict:
