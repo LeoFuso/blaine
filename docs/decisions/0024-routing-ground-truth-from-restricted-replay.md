@@ -71,11 +71,28 @@ The invariants are:
   read from runtime state would silently shrink instead of failing. Artifacts are
   content-addressed and do not expire, and the ExecutionEvent sink is append-only;
   those are the sources of record.
+- **Reporting the ratio is arithmetic, and a model never performs it.** Counts,
+  rates and breakdowns are computed deterministically from those records. A model
+  asked to tally many records miscounts plausibly, which is the worst kind of
+  wrong, and imitating a calculator is precisely what ADR 0007 forbids.
+- **Sample sufficiency is a deterministic gate, not a judgement.** Asked who is
+  performing better, a model will produce a confident narrative from three
+  samples; code refuses. The insufficiency verdict must therefore come from the
+  aggregation, and a report must carry the sampling rule beside the number,
+  because a selection-biased ratio is indistinguishable from a real one once the
+  rule is out of view.
 
 This ADR decides how the number is obtained. It deliberately does **not** decide
 the routing policy that the number should produce. A bare error-rate threshold
 would be wrong: a local failure costs its spent turns and then the escalation, so
 the decision rule belongs to cost-to-success routing, with its own evidence.
+
+A model's legitimate contribution to reading the result is semantic: choosing
+which comparison actually answers the question that was asked, stating plainly
+what the number does not support, and reading failure records to propose a
+pattern such as inadequate context rather than insufficient capability. That last
+one is genuinely valuable and feeds the failure taxonomy, but it produces a
+hypothesis to verify and never a verdict.
 
 ## Consequences
 
