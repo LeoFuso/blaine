@@ -21,11 +21,11 @@ for name in names:
 metadata = json.loads(subprocess.check_output([str(out/'bin'/'blaine-linux-amd64'),'version','--json']))
 assert metadata['client_version'] == os.environ['BLAINE_VERSION']
 assert metadata['build_commit'] == os.environ['BLAINE_COMMIT']
-assert metadata['protocol_version'] == 1
+assert metadata['protocol_version'] == 2
 assert metadata['go_version'] == 'go' + Path('client/.go-version').read_text().strip()
 assert 'INTERP' not in subprocess.check_output(['readelf','-l',str(out/'bin'/'blaine-linux-amd64')],text=True)
 (out/'bin'/'checksums.txt').write_text(''.join(f"{a['sha256']}  {a['name']}\n" for a in artifacts))
 (out/'validation'/'build-info.json').write_text(json.dumps({'metadata':metadata,'artifacts':artifacts,
     'repeat_build_identical':True,'linux_amd64_dynamic_interpreter':False,
-    'runtime_scope':'Linux amd64 offline fixtures only; macOS/WSL live E0.C gates remain pending'},indent=2)+'\n')
+    'runtime_scope':'Linux amd64 offline fixtures only; cross-platform builds do not establish live E0.D acceptance'},indent=2)+'\n')
 print('PASS: four repeat builds, exact version/protocol/commit, static Linux binary, checksums.txt')

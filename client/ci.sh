@@ -21,6 +21,7 @@ unformatted="$("$formatter" -l client)"
 echo 'PASS: gofmt' > "$out/validation/format.txt"
 "$BLAINE_GO" -C client test -count=1 -v ./... | tee "$out/validation/tests.txt"
 "$BLAINE_GO" -C client test -race -count=1 ./... | tee "$out/validation/race.txt"
+python3 client/tests/with_postgres.py "$BLAINE_GO" -C client test -p 1 -race -count=1 -v ./internal/workstation ./cmd/blaine-hub-transport | tee "$out/validation/registry-tests.txt"
 "$BLAINE_GO" -C client vet ./...
 echo 'PASS: go vet' > "$out/validation/vet.txt"
 sh -n client/install-jetbrains-agent.sh

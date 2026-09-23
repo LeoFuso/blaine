@@ -21,7 +21,7 @@ func Connect(ctx context.Context, root string, interactive, verifyTransport bool
 	defer n.Close()
 	// Public identity observation helps the operator deploy the narrow host policy;
 	// it is neither credentials nor an E0.D registration receipt.
-	_ = json.NewEncoder(out).Encode(map[string]any{"workstation_id": n.Installation.ID(), "node_id": n.Node, "node_reused": n.Reused, "embedded_mtu": n.MTU.Value, "mtu_source": n.MTU.Source})
+	_ = json.NewEncoder(out).Encode(map[string]any{"installation_id": n.Installation.ID(), "node_id": n.Node, "node_reused": n.Reused, "embedded_mtu": n.MTU.Value, "mtu_source": n.MTU.Source})
 	s, response, e := n.Connect(ctx, "handshake")
 	if e != nil {
 		return e
@@ -38,7 +38,7 @@ func Connect(ctx context.Context, root string, interactive, verifyTransport bool
 			return e
 		}
 	}
-	return json.NewEncoder(out).Encode(map[string]any{"status": "CONNECTED", "server_id": response.ServerID, "session_id": response.SessionID, "peer": response.Peer, "registration": "NOT_IMPLEMENTED", "e0": "NOT_READY"})
+	return json.NewEncoder(out).Encode(map[string]any{"status": "CONNECTED", "server_id": response.ServerID, "session_id": response.SessionID, "workstation_id": s.WorkstationID, "peer": response.Peer, "registration": "REGISTERED", "e0": "NOT_READY"})
 }
 
 // Logout uses the embedded control API, never system Tailscale. Identity reset is

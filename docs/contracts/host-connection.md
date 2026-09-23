@@ -1,4 +1,8 @@
-# E0.C direct private host connection — candidate v1
+# E0.C direct private host connection — accepted v1 baseline
+
+> E0.C remains PASS. The [E0.D extension](workstation-identity.md) adds automatic
+> workstation inventory/presence and a protocol-2 receipt without replacing this
+> transport. Its deployment status is separate from the historical v1 evidence below.
 
 The operator selected embedded tsnet plus a direct Blaine application transport on
 2026-09-23. Implementation and [evidence](../../experiments/personal-agent-hub/e0c-direct/README.md)
@@ -29,7 +33,7 @@ verifies effective narrow tailnet policy and canonical persistent Hub deployment
 followed by the primary Mac repeating the real IDE round trip. Vendor policy tests
 and the live compiled filter prove the network restriction; an enabled, non-transient
 user service with existing linger replaces the one-day candidate. No actual host
-reboot is claimed. E0.D registration is unblocked and not implemented.
+reboot is claimed. E0.D is the active follow-up; see its separate contract and evidence.
 
 ## Discovery and independent trust boundaries
 

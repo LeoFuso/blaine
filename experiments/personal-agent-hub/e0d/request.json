@@ -1,0 +1,37 @@
+{
+  "objective": "Implement E0.D automatic durable workstation registration, inventory, presence and reconnect on the accepted tsnet/direct Hub path.",
+  "mode": "interactive",
+  "capabilities": [
+    "edit repository",
+    "run scoped PostgreSQL and protocol tests",
+    "deploy the private Hub edge",
+    "coordinate designated Mac acceptance"
+  ],
+  "autonomy": {
+    "allowed": [
+      "local commits and merge after acceptance",
+      "existing PostgreSQL instance with isolated Blaine-owned storage",
+      "bounded designated-peer acceptance"
+    ],
+    "ask_before": [
+      "new public client release"
+    ],
+    "forbidden": [
+      "second manual Blaine approval",
+      "workspace reads/writes/terminal capabilities",
+      "Tailscale admin API or revocation tooling",
+      "E0.F implementation",
+      "push without authorization"
+    ]
+  },
+  "completion": [
+    {
+      "criterion": "Same authenticated transport identity retains one durable workstation across sessions and service restart; distinct peer gets distinct identity.",
+      "evidence": "Deterministic storage/protocol regressions and primary Mac plus isolated alternate-peer acceptance."
+    },
+    {
+      "criterion": "Presence follows connectivity; inventory remains durable; registration grants no operation authority.",
+      "evidence": "Operator inventory, structured connection evidence and preserved controlled Task state."
+    }
+  ]
+}

@@ -14,6 +14,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"runtime"
+	"strings"
 	"time"
 
 	"blaine.local/client/internal/buildinfo"
@@ -22,7 +24,7 @@ import (
 )
 
 const Subprotocol = "blaine.e0c.v1"
-const Protocol = 1
+const Protocol = 2
 const Data byte = 1
 const End byte = 2
 const Cancel byte = 3
@@ -71,20 +73,27 @@ func decodeKey(s string) (ed25519.PublicKey, error) {
 }
 
 type Hello struct {
-	Schema    int    `json:"schema"`
-	Min       int    `json:"min_protocol"`
-	Max       int    `json:"max_protocol"`
-	Version   string `json:"client_version"`
-	ServerID  string `json:"expected_server_id"`
-	ClientID  string `json:"client_id"`
-	PublicKey string `json:"client_public_key"`
-	Nonce     string `json:"nonce"`
-	Mode      string `json:"mode"`
+	Schema       int    `json:"schema"`
+	Min          int    `json:"min_protocol"`
+	Max          int    `json:"max_protocol"`
+	Version      string `json:"client_version"`
+	ServerID     string `json:"expected_server_id"`
+	ClientID     string `json:"client_id"`
+	PublicKey    string `json:"client_public_key"`
+	Nonce        string `json:"nonce"`
+	Mode         string `json:"mode"`
+	Platform     string `json:"platform,omitempty"`
+	Architecture string `json:"architecture,omitempty"`
+	DisplayName  string `json:"display_name,omitempty"`
 }
 type Peer struct {
 	NodeID      string `json:"node_id"`
 	PrincipalID string `json:"principal_id"`
+	// Host-only descriptive LocalAPI observation; not part of transport identity
+	// or the legacy signed wire shape. Client claims cannot populate this field.
+	Metadata PeerMetadata `json:"-"`
 }
+type PeerMetadata struct{ DisplayName, Platform, Architecture string }
 type Challenge struct {
 	Schema       int               `json:"schema"`
 	Protocol     int               `json:"protocol"`
@@ -102,8 +111,31 @@ type Proof struct {
 	Signature string `json:"signature"`
 }
 type Ready struct {
-	SessionID string `json:"session_id"`
-	Status    string `json:"status"`
+	SessionID     string `json:"session_id"`
+	Status        string `json:"status"`
+	WorkstationID string `json:"workstation_id,omitempty"`
+	Signature     string `json:"signature,omitempty"`
+}
+
+func receiptTranscript(h Hello, c Challenge, r Ready) []byte {
+	r.Signature = ""
+	b, _ := json.Marshal(r)
+	return append(append([]byte("blaine-registration-v2\x00"), transcript(h, c)...), b...)
+}
+func validateReady(h Hello, c Challenge, r Ready, b Bootstrap) error {
+	if r.SessionID != c.SessionID || r.Status != "CONNECTED" {
+		return errors.New("HANDSHAKE_INVALID: acknowledgement")
+	}
+	if c.Protocol == 2 {
+		key, e := decodeKey(b.ServerKey)
+		if e != nil || !validWorkstationID(r.WorkstationID) || !verify(key, receiptTranscript(h, c, r), r.Signature) {
+			return errors.New("REGISTRATION_INVALID: signed receipt")
+		}
+	}
+	return nil
+}
+func validWorkstationID(id string) bool {
+	return strings.HasPrefix(id, "ws-") && validID(strings.TrimPrefix(id, "ws-"))
 }
 
 func transcript(h Hello, c Challenge) []byte {
@@ -143,7 +175,7 @@ func writeControl(ctx context.Context, c *websocket.Conn, v any) error {
 	return c.Write(ctx, websocket.MessageText, b)
 }
 func HelloFor(k ed25519.PrivateKey, b Bootstrap, mode string) Hello {
-	return Hello{1, 1, 1, buildinfo.Current().ClientVersion, b.ServerID, keyID("ws-", k.Public().(ed25519.PublicKey)), Public(k), RandomID(), mode}
+	return Hello{Schema: 1, Min: 2, Max: 2, Version: buildinfo.Current().ClientVersion, ServerID: b.ServerID, ClientID: keyID("ws-", k.Public().(ed25519.PublicKey)), PublicKey: Public(k), Nonce: RandomID(), Mode: mode, Platform: runtime.GOOS, Architecture: runtime.GOARCH}
 }
 func validID(s string) bool { b, e := hex.DecodeString(s); return e == nil && len(b) == 16 }
 func validateHello(h Hello, b Bootstrap) error {
@@ -151,17 +183,26 @@ func validateHello(h Hello, b Bootstrap) error {
 	if e != nil || h.Schema != 1 || !validID(h.Nonce) || h.ClientID != keyID("ws-", key) || h.ServerID != b.ServerID || len(h.Version) == 0 || len(h.Version) > 128 {
 		return errors.New("IDENTITY_INVALID: hello")
 	}
-	if h.Min > 1 || h.Max < 1 || h.Min < 1 || h.Max < h.Min {
+	if h.Min > 2 || h.Max < 1 || h.Min < 1 || h.Max < h.Min {
 		return errors.New("INCOMPATIBLE: protocol")
 	}
 	if h.Mode != "acp" && h.Mode != "probe" && h.Mode != "handshake" {
 		return errors.New("PROTOCOL_INVALID: mode")
 	}
+	for _, s := range []string{h.Platform, h.Architecture, h.DisplayName} {
+		if len(s) > 128 || strings.ContainsAny(s, "\x00\r\n\t") {
+			return errors.New("PROTOCOL_INVALID: metadata")
+		}
+	}
+	if h.Max >= 2 && (h.Platform == "" || h.Architecture == "") {
+		return errors.New("PROTOCOL_INVALID: metadata required")
+	}
 	return nil
 }
 func ValidateChallenge(h Hello, c Challenge, b Bootstrap, node string) error {
 	key, e := decodeKey(b.ServerKey)
-	if e != nil || c.Schema != 1 || c.Protocol != 1 || c.Version == "" || len(c.Version) > 128 || c.ServerID != b.ServerID || c.PublicKey != b.ServerKey || !validID(c.Nonce) || !validID(c.SessionID) || c.Peer.NodeID != node || c.Peer.PrincipalID == "" || c.Registration != "not-implemented" || !verify(key, transcript(h, c), c.Signature) {
+	registrationOK := (c.Protocol == 1 && c.Registration == "not-implemented") || (c.Protocol == 2 && c.Registration == "automatic")
+	if e != nil || c.Schema != 1 || c.Protocol < h.Min || c.Protocol > h.Max || !registrationOK || c.Version == "" || len(c.Version) > 128 || c.ServerID != b.ServerID || c.PublicKey != b.ServerKey || !validID(c.Nonce) || !validID(c.SessionID) || c.Peer.NodeID != node || c.Peer.PrincipalID == "" || !verify(key, transcript(h, c), c.Signature) {
 		return errors.New("IDENTITY_MISMATCH: signed Hub handshake rejected")
 	}
 	for _, name := range []string{"runtime", "restate", "mirix", "generation", "embeddings"} {
@@ -173,14 +214,15 @@ func ValidateChallenge(h Hello, c Challenge, b Bootstrap, node string) error {
 }
 
 type Session struct {
-	Conn *websocket.Conn
-	ID   string
-	ctx  context.Context
+	Conn          *websocket.Conn
+	ID            string
+	ctx           context.Context
+	WorkstationID string
 }
 
 func NewSession(ctx context.Context, c *websocket.Conn, id string) *Session {
 	c.SetReadLimit(MaxFrame)
-	return &Session{c, id, ctx}
+	return &Session{Conn: c, ID: id, ctx: ctx}
 }
 func (s *Session) Send(ctx context.Context, kind byte, b []byte) error {
 	id, e := hex.DecodeString(s.ID)
@@ -224,8 +266,13 @@ func ClientHandshake(ctx context.Context, c *websocket.Conn, k ed25519.PrivateKe
 		return nil, response, e
 	}
 	var ready Ready
-	if e := readControl(bounded, c, &ready); e != nil || ready.SessionID != response.SessionID || ready.Status != "CONNECTED" {
+	if e := readControl(bounded, c, &ready); e != nil {
 		return nil, response, errors.New("HANDSHAKE_INVALID: acknowledgement")
 	}
-	return NewSession(ctx, c, response.SessionID), response, nil
+	if e := validateReady(h, response, ready, b); e != nil {
+		return nil, response, e
+	}
+	s := NewSession(ctx, c, response.SessionID)
+	s.WorkstationID = ready.WorkstationID
+	return s, response, nil
 }

@@ -136,7 +136,7 @@ func Run(ctx context.Context, args []string, streams process.Streams) int {
 					}
 				}
 			}
-			if _, err := fmt.Fprintln(streams.Out, report.Overall+" — E0.C host gate; registration and IDE onboarding remain pending."); err != nil {
+			if _, err := fmt.Fprintln(streams.Out, report.Overall+" — integrated onboarding/doctor acceptance remains E0.E–E0.F."); err != nil {
 				return 1
 			}
 		}

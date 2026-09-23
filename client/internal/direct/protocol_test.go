@@ -32,7 +32,11 @@ func ready(context.Context) map[string]string {
 func testHost(t *testing.T) (*Host, string, ed25519.PrivateKey) {
 	t.Helper()
 	b, key, client := keys(t)
-	h := &Host{Bootstrap: b, Key: key, Peer: func(context.Context, string) (Peer, error) { return Peer{"fixture-node", "fixture-principal"}, nil }, Readiness: ready, Slots: make(chan struct{}, 4)}
+	h := &Host{Bootstrap: b, Key: key, Peer: func(context.Context, string) (Peer, error) {
+		return Peer{NodeID: "fixture-node", PrincipalID: "fixture-principal"}, nil
+	}, Readiness: ready, Slots: make(chan struct{}, 4), Register: func(context.Context, Peer, Hello, string) (string, error) {
+		return "ws-0123456789abcdef0123456789abcdef", nil
+	}}
 	server := httptest.NewServer(h)
 	t.Cleanup(server.Close)
 	return h, "ws" + strings.TrimPrefix(server.URL, "http") + "/v1/session", client
@@ -56,7 +60,7 @@ func TestHandshakeAndBinaryStream(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
-	if c.Peer.NodeID != "fixture-node" || c.Registration != "not-implemented" {
+	if c.Peer.NodeID != "fixture-node" || c.Registration != "automatic" {
 		t.Fatal(c)
 	}
 	typ, b, e := s.Receive(ctx)
@@ -85,12 +89,12 @@ func TestHandshakeAndBinaryStream(t *testing.T) {
 func TestSignedIdentityAndVersionFailClosed(t *testing.T) {
 	b, server, client := keys(t)
 	h := HelloFor(client, b, "acp")
-	c := Challenge{Schema: 1, Protocol: 1, ServerID: b.ServerID, Version: "fixture", PublicKey: b.ServerKey, SessionID: RandomID(), Nonce: RandomID(), Peer: Peer{"node", "user"}, Readiness: ready(context.Background()), Registration: "not-implemented"}
+	c := Challenge{Schema: 1, Protocol: 2, ServerID: b.ServerID, Version: "fixture", PublicKey: b.ServerKey, SessionID: RandomID(), Nonce: RandomID(), Peer: Peer{NodeID: "node", PrincipalID: "user"}, Readiness: ready(context.Background()), Registration: "automatic"}
 	c.Signature = sign(server, transcript(h, c))
 	if e := ValidateChallenge(h, c, b, "node"); e != nil {
 		t.Fatal(e)
 	}
-	for _, mutate := range []func(*Challenge){func(c *Challenge) { c.ServerID = "wrong" }, func(c *Challenge) { c.Protocol = 2 }, func(c *Challenge) { c.Peer.NodeID = "other" }, func(c *Challenge) { c.SessionID = RandomID() }, func(c *Challenge) { c.Registration = "active" }, func(c *Challenge) { c.Signature = "invalid" }} {
+	for _, mutate := range []func(*Challenge){func(c *Challenge) { c.ServerID = "wrong" }, func(c *Challenge) { c.Protocol = 3 }, func(c *Challenge) { c.Peer.NodeID = "other" }, func(c *Challenge) { c.SessionID = RandomID() }, func(c *Challenge) { c.Registration = "active" }, func(c *Challenge) { c.Signature = "invalid" }} {
 		changed := c
 		mutate(&changed)
 		if ValidateChallenge(h, changed, b, "node") == nil {
@@ -107,8 +111,8 @@ func TestSignedIdentityAndVersionFailClosed(t *testing.T) {
 	if ValidateChallenge(h, c, b, "node") == nil {
 		t.Fatal("unknown readiness accepted")
 	}
-	h.Min = 2
-	h.Max = 2
+	h.Min = 3
+	h.Max = 3
 	if validateHello(h, b) == nil {
 		t.Fatal("protocol mismatch accepted")
 	}

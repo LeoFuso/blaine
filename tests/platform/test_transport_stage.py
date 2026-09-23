@@ -90,6 +90,22 @@ class Staging(unittest.TestCase):
             self.run_stage()
         self.assertEqual(target.read_bytes(), before)
 
+    def test_explicit_registry_migration_removes_manual_device_admission(self):
+        self.run_stage()
+        stage.stage(self.repo, self.binary, self.candidate, self.home, self.commit,
+                    'host=/fixture/socket dbname=blaine user=fixture')
+        target = self.home / '.config/blaine/services/transport.json'
+        cfg = json.loads(target.read_text())
+        self.assertEqual(cfg['admission'], 'tailscale-policy')
+        self.assertNotIn('allowed_nodes', cfg)
+        self.assertNotIn('principal_id', cfg)
+        self.assertEqual(cfg['registry_dsn'], 'host=/fixture/socket dbname=blaine user=fixture')
+        # Once migrated, use the canonical configuration as source. Idempotent.
+        self.candidate.write_text(json.dumps(cfg))
+        before = target.read_bytes()
+        self.run_stage()
+        self.assertEqual(target.read_bytes(), before)
+
     def test_dirty_source_and_incorrect_revision_fail(self):
         with self.assertRaisesRegex(ValueError, 'commit mismatch'):
             stage.stage(self.repo, self.binary, self.candidate, self.home, 'a' * 40)

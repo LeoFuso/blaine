@@ -40,7 +40,7 @@ func invoke(t *testing.T, args ...string) (int, string, string) {
 }
 func TestCommandsAndVersion(t *testing.T) {
 	code, out, err := invoke(t, "version")
-	if code != 0 || !strings.HasPrefix(out, "blaine 0.1.0-dev protocol=1 commit=unknown go=") || err != "" {
+	if code != 0 || !strings.HasPrefix(out, "blaine 0.1.0-dev protocol=2 commit=unknown go=") || err != "" {
 		t.Fatal(code, out, err)
 	}
 	code, out, err = invoke(t, "version", "--json")

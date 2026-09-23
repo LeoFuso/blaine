@@ -17,7 +17,7 @@ import (
 )
 
 // ACP presents the standard agent-owned authentication method. It deliberately
-// advertises no workstation capabilities. Real registration remains E0.D.
+// advertises no workstation capabilities. Registration grants no workspace capabilities.
 func ACP(parent context.Context, root string, streams process.Streams) error {
 	ctx, cancel := context.WithCancel(parent)
 	defer cancel()
@@ -145,7 +145,7 @@ func ACP(parent context.Context, root string, streams process.Streams) error {
 			}
 			p["clientCapabilities"] = json.RawMessage(`{}`)
 			init, _ = json.Marshal(p)
-			result = map[string]any{"protocolVersion": 1, "agentInfo": map[string]string{"name": "blaine", "version": buildinfo.Current().ClientVersion}, "agentCapabilities": map[string]any{}, "authMethods": []any{map[string]string{"id": "tailscale", "name": "Connect Blaine", "description": "Authenticate this Blaine installation to its private tailnet. Workstation registration is a separate gate."}}}
+			result = map[string]any{"protocolVersion": 1, "agentInfo": map[string]string{"name": "blaine", "version": buildinfo.Current().ClientVersion}, "agentCapabilities": map[string]any{}, "authMethods": []any{map[string]string{"id": "tailscale", "name": "Connect Blaine", "description": "Authenticate this Blaine installation to its private tailnet. An admitted installation is registered automatically."}}}
 		case "authenticate":
 			var p struct {
 				Method string `json:"methodId"`

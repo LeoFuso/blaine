@@ -60,7 +60,7 @@ def install(path, data, mode=0o600, immutable=False):
         Path(tmp).unlink(missing_ok=True)
 
 
-def stage(repo, binary, candidate, home, commit):
+def stage(repo, binary, candidate, home, commit, registry_dsn=None):
     if not re.fullmatch('[0-9a-f]{40}', commit):
         raise ValueError('exact source commit required')
     def git(*args):
@@ -70,9 +70,16 @@ def stage(repo, binary, candidate, home, commit):
     git('diff', '--exit-code', commit, '--', 'runtime', 'client', 'infra/services/transport-stage.py',
         'infra/systemd/user/' + UNIT)
     cfg = json.loads(regular(candidate, private=True))
-    fields = {'listen', 'key_file', 'python', 'repository', 'readiness_file', 'deployment_file', 'principal_id', 'allowed_nodes'}
-    if set(cfg) != fields or not cfg['allowed_nodes'] or not cfg['principal_id']:
+    base_fields = {'listen', 'key_file', 'python', 'repository', 'readiness_file', 'deployment_file'}
+    legacy = set(cfg) == base_fields | {'principal_id', 'allowed_nodes'}
+    registered = set(cfg) == base_fields | {'admission', 'registry_dsn'}
+    if not ((legacy and cfg['allowed_nodes'] and cfg['principal_id']) or
+            (registered and cfg['admission'] == 'tailscale-policy' and cfg['registry_dsn'])):
         raise ValueError('explicit candidate policy required')
+    # Explicit one-time E0.D deployment migration. Never derive device approval
+    # from a registry row or retain the temporary E0.C manual node allowlist.
+    if registry_dsn is not None and not legacy:
+        raise ValueError('registry migration requires legacy source')
     for k in ('key_file', 'python', 'repository', 'readiness_file', 'deployment_file'):
         if not Path(cfg[k]).is_absolute():
             raise ValueError('absolute deployment paths required')
@@ -97,8 +104,14 @@ def stage(repo, binary, candidate, home, commit):
             raise ValueError('redirected installation')
     if (config / 'transport.json').exists():
         old = json.loads(regular(config / 'transport.json', private=True))
-        if any(old[k] != cfg[k] for k in ('listen', 'principal_id', 'allowed_nodes', 'deployment_file', 'python')):
+        policy_keys = ('principal_id', 'allowed_nodes') if legacy else ('admission', 'registry_dsn')
+        if any(old.get(k) != cfg[k] for k in ('listen', 'deployment_file', 'python', *policy_keys)):
             raise ValueError('deployment policy drift requires explicit review')
+    if registry_dsn is not None:
+        if not registry_dsn.strip() or '\n' in registry_dsn:
+            raise ValueError('registry connection required')
+        del cfg['principal_id'], cfg['allowed_nodes']
+        cfg.update(admission='tailscale-policy', registry_dsn=registry_dsn)
     files, content = {}, {}
     for raw in git('ls-tree', '-r', '--name-only', '-z', commit, '--', 'runtime').split(b'\0'):
         if not raw:
@@ -133,11 +146,12 @@ def main():
     parser.add_argument('--binary', type=Path, required=True)
     parser.add_argument('--candidate-config', type=Path, required=True)
     parser.add_argument('--commit', required=True)
+    parser.add_argument('--adopt-registry-dsn', help='explicit E0.D migration from the E0.C node allowlist; use peer-authenticated local PostgreSQL')
     args = parser.parse_args()
     if os.geteuid() == 0:
         raise ValueError('run as the existing non-root service owner')
     print(json.dumps(stage(args.repository.resolve(), args.binary.absolute(), args.candidate_config.absolute(),
-                           Path.home(), args.commit)))
+                           Path.home(), args.commit, args.adopt_registry_dsn)))
 
 
 if __name__ == '__main__':

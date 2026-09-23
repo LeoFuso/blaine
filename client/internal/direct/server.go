@@ -21,6 +21,10 @@ type Host struct {
 	ACP       func(context.Context, *Session) error
 	Slots     chan struct{}
 	Observe   func(Observation)
+	// Register runs only after valid key proof. It returns a server-owned ID.
+	Register   func(context.Context, Peer, Hello, string) (string, error)
+	Touch      func(context.Context, string) error
+	Disconnect func(context.Context, string) error
 }
 
 func ServerHandshake(ctx context.Context, c *websocket.Conn, h *Host, peer Peer) (*Session, Hello, error) {
@@ -38,6 +42,10 @@ func ServerHandshake(ctx context.Context, c *websocket.Conn, h *Host, peer Peer)
 		return nil, hello, errors.New("HOST_IDENTITY_INVALID")
 	}
 	challenge := Challenge{Schema: 1, Protocol: 1, ServerID: h.Bootstrap.ServerID, Version: buildinfo.Current().ClientVersion, PublicKey: h.Bootstrap.ServerKey, SessionID: RandomID(), Nonce: RandomID(), Peer: peer, Readiness: h.Readiness(bounded), Registration: "not-implemented"}
+	if hello.Max >= 2 {
+		challenge.Protocol = 2
+		challenge.Registration = "automatic"
+	}
 	challenge.Signature = sign(h.Key, transcript(hello, challenge))
 	if e := writeControl(bounded, c, challenge); e != nil {
 		return nil, hello, e
@@ -56,10 +64,35 @@ func ServerHandshake(ctx context.Context, c *websocket.Conn, h *Host, peer Peer)
 	if !verify(key, proofTranscript(hello, challenge), proof.Signature) {
 		return nil, hello, errors.New("CLIENT_IDENTITY_INVALID")
 	}
-	if e := writeControl(bounded, c, Ready{challenge.SessionID, "CONNECTED"}); e != nil {
+	var workstation string
+	if h.Register != nil {
+		var err error
+		workstation, err = h.Register(bounded, peer, hello, challenge.SessionID)
+		if err != nil || !validWorkstationID(workstation) {
+			return nil, hello, errors.New("REGISTRY_UNAVAILABLE")
+		}
+	} else if challenge.Protocol == 2 {
+		return nil, hello, errors.New("REGISTRY_UNAVAILABLE")
+	}
+	ack := Ready{SessionID: challenge.SessionID, Status: "CONNECTED"}
+	if challenge.Protocol == 2 {
+		ack.WorkstationID = workstation
+		ack.Signature = sign(h.Key, receiptTranscript(hello, challenge, ack))
+	}
+	if e := writeControl(bounded, c, ack); e != nil {
+		h.disconnected(challenge.SessionID)
 		return nil, hello, e
 	}
-	return NewSession(ctx, c, challenge.SessionID), hello, nil
+	s := NewSession(ctx, c, challenge.SessionID)
+	s.WorkstationID = workstation
+	return s, hello, nil
+}
+func (h *Host) disconnected(id string) {
+	if h.Disconnect != nil {
+		ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+		defer cancel()
+		_ = h.Disconnect(ctx, id)
+	}
 }
 func (h *Host) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" || r.URL.Path != "/v1/session" || r.URL.RawQuery != "" || r.Header.Get("Origin") != "" {
@@ -101,6 +134,7 @@ func (h *Host) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	h.observe(start, peer, hello.Mode, s.ID, "handshake_complete", 0, nil)
+	defer h.disconnected(s.ID)
 	stop := context.AfterFunc(ctx, func() { c.CloseNow() })
 	defer stop()
 	if hello.Mode == "acp" {
@@ -114,10 +148,13 @@ func (h *Host) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				case <-ticker.C:
 					bounded, stop := context.WithTimeout(ctx, 5*time.Second)
 					current, err := h.Peer(bounded, r.RemoteAddr)
-					if err == nil && current == peer {
+					if err == nil && current.NodeID == peer.NodeID && current.PrincipalID == peer.PrincipalID {
 						err = c.Ping(bounded)
 					} else {
 						err = errors.New("peer changed")
+					}
+					if err == nil && h.Touch != nil {
+						err = h.Touch(bounded, s.ID)
 					}
 					stop()
 					if err != nil {

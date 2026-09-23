@@ -150,7 +150,7 @@ already admitted by Tailscale and the existing Blaine handshake. It adds no seco
 manual approval or authentication system. Tailscale owns strong device revocation;
 Blaine retirement/revocation is product state, not protection against retained Hub
 administrative SSH authority. Full Windows IntelliJ-to-WSL acceptance belongs to E0.F.
-Prior SSH and E0.A/B evidence keeps its original scope. E0.D has not started.
+Prior SSH and E0.A/B evidence keeps its original scope. E0.D is implemented locally; primary live registration/reconnect acceptance is pending.
 Full Blaine onboarding,
 remote effects and coding E2E remain unvalidated.
 Accepted platform/runtime capabilities are inputs, not a reason to reopen their
@@ -158,7 +158,7 @@ entire workstreams. Workstation and worker remain independent.
 
 | Milestone | Status / product outcome | Dependencies and D-series mapping |
 | --- | --- | --- |
-| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PASS; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. E0.C narrow tailnet policy and canonical persistent Hub deployment passed. Registration lifecycle belongs to E0.D; full second-peer Windows IDE/WSL acceptance belongs to E0.F. E0.D registration is unblocked, not started. |
+| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PASS; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. E0.C narrow tailnet policy and canonical persistent Hub deployment passed. Registration lifecycle belongs to E0.D; full second-peer Windows IDE/WSL acceptance belongs to E0.F. E0.D is active, with deterministic registry/protocol evidence and live acceptance pending. |
 | E1 — Remote Workspace Read | **DESIGNED.** Actual second-workstation IntelliJ read, confined paths and evidence in the same durable Task across reconnect. | E0; delivers D3.A product proof. Live client capability/confinement gates remain open. |
 | E2 — Remote Workspace Effects | **DESIGNED.** Conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
 | E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |
@@ -781,10 +781,10 @@ operator procedures; this document owns development direction and dependencies.
   Task independence. Public alpha.3 is the current proven client; alpha.1 is historical
   SSH product-transport evidence. WSL transport proof retains its metadata limitation;
   full Windows-hosted IntelliJ/WSL acceptance belongs to E0.F. **E0.D Registration**
-  is the next canonical slice, unblocked and not started: automatic registration of
+  is the active slice ([evidence](../../experiments/personal-agent-hub/e0d/README.md)); implementation is PARTIAL pending live acceptance: automatic registration of
   Tailscale-admitted peers, stable identity/inventory, reconnect/presence and future
   capability association. No second manual Blaine admission boundary is planned.
-  Strong device revocation stays with Tailscale. E0.D+ was not implemented.
+  Strong device revocation stays with Tailscale. E0.E/F sequencing is unchanged; no later capability work is implemented.
   Use the [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
   Full E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
   D3 history is preserved; no full E-series milestone is claimed live PASS.

@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"blaine.local/client/internal/buildinfo"
+	"blaine.local/client/internal/direct"
 	"blaine.local/client/internal/platform"
 )
 
@@ -87,6 +88,14 @@ func InspectContext(_ context.Context) Report {
 		} else {
 			add("connection", "UNKNOWN", "REMOTE_UNAVAILABLE", "Stored identity exists; current reachability was not probed", "Run blaine connect for a fresh authenticated handshake.")
 		}
+		id, e := direct.RegisteredWorkstation(p.Paths.StateDir)
+		if e == nil {
+			add("registration", "UNKNOWN", "CACHED_REGISTRATION", "Stored workstation "+id+"; remote state not probed", "Run blaine connect for a fresh registration receipt.")
+		} else if os.IsNotExist(e) {
+			add("registration", "UNKNOWN", "NOT_CONFIGURED", "No E0.D registration receipt stored", "Run blaine connect; admitted peers register automatically.")
+		} else {
+			add("registration", "FAIL", "LOCAL_INVALID", "Registration receipt invalid or inaccessible", "Review private installation state; no repair was attempted.")
+		}
 
 	}
 	if executable, err := os.Executable(); err != nil || !filepath.IsAbs(executable) {
@@ -96,8 +105,8 @@ func InspectContext(_ context.Context) Report {
 	}
 	// Stable check IDs are the extension boundary. Replace each placeholder with
 	// actual read-only observation in its owning slice; never infer downstream PASS.
-	for _, id := range []string{"registration", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
-		add(id, "UNKNOWN", "NOT_IMPLEMENTED", "Not implemented in E0.C", "Registration and integrated onboarding remain E0.D–E0.F gates.")
+	for _, id := range []string{"remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
+		add(id, "UNKNOWN", "NOT_IMPLEMENTED", "Integrated doctor check not implemented", "Integrated onboarding/readiness diagnostics remain E0.E–E0.F gates.")
 	}
 	if Exit(r.Checks) == 0 {
 		r.Overall = "READY"

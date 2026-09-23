@@ -1,11 +1,36 @@
 package direct
 
 import (
+	"net/netip"
 	"testing"
 
 	"tailscale.com/client/tailscale/apitype"
 	"tailscale.com/tailcfg"
 )
+
+func TestAdmittedIdentityIgnoresAddressAndDescriptiveName(t *testing.T) {
+	who := &apitype.WhoIsResponse{Node: &tailcfg.Node{StableID: "node-A", Name: "original.fixture", Addresses: []netip.Prefix{netip.MustParsePrefix("100.64.0.1/32")}}, UserProfile: &tailcfg.UserProfile{ID: 42}}
+	a, err := AdmittedPeer(who)
+	if err != nil {
+		t.Fatal(err)
+	}
+	who.Node.Name = "renamed.fixture"
+	who.Node.Addresses = []netip.Prefix{netip.MustParsePrefix("100.64.1.2/32")}
+	b, err := AdmittedPeer(who)
+	if err != nil || a.NodeID != b.NodeID {
+		t.Fatal("metadata/address changed identity", b, err)
+	}
+	who.Node.StableID = "node-B"
+	c, err := AdmittedPeer(who)
+	if err != nil || c.NodeID == a.NodeID {
+		t.Fatal("same metadata inherited identity", c, err)
+	}
+	for _, invalid := range []*apitype.WhoIsResponse{nil, {}, {Node: &tailcfg.Node{StableID: "node", Expired: true}}, {Node: &tailcfg.Node{StableID: "node"}}} {
+		if _, err = AdmittedPeer(invalid); err == nil {
+			t.Fatal("unverified identity accepted")
+		}
+	}
+}
 
 func TestTransportPolicyBindsObservedNodeAndPrincipal(t *testing.T) {
 	who := &apitype.WhoIsResponse{Node: &tailcfg.Node{StableID: "designated-node"}, UserProfile: &tailcfg.UserProfile{ID: 42}}

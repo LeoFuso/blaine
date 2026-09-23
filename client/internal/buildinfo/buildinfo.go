@@ -10,7 +10,7 @@ import (
 var Version = "0.1.0-dev"
 var Commit = "unknown"
 
-const Protocol = 1
+const Protocol = 2
 
 type Info struct {
 	SchemaVersion   int    `json:"schema_version"`

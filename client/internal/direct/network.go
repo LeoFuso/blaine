@@ -191,6 +191,11 @@ func (n *Network) Connect(ctx context.Context, mode string) (*Session, Challenge
 		c.CloseNow()
 	}
 	if e == nil {
+		e = n.saveRegistration(session.WorkstationID)
+		if e != nil {
+			session.Close()
+			return nil, response, e
+		}
 		e = n.saveProfile()
 		if e != nil {
 			session.Close()
