@@ -212,22 +212,21 @@ and remaining lifecycle, policy and host-deployment gates stay open.
 
 ## Development IDE installer checkpoint
 
-The operator requested a small installer before real IDE acceptance.
-[`client/install-jetbrains-agent.sh`](../../../client/install-jetbrains-agent.sh)
-downloads official release assets by default, verifies SHA-256 before execution,
-installs to the user-local stable path, and structurally merges a JetBrains custom
-ACP entry. For this acceptance, `--candidate-dir` explicitly consumes the already
-tested direct package; the public alpha remains the historical SSH implementation.
-No new release or repository push was performed. The installer is scaffolding;
-ACP Registry remains the distribution direction.
+The initial Python-based installer ([historical validation](installer-validation.json))
+was superseded before real IDE acceptance at the operator's direction. The shell
+bootstrap now downloads only **alpha.2**, verifies its published checksum before
+execution, and delegates JSON handling to `blaine integration jetbrains install`.
+`blaine integration jetbrains check [--json]` is read-only. No workstation Python,
+SSH, system Tailscale, host selection or candidate-directory flow is required.
+Existing agents and global policy are preserved; malformed/duplicate-key JSON,
+ambiguous Blaine entries and unsafe files fail closed. One bounded backup retains
+the prior valid config. The actual Windows IDE/WSL launch topology is kept explicit.
 
-[Local validation](installer-validation.json) records 13 isolated contract tests,
-one actual public release download/install in a temporary home, and installation,
-status and repeat installation using the actual Linux direct candidate. It does
-not claim real macOS/WSL installer or IDE launch evidence. Existing Client CI runs
-the added tests. JSON failure, checksum mismatch, duplicate entries and concurrent
-config edits fail closed; other agents and their policy are preserved. The operator
-can now perform real JetBrains acceptance without manually editing `acp.json`.
+The operator authorized alpha.2 publication despite remaining E0.C gates to enable
+public-installer IDE acceptance. [Alpha.2 delivery](alpha2-delivery.json) records
+source, build, release and actual platform evidence. Publication does not establish
+real IntelliJ launch/auth. E0.C remains PARTIAL and E0.D is blocked. ACP Registry,
+not this development bootstrap, remains the final distribution direction.
 
 ## Identity and policy lifecycle
 

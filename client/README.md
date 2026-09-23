@@ -2,8 +2,11 @@
 
 Small standalone Go workstation client, separate from the durable Python runtime.
 The operator selected embedded tsnet and a direct private application transport.
-**E0.C is PARTIAL; full E0 is unaccepted.** The public `v0.1.0-alpha.1` remains the
-previous SSH candidate; no replacement release has been published.
+**E0.C is PARTIAL; full E0 is unaccepted.** `v0.1.0-alpha.1` is historical SSH
+transport evidence. `v0.1.0-alpha.2` is the first direct-transport prerelease;
+[delivery evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
+records actual publication/validation status. Use the [public installer](INSTALL.md)
+for new IDE acceptance, never alpha.1 or a local candidate fallback.
 
 The [canonical Hub plan](../docs/personal-agent-hub.md),
 [ADR 0022](../docs/decisions/0022-workstation-personal-agent-client.md),
@@ -17,6 +20,8 @@ remain available for comparison; the normal product commands use the direct path
 
 | Command | Candidate behavior |
 | --- | --- |
+| `blaine integration jetbrains install` | Merge the owned custom ACP entry, preserving other agents; no network or registration semantics. |
+| `blaine integration jetbrains check [--json]` | Read-only configuration status and expected executable/arguments. |
 | `blaine version [--json]` | Offline client/protocol/exact source commit/Go/platform metadata. |
 | `blaine doctor [--json]` | Read-only local checks, no embedded network start or state writes. Cached identity is not fresh connection evidence. Full E0 remains NOT_READY. |
 | `blaine connect` | Enroll/reuse this installation's tsnet node, discover the internal Hub candidate, validate network + Blaine identities/readiness, persist the verified profile. No host or Unix username input. CONNECTED does not mean E0 onboarding complete. |

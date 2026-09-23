@@ -29,7 +29,10 @@ candidate workstation/IDE gates. E0.C remains PARTIAL; E0.D is blocked. The
 [direct contract](contracts/host-connection.md) supersedes prior E0.C SSH/bootstrap
 and external-workstation-Tailscale mechanics below. Historical E0.A/B evidence
 keeps its original scope. Tailscale SSH remains for administration, not product
-transport. No release of the new transport has been published.
+transport. The operator authorized `v0.1.0-alpha.2` publication to support real IDE
+acceptance: [delivery status](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json).
+The current development bootstrap is a shell-only release installer delegating
+JetBrains JSON registration to the Go client; it is not ACP Registry publication.
 
 Blaine is the persistent Personal Agent. A workstation is a registered execution
 surface, and IntelliJ/ACP is its first interactive surface. The next product

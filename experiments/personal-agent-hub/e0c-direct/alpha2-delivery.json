@@ -1,0 +1,22 @@
+{
+  "status": "PREPARED_NOT_PUBLISHED",
+  "tag": "v0.1.0-alpha.2",
+  "semantics": "First direct-tsnet/private-Blaine-transport alpha; prerelease, not latest/stable; E0.C still PARTIAL",
+  "source_commit": null,
+  "go": "1.27.1",
+  "protocol_version": 1,
+  "installer": "client/install-jetbrains-agent.sh",
+  "installer_default": "v0.1.0-alpha.2",
+  "installer_python_dependency": false,
+  "go_commands": ["blaine integration jetbrains install", "blaine integration jetbrains check [--json]"],
+  "release_workflow": ".github/workflows/client-release.yml",
+  "ci_workflow": ".github/workflows/client-ci.yml",
+  "assets": ["blaine-darwin-arm64", "blaine-darwin-amd64", "blaine-linux-amd64", "blaine-linux-arm64", "checksums.txt"],
+  "attestation": "Deferred; SHA-256 integrity and source-tagged Actions build, no signing/notarization claim",
+  "changie": "Deferred",
+  "historical_release": "v0.1.0-alpha.1: superseded SSH product transport; excluded from new primary acceptance",
+  "macos_public_installer_ide": "PENDING_OPERATOR",
+  "wsl_public_installer_ide": "PENDING_OPERATOR",
+  "e0c": "PARTIAL",
+  "e0d": "BLOCKED"
+}

@@ -13,6 +13,7 @@ import (
 	"blaine.local/client/internal/direct"
 	"blaine.local/client/internal/doctor"
 	"blaine.local/client/internal/fixture"
+	"blaine.local/client/internal/jetbrains"
 	"blaine.local/client/internal/platform"
 	"blaine.local/client/internal/process"
 )
@@ -20,11 +21,39 @@ import (
 func Run(ctx context.Context, args []string, streams process.Streams) int {
 	diagnostic := func(s string) { fmt.Fprintln(streams.Err, "blaine: "+s) }
 	usage := func() int {
-		diagnostic("usage: blaine version [--json] | doctor [--json] | connect [--non-interactive] [--verify-transport] | disconnect --logout [--reset-identity] | acp [--fixture echo|exit-23|wait]")
+		diagnostic("usage: blaine version [--json] | doctor [--json] | connect [--non-interactive] [--verify-transport] | disconnect --logout [--reset-identity] | integration jetbrains install|check [--json] | acp [--fixture echo|exit-23|wait]")
 		return 64
 	}
 	if len(args) == 0 {
 		return usage()
+	}
+	if args[0] == "integration" {
+		if (len(args) != 3 && len(args) != 4) || args[1] != "jetbrains" || (args[2] != "install" && args[2] != "check") || (len(args) == 4 && args[3] != "--json") {
+			return usage()
+		}
+		target, err := jetbrains.Current(ctx)
+		if err != nil {
+			diagnostic(err.Error())
+			return 2
+		}
+		status, err := jetbrains.Apply(target, args[2] == "install")
+		if err != nil {
+			diagnostic(err.Error())
+			return 2
+		}
+		if len(args) == 4 {
+			err = json.NewEncoder(streams.Out).Encode(status)
+		} else {
+			_, err = fmt.Fprintln(streams.Out, status.String())
+			if err == nil && args[2] == "install" {
+				_, err = fmt.Fprintln(streams.Out, "Open AI Chat and select "+status.Agent+". Reload the IDE if needed. For E0.C, disable custom/IntelliJ MCP exposure for Blaine in Agents settings.")
+			}
+		}
+		if err != nil {
+			diagnostic("output write failed")
+			return 1
+		}
+		return 0
 	}
 	if args[0] == "acp" {
 		return acp(ctx, args[1:], streams, diagnostic, usage)

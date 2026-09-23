@@ -68,6 +68,23 @@ func TestConnectNonInteractive(t *testing.T) {
 		t.Fatal(code, out)
 	}
 }
+
+func TestJetBrainsCheckAndNamespace(t *testing.T) {
+	code, out, diagnostic := invoke(t, "integration", "jetbrains", "check", "--json")
+	var status struct {
+		Registered, Matches bool
+		Executable, Config  string
+	}
+	if code != 0 || diagnostic != "" || json.Unmarshal([]byte(out), &status) != nil || status.Registered || status.Matches || status.Executable == "" || status.Config == "" {
+		t.Fatal(code, out, diagnostic)
+	}
+	for _, args := range [][]string{{"integration"}, {"integration", "other", "install"}, {"integration", "jetbrains", "install", "extra"}} {
+		code, out, diagnostic = invoke(t, args...)
+		if code != 64 || out != "" || diagnostic == "" {
+			t.Fatal(code, out, diagnostic)
+		}
+	}
+}
 func TestDoctorHumanJSONParity(t *testing.T) {
 	_, out, _ := invoke(t, "doctor", "--json")
 	var r struct {

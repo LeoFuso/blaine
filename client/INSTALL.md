@@ -1,218 +1,119 @@
 # Install the Blaine workstation client alpha
 
-> The published `v0.1.0-alpha.1` uses the previous E0.C transport candidate. The
-> selected embedded-tsnet migration is not published yet; its controlled local
-> candidate procedure is [here](../experiments/personal-agent-hub/e0c-direct/OPERATOR.md).
-> Do not treat the old release as evidence for the new transport.
+**v0.1.0-alpha.2** is the first direct-transport prerelease: embedded tsnet plus
+Blaine's private application protocol. E0.C remains PARTIAL. The alpha is not a
+stable client or proof of real IntelliJ acceptance. **v0.1.0-alpha.1 is historical
+SSH-transport evidence and must not be used for current product acceptance.**
 
-## Development JetBrains bootstrap
+## Current development onboarding
 
-[`install-jetbrains-agent.sh`](install-jetbrains-agent.sh) is a self-contained,
-user-local development installer. It requires **Python 3.8+** for structural JSON
-handling and **curl** for public release downloads. It does not install runtimes,
-Tailscale, SSH configuration or credentials. No sudo is needed or accepted.
-ACP Registry provisioning remains the product direction.
-
-From a checkout or a downloaded copy of this script:
+On macOS or Linux (including the designated Ubuntu WSL2 environment):
 
 ```sh
-sh ./install-jetbrains-agent.sh
-sh ./install-jetbrains-agent.sh --check
+curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.2/client/install-jetbrains-agent.sh | sh
 ```
 
-The default is the explicit published **v0.1.0-alpha.1**, not GitHub's latest
-release alias. The installer detects Darwin/Linux and arm64/amd64, downloads the
-matching raw binary and `checksums.txt` from `LeoFuso/blaine` GitHub Releases,
-requires exactly one matching SHA-256 entry, and verifies staged bytes **before
-execution or installation**. It then checks embedded version, platform, protocol
-and exact commit metadata and installs to `~/.local/bin/blaine`. An explicit future
-published alpha can be selected with `--release v0.x.y-alpha.N`.
+The tag URL becomes available when alpha.2 publication completes; consult the
+[release evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)
+for measured publication status. This is development scaffolding. ACP Registry
+publication has **not** happened and remains the final distribution direction.
 
-**Current E0.C acceptance must use the existing direct candidate**, because the
-published alpha still uses SSH. From the previously downloaded, trusted candidate
-package directory, run the downloaded installer with:
-
-```sh
-sh "$HOME/Downloads/install-jetbrains-agent.sh" --candidate-dir "$PWD"
-sh "$HOME/Downloads/install-jetbrains-agent.sh" --candidate-dir "$PWD" --check
-```
-
-This explicit alternative verifies that package's binary against its own
-`checksums.txt`; it makes no GitHub-release/provenance claim. It reuses the candidate
-already exercised on the designated peer. Do not use a manifest supplied by an
-untrusted source. The default old-alpha installation refuses to replace an existing
-different-version client, preventing accidental rollback of the direct candidate.
-
-The script registers **Blaine** in `~/.jetbrains/acp.json` using the absolute stable
-executable path and `args: ["acp"]`; PATH changes are unnecessary for IDE launch.
-On WSL it locates the Windows user's profile through Windows interop and updates
-the **Windows IDE's** configuration, using `wsl.exe --distribution <current distro>
---exec /home/<user>/.local/bin/blaine acp`. It does not assume that opening a WSL
-project makes the IDE itself a Linux process. Missing Windows interop fails closed.
-Real WSL IDE interoperability is still pending: the current
-[JetBrains documentation](https://www.jetbrains.com/help/ai-assistant/acp.html)
-explicitly lists WSL as unsupported, so registration alone cannot establish PASS.
-
-Existing agents, global defaults and extension fields are preserved. An existing
-`Blaine` or `Blaine E0.C candidate` entry is updated in place; multiple such entries
-fail as ambiguous. Invalid/duplicate-key JSON, unexpected file types and symlinks
-fail before modification. A changed existing configuration gets one rolling
-`acp.json.blaine-backup` containing its previous exact bytes; that backup can contain
-existing agent credentials and must stay private. Repeating an unchanged install
-does not rewrite the binary/configuration/backup. Files are replaced atomically;
-the binary and configuration are separate replacements, not a two-file transaction.
-An interrupted installation can be rerun. Close the IDE configuration editor during
-installation; concurrent installer runs are locked and configuration changes during
-download are detected. Windows-hosted files ultimately rely on Windows user-profile
-ACLs; Unix mode bits alone are not a Windows confidentiality guarantee.
-
-`--check` performs no download, installation, directory creation or config writes.
-It reports platform, selected source/asset, installed version/commit/path,
-registration presence and whether executable/arguments match. It executes only the
-existing local `blaine version --json`, not a handshake or session.
-
-Open AI Chat and select Blaine after installation. For E0.C, turn off **Pass custom
-MCP servers** and **Pass IntelliJ MCP server** for Blaine in Agents settings. The
-installer disables these defaults only when creating a fresh configuration; it
-never changes existing agents' global policy. It neither opens an ACP session nor
-performs browser authentication automatically. macOS signing/notarization remains
-unproven; no system security settings or quarantine attributes are changed.
-
-Once this script is authorized and published to the repository, the pipe entrypoint
-can use a pinned, actually published commit. This is a **template, not a currently
-available installer URL** (this local change has not been pushed):
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/<published-commit>/client/install-jetbrains-agent.sh | sh
-```
-
-Until publication is authorized, use the local downloadable script. No release,
-registry submission, self-updater or changelog automation is introduced here.
-
-## Manual release installation
-
-The first version is **v0.1.0-alpha.1**. This is an experimental prerelease, not
-stable E0/client acceptance. A binary requires no Go installation, repository
-checkout or copy from the Blaine host. Release availability and actual CI proof
-are recorded in the [delivery report](../experiments/personal-agent-hub/e0c/delivery.md).
-
-Download from the public [GitHub Releases](https://github.com/LeoFuso/blaine/releases)
-page. Select the exact version; prereleases are deliberately not marked latest.
-Each version has these raw assets and one `checksums.txt` covering all four:
+The shell bootstrap requires a POSIX shell, curl, and `sha256sum` (Linux) or
+`shasum` (macOS). **It requires no Python, Go, Node, system Tailscale or SSH.**
+It detects the platform, downloads the exact alpha.2 asset and public
+`checksums.txt`, requires exactly one matching SHA-256 entry, and compares bytes
+before executing or installing the binary. No `latest` alias or local candidate
+fallback is used. Checksum failure leaves the installed binary unchanged.
 
 | Workstation | Asset |
 | --- | --- |
-| Apple Silicon macOS | `blaine-darwin-arm64` |
-| Intel macOS | `blaine-darwin-amd64` |
-| Linux amd64 / Windows + WSL2 amd64 | `blaine-linux-amd64` |
-| Linux arm64 / WSL2 arm64 | `blaine-linux-arm64` |
+| Apple Silicon Mac | `blaine-darwin-arm64` |
+| Intel Mac | `blaine-darwin-amd64` |
+| Linux / Ubuntu WSL2 amd64 | `blaine-linux-amd64` |
+| Linux arm64 | `blaine-linux-arm64` |
 
-Run the following manual commands in a shell on the workstation. On Windows run
-inside the selected WSL2 distribution, not PowerShell; there is no native Windows
-client. These commands verify only the downloaded platform's entry in the
-four-binary manifest. `test` must succeed before `install` runs.
+The binary is installed at `~/.local/bin/blaine`. The verified binary first checks
+existing JetBrains configuration, then performs registration from its installed
+location. The IDE uses the absolute executable path with `args: ["acp"]`; no PATH
+or shell-profile editing is required. The installer prints the client version,
+exact build commit, checksum, executable path and registration result.
 
-## macOS arm64
+Open IntelliJ **AI Chat** and select **Blaine**. Restart the IDE if it has not
+reloaded the configuration. For E0.C, disable **Pass custom MCP servers** and
+**Pass IntelliJ MCP server** for Blaine in Agents settings. Existing agents' global
+MCP policy is preserved; fresh configuration starts with MCP exposure disabled.
+The client advertises no E1/E2 workspace capabilities. Authentication, when needed,
+uses the client-owned browser flow; installation does not start tsnet or enroll a
+new node. Existing private installation identity remains in its existing state
+location across upgrades.
 
-```bash
-(
-  set -eu
-  work="$(mktemp -d)"; trap 'rm -rf "$work"' EXIT; cd "$work"
-  base=https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1
-  curl -fL --proto '=https' -O "$base/blaine-darwin-arm64"
-  curl -fL --proto '=https' -O "$base/checksums.txt"
-  test "$(shasum -a 256 blaine-darwin-arm64 | awk '{print $1}')" = "$(awk '$2=="blaine-darwin-arm64" {print $1}' checksums.txt)"
-  mkdir -p "$HOME/.local/bin"
-  install -m 755 blaine-darwin-arm64 "$HOME/.local/bin/blaine"
-  "$HOME/.local/bin/blaine" version
-)
+macOS binaries are not signed/notarized. If Gatekeeper blocks launch, report that
+separately; the installer does not alter quarantine or disable system security.
+Checksums provide download integrity, not signing or build attestation.
+
+## Status and Go-owned JetBrains integration
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.2/client/install-jetbrains-agent.sh | sh -s -- --check
+"$HOME/.local/bin/blaine" integration jetbrains check --json
+"$HOME/.local/bin/blaine" integration jetbrains install
+"$HOME/.local/bin/blaine" version
 ```
 
-## macOS amd64
+`--check` downloads only the installer script, not a client asset. It executes the
+existing local version/status commands without modifying configuration or connecting
+to the Hub. The Go `integration jetbrains check` also works without a configuration.
+It reports registration presence and whether executable/arguments match.
 
-```bash
-(
-  set -eu
-  work="$(mktemp -d)"; trap 'rm -rf "$work"' EXIT; cd "$work"
-  base=https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1
-  curl -fL --proto '=https' -O "$base/blaine-darwin-amd64"
-  curl -fL --proto '=https' -O "$base/checksums.txt"
-  test "$(shasum -a 256 blaine-darwin-amd64 | awk '{print $1}')" = "$(awk '$2=="blaine-darwin-amd64" {print $1}' checksums.txt)"
-  mkdir -p "$HOME/.local/bin"
-  install -m 755 blaine-darwin-amd64 "$HOME/.local/bin/blaine"
-  "$HOME/.local/bin/blaine" version
-)
-```
+The Go client owns all `acp.json` semantics: strict structural parsing (including
+rejection of duplicate keys), preservation of unrelated agents/extension fields,
+an idempotent owned entry, and a single rolling `acp.json.blaine-backup` of the
+previous exact valid bytes when modification is required. Existing `Blaine` or
+`Blaine E0.C candidate` entries are updated in place; multiple matches are rejected
+as ambiguous. Invalid configuration, symlinks and hardlinks fail closed. A backup
+may contain other agents' credentials; keep it private. Existing native files are
+replaced atomically with user-private permissions. Do not edit the configuration
+concurrently; installer writes are locked and changes detected before replacement.
 
-## Linux / WSL2 amd64
+On Linux/macOS the config is `~/.jetbrains/acp.json`. In the **designated topology
+of Windows IntelliJ opening an Ubuntu WSL2 project**, Go locates the Windows user's
+home with Windows interop and registers `wsl.exe --distribution <current distro>
+--exec /home/<user>/.local/bin/blaine acp` in the Windows IDE config. This is process
+launch interop, not a dependency on Windows Tailscale or a Linux daemon. Missing
+interop fails closed; there is no automatic fallback to a different IDE topology.
+Windows profile ACLs govern Windows-hosted files; Unix mode bits alone do not prove
+confidentiality there. Real IDE launch must still be tested: current
+[JetBrains documentation](https://www.jetbrains.com/help/ai-assistant/acp.html)
+lists WSL as unsupported. A successful registration is not evidence of UI support.
 
-```bash
-(
-  set -eu
-  work="$(mktemp -d)"; trap 'rm -rf "$work"' EXIT; cd "$work"
-  base=https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1
-  curl -fL --proto '=https' -O "$base/blaine-linux-amd64"
-  curl -fL --proto '=https' -O "$base/checksums.txt"
-  test "$(sha256sum blaine-linux-amd64 | awk '{print $1}')" = "$(awk '$2=="blaine-linux-amd64" {print $1}' checksums.txt)"
-  mkdir -p "$HOME/.local/bin"
-  install -m 755 blaine-linux-amd64 "$HOME/.local/bin/blaine"
-  "$HOME/.local/bin/blaine" version
-)
-```
+The binary and JSON updates are separate atomic replacements, not a two-file
+transaction. Rerun after an interrupted installation. No credentials, Hub hostname,
+remote Unix account, SSH configuration or Tailscale installation is provisioned by
+the installer. Reset/revocation of the embedded identity is a separate explicit
+client operation; this installer does not reset it.
 
-For Linux/WSL arm64 substitute `blaine-linux-arm64` in the Linux block.
-After installation, in any supported shell:
+## Delivery and validation
 
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-blaine version --json
-blaine doctor
-blaine connect --host blaine
-```
+The official [GitHub Release](https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.2)
+contains the four raw binaries above and one `checksums.txt`. Existing repository
+workflows remain authoritative:
 
-Doctor/connect are expected to report unready/pending gates in this alpha; they
-are not evidence of E0 PASS. Tailscale stays external infrastructure. macOS and
-Windows+WSL2 live peer identity, guest routing, handshake and remote ACP acceptance
-are still required. The current WSL transport intentionally refuses to claim a
-verified route. No production host peer resolver/dispatcher is enabled.
+- CI: `.github/workflows/client-ci.yml`.
+- Shared validation/four-target build: `.github/workflows/client-build.yml` and
+  `client/ci.sh`, including Go tests/race/vet, installer fixtures, host regressions,
+  offline client regressions and reproducibility checks.
+- Tag publication: `.github/workflows/client-release.yml`; explicit `v0.x.y-alpha.N`
+  tags become prereleases, never the stable latest release. Embedded client version
+  omits `v`; protocol version remains independently versioned at 1.
+- Go is pinned to **1.27.1**. Ordinary CI has read-only permissions; only the release
+  publication job has `contents: write`. Compilation requires no secret.
+- Actions provides commit-build artifacts with the same binary names and a
+  `blaine-checksums` artifact. Public E0 onboarding uses the tagged Release.
+- Native signing/notarization and GitHub build attestation remain deferred
+  hardening; Actions archive digests are not being represented as attestations.
+- Changie/changelog automation remains explicitly deferred. No self-updater,
+  native Windows binary, custom JetBrains plugin or E0.D+ implementation is added.
 
-Darwin cross-builds are not signed/notarized and do not establish macOS runtime
-support. If OS trust policy blocks launch, retain that observation for acceptance;
-do not disable system security policy. The manifest supplies download integrity,
-not a signing identity or attested build provenance.
-
-## Branch and commit artifacts
-
-[Client CI](https://github.com/LeoFuso/blaine/actions/workflows/client-ci.yml)
-uploads separate artifacts named for each binary and `blaine-checksums` on relevant
-branch/PR builds. Pick a successful run with the intended exact commit, download
-its platform artifact and checksum artifact from the same run, unzip both into
-a directory, then use the same checksum comparison and `install` command above.
-Actions downloads may require a GitHub login; public Release downloads do not.
-Archive extraction may not preserve executable permissions; `install -m 755` sets
-them explicitly. Branch versions are `0.1.0-dev+<12-character-commit>` and the
-embedded `build_commit` remains the full exact built commit (PR runs build their
-merge commit). Do not mix artifacts from different runs.
-
-## Release semantics and follow-ups
-
-- CI: `.github/workflows/client-ci.yml`; shared validation/build:
-  `.github/workflows/client-build.yml`; tag publication:
-  `.github/workflows/client-release.yml`.
-- Pin: `client/.go-version` currently **1.27.1**. Validation requires that exact
-  toolchain. Official GitHub actions are pinned by immutable commit SHA.
-- Only explicit `v0.x.y-alpha.N` tags are supported initially. `v` is removed from
-  the embedded client version; protocol remains independently versioned at 1.
-  Releases are prereleases and never marked latest. Tags/releases are not moved
-  or overwritten automatically. Stable/beta semantics require a later deliberate
-  change, not an accidental non-alpha tag.
-- Compilation needs no secret. CI has `contents: read`; only the publication job
-  has `contents: write`, using GitHub's ephemeral token. Nothing is merged by CI.
-- GitHub Actions supplies artifact archive digests; the release supplies SHA-256
-  of the actual binaries. Neither is being represented as a native attestation.
-  GitHub-native provenance/attestation is deferred hardening; adding its OIDC and
-  attestation permissions should be reviewed separately.
-- **Changie/changelog automation is explicitly deferred** until this release
-  workflow and version semantics are proven. No changelog generator, self-updater
-  or final installer is included. This is supporting delivery for E0.C, not E0.F
-  product acceptance or implementation of E0.D+.
+The old manual alpha.1 instructions remain in Git history and the
+[historical delivery evidence](../experiments/personal-agent-hub/e0c/delivery.md).
+They are not a fallback for a failing direct transport.

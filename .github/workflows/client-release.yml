@@ -38,11 +38,13 @@ jobs:
           cat > "$RUNNER_TEMP/client-release-notes.md" <<'NOTES'
           Alpha workstation-client candidate. E0 and the Blaine client are not stable or accepted.
 
-          Includes E0.A/B and the partial E0.C profile/transport/handshake/framing candidate. Production trusted peer binding, host dispatch/deployment and real remote ACP acceptance remain pending. MIRIX dependency readiness remains unknown. No E0.D+ capabilities are enabled.
+          First direct-transport prerelease: embedded tsnet plus the private Blaine application protocol. Includes persisted client identity, signed handshake, binary streams, cancellation/reconnect, validated WSL MTU handling and Go-owned JetBrains custom ACP registration. Alpha.1 is historical SSH product-transport evidence; no automatic SSH fallback exists. No E0.D+ capabilities are enabled.
+
+          E0.C remains PARTIAL. Designated macOS and WSL transport evidence exists; real IntelliJ-launched ACP/auth, remaining identity lifecycle, narrow tailnet policy and durable host deployment gates remain separate.
 
           Assets: Linux amd64/arm64 and Darwin amd64/arm64. Windows+WSL2 uses the Linux client; no native Windows binary. Build verification is not macOS/WSL live acceptance. No macOS signing/notarization is claimed.
 
-          Download your binary and checksums.txt, verify SHA-256, then install as ~/.local/bin/blaine. See client/INSTALL.md at this tag. Checksums provide integrity; GitHub artifact attestations and changie automation are deferred hardening/follow-up work.
+          Use the public shell installer at client/install-jetbrains-agent.sh at this tag; it verifies SHA-256 and delegates JetBrains JSON configuration to the Go client. No Python, SSH or system Tailscale prerequisite. See client/INSTALL.md at this tag. Checksums provide integrity; GitHub artifact attestations and changie automation are deferred hardening/follow-up work.
           NOTES
           gh release create "$GITHUB_REF_NAME" \
             --verify-tag --prerelease --latest=false \

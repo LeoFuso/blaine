@@ -32,13 +32,13 @@ used for the spike. Do not disable Gatekeeper globally.
 
 ## Real JetBrains launch — after the transport batch
 
-Use the [development installer](../../../client/INSTALL.md#development-jetbrains-bootstrap)
-with `--candidate-dir` pointing to the already downloaded acceptance package. It
-checks that candidate's SHA-256, installs to `~/.local/bin/blaine`, and merges the
-custom ACP entry without manual JSON editing. Do not use its default historical
-SSH release for this direct-transport acceptance. Run `--check` afterward to retain
-the actual installed version/path and registration status. No new binary download
-or public release is required. The installer is local until an authorized push.
+Use the [public alpha.2 development installer](../../../client/INSTALL.md#current-development-onboarding).
+It verifies the released platform asset and delegates configuration to
+`blaine integration jetbrains install`. Do not use alpha.1 or local candidate
+packages for new primary IDE acceptance. Retain `blaine version` and
+`blaine integration jetbrains check --json` output. No manual JSON edits or Python
+runtime are required. Public publication status is recorded separately from live
+IDE acceptance in [alpha.2 delivery](alpha2-delivery.json).
 
 Use the installed stable AI Assistant's custom ACP agent mechanism. The installer
 preserves existing `agent_servers` entries and reuses an existing Blaine entry.
