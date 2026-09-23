@@ -1,3 +1,4 @@
 restate-sdk==1.0.5
 hypercorn==0.17.3
 agent-client-protocol==0.12.1
+cryptography>=42.0

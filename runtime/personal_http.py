@@ -1,43 +1,45 @@
 """Minimal HTTP bridge for the existing Personal Agent control surface.
 
-Translates JSON-over-HTTP to PersonalAgent.execute(). No lifecycle, authority,
-routing, scheduling, memory, or Task-execution logic lives here. The bridge
-exists so a local UI can reach the D2 Personal Agent without an ACP client.
+Translates JSON-over-HTTP to PersonalAgent.execute() and ConversationService.
+No lifecycle, authority, routing, scheduling, memory, or Task-execution logic
+lives here. The bridge exists so a local UI can reach the D2 Personal Agent
+without an ACP client.
 
-Endpoints:
+Endpoints (Task — existing):
     POST /create    {"request_id": "...", "text": "objective",
                     "mode": "deterministic" | "local-summary", ...}
-                    mode deterministic (default): small deterministic Task (text.stats)
-                    mode local-summary: real local-cognition summary Task (PoC)
-                       → optional "marker" and "words" shape the bounded objective
     POST /inspect   {"task_id": "..."}
-                    → returns current Task state
     POST /artifact  {"task_id": "...", "name": "answer"}
-                    → returns artifact content
     POST /respond   {"task_id": "...", "response": "YES"}
-                    → submits a human decision response
+    POST /cancel    {"task_id": "..."}
     GET  /task/<id>/events?after=<seq>
-                    → read-only projection of the deployment's retained
-                      ExecutionEvent log (events.jsonl, written by the kernel
-                      journal, never by this bridge) filtered to the Task.
-                      The cursor is the 0-based line index; "after" is
-                      exclusive. The bridge owns no state: it only tails an
-                      existing append-only log.
     GET  /health    → {"status": "ok"}
 
-Transport only. The PersonalAgent + Restate remain authoritative.
+Endpoints (Conversation — PA-2):
+    POST /conversation/create   {"conversation_id": "..."}
+    GET  /conversation/<id>
+    GET  /conversation/<id>/messages
+    POST /conversation/<id>/messages  {"role": "...", "content": "..."}
+    GET  /conversation/<id>/tasks
+    POST /conversation/<id>/tasks/link  {"task_id": "...", "message_id": "..."}
+    POST /conversation/<id>/tasks/surface {"task_id": "..."}
+
+Transport only. The PersonalAgent + Restate remain authoritative for Tasks.
+ConversationService is the repository boundary for durable encrypted history.
 """
 import json
 import os
 import re
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from pathlib import Path
 from urllib.parse import urlsplit
 
 from runtime.personal_agent import (
     PersonalAgent, RestateBinding, small_request, local_summary_request, task_identity,
 )
 from runtime.kernel.contracts import identifier, text as bounded_text, MAX_PACKET
+from runtime.kernel.conversation import ConversationService
 
 INGRESS = os.environ.get('BLAINE_D2_INGRESS', 'http://127.0.0.1:48080')
 HOST = '127.0.0.1'
@@ -92,6 +94,10 @@ def read_task_events(task_id: str, after: int) -> dict:
 _control: PersonalAgent | None = None
 _lock = threading.Lock()
 
+# Conversation service singleton (PA-2)
+_conversation: ConversationService | None = None
+_conv_lock = threading.Lock()
+
 
 def get_control() -> PersonalAgent:
     global _control
@@ -100,6 +106,16 @@ def get_control() -> PersonalAgent:
             if _control is None:
                 _control = PersonalAgent(RestateBinding(INGRESS))
     return _control
+
+
+def get_conversation() -> ConversationService:
+    global _conversation
+    if _conversation is None:
+        with _conv_lock:
+            if _conversation is None:
+                data_dir = Path(os.environ.get('BLAINE_D2_DATA', '.local/d2'))
+                _conversation = ConversationService(data_dir)
+    return _conversation
 
 
 class BridgeHandler(BaseHTTPRequestHandler):
@@ -121,8 +137,41 @@ class BridgeHandler(BaseHTTPRequestHandler):
             self._json(200, {'status': 'ok'})
         elif self.path.startswith('/task/') and '/events' in self.path:
             self._task_events()
+        elif self.path.startswith('/conversation/'):
+            self._conversation_get()
         else:
             self._json(404, {'error': 'Not found'})
+
+    def _conversation_get(self):
+        parts = urlsplit(self.path)
+        segments = [p for p in parts.path.split('/') if p]
+        # /conversation/<id>
+        # /conversation/<id>/messages
+        # /conversation/<id>/tasks
+        if len(segments) < 2 or segments[0] != 'conversation':
+            self._json(400, {'error': 'Expected /conversation/<id>[/messages|/tasks]'})
+            return
+        conv_id = segments[1]
+        svc = get_conversation()
+        try:
+            if len(segments) == 2:
+                conv = svc.get_conversation(conv_id)
+                if conv is None:
+                    self._json(404, {'error': 'Conversation not found'})
+                    return
+                self._json(200, conv)
+            elif len(segments) == 3 and segments[2] == 'messages':
+                msgs = svc.list_messages(conv_id)
+                self._json(200, {'conversation_id': conv_id, 'messages': msgs})
+            elif len(segments) == 3 and segments[2] == 'tasks':
+                links = svc.list_task_links(conv_id)
+                self._json(200, {'conversation_id': conv_id, 'tasks': links})
+            else:
+                self._json(404, {'error': 'Unknown conversation sub-path'})
+        except ValueError as e:
+            self._json(400, {'error': str(e)})
+        except Exception as e:
+            self._json(500, {'error': f'Conversation error: {type(e).__name__}'})
 
     def _task_events(self):
         parts = urlsplit(self.path)
@@ -167,6 +216,14 @@ class BridgeHandler(BaseHTTPRequestHandler):
                 result = self._respond(body)
             elif path == '/cancel':
                 result = self._cancel(body)
+            elif path == '/conversation/create':
+                result = self._conversation_create(body)
+            elif path.startswith('/conversation/') and path.endswith('/messages'):
+                result = self._conversation_add_message(path, body)
+            elif path.startswith('/conversation/') and path.endswith('/tasks/link'):
+                result = self._conversation_link_task(path, body)
+            elif path.startswith('/conversation/') and path.endswith('/tasks/surface'):
+                result = self._conversation_surface_result(path, body)
             else:
                 self._json(404, {'error': f'Unknown endpoint: {path}'})
                 return
@@ -225,6 +282,57 @@ class BridgeHandler(BaseHTTPRequestHandler):
         task_id = body.get('task_id', '')
         identifier(task_id)
         return get_control().execute({'operation': 'cancel', 'task_id': task_id})
+
+    # --- Conversation endpoints (PA-2) ---
+
+    def _conversation_create(self, body: dict) -> dict:
+        conv_id = body.get('conversation_id', '')
+        if not conv_id or len(conv_id) > 64:
+            raise ValueError('conversation_id must be 1-64 chars')
+        svc = get_conversation()
+        return svc.create_conversation(conv_id)
+
+    def _conversation_add_message(self, path: str, body: dict) -> dict:
+        # /conversation/<id>/messages
+        segments = [p for p in path.split('/') if p]
+        if len(segments) != 3 or segments[0] != 'conversation' or segments[2] != 'messages':
+            raise ValueError('Invalid message endpoint path')
+        conv_id = segments[1]
+        role = body.get('role', '')
+        content = body.get('content', '')
+        if role not in ('human', 'agent', 'system', 'delegation', 'result'):
+            raise ValueError('role must be human|agent|system|delegation|result')
+        if not content:
+            raise ValueError('content is required')
+        bounded_text(content, 16384)
+        msg_id = body.get('message_id')
+        svc = get_conversation()
+        return svc.add_message(conv_id, role, content, message_id=msg_id)
+
+    def _conversation_link_task(self, path: str, body: dict) -> dict:
+        # /conversation/<id>/tasks/link
+        segments = [p for p in path.split('/') if p]
+        if len(segments) != 4 or segments[0] != 'conversation' or segments[3] != 'link':
+            raise ValueError('Invalid task link endpoint path')
+        conv_id = segments[1]
+        task_id = body.get('task_id', '')
+        msg_id = body.get('message_id', '')
+        identifier(task_id)
+        identifier(msg_id)
+        svc = get_conversation()
+        return svc.link_task(conv_id, task_id, msg_id)
+
+    def _conversation_surface_result(self, path: str, body: dict) -> dict:
+        # /conversation/<id>/tasks/surface
+        segments = [p for p in path.split('/') if p]
+        if len(segments) != 4 or segments[0] != 'conversation' or segments[3] != 'surface':
+            raise ValueError('Invalid surface endpoint path')
+        conv_id = segments[1]
+        task_id = body.get('task_id', '')
+        identifier(task_id)
+        svc = get_conversation()
+        svc.mark_result_surfaced(conv_id, task_id)
+        return {'status': 'surfaced', 'conversation_id': conv_id, 'task_id': task_id}
 
 
 def run():
