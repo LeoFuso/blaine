@@ -42,6 +42,19 @@ shared-root recommendation below. Ordinary writes cannot create global knowledge
 This checkpoint does not establish production security or declassification; historical
 III.1–III.3 results and their limits remain unchanged.
 
+## III.5 admission clarification — 2026-09-23
+
+[III.5](../../milestones/046-track-iii-5-promotion-declassification-admission.md)
+tests explicit immediate-parent promotion, separate from ordinary writes and human
+declaration. Cross-domain admission requires trusted source/candidate/destination-
+bound approval and fail-closed deterministic checks; generation and semantic
+abstraction remain separate. Promotion preserves origin and epistemic status rather
+than asserting verification. Destination receipts are a safe projection of private
+audit, and replay must revalidate security before returning a previous admission.
+Identifiers/collision behavior and revision/activity metadata obey the same security
+boundary as content. These are finite synthetic results, not real DLP or verified
+learning; historical III.1–III.4 checkpoints retain their original scope.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

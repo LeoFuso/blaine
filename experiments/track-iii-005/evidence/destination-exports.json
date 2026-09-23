@@ -1,0 +1,3571 @@
+[
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 2,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          },
+          {
+            "admission": {
+              "gate_version": "gate-v1",
+              "kind": "PROMOTED_REPRESENTATION",
+              "policy_version": "promotion-policy-v1"
+            },
+            "classification": "PUBLIC",
+            "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction.",
+            "context_id": "root",
+            "created_by": "promotion-gate",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "root::admission-1",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [
+      {
+        "entry_id": "root::admission-1",
+        "epistemic_status": "UNVERIFIED",
+        "gate_version": "gate-v1",
+        "policy_version": "promotion-policy-v1",
+        "provenance": "AGENT_OBSERVATION",
+        "status": "ADMITTED"
+      }
+    ],
+    "visible_revision": 1
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 2,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          },
+          {
+            "admission": {
+              "gate_version": "gate-v1",
+              "kind": "PROMOTED_REPRESENTATION",
+              "policy_version": "promotion-policy-v1"
+            },
+            "classification": "PUBLIC",
+            "content": "Prefer explicit construction for dependencies.",
+            "context_id": "root",
+            "created_by": "promotion-gate",
+            "domain": "public",
+            "epistemic_status": "DECLARED",
+            "id": "root::admission-1",
+            "kind": "RAW",
+            "provenance": "USER_DECLARATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [
+      {
+        "entry_id": "root::admission-1",
+        "epistemic_status": "DECLARED",
+        "gate_version": "gate-v1",
+        "policy_version": "promotion-policy-v1",
+        "provenance": "USER_DECLARATION",
+        "status": "ADMITTED"
+      }
+    ],
+    "visible_revision": 1
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 0,
+        "status": "UNAVAILABLE"
+      },
+      "response": {
+        "entries": [],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "UNAVAILABLE"
+      }
+    },
+    "receipts": [],
+    "visible_revision": null
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 2,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          },
+          {
+            "admission": {
+              "gate_version": "gate-v1",
+              "kind": "PROMOTED_REPRESENTATION",
+              "policy_version": "promotion-policy-v1"
+            },
+            "classification": "PUBLIC",
+            "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction.",
+            "context_id": "root",
+            "created_by": "promotion-gate",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "root::admission-1",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [
+      {
+        "entry_id": "root::admission-1",
+        "epistemic_status": "UNVERIFIED",
+        "gate_version": "gate-v1",
+        "policy_version": "promotion-policy-v1",
+        "provenance": "AGENT_OBSERVATION",
+        "status": "ADMITTED"
+      }
+    ],
+    "visible_revision": 1
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 2,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          },
+          {
+            "admission": {
+              "gate_version": "gate-v1",
+              "kind": "PROMOTED_REPRESENTATION",
+              "policy_version": "promotion-policy-v1"
+            },
+            "classification": "PUBLIC",
+            "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction.",
+            "context_id": "root",
+            "created_by": "promotion-gate",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "root::admission-1",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [
+      {
+        "entry_id": "root::admission-1",
+        "epistemic_status": "UNVERIFIED",
+        "gate_version": "gate-v1",
+        "policy_version": "promotion-policy-v1",
+        "provenance": "AGENT_OBSERVATION",
+        "status": "ADMITTED"
+      }
+    ],
+    "visible_revision": 1
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 2,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          },
+          {
+            "admission": {
+              "gate_version": "gate-v1",
+              "kind": "PROMOTED_REPRESENTATION",
+              "policy_version": "promotion-policy-v1"
+            },
+            "classification": "PUBLIC",
+            "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction.",
+            "context_id": "root",
+            "created_by": "promotion-gate",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "root::admission-1",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [
+      {
+        "entry_id": "root::admission-1",
+        "epistemic_status": "UNVERIFIED",
+        "gate_version": "gate-v1",
+        "policy_version": "promotion-policy-v1",
+        "provenance": "AGENT_OBSERVATION",
+        "status": "ADMITTED"
+      }
+    ],
+    "visible_revision": 1
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 2,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          },
+          {
+            "admission": {
+              "gate_version": "gate-v1",
+              "kind": "PROMOTED_REPRESENTATION",
+              "policy_version": "promotion-policy-v1"
+            },
+            "classification": "PUBLIC",
+            "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction.",
+            "context_id": "root",
+            "created_by": "promotion-gate",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "root::admission-1",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [
+      {
+        "entry_id": "root::admission-1",
+        "epistemic_status": "UNVERIFIED",
+        "gate_version": "gate-v1",
+        "policy_version": "promotion-policy-v1",
+        "provenance": "AGENT_OBSERVATION",
+        "status": "ADMITTED"
+      }
+    ],
+    "visible_revision": 1
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 1,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [],
+    "visible_revision": 0
+  },
+  {
+    "memory": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 2,
+        "status": "SUCCESS_WITH_RESULTS"
+      },
+      "response": {
+        "entries": [
+          {
+            "classification": "PUBLIC",
+            "content": "Public fixture baseline.",
+            "context_id": "root",
+            "created_by": "fixture-public",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "global-baseline",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          },
+          {
+            "admission": {
+              "gate_version": "gate-v1",
+              "kind": "PROMOTED_REPRESENTATION",
+              "policy_version": "promotion-policy-v1"
+            },
+            "classification": "PUBLIC",
+            "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction.",
+            "context_id": "root",
+            "created_by": "promotion-gate",
+            "domain": "public",
+            "epistemic_status": "UNVERIFIED",
+            "id": "root::admission-1",
+            "kind": "RAW",
+            "provenance": "AGENT_OBSERVATION"
+          }
+        ],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "SUCCESS_WITH_RESULTS"
+      }
+    },
+    "receipts": [
+      {
+        "entry_id": "root::admission-1",
+        "epistemic_status": "UNVERIFIED",
+        "gate_version": "gate-v1",
+        "policy_version": "promotion-policy-v1",
+        "provenance": "AGENT_OBSERVATION",
+        "status": "ADMITTED"
+      }
+    ],
+    "visible_revision": 1
+  },
+  {
+    "memory_probe": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 0,
+        "status": "DENIED"
+      },
+      "response": {
+        "entries": [],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "DENIED"
+      }
+    },
+    "promotion_probe": {
+      "diagnostic": {
+        "status": "REJECTED_POLICY"
+      },
+      "receipt": null,
+      "status": "REJECTED_POLICY"
+    }
+  },
+  {
+    "memory_probe": {
+      "diagnostic": {
+        "partial": false,
+        "returned_count": 0,
+        "status": "DENIED"
+      },
+      "response": {
+        "entries": [],
+        "partial": false,
+        "reason": null,
+        "receipt": null,
+        "status": "DENIED"
+      }
+    },
+    "promotion_probe": {
+      "diagnostic": {
+        "status": "REJECTED_POLICY"
+      },
+      "receipt": null,
+      "status": "REJECTED_POLICY"
+    }
+  }
+]
