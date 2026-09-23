@@ -3,7 +3,7 @@
  "phases": [
   {
    "phase": "A_explicit_materialization",
-   "seconds": 2.73,
+   "seconds": 2.68,
    "operator_authentication_requested": false,
    "authentication_subsystems": {},
    "materialization_succeeded": true,

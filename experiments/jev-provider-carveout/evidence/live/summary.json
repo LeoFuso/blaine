@@ -39,7 +39,7 @@
    "candidate_failure": null,
    "applied_to_routing": false,
    "model": "jev-1.13.0",
-   "latency_ms": 338,
+   "latency_ms": 701,
    "usage": {
     "model_calls": 1,
     "input_tokens": 431,
@@ -53,8 +53,8 @@
    "call": "continuation_boundary",
    "outcome": "PROCEED",
    "label": "inconclusive",
-   "score": 0.48,
-   "latency_ms": 374,
+   "score": 0.5,
+   "latency_ms": 416,
    "model": "jev-1.13.0",
    "input_tokens": 397,
    "output_tokens": 45,
@@ -72,5 +72,5 @@
   "outcome": "selected",
   "selected_binding": "candidate-remote"
  },
- "probe_runtime_s": 0.71
+ "probe_runtime_s": 1.12
 }

@@ -1,15 +1,7 @@
 # ADR 0023 — Runtime Secret Delivery and Materialization
 
-**Status:** Accepted, with three questions reopened  
-**Validation:** Integration — first consumer materialized and accepted live
-
-> **Provisional sections.** The lifecycle above the local credential is accepted
-> and unchanged. Three choices are reopened pending an operator decision: the
-> materialization engine (this ADR's own resolver versus SecretSpec), the
-> local-at-rest representation, and the systemd-creds rejection rationale, which
-> the [correction spike](../../experiments/secret-delivery-spike/README.md)
-> showed was right in outcome but wrong in reasoning. Treat the tool-evaluation
-> table and the at-rest paragraph as provisional until that decision lands.
+**Status:** Accepted  
+**Validation:** Integration — first consumer materialized and accepted live, engine selected by the operator after a live comparison
 
 ## Context
 
@@ -69,9 +61,24 @@ The invariants are:
 
 The local at-rest representation is an operator-owned `0600` environment file
 under `~/.config/blaine/secrets/<consumer>.env`, reusing the location the
-rootless migration already established. The materializer is a small client
-(`infra/secrets.py`); it is not a secret-management server, adds no daemon, and
-implements no cryptography.
+rootless migration already established.
+
+**Provider resolution is SecretSpec's; the rest is Blaine's.** The operator
+selected this split after a live comparison. SecretSpec 0.20.0, pinned by digest,
+resolves declared secrets from whatever backend sits behind a single
+`runtime_secrets` alias. Blaine keeps the consumer allowlist, the destination,
+restrictive atomic activation, verification, bootstrap withholding and rotation
+reporting. `infra/secrets.py` is that wrapper; it is not a secret-management
+server, adds no daemon, and implements no cryptography.
+
+Each consumer owns a separate SecretSpec manifest. Profiles were measured to
+**extend** the default profile rather than isolate from it, so a shared manifest
+would let one consumer resolve another's secrets; separate manifests plus
+Blaine's own allowlist keep least-secret delivery true rather than assumed.
+
+**Rotation does not reload.** A process that has already started holds its value
+in its environment. Materialization reports whether the value changed and whether
+a declared service must be restarted; it restarts nothing itself.
 
 ### Tools evaluated
 
@@ -80,12 +87,28 @@ implements no cryptography.
 | `bws` | 2.1.0, installed and already proven by the Grafana path | **Adopted** as the remote client, used only at materialization time |
 | GNOME Keyring | existing operator convention | **Retained** for the bootstrap credential only; never materialized to a consumer |
 | systemd credentials | systemd 259 with `systemd-creds` present | **Rejected — corrected rationale.** The original reading, that its encryption was nominal, was wrong: the host key was created during the test and really was used. The accurate disqualifier is that unprivileged `systemd-creds` requires polkit authorization on this host, so a systemd user service could not decrypt without an interactive desktop prompt. See the [correction spike](../../experiments/secret-delivery-spike/README.md) |
-| SecretSpec | **0.20.0 stable, live-spiked** | **Reopened.** The earlier dismissal relied on old research and was never put to the operator. A live spike passed all ten requirements, including BWS resolution through the existing keyring bootstrap and composition with this ADR's atomic activation. Engine selection is an open operator decision |
+| SecretSpec | **0.20.0 stable, live-spiked, adopted** | **Adopted as the resolver.** A live spike passed all ten requirements, including BWS resolution through the existing keyring bootstrap with no keyring migration, resolution limited to declared secrets, fail-closed behaviour, and composition with this ADR's atomic activation producing a byte-identical credential. Its default refusal of agent-driven access without a recorded reason addresses the boundary that prompted this work |
 | SOPS / age | absent from the host | **Deferred.** Real at-rest encryption needs a key that must itself be readable non-interactively at boot, which reduces to the same local trust boundary while adding key distribution |
 
 A `0600` file was therefore selected because the alternatives on this host either
-claim protection they cannot deliver or move the same trust boundary somewhere
-less obvious. That is a limitation recorded honestly, not a security claim.
+require an interactive prompt the runtime forbids or move the same trust boundary
+somewhere less obvious. That is a limitation recorded honestly, not a security
+claim.
+
+### Provider portability, and where it stops
+
+Substituting the backend behind the alias was proven live: swapping Bitwarden for
+a synthetic local backend changed the resolved value while the Jev provider
+source, the consumer declaration, the wrapper source and the manifest stayed
+byte-identical, with a one-line configuration delta. `awssm`, `vault` and
+`openbao` are built in and occupy the same alias.
+
+The boundary is addressing, and it lands in declarations rather than code. Vault
+and OpenBao carry mount and path in the alias URI and need only a token bootstrap
+change, which is **inferred** from the accepted URI grammar rather than
+live-tested. AWS Secrets Manager refuses a path and demands a per-secret `ref`,
+which is itself backend-coupling: a manifest carrying one stopped resolving
+against another backend. No Blaine source change is required for any of them.
 
 ## Consequences
 
@@ -123,13 +146,19 @@ present in the inherited environment.
 
 ### Evidence
 
-[Acceptance report](../../infra/validation-secret-delivery.json): the Jev
-consumer started with exit code 0, its declared credential present and non-empty,
-no secret-manager invocation, no bootstrap token and no other consumer's secret.
-The first run of this acceptance **failed** and exposed a real defect — an
-inherited `BWS_ACCESS_TOKEN` reached the consumer — which was fixed before the
-pass. The same standard also materialized and verified the already-proven Grafana
-metrics consumer without touching its existing root-owned credential.
+[Acceptance report](../../infra/validation-secret-delivery.json) and the
+[four-phase acceptance](../../experiments/secret-delivery-spike/evidence/phased-acceptance.json):
+the Jev consumer started with exit code 0, its declared credential present and
+non-empty, no secret-manager invocation, no bootstrap token, no other consumer's
+secret, and no interactive authentication event in any phase. The first run of
+this acceptance **failed** and exposed a real defect — an inherited
+`BWS_ACCESS_TOKEN` reached the consumer — which was fixed before the pass.
+
+Migrating the engine to SecretSpec reproduced the credential byte for byte
+(`outcome: unchanged`), and the Jev provider re-authenticated against
+`jev-1.13.0` afterwards with zero authentication prompts. The same standard also
+materialized and verified the already-proven Grafana metrics consumer without
+touching its existing root-owned credential.
 
 ### Not required for validation
 

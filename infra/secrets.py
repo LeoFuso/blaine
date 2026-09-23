@@ -1,24 +1,33 @@
 #!/usr/bin/env python3
-"""Explicit secret materialization: Bitwarden -> local consumer credential -> runtime.
+"""Explicit secret materialization: remote backend -> local credential -> runtime.
 
-Bitwarden Secrets Manager is where Blaine secrets are managed. It is not a runtime
-dependency, and neither is GNOME Keyring, which only holds the bootstrap machine
-credential. Remote access happens here, during an operator-invoked materialization
-or rotation, and nowhere else. A service or provider reads only the local
-consumer-specific credential it was declared to receive.
+SecretSpec owns provider resolution behind a single alias, so the remote backend
+can change without touching Blaine. Blaine owns what is genuinely its own: the
+consumer allowlist, the destination, restrictive atomic activation, verification
+and rotation reporting.
 
-    bitwarden -> materialize (operator, explicit) -> local 0600 credential
-              -> systemd service / bounded process -> runtime
+    remote backend -> secretspec (alias) -> materialize (operator, explicit)
+                   -> local 0600 credential -> service / bounded process -> runtime
+
+The remote backend is not a runtime dependency, and neither is GNOME Keyring,
+which only holds the bootstrap machine credential. Remote access happens here,
+during an operator-invoked materialization or rotation, and nowhere else.
 
 No secret value is printed, logged, placed in a process argument, or written to
 evidence. Diagnostics are deliberately coarse: a provider or validation message
 can quote the value it rejected.
+
+Each consumer owns a separate SecretSpec manifest. SecretSpec profiles extend the
+default profile rather than isolating from it, so a shared manifest would let one
+consumer resolve another consumer's secrets; separate manifests plus Blaine's own
+allowlist keep least-secret delivery true rather than assumed.
 
 This is a materialization client, not a secret manager. It runs no daemon, adds
 no server, implements no cryptography, and stores nothing beyond the declared
 consumer credentials.
 """
 import argparse
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -29,6 +38,7 @@ import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parent
+REPO = ROOT.parent  # manifest paths in the declaration are repository-relative
 # Declarations live outside any directory named `secrets/`, which .gitignore
 # protects, so no value can be committed by loosening that rule.
 DECLARATIONS = ROOT / 'secret-consumers.json'
@@ -36,6 +46,9 @@ DECLARATIONS = ROOT / 'secret-consumers.json'
 # KEY=value environment file that systemd and a launcher can both consume.
 FORBIDDEN = re.compile(r'[\s\x00-\x1f\x7f"\'`$\\]')
 PLACEHOLDERS = ('placeholder', 'replace', 'changeme', 'example', 'your-key')
+# SecretSpec 0.20 refuses agent-driven resolution without a recorded reason, and
+# writes it to its local audit log. Stating it here keeps that record truthful.
+REASON = 'Blaine operator-invoked consumer credential materialization'
 # Authority over the secret manager must never reach a consumer, even when an
 # operator shell happens to export it. A consumer gets its declared values only.
 BOOTSTRAP_VARIABLES = ('BWS_ACCESS_TOKEN', 'BWS_SERVER_URL', 'BWS_IDENTITY_URL',
@@ -49,8 +62,13 @@ class MaterializationError(RuntimeError):
 
 def load_declarations(path: Path = DECLARATIONS) -> dict:
     document = json.loads(path.read_text())
-    if document.get('version') != 1:
+    if document.get('version') != 2:
         raise MaterializationError('Unsupported declaration version')
+    resolver = document['resolver']
+    if resolver['engine'] != 'secretspec':
+        raise MaterializationError('Unsupported resolver engine')
+    if not re.fullmatch(r'[a-z][a-z0-9_]{2,39}', resolver['provider_alias']):
+        raise MaterializationError('Invalid provider alias')
     for name, consumer in document['consumers'].items():
         if not re.fullmatch(r'[a-z][a-z0-9-]{1,39}', name):
             raise MaterializationError('Invalid consumer name')
@@ -64,7 +82,37 @@ def load_declarations(path: Path = DECLARATIONS) -> dict:
         keys = [entry['key'] for entry in consumer['secrets']]
         if len(set(keys)) != len(keys) or not all(KEY.fullmatch(key) for key in keys):
             raise MaterializationError('Invalid or duplicated declared key')
+        manifest = consumer['manifest']
+        if '/' in manifest or not manifest.endswith('.toml'):
+            raise MaterializationError('Consumer manifest must be a plain file name')
     return document
+
+
+def resolver_executable(document: dict) -> Path:
+    """Use the pinned resolver only. An unexpected binary is never executed."""
+    resolver = document['resolver']
+    path = Path(resolver['executable']).expanduser()
+    if not path.is_file():
+        raise MaterializationError('Pinned resolver is not installed')
+    digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    if digest != resolver['sha256']:
+        raise MaterializationError('Resolver binary does not match its pinned digest')
+    return path
+
+
+def manifest_keys(path: Path) -> set[str]:
+    """Declared keys in a SecretSpec manifest, read without a TOML dependency.
+
+    Only key names are parsed; the file contains no values by construction.
+    """
+    keys, profile = set(), None
+    for line in path.read_text().splitlines():
+        stripped = line.strip()
+        if stripped.startswith('[') and stripped.endswith(']'):
+            profile = stripped[1:-1]
+        elif profile == 'profiles.default' and '=' in stripped and not stripped.startswith('#'):
+            keys.add(stripped.split('=', 1)[0].strip())
+    return keys
 
 
 def destination_root(document: dict) -> Path:
@@ -85,40 +133,34 @@ def bootstrap_token(document: dict) -> str:
     return token
 
 
-def fetch(document: dict, wanted: list[dict]) -> dict:
-    """Retrieve exactly the declared secrets. The whole project is never exported.
+def fetch(document: dict, consumer: dict, wanted: list[dict]) -> dict:
+    """Resolve exactly the declared secrets through the SecretSpec alias.
 
-    A declaration carrying a non-secret `source_id` is retrieved by identity;
-    otherwise the value is resolved by key. Only declared keys are returned, so a
-    project-wide read can never become a consumer's environment.
+    The backend behind the alias is deployment configuration, so moving from one
+    secret manager to another does not reach this code. The bootstrap credential
+    is passed through the resolver's child environment, never an argument.
     """
+    resolver = document['resolver']
+    executable = resolver_executable(document)
+    root = Path(resolver['manifest_root'])
+    manifest = (root if root.is_absolute() else REPO / root) / consumer['manifest']
+    declared = {entry['key'] for entry in wanted}
+    if manifest_keys(manifest) != declared:
+        raise MaterializationError('Consumer manifest and declaration disagree')
     environment = dict(os.environ, BWS_ACCESS_TOKEN=bootstrap_token(document))
-    project = document['source']['project_id']
-    values, pending = {}, []
-    for entry in wanted:
-        if entry.get('source_id'):
-            result = subprocess.run(['/usr/local/bin/bws', 'secret', 'get', entry['source_id']],
-                                    env=environment, capture_output=True, text=True, timeout=45)
-            if result.returncode:
-                raise MaterializationError('Targeted secret read failed; diagnostics suppressed')
-            values[entry['key']] = json.loads(result.stdout).get('value')
-        else:
-            pending.append(entry)
-    if pending:
-        result = subprocess.run(['/usr/local/bin/bws', 'secret', 'list', project],
-                                env=environment, capture_output=True, text=True, timeout=45)
-        if result.returncode:
-            raise MaterializationError('Project secret read failed; diagnostics suppressed')
-        by_key = {}
-        for row in json.loads(result.stdout):
-            if row.get('key') in {entry['source_key'] for entry in pending}:
-                if row['key'] in by_key:
-                    raise MaterializationError('Declared key is ambiguous in the source project')
-                by_key[row['key']] = row.get('value')
-        for entry in pending:
-            if entry['source_key'] not in by_key:
-                raise MaterializationError('Declared secret absent from the source project')
-            values[entry['key']] = by_key[entry['source_key']]
+    result = subprocess.run(
+        [str(executable), '--file', str(manifest), '--reason', REASON,
+         '--caller', 'blaine-materializer', '--caller-operation', 'materialize',
+         'export', '--provider', resolver['provider_alias']],
+        env=environment, capture_output=True, text=True, timeout=90)
+    if result.returncode:
+        raise MaterializationError('Secret resolution failed; diagnostics suppressed')
+    values = {}
+    for line in result.stdout.splitlines():
+        if line.startswith('export '):
+            key, _, value = line[len('export '):].partition('=')
+            if key in declared:
+                values[key] = value.strip("'")
     return values
 
 
@@ -204,12 +246,19 @@ def consumer_of(document: dict, name: str) -> tuple[dict, Path]:
 def materialize(document: dict, name: str) -> dict:
     consumer, path = consumer_of(document, name)
     wanted = consumer['secrets']
-    values = validate(fetch(document, wanted), wanted)
+    values = validate(fetch(document, consumer, wanted), wanted)
     outcome = write_atomically(path, render(values, wanted))
     report = inspect(path, wanted)
     if not report['safe']:
         raise MaterializationError('Materialized credential failed its own verification')
-    return {'consumer': name, 'outcome': outcome, 'path': str(path), **report}
+    # Rotation is not a reload. A process that already started holds the previous
+    # value in its environment until it is restarted, so say so explicitly rather
+    # than let a silent staleness window look like a completed rotation.
+    rotation = {'value_changed': outcome == 'written', 'service': consumer['service'],
+                'restart_required': bool(outcome == 'written' and consumer['service']),
+                'running_processes_keep_previous_value_until_restarted': outcome == 'written'}
+    return {'consumer': name, 'outcome': outcome, 'path': str(path),
+            'resolver': document['resolver']['engine'], 'rotation': rotation, **report}
 
 
 def load(document: dict, name: str) -> dict:
@@ -260,6 +309,8 @@ def main() -> int:
             report = {'project': document['source']['project'],
                       'remote_access': document['source']['access'],
                       'destination_root': str(destination_root(document)),
+                      'resolver': document['resolver']['engine'] + ' ' + document['resolver']['version'],
+                      'provider_alias': document['resolver']['provider_alias'],
                       'consumers': {name: inspect(destination_root(document) / consumer['destination'],
                                                   consumer['secrets'])
                                     for name, consumer in document['consumers'].items()}}

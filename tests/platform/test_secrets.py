@@ -23,36 +23,61 @@ spec.loader.exec_module(secrets)
 VALUE = 'fixture-value-0123456789abcdef'
 OTHER = 'undeclared-value-0123456789abcd'
 TOKEN = 'fixture-bootstrap-token'
+RESOLVER_BODY = b'#!/bin/sh\nexit 0\n'
+RESOLVER_DIGEST = __import__('hashlib').sha256(RESOLVER_BODY).hexdigest()
+
+
+def fixture_resolver(root):
+    """A pinned stand-in binary; the fake never executes it."""
+    path = Path(root) / 'secretspec'
+    path.write_bytes(RESOLVER_BODY)
+    path.chmod(0o755)
+    return path
+
+
+def fixture_manifest(root, keys=('ALPHA_API_KEY',)):
+    manifests = Path(root) / 'manifests'
+    manifests.mkdir(exist_ok=True)
+    body = '[project]\nname = "fixture"\n\n[profiles.default]\n'
+    body += ''.join(f'{key} = {{ description = "fixture", required = true }}\n' for key in keys)
+    (manifests / 'alpha.toml').write_text(body)
+    return manifests
 
 
 def declarations(root, **changes):
     document = {
-        'version': 1,
+        'version': 2,
+        'resolver': {'engine': 'secretspec', 'version': '0.20.0',
+                     'executable': str(fixture_resolver(root)), 'sha256': RESOLVER_DIGEST,
+                     'provider_alias': 'runtime_secrets',
+                     'manifest_root': str(fixture_manifest(root)),
+                     'access': 'materialization only'},
         'source': {'provider': 'bitwarden-secrets-manager', 'project': 'fixture-project',
                    'project_id': 'fixture-project-id', 'access': 'materialization only',
                    'bootstrap': {'store': 'gnome-keyring', 'service': 'fixture',
                                  'credential': 'fixture-token'}},
         'destination_root': str(root),
         'consumers': {'alpha': {'description': 'fixture consumer', 'destination': 'alpha.env',
-                                'mode': '0600', 'service': None,
-                                'secrets': [{'key': 'ALPHA_API_KEY', 'source_key': 'ALPHA_API_KEY',
-                                             'source_id': None, 'minimum_length': 20}]}}}
+                                'mode': '0600', 'service': None, 'manifest': 'alpha.toml',
+                                'restart_on_rotation': False,
+                                'secrets': [{'key': 'ALPHA_API_KEY', 'minimum_length': 20}]}}}
     document.update(changes)
     return document
 
 
-def fake_subprocess(project_rows, *, token=TOKEN, list_fails=False, by_id=None):
+def fake_subprocess(resolved, *, token=TOKEN, resolver_fails=False):
+    """Fakes the keyring bootstrap and the SecretSpec export; no process runs."""
     def run(command, **kwargs):
         if command[0] == 'secret-tool':
             return SimpleNamespace(returncode=0 if token else 1, stdout=token or '', stderr='')
-        if command[1:3] == ['secret', 'get']:
-            return SimpleNamespace(returncode=0, stdout=json.dumps((by_id or {})[command[3]]), stderr='')
-        if list_fails:
+        if resolver_fails:
             return SimpleNamespace(returncode=1, stdout='', stderr='suppressed')
-        # The bootstrap token is passed through the child environment, never argv.
+        # The bootstrap token reaches the resolver's environment, never its argv.
         assert kwargs['env']['BWS_ACCESS_TOKEN'] == token
         assert not any(token in str(part) for part in command)
-        return SimpleNamespace(returncode=0, stdout=json.dumps(project_rows), stderr='')
+        assert '--provider' in command and 'runtime_secrets' in command
+        body = ''.join(f"export {key}='{value}'\n" for key, value in resolved.items())
+        return SimpleNamespace(returncode=0, stdout=body, stderr='')
     return run
 
 
@@ -65,15 +90,15 @@ class DeclarationTests(unittest.TestCase):
 
     def test_the_committed_declarations_are_valid_and_carry_no_values(self):
         document = secrets.load_declarations()
+        self.assertEqual(document['resolver']['engine'], 'secretspec')
         self.assertIn('jev', document['consumers'])
         jev = document['consumers']['jev']
         self.assertEqual([entry['key'] for entry in jev['secrets']], ['TYPESAFE_API_KEY'])
         # Declarations carry names, locations and constraints, never material.
-        allowed = {'key', 'source_key', 'source_id', 'minimum_length'}
+        allowed = {'key', 'minimum_length'}
         for consumer in document['consumers'].values():
             for entry in consumer['secrets']:
                 self.assertLessEqual(set(entry), allowed)
-                self.assertIsNone(entry['source_id'])
         def strings(node):
             if isinstance(node, dict):
                 for name, child in node.items():
@@ -89,7 +114,7 @@ class DeclarationTests(unittest.TestCase):
 
     def test_unsafe_declarations_are_refused(self):
         with tempfile.TemporaryDirectory() as directory:
-            for change in ({'version': 2},
+            for change in ({'version': 1},
                            {'consumers': {'alpha': {'destination': '../escape.env', 'mode': '0600',
                                                     'secrets': [{'key': 'A_B_C'}], 'service': None}}},
                            {'consumers': {'alpha': {'destination': 'a.env', 'mode': '0644',
@@ -115,13 +140,13 @@ class MaterializationTests(unittest.TestCase):
         self.path = self.root / 'alpha.env'
         self.addCleanup(self.directory.cleanup)
 
-    def materialize(self, rows, **kwargs):
-        with patch.object(secrets.subprocess, 'run', fake_subprocess(rows, **kwargs)):
+    def materialize(self, resolved, **kwargs):
+        with patch.object(secrets.subprocess, 'run', fake_subprocess(resolved, **kwargs)):
             return secrets.materialize(self.document, 'alpha')
 
     def test_only_declared_secrets_are_written(self):
-        report = self.materialize([{'key': 'ALPHA_API_KEY', 'value': VALUE},
-                                   {'key': 'UNRELATED_KEY', 'value': OTHER}])
+        # An over-resolving backend must not widen the consumer's credential.
+        report = self.materialize({'ALPHA_API_KEY': VALUE, 'UNRELATED_KEY': OTHER})
         self.assertEqual(report['outcome'], 'written')
         self.assertTrue(report['safe'])
         body = self.path.read_text()
@@ -130,55 +155,68 @@ class MaterializationTests(unittest.TestCase):
         self.assertEqual(report['undeclared_keys'], [])
 
     def test_credential_permissions_are_owner_only(self):
-        self.materialize([{'key': 'ALPHA_API_KEY', 'value': VALUE}])
+        self.materialize({'ALPHA_API_KEY': VALUE})
         self.assertEqual(stat.S_IMODE(self.path.stat().st_mode), 0o600)
         self.assertEqual(stat.S_IMODE(self.path.parent.stat().st_mode), 0o700)
         self.assertEqual(self.path.stat().st_uid, os.getuid())
 
     def test_absent_empty_and_placeholder_secrets_are_refused(self):
-        for rows in ([{'key': 'SOMETHING_ELSE', 'value': VALUE}],
-                     [{'key': 'ALPHA_API_KEY', 'value': ''}],
-                     [{'key': 'ALPHA_API_KEY', 'value': 'short'}],
-                     [{'key': 'ALPHA_API_KEY', 'value': 'replace-me-with-a-real-key'}],
-                     [{'key': 'ALPHA_API_KEY', 'value': 'has space in value 0123456789'}],
-                     [{'key': 'ALPHA_API_KEY', 'value': VALUE}, {'key': 'ALPHA_API_KEY', 'value': OTHER}]):
-            with self.subTest(rows=rows), self.assertRaises(secrets.MaterializationError):
-                self.materialize(rows)
+        for resolved in ({'SOMETHING_ELSE': VALUE}, {'ALPHA_API_KEY': ''},
+                         {'ALPHA_API_KEY': 'short'},
+                         {'ALPHA_API_KEY': 'replace-me-with-a-real-key'},
+                         {'ALPHA_API_KEY': 'has space in value 0123456789'}, {}):
+            with self.subTest(resolved=resolved), self.assertRaises(secrets.MaterializationError):
+                self.materialize(resolved)
             self.assertFalse(self.path.exists())
 
     def test_a_failure_never_replaces_a_valid_existing_credential(self):
-        self.materialize([{'key': 'ALPHA_API_KEY', 'value': VALUE}])
+        self.materialize({'ALPHA_API_KEY': VALUE})
         original = self.path.read_text()
-        for rows, kwargs in (([{'key': 'ALPHA_API_KEY', 'value': ''}], {}),
-                             ([], {}),
-                             ([{'key': 'ALPHA_API_KEY', 'value': VALUE}], {'list_fails': True}),
-                             ([{'key': 'ALPHA_API_KEY', 'value': VALUE}], {'token': ''})):
-            with self.subTest(rows=rows), self.assertRaises(secrets.MaterializationError):
-                self.materialize(rows, **kwargs)
+        for resolved, kwargs in (({'ALPHA_API_KEY': ''}, {}), ({}, {}),
+                                 ({'ALPHA_API_KEY': VALUE}, {'resolver_fails': True}),
+                                 ({'ALPHA_API_KEY': VALUE}, {'token': ''})):
+            with self.subTest(resolved=resolved), self.assertRaises(secrets.MaterializationError):
+                self.materialize(resolved, **kwargs)
             self.assertEqual(self.path.read_text(), original)
             self.assertEqual(stat.S_IMODE(self.path.stat().st_mode), 0o600)
 
     def test_rotation_replaces_atomically_and_repeats_are_no_ops(self):
-        self.materialize([{'key': 'ALPHA_API_KEY', 'value': VALUE}])
-        repeated = self.materialize([{'key': 'ALPHA_API_KEY', 'value': VALUE}])
+        self.materialize({'ALPHA_API_KEY': VALUE})
+        repeated = self.materialize({'ALPHA_API_KEY': VALUE})
         self.assertEqual(repeated['outcome'], 'unchanged')
-        rotated = self.materialize([{'key': 'ALPHA_API_KEY', 'value': VALUE + 'rotated'}])
+        self.assertFalse(repeated['rotation']['value_changed'])
+        rotated = self.materialize({'ALPHA_API_KEY': VALUE + 'rotated'})
         self.assertEqual(rotated['outcome'], 'written')
+        # Rotation is not a reload: already-running processes keep the old value.
+        self.assertTrue(rotated['rotation']['value_changed'])
+        self.assertTrue(rotated['rotation']['running_processes_keep_previous_value_until_restarted'])
+        self.assertFalse(rotated['rotation']['restart_required'])
         self.assertIn('rotated', self.path.read_text())
         self.assertEqual(list(self.root.glob('.blaine-secret-*')), [])
 
-    def test_targeted_retrieval_by_identity_avoids_project_enumeration(self):
-        self.document['consumers']['alpha']['secrets'][0]['source_id'] = 'fixture-id'
-        report = self.materialize([], by_id={'fixture-id': {'key': 'ALPHA_API_KEY', 'value': VALUE}},
-                                  list_fails=True)
-        self.assertEqual(report['outcome'], 'written')
+    def test_an_unpinned_resolver_is_never_executed(self):
+        Path(self.document['resolver']['executable']).write_bytes(b'#!/bin/sh\nexit 1\n')
+        with self.assertRaises(secrets.MaterializationError):
+            self.materialize({'ALPHA_API_KEY': VALUE})
+        self.document['resolver']['executable'] = str(self.root / 'absent-resolver')
+        with self.assertRaises(secrets.MaterializationError):
+            self.materialize({'ALPHA_API_KEY': VALUE})
+
+    def test_manifest_and_declaration_must_agree(self):
+        manifests = Path(self.document['resolver']['manifest_root'])
+        (manifests / 'alpha.toml').write_text(
+            '[project]\nname = "fixture"\n\n[profiles.default]\n'
+            'ALPHA_API_KEY = { required = true }\nEXTRA_KEY = { required = true }\n')
+        with self.assertRaises(secrets.MaterializationError):
+            self.materialize({'ALPHA_API_KEY': VALUE})
+        self.assertFalse(self.path.exists())
 
     def test_a_symlinked_destination_is_refused(self):
         self.path.parent.mkdir(parents=True, exist_ok=True)
         (self.root / 'elsewhere.env').write_text('x')
         self.path.symlink_to(self.root / 'elsewhere.env')
         with self.assertRaises(secrets.MaterializationError):
-            self.materialize([{'key': 'ALPHA_API_KEY', 'value': VALUE}])
+            self.materialize({'ALPHA_API_KEY': VALUE})
 
 
 class RuntimeConsumptionTests(unittest.TestCase):
@@ -188,8 +226,7 @@ class RuntimeConsumptionTests(unittest.TestCase):
         self.document = declarations(self.root)
         self.path = self.root / 'alpha.env'
         self.addCleanup(self.directory.cleanup)
-        with patch.object(secrets.subprocess, 'run',
-                          fake_subprocess([{'key': 'ALPHA_API_KEY', 'value': VALUE}])):
+        with patch.object(secrets.subprocess, 'run', fake_subprocess({'ALPHA_API_KEY': VALUE})):
             secrets.materialize(self.document, 'alpha')
 
     def test_runtime_load_never_touches_the_secret_manager(self):
@@ -226,7 +263,7 @@ class RuntimeConsumptionTests(unittest.TestCase):
             self.assertNotIn(VALUE, str(error))
             self.assertNotIn(OTHER, str(error))
         with patch.object(secrets.subprocess, 'run',
-                          fake_subprocess([{'key': 'ALPHA_API_KEY', 'value': 'bad value here!'}])):
+                          fake_subprocess({'ALPHA_API_KEY': 'bad value here!'})):
             try:
                 secrets.materialize(self.document, 'alpha')
             except secrets.MaterializationError as error:
@@ -235,8 +272,8 @@ class RuntimeConsumptionTests(unittest.TestCase):
     def test_a_launched_consumer_sees_only_its_declared_secrets(self):
         self.document['consumers']['beta'] = {
             'description': 'second fixture consumer', 'destination': 'beta.env', 'mode': '0600',
-            'service': None, 'secrets': [{'key': 'BETA_API_KEY', 'source_key': 'BETA_API_KEY',
-                                          'source_id': None, 'minimum_length': 20}]}
+            'service': None, 'manifest': 'beta.toml', 'restart_on_rotation': False,
+            'secrets': [{'key': 'BETA_API_KEY', 'minimum_length': 20}]}
         environment = {'BETA_API_KEY': OTHER, 'BWS_ACCESS_TOKEN': TOKEN,
                        'PATH': os.environ.get('PATH', '')}
         captured = {}
