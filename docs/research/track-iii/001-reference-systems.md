@@ -73,6 +73,26 @@ future promotion requires a deliberate compatible extension preserving status an
 security. No reflection generation, consolidation or production verification was
 implemented. Historical III.1–III.5 results retain their original boundaries.
 
+## III.7 utility and schema refinement — 2026-09-23
+
+[III.7](../../milestones/048-track-iii-7-learned-memory-utility.md) composes trusted
+outcome admission, explicit promotion and inherited continuous retrieval for real
+local Qwen cognition. An isolated gate-v2 experiment extends III.5's admitted
+provenance/status pairs to VERIFIED_OUTCOME with VERIFIED_SUCCESS or VERIFIED_FAILURE;
+it preserves the original authority, security, scanner and replay logic. Unverified
+observations remain unverified. This is an explicit experimental compatibility change,
+not a production schema decision or rewritten III.5/III.6 result.
+
+Verification determines whether an experience may teach Blaine; reflection determines
+what it might teach. With hand-authored candidate support and deployment-specific
+synthetic numeric rules, both paired repetitions improve matching completion from
+0/4 to 4/4 with no irrelevant/trap losses. Falsifying a failure's status and rendering
+causes an actual incorrect commitment. Semantic qualification must survive presentation,
+not merely storage. Noise and format errors still add steps despite unchanged completion.
+This bounded information-ablation result does not establish generated-lesson quality,
+causal generalization or production readiness. Historical proposals below retain their
+III.1 scope; current sequencing remains in the roadmap.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

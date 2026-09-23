@@ -1,0 +1,38 @@
+{
+  "baseline_commit": "5f97bd0",
+  "budget_actions": 3,
+  "conditions": [
+    "NO_MEMORY",
+    "MEMORY"
+  ],
+  "enable_thinking": false,
+  "endpoint": "http://127.0.0.1:8000/v1",
+  "groups": {
+    "IRRELEVANT": 4,
+    "MATCHING": 4,
+    "NEAR_MATCH_TRAP": 4
+  },
+  "inference_claim_limit": "Finite synthetic information ablation. Matching tasks have deployment-specific rules available only through historical memory; this does not test general software-engineering transfer.",
+  "max_tokens": 768,
+  "maximum_model_invocations": 150,
+  "model": "nvidia/Qwen3.8-27B-NVFP4",
+  "mutation_repeats": 2,
+  "mutation_tasks": [
+    "trap-1"
+  ],
+  "order": "Repeat 0 NO_MEMORY then MEMORY per task; repeat 1 MEMORY then NO_MEMORY. Mutation follows primary runs.",
+  "provider": "local.vllm",
+  "repetitions": 2,
+  "retrieval_bytes": 2048,
+  "stopping_rule": "Run each fixed pair in both repetitions once; no prompt/fixture/threshold tuning after model outcomes. Infrastructure failure => BLOCKED; any utility/control threshold miss => FAIL.",
+  "task_contract": "Three actions maximum: artifact.read(ref=facts), artifact.write(name=answer,content=integer), COMPLETE. First write commits immutable answer. A deterministic verifier checks it; later writes cannot repair an incorrect committed result. All conditions have identical capabilities and information except historical memory.",
+  "temperature": 0,
+  "threshold": {
+    "behavioral_mutation_regression_min": 1,
+    "matching_delta_min_each_repeat": 2,
+    "paired_irrelevant_regressions_max": 0,
+    "paired_trap_regressions_max": 0,
+    "structural_checks_required": true
+  },
+  "version": "iii7-predeclared-v1"
+}

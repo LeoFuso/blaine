@@ -6,7 +6,7 @@ limitations; their historical “next” instructions do not override that roadm
 
 | Program | Latest accepted checkpoint | Evidence |
 | --- | --- | --- |
-| Track III — Hierarchical Context, Memory & Verified Learning | [III.6 verified outcome admission PASS](047-track-iii-6-verified-outcome-admission.md); III.7 unstarted | [1122 checks and false-success controls](../../experiments/track-iii-006/evidence/summary.json); offline executable specification |
+| Track III — Hierarchical Context, Memory & Verified Learning | [III.7 learned memory utility PASS](048-track-iii-7-learned-memory-utility.md); III.8 unstarted | [Two local-model paired repetitions and semantic-status mutation](../../experiments/track-iii-007/evidence/summary.json); bounded synthetic utility |
 | Cognitive Kernel 1–12 | COMPLETE: [progress and increment index](cognitive-kernel-progress.md), [Increment 12](037-cognitive-kernel-increment-12-parallel-children.md) | [Parallel children](../../experiments/kernel-increment-12/evidence/summary.json) |
 | Frontier boundary | [Increment 11 PASS / CLOSED](036-cognitive-kernel-increment-11-live-pass.md) | [Authorized live probe 002](../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json) |
 | D1.C inference | [Accepted local services, 128k](038-d1-local-inference.md) | [21 checks](../../experiments/d1-service-adoption/evidence/inference-summary.json) |
