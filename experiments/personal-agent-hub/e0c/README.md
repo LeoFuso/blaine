@@ -8,7 +8,9 @@ is provided. No other tailnet device was selected or contacted.
 E0.A and development-platform E0.B remain accepted. Full E0 remains unaccepted.
 No E0.D registration, E0.E IDE configuration or E0.F integrated acceptance was
 implemented. No workspace read/write/exec, coding behavior, public gateway,
-Keycloak/OIDC or IntelliJ plugin was added. No push or merge occurred.
+Keycloak/OIDC or IntelliJ plugin was added. The initial checkpoint was local-only.
+Subsequent explicitly authorized [delivery support](delivery.md) published the
+E0.C branch and first alpha Release; no merge occurred.
 
 The [TaskSpec](request.json) is **unsubmitted**: no suitable durable development
 Task binding was exposed. Local implementation was explicitly authorized. No

@@ -716,7 +716,9 @@ operator procedures; this document owns development direction and dependencies.
   ([evidence](../../experiments/personal-agent-hub/e0c/README.md)): profile, strict
   transport/handshake and framing candidate tested; no designated second workstation.
   Complete trusted peer binding, host dispatch/deployment, readiness and remote ACP
-  acceptance before **E0.D Registration**, the next canonical slice. macOS runtime
+  acceptance before **E0.D Registration**, the next canonical slice.
+  [Client delivery PASS](../../experiments/personal-agent-hub/e0c/delivery.md) supplies
+  Actions Artifacts and public `v0.1.0-alpha.1`; it is not E0 acceptance. macOS runtime
   and WSL guest route proof remain open. E0.D+ was not implemented. Use the
   [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
   E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
