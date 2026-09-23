@@ -1,0 +1,80 @@
+{
+  "case_count": 221,
+  "correct_after_control": "PASS",
+  "deferred": {
+    "III.3": "Not started",
+    "cache": "No cache implemented; enforcement deferred",
+    "promotion": "No promotion operation; unsupported shape denied",
+    "traversal": "No traversal API; unsupported shapes denied"
+  },
+  "external_dependencies": [],
+  "failed": 0,
+  "failed_cases": [],
+  "increment": "III.2",
+  "invariants": {
+    "binding_authority": {
+      "failed": 0,
+      "passed": 18
+    },
+    "closed_request_surface": {
+      "failed": 0,
+      "passed": 5
+    },
+    "current_context_write": {
+      "failed": 0,
+      "passed": 4
+    },
+    "direct_id_isolation": {
+      "failed": 0,
+      "passed": 122
+    },
+    "entry_integrity": {
+      "failed": 0,
+      "passed": 2
+    },
+    "exact_lineage_visibility": {
+      "failed": 0,
+      "passed": 11
+    },
+    "generic_specialization": {
+      "failed": 0,
+      "passed": 12
+    },
+    "input_order_independence": {
+      "failed": 0,
+      "passed": 11
+    },
+    "label_independence": {
+      "failed": 0,
+      "passed": 11
+    },
+    "malformed_tree_fail_closed": {
+      "failed": 0,
+      "passed": 11
+    },
+    "trusted_read_boundary": {
+      "failed": 0,
+      "passed": 3
+    },
+    "write_inheritance_no_upward_flow": {
+      "failed": 0,
+      "passed": 11
+    }
+  },
+  "mutation_detected": true,
+  "passed": 221,
+  "repeat_results_equal": true,
+  "runtime_imports": false,
+  "scope": "isolated deterministic context algebra; not production security",
+  "source_sha256": {
+    "evaluator.py": "e4789efa17d81af51ae6612e63cb0cda7f6da44bcf057cecd884fe0701eba030",
+    "fixtures.json": "23f42ced0c856be3323dd306d5e236eb1afb1be01463d5b80fe4a9e7c5a95534",
+    "probe.py": "9f81bd387ff2508587911b6bc5aa5e3372977336c2793b3d3036cbb39b42999b",
+    "verify.py": "6e9f25ceb695d19087e808fd01e33c47da442f6b671cd2ea5285862471f07834"
+  },
+  "status": "PASS",
+  "task_submission": {
+    "submitted": false,
+    "task_id": null
+  }
+}

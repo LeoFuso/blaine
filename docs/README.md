@@ -20,7 +20,7 @@ or a PASS label alone does not make a document authoritative outside its scope.
 | How is the host deployed and operated? | Platform map below | Current topology, paths, deployment and runbooks; distinguish dated observations from live state. |
 | What does the existing Personal Agent binding support? | [D2 binding guide](daily-driver-d2.md) | Implemented control subset, usage and acceptance limits; E-series sequencing belongs to the roadmap. |
 | What did an earlier increment prove? | [Milestone index](milestones/README.md) | Historical checkpoints and evidence summaries, not current architecture or instructions to start old next steps. |
-| What is Track III investigating? | [Hierarchical Context, Memory & Verified Learning](research/track-iii/001-reference-systems.md) | III.1 pinned reference-system research, accepted design constraints and proposed III.2 experiment; no runtime implementation claim. |
+| What is Track III investigating? | [III.1 reference research](research/track-iii/001-reference-systems.md), [III.2 deterministic semantics](../experiments/track-iii-002/README.md) | Accepted constraints and executable tree-visibility evidence; III.3 proposed, no production runtime implementation claim. |
 | Where are raw results/reproduction artifacts? | [Experiment directories](../experiments/) and links from milestones | Acceptance evidence, transcripts, fixtures and reproducible probes. Some platform validation is retained under [infra](../infra/); do not relocate it merely for consistency. |
 | How does the conversational agent operate? | [BLAINE.md](../BLAINE.md), [skill convention](../skills/SKILL.md) | Triage, Task skills and conditional policies; not runtime state. |
 
