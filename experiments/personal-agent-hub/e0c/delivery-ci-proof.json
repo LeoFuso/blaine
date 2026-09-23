@@ -1,0 +1,174 @@
+{
+  "ci": {
+    "conclusion": "success",
+    "databaseId": 35800514062,
+    "headSha": "ca4a6b2e31d58bc649257700a87efd8a1c326b96",
+    "jobs": [
+      {
+        "completedAt": "2026-09-23T00:08:09Z",
+        "conclusion": "success",
+        "databaseId": 106989549062,
+        "name": "client / build",
+        "startedAt": "2026-09-23T00:06:02Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Select exact build metadata",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate and build the accepted client matrix",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Retain validation evidence",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 23,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/LeoFuso/blaine/actions/runs/35800514062/job/106989549062"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/LeoFuso/blaine/actions/runs/35800514062"
+  },
+  "actions_artifacts": {
+    "artifacts": [
+      {
+        "digest": "sha256:23d25f5b3780d4d2c5df9e98751215e3a13883beeb13e2e840bae59b48ea8a8b",
+        "expired": false,
+        "id": 10725995923,
+        "name": "blaine-darwin-amd64",
+        "size_in_bytes": 7410952
+      },
+      {
+        "digest": "sha256:b830b8e77fd14b09ad2d05945020ae6f4ce42a48f7215b219d558e6a9136c0f0",
+        "expired": false,
+        "id": 10725990819,
+        "name": "blaine-checksums",
+        "size_in_bytes": 342
+      },
+      {
+        "digest": "sha256:89628713fcf2df8d7a5877f5523399c18d9a54a2d846a7ffa43c55c6e6a167ee",
+        "expired": false,
+        "id": 10725955921,
+        "name": "blaine-linux-amd64",
+        "size_in_bytes": 7266578
+      },
+      {
+        "digest": "sha256:ebd9e3a7650e2b85c03f0372cd2b022905ea47dfbe6950f98e57e99385bbe590",
+        "expired": false,
+        "id": 10725881251,
+        "name": "client-validation",
+        "size_in_bytes": 5897
+      },
+      {
+        "digest": "sha256:ee59048dfa3457979386c38bef1688e54172bcbb5c0f763c23c9f7f67e505c87",
+        "expired": false,
+        "id": 10725871301,
+        "name": "blaine-linux-arm64",
+        "size_in_bytes": 6684946
+      },
+      {
+        "digest": "sha256:159f52556d80af3bdcde47469333ea22dd58acf996428e74fc4a37160f38ccca",
+        "expired": false,
+        "id": 10725846399,
+        "name": "blaine-darwin-arm64",
+        "size_in_bytes": 6845178
+      }
+    ],
+    "total_count": 6
+  },
+  "downloaded_checksums_verified": {
+    "blaine-darwin-amd64": "bacf53b0936ce7171dc1222b3e561c8775715a55612179bd25f1f71f41225ed0",
+    "blaine-darwin-arm64": "9f4eebfe64b64a8c53bd492541f516bf364dbb1aa754f2a978a072b6ac8ca688",
+    "blaine-linux-amd64": "d4197db72364613793e881746dc376ed17a8a86c396e5d7c84c2eca492083206",
+    "blaine-linux-arm64": "fd2a6dc62796330ec11058ed9d4527708d2ab6f51baa77080b6ab39e5bc9df88"
+  },
+  "downloaded_linux_metadata": {
+    "schema_version": 1,
+    "client_version": "0.1.0-dev+ca4a6b2e31d5",
+    "protocol_version": 1,
+    "build_commit": "ca4a6b2e31d58bc649257700a87efd8a1c326b96",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "clean_home_doctor": {
+    "exit_code": 2,
+    "overall": "NOT_READY",
+    "state_written": false
+  },
+  "native_attestation": "DEFERRED: archive digests and checksums are not attestations"
+}

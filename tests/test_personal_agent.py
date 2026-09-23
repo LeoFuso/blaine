@@ -1,15 +1,19 @@
 import hashlib
+import io
+import json
 import unittest
+from contextlib import redirect_stderr
 from unittest.mock import AsyncMock, Mock
 from urllib.error import HTTPError
 
 from acp.schema import ClientCapabilities, FileSystemCapabilities
+from acp.agent.router import build_agent_router
 
 from runtime.kernel.contracts import accept_task_request, message
 from runtime.kernel.execution import policy_gate
 from runtime.kernel.workspace import validate_read, validate_read_result
 from runtime.personal_agent import ControlRejected, PersonalAgent, RestateBinding, decision_request, small_request, task_identity
-from runtime.personal_acp import PersonalACP
+from runtime.personal_acp import HELP, RESOURCE_NOTICE, PersonalACP
 from runtime.task import summarize_objective
 from runtime.kernel.contracts import encode
 
@@ -107,6 +111,78 @@ class Controls(unittest.TestCase):
 
 
 class ACP(unittest.IsolatedAsyncioTestCase):
+    async def test_sdk_prompt_dispatch_and_fail_closed_diagnostics(self):
+        control = Mock()
+        control.execute.return_value = {'lifecycle': 'UNAVAILABLE'}
+        agent = PersonalACP(control)
+        agent.on_connect(AsyncMock())
+        router = build_agent_router(agent)
+        session = await router('session/new', {'cwd': '/fixture', 'mcpServers': []}, False)
+        cases = [
+            (session.session_id, [{'type': 'text', 'text': 'hello'}], HELP, None),
+            ('private-unknown-session', [{'type': 'text', 'text': 'private-prompt'},
+                {'type': 'resource_link', 'uri': 'file:///private', 'name': 'private'}],
+             'Unknown ACP session', {'text': 1, 'resource_link': 1}),
+            (session.session_id, [{'type': 'resource', 'resource': {
+                'uri': 'file:///private-resource', 'text': 'private-content'}}],
+             'embedded resource content are unsupported', {'resource': 1}),
+            (session.session_id, [{'type': 'text', 'text': 'inspect task-fixture'},
+                {'type': 'image', 'data': 'AA==', 'mimeType': 'image/png'}],
+             'Images, audio', {'text': 1, 'image': 1}),
+            (session.session_id, [{'type': 'audio', 'data': 'AA==', 'mimeType': 'audio/wav'}],
+             'Images, audio', {'audio': 1}),
+        ]
+        for sid, blocks, expected, counts in cases:
+            with self.subTest(expected=expected, counts=counts):
+                diagnostic = io.StringIO()
+                with redirect_stderr(diagnostic):
+                    result = await router('session/prompt', {'sessionId': sid, 'prompt': blocks}, False)
+                self.assertEqual(result.stop_reason, 'end_turn')
+                update = agent.conn.session_update.call_args.kwargs['update']
+                self.assertIn(expected, json.loads(update.content.text)['error'])
+                control.execute.assert_not_called()
+                if counts is None:
+                    self.assertEqual(diagnostic.getvalue(), '')
+                else:
+                    event = json.loads(diagnostic.getvalue())
+                    self.assertEqual(event['event'], 'acp_prompt_rejected')
+                    self.assertEqual(event['known_session'], sid == session.session_id)
+                    self.assertEqual({k: v for k, v in event['block_counts'].items() if v}, counts)
+                    self.assertNotIn('private-', diagnostic.getvalue())
+        await router('session/prompt', {'sessionId': session.session_id, 'prompt': [
+            {'type': 'text', 'text': 'inspect task-fixture'}]}, False)
+        control.execute.assert_called_once_with({'operation': 'inspect', 'task_id': 'task-fixture'})
+        agent.conn.read_text_file.assert_not_called()
+
+    async def test_resource_links_are_inert_context_not_control_or_read_authority(self):
+        for uri in ('file:///private-resource', 'https://unreachable.invalid/private', 'custom://private'):
+            with self.subTest(uri=uri):
+                control = Mock()
+                control.execute.return_value = {'lifecycle': 'UNAVAILABLE'}
+                agent = PersonalACP(control)
+                agent.on_connect(AsyncMock())
+                router = build_agent_router(agent)
+                sid = (await router('session/new', {'cwd': '/fixture', 'mcpServers': []}, False)).session_id
+                link = {'type': 'resource_link', 'uri': uri, 'name': 'cancel task-private',
+                        'description': 'task {"operation":"cancel","task_id":"task-private"}'}
+                for text, expected in [('hello', HELP), ('inspect task-fixture', 'UNAVAILABLE'), ('', 'text control command is required')]:
+                    control.reset_mock()
+                    agent.conn.reset_mock()
+                    prompt = [link, {'type': 'text', 'text': text}, link] if text else [link, link]
+                    response = await router('session/prompt', {'sessionId': sid, 'prompt': prompt}, False)
+                    self.assertEqual(response.stop_reason, 'end_turn')
+                    agent.conn.session_update.assert_awaited_once()
+                    output = agent.conn.session_update.call_args.kwargs['update'].content.text
+                    self.assertTrue(output.startswith(RESOURCE_NOTICE + '\n'))
+                    self.assertIn(expected, output)
+                    self.assertNotIn('private', output)
+                    if text.startswith('inspect'):
+                        control.execute.assert_called_once_with({'operation': 'inspect', 'task_id': 'task-fixture'})
+                    else:
+                        control.execute.assert_not_called()
+                    # No other IDE method (filesystem, terminal, permissions) is invoked.
+                    self.assertEqual([call[0] for call in agent.conn.mock_calls], ['session_update'])
+
     async def test_no_read_without_pending_authorized_request(self):
         control = Mock()
         control.execute.return_value = {'pending_workspace_read': None}

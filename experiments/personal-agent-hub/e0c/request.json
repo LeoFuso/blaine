@@ -1,0 +1,15 @@
+{
+  "objective": "Implement only canonical E0.C host profile, trusted transport boundary, Blaine handshake/readiness and remote ACP framing; retain pending second-workstation proof without claiming E0.D+ acceptance.",
+  "mode": "interactive",
+  "context": [{"need":"Canonical E0.C, ADR 0022, roadmap and accepted E0.A/B evidence", "source":"docs/personal-agent-hub.md", "sharing":"local-only"}],
+  "capabilities": ["read repository", "edit task workspace", "read public vendor source", "run bounded tests and builds", "read development-host network state", "create local commit"],
+  "autonomy": {
+    "allowed": ["local E0.C implementation", "target blaine as leofuso", "read-only live probes", "one coherent local commit on PASS/PARTIAL"],
+    "forbidden": ["repurpose another tailnet device", "claim second-peer proof without a designated workstation", "unsafe transport fallback", "E0.D+ implementation", "push", "merge"]
+  },
+  "completion": [
+    {"criterion":"Private host profile and fail-closed transport/handshake/framing boundaries are implemented", "evidence":"Deterministic positive and negative tests; distinguish unavailable production peer binding"},
+    {"criterion":"Available live evidence and cross-platform limitations are recorded honestly", "evidence":"Redacted host observations and explicit pending second-workstation identity, installed entrypoint and remote stdio gates"},
+    {"criterion":"No later slice or architecture redesign is introduced", "evidence":"Review local diff and retained evidence; one local commit on PARTIAL/PASS"}
+  ]
+}

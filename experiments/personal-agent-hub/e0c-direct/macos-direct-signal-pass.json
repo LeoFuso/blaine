@@ -1,0 +1,113 @@
+{
+  "status": "PASS_TRANSPORT_BATCH",
+  "observed_date": "2026-09-23",
+  "source": "Operator-supplied accept.sh output and concatenated reports from reports-e0c-direct-D8Bhkw; no direct control of the workstation",
+  "peer": "Leonardos-MacBook-Pro.local",
+  "candidate": {
+    "client_version": "0.1.0-e0c-direct",
+    "protocol_version": 1,
+    "build_commit": "77a974c31b622983bc24c7316e690d4caeafca3c",
+    "go_version": "go1.27.1",
+    "os": "darwin",
+    "arch": "arm64"
+  },
+  "runs": [
+    {
+      "identity": {
+        "node_id": "nEEbpyYWN921CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-9f5788915e97f2dfb2fbcd1b4dbafd23"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "e0": "NOT_READY",
+        "peer": {
+          "node_id": "nEEbpyYWN921CNTRL",
+          "principal_id": "4301359180507170"
+        },
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "27421cb1212b8b4bfd136acf4387e3ce",
+        "status": "CONNECTED"
+      }
+    },
+    {
+      "identity": {
+        "node_id": "nEEbpyYWN921CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-9f5788915e97f2dfb2fbcd1b4dbafd23"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "e0": "NOT_READY",
+        "peer": {
+          "node_id": "nEEbpyYWN921CNTRL",
+          "principal_id": "4301359180507170"
+        },
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "2310a7c36ae82693a28a655599a30b06",
+        "status": "CONNECTED"
+      }
+    }
+  ],
+  "local_acp_signals": {
+    "SIGINT": {
+      "exit": 130,
+      "initialize": true,
+      "remote_session_id": "a9b466cbaf494891888a0f83dca1395b",
+      "stderr": "blaine: context canceled"
+    },
+    "SIGTERM": {
+      "exit": 130,
+      "initialize": true,
+      "remote_session_id": "38463acdeec04cbe9972207b5ad15120",
+      "stderr": "blaine: context canceled"
+    },
+    "result": "PASS: real remote ACP session established before each signal; local process exited within the acceptance timeout"
+  },
+  "interpretation": "Mac direct transport, signed handshake, binary probe, real remote ACP, process/binary-upgrade identity reuse and OS SIGINT/SIGTERM batch passed. Doctor NOT_READY and registration NOT_IMPLEMENTED are expected. This does not prove JetBrains launch/auth, reboot/revocation, effective narrow tailnet ACL or WSL runtime. E0.C remains PARTIAL.",
+  "package_checksums": "Operator reported binary, accept.sh and OPERATOR.md OK",
+  "package_sha256": "05e230d89ceecf024a648f4658e9a53aa71186917050346d276a786c6a39c219",
+  "identity_upgrade": {
+    "from_commit": "dadb3c540b18bd943064f9b7a2a160cb3c3b3c2a",
+    "to_commit": "77a974c31b622983bc24c7316e690d4caeafca3c",
+    "same_tsnet_node": true,
+    "same_blaine_workstation_id": true,
+    "both_process_restarts_reused_node": true,
+    "reboot": "NOT_TESTED",
+    "administrative_revocation": "NOT_TESTED"
+  },
+  "doctor": {
+    "observed_at": "2026-09-23T17:12:01Z",
+    "overall": "NOT_READY",
+    "transport": "PASS: embedded tsnet; no system Tailscale prerequisite",
+    "connection": "UNKNOWN: read-only stored identity observation, no fresh reachability probe",
+    "registration": "NOT_IMPLEMENTED",
+    "intellij_acp": "NOT_IMPLEMENTED"
+  }
+}

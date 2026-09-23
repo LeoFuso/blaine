@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "platform": "linux/amd64",
+  "scope": "actual public installer in isolated HOME, install/check/reinstall, unrelated-agent preservation and backup; no IDE or private-network session",
+  "metadata": {
+    "schema_version": 1,
+    "client_version": "0.1.0-alpha.3",
+    "protocol_version": 1,
+    "build_commit": "1d718a18582d3a82635131d16f8c8d171d193759",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "checksums": {
+    "blaine-darwin-arm64": "33761791538e87af7a0af118e5c1c6867f2ec5043fe5f6015f654aa5e31e5ca9",
+    "blaine-darwin-amd64": "f25a7a972b9ce01e6f987dcc944a621406c8d978fa59a9c265a382209f08cd7c",
+    "blaine-linux-amd64": "782f451c5421ff7186ccb9550cab3f1aca906323d758a917319d9caa42ca1827",
+    "blaine-linux-arm64": "36509335de58a044634e26fcbe1cf8df181a538f4fafef748287e3760fb4e7b5",
+    "checksums.txt": "85238720f05074fd28234046faac07a2863df8e4cd614bcdffd641b6d2fe5852"
+  },
+  "local_exact_builds_match_published_assets": true,
+  "installer_source_matches_tag": true,
+  "installer_command": "curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.3/client/install-jetbrains-agent.sh | sh",
+  "existing_agent_preserved": true,
+  "backup_exact_and_bounded": true,
+  "registration_matches": true,
+  "published_binary_typed_acp_initialize": "PASS reconstructed local fixture; no IDE or Hub session claim",
+  "repeat_install_unchanged_config": true,
+  "macos": "PENDING_OPERATOR",
+  "wsl": "PENDING_OPERATOR"
+}

@@ -1,0 +1,53 @@
+name: Client prerelease
+on:
+  push:
+    tags: ['v0.*-alpha.*']
+permissions:
+  contents: read
+concurrency:
+  group: client-release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  client:
+    uses: ./.github/workflows/client-build.yml
+    permissions:
+      contents: read
+  publish:
+    needs: client
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: blaine-*
+          merge-multiple: true
+          path: payload
+      - name: Verify and publish the alpha assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$GITHUB_REF_NAME" =~ ^v0\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)-alpha\.[1-9][0-9]*$ ]]
+          cd payload
+          sha256sum --check checksums.txt
+          python3 -c 'from pathlib import Path; assert {p.name for p in Path(".").iterdir()} == {"blaine-linux-amd64", "blaine-linux-arm64", "blaine-darwin-amd64", "blaine-darwin-arm64", "checksums.txt"}'
+          cat > "$RUNNER_TEMP/client-release-notes.md" <<'NOTES'
+          Alpha workstation-client candidate. E0 and the Blaine client are not stable or accepted.
+
+          Direct-transport prerelease: embedded tsnet plus the private Blaine application protocol. Includes persisted client identity, signed handshake, binary streams, cancellation/reconnect, validated WSL MTU handling and Go-owned JetBrains custom ACP registration. Alpha.2 was the first direct-transport release; alpha.3 corrects the auxiliary Kotlin ACP envelope discriminator rejected during real JetBrains launch. Alpha.1 is historical SSH product-transport evidence; no automatic SSH fallback exists. No E0.D+ capabilities are enabled.
+
+          E0.C remains PARTIAL. Designated macOS and WSL transport evidence exists; real IntelliJ-launched ACP/auth, remaining identity lifecycle, narrow tailnet policy and durable host deployment gates remain separate.
+
+          Assets: Linux amd64/arm64 and Darwin amd64/arm64. Windows+WSL2 uses the Linux client; no native Windows binary. Build verification is not macOS/WSL live acceptance. No macOS signing/notarization is claimed.
+
+          Use the public shell installer at client/install-jetbrains-agent.sh at this tag; it verifies SHA-256 and delegates JetBrains JSON configuration to the Go client. No Python, SSH or system Tailscale prerequisite. See client/INSTALL.md at this tag. Checksums provide integrity; GitHub artifact attestations and changie automation are deferred hardening/follow-up work.
+          NOTES
+          gh release create "$GITHUB_REF_NAME" \
+            --verify-tag --prerelease --latest=false \
+            --title "Blaine client $GITHUB_REF_NAME (alpha)" \
+            --notes-file "$RUNNER_TEMP/client-release-notes.md" \
+            blaine-linux-amd64 blaine-linux-arm64 blaine-darwin-amd64 blaine-darwin-arm64 checksums.txt

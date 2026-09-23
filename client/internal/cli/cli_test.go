@@ -15,6 +15,9 @@ func invoke(t *testing.T, args ...string) (int, string, string) {
 	t.Helper()
 	root := t.TempDir()
 	t.Setenv("PATH", root)
+	t.Setenv("HOME", root)
+	t.Setenv("XDG_CONFIG_HOME", filepath.Join(root, "config"))
+	t.Setenv("XDG_STATE_HOME", filepath.Join(root, "state"))
 	open := func(name string) *os.File {
 		f, err := os.Create(filepath.Join(root, name))
 		if err != nil {
@@ -45,22 +48,17 @@ func TestCommandsAndVersion(t *testing.T) {
 	if code != 0 || json.Unmarshal([]byte(out), &value) != nil || value["client_version"] != "0.1.0-dev" || err != "" {
 		t.Fatal(code, out, err)
 	}
-	for _, cmd := range []string{"disconnect"} {
-		code, out, err = invoke(t, cmd)
-		if code != 2 || !strings.Contains(out, `"status":"NOT_IMPLEMENTED"`) || err != "" {
-			t.Fatal(code, out, err)
-		}
-	}
+
 }
 func TestAllMalformedACPKeepsStdoutEmpty(t *testing.T) {
-	for _, args := range [][]string{nil, {"unknown"}, {"version", "extra"}, {"doctor", "--json", "extra"}, {"connect", "--host", "anything"}, {"disconnect", "extra"}, {"acp", "--json"}, {"acp", "--fixture"}, {"acp", "--fixture", "bogus"}, {"acp", "--fixture", "echo", "extra"}, {"acp", "--fixture-worker", "bogus"}, {"acp", "--exec", "/bin/sh"}} {
+	for _, args := range [][]string{nil, {"unknown"}, {"version", "extra"}, {"doctor", "--json", "extra"}, {"connect", "--host"}, {"disconnect", "extra"}, {"acp", "--json"}, {"acp", "--fixture"}, {"acp", "--fixture", "bogus"}, {"acp", "--fixture", "echo", "extra"}, {"acp", "--fixture-worker", "bogus"}, {"acp", "--exec", "/bin/sh"}} {
 		code, out, err := invoke(t, args...)
 		if code != 64 || out != "" || err == "" {
 			t.Fatal(args, code, out, err)
 		}
 	}
 	code, out, err := invoke(t, "acp")
-	if code != 2 || out != "" || !strings.Contains(err, "NOT_CONFIGURED") {
+	if code != 0 || out != "" || err != "" {
 		t.Fatal(code, out, err)
 	}
 }
@@ -68,6 +66,23 @@ func TestConnectNonInteractive(t *testing.T) {
 	code, out, _ := invoke(t, "connect", "--non-interactive")
 	if code != 2 || strings.Contains(out, "Network prerequisite ready") {
 		t.Fatal(code, out)
+	}
+}
+
+func TestJetBrainsCheckAndNamespace(t *testing.T) {
+	code, out, diagnostic := invoke(t, "integration", "jetbrains", "check", "--json")
+	var status struct {
+		Registered, Matches bool
+		Executable, Config  string
+	}
+	if code != 0 || diagnostic != "" || json.Unmarshal([]byte(out), &status) != nil || status.Registered || status.Matches || status.Executable == "" || status.Config == "" {
+		t.Fatal(code, out, diagnostic)
+	}
+	for _, args := range [][]string{{"integration"}, {"integration", "other", "install"}, {"integration", "jetbrains", "install", "extra"}} {
+		code, out, diagnostic = invoke(t, args...)
+		if code != 64 || out != "" || diagnostic == "" {
+			t.Fatal(code, out, diagnostic)
+		}
 	}
 }
 func TestDoctorHumanJSONParity(t *testing.T) {

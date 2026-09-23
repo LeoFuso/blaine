@@ -54,7 +54,7 @@ func Exit(checks []Check) int {
 
 func Inspect() Report { return InspectContext(context.Background()) }
 
-func InspectContext(ctx context.Context) Report {
+func InspectContext(_ context.Context) Report {
 	now := time.Now().UTC().Format(time.RFC3339)
 	r := Report{SchemaVersion: 1, Timestamp: now, Overall: "NOT_READY"}
 	add := func(id, status, code, summary, remediation string) {
@@ -69,7 +69,8 @@ func InspectContext(ctx context.Context) Report {
 		if p.Kind == "wsl" {
 			add("wsl_version", "UNKNOWN", "WSL_UNVERIFIED", "WSL markers detected; WSL2 and Windows interop are unverified", "Verify the selected distribution with wsl.exe --list --verbose on Windows; guest route proof remains required.")
 		}
-		r.Checks = append(r.Checks, NetworkChecks(p.Tailscale().Inspect(ctx), now)...)
+		add("transport", "PASS", "OK", "Embedded tsnet; system Tailscale is not required", "")
+
 		for _, path := range []struct{ id, value string }{{"config_directory", filepath.Dir(p.Paths.ConfigFile)}, {"state_directory", p.Paths.StateDir}} {
 			exists, err := platform.InspectDirectory(path.value)
 			if err != nil {
@@ -80,6 +81,13 @@ func InspectContext(ctx context.Context) Report {
 				add(path.id, "PASS", "OK", "Location valid; no client state needs to be written", "")
 			}
 		}
+		_, e := os.Lstat(filepath.Join(p.Paths.StateDir, "direct-v1", "node-id"))
+		if e != nil {
+			add("connection", "UNKNOWN", "NOT_CONFIGURED", "Embedded connection has not been verified", "Use Blaine ACP authentication or blaine connect.")
+		} else {
+			add("connection", "UNKNOWN", "REMOTE_UNAVAILABLE", "Stored identity exists; current reachability was not probed", "Run blaine connect for a fresh authenticated handshake.")
+		}
+
 	}
 	if executable, err := os.Executable(); err != nil || !filepath.IsAbs(executable) {
 		add("execution", "FAIL", "LOCAL_INVALID", "Cannot resolve running executable", "Run an installed standalone binary.")
@@ -88,8 +96,8 @@ func InspectContext(ctx context.Context) Report {
 	}
 	// Stable check IDs are the extension boundary. Replace each placeholder with
 	// actual read-only observation in its owning slice; never infer downstream PASS.
-	for _, id := range []string{"connection", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
-		add(id, "UNKNOWN", "NOT_IMPLEMENTED", "Not implemented in E0.B", "Requires E0.C–E0.F; network readiness alone is not Blaine onboarding.")
+	for _, id := range []string{"registration", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
+		add(id, "UNKNOWN", "NOT_IMPLEMENTED", "Not implemented in E0.C", "Registration and integrated onboarding remain E0.D–E0.F gates.")
 	}
 	if Exit(r.Checks) == 0 {
 		r.Overall = "READY"

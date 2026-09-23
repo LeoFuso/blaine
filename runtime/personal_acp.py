@@ -1,4 +1,4 @@
-"""ACP adapter for D2 controls, usable over the established SSH stdio path."""
+"""Host-side ACP adapter for D2 controls, reached through the private relay."""
 import asyncio
 import json
 import logging
@@ -9,7 +9,7 @@ import sys
 from uuid import uuid4
 
 from acp import PromptResponse, run_agent
-from acp.schema import AgentMessageChunk, TextContentBlock
+from acp.schema import AgentMessageChunk, ResourceContentBlock, TextContentBlock
 
 from runtime.acp_agent import BlaineAgent
 from runtime.kernel.contracts import identifier, message, text as bounded_text, MAX_PACKET
@@ -20,6 +20,7 @@ from runtime.personal_agent import PersonalAgent, RestateBinding, decision_reque
 HELP = ('Use summarize <request-id>: <text>, decision <request-id>: <question>, '
         'inspect/result/cancel/fulfill <task-id>, artifact <task-id>: <name>, '
         'respond <task-id>: YES|NO, or task <JSON control request>.')
+RESOURCE_NOTICE = 'Attached resource links were not opened or used; workspace context is unavailable in E0.C.'
 
 
 class StderrEvents:
@@ -92,15 +93,38 @@ class PersonalACP(BlaineAgent):
         raise ValueError(HELP)
 
     async def prompt(self, session_id, prompt, **kwargs):
+        resource_links = False
         try:
-            if session_id not in self.sessions or any(not isinstance(block, TextContentBlock) for block in prompt):
-                raise ValueError('Unknown session or non-text request')
-            text = '\n'.join(block.text for block in prompt).strip()
+            known_session = session_id in self.sessions
+            supported = all(isinstance(block, (TextContentBlock, ResourceContentBlock)) for block in prompt)
+            if not known_session or not supported:
+                # Diagnose IDE compatibility without recording prompts, resource URIs,
+                # metadata, or client-supplied session identifiers. Labels are bounded.
+                kinds = ('text', 'image', 'audio', 'resource_link', 'resource')
+                counts = {kind: 0 for kind in (*kinds, 'unknown')}
+                for block in prompt:
+                    kind = getattr(block, 'type', None)
+                    counts[kind if kind in kinds else 'unknown'] += 1
+                print(json.dumps({'event': 'acp_prompt_rejected',
+                    'known_session': known_session, 'block_counts': counts}),
+                    file=sys.stderr, flush=True)
+                if not known_session:
+                    raise ValueError('Unknown ACP session; start a new Blaine chat.')
+                raise ValueError('Images, audio and embedded resource content are unsupported in E0.C. '
+                                 'No workspace operation was performed.')
+            # ResourceLink is baseline ACP input, not permission to resolve a URI.
+            # Do not turn link names, descriptions or metadata into control text.
+            resource_links = any(isinstance(block, ResourceContentBlock) for block in prompt)
+            text = '\n'.join(block.text for block in prompt if isinstance(block, TextContentBlock)).strip()
+            if not text:
+                raise ValueError('A text control command is required. Resource links are not opened in E0.C.')
             result = await self.command(text, session_id)
             output = json.dumps(result)
         except (ValueError, OSError, TypeError) as error:
             # Never expose transport exception bodies, headers, credentials or private paths.
             output = json.dumps({'error': str(error) if isinstance(error, ValueError) else 'Control transport unavailable'})
+        if resource_links:
+            output = RESOURCE_NOTICE + '\n' + output
         await self.conn.session_update(session_id=session_id, update=AgentMessageChunk(
             session_update='agent_message_chunk', content=TextContentBlock(type='text', text=output)))
         return PromptResponse(stop_reason='end_turn')

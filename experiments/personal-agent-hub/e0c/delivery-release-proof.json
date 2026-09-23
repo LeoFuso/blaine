@@ -1,0 +1,242 @@
+{
+  "release": {
+    "assets": [
+      {
+        "apiUrl": "https://api.github.com/repos/LeoFuso/blaine/releases/assets/582536419",
+        "contentType": "application/octet-stream",
+        "createdAt": "2026-09-23T00:11:33Z",
+        "downloadCount": 0,
+        "id": "RA_kwDOUaE_084iuMzj",
+        "label": "",
+        "name": "blaine-darwin-amd64",
+        "size": 7410800,
+        "state": "uploaded",
+        "updatedAt": "2026-09-23T00:11:33Z",
+        "url": "https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1/blaine-darwin-amd64"
+      },
+      {
+        "apiUrl": "https://api.github.com/repos/LeoFuso/blaine/releases/assets/582536421",
+        "contentType": "application/octet-stream",
+        "createdAt": "2026-09-23T00:11:33Z",
+        "downloadCount": 0,
+        "id": "RA_kwDOUaE_084iuMzl",
+        "label": "",
+        "name": "blaine-darwin-arm64",
+        "size": 6845026,
+        "state": "uploaded",
+        "updatedAt": "2026-09-23T00:11:33Z",
+        "url": "https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1/blaine-darwin-arm64"
+      },
+      {
+        "apiUrl": "https://api.github.com/repos/LeoFuso/blaine/releases/assets/582536420",
+        "contentType": "application/octet-stream",
+        "createdAt": "2026-09-23T00:11:33Z",
+        "downloadCount": 0,
+        "id": "RA_kwDOUaE_084iuMzk",
+        "label": "",
+        "name": "blaine-linux-amd64",
+        "size": 7266428,
+        "state": "uploaded",
+        "updatedAt": "2026-09-23T00:11:33Z",
+        "url": "https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1/blaine-linux-amd64"
+      },
+      {
+        "apiUrl": "https://api.github.com/repos/LeoFuso/blaine/releases/assets/582536418",
+        "contentType": "application/octet-stream",
+        "createdAt": "2026-09-23T00:11:33Z",
+        "downloadCount": 0,
+        "id": "RA_kwDOUaE_084iuMzi",
+        "label": "",
+        "name": "blaine-linux-arm64",
+        "size": 6684796,
+        "state": "uploaded",
+        "updatedAt": "2026-09-23T00:11:33Z",
+        "url": "https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1/blaine-linux-arm64"
+      },
+      {
+        "apiUrl": "https://api.github.com/repos/LeoFuso/blaine/releases/assets/582536417",
+        "contentType": "text/plain; charset=utf-8",
+        "createdAt": "2026-09-23T00:11:33Z",
+        "downloadCount": 0,
+        "id": "RA_kwDOUaE_084iuMzh",
+        "label": "",
+        "name": "checksums.txt",
+        "size": 342,
+        "state": "uploaded",
+        "updatedAt": "2026-09-23T00:11:33Z",
+        "url": "https://github.com/LeoFuso/blaine/releases/download/v0.1.0-alpha.1/checksums.txt"
+      }
+    ],
+    "isDraft": false,
+    "isPrerelease": true,
+    "publishedAt": "2026-09-23T00:11:33Z",
+    "tagName": "v0.1.0-alpha.1",
+    "targetCommitish": "main",
+    "url": "https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.1"
+  },
+  "release_run": {
+    "conclusion": "success",
+    "databaseId": 35800774597,
+    "headSha": "ca4a6b2e31d58bc649257700a87efd8a1c326b96",
+    "jobs": [
+      {
+        "completedAt": "2026-09-23T00:11:27Z",
+        "conclusion": "success",
+        "databaseId": 106990371739,
+        "name": "client / build",
+        "startedAt": "2026-09-23T00:09:21Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Select exact build metadata",
+            "number": 4,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Validate and build the accepted client matrix",
+            "number": 5,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 6,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 7,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 8,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 9,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+            "number": 10,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Retain validation evidence",
+            "number": 11,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+            "number": 21,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "number": 22,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 23,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/LeoFuso/blaine/actions/runs/35800774597/job/106990371739"
+      },
+      {
+        "completedAt": "2026-09-23T00:11:35Z",
+        "conclusion": "success",
+        "databaseId": 106990890200,
+        "name": "publish",
+        "startedAt": "2026-09-23T00:11:29Z",
+        "status": "completed",
+        "steps": [
+          {
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Run actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c",
+            "number": 2,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Verify and publish the alpha assets",
+            "number": 3,
+            "status": "completed"
+          },
+          {
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 4,
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/LeoFuso/blaine/actions/runs/35800774597/job/106990890200"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/LeoFuso/blaine/actions/runs/35800774597"
+  },
+  "tag_commit": "ca4a6b2e31d58bc649257700a87efd8a1c326b96",
+  "published_checksums_verified": {
+    "blaine-darwin-amd64": "323ad4341a995303186036a3545854b60d4d316890620f06144382aa0e34343c",
+    "blaine-darwin-arm64": "92b26fd59e2a9e423489c999dbf59aeb038dd38a692c19148724d93adfc00aba",
+    "blaine-linux-amd64": "edbc4354651541a4d3d5aec95072d0077c13c1c8592d0515885a39ed272c279f",
+    "blaine-linux-arm64": "38e0513bbccb97d27bc07004537c9a1fb2c359fb91912f6ad1453bed66ead664"
+  },
+  "anonymous_https_manifest_and_linux_download": "PASS",
+  "installed_linux_metadata": {
+    "schema_version": 1,
+    "client_version": "0.1.0-alpha.1",
+    "protocol_version": 1,
+    "build_commit": "ca4a6b2e31d58bc649257700a87efd8a1c326b96",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "clean_install_doctor": {
+    "exit_code": 2,
+    "overall": "NOT_READY",
+    "state_written": false
+  },
+  "native_attestation": "DEFERRED",
+  "generated_binaries_committed": false,
+  "changie": "DEFERRED",
+  "e0d_plus_implemented": false
+}

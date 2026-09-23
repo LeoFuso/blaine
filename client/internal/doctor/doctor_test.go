@@ -42,7 +42,7 @@ func TestFoundationNeverReadyOrMutating(t *testing.T) {
 			t.Fatal(c)
 		}
 	}
-	for _, id := range []string{"tailscale", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
+	for _, id := range []string{"transport", "remote_blaine", "restate", "mirix", "qwen", "intellij_acp"} {
 		if !seen[id] {
 			t.Fatal(id)
 		}

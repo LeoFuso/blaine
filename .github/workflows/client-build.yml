@@ -1,0 +1,76 @@
+name: Client build (shared)
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: client/.go-version
+          cache: false
+      - name: Select exact build metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          commit="$(git rev-parse HEAD)"
+          if [[ "$GITHUB_REF_TYPE" == tag ]]; then
+            [[ "$GITHUB_REF_NAME" =~ ^v0\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)-alpha\.[1-9][0-9]*$ ]] || { echo 'Only explicit v0.x.y-alpha.N tags are supported' >&2; exit 1; }
+            version="${GITHUB_REF_NAME#v}"
+          else
+            version="0.1.0-dev+${commit:0:12}"
+          fi
+          printf 'BLAINE_VERSION=%s\nBLAINE_COMMIT=%s\n' "$version" "$commit" >> "$GITHUB_ENV"
+      - name: Fetch pinned public client dependencies
+        working-directory: client
+        run: go mod download && go mod verify
+      - name: Validate and build the accepted client matrix
+        run: client/ci.sh
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: blaine-linux-amd64
+          path: .local/client-delivery/bin/blaine-linux-amd64
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: blaine-linux-arm64
+          path: .local/client-delivery/bin/blaine-linux-arm64
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: blaine-darwin-amd64
+          path: .local/client-delivery/bin/blaine-darwin-amd64
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: blaine-darwin-arm64
+          path: .local/client-delivery/bin/blaine-darwin-arm64
+          include-hidden-files: true
+          if-no-files-found: error
+          compression-level: 0
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: blaine-checksums
+          path: .local/client-delivery/bin/checksums.txt
+          include-hidden-files: true
+          if-no-files-found: error
+      - name: Retain validation evidence
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: client-validation
+          path: .local/client-delivery/validation/
+          include-hidden-files: true
+          if-no-files-found: warn

@@ -1,0 +1,526 @@
+{
+  "status": "PARTIAL",
+  "source": "Designated WSL operator transcript reports-e0c-direct-3iCH3G plus redacted host-stage observations",
+  "candidate": {
+    "version": "0.1.0-e0c-direct",
+    "commit": "77a974c31b622983bc24c7316e690d4caeafca3c",
+    "platform": "linux/amd64",
+    "go": "go1.27.1",
+    "package_checksums": "all three entries reported OK"
+  },
+  "host_commit": "8d3889df966296466a979925071d595c92397883",
+  "designated_peer": "ST00251 / Ubuntu WSL2",
+  "experiment": {
+    "command": "TS_DEBUG_MTU=1200 bash accept.sh",
+    "native_interface": "eth0",
+    "observed_native_mtu": 1280,
+    "embedded_mtu_override": 1200,
+    "interface_or_system_configuration_changed": false,
+    "wire_payload_limit_changed": false,
+    "override_is_product_default": false
+  },
+  "runs": [
+    {
+      "identity": {
+        "node_id": "nPvKcFBuW821CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-c5c659bfb5a2364ba3c33f0b86054732"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "status": "CONNECTED",
+        "e0": "NOT_READY",
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "b87fbe14a34fa765bf00bcab3ca8b27c",
+        "peer": {
+          "node_id": "nPvKcFBuW821CNTRL",
+          "principal_id": "4301359180507170"
+        }
+      }
+    },
+    {
+      "identity": {
+        "node_id": "nPvKcFBuW821CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-c5c659bfb5a2364ba3c33f0b86054732"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "status": "CONNECTED",
+        "e0": "NOT_READY",
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "8ad77834543735efd7c8ac2745feb809",
+        "peer": {
+          "node_id": "nPvKcFBuW821CNTRL",
+          "principal_id": "4301359180507170"
+        }
+      }
+    }
+  ],
+  "signal_test": {
+    "status": "NOT_REACHED",
+    "error": "mkfifo: cannot create fifo './reports-e0c-direct-3iCH3G/acp-INT.in': File exists",
+    "extraction_filesystem": "Windows drive mounted under /mnt/c",
+    "root_cause": "Unresolved filesystem/FIFO creation failure in acceptance harness; repeat from fresh native-home directory requested"
+  },
+  "interpretation": "Two live transport/ACP probes PASS with process-local MTU override. Strong measured support for an MTU-dependent failure with the original defaults. No OS-signal acceptance, automatic product MTU handling, IPv6-only path, or JetBrains acceptance claimed.",
+  "host_events": [
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "handshake",
+      "session_id": "b87fbe14a34fa765bf00bcab3ca8b27c",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 69,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "handshake",
+      "session_id": "b87fbe14a34fa765bf00bcab3ca8b27c",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 69,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 63,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_start",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 63,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_complete",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 63,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_start",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 63,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_complete",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 84,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_echo_start",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 84,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_echo_complete",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 90,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_start",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 90,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_complete",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 99,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "03482279019457b285418d28dc9019aa",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 99,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "6fff69968267d00a725be9c7cb54764b",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 64,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_start",
+      "mode": "probe",
+      "session_id": "6fff69968267d00a725be9c7cb54764b",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 64,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_complete",
+      "mode": "probe",
+      "session_id": "6fff69968267d00a725be9c7cb54764b",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 64,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_start",
+      "mode": "probe",
+      "session_id": "6fff69968267d00a725be9c7cb54764b",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 64,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_complete",
+      "mode": "probe",
+      "session_id": "6fff69968267d00a725be9c7cb54764b",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 121,
+      "outcome": "EOF"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "6fff69968267d00a725be9c7cb54764b",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 121,
+      "outcome": "EOF"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "acp",
+      "session_id": "0ea37f2d9a5bda6ac8ad7d73395b5f6c",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 69,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "acp",
+      "session_id": "0ea37f2d9a5bda6ac8ad7d73395b5f6c",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 302,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "handshake",
+      "session_id": "8ad77834543735efd7c8ac2745feb809",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 67,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "handshake",
+      "session_id": "8ad77834543735efd7c8ac2745feb809",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 67,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_start",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_complete",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_start",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_complete",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 81,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_echo_start",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 81,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_echo_complete",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 87,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_start",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 87,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_complete",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 94,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "27bf31989661b511e62a47f13b4ff8e1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 94,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "0a2a357ab7edd4cdac68f97ccdc03ef1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 60,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_start",
+      "mode": "probe",
+      "session_id": "0a2a357ab7edd4cdac68f97ccdc03ef1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 60,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_complete",
+      "mode": "probe",
+      "session_id": "0a2a357ab7edd4cdac68f97ccdc03ef1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 60,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_start",
+      "mode": "probe",
+      "session_id": "0a2a357ab7edd4cdac68f97ccdc03ef1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 60,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_complete",
+      "mode": "probe",
+      "session_id": "0a2a357ab7edd4cdac68f97ccdc03ef1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 116,
+      "outcome": "EOF"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "0a2a357ab7edd4cdac68f97ccdc03ef1",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 116,
+      "outcome": "EOF"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "acp",
+      "session_id": "6dde5bab7c2decf6418e51924fa92802",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 62,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "acp",
+      "session_id": "6dde5bab7c2decf6418e51924fa92802",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 303,
+      "outcome": "OK"
+    }
+  ],
+  "task_independence": "PASS bounded: identical authoritative WAITING Task after both real WSL remote ACP sessions ended"
+}

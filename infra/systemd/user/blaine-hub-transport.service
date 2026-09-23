@@ -1,0 +1,19 @@
+[Unit]
+Description=Blaine private workstation transport edge
+Wants=blaine-runtime.service
+After=blaine-runtime.service
+# Host Tailscale may become available after the user manager starts.
+StartLimitIntervalSec=0
+
+[Service]
+Type=exec
+WorkingDirectory=%h/.local/share/blaine/transport
+ExecStart=%h/.local/share/blaine/transport/bin/blaine-hub-transport --config %h/.config/blaine/services/transport.json
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=15
+KillMode=mixed
+UMask=0077
+
+[Install]
+WantedBy=default.target

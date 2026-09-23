@@ -1,0 +1,36 @@
+{
+  "observed_on": "2026-09-23",
+  "sources": [
+    {
+      "name": "registry-schema",
+      "url": "https://raw.githubusercontent.com/agentclientprotocol/registry/6e560740b8dd4eae6ae420092e02d5dbd081ab10/agent.schema.json",
+      "sha256": "5f90b4485f14bc564301c3a51885eaa4d16095b3e2c5154c72b85157199c3fab"
+    },
+    {
+      "name": "tsnet.go",
+      "url": "https://raw.githubusercontent.com/tailscale/tailscale/v1.102.4/tsnet/tsnet.go",
+      "sha256": "6a8d6cc7deae3006729ef688ed5d33770284e04699f2dd040bc52c08de667ca5"
+    },
+    {
+      "name": "tsnet-go.mod",
+      "url": "https://raw.githubusercontent.com/tailscale/tailscale/v1.102.4/go.mod",
+      "sha256": "a83e830a7b4dffa80a6c2478b44758695d01c0a3e35e14b824a4e81824ca67d2"
+    },
+    {
+      "name": "acp-schema",
+      "url": "https://raw.githubusercontent.com/agentclientprotocol/agent-client-protocol/schema-v1.23.0/schema/v1/schema.json",
+      "sha256": "3c17bd6385d90cf672d8a661fddc359d73422cf8b8ce6865213d25cfd4c0eca7"
+    },
+    {
+      "name": "acp-auth-stable",
+      "url": "https://raw.githubusercontent.com/agentclientprotocol/agent-client-protocol/schema-v1.23.0/docs/protocol/v1/authentication.mdx",
+      "sha256": "4674c76a74a2c2e69a21997184ada8c6813c480831fdf8eb662cabd0ba16e9b7"
+    },
+    {
+      "name": "jetbrains-acp-backend-placement-clarification",
+      "url": "https://youtrack.jetbrains.com/issue/LLM-28234/Claude-Code-ACP-in-AI-Assistant",
+      "retrieval": "Public YouTrack API comments fetched 2026-09-23; reply authored by Vladislav Kuzmeniuk, created timestamp 1780064632320",
+      "scope": "Claude Agent example distinguishes Windows-side IDE with WSL project from Remote Development IDE backend in WSL; latter runs ACP on Linux. Not a live observation of operator Codex/Blaine placement."
+    }
+  ]
+}

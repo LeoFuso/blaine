@@ -1,0 +1,75 @@
+{
+  "status": "PASS_BOUNDED_MACOS_IDE_READONLY_ROUND_TRIP",
+  "release": "v0.1.0-alpha.3",
+  "release_source": "1d718a18582d3a82635131d16f8c8d171d193759",
+  "operator_report": "Installed public client, selected Blaine in IntelliJ, sent hello, received Unknown session or non-text request.",
+  "client_metadata_limit": "Latest Mac version/checksum output not supplied; release identification follows requested public installation and operator report.",
+  "ide": "IntelliJ IDEA 2026.2.3 / IU-262.10968.63; AI Assistant 262.10968.97; macOS 26.6.2 / arm64",
+  "host_observation": {
+    "event": "private_session",
+    "stage": "handshake_complete",
+    "peer_node": "nEEbpyYWN921CNTRL",
+    "session_id": "39960f8258fdc9bab159fc1cca221e65",
+    "mode": "acp",
+    "elapsed_ms": 78,
+    "outcome": "OK"
+  },
+  "interpretation": "Real designated Mac reached direct Hub ACP; operator received a host application rejection. This is not a successful control operation or completed E0.C acceptance.",
+  "root_cause": "CONFIRMED on followup: valid session, one text plus one baseline resource-link block rejected by host text-only guard.",
+  "local_sdk_fixture": "PASS: a valid new session and text-only hello reach existing control help; read-only inspect reaches mocked control. Unknown sessions and mixed/resource-only prompts reject before control execution.",
+  "host_diagnostic": "Separate actionable errors and bounded known-session/content-type counts on stderr only. No prompt text, resource URI, metadata or untrusted session identifier is logged. Text-only admission remains unchanged.",
+  "validation": {
+    "python_regressions": "25 PASS (ACP, personal agent/runtime, host connection/readiness)",
+    "actual_python_over_direct_relay": "PASS: initialize, session/new, text hello/update/end_turn, EOF and abrupt-disconnect cleanup",
+    "sandbox_note": "Initial sandboxed Python asyncio run stalled and was interrupted; the same bounded suite passed outside the sandbox."
+  },
+  "controlled_task_unchanged": true,
+  "scope": "No client binary/installer/release, transport authorization, Task lifecycle or workspace capability changes.",
+  "next_action": "Complete remaining E0.C policy, transport-identity lifecycle and host deployment gates; no additional greeting/control-help correction required.",
+  "e0c": "PARTIAL",
+  "e0d": "BLOCKED",
+  "followup": {
+    "operator_report": "Fresh real IDE prompt returned the distinct text-only rejection.",
+    "host_handshake": {
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "460bc07794deb7f0dca4c6e727f93752",
+      "mode": "acp",
+      "outcome": "OK"
+    },
+    "safe_diagnostic": {
+      "known_session": true,
+      "block_counts": {
+        "text": 1,
+        "resource_link": 1,
+        "resource": 0,
+        "image": 0,
+        "audio": 0,
+        "unknown": 0
+      }
+    },
+    "finding": "The valid real IDE session supplies baseline ResourceLink input alongside text. Host text-only rejection is incompatible with baseline ACP prompt input; no actual resource URI/content was collected.",
+    "correction": "Accept resource links as inert context, visibly report that they were not opened or used, and pass only text blocks to existing controls. Never turn URI/name/description/metadata into commands. Link-only input cannot execute an operation; unknown sessions and optional unsupported content still reject.",
+    "capability_boundary": "ResourceLink is prompt data, not clientCapabilities or permission. E0 strips advertised client capabilities on host forwarding and blocks client effects; this correction does not change that guard.",
+    "validation": {
+      "python_regressions": "26 PASS",
+      "real_sdk_through_fixture_relay": "PASS text plus resource link, control help plus explicit unused-context notice, end_turn, EOF and abrupt cleanup",
+      "live_corrected_ide": "PENDING"
+    },
+    "source": "https://agentclientprotocol.com/protocol/v1/initialization",
+    "release": "Public alpha.3 binary/installer/assets unchanged; host-only correction requires a fresh ACP process."
+  },
+  "corrected_live_repeat": {
+    "operator_report": "The real IntelliJ session displayed the unused-resource-link notice followed by the existing Use summarize/decision/inspect control help error.",
+    "host_revision": "2949105",
+    "host_handshake": {
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "fb11d8f1eda0e19c580e450cc2bc9dcd",
+      "mode": "acp",
+      "outcome": "OK"
+    },
+    "result": "PASS bounded real IDE prompt/response exchange: baseline resource-link context no longer prevents the text from reaching the existing command parser.",
+    "limit": "Greeting is not a supported D2 control command, so help remains an application error. No general conversation/coding behavior or successful durable control operation is claimed.",
+    "next_gate": "Read-only inspect of the existing controlled WAITING Task through this real IDE session."
+  },
+  "acceptance_evidence": "macos-ide-readonly-pass.json"
+}

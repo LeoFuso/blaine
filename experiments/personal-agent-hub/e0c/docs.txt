@@ -1,0 +1,1 @@
+PASS: 5 changed Markdown documents, 131 local links/anchors, balanced fences, evidence JSON parse, source/artifact hashes and git diff --check.

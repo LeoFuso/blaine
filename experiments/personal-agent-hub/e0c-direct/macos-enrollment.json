@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-09-23T16:50:09.134270+00:00",
+  "status": "PARTIAL",
+  "source": "operator transcript plus host peer-map observation",
+  "candidate": {
+    "version": "0.1.0-e0c-direct",
+    "commit": "dadb3c540b18bd943064f9b7a2a160cb3c3b3c2a",
+    "go": "go1.27.1",
+    "platform": "darwin/arm64",
+    "package_checksums": "operator reported binary/script/documentation OK"
+  },
+  "designated_peer": "Leonardos-MacBook-Pro.local",
+  "reported_installation": {
+    "node_id": "nEEbpyYWN921CNTRL",
+    "node_reused": false,
+    "workstation_id": "ws-9f5788915e97f2dfb2fbcd1b4dbafd23"
+  },
+  "host_observation": {
+    "stable_node_id": "nEEbpyYWN921CNTRL",
+    "hostname": "blaine-9f5788915e97",
+    "os": "macOS",
+    "expected_principal_matches": true,
+    "observed_online_after_client_exit": false
+  },
+  "first_attempt": {
+    "browser_enrollment": "operator flow reached authenticated node",
+    "result": "TRANSPORT_DENIED",
+    "exit": 3,
+    "signed_blaine_handshake": "NOT_REACHED",
+    "acp": "NOT_REACHED"
+  },
+  "host_change": {
+    "allowed_nodes": [
+      "nEEbpyYWN921CNTRL"
+    ],
+    "principal_restriction_retained": true,
+    "candidate_listener_restarted": true,
+    "tailnet_policy_changed": false,
+    "system_tailscale_changed": false
+  },
+  "readiness": {
+    "runtime": "PASS",
+    "restate": "PASS",
+    "mirix": "PASS",
+    "generation": "PASS",
+    "embeddings": "PASS"
+  },
+  "controlled_task_before_repeat": "WAITING",
+  "macos_gatekeeper": "Operator removed quarantine on the single candidate binary; checksum verification then passed. This is not notarized distribution acceptance.",
+  "next": "Repeat the same accept.sh; no new download, no E0.D registration."
+}
