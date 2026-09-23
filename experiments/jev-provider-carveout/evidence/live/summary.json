@@ -1,0 +1,76 @@
+{
+ "version": 1,
+ "increment": "isolated Jev provider candidate",
+ "preflight": {
+  "credential_variable": "TYPESAFE_API_KEY",
+  "credential_present": true,
+  "default_model": "jev-latest",
+  "destination": "https://api.typesafe.ai",
+  "sdk_installed": true,
+  "sdk_version": "0.7.1",
+  "sdk_credential_variable": "TYPESAFE_API_KEY",
+  "sdk_default_model": "jev-latest",
+  "sdk_default_base_url": "https://api.typesafe.ai"
+ },
+ "authenticated_calls_attempted": 2,
+ "frontier_dispatch_grants_consumed": 0,
+ "task_lifecycle_involvement": "none",
+ "routing_default_changed": false,
+ "status": "AUTHENTICATED",
+ "calls": [
+  {
+   "call": "routing_suitability",
+   "outcome": "ANSWERED",
+   "binding_id": "candidate-remote",
+   "state_sent": {
+    "required_capabilities": [
+     "code"
+    ],
+    "minimum_quality": 3,
+    "binding_capabilities": [
+     "code"
+    ],
+    "binding_quality": 3
+   },
+   "accepted_suitability": "JUST_RIGHT",
+   "candidate_suitability": "JUST_RIGHT",
+   "candidate_reason": "jev-1.13.0 suitability, confidence 0.990; rank is a scripted deployment input",
+   "agreement": true,
+   "candidate_failure": null,
+   "applied_to_routing": false,
+   "model": "jev-1.13.0",
+   "latency_ms": 338,
+   "usage": {
+    "model_calls": 1,
+    "input_tokens": 431,
+    "output_tokens": 49,
+    "cost_microusd": null,
+    "model_call_ids": []
+   },
+   "cost_observability": "UNKNOWN; the provider exposes no cost field"
+  },
+  {
+   "call": "continuation_boundary",
+   "outcome": "PROCEED",
+   "label": "inconclusive",
+   "score": 0.48,
+   "latency_ms": 374,
+   "model": "jev-1.13.0",
+   "input_tokens": 397,
+   "output_tokens": 45,
+   "detail": null,
+   "intervention_admitted": false
+  }
+ ],
+ "accepted_assessment": {
+  "binding_id": "candidate-remote",
+  "suitability": "JUST_RIGHT",
+  "cost_to_success_rank": 2,
+  "reason": "Scripted capability/quality threshold; ordinal expected cost-to-success"
+ },
+ "accepted_routing_without_candidate": {
+  "outcome": "selected",
+  "selected_binding": "candidate-remote"
+ },
+ "probe_runtime_s": 0.71
+}
