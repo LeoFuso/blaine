@@ -234,6 +234,7 @@ class ShadowClassifier:
     candidate: object
     record: Callable[[dict], None] = lambda observation: None
     observations: list = field(default_factory=list)
+    breaker: CandidateBreaker | None = None
 
     def assess(self, workload: Workload, binding) -> Assessment:
         decision = self.accepted.assess(workload, binding)
@@ -243,15 +244,24 @@ class ShadowClassifier:
                        'accepted_suitability': decision.suitability,
                        'candidate_suitability': None, 'agreement': None,
                        'candidate_failure': None}
-        try:
-            shadow = self.candidate.assess(workload, binding)
-            if shadow.binding_id != binding.binding_id:
-                raise JevUnavailable('candidate_changed_binding_identity')
-            observation['candidate_suitability'] = shadow.suitability
-            observation['candidate_reason'] = shadow.reason
-            observation['agreement'] = shadow.suitability == decision.suitability
-        except JevUnavailable as error:
-            observation['candidate_failure'] = error.category
+        if self.breaker is not None and self.breaker.open:
+            # Once the provider has refused us, stop spending calls on it. The
+            # comparison keeps accumulating rows so the gap stays visible.
+            observation['candidate_failure'] = 'circuit_open_' + self.breaker.account_status
+        else:
+            try:
+                shadow = self.candidate.assess(workload, binding)
+                if shadow.binding_id != binding.binding_id:
+                    raise JevUnavailable('candidate_changed_binding_identity')
+                observation['candidate_suitability'] = shadow.suitability
+                observation['candidate_reason'] = shadow.reason
+                observation['agreement'] = shadow.suitability == decision.suitability
+                if self.breaker is not None:
+                    self.breaker.record_success()
+            except JevUnavailable as error:
+                observation['candidate_failure'] = error.category
+                if self.breaker is not None:
+                    self.breaker.record_failure(error.category)
         self.observations.append(observation)
         self.record(observation)
         return decision  # the accepted judgement, unchanged
@@ -299,3 +309,106 @@ class JevBoundaryObserver:
             if result['usage'].get(name) is not None:
                 assessment[name] = result['usage'][name]
         return assessment
+
+
+# Categories in which the provider actively refused us. A refusal may mean
+# exhausted credit, a revoked key or a denied account; the API does not
+# distinguish them, and it exposes no balance, so they are treated alike.
+REFUSALS = frozenset({'authentication_failed', 'permission_denied', 'rate_limited',
+                      'api_error', 'provider_error', 'not_found'})
+# Categories where we simply could not reach a verdict. These are not refusals,
+# but a run made only of them cannot be called healthy either.
+INCONCLUSIVE = frozenset({'timeout', 'connection_failed', 'provider_unavailable',
+                          'invalid_response', 'unexpected_error'})
+
+
+@dataclass
+class CandidateBreaker:
+    """Self-disabling circuit for an unadopted paid candidate.
+
+    Nothing is declared in advance, because this provider exposes no balance and
+    no credit header: the breaker reacts to observed refusals instead of
+    predicting exhaustion.
+
+    It therefore prevents wasted calls and repeated failures after the provider
+    starts refusing. It does **not** prevent the final credit from being spent,
+    and it cannot warn before exhaustion. Claiming otherwise would require a
+    balance the API does not publish or a budget the operator declares.
+
+    State is reported in the vocabulary Blaine already uses for paid work, so
+    `runtime.kernel.frontier.global_denial` yields its usual reason categories.
+    An `unknown` state denies exactly like `exhausted`, which is the existing
+    conservative rule rather than a new one.
+    """
+    threshold: int = 3
+    warn: Callable[[dict], None] | None = None
+    account_status: str = 'not_configured'
+    consecutive_refusals: int = 0
+    consecutive_inconclusive: int = 0
+    calls: int = 0
+    refusals: int = 0
+    tripped_on: str | None = None
+
+    def guardrails(self):
+        """Express the breaker through the existing hard-guardrail contract."""
+        from runtime.kernel.frontier import GlobalGuardrails
+        # The state rides on account_status rather than kill_switch, so the
+        # denial reason distinguishes an exhausted account from an unknown one.
+        # kill_switch stays an operator control, not something a breaker asserts.
+        return GlobalGuardrails(frontier_enabled=True, kill_switch=False,
+                                account_status=self.account_status,
+                                source='observed provider refusals; no balance is published')
+
+    @property
+    def open(self) -> bool:
+        return self.account_status in ('exhausted', 'unknown')
+
+    def record_success(self) -> None:
+        self.calls += 1
+        self.consecutive_refusals = 0
+        self.consecutive_inconclusive = 0
+        self.account_status = 'available'
+
+    def record_failure(self, category: str) -> None:
+        self.calls += 1
+        if category in REFUSALS:
+            self.refusals += 1
+            self.consecutive_refusals += 1
+            self.consecutive_inconclusive = 0
+        else:
+            self.consecutive_inconclusive += 1
+            self.consecutive_refusals = 0
+        if self.consecutive_refusals >= self.threshold:
+            self._trip('exhausted', category)
+        elif self.consecutive_inconclusive >= self.threshold:
+            # Not a refusal, but no verdict either. Unknown denies, by the
+            # existing rule that an unobservable ceiling is never a permission.
+            self._trip('unknown', category)
+
+    def _trip(self, status: str, category: str) -> None:
+        if self.open:
+            return
+        self.account_status = status
+        self.tripped_on = category
+        if self.warn is not None:
+            # A warning is diagnostics. It must never decide anything, and a
+            # broken warning channel must not keep the breaker from opening.
+            try:
+                self.warn(self.report())
+            except Exception:
+                pass
+
+    def report(self) -> dict:
+        return {'candidate': 'jev', 'account_status': self.account_status,
+                'circuit_open': self.open, 'tripped_on': self.tripped_on,
+                'calls': self.calls, 'refusals': self.refusals,
+                'threshold': self.threshold,
+                'balance_observability': 'UNKNOWN; the provider publishes no balance or credit header',
+                'protects_against': 'wasted calls and repeated failures after refusals begin',
+                'does_not_protect_against': 'spending the final credit; exhaustion is only visible once refused'}
+
+    def reset(self) -> None:
+        """Explicit operator action after topping up or fixing the account."""
+        self.account_status = 'available'
+        self.consecutive_refusals = self.consecutive_inconclusive = 0
+        self.tripped_on = None

@@ -80,6 +80,44 @@ Offline controls need neither the credential nor the SDK:
 PYTHONPATH=.:tests python3 -m unittest discover -s tests -p 'test_jev_provider.py'
 ```
 
+## Self-disabling, and what it cannot do
+
+`CandidateBreaker` stops consulting the candidate once the provider starts
+refusing: after a threshold of consecutive refusals it opens, no further calls
+are made, the accepted classifier keeps deciding, and one warning is emitted.
+Comparison rows keep accumulating with `circuit_open_<state>` so the gap stays
+visible rather than silently disappearing.
+
+Nothing is declared in advance, because **the provider publishes no balance**. A
+live probe observed only `x-typesafe-request-id` and generic CDN headers — no
+credit, quota or remaining-limit header — and the SDK models only `retry-after`
+and 429. There is also no `402` in its status map, so an exhausted account is
+indistinguishable by status code from a revoked key or a denied account; the
+breaker treats all refusals alike for that reason.
+
+| Property | Behaviour |
+| --- | --- |
+| Protects against | Wasted calls and repeated failures *after* refusals begin |
+| **Does not** protect against | Spending the final credit; exhaustion is only visible once the provider refuses |
+| Warning before exhaustion | **Impossible** without a published balance or an operator-declared budget |
+| Inconclusive failures | Denied as `unknown`, by the existing rule that an unobservable ceiling is never a permission |
+| Recovery | An explicit operator `reset()` after topping up; no automatic retry, which would burn more calls |
+
+State is expressed through the existing `GlobalGuardrails` contract, so
+`global_denial` yields its usual `global_budget_exhausted` and
+`global_guardrail_unknown` categories. The breaker asserts account state and
+never the operator's `kill_switch`.
+
+### Where a warning can actually go today
+
+The warning is a callback, so a deployment chooses its sink. On this host the
+honest options are the comparison log and the local OTLP file sink. **Grafana
+Cloud is not reachable from it**: only `prometheus.scrape` targets forward to
+`prometheus.remote_write.grafana_metrics`, while the OTLP receiver path ends at
+`otelcol.exporter.file.local`. Alerting in Cloud would need a new scrape target
+and an `/etc/alloy/config.alloy` change, which is D1 platform work and a separate
+decision.
+
 ## Prepared comparison, not a benchmark program
 
 [carveout.py](carveout.py) fixes the comparison record shape and the aggregation

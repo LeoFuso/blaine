@@ -249,6 +249,96 @@ class BoundaryObserverTests(unittest.TestCase):
         self.assertNotIn('run:1', repr(state))
 
 
+class SelfDisablingTests(unittest.TestCase):
+    """The candidate stops spending once the provider starts refusing."""
+
+    def refusing(self, category='permission_denied'):
+        class Refusing:
+            def assess(inner, workload, binding):
+                raise jev.JevUnavailable(category)
+        return Refusing()
+
+    def shadow(self, candidate, **breaker):
+        warnings = []
+        breaker.setdefault('threshold', 2)
+        circuit = jev.CandidateBreaker(warn=warnings.append, **breaker)
+        return jev.ShadowClassifier(ScriptedClassifier(RANKS), candidate, breaker=circuit), circuit, warnings
+
+    def test_repeated_refusals_stop_further_provider_calls(self):
+        shadow, circuit, warnings = self.shadow(self.refusing())
+        for _ in range(5):
+            shadow.assess(Workload(('code',), 1), LOCAL)
+        # Only the calls before the trip reached the provider.
+        self.assertEqual(circuit.calls, 2)
+        self.assertEqual(circuit.refusals, 2)
+        self.assertTrue(circuit.open)
+        self.assertEqual([o['candidate_failure'] for o in shadow.observations][-1], 'circuit_open_exhausted')
+        self.assertEqual(len(warnings), 1)
+
+    def test_routing_is_unaffected_while_the_circuit_is_open(self):
+        shadow, _, _ = self.shadow(self.refusing())
+        decisions = [shadow.assess(Workload(('code',), 1), LOCAL).suitability for _ in range(5)]
+        self.assertEqual(set(decisions), {'JUST_RIGHT'})
+
+    def test_state_is_expressed_in_the_existing_guardrail_vocabulary(self):
+        from runtime.kernel.frontier import global_denial
+        shadow, circuit, _ = self.shadow(self.refusing())
+        self.assertIsNone(global_denial(STRONG, circuit.guardrails()))
+        for _ in range(2):
+            shadow.assess(Workload(('code',), 1), LOCAL)
+        self.assertEqual(global_denial(STRONG, circuit.guardrails()), 'global_budget_exhausted')
+        # A breaker asserts account state, never the operator's kill switch.
+        self.assertFalse(circuit.guardrails().kill_switch)
+
+    def test_inconclusive_failures_deny_as_unknown_rather_than_exhausted(self):
+        from runtime.kernel.frontier import global_denial
+        shadow, circuit, _ = self.shadow(self.refusing('timeout'))
+        for _ in range(3):
+            shadow.assess(Workload(('code',), 1), LOCAL)
+        self.assertEqual(circuit.account_status, 'unknown')
+        self.assertEqual(global_denial(STRONG, circuit.guardrails()), 'global_guardrail_unknown')
+        self.assertEqual(circuit.refusals, 0)
+
+    def test_a_success_clears_the_way_back(self):
+        live, _ = provider(answers={'suitability': answer()})
+        class Flaky:
+            def __init__(inner): inner.calls = 0
+            def assess(inner, workload, binding):
+                inner.calls += 1
+                if inner.calls == 1:
+                    raise jev.JevUnavailable('rate_limited')
+                return jev.JevWorkloadClassifier(live, RANKS).assess(workload, binding)
+        shadow, circuit, _ = self.shadow(Flaky())
+        shadow.assess(Workload(('code',), 1), LOCAL)
+        shadow.assess(Workload(('code',), 1), LOCAL)
+        self.assertFalse(circuit.open)
+        self.assertEqual(circuit.consecutive_refusals, 0)
+        self.assertEqual(circuit.account_status, 'available')
+
+    def test_reset_is_an_explicit_operator_action(self):
+        shadow, circuit, _ = self.shadow(self.refusing())
+        for _ in range(3):
+            shadow.assess(Workload(('code',), 1), LOCAL)
+        self.assertTrue(circuit.open)
+        circuit.reset()
+        self.assertFalse(circuit.open)
+        self.assertIsNone(circuit.tripped_on)
+
+    def test_a_broken_warning_channel_does_not_keep_the_circuit_closed(self):
+        def explode(report):
+            raise RuntimeError('alerting is down')
+        circuit = jev.CandidateBreaker(threshold=1, warn=explode)
+        circuit.record_failure('permission_denied')
+        self.assertTrue(circuit.open)
+
+    def test_the_report_states_what_it_cannot_protect_against(self):
+        circuit = jev.CandidateBreaker()
+        report = circuit.report()
+        self.assertIn('UNKNOWN', report['balance_observability'])
+        self.assertIn('final credit', report['does_not_protect_against'])
+        self.assertNotIn('prevents overspend', repr(report))
+
+
 class CarveoutPreparationTests(unittest.TestCase):
     def row(self, **changes):
         base = {'task_id': 'fixture-task', 'binding_id': 'local',
