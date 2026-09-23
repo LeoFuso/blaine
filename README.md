@@ -25,7 +25,7 @@ unnecessary paid frontier inference; cloud dispatch remains authority-controlled
 | Start here | Purpose |
 | --- | --- |
 | [Development roadmap](docs/roadmap/001-blaine-development-roadmap.md) | Current program, priorities, dependencies and handoff |
-| [Track III: context, memory and verified learning](experiments/track-iii-010/README.md) | III.10 propagation PASS; [III.G structural utility PASS](experiments/track-iii-graphify/README.md), ADAPT / ON-DEMAND; III.8 FAIL / III.8R PASS preserved; no production integration |
+| [Context Plane architecture](docs/context-plane.md) | Track III research COMPLETE and consolidated; broad governed context, compiled narrow packets. III.8 FAIL / III.8R PASS preserved; [CP.1 implementation proposed, NOT STARTED](docs/roadmap/002-context-plane-implementation.md). |
 | [Documentation map](docs/README.md) | Canonical sources: architecture, status, contracts, operations and historical evidence |
 | [Personal Agent Hub E0–E3](docs/personal-agent-hub.md) | Canonical workstation/client product design and implementation gates |
 | [Architecture](docs/architecture.md) and [ADR index](docs/decisions/README.md) | Ownership and architectural decisions; respect each ADR's status |

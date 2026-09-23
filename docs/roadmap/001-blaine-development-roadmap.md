@@ -610,6 +610,23 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
+**2026-09-23: Track III research COMPLETE; architecture consolidation PASS.**
+[ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md), the
+[Context Plane specification](../context-plane.md) and
+[semantic contracts](../contracts/context-plane.md) accept broad governed knowledge
+with compiled narrow agent context. Resolver and Compiler remain separate; current
+trusted binding, provenance, source/evidence authority and explicit promotion survive.
+III.8 remains FAIL; III.8R remains its separate PASS recovery; III.G is complementary
+PASS / ADAPT ON-DEMAND. III.10 remains the planned sequence close. All experiments
+and their historical results are unchanged.
+
+**Production is separate and NOT STARTED.** Recommend **CP.1 — Local governed context
+projection and one delta**, scoped to one existing local worker path, read-only Memory
+facade, exact/lexical sources, runtime-bound authority and deterministic compilation.
+The [bounded implementation plan](002-context-plane-implementation.md) defines staged
+acceptance and deferrals; no authorization to implement or deploy follows from this
+consolidation. Other tracks' priorities and E0–E3 dependencies are unchanged.
+
 **2026-09-23: complementary III.G Graphify structural utility PASS.**
 [Milestone](../milestones/053-track-iii-g-graphify-structural-utility.md) and
 [evidence](../../experiments/track-iii-graphify/README.md): twenty frozen questions on
@@ -746,12 +763,11 @@ Scope, stale-policy and provenance mutations cause actual caught violations. Who
 validation and per-operation trusted snapshots are explicit; concurrency, crash
 consistency, production authentication and remote-machine transport remain unproved.
 
-**Recommended post-Track-III work, not started:** separately authorize an architecture
-consolidation and contract gap review for reference issuance/resolution, current
-policy/topology freshness and atomicity, scoped diagnostics/evidence and per-operation
-enforcement ownership. Propose a minimal integration slice with acceptance criteria
-for human review before implementation. No production lifecycle, authentication, hard
-gate or runtime adoption follows automatically; all historical results retain scope.
+**Post-Track-III consolidation is complete.** The [accepted architecture](../context-plane.md)
+records trusted binding, scoped metadata, routing/compilation and durable revalidation
+obligations with explicit current-code gaps. [CP.1 and later implementation phases](002-context-plane-implementation.md)
+remain proposed, separately authorized work. No production lifecycle, authentication,
+hard gate or runtime adoption follows automatically; all historical results retain scope.
 
 ## How to resume development
 
@@ -849,12 +865,12 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.10 PASS; complementary III.G structural utility PASS.**
-  [Evidence and post-track recommendation](../../experiments/track-iii-010/README.md).
-  III.8 FAIL and III.8R PASS remain separate. Architecture consolidation/contract review
-  is recommended for separate authorization, including III.G on-demand structural
-  capability/cost findings; no implementation or hard gate is implied.
-  Other product/operational priorities are unchanged.
+- **Track III research COMPLETE; architecture consolidation PASS.**
+  [Accepted Context Plane](../context-plane.md) and [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md).
+  III.8 FAIL / III.8R PASS remain separate; III.G remains complementary PASS / ADAPT ON-DEMAND.
+  **Next proposal: [CP.1 — Local governed context projection and one delta](002-context-plane-implementation.md#2-exact-next-increment-cp1--local-governed-context-projection-and-one-delta), NOT STARTED.**
+  Implementation requires separate authorization; no automatic learning, hard novelty
+  gate or production adoption is implied. Other product/operational priorities unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux

@@ -2,6 +2,15 @@
 
 Research checkpoint: **2026-09-23 — PASS (source research only).**
 
+> Consolidation pointer, 2026-09-23: Track III research is COMPLETE. The accepted
+> [Context Plane architecture](../../context-plane.md),
+> [contracts](../../contracts/context-plane.md) and
+> [ADR 0025](../../decisions/0025-context-plane-and-compiled-agent-context.md) now own
+> consolidated architectural direction. This document retains historical research,
+> chronological refinements and their original future proposals; it is not current
+> implementation sequencing. III.8 remains FAIL, III.8R separate PASS. The
+> [production plan](../../roadmap/002-context-plane-implementation.md) is NOT STARTED.
+
 Sufficient repository and current upstream evidence exists to specify III.2.
 This does not validate hierarchy enforcement, memory quality, isolation, or a
 production integration. **III.2 is proposed, unstarted, and requires explicit

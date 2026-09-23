@@ -122,3 +122,8 @@ ADR’s own status before treating it as an accepted constraint.
 - [ADR 0024 — Routing ground truth comes from a restricted replay, not a judge](0024-routing-ground-truth-from-restricted-replay.md)
   is **Proposed**: it decides how "local would have sufficed" is measured, and
   deliberately leaves the routing policy to cost-to-success work.
+
+- [ADR 0025 — Blaine Context Plane and compiled agent context](0025-context-plane-and-compiled-agent-context.md)
+  is **Accepted / Partially Validated**: consolidates completed Track III research into
+  Blaine-owned semantics; [production plan](../roadmap/002-context-plane-implementation.md)
+  remains proposed and NOT STARTED. No existing accepted ADR is superseded.
