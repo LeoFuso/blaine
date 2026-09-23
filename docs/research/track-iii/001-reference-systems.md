@@ -55,6 +55,24 @@ Identifiers/collision behavior and revision/activity metadata obey the same secu
 boundary as content. These are finite synthetic results, not real DLP or verified
 learning; historical III.1–III.4 checkpoints retain their original scope.
 
+## III.6 verified-outcome clarification — 2026-09-23
+
+[III.6](../../milestones/047-track-iii-6-verified-outcome-admission.md) separates
+untrusted worker claims, trusted outcome/evidence and proposed reflection candidates.
+Success requires every authoritative success requirement; supported failure remains
+failure-qualified, and unfinished observations remain unverified. Candidate payloads
+cannot grant verified provenance. Exact hand-authored support pairs test admission,
+not arbitrary-language entailment or future generalization. Internal evidence links
+are private; learned representations remain subject to lineage/domain/policy and do
+not move upward. Human declarations remain a separate direct teaching path.
+
+Replay revalidates current evidence; a prior receipt is a past decision, not authority
+for a new admission. The new experimental VERIFIED_OUTCOME origin retains separate
+success/failure status. III.5's unchanged finite prototype rejects that new class;
+future promotion requires a deliberate compatible extension preserving status and
+security. No reflection generation, consolidation or production verification was
+implemented. Historical III.1–III.5 results retain their original boundaries.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

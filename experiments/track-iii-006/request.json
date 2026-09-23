@@ -1,0 +1,56 @@
+{
+  "objective": "Execute only Track III.6: prove verified outcome admission and reflection semantics using trusted synthetic evidence, hand-authored candidates, scoped provenance and negative controls; retain evidence and commit locally.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Accepted III.1–III.5 research, experiments and roadmap",
+      "source": "git:7d3133b",
+      "sharing": "local-only"
+    },
+    {
+      "need": "Synthetic executions, trusted outcome/evidence envelopes and hand-authored candidate-support pairs",
+      "source": "experiments/track-iii-006/fixtures.json",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit isolated III.6 experiment and documentation",
+    "run offline standard-library Python",
+    "create local commit"
+  ],
+  "autonomy": {
+    "allowed": [
+      "III.6 evaluator and deterministic controls",
+      "minimal milestone/research/navigation updates",
+      "completed-increment local commit"
+    ],
+    "forbidden": [
+      "III.7 or later execution",
+      "LLM reflection or arbitrary-language entailment",
+      "lessons/procedures consolidation or utility/voting/decay",
+      "automatic promotion or declassification generation",
+      "production contract or runtime changes",
+      "database/embedding/provider adoption",
+      "revocation or production concurrency",
+      "push or merge"
+    ]
+  },
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Trusted complete success and supported failure admit distinct scoped statuses; claims, incomplete and contradictory evidence cannot forge success",
+      "evidence": "fixtures.json; evidence/results.json; verification.json"
+    },
+    {
+      "criterion": "Private evidence remains private, reflection does not promote, replay reevaluates current evidence, worker-claim and missing-as-pass mutations cause detected unsafe admissions",
+      "evidence": "evidence/retrieval-exports.json; leakage.json; worker-claim.json; missing-as-pass.json; restored.json; summary.json"
+    },
+    {
+      "criterion": "Evidence reproduces, prior/runtime sources remain unchanged, III.7 unstarted and completed work committed locally",
+      "evidence": "evidence/reproducibility.json; documentation-checks.json; milestone 047 and local commit identity"
+    }
+  ]
+}

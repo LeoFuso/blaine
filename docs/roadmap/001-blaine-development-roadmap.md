@@ -610,12 +610,14 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
-**2026-09-23: III.5 PASS within offline deterministic experiment scope.**
-[Milestone 046](../milestones/046-track-iii-5-promotion-declassification-admission.md)
-records 560 passing checks, explicit same-domain/cross-domain admission, 54 scanner
-fault cases, unchanged source provenance/security and zero protected literals in
-114 destination exports. The fail-open control causes actual unsafe admissions and
-fails. III.2–III.4 sources remain unchanged; no production gate or real DLP is claimed.
+**2026-09-23: III.6 PASS within offline deterministic experiment scope.**
+[Milestone 047](../milestones/047-track-iii-6-verified-outcome-admission.md)
+records 1122 passing checks and 958 independent evidence checks. Trusted synthetic
+outcomes qualify success/failure candidates while incomplete observations remain
+unverified. Worker claims cannot establish success; contradictory evidence fails
+closed. Both false-success controls cause actual unsafe admissions and fail. All
+708 retrieval exports pass leakage checks. III.2–III.5 sources remain unchanged;
+no production Completion Contract or runtime integration is claimed.
 III.1 remains PASS within source-research scope. The
 [reference-systems report](../research/track-iii/001-reference-systems.md) and
 [milestone 042](../milestones/042-track-iii-1-reference-systems.md) retain current
@@ -635,7 +637,7 @@ The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-
 covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
 III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
 III.9 Novelty/Simplicity gates and III.10 durable/distributed lineage.
-III.6–III.10 remain future experiments, not implementation commitments or authorization.
+III.7–III.10 remain future experiments, not implementation commitments or authorization.
 
 **III.2 executed** the user-assigned 11-context tree with literal read/write
 oracles, forged-binding/direct-ID/malformed-input checks and an isolated mutation.
@@ -659,13 +661,20 @@ checks; human origin is not declassification, and promotion is not verification.
 Public receipts omit private source/audit data. Replay rechecks security; destination
 identifiers and visible revisions reveal only permitted activity.
 
-**Next proposal: III.6**, the
-[synthetic verified-outcome admission experiment](../../experiments/track-iii-005/README.md#exact-proposed-iii6-experiment--not-started).
-It would pair trusted synthetic outcome/evidence envelopes with hand-authored scoped
-reflection candidates, distinguish failure/unverified states, reject forged success
-and test a worker-claim mutation. **Not started; explicit authorization required.**
-Semantic abstraction assurance, production declassification authority, real scanner
-coverage and durable admission remain open. No runtime or provider adoption occurred.
+**III.6 executed** scoped reflection admission against trusted outcome/evidence
+snapshots and explicit hand-authored candidate-support pairs. Success requires all
+mandatory evidence; failure remains failure-qualified. Reflection is not promotion,
+verified status is not declassification, and replay rechecks current evidence. The
+unchanged III.5 prototype rejects the new verified-outcome provenance class; future
+promotion needs an explicit schema extension, not silent coercion.
+
+**Next proposal: III.7**, the
+[paired synthetic knowledge-utility experiment](../../experiments/track-iii-006/README.md#exact-proposed-iii7-experiment--not-started).
+It would compare 12 later Tasks with/without scoped hints under identical action and
+retrieval budgets, including irrelevant/near-match traps and a failure-as-success
+control. **Not started; explicit authorization required.** Candidate entailment,
+production evidence authority, promotion schema extension, semantic abstraction
+assurance and durable admission remain open. No runtime or provider adoption occurred.
 
 ## How to resume development
 
@@ -763,9 +772,9 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.5 promotion admission PASS; stopped at its boundary.**
-  [Evidence and proposed III.6](../../experiments/track-iii-005/README.md).
-  III.6 has not started and requires explicit authorization; no runtime changes
+- **Track III: III.6 verified outcome admission PASS; stopped at its boundary.**
+  [Evidence and proposed III.7](../../experiments/track-iii-006/README.md).
+  III.7 has not started and requires explicit authorization; no runtime changes
   or dependency adoption. Product and operational priorities below are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof

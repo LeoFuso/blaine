@@ -1,0 +1,3838 @@
+{
+  "check_count": 958,
+  "checks": [
+    {
+      "check": "all-literal-expectations",
+      "status": "PASS"
+    },
+    {
+      "check": "source-hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "accepted-prior-sources",
+      "status": "PASS"
+    },
+    {
+      "check": "restored",
+      "status": "PASS"
+    },
+    {
+      "check": "required/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/B-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "required/C-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "required/D-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "required/E-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/F-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "required/G-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/cancelled-success",
+      "status": "PASS"
+    },
+    {
+      "check": "required/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/0/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/0/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/0/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/0/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/0/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/1/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/1/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/1/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/1/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/1/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/2/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/2/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/2/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/2/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "requirement/2/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/A-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "status/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "trusted-envelope/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "all-success-evidence/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "explicit-support/A-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/B-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/B-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/B-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/B-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/B-failure/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "status/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "trusted-envelope/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-failure-evidence/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "explicit-support/B-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/C-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/C-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/C-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/C-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/C-observation/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "status/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/C-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/D-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/D-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/D-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/D-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/D-failure/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "status/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "trusted-envelope/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-failure-evidence/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "explicit-support/D-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/E-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/E-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/E-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/E-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/E-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/F-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/F-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/F-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/F-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/F-observation/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "status/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/F-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/G-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/G-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/G-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/G-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/G-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/X-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "status/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "trusted-envelope/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "all-success-evidence/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "explicit-support/X-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/cancelled-success",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/cancelled-success",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/cancelled-success",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-success/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/cancelled-success",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/cancelled-observation/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "status/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/cancelled-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/0/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/0/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/0/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/FAIL/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/0/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/0/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/0/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/0/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/MISSING/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/0/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/0/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/0/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/0/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNKNOWN/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/0/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/0/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/0/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/0/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/UNAVAILABLE/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/0/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/0/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/0/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/0/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/0/NOT_RUN/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/0/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/1/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/1/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/1/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/FAIL/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/1/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/1/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/1/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/1/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/MISSING/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/1/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/1/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/1/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/1/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNKNOWN/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/1/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/1/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/1/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/1/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/UNAVAILABLE/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/1/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/1/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/1/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/1/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/1/NOT_RUN/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/1/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/2/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/2/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/2/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/FAIL/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/2/FAIL",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/2/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/2/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/2/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/MISSING/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/2/MISSING",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/2/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/2/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/2/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNKNOWN/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/2/UNKNOWN",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/2/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/2/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/2/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/UNAVAILABLE/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/2/UNAVAILABLE",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/requirement/2/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/requirement/2/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/requirement/2/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/requirement/2/NOT_RUN/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/requirement/2/NOT_RUN",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/evidence/absent-row",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/evidence/absent-row",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/evidence/absent-row",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/absent-row/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/evidence/absent-row",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/envelope/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/envelope/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/envelope/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/missing/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/envelope/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/envelope/requirements-removed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/envelope/requirements-removed",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/envelope/requirements-removed",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/envelope/requirements-removed/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/envelope/requirements-removed",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/evidence/foreign-execution",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/evidence/foreign-execution",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/evidence/foreign-execution",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-execution/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/evidence/foreign-execution",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/evidence/foreign-domain",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/evidence/foreign-domain",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/evidence/foreign-domain",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/foreign-domain/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/evidence/foreign-domain",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/evidence/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/evidence/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/evidence/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/malformed/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/evidence/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/evidence/support-fact-missing",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/evidence/support-fact-missing",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/evidence/support-fact-missing",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/evidence/support-fact-missing/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/evidence/support-fact-missing",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/candidate/unsupported-text",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/candidate/unsupported-text",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/candidate/unsupported-text",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/candidate/unsupported-text/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/candidate/unsupported-text",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/capability/unavailable/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/security/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/security/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/security/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/unavailable/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/security/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/security/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/security/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/security/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/security/malformed/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/security/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/candidate/status",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/candidate/status",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/candidate/status",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/status/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/candidate/status",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/candidate/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/candidate/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/candidate/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/provenance/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/candidate/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/candidate/evidence_complete",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/candidate/evidence_complete",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/candidate/evidence_complete",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/evidence_complete/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/candidate/evidence_complete",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/candidate/completion",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/candidate/completion",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/candidate/completion",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/completion/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/candidate/completion",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/candidate/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/candidate/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/candidate/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/candidate/destination/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/candidate/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/request/outcome",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/request/outcome",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/request/outcome",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/outcome/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/request/outcome",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/request/execution_id",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/request/execution_id",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/request/execution_id",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/execution_id/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/request/execution_id",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/request/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/request/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/request/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/security_domain/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/request/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/request/evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/request/evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/request/evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/evidence/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/request/evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/forgery/request/parent",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/request/parent",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/forgery/request/parent",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/forgery/request/parent/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/forgery/request/parent",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-A/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "status/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "trusted-envelope/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "all-success-evidence/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "explicit-support/claim-invariance/execution-A",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/claim-invariance/execution-B",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/claim-invariance/execution-B",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/claim-invariance/execution-B",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/claim-invariance/execution-B/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "rejection-safe/claim-invariance/execution-B",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/promotion/local-only/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "status/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "trusted-envelope/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "all-success-evidence/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "explicit-support/promotion/local-only",
+      "status": "PASS"
+    },
+    {
+      "check": "immutable/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "write-count/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/parent-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/root",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/task-x",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/task-x-sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "scope/private-evidence/X/work-x",
+      "status": "PASS"
+    },
+    {
+      "check": "local-entry/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "status/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-projection/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "private-evidence-link/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "trusted-envelope/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "all-success-evidence/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "explicit-support/private-evidence/X",
+      "status": "PASS"
+    },
+    {
+      "check": "export-exact",
+      "status": "PASS"
+    },
+    {
+      "check": "independent-leak-scan",
+      "status": "PASS"
+    },
+    {
+      "check": "replay-current-inputs",
+      "status": "PASS"
+    },
+    {
+      "check": "human-separate",
+      "status": "PASS"
+    },
+    {
+      "check": "promotion-separate",
+      "status": "PASS"
+    },
+    {
+      "check": "control/worker-claim",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-unsafe-success/worker-claim",
+      "status": "PASS"
+    },
+    {
+      "check": "control/missing-as-pass",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-unsafe-success/missing-as-pass",
+      "status": "PASS"
+    },
+    {
+      "check": "summary",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

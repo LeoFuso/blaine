@@ -1,0 +1,45 @@
+{
+  "retained_sha256": {
+    "leakage.json": "0326af51dd20ff2b1eabc8dcfaadf8e75d4311a356e3a388564ea1c94633f426",
+    "missing-as-pass.json": "8af7918cac8abdeea04d6ee87c6cd9cdff450f84405eb67f52ee22087f9ca8f3",
+    "restored.json": "57606f5a65e96c486a034a1c6acdb9c49cea1ed65b0c7330378b3dc2bbaebd60",
+    "results.json": "57606f5a65e96c486a034a1c6acdb9c49cea1ed65b0c7330378b3dc2bbaebd60",
+    "retrieval-exports.json": "84680916a74a15518822e3c01ef72c56d8f3fa409de8754681a3d6de98108655",
+    "summary.json": "a8d41207ea2cf856af260b2d86496b5e0f4820614cf296a56f15b35bcdaeb980",
+    "verification.json": "39cbb515e5af8adba08332fbd321cec1440d261efa449afe51f48d21268909a4",
+    "worker-claim.json": "bdb27bbdfb17b4020f60a064b5bab3f16f596cd5000fa55d1e5133c7e7394906"
+  },
+  "runs": [
+    {
+      "byte_equal": {
+        "leakage.json": true,
+        "missing-as-pass.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "retrieval-exports.json": true,
+        "summary.json": true,
+        "verification.json": true,
+        "worker-claim.json": true
+      },
+      "hash_seed": "1",
+      "probe_exit": 0,
+      "verify_exit": 0
+    },
+    {
+      "byte_equal": {
+        "leakage.json": true,
+        "missing-as-pass.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "retrieval-exports.json": true,
+        "summary.json": true,
+        "verification.json": true,
+        "worker-claim.json": true
+      },
+      "hash_seed": "97",
+      "probe_exit": 0,
+      "verify_exit": 0
+    }
+  ],
+  "status": "PASS"
+}
