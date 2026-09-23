@@ -15,7 +15,7 @@
   "task_state_unchanged": true,
   "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
   "wsl_candidate": "PASS live with detailed diagnostic-MTU/native-home reports; operator also confirmed PASS for requested normal-launch automatic-MTU candidate 478a0f1. New host logs corroborate complete binary/ACP sessions; exact latest client metadata/MTU-source report not supplied.",
-  "jetbrains_candidate": "Real Mac alpha.3 direct ACP handshake confirmed; valid session rejected one text plus one resource_link. Host baseline-content correction passes 26 host regressions and actual SDK/direct fixture relay; corrected real IDE repeat pending.",
+  "jetbrains_candidate": "Mac alpha.3 real IDE prompt/response exchange confirmed by operator and direct host handshake. Host correction 2949105 accepts baseline resource links as inert context; greeting reaches existing D2 control help. Read-only durable control operation through IDE remains pending.",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "v0.1.0-alpha.3 PUBLISHED from 1d718a18582d3a82635131d16f8c8d171d193759; bounded ACP envelope correction; E0.C still PARTIAL",
   "e0d": "BLOCKED",

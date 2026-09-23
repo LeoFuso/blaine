@@ -1,5 +1,5 @@
 {
-  "status": "PARTIAL_LIVE_IDE_PROMPT_REJECTED",
+  "status": "PARTIAL_LIVE_IDE_CONTROL_HELP_RECEIVED",
   "release": "v0.1.0-alpha.3",
   "release_source": "1d718a18582d3a82635131d16f8c8d171d193759",
   "operator_report": "Installed public client, selected Blaine in IntelliJ, sent hello, received Unknown session or non-text request.",
@@ -25,7 +25,7 @@
   },
   "controlled_task_unchanged": true,
   "scope": "No client binary/installer/release, transport authorization, Task lifecycle or workspace capability changes.",
-  "next_action": "Restart IntelliJ, open a new Blaine session and retry a text control prompt with normal IDE context.",
+  "next_action": "Send the existing controlled Task inspect command in the current IDE chat; no reinstall or restart is needed.",
   "e0c": "PARTIAL",
   "e0d": "BLOCKED",
   "followup": {
@@ -57,5 +57,18 @@
     },
     "source": "https://agentclientprotocol.com/protocol/v1/initialization",
     "release": "Public alpha.3 binary/installer/assets unchanged; host-only correction requires a fresh ACP process."
+  },
+  "corrected_live_repeat": {
+    "operator_report": "The real IntelliJ session displayed the unused-resource-link notice followed by the existing Use summarize/decision/inspect control help error.",
+    "host_revision": "2949105",
+    "host_handshake": {
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "fb11d8f1eda0e19c580e450cc2bc9dcd",
+      "mode": "acp",
+      "outcome": "OK"
+    },
+    "result": "PASS bounded real IDE prompt/response exchange: baseline resource-link context no longer prevents the text from reaching the existing command parser.",
+    "limit": "Greeting is not a supported D2 control command, so help remains an application error. No general conversation/coding behavior or successful durable control operation is claimed.",
+    "next_gate": "Read-only inspect of the existing controlled WAITING Task through this real IDE session."
   }
 }

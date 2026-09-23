@@ -290,6 +290,15 @@ and cleanup through the direct fixture relay. This is host-only code: the public
 alpha.3 client/installer and release assets remain unchanged. A fresh real IDE
 session is still required to validate the corrected path; no E0.D/E1 work is added.
 
+The corrected real Mac repeat then displayed the explicit unused-context notice
+followed by the existing D2 command help. The host independently recorded a fresh
+ACP handshake from the designated Mac. This proves a bounded real IDE prompt and
+response exchange through the direct Hub, with resource-link input no longer
+blocking the command parser. A greeting is not a D2 command, so the help is still
+returned as an application error; this is not evidence of general conversation or
+a successful Task operation. The next bounded check is read-only inspection of the
+existing controlled WAITING Task from the same IDE session. E0.C remains PARTIAL.
+
 ## Identity and policy lifecycle
 
 Private storage: `direct-v1/identity.key` (0600 Ed25519 seed), `tsnet/` (0700 and
