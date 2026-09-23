@@ -116,6 +116,25 @@ validate NoveltyGate. Ranking, chunking/noise and conservative fallback need fur
 research before gate use. III.9 remains unstarted; historical proposals below retain
 their III.1 scope. No earlier increment's result has been rewritten.
 
+## III.8R selection and fallback recovery — 2026-09-23
+
+[III.8R](../../milestones/050-track-iii-8r-narrow-consumption-recovery.md) is **PASS**
+on unchanged III.8 sources, queries, oracles and broad candidate sets. III.8 remains
+FAIL. A single predeclared policy independently validates contributions before fusion,
+deduplicates authoritative targets, uses rank-based RRF, preserves exact lexical
+matches, defers repeated source-text families and compacts shared packet metadata.
+Three additional required targets per revision survive 2 KiB final consumption;
+stale derived contributions no longer suppress fresh lexical evidence. Three isolated
+mutations cause independently detected stale, forbidden and missing-fallback results.
+
+Selection and discovery are different obligations. Index contributions retain their
+own validity until fusion; one stale provenance path must not poison a fresh one.
+Source-family diversity is a budget heuristic, not proof of equivalent contracts.
+Structural incremental retrieval utility remains UNPROVEN on this corpus even though
+its extraction/security/freshness composition holds. Known-corpus recovery does not
+establish broad generalization, snippet adequacy or production adoption. III.9 remains
+unstarted and requires separate authorization; no earlier result is rewritten.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

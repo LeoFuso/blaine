@@ -1,0 +1,49 @@
+{
+  "autonomy": {
+    "allowed": [
+      "one frozen recovery evaluation",
+      "isolated mutation controls",
+      "minimal docs/navigation updates",
+      "local commit"
+    ],
+    "forbidden": [
+      "III.9 or later execution",
+      "production/runtime/model routing changes",
+      "persistent dependency adoption",
+      "cloud calls",
+      "automatic reflection or promotion changes",
+      "push or merge",
+      "modifying III.8 assets",
+      "ranking tuning after outcomes",
+      "model or service calls"
+    ]
+  },
+  "capabilities": [
+    "read retained III.8 assets",
+    "write bounded III.8R experiment and documentation",
+    "local commit"
+  ],
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Original gates independently checked with one predeclared policy and unchanged baseline; all three defect controls detected",
+      "evidence": "policy.json; frozen-assets.json; evidence/verification.json; evidence/controls.json"
+    }
+  ],
+  "context": [
+    {
+      "need": "Accepted III.1\u2013III.7 research and experiment boundaries",
+      "sharing": "local-only",
+      "source": "git:4705592"
+    },
+    {
+      "need": "Frozen synthetic workspace/query/oracle fixtures",
+      "sharing": "local-only",
+      "source": "experiments/track-iii-008/protocol.json"
+    }
+  ],
+  "mode": "interactive",
+  "objective": "Execute one frozen III.8R selection/fallback recovery using unchanged III.8 sources, queries, oracles, candidates and thresholds; retain honest outcome and commit locally."
+}

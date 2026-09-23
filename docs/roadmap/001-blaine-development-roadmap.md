@@ -610,11 +610,17 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
-**2026-09-23: III.8 FAIL under frozen workspace-discovery thresholds.**
+**2026-09-23: III.8R PASS on the original frozen III.8 corpus and thresholds.**
+[Milestone 050](../milestones/050-track-iii-8r-narrow-consumption-recovery.md) records
+three additional required targets per revision with one predeclared recovery policy,
+all exact hits preserved, fresh fallback restored and three caught mutations.
+Complete responses remain within 2048 bytes. III.9 is unstarted.
+
+**III.8 remains FAIL under its frozen workspace-discovery thresholds.**
 [Milestone 049](../milestones/049-track-iii-8-workspace-discovery.md) records one
 distinct non-lexical gain per revision, below two; exact hits, freshness, isolation
 and corrected full-response budget pass. The canonical reuse target was missed.
-A separately authorized III.8 follow-up is recommended; III.9 remains unstarted.
+Its separately authorized III.8R follow-up is recorded below; III.8 evidence is unchanged.
 
 **III.7 remains PASS within the fixed synthetic local-model workload.**
 [Milestone 048](../milestones/048-track-iii-7-learned-memory-utility.md) records two
@@ -690,12 +696,23 @@ appears with enforcement; both leakage mutations are caught. Complete responses 
 2048 bytes after a documented budget-only correction. Stale derived candidates can
 also suppress fresh lexical fallback in the conservative merged-candidate design.
 
-**Next recommendation:** separately authorize an III.8 follow-up on selection quality
-and independent freshness before relying on discovery for gates. The
-[exact III.9 proposal](../../experiments/track-iii-008/README.md#exact-proposed-iii9-experiment--not-started)
-compares bounded novelty/simplicity advice for duplicate, legitimate and near-match
-abstraction proposals. **III.9 is not started.** No production dependency or runtime
-adoption occurred; all historical III.1–III.7 results retain their original scope.
+**III.8R executed** one frozen recovery policy against exactly the retained III.8
+candidate sets, queries, oracles, sources and lexical baseline. Per-contribution
+validation precedes fusion, target deduplication preserves provenance, RRF uses k=60,
+source-family diversity defers repetitive declarations and compact shared metadata
+fits the complete envelope. Semantic coverage is 1/4 → 4/4 in both revisions, with
+three distinct gained targets each; exact 4/4 and structural 8/8 are preserved. No
+post-outcome ranking tuning occurred. Fresh lexical fallback retains all four exact
+hits against stale derived data. Freshness, isolation and late-invalidation mutations
+are caught. Structural incremental retrieval utility remains unproven on this corpus.
+
+**Next recommendation:** III.9 may now be separately authorized as a bounded advisory
+experiment. The [exact proposal](../../experiments/track-iii-008r/README.md#interpretation-and-recommendation)
+compares novelty/simplicity advice for 12 duplicate, legitimate and near-match
+abstraction proposals under equal local-model/action budgets and current 2 KiB
+packets. Source-family diversity is not semantic equivalence or edit-blocking
+permission. **III.9 is not started.** No production dependency or runtime adoption
+occurred; historical III.1–III.8 results retain their original scope.
 
 ## How to resume development
 
@@ -793,10 +810,10 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.8 workspace discovery FAIL; stopped at its boundary.**
-  [Evidence and conditional III.9 proposal](../../experiments/track-iii-008/README.md).
-  Recommend separately authorized III.8 follow-up; III.9 remains unstarted. No
-  runtime/dependency adoption. Product and operational priorities below are unchanged.
+- **Track III: III.8R bounded recovery PASS; III.8 FAIL preserved.**
+  [Evidence and III.9 proposal](../../experiments/track-iii-008r/README.md).
+  III.9 may be separately authorized but remains unstarted. No runtime/dependency
+  adoption. Product and operational priorities below are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux

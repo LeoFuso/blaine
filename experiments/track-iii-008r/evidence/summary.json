@@ -1,0 +1,149 @@
+{
+  "III_8_status": "FAIL",
+  "III_9_started": false,
+  "aggregate": [
+    {
+      "gained_targets": [
+        "personal/book.py::StampBook",
+        "personal/gate.py::WindowGate",
+        "personal/identity.py::HandleFold"
+      ],
+      "groups": {
+        "LEXICAL": {
+          "baseline": 4,
+          "recovery": 4,
+          "required": 4,
+          "unique_gains": []
+        },
+        "SEMANTIC": {
+          "baseline": 1,
+          "recovery": 4,
+          "required": 4,
+          "unique_gains": [
+            "personal/book.py::StampBook",
+            "personal/gate.py::WindowGate",
+            "personal/identity.py::HandleFold"
+          ]
+        },
+        "STRUCTURAL": {
+          "baseline": 8,
+          "recovery": 8,
+          "required": 8,
+          "unique_gains": []
+        }
+      },
+      "revision": "A",
+      "unique_nonlexical_gain": 3
+    },
+    {
+      "gained_targets": [
+        "personal/book.py::StampBook",
+        "personal/gate.py::AttemptFence",
+        "personal/identity.py::IdentityFold"
+      ],
+      "groups": {
+        "LEXICAL": {
+          "baseline": 4,
+          "recovery": 4,
+          "required": 4,
+          "unique_gains": []
+        },
+        "SEMANTIC": {
+          "baseline": 1,
+          "recovery": 4,
+          "required": 4,
+          "unique_gains": [
+            "personal/book.py::StampBook",
+            "personal/gate.py::AttemptFence",
+            "personal/identity.py::IdentityFold"
+          ]
+        },
+        "STRUCTURAL": {
+          "baseline": 8,
+          "recovery": 8,
+          "required": 8,
+          "unique_gains": []
+        }
+      },
+      "revision": "B",
+      "unique_nonlexical_gain": 3
+    }
+  ],
+  "canonical": [
+    {
+      "canonical_identity": [
+        "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+        "personal/identity.py",
+        "HandleFold",
+        1
+      ],
+      "entry_bytes": 162,
+      "fused_rank": 15,
+      "included": true,
+      "original_broad_rank": 16,
+      "original_mechanism_ranks": {
+        "LEXICAL": 15,
+        "SEMANTIC": 16,
+        "STRUCTURAL": null
+      },
+      "revision": "A",
+      "selection_rank": 4,
+      "target": "personal/identity.py::HandleFold",
+      "validation": [
+        {
+          "mechanism": "LEXICAL",
+          "reasons": []
+        },
+        {
+          "mechanism": "SEMANTIC",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "canonical_identity": [
+        "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+        "personal/identity.py",
+        "IdentityFold",
+        1
+      ],
+      "entry_bytes": 164,
+      "fused_rank": 15,
+      "included": true,
+      "original_broad_rank": 16,
+      "original_mechanism_ranks": {
+        "LEXICAL": 15,
+        "SEMANTIC": 18,
+        "STRUCTURAL": null
+      },
+      "revision": "B",
+      "selection_rank": 4,
+      "target": "personal/identity.py::IdentityFold",
+      "validation": [
+        {
+          "mechanism": "LEXICAL",
+          "reasons": []
+        },
+        {
+          "mechanism": "SEMANTIC",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "controls": {
+    "fallback_mutation_caught": true,
+    "freshness_mutation_caught": true,
+    "isolation_mutation_caught": true,
+    "restored_equal": true,
+    "safe_fallback": true
+  },
+  "forbidden": 0,
+  "max_complete_bytes": 2047,
+  "model_calls": 0,
+  "ranking_adjustments_after_outcomes": 0,
+  "stale": 0,
+  "status": "PASS",
+  "structural_incremental_utility": "UNPROVEN",
+  "task_submitted": false
+}

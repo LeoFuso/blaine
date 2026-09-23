@@ -1,0 +1,12 @@
+{
+  "files": {
+    "POLICY.md": "c330545fc19d91c8c16747cc4d5104aca74b94b66f05853728d8c8c2137a1749",
+    "check.py": "f653743c6c565660806ebaf3c9a7fa07c04842e1f1a8a576868eb42c51097a00",
+    "frozen-assets.json": "8ffc1bbb4713bcae146b093a224e0cc66f6a7a6f664a7b8b1b66b6e9f34b08fb",
+    "policy.json": "941e8a5ab641828e24e42f6793a0bd52e49c00d76f41e3898a762bfad79095d8",
+    "recover.py": "86824c2e5c0fd38af122a994ec046a1ee317376f1c8fa35998d3a9712bdd0305",
+    "run.py": "62ed9cf5022646782a602f9af135abe69eaa3d879840b5ccc2b2a236c2a23de4"
+  },
+  "frozen_at_utc": "2026-09-23T18:54:52.661745+00:00",
+  "prior_recovery_comparisons": 0
+}
