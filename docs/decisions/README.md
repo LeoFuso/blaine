@@ -119,3 +119,6 @@ ADR’s own status before treating it as an accepted constraint.
 - [ADR 0023 — Runtime Secret Delivery and Materialization](0023-runtime-secret-delivery-and-materialization.md)
   fixes Bitwarden as source of truth and removes the secret manager from the
   runtime path; operations live in the [secrets runbook](../platform-secrets.md).
+- [ADR 0024 — Routing ground truth comes from a restricted replay, not a judge](0024-routing-ground-truth-from-restricted-replay.md)
+  is **Proposed**: it decides how "local would have sufficed" is measured, and
+  deliberately leaves the routing policy to cost-to-success work.
