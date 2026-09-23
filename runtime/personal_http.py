@@ -16,6 +16,13 @@ Endpoints:
                     → returns artifact content
     POST /respond   {"task_id": "...", "response": "YES"}
                     → submits a human decision response
+    GET  /task/<id>/events?after=<seq>
+                    → read-only projection of the deployment's retained
+                      ExecutionEvent log (events.jsonl, written by the kernel
+                      journal, never by this bridge) filtered to the Task.
+                      The cursor is the 0-based line index; "after" is
+                      exclusive. The bridge owns no state: it only tails an
+                      existing append-only log.
     GET  /health    → {"status": "ok"}
 
 Transport only. The PersonalAgent + Restate remain authoritative.
@@ -35,6 +42,51 @@ from runtime.kernel.contracts import identifier, text as bounded_text, MAX_PACKE
 INGRESS = os.environ.get('BLAINE_D2_INGRESS', 'http://127.0.0.1:48080')
 HOST = '127.0.0.1'
 PORT = int(os.environ.get('BLAINE_PERSONAL_HTTP_PORT', '48090'))
+# Retained ExecutionEvent log written by the D2 kernel journal
+# (personal_runtime.py wires JsonlEventPublisher). Read-only projection source
+# for /task/<id>/events; the bridge never writes, orders, or owns these.
+EVENTS_FILE = os.environ.get('BLAINE_D2_EVENTS_FILE', '')
+
+
+def read_task_events(task_id: str, after: int) -> dict:
+    """Read-only tail of the retained event log, filtered to one Task.
+
+    The log is an append-only JSONL written by the kernel journal; line
+    position is a stable cursor for this deployment's single log. A missing
+    log yields an empty projection (the endpoint degrades, it does not fail).
+    SENSITIVE records are never projected: only closed NORMAL metadata is
+    surfaced, so no prompt/response/model-content ever leaves the deployment.
+    """
+    identifier(task_id)
+    if type(after) is not int or after < 0:
+        raise ValueError('after must be a non-negative integer line cursor')
+    if not EVENTS_FILE or not os.path.exists(EVENTS_FILE):
+        return {'task_id': task_id, 'after': after, 'next': 0, 'events': []}
+    events = []
+    seq = 0
+    with open(EVENTS_FILE, 'r', encoding='utf-8') as handle:
+        for line in handle:
+            line = line.strip()
+            if not line:
+                continue
+            seq += 1
+            if seq <= after:
+                continue
+            try:
+                record = json.loads(line)
+            except json.JSONDecodeError:
+                continue  # Trailing partial write; the cursor keeps advancing
+            if record.get('task_id') == task_id and record.get('sensitivity') == 'NORMAL':
+                events.append({
+                    'seq': seq,
+                    'event_type': record.get('event_type'),
+                    'step_id': record.get('step_id'),
+                    'outcome': record.get('outcome'),
+                    'iteration': (record.get('payload') or {}).get('iteration'),
+                    'occurred_at': record.get('occurred_at'),
+                    'producer': record.get('producer', {}).get('component'),
+                })
+    return {'task_id': task_id, 'after': after, 'next': seq, 'events': events}
 
 # Singleton — created once, shared across handler threads.
 _control: PersonalAgent | None = None
@@ -67,8 +119,30 @@ class BridgeHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.path == '/health':
             self._json(200, {'status': 'ok'})
+        elif self.path.startswith('/task/') and '/events' in self.path:
+            self._task_events()
         else:
             self._json(404, {'error': 'Not found'})
+
+    def _task_events(self):
+        parts = urlsplit(self.path)
+        segments = [p for p in parts.path.split('/') if p]
+        # Expected shape: task, <task_id>, events
+        if len(segments) != 3 or segments[0] != 'task' or segments[2] != 'events':
+            self._json(400, {'error': 'Expected /task/<id>/events'})
+            return
+        try:
+            after = 0
+            if parts.query:
+                for pair in parts.query.split('&'):
+                    key, _, value = pair.partition('=')
+                    if key == 'after':
+                        after = int(value)
+            self._json(200, read_task_events(segments[1], after))
+        except ValueError as error:
+            self._json(400, {'error': str(error)})
+        except OSError:
+            self._json(503, {'error': 'Event log unavailable'})
 
     def do_POST(self):
         length = int(self.headers.get('Content-Length', 0))

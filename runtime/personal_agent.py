@@ -58,12 +58,17 @@ def local_summary_request(objective, marker, limit_words):
     identifier(marker)
     if type(limit_words) is not int or limit_words < 1 or limit_words > 40:
         raise ValueError('Expected a bounded summary word limit (1..40)')
+    # The user-visible requested bound and the verifier-enforced bound are the
+    # same number: the instruction states "at most {limit_words} words" and the
+    # local_model_summary verifier checks the answer against exactly that bound
+    # (the model must keep the marker inside the summary, which is why the
+    # instruction ends with it). No silent drift between request and contract.
     instruction = (f'Summarize the following material in at most {limit_words} words: {objective} '
                    f'End your summary with the exact marker: {marker}')
     spec = message('TaskSpec', {'objective': instruction,
         'completion': [{'criterion': 'Local-model summary of the material, marker present, bounded length',
             'evidence': {'artifact': 'answer', 'verifier': 'local_model_summary',
-                         'objective': objective, 'marker': marker, 'max_words': limit_words + 5}}],
+                         'objective': objective, 'marker': marker, 'max_words': limit_words}}],
         'capabilities': ['artifact.write', 'artifact.read'],
         'autonomy': {'allowed': ['artifact.write', 'artifact.read']}})
     # A bare TaskSpec (no initial_action) so the kernel calls its cognition

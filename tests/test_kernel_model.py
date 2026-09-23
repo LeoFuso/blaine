@@ -6,7 +6,7 @@ from unittest.mock import Mock
 from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.context import reconstruct
 from runtime.kernel.contracts import message, MAX_PACKET
-from runtime.kernel.model import LocalModelCognition, decision_schema
+from runtime.kernel.model import LocalModelCognition, decision_schema, strip_fenced_json, strict_json
 from test_kernel import spec, state, decision
 
 
@@ -72,3 +72,64 @@ class ModelBoundary(unittest.TestCase):
         actions = schema['properties']['payload']['properties']['next_action']['anyOf']
         self.assertEqual({x['properties']['type']['const'] for x in actions},
                          {'INVOKE_CAPABILITY','HANDOFF','SPAWN_TASK','WAIT','COMPLETE'})
+
+class StripFencedJsonTests(unittest.TestCase):
+    """UI-2.6: markdown-fence normalization must stay fail-closed.
+
+    Only an exact outer fence around the complete payload may be removed;
+    prose-wrapped JSON and fenced-invalid-JSON must be left untouched so the
+    existing strict CognitiveDecision parser rejects them.
+    """
+
+    def test_clean_json_passes_through_unchanged(self):
+        content = '{"task_id": "task-a", "turn_id": "task-a/1", "action": {"type": "WAIT"}}'
+        self.assertEqual(strip_fenced_json(content), content)
+
+    def test_exact_json_fenced_payload_is_unwrapped(self):
+        unwrapped = strip_fenced_json('```json\n{"a": 1}\n```')
+        self.assertEqual(unwrapped, '{"a": 1}')
+
+    def test_exact_plain_fenced_payload_is_unwrapped(self):
+        self.assertEqual(strip_fenced_json('```\n{"a": 1}\n```'), '{"a": 1}')
+
+    def test_fenced_with_surrounding_whitespace_is_unwrapped(self):
+        self.assertEqual(strip_fenced_json('  ```json\n{"a": 1}\n```  '), '{"a": 1}')
+
+    def test_prose_before_fenced_json_rejected_unchanged(self):
+        content = 'Here is the result:\n```json\n{"a": 1}\n```'
+        self.assertEqual(strip_fenced_json(content), content)
+        with self.assertRaises(ValueError):
+            strict_json(content)
+
+    def test_prose_after_fenced_json_rejected_unchanged(self):
+        content = '```json\n{"a": 1}\n```\nHope this helps.'
+        self.assertEqual(strip_fenced_json(content), content)
+        with self.assertRaises(ValueError):
+            strict_json(content)
+
+    def test_inner_fence_text_is_stripped_payload_valid(self):
+        # A fence character inside a string value does not terminate the outer
+        # fence; the complete payload must still be strict JSON.
+        content = '```json\n{"a": "```"}\n```'
+        self.assertEqual(strip_fenced_json(content), '{"a": "```"}')
+        strict_json('{"a": "```"}')
+
+    def test_fenced_invalid_json_not_unwrapped(self):
+        content = '```json\n{bad}\n```'
+        self.assertEqual(strip_fenced_json(content), content)
+        with self.assertRaises(ValueError):
+            strict_json(content)
+
+    def test_non_fenced_content_untouched(self):
+        for content in ('', '   ', 'no fence here', '{"a": 1} trailing'):
+            self.assertEqual(strip_fenced_json(content), content)
+
+    def test_fence_marker_only_variants(self):
+        self.assertEqual(strip_fenced_json('```json\n{}\n```'), '{}')
+        self.assertEqual(strip_fenced_json('```\n{}\n```'), '{}')
+        # Wrong info string is not a JSON fence -> untouched, strict parse fails.
+        self.assertEqual(strip_fenced_json('```python\n{}\n```'), '```python\n{}\n```')
+
+
+if __name__ == '__main__':
+    main()

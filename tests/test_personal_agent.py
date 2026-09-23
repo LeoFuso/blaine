@@ -8,7 +8,7 @@ from acp.schema import ClientCapabilities, FileSystemCapabilities
 from runtime.kernel.contracts import accept_task_request, message
 from runtime.kernel.execution import policy_gate
 from runtime.kernel.workspace import validate_read, validate_read_result
-from runtime.personal_agent import ControlRejected, PersonalAgent, RestateBinding, decision_request, small_request, task_identity
+from runtime.personal_agent import ControlRejected, PersonalAgent, RestateBinding, decision_request, local_summary_request, small_request, task_identity
 from runtime.personal_acp import PersonalACP
 from runtime.task import summarize_objective
 from runtime.kernel.contracts import encode
@@ -23,6 +23,26 @@ class Controls(unittest.TestCase):
         self.assertEqual(action['capability'], 'text.stats')
         self.assertEqual(hashlib.sha256(encode(summarize_objective(action['input']['text']))).hexdigest(),
                          spec['completion'][0]['evidence']['sha256'])
+
+    def test_local_summary_request_binds_the_requested_word_limit_exactly(self):
+        """UI-2.6: the user-visible requested bound equals the verifier-enforced bound."""
+        raw = local_summary_request('Material that needs a summary', 'BLAINE_OK', 40)
+        spec, _ = accept_task_request(raw, task_identity('key'))
+        evidence = spec['completion'][0]['evidence']
+        objective = spec['objective']
+        # The requested bound is what the objective states to the model.
+        self.assertIn('at most 40 words', objective)
+        # The enforced bound is what the CompletionVerifier checks.
+        self.assertEqual(evidence['max_words'], 40)
+        # No hidden drift (e.g. +5 slack) between request and contract.
+        self.assertNotIn('45', objective)
+
+    def test_local_summary_request_word_limit_is_bounded(self):
+        local_summary_request('material', 'M', 1)
+        local_summary_request('material', 'M', 40)
+        for bad in (0, -1, 41, '40', None):
+            with self.assertRaises(ValueError):
+                local_summary_request('material', 'M', bad)
 
     def test_capability_is_not_authority(self):
         raw = small_request('x')
