@@ -2,8 +2,8 @@
 
 The operator selected embedded tsnet plus a direct Blaine application transport on
 2026-09-23. Implementation and [evidence](../../experiments/personal-agent-hub/e0c-direct/README.md)
-are **PARTIAL**; designated Mac transport probes passed, but OS-signal cleanup
-requires a corrected-candidate repeat and WSL acceptance remains pending. This supersedes
+are **PARTIAL**; designated Mac transport/ACP probes and corrected OS-signal cleanup
+passed, while WSL and integrated acceptance remain pending. This supersedes
 the previous SSH product-transport contract, retained in Git and the
 [prior E0.C evidence](../../experiments/personal-agent-hub/e0c/README.md). Tailscale
 SSH is still useful for administration. Protocol version 1 is pre-stability: the

@@ -1,6 +1,6 @@
 {
   "status": "PARTIAL",
-  "scope": "Direct candidate implementation, real host runtime and two designated macOS transport runs; OS-signal defect under correction",
+  "scope": "Direct candidate implementation, real host runtime and passing designated macOS direct transport/ACP signal batch; WSL and integrated acceptance remain pending",
   "go": "1.27.1",
   "tsnet": "1.102.4",
   "websocket": "1.8.15",
@@ -13,12 +13,13 @@
   },
   "local_actual_acp": "initialize, new session, EOF and abrupt disconnect passed through fixture transport",
   "task_state_unchanged": true,
-  "macos_candidate": "PARTIAL: stable identity, signed handshake, 1 MiB binary duplex, protocol cancellation/deadline/reconnect/disconnect and remote ACP passed twice; OS SIGINT cleanup failed",
+  "macos_candidate": "PASS transport/ACP signal batch on commit 77a974c31b622983bc24c7316e690d4caeafca3c; signed handshake, 1 MiB binary duplex, protocol cancel/deadline/reconnect/disconnect, remote ACP and SIGINT/SIGTERM exit 130",
   "wsl_candidate": "PENDING",
   "jetbrains_candidate": "PENDING",
   "effective_narrow_tailnet_policy": "PENDING",
   "new_release": "NOT_PUBLISHED",
   "e0d": "BLOCKED",
-  "task_independence_macos": "PASS bounded live evidence: same controlled Restate Task remains WAITING with identical authoritative state after macOS script termination",
-  "stdio_correction": "PASS local Linux inherited-descriptor regressions/race/vet and four-target reproducible builds; live Mac repeat PENDING"
+  "task_independence_macos": "PASS bounded live evidence: controlled Restate Task remains WAITING with identical authoritative state after both successful Mac ACP signal terminations",
+  "stdio_correction": "PASS local Linux regression suite and four-target builds; PASS designated macOS arm64 live signal batch",
+  "macos_identity": "PASS reuse across process restarts and dadb3c5 -> 77a974c binary replacement; reboot/revocation pending"
 }

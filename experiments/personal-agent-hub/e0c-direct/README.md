@@ -52,10 +52,10 @@ new session correlation and the same installation/node; requests are not replaye
 | Identity | PASS fixture | Signed server identity, client proof, wrong key/node/protocol, replay/reflection and UNKNOWN dependency rejection; exclusive/private state and stable key/node baseline. |
 | Actual installed PersonalACP subprocess over new relay | PASS local integration | Real Python ACP SDK/runtime initialize + session/new + EOF cleanup over loopback fixture transport; no remote peer or Task claim. |
 | Host readiness entrypoint | PASS live host | Existing runtime handlers/deployment, configured generation/embedding models, and one bounded read-only semantic MIRIX query. No returned memory content retained. |
-| macOS production candidate | PARTIAL live | Two runs on the designated Mac reused the same node/application identity; signed handshake, 1 MiB duplex stream, protocol cancellation/deadline/reconnect/disconnect and actual remote ACP passed. Subsequent OS SIGINT cleanup failed; correction requires a live repeat. |
+| macOS production candidate | PASS live transport/ACP signal batch | Corrected commit `77a974c` passed two direct runs and real remote ACP SIGINT/SIGTERM exit 130. Node/application identity survived process restarts and binary replacement from `dadb3c5`. JetBrains, reboot/revocation and policy gates remain separate. |
 | WSL production candidate | PENDING | Earlier spike reachability/identity evidence remains valid only for its recorded scope. |
 | Real Blaine JetBrains launch/auth | PENDING | Windows IDE opens a WSL project. Candidate uses `wsl.exe --distribution Ubuntu --exec … blaine acp`; actual stdio/location must be measured. |
-| Task independence | PASS bounded live Mac + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect and after the Mac acceptance script terminated its ACP process. This proves preservation of that Task, not continued execution of an active inference workload. |
+| Task independence | PASS bounded live Mac + local runtime | The same controlled Restate Task remained WAITING with identical authoritative state after local fixture disconnect, the initial Mac failure, and both successful Mac ACP signal terminations. This proves preservation of that Task, not continued execution of an active inference workload. |
 | Effective narrow tailnet ACL / revocation / reboot | PENDING | Intended policy below; no tailnet policy mutation or administrative revocation claimed. |
 
 The first native readiness run exposed an empty successful `/health` response
@@ -86,11 +86,21 @@ output, including remote exit. It restores descriptor flags and leaves the origi
 descriptors open. The existing E0.A child descriptor/process-group path is unchanged.
 Regression coverage exercises the compiled client with inherited pipes and a named
 FIFO, both signals while input remains open, and blocked output. Relay fixtures also
-exercise remote exit/disconnect with open blocking input. Mac runtime verification
-of this correction remains pending; no new prerelease is published.
+exercise remote exit/disconnect with open blocking input. The designated Mac then
+passed both signals using the corrected candidate; no new prerelease is published.
 The [correction validation](stdio-fix-validation.json) records the passing complete
 local client CI suite, six inherited-stdio signal cases and four reproducible
-target builds. This is not a new GitHub Actions run or Mac runtime result.
+target builds. This is not a new GitHub Actions run.
+
+The [corrected Mac live batch](macos-direct-signal-pass.json) records candidate
+`77a974c31b622983bc24c7316e690d4caeafca3c`, checksum verification, two successful
+1 MiB binary/handshake/ACP runs, and real ACP sessions before SIGINT/SIGTERM. Both
+processes exited 130 within the script bound; `blaine: context canceled` appeared
+only on stderr. The same node `nEEbpyYWN921CNTRL` and workstation ID survived the
+binary upgrade. The [subsequent authoritative Task read](task-after-macos-signals.json)
+matches the pre-test state exactly. `doctor` correctly remained NOT_READY: it does
+not probe connectivity, and E0.D registration and integrated onboarding are absent.
+This is operator-supplied live workstation evidence, distinct from local fixtures.
 
 ## Identity and policy lifecycle
 
@@ -101,7 +111,8 @@ changes against an existing receipt fail closed. State must remain in the native
 user home; do not put WSL credentials on a shared Windows download mount.
 
 The application identity and tsnet node are stable across ordinary process/binary
-replacement. Reboot and a production-candidate upgrade remain live gates. The spike
+replacement. Mac production-candidate binary upgrade reuse is now measured; reboot
+and WSL candidate lifecycle remain live gates. The spike
 already measured node reuse across Mac binary revisions; that is not silently
 promoted into candidate evidence. Loss/copy of credentials requires revocation;
 filesystem permissions do not protect against a compromised same-user process.
@@ -137,8 +148,8 @@ must authorize only the two designated product installations. The experimental
 spike nodes are not silently imported or deleted. No additional download is needed
 for that review. [OPERATOR.md](OPERATOR.md) contains the subsequent exact IDE entries.
 
-Still required: corrected Mac signal acceptance and WSL reports; half-open/revocation behavior on
-those platforms; reboot/upgrade identity observation; host deployment persistence;
+Still required: WSL reports; half-open/revocation behavior on
+those platforms; reboot and WSL upgrade identity observation; host deployment persistence;
 least-privilege policy evidence; real JetBrains launch/auth; and the unrelated durable
 Task surviving session termination. Do not publish another prerelease or call E0.C
 PASS before its live gates pass. E0.D remains blocked and is the next canonical slice
@@ -146,7 +157,8 @@ only after E0.C acceptance. E0.E/F still own full onboarding/configuration accep
 
 Retained observations: [host readiness](host-readiness.json), [real ACP subprocess](installed-acp.txt),
 [Task before](task-before.json), [Task after local disconnect](task-after-local-disconnect.json),
-[Task after Mac termination](task-after-macos-disconnect.json), and [summary](summary.json).
+[Task after initial Mac termination](task-after-macos-disconnect.json),
+[Task after corrected Mac signals](task-after-macos-signals.json), and [summary](summary.json).
 The controlled Task remains at its human wait for the
 designated-workstation comparisons; it is not the implementation Task.
 
