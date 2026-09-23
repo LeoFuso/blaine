@@ -13,6 +13,23 @@ memory provenance, staged reflection/consolidation, and measurable workflow
 quality. Their upstream execution and security assumptions cannot simply become
 Blaine's assumptions.
 
+## Accepted refinement before III.3 — 2026-09-23
+
+This addendum records a newly accepted requirement; the III.1 research and III.2
+results did not test it. Humans may directly declare knowledge, preferences,
+constraints and procedures into an explicitly authorized bounded context. Trusted
+code assigns USER_DECLARATION provenance from the human caller boundary. Agent
+writes receive AGENT_OBSERVATION provenance; arbitrary payload fields cannot forge
+human origin or elevate authority. Human declaration is an authorized direct write,
+**not promotion** of knowledge from a child. Both kinds use the same generic tree
+and visibility rules; neither makes memory authoritative evidence or grants execution
+permissions. No full preference/conflict system is implied.
+
+[III.3's milestone](../../milestones/044-track-iii-3-continuous-memory-capability.md)
+records the bounded test of this refinement. The historical proposals and statuses
+below remain the III.1 checkpoint; the [roadmap](../../roadmap/001-blaine-development-roadmap.md#track-iii--hierarchical-context-memory--verified-learning)
+owns current sequencing.
+
 ## 1. Scope, method and evidence
 
 Hypothesis III.1: existing systems contain separable mechanisms that can support

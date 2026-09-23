@@ -610,11 +610,12 @@ not the default, and parallelism should answer measured workload needs.
 
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
-**2026-09-23: III.2 PASS within isolated deterministic experiment scope.**
-[Milestone 043](../milestones/043-track-iii-2-deterministic-context-semantics.md)
-records 221 passing cases, 121 direct-ID pairs and a sibling-leak mutation causing
-37 failures, followed by identical passing correct results. The generic tree
-abstraction survived unchanged; no production capability was introduced.
+**2026-09-23: III.3 PASS within offline deterministic experiment scope.**
+[Milestone 044](../milestones/044-track-iii-3-continuous-memory-capability.md)
+records 394 passing checks, 121 direct-ID pairs, trusted human declarations and
+continuous cognition/worker/verifier reads. Initial-only and forged-provenance
+controls fail as intended; responses stay within 2 KiB. III.2 remains PASS with its
+unchanged generic tree and independent structural validation. No runtime integration.
 III.1 remains PASS within source-research scope. The
 [reference-systems report](../research/track-iii/001-reference-systems.md) and
 [milestone 042](../milestones/042-track-iii-1-reference-systems.md) retain current
@@ -634,20 +635,25 @@ The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-
 covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
 III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
 III.9 Novelty/Simplicity gates and III.10 durable/distributed lineage.
-III.3–III.10 remain future experiments, not implementation commitments or authorization.
+III.4–III.10 remain future experiments, not implementation commitments or authorization.
 
 **III.2 executed** the user-assigned 11-context tree with literal read/write
 oracles, forged-binding/direct-ID/malformed-input checks and an isolated mutation.
 The [experiment](../../experiments/track-iii-002/README.md) records the refinement
 from III.1's tentative topology; no cache or traversal API was needed.
 
-**Next proposal: III.3**, the
-[offline continuous-capability experiment](../../experiments/track-iii-002/README.md#exact-proposed-iii3-experiment--not-started).
-It would pass an experiment-only ExecutionContext through fake cognition, worker
-and verifier callers and test later scoped observations, bounded results and
-authority preservation. **Not started; explicit authorization required.** Storage
-selection, declassification authority and lineage revision semantics remain open.
-No production dependency, provider, database or runtime integration was adopted.
+**III.3 executed** continuous capability access with trusted caller bindings and
+unverified current-context observations. The accepted human-declaration refinement
+allows direct writes to an explicitly authorized context with trusted USER_DECLARATION
+provenance; this is not promotion, and agents cannot forge that provenance.
+
+**Next proposal: III.4**, the
+[offline representation-isolation experiment](../../experiments/track-iii-003/README.md#exact-proposed-iii4-experiment--not-started).
+It would exercise synthetic domain-tagged content and derived representations through
+fake retrieval/cache/graph/diagnostic paths, fail-closed policy and a leak mutation.
+**Not started; explicit authorization required.** Authentication, human authorization,
+conflict resolution, policy revisions and production security remain open. No provider,
+database, dependency or runtime integration was adopted.
 
 ## How to resume development
 
@@ -745,9 +751,9 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track III: III.2 deterministic semantics PASS; stopped at its boundary.**
-  [Evidence and proposed III.3](../../experiments/track-iii-002/README.md).
-  III.3 has not started and requires explicit authorization; no runtime changes
+- **Track III: III.3 continuous memory capability PASS; stopped at its boundary.**
+  [Evidence and proposed III.4](../../experiments/track-iii-003/README.md).
+  III.4 has not started and requires explicit authorization; no runtime changes
   or dependency adoption. Product and operational priorities below are unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof

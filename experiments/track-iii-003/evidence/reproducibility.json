@@ -1,0 +1,39 @@
+{
+  "retained_sha256": {
+    "forged-provenance.json": "8241f1fa24af8f1ef7989613b6cd1dcb84bf1709b0eb675b04429490ce39277c",
+    "initial-only.json": "49d3e5b094ecb810164b15d13e52bbbf48c520946ebfccbb0ad3700177a58161",
+    "restored.json": "8003618ef491744b95fa63f82369a8c29a1376a2534e70b2a94a77d7118e09bf",
+    "results.json": "8003618ef491744b95fa63f82369a8c29a1376a2534e70b2a94a77d7118e09bf",
+    "summary.json": "5be43909fba41ca13bea699b1a05b2df16ca273c7af4dc46bae07095178a743a",
+    "verification.json": "a0436d8824df680889dbd98858ecfc9974a3b0f7e0800983845b2c17c5b0bf39"
+  },
+  "runs": [
+    {
+      "byte_equal": {
+        "forged-provenance.json": true,
+        "initial-only.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "summary.json": true,
+        "verification.json": true
+      },
+      "hash_seed": "1",
+      "probe_exit": 0,
+      "verify_exit": 0
+    },
+    {
+      "byte_equal": {
+        "forged-provenance.json": true,
+        "initial-only.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "summary.json": true,
+        "verification.json": true
+      },
+      "hash_seed": "97",
+      "probe_exit": 0,
+      "verify_exit": 0
+    }
+  ],
+  "status": "PASS"
+}

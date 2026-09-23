@@ -1,0 +1,54 @@
+{
+  "objective": "Execute only Track III.3: demonstrate continuous bounded memory access, trusted human declarations and unverified agent observations with isolated controls, retained evidence and a local commit.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Accepted III.1/III.2 research and experiment foundations",
+      "source": "git:ec813ef",
+      "sharing": "local-only"
+    },
+    {
+      "need": "III.3 hierarchy, binding, callers, literal entries and expected outcomes",
+      "source": "experiments/track-iii-003/fixtures.json",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit isolated experiment and documentation",
+    "run offline standard-library Python checks",
+    "create local commit"
+  ],
+  "autonomy": {
+    "allowed": [
+      "III.3 experiment and controls",
+      "minimal research refinement and navigation",
+      "local completed-increment commit"
+    ],
+    "forbidden": [
+      "III.4 or later execution",
+      "production runtime or contract changes",
+      "backend/model/database integration",
+      "promotion/declassification/reflection",
+      "dependencies",
+      "push or merge"
+    ]
+  },
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Continuous sequence preserves scope and trusted provenance, with bounded distinct results",
+      "evidence": "fixtures.json; evidence/results.json; summary.json; verification.json"
+    },
+    {
+      "criterion": "Initial-only and provenance controls fail unchanged oracles; correct run restored",
+      "evidence": "evidence/initial-only.json; forged-provenance.json; restored.json; summary.json"
+    },
+    {
+      "criterion": "Reproducible bounded increment, III.4 unstarted, locally committed",
+      "evidence": "evidence/reproducibility.json; documentation-checks.json; milestone 044 and local commit identity"
+    }
+  ]
+}

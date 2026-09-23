@@ -1,0 +1,55 @@
+{
+  "III.4_started": false,
+  "cases": 394,
+  "controls": {
+    "forged-provenance": {
+      "exit_code": 1,
+      "stderr": "",
+      "stdout": "",
+      "suite": {
+        "cases": 394,
+        "failed": 4,
+        "failed_cases": [
+          "forgery/provenance",
+          "forgery/no-write",
+          "authority/no-write",
+          "state/no-fault-write"
+        ],
+        "status": "FAIL"
+      }
+    },
+    "initial-only": {
+      "exit_code": 1,
+      "stderr": "",
+      "stdout": "",
+      "suite": {
+        "cases": 394,
+        "failed": 2,
+        "failed_cases": [
+          "sequence/worker",
+          "sequence/verifier"
+        ],
+        "status": "FAIL"
+      }
+    }
+  },
+  "controls_detected": true,
+  "correct_restored_equal": true,
+  "failed": 0,
+  "failed_cases": [],
+  "increment": "III.3",
+  "max_response_bytes": 1757,
+  "response_budget_bytes": 2048,
+  "source_sha256": {
+    "../track-iii-002/evaluator.py": "e4789efa17d81af51ae6612e63cb0cda7f6da44bcf057cecd884fe0701eba030",
+    "capability.py": "83b9ccad75bbf07448ef88eec7823ff194f94d9bc51969795049a941ab9ffa0b",
+    "fixtures.json": "9eb8813457912e59cb898fafc2e92e08d35939ba34bf5aac74c424b558b27307",
+    "probe.py": "168c185329dcbb81bb2bc00e48f0f9691a9324b0c14dd2d46f704224472ffe2a",
+    "verify.py": "d30690ce61a1f1ad777e874ad8c66bd9523df8d3aa8a2cff1c9ee212d93dc34f"
+  },
+  "status": "PASS",
+  "task_submission": {
+    "submitted": false,
+    "task_id": null
+  }
+}
