@@ -29,7 +29,7 @@ from runtime.kernel.model import strict_json, strip_fenced_json
 from runtime.personal_agent import PersonalAgent, task_identity
 from runtime.personal_conversation import ConversationModel, history, short_id
 
-CAPABILITIES = ['artifact.write', 'worker.run', 'workspace.read', 'workspace.write', 'workspace.exec']
+CAPABILITIES = ['artifact.write', 'artifact.read', 'worker.run', 'workspace.read', 'workspace.write', 'workspace.exec']
 TASK_TYPE = {'template': 'implementation', 'version': 1}
 WORKER_INPUT = 'worker-input'
 DRAFT = 'draft'
