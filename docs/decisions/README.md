@@ -138,3 +138,7 @@ ADR’s own status before treating it as an accepted constraint.
 - [ADR 0027 — IDE delegation is workspace authority; PolicyGate is the single enforcer](0027-ide-delegation-is-workspace-authority.md)
   is **Accepted / Unvalidated**; it revises the Hub E1 provider, local-guard and
   JetBrains onboarding statements. Live validation is E1 acceptance.
+- [ADR 0028 — Cognition selects hard-admissible actions the runtime can construct](0028-cognition-selects-hard-admissible-actions.md)
+  is **Accepted / Deferred** as an architectural principle: it formalizes the
+  Increment 8 cognition boundary. Implementation is deferred pending real E3 /
+  Daily Driver Cognitive Loop evidence; no selector is introduced.
