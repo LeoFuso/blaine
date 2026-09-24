@@ -942,7 +942,7 @@ operator procedures; this document owns development direction and dependencies.
   **Latest production increment: [CP.1 PASS](../milestones/055-context-plane-cp1.md)**
   (opt-in local initial packet + one delta; 217 relevant tests and native Goose smoke).
   **Next proposal: [CP.2 — Governed declared/observed writes](002-context-plane-implementation.md#3-subsequent-bounded-phases), NOT STARTED.**
-  Review/merge CP.1 first; use a fresh CP.2 worktree only after authorization. Qualify
+  CP.1 is merged into main (PR #2); use a fresh CP.2 worktree only after authorization. Qualify
   existing MIRIX/metadata before writes; live MIRIX remains disabled on the CP.1 path.
   No automatic learning, semantic retrieval, Graphify, promotion or declassification is
   authorized. Deployment requires evidence review. Other product priorities unchanged.
@@ -969,10 +969,33 @@ operator procedures; this document owns development direction and dependencies.
   enforcer and the client is a bridge ([ADR 0027](../decisions/0027-ide-delegation-is-workspace-authority.md));
   Completion Contract v1 with capability journal ([ADR 0026](../decisions/0026-completion-contract-is-a-durable-task-primitive.md)).
   **E1.0 PASS (2026-09-24):** the kernel contract, journal, verifiers, amendments and
-  legality run on real Restate with SIGKILL recovery ([evidence](../../experiments/personal-agent-hub/e1-0/README.md));
-  no workstation, IDE or provider path uses them yet. E1.A onward builds
-  on accepted E0.D identity and the E0.E JetBrains integration install, which also
-  configures Blaine's per-agent MCP delegation. See the [E1 slices](../personal-agent-hub.md#implementation-decomposition).
+  legality run on real Restate with SIGKILL recovery ([evidence](../../experiments/personal-agent-hub/e1-0/README.md)).
+  **E2.0 PASS (2026-09-24), provider-independent only:** [target effects](../contracts/target-effects.md)
+  (operation-id identity with receipt-first recovery, conditional whole-file writes,
+  reviewed exec profiles, cancellation, reconciliation to APPLIED / NOT_APPLIED /
+  DIFFERENT_STATE / STILL_UNKNOWN, `change_set`/`capability_result`, never COMPLETED
+  with an unresolved target effect, Task cancel reconciles effects and is not rollback)
+  on a fixture provider ([evidence](../../experiments/personal-agent-hub/e2-0/README.md)).
+  No workstation, IDE or provider path uses E1.0/E2.0 yet; **E1 and E2 are not PASS**.
+  **Critical path:** E0.E JetBrains integration install (sets Blaine's per-agent
+  `use_idea_mcp`) → **E1.A** observe the real delegation (operator + installed
+  IntelliJ required: redacted ACP `session/new`, MCP server descriptor, tool list,
+  project representation, `use_idea_mcp` on/off, configOptions; token never leaves
+  the workstation; no tool calls) → E1.B relay/bridge built on the observed contract
+  → E1.C real read-only operations with `intellij-mcp@1` classification, receipts and
+  journal (PolicyGate stays the only enforcer; no local PolicyGate, no Blaine-owned
+  filesystem provider) → E1.D templates/findings schemas → E1.E live acceptance →
+  **E2.A** prove on the real provider what E2.0 assumes of fixtures (atomic
+  conditional write, durable receipt keyed by Blaine `operation_id`, dirty buffers,
+  confirmed termination and descendant cleanup, environment control, response loss,
+  semantic-operation → tool mapping), or STOP rather than weaken E2.0 invariants.
+  **Verification:** suites are classified HERMETIC / HOST / FLEET / CI_ONLY
+  ([E2.0 classification](../../experiments/personal-agent-hub/e2-0/regression.json));
+  the unit suite and isolated-Restate acceptances are HERMETIC, live-service
+  harnesses HOST, IntelliJ/workstation acceptance FLEET. The Local Verification
+  Scheduler v0 is a separate track, not yet on main; no Python CI exists yet and none
+  should be added outside that canonical integration.
+  See the [E1/E2 slices](../personal-agent-hub.md#implementation-decomposition).
   D3 history is preserved; no full E-series milestone is claimed live PASS.
 - **Track B: D1.A/B/C/D live adoption accepted.** Run the prepared D1.G reboot
   acceptance only with explicit human authorization; backup stays PAUSED.
