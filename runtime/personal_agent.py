@@ -49,6 +49,29 @@ def decision_request(request_id, question):
         'grant': {'capabilities': ['human.request'], 'escalation_binding': None}})
 
 
+def human_response(state, task_id, value, request_id=None):
+    """The HumanDecisionResponse envelope for a Task's *current* pending request.
+
+    Built from the authoritative inspect projection, so an answer can only ever
+    address the request the Task is actually waiting on (a stale ``request_id`` is
+    rejected). The response id is deterministic per request, so a repeated submit
+    is the same answer rather than a second one.
+    """
+    from runtime.kernel.human import request_digest
+    request = state.get('pending_human_decision')
+    if not request:
+        raise ValueError('No pending HumanDecisionRequest')
+    human = request['payload']
+    if request_id is not None and request_id != human['request_id']:
+        raise ValueError('The pending request changed; refresh before answering')
+    if value not in human['allowed_responses']:
+        raise ValueError('Response is outside the allowed set')
+    response_id = 'response-' + hashlib.sha256(f"{task_id}\x1f{human['request_id']}\x1f{human['revision']}".encode()).hexdigest()[:24]
+    return message('HumanDecisionResponse', {'task_id': task_id, 'request_id': human['request_id'],
+        'request_revision': human['revision'], 'request_digest': request_digest(request),
+        'response_id': response_id, 'value': value})
+
+
 class ControlRejected(ValueError):
     """A definite rejection, without copying a private server error body."""
 
