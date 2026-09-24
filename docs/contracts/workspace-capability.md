@@ -546,6 +546,12 @@ execute classes), not the provider. E2 extends by composition:
 | Scope of change | `change_set` verifier over admitted diffs |
 | Approvals | User constraint `edit_with_approval` → `autonomy.ask_before` → existing `human.request` wait |
 
+E2.0 implements the provider-independent half of this table in the kernel with a
+deterministic fixture provider ([target effects](target-effects.md)): semantic
+`workspace.write`/`workspace.exec`, expected-hash/absent/receipt preconditions,
+reviewed profiles, `uncertain` reconciliation, `capability_result`, `change_set` and
+`ask_before` approvals. The IntelliJ MCP mapping is not implemented.
+
 The E2.A provider questions in the Hub design remain open (IntelliJ MCP write
 tools confine lexically and offer no compare-and-swap). E3 composes Completion
 Contract + E1 reads + E2 effects + human wait/resume + verification + memory

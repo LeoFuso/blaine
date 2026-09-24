@@ -341,9 +341,9 @@ def cancel(provider: TargetProvider, request: dict, store, reason: str) -> dict:
     receipt wins), or the cancellation could not be confirmed (``uncertain``).
     """
     task_id = request['payload']['task_id']
+    if reason not in CANCEL_REASONS:
+        raise ValueError('Unknown cancellation reason')
     try:
-        if reason not in CANCEL_REASONS:
-            raise ValueError('Unknown cancellation reason')
         answer = provider.cancel(request['payload']['operation_id'], request_digest(request), reason)
         receipt = normalize(validate_receipt(answer['receipt'], request, store), store, task_id)
     except (ProviderUnavailable, ResponseLost) as error:

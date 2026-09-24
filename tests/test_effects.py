@@ -117,6 +117,27 @@ class Receipts(Fixture):
         self.assertEqual(effects.attempt(None, self.write_request(), {}, self.store)['payload']['kind'], 'not_dispatched')
 
 
+class Cancellation(Fixture):
+    def exec_request(self, op):
+        return effects.lower(TASK, op, 'workspace.exec', {'workspace_id': ef.WORKSPACE, 'profile': 'unit-tests'},
+                             self.state, self.store, 'artifact://task-units/sha256:' + 'a' * 64, self.authority, set())
+
+    def test_completion_can_win_the_race_and_stop_is_never_non_occurrence(self):
+        request = self.exec_request('x/1')
+        self.target.behave('unit-tests', polls=1, exit_code=0, operation='x/1')
+        self.assertEqual(effects.attempt(self.target, request, {}, self.store)['payload']['receipt']['payload']['state'], 'running')
+        effects.poll(self.target, request, self.store)  # the process finishes first
+        won = effects.cancel(self.target, request, self.store, 'requested')['payload']
+        self.assertEqual((won['delivery'], won['receipt']['payload']['state']), ('completed_first', 'completed'))
+        stopped_request = self.exec_request('x/2')
+        self.target.behave('unit-tests', polls=99, operation='x/2')
+        effects.attempt(self.target, stopped_request, {}, self.store)
+        stopped = effects.cancel(self.target, stopped_request, self.store, 'timeout')['payload']['receipt']['payload']
+        self.assertEqual((stopped['state'], stopped['exec']['started']), ('timed_out', True))
+        with self.assertRaises(ValueError):
+            effects.cancel(self.target, stopped_request, self.store, 'because')  # unknown reason is not a stop
+
+
 class Reconciliation(Fixture):
     def reconcile(self, request):
         return effects.reconcile(self.target, request, self.store)['payload']['state']

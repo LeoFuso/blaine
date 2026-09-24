@@ -45,6 +45,14 @@ evaluations, local computation, semantic-review packets) are never mutation, so 
 read-only Task can always record its evidence and result
 ([effect scopes](../contracts/completion-contract.md#no-mutation-internal-versus-target-effects)).
 
+A target effect is judged from its receipt, never from a tool's success message. A
+write conflict or a failing test is remediable. An effect whose outcome is unknown
+(lost reply, unreachable provider, unconfirmed stop) is neither success nor failure:
+it is reconciled from the provider's receipt for that operation, never by blind
+retry, and no new target effect starts until it is. A canceled effect "did not
+happen" only when it was canceled before dispatch
+([target effects](../contracts/target-effects.md)).
+
 Authority to change completion criteria comes from the authenticated binding that
 submits the change, never from fields inside the requested change
 ([amendment actor](../contracts/completion-contract.md#amendment-actor-is-binding-owned)).

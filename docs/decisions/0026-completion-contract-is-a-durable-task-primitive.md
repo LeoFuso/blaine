@@ -186,6 +186,16 @@ Applied without changing the decision; evidence rerun on real Restate (9 Tasks,
 - Revision 0 preserves intake criteria verbatim; policy criteria stay pinned to
   their source digest in every revision, and exceptions must name that pin.
 
+### E2.0 extension (2026-09-24)
+
+`change_set` and `capability_result` are implemented provider-independently and
+exercised with a fixture provider on real Restate ([target effects](../contracts/target-effects.md),
+[evidence](../../experiments/personal-agent-hub/e2-0/README.md)): effect criteria stay
+`unknown` while an effect's outcome is unreconciled, failed effect criteria are
+remediable, and completion is legal only once receipts satisfy them. This extends
+the verifier taxonomy without changing the decision; validation status is unchanged
+because the hypothesis concerns E1 end-to-end.
+
 ### Not required for validation
 
 Operator-rule store, MIRIX-driven candidate rules, `change_set`, paid semantic

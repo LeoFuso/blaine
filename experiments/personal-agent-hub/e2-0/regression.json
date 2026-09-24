@@ -1,0 +1,44 @@
+{
+  "recorded": "2026-09-24",
+  "branch": "impl/e2-effect-foundations",
+  "baseline": "origin/main f0a3ca5 (E1.0 integrated)",
+  "execution_policy": "Focused tests during development; the full Python suite ran twice (milestone and final). No GitHub Actions workflow covers the Python runtime (the existing workflows build/test the Go client only), so gating Python and real-Restate regressions ran locally; outputs recorded as counts only.",
+  "gating": {
+    "unit_suite": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m unittest discover -s tests -p 'test_*.py'",
+      "baseline_tests": 311,
+      "after_tests": 344,
+      "after_result": "OK",
+      "new_tests": {
+        "tests/test_effects.py": 17,
+        "tests/test_effects_workflow.py": 16
+      },
+      "existing_test_changes": "tests/test_completion_contract.py: the kernel classification expectation now includes workspace.write and workspace.exec as TARGET_EFFECT (deliberate: E2.0 adds these reviewed classes). tests/completion_harness.py gained durable sleep for the replay stand-in."
+    },
+    "restate_harnesses": [
+      {
+        "harness": "experiments/personal-agent-hub/e2-0/accept.py",
+        "scope": "E2.0 target-effect lifecycle",
+        "result": "PASS",
+        "evidence": "experiments/personal-agent-hub/e2-0/evidence/summary.json"
+      },
+      {
+        "harness": "experiments/personal-agent-hub/e1-0/accept.py",
+        "scope": "E1.0 Completion Contract lifecycle on E2.0 code",
+        "result": "PASS",
+        "notes": "Run with --evidence in a scratch directory so the committed E1.0 evidence was not rewritten; 9 Tasks, 8 runtime and 2 server SIGKILLs, no duplicates."
+      },
+      {
+        "harness": "scripts/verify-kernel-parallel.py",
+        "scope": "Increment 12 native parallel children on E2.0 code",
+        "result": "PASS",
+        "notes": "3 runtime and 3 server SIGKILLs, no duplicate turns or capability executions."
+      }
+    ]
+  },
+  "historical_non_gating": "Unchanged from E1.0 (experiments/personal-agent-hub/e1-0/regression.json): Increment 1, 2 and 5 harnesses remain frozen, mapped and guarded by tests/test_regression_coverage.py.",
+  "not_run": {
+    "scripts/verify-kernel-model.py, -memory.py, -worker.py, -youtrack.py": "Require live inference or external services; unrelated to E2.0.",
+    "client (Go) tests": "No client change in E2.0."
+  }
+}

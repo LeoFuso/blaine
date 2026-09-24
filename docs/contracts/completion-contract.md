@@ -45,11 +45,12 @@ PolicyGate and the human-decision boundary:
 | Contract/authority retention before effects, journal on the single dispatch path, `settle()` as the only path to COMPLETED, `amend_contract` handler, amendment admission | `runtime/kernel/workflow.py` |
 | Contract-fixed human requests in PolicyGate; v1 `evaluate()` kept as a projection of the same verifiers | `runtime/kernel/execution.py` |
 | Current contract and admitted read receipts in cognition packets | `runtime/kernel/context.py` |
+| E2.0: `capability_result@1`, `change_set@1` over target-effect receipts; journal `dispatched`/`reconciled` phases and `effects_reconciled` | `runtime/kernel/effect_evidence.py`, `runtime/kernel/journal.py` ([target effects](target-effects.md)) |
 
 Verifier kinds implemented: `artifact_digest`, `human_response`, `capability_journal`,
-`evidence_citation`, `semantic_review`, plus `unbound`. `capability_result` (first
-consumer E2) and `change_set` (reserved) are rejected at validation, so no contract
-can depend on a verifier that does not run.
+`evidence_citation`, `semantic_review`, plus `unbound`; E2.0 adds `capability_result`
+and `change_set` (provider-independent, fixture-proven; see
+[target effects](target-effects.md#verifiers)). The taxonomy remains closed.
 
 ## Model
 
@@ -216,8 +217,8 @@ a version so its semantics can evolve without silently changing old evaluations.
 | `human_response` | A scoped typed HumanDecision was answered within its allowed set | Human judgement, deterministic admission | **Existing** | Kernel inc. 5 / D2 |
 | `capability_journal` | Predicates over the Task's own capability journal: no target effect ("no mutation"), allowed operation classes, workspace scope, no unadmitted execution, required operation present | Yes | New | E1 |
 | `evidence_citation` | A structured result artifact conforms to its schema and every claim cites admitted receipts; quoted spans match receipt content (the Context Plane's exact-excerpt semantics) | Yes (provenance, not truth) | New | E1 |
-| `capability_result` | A specific admitted capability result satisfies a structured predicate (exit code, test report counts, HTTP status, state field); typical binding for project-policy build/test rules | Yes | New, specified; E1 does not need it | E2 |
-| `change_set` | The admitted diff touches only allowed paths / preserves listed signatures | Yes | Reserved | E2 |
+| `capability_result` | A specific admitted capability result satisfies a structured predicate (exit code, test report counts, state field, resulting digest, freshness after the last change); typical binding for project-policy build/test rules | Yes | **Implemented (E2.0)** | E2 |
+| `change_set` | The net change of admitted writes: expected targets changed to expected content, nothing outside allowed paths, before/after evidence complete (signature preservation not yet) | Yes | **Implemented (E2.0)** | E2 |
 | `semantic_review` | A bounded model judgement over cited evidence (completeness, consistency, clarity) | No | New | E1 (advisory) |
 
 Kinds deliberately absent: a generic "script" verifier (a verifier must not become
@@ -646,7 +647,8 @@ the E1.0 evidence. None changes a decision in ADR 0026.
   question and answers exist before any wait.
 - `capability_journal` parameters are a `predicates` list:
   `no_target_effect {allowed?}`, `operation_classes_subset {allowed}`,
-  `admitted_before_observed`, `workspace_subset`, `observed_operation_present {operations}`.
+  `admitted_before_observed`, `workspace_subset`, `observed_operation_present {operations}`,
+  and (E2.0) `effects_reconciled`.
 - `evidence_citation@1` implements schema `InvestigationFindings@1` and predicates
   `every_claim_cited`, `quotes_match_receipts`, `min_cited_receipts {operation, count,
   path_prefix?}`, `conclusion_status_present`, `unresolved_requires_uncertainty`.

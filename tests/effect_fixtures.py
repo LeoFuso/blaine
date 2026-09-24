@@ -72,9 +72,14 @@ class FixtureTarget:
             rows = db.execute('SELECT operation_id, kind FROM executions').fetchall()
         return [r for r in rows if operation_id is None or r[0] == operation_id]
 
-    def behave(self, profile, polls=1, exit_code=0, result=None, output='BUILD SUCCESSFUL', stop='confirmed'):
-        self.set_fault('exec:' + profile, {'polls': polls, 'exit_code': exit_code, 'result': result or {},
-                                           'output': output, 'stop': stop})
+    def behave(self, profile, polls=1, exit_code=0, result=None, output='BUILD SUCCESSFUL', stop='confirmed',
+               operation=None):
+        """Scripted process behaviour for a profile, or for one operation (which wins)."""
+        self.set_fault(('exec-op:' + operation) if operation else ('exec:' + profile),
+                       {'polls': polls, 'exit_code': exit_code, 'result': result or {}, 'output': output, 'stop': stop})
+
+    def behaviour(self, operation, profile):
+        return self.fault('exec-op:' + operation) or self.fault('exec:' + profile, {'polls': 1, 'exit_code': 0})
 
     # ---------------------------------------------------------------- TargetProvider
     def reachable(self):
@@ -160,7 +165,7 @@ class FixtureTarget:
             receipt = json.loads(row[1])
             if receipt['payload']['state'] == 'running':
                 process = db.execute('SELECT profile, polls FROM processes WHERE operation_id=?', (operation_id,)).fetchone()
-                behaviour = self.fault('exec:' + process[0], {'polls': 1, 'exit_code': 0})
+                behaviour = self.behaviour(operation_id, process[0])
                 polls = process[1] + 1
                 db.execute('UPDATE processes SET polls=? WHERE operation_id=?', (polls, operation_id))
                 if polls >= behaviour['polls']:
@@ -178,7 +183,7 @@ class FixtureTarget:
             if receipt['payload']['state'] != 'running':
                 return {'receipt': receipt}  # it completed before the cancellation won
             process = db.execute('SELECT profile FROM processes WHERE operation_id=?', (operation_id,)).fetchone()
-            if self.fault('exec:' + process[0], {}).get('stop') == 'unknown':
+            if self.behaviour(operation_id, process[0]).get('stop') == 'unknown':
                 raise effects.ResponseLost('kill sent; process state not confirmed')
             receipt['payload'].update(state='timed_out' if reason == 'timeout' else 'canceled',
                                       exec={'started': True, 'cleanup': 'confirmed', 'signal': 'SIGKILL'})

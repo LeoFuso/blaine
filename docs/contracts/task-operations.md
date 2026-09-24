@@ -103,6 +103,15 @@ this as its `amend` operation and always establishes the user actor; it can neve
 submit operator or policy authority. The ACP command grammar does not expose `amend`
 yet, so in chat the agent must still say such a change is not submitted.
 
+### Target-effect controls (E2.0)
+
+`cancel_effect {operation_id}` asks the kernel to stop one target effect that is
+awaiting approval or running. The receipt (`REQUESTED` / `ALREADY_REQUESTED`) is not
+proof that anything stopped; the effect's journal outcome says what happened, and
+only a cancellation before dispatch proves the effect did not happen. Effect
+approvals use the ordinary human-decision response. No Personal Agent or ACP
+binding exposes either yet ([target effects](target-effects.md)).
+
 ## Result
 
 Input:
