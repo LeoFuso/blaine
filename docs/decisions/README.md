@@ -130,3 +130,8 @@ ADR’s own status before treating it as an accepted constraint.
   is **Accepted / Partially Validated**: consolidates completed Track III research into
   Blaine-owned semantics; [production plan](../roadmap/002-context-plane-implementation.md)
   remains proposed and NOT STARTED. No existing accepted ADR is superseded.
+
+- [ADR 0026 — Completion Contract is a durable, revisioned Task primitive](0026-completion-contract-is-a-durable-task-primitive.md)
+  is **Proposed**; its first consumer is E1.
+- [ADR 0027 — IDE delegation is workspace authority; PolicyGate is the single enforcer](0027-ide-delegation-is-workspace-authority.md)
+  is **Proposed**; it revises the Hub E1 provider and local-guard statements.
