@@ -20,12 +20,15 @@ class Registry:
     def handler(self,**kw):
         def accept(f):self.handlers[f.__name__]=f;return f
         return accept
+class NoAmendment:
+    async def peek(self):return None
 class Context:
     def __init__(self):self.saved={}
     def key(self):return 'control'
     def request(self):return SimpleNamespace(id='local-test-invocation')
     def set(self,k,v):self.saved[k]=v
     async def run_typed(self,name,fn,*options,**kw):return fn(**kw)
+    def promise(self,name,type_hint=None):return NoAmendment()  # no contract amendment is submitted here
 
 class ProgressionTests(unittest.IsolatedAsyncioTestCase):
     async def exercise(self,contents,empty_first=False,force_complete_first=False):
