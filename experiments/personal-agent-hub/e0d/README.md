@@ -1,7 +1,10 @@
 # E0.D — Workstation identity, registration, presence and reconnect
 
-Status: **PARTIAL**. Implementation and local deterministic validation are complete;
-the persistent edge is deployed; primary Mac alpha.3 auto-registration, disconnect and reconnect passed. Post-restart reconnect and three sequential ACP sessions passed; published alpha.4 protocol-2 client upgrade passed; alternate-peer acceptance remains pending. E0.C remains PASS.
+Status: **PASS**. [Closure checklist](closure.json). Primary Mac real IntelliJ
+registration, presence, sequential ACP reconnect, edge-service restart and public
+alpha.3-to-alpha.4 upgrade passed. The designated WSL peer then auto-registered as
+a distinct workstation through the public alpha.4 client. E0.C remains PASS;
+E0.E is next and has not been started.
 Baseline: `23271871da4a27b3f86655602393756f8665dc7d`.
 
 The [contract](../../../docs/contracts/workstation-identity.md) records storage,
@@ -21,8 +24,7 @@ manual approval, workspace/file/terminal authority or Task ledger was added.
 - Deployment staging: seven tests PASS, including explicit removal of the temporary
   manual node list and idempotent adoption of the registry configuration.
 - Protocol 1 compatibility is fixture-proven; protocol 2 adds signed registration
-  receipt/metadata and preserves pinned transport identity. Actual client/Hub live
-  observations will be recorded separately.
+  receipt/metadata and preserves pinned transport identity. Actual client/Hub observations are recorded separately below.
 
 [Deployment evidence](deployment.json) records the exact source/binary, empty initial
 inventory and unchanged runtime/Restate processes. The migration rerun passed.
@@ -77,3 +79,36 @@ retained its ID, and recovered ONLINE on reconnect. This shutdown-order diagnost
 is retained in the live evidence, not treated as lost registration or a database
 outage. No immediate-cleanup guarantee is claimed for an abruptly lost connection;
 lease expiry remains the bounded fallback.
+
+## Distinct admitted identity
+
+The existing designated ST00251 Ubuntu WSL2 peer used the public alpha.4 installer
+and then `blaine connect`. The operator reported CONNECTED. The
+[Hub observation](live/wsl-alpha4-connected.json) records protocol 2, `linux/amd64`,
+node `nPvKcFBuW821CNTRL` and automatic creation of
+`ws-83213e398cf99b29d28cf8f3cc966d28`. It shares the Mac's admitted principal but
+has a different node and workstation ID. The Mac's record remained unchanged;
+there were exactly two inventory rows. No host approval or state reset was used.
+
+This short handshake connection ended normally, so WSL presence was OFFLINE by
+the inventory read. A known workstation is not a background process. Matching
+metadata/key isolation is covered by deterministic storage tests; the live peers
+had their actual different platform metadata. No new physical peer, copied
+credential store, Tailscale revocation exercise or Windows IntelliJ UI test was
+introduced. The WSL installer placed the executable in Linux user-local bin and
+ACP config in the Windows IDE profile, as reported by the operator.
+
+## Limits and next slice
+
+Actual workstation/whole-host reboot was not performed. Process/IDE restart,
+client binary upgrade and edge-service restart were measured. Abrupt connection
+loss uses the bounded 45-second lease. A database connection loss fails closed;
+edge restart is the recovery path, with no identity database fallback. This is a
+single-writer personal deployment with bounded inventory listing, not a fleet
+manager. The CI cleanup observation and shutdown-order diagnostic remain visible
+in the evidence; neither is represented as a proven product regression or hidden.
+
+The next canonical slice is **E0.E — IntelliJ configuration acceptance**, followed
+by **E0.F — integrated doctor/connect and designated second-workstation IDE
+acceptance**. These were not started. No workspace capabilities, configOptions,
+manual admission ceremony, public gateway or power-management behavior was added.

@@ -29,5 +29,5 @@
   "public_installer": "https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.4/client/install-jetbrains-agent.sh",
   "attestation": "Deferred; no signing/attestation claim",
   "generated_binaries_committed": false,
-  "runtime_scope": "Published Linux version verified after checksum check; real primary Mac alpha.4 IntelliJ ACP protocol-2 connection and identity reuse passed. WSL alpha.4 identity isolation pending."
+  "runtime_scope": "Published Linux version verified after checksum check; real primary Mac alpha.4 IntelliJ ACP protocol-2 identity reuse and designated WSL public installer/connect distinct-node registration passed. Full Windows IDE acceptance remains E0.F."
 }

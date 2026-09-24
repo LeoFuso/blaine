@@ -1,7 +1,8 @@
 # E0.D workstation identity, inventory and presence
 
-Implementation status: **PARTIAL — deterministic acceptance passed; live E0.D
-edge deployed; designated-peer acceptance pending**. [Evidence](../../experiments/personal-agent-hub/e0d/README.md).
+Implementation status: **PASS**. [Evidence and closure](../../experiments/personal-agent-hub/e0d/README.md)
+record primary Mac real IDE registration/reconnect, persisted inventory through
+edge restart, public alpha.4 upgrade and a distinct designated WSL identity.
 E0.C remains PASS. No E0.E/F or E1 capability acceptance is implied.
 
 ## Three boundaries

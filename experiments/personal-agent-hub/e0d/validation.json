@@ -22,7 +22,7 @@
     "darwin/amd64",
     "darwin/arm64"
   ],
-  "runtime_scope": "Linux amd64 fixtures and private Hub edge deployment. Primary Mac E0.D acceptance is pending. E0.C evidence remains accepted.",
+  "runtime_scope": "Linux amd64 isolated fixtures plus private Hub edge; real Mac IDE protocol-1/2 lifecycle and published WSL alpha.4 connect proved distinct identities. Full Windows IDE/WSL acceptance remains E0.F.",
   "actions_source_commit": "1c76a23a1640a5d69a0862ea8f39a32cd12a5ee1",
   "actions_ci": "https://github.com/LeoFuso/blaine/actions/runs/35947021751",
   "actions_ci_result": "PASS",
