@@ -35,6 +35,7 @@ from runtime.kernel import effects
 from runtime.kernel.contracts import message
 
 MINIMAL_PATH = '/usr/local/bin:/usr/bin:/bin'
+CODE_ROOT = Path(__file__).resolve().parents[2]
 
 
 def _sha(data: bytes) -> str:
@@ -176,9 +177,13 @@ class LocalWorktreeProvider:
                        (p['operation_id'], digest, 'starting', json.dumps(request)))
         env = {'PATH': MINIMAL_PATH, 'HOME': os.environ.get('HOME', '/tmp'), 'LANG': 'C.UTF-8',
                'PYTHONDONTWRITEBYTECODE': '1'}
+        # The supervisor starts from this module's own code root, never from the
+        # workspace: a workspace may itself contain a ``runtime`` package (e.g. a
+        # Blaine worktree) that would shadow this module. The profile's process
+        # then runs in the workspace with the workspace's own imports.
         command = [sys.executable, '-m', 'runtime.kernel.target_local', 'supervise', str(output), str(status),
-                   '--', p['command']['executable'], *p['command']['args']]
-        process = subprocess.Popen(command, cwd=root, env={**env, 'PYTHONPATH': str(Path(__file__).resolve().parents[2])},
+                   str(root), '--', p['command']['executable'], *p['command']['args']]
+        process = subprocess.Popen(command, cwd=CODE_ROOT, env=env,
                                    stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                                    start_new_session=True)
         receipt = self.receipt(request, 'running', exec={'started': True, 'cleanup': 'running'})
@@ -309,14 +314,13 @@ def summarize(output: str) -> dict:
     return result
 
 
-def supervise(output: str, status: str, argv: list[str]) -> int:
-    """Run argv (exact, no shell), capture merged output, record the exit durably."""
-    # PYTHONPATH located this supervisor module only; the profile's process must
-    # resolve imports from its own workspace, never from the runtime deployment.
+def supervise(output: str, status: str, cwd: str, argv: list[str]) -> int:
+    """Run argv (exact, no shell) in cwd, capture merged output, record the exit durably."""
     env = {k: v for k, v in os.environ.items() if k != 'PYTHONPATH'}
     with open(output, 'wb') as sink:
         try:
-            process = subprocess.Popen(argv, stdout=sink, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, env=env)
+            process = subprocess.Popen(argv, cwd=cwd, stdout=sink, stderr=subprocess.STDOUT,
+                                       stdin=subprocess.DEVNULL, env=env)
             code = process.wait()
             record = {'exit_code': code} if code >= 0 else {'signal': signal.Signals(-code).name}
         except OSError as error:
@@ -329,6 +333,6 @@ def supervise(output: str, status: str, argv: list[str]) -> int:
 
 
 if __name__ == '__main__':
-    if len(sys.argv) >= 5 and sys.argv[1] == 'supervise' and sys.argv[4] == '--':
-        sys.exit(supervise(sys.argv[2], sys.argv[3], sys.argv[5:]))
+    if len(sys.argv) >= 6 and sys.argv[1] == 'supervise' and sys.argv[5] == '--':
+        sys.exit(supervise(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[6:]))
     sys.exit(2)

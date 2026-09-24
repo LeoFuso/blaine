@@ -139,6 +139,18 @@ class ExecTest(Base):
         output = self.store.read('task-a', body['output_ref']).decode()
         self.assertIn(str(self.root), output)
 
+    def test_a_workspace_runtime_package_cannot_shadow_the_supervisor(self):
+        # A Blaine worktree target has its own `runtime` package without this module.
+        (self.root / 'runtime' / 'kernel').mkdir(parents=True)
+        (self.root / 'runtime' / '__init__.py').write_text('')
+        (self.root / 'runtime' / 'kernel' / '__init__.py').write_text('')
+        request = self.exec_request('task-a/10', "import runtime, os; print(os.path.dirname(runtime.__file__))")
+        effects.attempt(self.provider, request, {}, self.store)
+        receipt = self.settle(request)
+        self.assertEqual((receipt['payload']['state'], receipt['payload']['exec']['exit_code']), ('completed', 0))
+        output = self.store.read('task-a', receipt['payload']['exec']['output_ref']).decode()
+        self.assertIn(str(self.root / 'runtime'), output)  # the profile saw the workspace's own package
+
     def test_failing_process_is_completed_with_its_exit_code(self):
         request = self.exec_request('task-a/8', "import sys; print('1 failed, 2 passed'); sys.exit(1)")
         effects.attempt(self.provider, request, {}, self.store)
