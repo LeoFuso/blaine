@@ -17,7 +17,7 @@ from runtime.kernel.contracts import encode
 class Controls(unittest.TestCase):
     def test_small_request_is_existing_spec_and_capability(self):
         raw = small_request('a small input')
-        spec, parent = accept_task_request(raw, task_identity('key'))
+        spec, parent, _ = accept_task_request(raw, task_identity('key'))
         self.assertIsNone(parent)
         action = raw['payload']['initial_action']
         self.assertEqual(action['capability'], 'text.stats')
@@ -26,7 +26,7 @@ class Controls(unittest.TestCase):
 
     def test_capability_is_not_authority(self):
         raw = small_request('x')
-        spec, _ = accept_task_request(raw, 'task')
+        spec, _, _ = accept_task_request(raw, 'task')
         spec['autonomy']['allowed'] = []
         decision = message('CognitiveDecision', {'task_id': 'task', 'task_revision': 0,
             'turn_id': 'task/1', 'next_action': raw['payload']['initial_action']})
@@ -89,7 +89,7 @@ class Controls(unittest.TestCase):
         state = {'task_id': 'task', 'revision': 0, 'iteration': 1,
                  'lifecycle': 'RUNNING', 'initial_action': action}
         raw = small_request('input')
-        spec, _ = accept_task_request(raw, 'task')
+        spec, _, _ = accept_task_request(raw, 'task')
         spec['capabilities'] = spec['autonomy']['allowed'] = ['workspace.read']
         expanded = {**action, 'input': {**action['input'], 'path': 'private.txt'}}
         decision = message('CognitiveDecision', {'task_id': 'task', 'task_revision': 0,

@@ -34,14 +34,14 @@ human origin or elevate authority. Human declaration is an authorized direct wri
 and visibility rules; neither makes memory authoritative evidence or grants execution
 permissions. No full preference/conflict system is implied.
 
-[III.3's milestone](../../milestones/044-track-iii-3-continuous-memory-capability.md)
+[III.3's milestone](../../milestones/045-track-iii-3-continuous-memory-capability.md)
 records the bounded test of this refinement. The historical proposals and statuses
 below remain the III.1 checkpoint; the [roadmap](../../roadmap/001-blaine-development-roadmap.md#track-iii--hierarchical-context-memory--verified-learning)
 owns current sequencing.
 
 ## III.4 isolation clarification — 2026-09-23
 
-[III.4](../../milestones/045-track-iii-4-bounded-security-context-isolation.md)
+[III.4](../../milestones/046-track-iii-4-bounded-security-context-isolation.md)
 provides a bounded executable check of structural lineage intersected with trusted
 security-domain visibility and policy. Shared ancestry and human provenance grant
 no cross-domain visibility. All supported derived/graph/cache/diagnostic paths must
@@ -53,7 +53,7 @@ III.1–III.3 results and their limits remain unchanged.
 
 ## III.5 admission clarification — 2026-09-23
 
-[III.5](../../milestones/046-track-iii-5-promotion-declassification-admission.md)
+[III.5](../../milestones/047-track-iii-5-promotion-declassification-admission.md)
 tests explicit immediate-parent promotion, separate from ordinary writes and human
 declaration. Cross-domain admission requires trusted source/candidate/destination-
 bound approval and fail-closed deterministic checks; generation and semantic
@@ -66,7 +66,7 @@ learning; historical III.1–III.4 checkpoints retain their original scope.
 
 ## III.6 verified-outcome clarification — 2026-09-23
 
-[III.6](../../milestones/047-track-iii-6-verified-outcome-admission.md) separates
+[III.6](../../milestones/048-track-iii-6-verified-outcome-admission.md) separates
 untrusted worker claims, trusted outcome/evidence and proposed reflection candidates.
 Success requires every authoritative success requirement; supported failure remains
 failure-qualified, and unfinished observations remain unverified. Candidate payloads
@@ -84,7 +84,7 @@ implemented. Historical III.1–III.5 results retain their original boundaries.
 
 ## III.7 utility and schema refinement — 2026-09-23
 
-[III.7](../../milestones/048-track-iii-7-learned-memory-utility.md) composes trusted
+[III.7](../../milestones/049-track-iii-7-learned-memory-utility.md) composes trusted
 outcome admission, explicit promotion and inherited continuous retrieval for real
 local Qwen cognition. An isolated gate-v2 experiment extends III.5's admitted
 provenance/status pairs to VERIFIED_OUTCOME with VERIFIED_SUCCESS or VERIFIED_FAILURE;
@@ -104,7 +104,7 @@ III.1 scope; current sequencing remains in the roadmap.
 
 ## III.8 workspace-discovery finding — 2026-09-23
 
-[III.8](../../milestones/049-track-iii-8-workspace-discovery.md) is **FAIL**: real local
+[III.8](../../milestones/050-track-iii-8-workspace-discovery.md) is **FAIL**: real local
 BGE-M3 and Graphify plus lexical retrieval add one distinct required target per
 revision, below two. Exact lexical results, source freshness, domain isolation and
 the corrected 2 KiB complete-response limit hold; the canonical reuse target is
@@ -127,7 +127,7 @@ their III.1 scope. No earlier increment's result has been rewritten.
 
 ## III.8R selection and fallback recovery — 2026-09-23
 
-[III.8R](../../milestones/050-track-iii-8r-narrow-consumption-recovery.md) is **PASS**
+[III.8R](../../milestones/051-track-iii-8r-narrow-consumption-recovery.md) is **PASS**
 on unchanged III.8 sources, queries, oracles and broad candidate sets. III.8 remains
 FAIL. A single predeclared policy independently validates contributions before fusion,
 deduplicates authoritative targets, uses rank-based RRF, preserves exact lexical
@@ -146,7 +146,7 @@ unstarted and requires separate authorization; no earlier result is rewritten.
 
 ## III.9 advisory behavior — 2026-09-23
 
-[III.9](../../milestones/051-track-iii-9-novelty-simplicity-advisory.md) is **PASS** on
+[III.9](../../milestones/052-track-iii-9-novelty-simplicity-advisory.md) is **PASS** on
 12 frozen synthetic proposals, with unchanged III.8R selection and real local Qwen
 cognition. Both paired repetitions reduce duplicate choices from 4/4 to 0/4 while
 preserving 4/4 legitimate additions and 4/4 material near-match distinctions. Generic
@@ -166,7 +166,7 @@ III.10 lineage-transfer research is proposed, unstarted and requires separate au
 
 ## III.10 propagation semantics — 2026-09-23
 
-[III.10](../../milestones/052-track-iii-10-context-propagation.md) is **PASS** on 12
+[III.10](../../milestones/053-track-iii-10-context-propagation.md) is **PASS** on 12
 frozen local-handoff/checkpoint/second-process cases. The receiver reconstructs access
 from trusted current state; serialized execution/context references are not credentials.
 Historical scopes, policy snapshots, packets, provenance claims and successful receipts
@@ -188,7 +188,7 @@ integration slice. No subsequent increment or production implementation is start
 
 ## III.G complementary structural utility — 2026-09-23
 
-[III.G](../../milestones/053-track-iii-g-graphify-structural-utility.md) is **PASS** on
+[III.G](../../milestones/054-track-iii-g-graphify-structural-utility.md) is **PASS** on
 20 frozen source-oracled questions across pinned Spring Kafka and Jackson Databind.
 Unlike III.8/8R's saturated structural corpus, combined lexical plus real pinned
 Graphify adds nine unique required targets over bounded source exploration, eight on

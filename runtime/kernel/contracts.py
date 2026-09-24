@@ -243,28 +243,43 @@ def spawn_specs(action: dict) -> list[tuple[int | None, dict]]:
     return [(slot, validate_spec(spec)) for slot, spec in enumerate(action['task_specs'])]
 
 
-def child_request(parent_id: str, decision_id: str, slot: int | None, spec: dict) -> dict:
-    return message('ChildTaskRequest', {'parent': {'task_id': parent_id, 'decision_id': decision_id, 'slot': slot},
-                                       'task_spec': message('TaskSpec', spec)})
+def child_request(parent_id: str, decision_id: str, slot: int | None, spec: dict,
+                  grant: dict | None = None) -> dict:
+    """Trusted envelope. The grant is derived by narrowing, never by the child."""
+    payload = {'parent': {'task_id': parent_id, 'decision_id': decision_id, 'slot': slot},
+               'task_spec': message('TaskSpec', spec)}
+    if grant is not None:
+        payload['grant'] = grant
+    return message('ChildTaskRequest', payload)
 
 
-def accept_task_request(value: dict, task_id: str) -> tuple[dict, dict | None]:
+def accept_task_request(value: dict, task_id: str) -> tuple[dict, dict | None, dict | None]:
+    """Split the trusted envelope from the model-writable specification.
+
+    An execution grant is envelope data: it bounds capability authority and names
+    the binding an escalation may use. A TaskSpec can never carry it, so no
+    cognition-written specification can widen its own authority or select a
+    worker. An absent grant keeps existing behaviour and is recorded as such.
+    """
+    from runtime.kernel.routing import validate_grant
     if not isinstance(value, dict):
         raise ValueError('Task request must be an object')
     if value.get('kind') == 'TaskRequest':
-        request = fields(unpack(value, 'TaskRequest'), {'task_spec', 'initial_action'})
+        request = fields(unpack(value, 'TaskRequest'), {'task_spec', 'initial_action'}, {'grant'})
         decision = validate_decision(message('CognitiveDecision', {'task_id': task_id,
             'task_revision': 0, 'turn_id': task_id + '/1', 'next_action': request['initial_action']}))
         if decision['next_action']['type'] != 'INVOKE_CAPABILITY':
             raise ValueError('Task intake accepts one bounded capability action')
-        return validate_spec(request['task_spec']), None
+        grant = validate_grant(request['grant']) if 'grant' in request else None
+        return validate_spec(request['task_spec']), None, grant
     if value.get('kind') != 'ChildTaskRequest':
-        return validate_spec(value), None
-    request = fields(unpack(value, 'ChildTaskRequest'), {'parent', 'task_spec'})
+        return validate_spec(value), None, None
+    request = fields(unpack(value, 'ChildTaskRequest'), {'parent', 'task_spec'}, {'grant'})
     parent = fields(request['parent'], {'task_id', 'decision_id', 'slot'})
     if task_id != child_task_id(parent['task_id'], parent['decision_id'], parent['slot']):
         raise ValueError('Child identity does not match its explicit relationship')
-    return validate_spec(request['task_spec']), parent
+    grant = validate_grant(request['grant']) if 'grant' in request else None
+    return validate_spec(request['task_spec']), parent, grant
 
 
 def unpack(value: object, kind: str) -> dict:

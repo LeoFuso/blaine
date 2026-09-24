@@ -10,7 +10,7 @@ The [experiment and reproduction guide](../../experiments/track-iii-002/README.m
 documents the user's fixed 11-context personal/employer tree, exact oracles,
 implementation boundary, results, limitations and proposed III.3. The assignment's
 topology and no-cache scope supersede the tentative III.1 experiment details;
-[III.1](042-track-iii-1-reference-systems.md) remains a historical research checkpoint.
+[III.1](043-track-iii-1-reference-systems.md) remains a historical research checkpoint.
 
 ## Evidence
 

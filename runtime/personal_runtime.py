@@ -1,4 +1,9 @@
-"""Private Personal Agent deployment; optional operator-selected local adapters."""
+"""Private Personal Agent deployment; optional operator-selected local adapters.
+
+Policy C runs here with no escalation binding configured, so an escalation
+recommendation is admissible only once an operator deploys one. Until then the
+trusted boundary denies it and the Task stays local, which is recorded.
+"""
 import asyncio
 import json
 import os

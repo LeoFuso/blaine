@@ -30,7 +30,7 @@ class ParallelContracts(unittest.TestCase):
     def test_explicit_relationship_and_stable_slot_identity(self):
         for slot in [None,0,1]:
             key=child_task_id('parent','parent/1',slot)
-            accepted,parent=accept_task_request(child_request('parent','parent/1',slot,validate_spec(spec())),key)
+            accepted,parent,_=accept_task_request(child_request('parent','parent/1',slot,validate_spec(spec())),key)
             self.assertEqual(parent,{'task_id':'parent','decision_id':'parent/1','slot':slot})
             self.assertEqual(accepted,validate_spec(spec()))
         self.assertEqual(len({child_task_id('parent','parent/1',i) for i in [None,0,1]}),3)
@@ -68,7 +68,7 @@ class ParallelProgression(unittest.IsolatedAsyncioTestCase):
                 def key(self):return 'control'
                 def set(self,k,v):self.saved[k]=deepcopy(v)
                 def workflow_call(self,fn,key,arg):
-                    accepted,parent=accept_task_request(arg,key)
+                    accepted,parent,_=accept_task_request(arg,key)
                     self_case.assertEqual(parent['task_id'],'control')
                     futures[key]=asyncio.get_running_loop().create_future()
                     return futures[key]

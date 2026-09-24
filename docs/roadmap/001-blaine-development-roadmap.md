@@ -569,11 +569,60 @@ failure should first challenge selection/condensation before blaming model abili
 Smarter routing needs real execution history. Model failure caused by inadequate
 context must not be misclassified as model capability failure.
 
+**Current baseline: Policy C — local-first execution with bounded authorized
+escalation**, accepted direction in [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
+and implemented in [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
+Every eligible Task starts locally, extra turns are a cost rather than a failure,
+and escalation is a deterministic recommendation that only the trusted boundary
+admits. It exists to produce the evidence a smarter pre-router would have to beat.
+
+```text
+Policy C — local-first + bounded authorized escalation     CURRENT BASELINE
+  implementation ........................................  COMPLETE
+  local execution .......................................  LIVE
+  escalation detection ..................................  LIVE
+  authority enforcement .................................  LIVE
+  escalation evidence ...................................  LIVE
+  remote escalation path ................................  IMPLEMENTED
+  remote binding ........................................  NOT PROVISIONED
+
+Policy B — deterministic heuristic pre-routing .........  FUTURE WORK
+Policy A — classifier pre-routing (Jev) ................  INTEGRATED CANDIDATE,
+                                                           NOT ADOPTED, FUTURE WORK
+Controlled downgrade sampling ..........................  FUTURE WORK
+C1 — failure classification ............................  FUTURE WORK
+C4 — cost to successful completion ......................  FUTURE WORK
+```
+
+The distinction that matters most: **the escalation mechanism is implemented and
+validated, and production remote escalation is not provisioned.** No deployment
+configures an escalation binding, so the trusted boundary currently resolves every
+recommendation to `denied_binding_unavailable`. That is the deployment state, not
+a defect, and it is recorded in each routing record:
+
+```text
+local execution -> escalation condition -> trusted admission
+                -> no provisioned remote binding -> denied_binding_unavailable
+```
+
+The first deployment to provision a remote binding can use that denial count as
+one signal that the binding became reachable. No live Qwen-to-remote execution has
+been demonstrated; the live acceptance showed local completion under an external
+grant with no paid provider invocation.
+
+The local turn budget and repetition threshold are **initial experimental
+defaults**, not architectural invariants. Both are recorded in every routing
+record so evidence gathered under one setting stays interpretable after it
+changes. Revising them is a deliberate configuration change informed by observed
+outcomes, not an ADR for each numeric adjustment.
+
 | Slice | Plan and evidence gate |
 | --- | --- |
 | C1 — Failure taxonomy | Candidate distinctions: capability insufficient, context insufficient, policy denied, worker failure, tool failure, invalid output, external dependency and verifier rejection. Do not freeze categories before real cases support them. |
-| C2 — Escalation semantics | Specify who judges previous capability insufficient and what evidence warrants escalation. Separate runtime lifecycle, routing recommendation, authority limits and verifier ownership; no omnipotent escalation subsystem or self-issued grants. |
-| C3 — Jev vs Qwen carveout | **Provider integration exists; the comparison does not.** Jev remains a candidate only: it plugs into the existing `WorkloadClassifier` and boundary-observer seams, runs in shadow mode so no routing outcome changes, and has one real authenticated invocation ([milestone 041](../milestones/041-jev-provider-candidate.md)). The comparison record shape and aggregation rules are prepared and run nothing. Still required: approximately 20–30 real Blaine Tasks comparing classification, decision error, latency and cost, with retained fixtures and evaluation labels. Adoption requires measured benefit and a human review; do not rebuild the provider. |
+| C2 — Escalation semantics | **Partially implemented by Policy C**: a deterministic recommendation, trusted admission, escalation as an outcome rather than a diagnosis, and no self-issued grant. Still open: who judges previous capability insufficient, and what evidence warrants escalation beyond the two deterministic conditions in use. |
+| C3 — Policy A, classifier pre-routing (Jev) | Jev is integrated, authenticated and **unadopted**; do not rebuild it and do not invent a use case for it. Adoption requires measured improvement against both Policy C and Policy B. Its existence is not a reason to place it in the runtime path. |
+| C3b — Policy B, deterministic heuristic pre-routing | A cheap baseline any classifier must beat. The heuristic is deliberately undefined: derive it from real Policy C escalation evidence rather than inventing rules in advance. |
+| C3c — Controlled exploration | Following a remote recommendation produces no evidence about whether local would have sufficed, so a router can become trivially conservative. A bounded downgrade sample must be randomized or explicitly defined, recorded, bounded, low-risk, distinguishable from normal routing, and unable to change policy automatically. |
 | C4 — Cost-to-success routing | Optimize expected total cost to successful completion, not the cheapest invocation. Include retries, failure probability, escalation, runtime and observed cost where known; retain uncertainty for hidden accounting. |
 | C5 — Learning-assisted routing | Begin offline: history → proposed policy → evaluation → human/promoted policy. No uncontrolled online self-modification initially. |
 
@@ -628,7 +677,7 @@ acceptance and deferrals; no authorization to implement or deploy follows from t
 consolidation. Other tracks' priorities and E0–E3 dependencies are unchanged.
 
 **2026-09-23: complementary III.G Graphify structural utility PASS.**
-[Milestone](../milestones/053-track-iii-g-graphify-structural-utility.md) and
+[Milestone](../milestones/054-track-iii-g-graphify-structural-utility.md) and
 [evidence](../../experiments/track-iii-graphify/README.md): twenty frozen questions on
 pinned Spring Kafka/Jackson, combined +9 distinct required targets over bounded source
 exploration, eight exploration-request reductions, no stale/forbidden output, <=1995
@@ -637,33 +686,33 @@ Classification **ADAPT / ON-DEMAND**, not production adoption. III.10 remains th
 planned sequence close; III.8 FAIL and III.8R PASS are unchanged.
 
 **2026-09-23: III.10 context propagation PASS within the offline fixture.**
-[Milestone 052](../milestones/052-track-iii-10-context-propagation.md) records 12 frozen
+[Milestone 052](../milestones/053-track-iii-10-context-propagation.md) records 12 frozen
 handoff/checkpoint/second-process cases, 1,460 independent checks, zero content/metadata
 leaks and three caught scope/policy/provenance mutations. Receivers reconstruct access
 from trusted current state; serialization is not authority. Maximum complete response
 1696 bytes. No production integration or subsequent increment has started.
 
 **2026-09-23: III.9 novelty/simplicity advisory PASS within its synthetic corpus.**
-[Milestone 051](../milestones/051-track-iii-9-novelty-simplicity-advisory.md) records
+[Milestone 051](../milestones/052-track-iii-9-novelty-simplicity-advisory.md) records
 two local-model paired repetitions: duplicate choices 4/4 → 0/4, legitimate additions
 and near-match distinctions 4/4 → 4/4. Falsified contract presentation causes incorrect
 reuse in both mutation runs. 58 Qwen calls, 2012-byte maximum advisory, no stale or
 forbidden input. This supports advisory behavior, not a production hard gate.
 
 **III.8R remains PASS on the original frozen III.8 corpus and thresholds.**
-[Milestone 050](../milestones/050-track-iii-8r-narrow-consumption-recovery.md) records
+[Milestone 050](../milestones/051-track-iii-8r-narrow-consumption-recovery.md) records
 three additional required targets per revision with one predeclared recovery policy,
 all exact hits preserved, fresh fallback restored and three caught mutations.
 Complete responses remain within 2048 bytes. Its separately authorized III.9 follows below.
 
 **III.8 remains FAIL under its frozen workspace-discovery thresholds.**
-[Milestone 049](../milestones/049-track-iii-8-workspace-discovery.md) records one
+[Milestone 049](../milestones/050-track-iii-8-workspace-discovery.md) records one
 distinct non-lexical gain per revision, below two; exact hits, freshness, isolation
 and corrected full-response budget pass. The canonical reuse target was missed.
 Its separately authorized III.8R follow-up is recorded below; III.8 evidence is unchanged.
 
 **III.7 remains PASS within the fixed synthetic local-model workload.**
-[Milestone 048](../milestones/048-track-iii-7-learned-memory-utility.md) records two
+[Milestone 048](../milestones/049-track-iii-7-learned-memory-utility.md) records two
 paired local-Qwen repetitions: matching 0/4 → 4/4, irrelevant and near-match 4/4 → 4/4.
 The failure-as-success rendering causes an actual incorrect commitment in both
 controls. 268 composition checks and 842 independent checks pass; 78 local model
@@ -671,7 +720,7 @@ calls, 1761-byte maximum retrieval, no protected leakage. III.1–III.6 sources/
 remain unchanged; no production runtime or model routing changes occurred.
 III.1 remains PASS within source-research scope. The
 [reference-systems report](../research/track-iii/001-reference-systems.md) and
-[milestone 042](../milestones/042-track-iii-1-reference-systems.md) retain current
+[milestone 042](../milestones/043-track-iii-1-reference-systems.md) retain current
 upstream pins, mechanism classifications, architectural constraints and evidence
 limits. This independent research track does not reopen the Cognitive Kernel,
 alter D1/D2, worker execution or remote-execution work, or add a v0 prerequisite.
@@ -847,7 +896,7 @@ explicit decision closes it.
 | Redis profile separation | Actual cache/queue persistence, eviction and recovery requirements |
 | When project graph belongs in the context path | Measured retrieval benefit with trustworthy freshness/provenance |
 | Need for semantic condensation | FULL/SELECTED/COMPILED fidelity results showing a remaining deterministic gap |
-| Whether Jev merits adoption | Approximately 20–30 real Task comparisons against Qwen; the provider and the comparison harness now exist, the comparison does not |
+| Whether Jev merits adoption | Measured improvement against Policy C and Policy B on cost to successful completion. Policy C now produces that evidence as a side effect of normal operation; a valid outcome is that no pre-router is worth its complexity |
 | Precise escalation ownership/semantics | Real failure cases, attribution and a bounded recommendation/authority contract |
 | Eventual custom UI | Concrete operator friction that ACP and remote channels cannot reasonably address |
 | Complete backup/off-site strategy | PostgreSQL/Object Storage coverage, Restate recovery needs, isolated restores, agreed recovery objectives and later off-site requirements |
@@ -908,6 +957,16 @@ operator procedures; this document owns development direction and dependencies.
 - **Jev: integration PASS, NOT adopted.** One real authenticated invocation exists
   and Jev changes no routing outcome. C3's comparison is still unstarted; see
   [milestone 041](../milestones/041-jev-provider-candidate.md).
+- **Policy C — local-first execution with bounded escalation: COMPLETE.**
+  [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
+  is accepted for its mechanism. Every eligible Task starts on the local binding,
+  escalation is deterministic and trusted, and each Task retains authoritative
+  routing evidence that a deterministic report reads. Effective capability
+  authority is now the request intersected with an external grant, closing a real
+  gap where a top-level Task declared its own authority. **No production remote
+  binding is provisioned**, so escalation currently denies as unavailable by
+  design. Policies A and B remain future work; nothing routes by classifier or
+  heuristic. See [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
 - **Worker execution boundary: user-directed increment, PASS within its evidence.**
   A provider-neutral continuation boundary, adapter capability claims and an
   OpenTelemetry telemetry path now exist, with a synchronous control hook where an

@@ -23,9 +23,12 @@ def small_request(objective):
         'completion': [{'criterion': 'Exact deterministic objective summary',
             'evidence': {'artifact': 'answer', 'sha256': hashlib.sha256(content.encode()).hexdigest()}}],
         'capabilities': ['text.stats'], 'autonomy': {'allowed': ['text.stats']}})
+    # Trusted envelope: the grant bounds effective authority to exactly what this
+    # intake intends, and authorizes no escalation binding.
     return message('TaskRequest', {'task_spec': spec, 'initial_action': {
         'type': 'INVOKE_CAPABILITY', 'capability': 'text.stats',
-        'input': {'text': objective}}})
+        'input': {'text': objective}},
+        'grant': {'capabilities': ['text.stats'], 'escalation_binding': None}})
 
 
 def decision_request(request_id, question):
@@ -38,7 +41,8 @@ def decision_request(request_id, question):
             'artifact': 'response', 'verifier': 'human_response', 'request': human}}],
         'capabilities': ['human.request'], 'autonomy': {'allowed': ['human.request']}})
     return message('TaskRequest', {'task_spec': spec, 'initial_action': {
-        'type': 'INVOKE_CAPABILITY', 'capability': 'human.request', 'input': {'request': human}}})
+        'type': 'INVOKE_CAPABILITY', 'capability': 'human.request', 'input': {'request': human}},
+        'grant': {'capabilities': ['human.request'], 'escalation_binding': None}})
 
 
 class ControlRejected(ValueError):
@@ -83,7 +87,7 @@ class PersonalAgent:
                 fields(request, {'operation', 'request_id', 'task_request'})
                 task_id = task_identity(request['request_id'])
                 raw = request['task_request']
-                spec, parent = accept_task_request(raw, task_id)
+                spec, parent, _grant = accept_task_request(raw, task_id)
                 if parent is not None:
                     raise ValueError('Child Tasks are submitted by their parent runtime')
                 for criterion in spec['completion']:
