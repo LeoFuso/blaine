@@ -10,6 +10,34 @@ def add_control_handlers(workflow, store):
         return await ctx.run_typed('read-control-artifact', store.read_json,
             restate.RunOptions(max_attempts=3), task_id=ctx.key(), ref=ref)
 
+    async def effect_summary(ctx, state) -> list[dict]:
+        """Closed projection of target effects: class, status and receipt facts.
+
+        Read-only. Output bodies stay in the artifact store (references only), and
+        nothing here decides completion; the CompletionVerifier does.
+        """
+        summary = []
+        for operation, record in sorted((state.get('effects') or {}).items()):
+            item = {'operation_id': operation, 'operation_class': record.get('class'), 'status': record.get('status')}
+            receipt = await read(ctx, record['receipt_ref']) if record.get('receipt_ref') else None
+            body = (receipt or {}).get('payload') or {}
+            if (receipt or {}).get('kind') == 'EffectReceipt':
+                if 'write' in body:
+                    item.update(path=body['write'].get('path'), before=body['write'].get('before'),
+                                after=body['write'].get('after'))
+                if 'exec' in body:
+                    item.update({k: body['exec'][k] for k in ('exit_code', 'signal', 'output_ref', 'output_bytes',
+                                                               'cleanup', 'result') if k in body['exec']})
+            elif (receipt or {}).get('kind') == 'EffectOutcome':
+                item['reason'] = body.get('reason')
+            if record.get('request_ref'):
+                request = (await read(ctx, record['request_ref'])).get('payload') or {}
+                item.update(workspace_id=request.get('workspace_id'), path=item.get('path') or request.get('path'),
+                            profile=(request.get('profile') or {}).get('id'),
+                            args=(request.get('command') or {}).get('args'))
+            summary.append(item)
+        return summary[-16:]
+
     @workflow.handler()
     async def inspect(ctx: restate.WorkflowSharedContext) -> dict:
         current = await ctx.get('task')
@@ -31,6 +59,7 @@ def add_control_handlers(workflow, store):
                           ('contract', state.get('contract_ref'))]:
             if ref:
                 view[name] = await read(ctx, ref)
+        view['effects'] = await effect_summary(ctx, state)
         if wait and wait.get('request_ref'):
             if wait['input_type'] == 'human_response':
                 view['pending_human_decision'] = await read(ctx, wait['request_ref'])

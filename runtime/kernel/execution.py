@@ -67,10 +67,17 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
                 fields(value, {'issue_id'})
                 text(value['issue_id'], 80)
             elif capability == 'worker.run':
-                fields(value, {'packet_ref', 'artifact'})
+                from runtime.kernel.worker import MAX_ATTACHMENTS
+                fields(value, {'packet_ref', 'artifact'}, {'context_refs'})
                 identifier(value['artifact'])
                 if value['packet_ref'] not in state['artifacts'].values():
                     raise ValueError('Worker packet outside admitted artifacts')
+                # A worker may see only artifacts this Task already admitted (e.g. a
+                # provider read receipt's content); references never widen access.
+                refs = value.get('context_refs', [])
+                if not isinstance(refs, list) or len(refs) > MAX_ATTACHMENTS or any(
+                        ref not in state['artifacts'].values() for ref in refs):
+                    raise ValueError('Worker context outside admitted artifacts')
                 if value['artifact'] not in state['artifacts'] and len(state['artifacts']) >= 16:
                     raise ValueError('Artifact limit reached')
             elif capability == 'context.request':
@@ -163,7 +170,7 @@ class Capabilities:
         with sqlite3.connect(fixture_database) as db:
             db.execute("CREATE TABLE IF NOT EXISTS effects (operation_id TEXT PRIMARY KEY, request BLOB NOT NULL, receipt TEXT NOT NULL)")
 
-    def dispatch_worker(self, packet: dict, operation: str, task_id: str) -> dict:
+    def dispatch_worker(self, packet: dict, operation: str, task_id: str, attachments=()) -> dict:
         """One external Worker execution. A worker session is not a Task.
 
         The session span measures the dispatch Blaine actually owns. Boundaries
@@ -175,7 +182,8 @@ class Capabilities:
                                     worker_dispatch_id='dispatch:' + operation).attributes(),
                 'gen_ai.operation.name': 'invoke_agent',
                 'gen_ai.agent.id': getattr(self.worker, 'adapter_id', 'worker')}) as span:
-            result = self.worker(packet, operation)
+            result = (self.worker(packet, operation, attachments=attachments) if attachments
+                      else self.worker(packet, operation))
             if isinstance(result, dict):
                 span.set(**{'blaine.worker.outcome': str(result.get('outcome')),
                             'blaine.worker_session_id': str(result.get('attempt_id'))})
@@ -219,12 +227,20 @@ class Capabilities:
                         if state['task_id'] != task_id:
                             raise ContextError('DENIED')
                         self.context_plane.guard_worker(state, spec, admission, value['packet_ref'], operation)
-                    result = self.dispatch_worker(packet, operation, task_id)
+                    from runtime.kernel.worker import ATTACHMENT_BYTES, output_limit
+                    attachments, budget = [], ATTACHMENT_BYTES
+                    for ref in value.get('context_refs', []):
+                        content = self.store.read(task_id, ref)
+                        budget -= len(content)
+                        if budget < 0:
+                            raise ValueError('Worker context exceeds budget')
+                        attachments.append({'source': ref, 'content': content.decode('utf-8')})
+                    result = self.dispatch_worker(packet, operation, task_id, attachments)
                     ref = self.store.put_json(task_id, result)
                     output = {'worker_outcome':result['outcome'], 'attempt_id':result['attempt_id'],
                               'evidence_ref':ref}
                     if result['outcome'] == 'success':
-                        text(result['content'])
+                        text(result['content'], output_limit(packet))
                         artifacts[value['artifact']] = self.store.put(task_id, result['content'].encode())
                     else:
                         return message('CapabilityResult', {'operation_id':operation, 'outcome':'failure',
