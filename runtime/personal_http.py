@@ -48,6 +48,11 @@ PORT = int(os.environ.get('BLAINE_PERSONAL_HTTP_PORT', '48090'))
 # Retained ExecutionEvent log written by the D2 kernel journal (read-only here).
 EVENTS_FILE = os.environ.get('BLAINE_D2_EVENTS_FILE', '')
 CONVERSATION_ID = re.compile(r'[A-Za-z0-9_-]{1,64}')
+# The desktop app's own origins (production webview and the dev server). Only
+# they may read responses cross-origin; every POST must be JSON, which a page
+# from any other origin cannot send without a preflight this bridge refuses.
+APP_ORIGINS = frozenset(os.environ.get(
+    'BLAINE_BRIDGE_ORIGINS', 'tauri://localhost,http://tauri.localhost,http://localhost:1420').split(','))
 
 
 def read_task_events(task_id: str, after: int) -> dict:
@@ -142,13 +147,30 @@ class BridgeHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         pass
 
+    def _cors(self):
+        origin = self.headers.get('Origin')
+        if origin in APP_ORIGINS:
+            self.send_header('Access-Control-Allow-Origin', origin)
+            self.send_header('Vary', 'Origin')
+
     def _json(self, status: int, data: dict):
         body = json.dumps(data).encode()
         self.send_response(status)
+        self._cors()
         self.send_header('Content-Type', 'application/json')
         self.send_header('Content-Length', str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def do_OPTIONS(self):
+        if self.headers.get('Origin') not in APP_ORIGINS:
+            return self._json(403, {'error': 'Origin not allowed'})
+        self.send_response(204)
+        self._cors()
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+        self.send_header('Access-Control-Max-Age', '600')
+        self.end_headers()
 
     def _dispatch(self, route):
         try:
@@ -188,6 +210,8 @@ class BridgeHandler(BaseHTTPRequestHandler):
         self._json(404, {'error': 'Not found'})
 
     def do_POST(self):
+        if (self.headers.get('Content-Type') or '').split(';')[0].strip() != 'application/json':
+            return self._json(415, {'error': 'POST bodies must be application/json'})
         length = int(self.headers.get('Content-Length', 0))
         try:
             body = json.loads(self.rfile.read(length)) if length else {}
