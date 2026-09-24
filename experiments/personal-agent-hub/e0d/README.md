@@ -1,7 +1,7 @@
 # E0.D — Workstation identity, registration, presence and reconnect
 
 Status: **PARTIAL**. Implementation and local deterministic validation are complete;
-the persistent edge is deployed; primary Mac alpha.3 auto-registration, disconnect and reconnect passed. Post-restart reconnect and three sequential ACP sessions passed; protocol-2 client and alternate-peer acceptance remain pending. E0.C remains PASS.
+the persistent edge is deployed; primary Mac alpha.3 auto-registration, disconnect and reconnect passed. Post-restart reconnect and three sequential ACP sessions passed; published alpha.4 protocol-2 client upgrade passed; alternate-peer acceptance remains pending. E0.C remains PASS.
 Baseline: `23271871da4a27b3f86655602393756f8665dc7d`.
 
 The [contract](../../../docs/contracts/workstation-identity.md) records storage,
@@ -61,7 +61,19 @@ ONLINE/OFFLINE/ONLINE transitions and three distinct ACP sessions with the same
 workstation ID. Runtime and Restate PIDs remained unchanged.
 
 The alpha.3 architecture field is empty: neither its Hello nor current WhoIs
-metadata supplied it. No inference from hostname was stored. Protocol-2 receipt
-and client-upgrade acceptance remain explicit gates for the prepared alpha.4.
+metadata supplied it. No inference from hostname was stored. The [published alpha.4 upgrade](live/mac-alpha4-open.json) then negotiated protocol 2,
+kept the same workstation/node/installation IDs and reported `darwin/arm64`,
+`0.1.0-alpha.4` and ONLINE. The existing primary state was not reset. The operator
+confirmed completing the public installer and real IntelliJ step; exact prompt
+response text was not repeated for this round.
 [Operator inspect](live/mac-inspect.json) and
 [storage access](live/storage-access.json) are read-only live observations.
+
+During the intentional edge restart, the final session-disconnect callback logged
+`REGISTRY_UNAVAILABLE`, consistent with the store closing before that callback
+completes (an inference from the shutdown ordering). The store's instance cleanup
+and writer startup removed connection leases; the measured inventory was OFFLINE,
+retained its ID, and recovered ONLINE on reconnect. This shutdown-order diagnostic
+is retained in the live evidence, not treated as lost registration or a database
+outage. No immediate-cleanup guarantee is claimed for an abruptly lost connection;
+lease expiry remains the bounded fallback.
