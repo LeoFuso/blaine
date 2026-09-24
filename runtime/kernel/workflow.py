@@ -440,18 +440,25 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             if (result['payload']['kind'] == 'receipt'
                     and result['payload']['receipt']['payload']['state'] == 'running'):
                 result = await supervise(request, operation, iteration)
-            await settle_effect(operation, iteration, result)
+            await settle_effect(operation, iteration, result,
+                                output_name=('output-' + request['payload']['profile']['id']
+                                             if action['capability'] == effects.EXEC else None))
             if state['effects'][operation]['status'] == 'uncertain':
                 await reconcile_effects(f'{iteration}/immediate')
             return effect_observation(operation)
 
-        async def settle_effect(operation: str, iteration: int, result: dict) -> None:
+        async def settle_effect(operation: str, iteration: int, result: dict, output_name: str | None = None) -> None:
             kind = result['payload']['kind']
             record_ = state['effects'][operation]
             if kind == 'receipt':
                 receipt = result['payload']['receipt']
                 record_.update(status=receipt['payload']['state'],
                                receipt_ref=await retain(f'effect-receipt/{iteration}', receipt))
+                output_ref = (receipt['payload'].get('exec') or {}).get('output_ref')
+                if output_name and output_ref and (output_name in state['artifacts'] or len(state['artifacts']) < 16):
+                    # The latest output of a reviewed profile is Task evidence the Worker
+                    # may be shown (via context_refs) to remediate a failing run.
+                    state['artifacts'] = {**state['artifacts'], output_name: output_ref}
                 outcome = 'success' if receipt['payload']['state'] in ('applied', 'completed') else 'failure'
             else:
                 record_.update(status='uncertain' if kind == 'uncertain' else 'not_dispatched',

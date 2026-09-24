@@ -141,6 +141,10 @@ class PA3Workflow(Base):
                                     'workspace.exec', 'workspace.exec'])
         self.assertEqual(len([e for e in entries if e['phase'] == 'dispatched']), 3)  # write + two execs
 
+        # Each reviewed profile's latest output is admitted Task evidence (worker-visible on remediation).
+        artifacts = harness.state(task_id)['artifacts']
+        self.assertIn('Ran 1 test', self.store.read(task_id, artifacts['output-targeted-tests']).decode())
+        self.assertIn('PASS', self.store.read(task_id, artifacts['output-canonical-suite']).decode())
         view = await harness.call(task_id, 'inspect')
         by_class = {(e['operation_class'], e.get('profile')): e for e in view['effects']}
         write = by_class[('workspace.write', None)]

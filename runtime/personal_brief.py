@@ -223,15 +223,19 @@ class BriefService:
             ] if c],
             'output': {'kind': 'file', 'path': path}})
         packet_text = encode(packet).decode()
-        reads = ''.join(f'workspace.read {{form:"file",workspace_id:"{workspace_id}",path:"{p}",artifact:"source-{i}"}}; '
-                        for i, p in enumerate(body['inspect'], 1))
-        procedure = (f"Execution Brief: {body['objective']} Procedure: 1) {reads or 'no reads; '}"
-                     f"2) worker.run packet_ref=<{WORKER_INPUT} ref>, artifact={DRAFT}, context_refs=<source refs>; "
-                     f"3) workspace.write {path} in {workspace_id} with content_ref=<{DRAFT} ref> and precondition "
-                     f"absent (new file) or the read receipt; 4) workspace.exec {targeted} args {body['targeted_tests']}; "
+        reads = ''.join(f'{p} as source-{i}; ' for i, p in enumerate(body['inspect'], 1))
+        summary = body['objective'] if len(body['objective']) <= 200 else body['objective'][:197] + '...'
+        tests = ' '.join(body['targeted_tests'])
+        procedure = (f"Brief (full intent in WorkerInput): {summary} Workspace {workspace_id}. Steps: "
+                     f"1) workspace.read form=file {reads or '(none); '}"
+                     f"2) worker.run packet_ref={WORKER_INPUT} ref, artifact={DRAFT}, context_refs=source refs; "
+                     f"3) workspace.write {path}: content_ref={DRAFT} ref, precondition absent (new file) or a read "
+                     f"receipt; 4) workspace.exec {targeted} args [{tests}]; "
                      + ''.join(f'{5 + i}) workspace.exec {name}; ' for i, name in enumerate(canonical))
-                     + 'then COMPLETE. If a step fails, fix the draft and repeat from 2.')
-        objective = procedure.encode()[:1024].decode(errors='ignore')
+                     + f"then COMPLETE. If tests fail: worker.run with context_refs + output-{targeted} ref, "
+                       f"workspace.read {path} as current, workspace.write with precondition receipt of that read, "
+                       'rerun the tests.')
+        objective = text(procedure, 1024)  # never truncated: the procedure is part of the accepted intent
         digest = hashlib.sha256(packet_text.encode()).hexdigest()
         criterion = 'The human-confirmed Execution Brief is admitted as the Worker input'
         task_spec = message('TaskSpec', {'objective': objective,
