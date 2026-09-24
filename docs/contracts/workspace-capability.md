@@ -17,10 +17,14 @@ Four concepts, deliberately separate:
 
 | Concept | Meaning | Owner / source | E1 representation |
 | --- | --- | --- | --- |
-| **Delegated scope** | Projects and capabilities IntelliJ exposes to Blaine | Operator, in IntelliJ: Blaine connected as an ACP agent with **Pass IntelliJ MCP server** (`use_idea_mcp`) enabled | `DelegationSnapshot` observed per ACP session |
-| **Task relevance** | Which delegated project/context this Task works in | Context Plane / Personal Agent selection (default: the project the chat is attached to) | `workspace_id` in the Task request |
+| **Delegated scope** | Projects and capabilities IntelliJ exposes to Blaine | Operator: installing Blaine as a JetBrains ACP agent with **Pass IntelliJ MCP server** (`use_idea_mcp`) enabled for that agent (see [onboarding](#delegation-onboarding)) | `DelegationSnapshot` observed per ACP session |
+| **Task relevance** | Which delegated project/context this Task works in | Context Plane resolution ([Resolver](../context-plane.md#11-workspace-knowledge-and-routing)); until Context Plane integration, the project the chat is attached to or one the user names | `workspace_id` in the Task request |
 | **User constraints** | Operator policy such as Read Only, approvals, model preference | Delivered through ACP `configOptions` (an input channel, not a policy engine) and explicit Task signals | Recorded in the trusted envelope |
 | **Effective authority** | What this Task may actually do | Compiled by Blaine; **enforced only by PolicyGate** | `EffectiveAuthority` artifact + grant |
+
+There is one Blaine authority model with several policy inputs. JetBrains
+configuration, ACP `configOptions` and the local client supply inputs or transport;
+none evaluates Task authority.
 
 ```text
 effective authority = Task grant (operation classes requested for this Task type)
@@ -31,16 +35,76 @@ effective authority = Task grant (operation classes requested for this Task type
 
 Consequences:
 
-- Connecting Blaine with `use_idea_mcp` enabled **is** the operator's delegation.
-  Blaine adds no second workspace approval, consent file or prompt.
-- An ACP `resource_link` is a context reference inside the delegated scope; it is
-  a relevance hint, never additional authority and never evidence by itself.
-- The local `blaine acp` client is a protocol/capability **bridge**: framing,
-  correlation, transport to the IDE's MCP endpoint and local secret custody. It does
-  not filter, project or re-authorize the delegated tool set. PolicyGate on the Hub
-  is the single enforcement authority.
+- Installing Blaine as an IntelliJ agent with `use_idea_mcp` enabled **is** the
+  operator's delegation. Blaine adds no second workspace approval, consent file or
+  prompt, including when IntelliJ exposes several open projects. Where the Hub
+  design, ADR 0022 or the Context Plane speak of "workspace consent" for an
+  IntelliJ-provided workspace, this delegation is that consent.
+- Relevance is not authorization. The Context Plane selects which delegated
+  project a Task needs; PolicyGate decides what the Task may do there.
+- An ACP `resource_link` is a context reference inside the delegated scope: a
+  locator hint for Context Plane resolution and for workspace operations, never
+  additional authority, never evidence by itself, and never a reason for another
+  prompt.
+- The local `blaine acp` client is a protocol/capability **bridge**: protocol
+  validity, session/correlation correctness, forwarding, local token
+  confidentiality and receipt transport. It does not filter, project or
+  re-authorize the delegated tool set. PolicyGate on the Hub is the single
+  enforcement authority. Protocol integrity is not Task authorization.
 - READ_ONLY is not implemented by hiding tools. The delegated MCP surface may
   contain mutating tools; E1 proves that a READ_ONLY Task never invokes them.
+
+### Delegation onboarding
+
+Hub connectivity and JetBrains integration are separate operations:
+
+| Operation | Owns | JetBrains configuration |
+| --- | --- | --- |
+| `blaine connect` | Enrollment, Hub discovery, identity and readiness | Never touched |
+| `blaine integration jetbrains install` (also invoked by the public/development installer) | Registering Blaine as a JetBrains ACP agent | Merges the owned Blaine entry **and sets `use_idea_mcp = true` for that entry** |
+| `blaine integration jetbrains check` / `blaine doctor` | Read-only verification | Reports whether the Blaine entry exists, matches, and has MCP delegation configured |
+
+Installing Blaine as an IntelliJ agent is the explicit operator act that grants the
+IDE-exposed project surface, so no separate manual toggle is required. The install:
+
+- sets the **per-agent** override for the Blaine entry only, preserving
+  `default_mcp_settings` and every other agent's MCP exposure. It never enables the
+  global default. `use_custom_mcp` stays off for Blaine;
+- keeps the existing merge guarantees (duplicate/structure rejection, backup,
+  atomic replace, concurrent-edit check, identical config not rewritten);
+- reports honestly when the installed IDE offers no per-agent override: delegation
+  is then *not configured* and E1 capabilities are unavailable. It does not fall
+  back to changing global defaults, because that would delegate to other agents.
+
+JetBrains documents that agent-specific MCP settings override
+`default_mcp_settings` but not the per-entry key name. E0.E/E1.A records the key
+the installed IDE writes when the per-agent option is toggled, then freezes it
+with fixtures. Today's installer writes `use_idea_mcp: false` into
+`default_mcp_settings` when it creates a new file; that changes with this design.
+An operator who does not want to delegate turns the per-agent option off in the
+IDE; workspace operations then report UNAVAILABLE with that reason.
+
+### Security model
+
+For the current personal deployment:
+
+- The operator trusts the Blaine Hub; it is part of the trusted computing base.
+- IntelliJ is a broad capability provider. The delegated MCP surface may include
+  read, search, symbol lookup, write, terminal, run configurations, debugger,
+  database and other IDE tools. That breadth is acceptable and is not hidden locally.
+- Tailscale/tsnet protects private connectivity and device admission; E0.D provides
+  workstation identity, inventory and presence.
+- Task authority and PolicyGate on the Hub are the authoritative application policy
+  boundary and control operation scope. The workstation client does not
+  independently re-evaluate Task authority.
+- **Accepted residual:** a compromised Hub is outside the protection offered by
+  Task-level PolicyGate and could invoke any delegated IntelliJ tool, subject only
+  to IntelliJ's own controls (exposed-tool settings; command confirmation unless
+  "brave mode" is on). This residual is accepted for the current threat model; no
+  local authorization engine is added to defend against it.
+- The client still enforces protocol integrity: framing, size and deadline bounds,
+  JSON-RPC and operation correlation, session binding, and keeping IDE tokens on the
+  workstation. These protect the channel, not Task authority.
 
 ## Verified IntelliJ MCP semantics
 
@@ -50,10 +114,10 @@ implementation, to be re-confirmed against the installed IDE in E1.A.
 
 | Property | Observed behavior | Design consequence |
 | --- | --- | --- |
-| Delegation to ACP agents | Per-agent "Pass IntelliJ MCP server" (`use_idea_mcp`, default **false**); the IDE passes MCP servers in ACP `session/new` `mcpServers` | Explicit operator act; recorded as the delegation event. E0.C's real session sent none, consistent with the default |
+| Delegation to ACP agents | "Pass IntelliJ MCP server" (`use_idea_mcp`, default **false**), overridable per agent (per-entry key undocumented); the IDE passes MCP servers in ACP `session/new` `mcpServers` | Set per agent by the integration install; recorded as the delegation event. E0.C's real session sent none, consistent with the default |
 | Endpoint | Loopback HTTP (SSE/streamable) or stdio runner; an isolated "authorized session" server uses a per-session token header | The Hub cannot reach it; the workstation client must bridge. Tokens stay on the workstation |
 | Project selection | IDE-global server; per call: `projectPath` argument (strict), else call header, session header (`IJ_MCP_SERVER_PROJECT_PATH`), else MCP roots | Delegated scope may contain several open projects; Task relevance must pick one explicitly |
-| Search tools | `search_text`, `search_regex`, `search_file`, `search_symbol` search the project index scope and return project-relative results; excluded/external content off by default | Usable for "find where X is computed" without a Blaine search engine |
+| Search tools | `search_text`, `search_regex`, `search_file`, `search_symbol` search the project index scope and return project-relative results; excluded/external content off by default | Provider for the Context Plane's lexical/symbol workspace search on a remote workspace, without a Blaine search engine |
 | `list_directory_tree` | Lexically rejects paths outside the project directory | IDE boundary |
 | `read_file` | Resolves relative or absolute paths/VFS URLs, then refuses files outside "project, library, and SDK roots"; returns the IDE **document** (may include unsaved edits), line-windowed | IDE boundary includes dependency sources; evidence is labelled `ide_document`, not a disk hash |
 | Mutating / executing tools | Same server exposes `create_new_file`, `apply_patch`, `rename_refactoring`, `reformat_file`, `execute_terminal_command`, `execute_run_configuration`, `build_project`, database and debugger tools; tool enablement is an IDE-global setting | Present in delegated scope; excluded from READ_ONLY effective authority by PolicyGate, not by the bridge |
@@ -65,30 +129,34 @@ stdio), whether it sets the project header, and the installed tool list.
 
 ## Workspace
 
-A Workspace is **an IDE project delegated from one registered workstation**. It is
-not a filesystem mount, and Blaine never resolves its paths on the Hub.
+A Workspace is **Blaine's representation of an IDE project available from one
+registered workstation**. It is not a filesystem mount, and Blaine never resolves
+its paths on the Hub.
 
 ```text
 workspace_id = "wsp-" + first 128 bits of SHA-256(
-                 registration_id, path_platform, canonical project base path)
+                 workstation_id, path_platform, canonical project base path)
 ```
+
+`workstation_id` is the Hub-assigned E0.D inventory ID bound to the authenticated
+tailnet node ([workstation identity](workstation-identity.md)); it is carried into
+the ACP adapter environment as E0.D's routing hook.
 
 | Question | Answer |
 | --- | --- |
-| Bound to a workstation? | Yes, to the E0.D registration. The same repository cloned on two workstations is two Workspaces |
-| Durable identity | `workspace_id`, derived deterministically; no Workspace registry is required for E1 |
-| Canonical root | The project base path IntelliJ reports for the ACP session (`cwd`, confirmed against the MCP project), canonicalized on the workstation |
-| IntelliJ project identity | Recorded as descriptive metadata (project name, IDE product/build); not part of the identity, so an IDE upgrade keeps the Workspace |
-| Several per workstation | Yes: every project open in the delegating IDE is in delegated scope; each has its own `workspace_id` |
-| Survives IDE/session restart | Yes. Identity depends only on registration and root; the session route is ephemeral |
+| Which workstation provides it? | The E0.D `workstation_id` in its identity. The same repository on two workstations is two Workspaces |
+| Which IntelliJ project does it represent? | The project base path IntelliJ reports for the session (ACP `cwd`, confirmed against the MCP project), canonicalized on the workstation; IDE product/build and project name are descriptive metadata |
+| Is it currently available? | Derived, never stored as authority: E0.D presence for the workstation (ONLINE/OFFLINE lease) **and** a live ACP session whose `DelegationSnapshot` lists the project. ONLINE alone is not availability |
+| Which Tasks operate on it? | Tasks record `workspace_id` in their authority and receipts; answered by Task queries. No separate Workspace-to-Task registry |
+| Durable identity | Derived deterministically; no Workspace registry or approval record is required for E1 |
+| Several per workstation | Yes: every project the delegating IDE exposes is delegated scope, with no per-project approval |
+| Survives IDE/session restart | Yes. Identity depends only on workstation and root; routes are ephemeral |
 | Unavailable | The Task keeps its `workspace_id`; operations wait (see [disconnect](#disconnect-and-reconnect)) |
 | Project moved/re-rooted | Different `workspace_id`. Retargeting an existing Task is an explicit user amendment, not automatic |
 
-**E0.D dependency.** E1 needs "authenticated session → stable `registration_id`"
-from E0.D. It does not depend on E0.D's storage or presence implementation. Until
-E0.D lands, spikes may use the E0.C installation ID (`ws-…`) and must say so; E1
-acceptance requires the registration ID. The Workspace may later become an E0.D
-"capability association" for inventory display; E1 does not need that.
+E0.D is PASS, so E1 uses the server-assigned `workstation_id` directly. The
+Workspace may later appear as an E0.D inventory association for display; E1 needs
+no new table, and nothing in that association would grant access.
 
 ### DelegationSnapshot
 
@@ -97,7 +165,7 @@ Tasks that use it. It contains no token, URL secret or file content.
 
 ```json
 {"version": 1, "kind": "DelegationSnapshot", "payload": {
-  "registration_id": "reg-…", "session_generation": 3,
+  "workstation_id": "ws-…", "session_id": "…",
   "ide": {"product": "IU", "build": "262.10968.63", "ai_assistant": "262.10968.97"},
   "provider": {"kind": "intellij-mcp", "transport": "http", "server_version": "…"},
   "projects": [{"workspace_id": "wsp-…", "root": "/home/alex/src/orchid-service",
@@ -198,7 +266,7 @@ nothing reaches the workstation.
 ```json
 {"version": 1, "kind": "WorkspaceOperationRequest", "payload": {
   "task_id": "task-…", "operation_id": "task-…/5", "workspace_id": "wsp-…",
-  "registration_id": "reg-…", "provider": "intellij-mcp",
+  "workstation_id": "ws-…", "provider": "intellij-mcp",
   "mcp": {"method": "tools/call", "params": {"name": "search_text",
           "arguments": {"q": "customerStatus", "limit": 20, "includeExcluded": false,
                         "projectPath": "/home/alex/src/orchid-service"},
@@ -212,21 +280,31 @@ nothing reaches the workstation.
 ```json
 {"version": 1, "kind": "WorkspaceReadReceipt", "payload": {
   "task_id": "task-…", "operation_id": "task-…/5", "request_sha256": "…",
-  "workspace_id": "wsp-…", "registration_id": "reg-…", "session_generation": 3,
+  "workspace_id": "wsp-…", "workstation_id": "ws-…", "session_id": "…",
   "provider": {"kind": "intellij-mcp", "ide_build": "262.10968.63"},
-  "operation": "search_text", "source_kind": "ide_index_search",
-  "outcome": "success", "response_ref": "artifact://…", "response_sha256": "…",
+  "operation": "read_file", "state": "SUCCESS",
+  "source": {"view": "ide_document", "class": "project",
+             "path": "service/src/main/java/example/CustomerStatus.java", "lines": [40, 120]},
+  "response_ref": "artifact://…", "response_sha256": "…",
   "response_bytes": 2311, "truncated": false,
   "dispatched_at": "…", "received_at": "…"}}
 ```
 
-`source_kind` is `ide_document` (`read_file`), `ide_index_search` (search tools) or
-`ide_tree` (`list_directory_tree`). Provider errors (file missing, binary, not a
-document) are `outcome: failure` receipts: a normal observation for cognition,
-not a Task failure. Admission checks Task, operation, request digest, workspace,
-registration and current route generation; the promise is one-shot, so a replay or
-a result for another Task/operation is rejected (existing
-`submit_workspace_result` pattern, extended).
+Provenance is explicit about what the IDE returned:
+
+| Field | Values | Meaning |
+| --- | --- | --- |
+| `source.view` | `ide_document` (`read_file`), `ide_index_search` (search tools), `ide_tree` (`list_directory_tree`) | Which IDE view produced the bytes. `ide_document` may include unsaved edits; its digest is of the returned text, never a disk hash |
+| `source.class` | `project`, `library`, `sdk` | Whether the file is project source or dependency/SDK source (from the provider path and its root); library and SDK content is read-only third-party context |
+| `state` | Context Plane [result states](context-plane.md#6-result-and-fallback-semantics): `SUCCESS`, `EMPTY`, `DENIED`, `UNAVAILABLE`, `INVALID_CONTEXT`, `STALE`, `UNSUPPORTED`, `INSUFFICIENT_CONTEXT` | `EMPTY` is a valid search with no match, not proof of absence elsewhere; `UNAVAILABLE` covers no live route or delegation; provider errors such as a missing or binary file are `UNSUPPORTED`/`STALE` observations for cognition, not Task failures |
+
+These receipts carry the Context Plane's workspace-target identity (workspace,
+source path, returned-content digest and range), so the IntelliJ MCP provider can
+serve as the remote implementation of the Context Plane's exact read and
+lexical/symbol search semantics without a second workspace contract. Admission
+checks Task, operation, request digest, workspace, workstation and current
+session; the promise is one-shot, so a replay or a result for another
+Task/operation is rejected (existing `submit_workspace_result` pattern, extended).
 
 ## Direct protocol extension
 
@@ -235,7 +313,7 @@ feature so E0.C peers keep working:
 
 | Addition | Shape | Purpose |
 | --- | --- | --- |
-| Handshake feature | `features: ["capability-relay/1"]` in both hellos | Explicit compatibility; absent ⇒ no workspace capability on that session |
+| Protocol version | Blaine protocol **3** adds `capability-relay/1` to the signed hello transcript, following E0.D's protocol-2 precedent | Explicit compatibility; protocol-1/2 clients keep working and simply have no workspace capability |
 | Frame kind `5 Capability` | Same header (kind byte + 16-byte session ID), JSON payload ≤1 MiB | A logical channel separate from the ACP byte stream, so capability traffic can never reach IntelliJ's stdio |
 | `DelegationObserved` (client → Hub) | Redacted MCP server descriptor from `session/new`, ACP `cwd`, IDE info | Hub builds the `DelegationSnapshot` |
 | MCP JSON-RPC (both ways) | Standard MCP client messages (`initialize`, `tools/list`, `tools/call`, `ping`, notifications) | Hub MCP client ↔ IDE MCP server, via the bridge |
@@ -250,7 +328,7 @@ feature so E0.C peers keep working:
   Capability channel and the IDE endpoint, enforce framing, size and deadline
   limits, JSON-RPC correlation, and MCP client-role method shape.
 - Never originate a tool call, rewrite arguments or decide admissibility. Echo
-  `_meta.blaine/operation_id` and the session generation in its relay envelope.
+  `_meta.blaine/operation_id` and the session ID in its relay envelope.
 - Close the MCP transport when the ACP session ends; never retry a call on its own.
 
 **Hub side:** the per-session `PersonalACP` process owns the MCP client for its
@@ -268,11 +346,12 @@ by the live session route, not by the Task:
   request for a workspace its route serves, and submits the receipt through
   `submit_workspace_result`. Progress is streamed to the chat.
 - With no active route, the operation stays pending. A later session on the same
-  registration and workspace runs `continue <task-id>` (or the natural-language
+  workstation and workspace runs `continue <task-id>` (or the natural-language
   equivalent) to resume delivery. This matches the accepted Hub E1 flow
   ("inspect and explicitly continue the pending read").
-- Automatic delivery to any live route without a user turn needs E0.D presence and
-  a route registry; it is a later extension, not an E1 requirement.
+- Automatic delivery to a live route without a user turn would build on E0.D's
+  presence leases and ACP routing hook; it is a later extension, not an E1
+  requirement.
 
 No polling loop lives in conversation; the Restate wait is the durable state.
 
@@ -285,11 +364,11 @@ to not escalate beyond it.
 | --- | --- |
 | Root confinement, `..`, absolute paths | PolicyGate argument schema (workspace-relative only); IntelliJ additionally refuses paths outside project/library/SDK roots |
 | Another open project | Delegated scope, but only reachable if Task relevance names its `workspace_id`; lowering pins `projectPath`, model cannot supply it |
-| Another workstation with the same path | Different `workspace_id` and registration; admission rejects receipts from the wrong route |
+| Another workstation with the same path | Different `workspace_id` and `workstation_id`; admission rejects receipts from the wrong route |
 | Symlinks | IDE-defined: content the IDE treats as part of the project is in scope. Accepted residual; receipts record the provider-reported path |
-| Special files, binary files | `read_file` returns only text documents; others become failure receipts |
+| Special files, binary files | `read_file` returns only text documents; others become `UNSUPPORTED` receipts |
 | Very large files / results | Line-windowed reads (≤400 lines), response cap 64 KiB, search limit ≤50; `truncated` recorded, never silently accepted as complete |
-| Deleted / stale files | Failure receipt, or a later read with a different digest; both retained |
+| Deleted / stale files | `STALE`/`UNSUPPORTED` receipt, or a later read with a different digest; both retained |
 | Change during read | IDE returns a consistent document snapshot; evidence is that snapshot's digest and time, not a disk-state claim |
 | Encoding | IDE document decoding; returned as UTF-8 text |
 | Ignored / generated directories | Excluded content off (`includeExcluded=false`); not a security control, a relevance/size bound |
@@ -313,8 +392,8 @@ Task actually reads them.
 
 | Situation | Task effect |
 | --- | --- |
-| IntelliJ closes, network loss, laptop sleep during a pending operation | Task stays `WAITING` (`workspace_result`), blocking dependency shows workspace and "capability unavailable: no live route". Contract, journal and evidence unchanged. Nothing is cancelled |
-| Reconnect, same registration and workspace | New session generation; `continue` re-dispatches the **same** pending `operation_id` (reads are safe to repeat). First admitted receipt wins; late duplicates rejected |
+| IntelliJ closes, network loss, laptop sleep during a pending operation | Task stays `WAITING` (`workspace_result`); the blocking dependency shows the workspace, the E0.D presence of its workstation and "capability unavailable: no live route". Contract, journal and evidence unchanged. Nothing is cancelled |
+| Reconnect, same workstation and workspace | New session; `continue` re-dispatches the **same** pending `operation_id` (reads are safe to repeat). First admitted receipt wins; late duplicates rejected |
 | Reconnect with delegation off (`use_idea_mcp` disabled) or project not open | Still `WAITING`; the Task reports the smallest user action: enable delegation / open the project |
 | Result arrives after response loss | Idempotent: same operation, one-shot admission |
 | Provider error | Failure receipt; cognition continues. Not a Task failure |
@@ -354,8 +433,8 @@ All three use task-type templates that contribute `no-mutation` and
 
 | Template criterion | Level | Verifier |
 | --- | --- | --- |
-| `no-mutation` — no mutating operation admitted or executed | REQUIRED | `capability_journal`: `operation_classes_subset ⊆ {workspace.read}` and `admitted_before_observed` |
-| `workspace-scope` — every operation targeted the Task's workspace(s) | REQUIRED | `capability_journal`: `workspace_subset` |
+| `no-mutation` — no mutating operation admitted or executed | REQUIRED, invariant | `capability_journal`: `operation_classes_subset ⊆ {workspace.read}` and `admitted_before_observed` |
+| `workspace-scope` — every operation targeted the Task's workspace(s) | REQUIRED, invariant | `capability_journal`: `workspace_subset` |
 
 ### 1. Investigation — "Investigate why ExampleService returns 500 for this request."
 
@@ -415,8 +494,10 @@ contract, journal, receipts and evaluations. No live tests were run by this desi
 
 **Positive (live, second workstation, disposable synthetic project):**
 
-1. Operator enables "Pass IntelliJ MCP server" for Blaine; no Blaine approval step
-   exists. The Hub records a `DelegationSnapshot` containing mutating tools.
+1. `blaine integration jetbrains install` registers Blaine and sets its per-agent
+   `use_idea_mcp`; `check` reports delegation configured and other agents' MCP
+   settings unchanged. No Blaine approval step exists. The Hub records a
+   `DelegationSnapshot` containing mutating tools, without the IDE token.
 2. `access = read_only` is selected through configOptions and compiled into the
    Task's `EffectiveAuthority`.
 3. An investigation Task (example 1) runs search and read operations through the
@@ -437,7 +518,7 @@ contract, journal, receipts and evaluations. No live tests were run by this desi
 | Unclassified/unknown tool | Denied |
 | Model supplies `projectPath` or targets a workspace not in authority | Denied |
 | Absolute path, `..`, URL, `jar://` argument | Denied by argument schema |
-| Receipt from another registration, stale session generation, other Task, replayed operation | Rejected; one-shot admission holds |
+| Receipt from another workstation, stale session, other Task, replayed operation | Rejected; one-shot admission holds |
 | Findings cite a quote not present in the cited receipt | `findings-cited` `failed`; no COMPLETED |
 | Cognition attempts to drop or downgrade a REQUIRED criterion | Rejected; only a human amendment can |
 | Synthetic journal with an `observed` entry lacking admission | `no-mutation` `failed` |
@@ -451,13 +532,16 @@ needed; or no-mutation cannot be shown from the journal.
 
 ## Extension to E2 and E3
 
-E1 adds nothing dormant for writes. E2 extends by composition:
+E1 adds nothing dormant for writes, and E2 needs no new provider integration: the
+same delegated IntelliJ MCP surface, bridge and journal serve both. Moving from E1
+to E2 changes the Task's effective authority (operator policy may allow write or
+execute classes), not the provider. E2 extends by composition:
 
 | E2 need | Extension point |
 | --- | --- |
-| Conditional writes, patches | New class `workspace.write` in the classification table (`apply_patch`, `create_new_file`, or an ACP `fs/write_text_file` provider); new configOption value; PolicyGate argument schemas with expected-hash preconditions |
+| Conditional writes, patches | Classify the already-delegated `apply_patch`/`create_new_file` as `workspace.write`; new configOption value; PolicyGate argument schemas with expected-hash preconditions |
 | Uncertain effects | Journal `admitted` entry already precedes dispatch; E2 adds `uncertain` reconciliation before any redispatch (reads may repeat, writes may not) |
-| Bounded execution | Class `workspace.exec` (`execute_run_configuration` profile, or ACP terminal); `capability_result` verifier on exit code and test report |
+| Bounded execution | Classify `execute_run_configuration` (reviewed profiles) as `workspace.exec`; `capability_result` verifier on exit code and test report |
 | Scope of change | `change_set` verifier over admitted diffs |
 | Approvals | User constraint `edit_with_approval` → `autonomy.ask_before` → existing `human.request` wait |
 
@@ -466,15 +550,14 @@ tools confine lexically and offer no compare-and-swap). E3 composes Completion
 Contract + E1 reads + E2 effects + human wait/resume + verification + memory
 suggestions without changing any E1 contract.
 
-## Accepted residuals and open items
+## Accepted residuals and remaining gates
 
-- **Compromised Hub.** With no local policy in the client, a compromised Hub can
-  invoke any tool in the delegated surface, including mutating and executing
-  tools, within the IDE's own controls. Operator mitigations are IDE-side:
-  the IDE's exposed-tool settings, leaving "brave mode" off so command
-  execution still asks in the IDE, and not delegating. This replaces the Hub
-  design's former "independent local guard" control; see ADR 0027.
+- **Compromised Hub** — accepted for the current threat model; see the
+  [security model](#security-model) and ADR 0027.
 - **Editor state.** `read_file` evidence may reflect unsaved edits. E1 labels it;
   E2 must decide dirty-buffer reconciliation before disk-based verification.
-- **Endpoint form.** Recorded in E1.A; the bridge supports the forms observed.
-- **E0.D.** Registration identity is a dependency; route/presence registry is not.
+- **E1.A live gate.** The installed IDE's real delegation shape is not inferred
+  from documentation: E1.A records a redacted `session/new` (MCP endpoint form and
+  session metadata, how `use_idea_mcp` manifests, project identity/path
+  representation, exposed tool list, per-agent config key) and demonstrates that
+  the MCP auth token stays on the workstation and in no artifact, log or commit.

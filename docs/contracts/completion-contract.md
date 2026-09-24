@@ -74,7 +74,7 @@ only references and counters. No new store, table or ledger is introduced.
     {"id": "no-mutation",
      "requirement": "No workspace-mutating capability was admitted or executed.",
      "level": "REQUIRED",
-     "provenance": {"source": "task_type", "ref": "investigation@1"},
+     "provenance": {"source": "task_type", "ref": "investigation@1", "invariant": true},
      "verifier": {"kind": "capability_journal", "version": 1,
                   "predicate": "operation_classes_subset", "allowed": ["workspace.read"]}}
   ]}}
@@ -85,7 +85,7 @@ only references and counters. No new store, table or ledger is introduced.
 | `id` | Identifier, unique within the contract, stable across revisions. Evaluations, amendments and results refer to it. |
 | `requirement` | Bounded human-readable statement (≤512 bytes). Descriptive only; the verifier decides. |
 | `level` | `REQUIRED` or `ADVISORY`. Only REQUIRED criteria gate COMPLETED. No other priority levels. |
-| `provenance` | `{source, ref?, actor?}`; see [provenance](#provenance-and-precedence). Mandatory. |
+| `provenance` | `{source, ref?, actor?, invariant?, designation_ref?, source_digest?}`; see [provenance](#provenance-and-precedence). Mandatory. `invariant` only for `task_type`; `designation_ref` and `source_digest` required for `project_policy`. |
 | `verifier` | `{kind, version, …params}` from the closed [taxonomy](#verifier-taxonomy). `unbound` is allowed only under the [refinement rule](#creation). |
 
 Limits: 1..16 criteria; a contract artifact ≤16 KiB (`MAX_PACKET`). Criterion
@@ -105,34 +105,77 @@ present; today it is mandatory for every `TaskRequest`.
 
 ## Provenance and precedence
 
-Criteria enter from a small set of sources. The source decides whether a criterion
-may be REQUIRED without further confirmation.
+Criteria enter from a small set of sources. Whether a source may create a REQUIRED
+criterion follows the existing authority order — Blaine-owned invariants, operator
+policy, the Task's user, then derived context — and the Context Plane's source-trust
+model: availability of a source is not authority, and content never confers
+authority by itself ([CP-B5](context-plane.md#1-common-binding-and-authority)).
 
-| Source | Examples | May create REQUIRED? | May waive/downgrade REQUIRED? |
+| Source | Authority tier | Examples | May create REQUIRED? |
 | --- | --- | --- | --- |
-| `user` | "Do not change the public API", "make the tests pass", an explicit acceptance request | Yes | Yes, through an explicit human amendment |
-| `operator_rule` | A promoted, versioned rule for a project or task type (e.g. "every coding Task in project ORCHID runs `./gradlew check`") | Yes | No; the operator retires the rule, then a human amendment may waive it for one Task |
-| `task_type` | Blaine-owned, versioned template defaults (`investigation@1`, `implementation@1`) | Yes, for template-declared invariants | Only by human amendment |
-| `parent_task` | Criteria a parent writes for a child TaskSpec | Yes, binding the child only | No (parent cannot weaken its own contract through a child) |
-| `project` | Checked-in AGENTS.md, repository instructions, canonical build/test commands | **No** — ADVISORY, or used to *bind a verifier* for a user/operator criterion | No |
-| `memory` | MIRIX suggestion from prior behavior | **No** — ADVISORY or candidate only | No |
-| `model` | Quality checks proposed by cognition | **No** — ADVISORY only | No |
+| `task_type` (invariant) | Blaine-owned | Authority-evidence criteria declared invariant by a versioned template: `no-mutation`, `workspace-scope` | Yes, always present for that template |
+| `task_type` (default) | Blaine-owned | Template quality defaults: findings cited, conclusion explicit | Yes |
+| `operator_rule` | Operator policy | A versioned rule held by Blaine for a project or task type, authored or promoted by the operator (e.g. "every coding Task in ORCHID runs the full check profile") | Yes |
+| `project_policy` | Operator policy | A structured rule from a **designated** project policy source (see [trusted project policy](#trusted-project-policy)): canonical build must pass; public API compatibility preserved; required integration suite passes | Yes |
+| `user` | Task user | "Do not change the public API", "make the tests pass", an explicit acceptance request | Yes |
+| `parent_task` | Delegated | Criteria a parent writes for a child TaskSpec | Yes, binding the child only |
+| `repository` | Derived context | Ordinary repository evidence: README or documentation prose, AGENTS.md text that is not designated policy, source comments, user-generated files | **No** — ADVISORY, or a proposed verifier *binding* |
+| `memory` | Derived context | Governed Memory results, including retrieved human declarations and verified-outcome learning | **No** — ADVISORY or candidate |
+| `model` | Derived context | Quality checks proposed by cognition, or a model's interpretation of any policy prose | **No** — ADVISORY only |
 
-Rationale for the two "No" rows: repository text and memory are untrusted context,
-not policy (see the Hub [security table](../personal-agent-hub.md#security-boundaries)).
-A malicious or stale repository instruction cannot make a Task impossible or add
-authority. Project instructions become REQUIRED only after an operator promotes
-them into an `operator_rule` (see [memory](#memory-and-learning)). They are still
-valuable immediately in two bounded ways: as ADVISORY criteria, and as the concrete
+Why the derived rows cannot create REQUIRED criteria: they are data under the Context
+Plane, not policy. A malicious or stale README cannot make a Task impossible or add
+authority, and a retrieved preference does not alter accepted Task constraints
+([Context Plane Memory](../context-plane.md#8-memory-plane-and-trusted-provenance)).
+Repository text remains useful immediately: as ADVISORY criteria, and as a proposed
 *binding* for a higher-provenance criterion (the user said "tests pass"; the
-checked-in instructions say which command runs them). A binding chosen from
-project text is recorded with `binding_provenance: project`.
+repository says which command runs them). Such a binding is recorded with
+`binding_provenance: repository` and, for a REQUIRED criterion, follows the
+`bind` amendment rules below. A memory or model suggestion becomes binding only by
+being confirmed by the user for this Task (`user` provenance) or adopted as an
+`operator_rule` or `project_policy` for future Tasks.
 
-**Precedence on conflict:** `user` > `operator_rule` > `task_type` > `parent_task`
-> `project` > `memory` > `model`. A conflicting lower-precedence criterion is kept
-in the contract with `superseded_by: <id>` and never evaluated as REQUIRED, so the
-conflict stays visible. A conflict between two REQUIRED criteria of equal top
-precedence is a clarification question for the user before Task creation.
+### Trusted project policy
+
+`project_policy` exists so a project can carry governed, canonical completion
+rules without every rule becoming a Blaine-held operator rule — and without
+arbitrary repository content acquiring authority.
+
+- **Designation, not content, confers trust.** A policy source is authoritative
+  only when the operator has designated it for that project through a trusted
+  declaration path: the Context Plane's authenticated human-declaration semantics
+  (`USER_DECLARATION` with an explicit destination) bound to the project's
+  workspace/ContextNode, naming the exact source locator (for example one
+  repository file). The designation is operator policy; the file is its current
+  content. A file that merely claims to be policy is ordinary `repository` text.
+- **Structured rules only.** A REQUIRED criterion comes from a machine-readable
+  rule entry that names its requirement and verifier binding (e.g.
+  `canonical-build` → `capability_result` on the declared build profile). Prose in
+  a designated source (a definition-of-done paragraph) is interpreted by a model
+  and therefore enters as ADVISORY `model` provenance, unless the user confirms it.
+- **Pinned per Task.** Contract synthesis records the designation reference and
+  the exact source revision/digest it read. A later edit to the policy file does
+  not silently change a running Task: tightening arrives as an amendment with
+  `project_policy` actor; weakening applies only to future Tasks or through a
+  policy exception.
+- **Scope.** A designation applies only to Tasks whose relevant workspace is that
+  project. It grants no capability; a rule requiring a build does not authorize
+  running it (effective authority still decides).
+
+Storage and tooling for designations and operator rules are not chosen here; E1
+needs neither. The first real rule (expected in E2/E3) selects the smallest store
+consistent with Context Plane metadata ownership.
+
+### Precedence and conflicts
+
+**Precedence on conflict:** `task_type` invariant > `operator_rule` = `project_policy`
+> `user` > `task_type` default > `parent_task` > `repository` > `memory` > `model`.
+A conflicting lower-precedence criterion is kept in the contract with
+`superseded_by: <id>` and never evaluated as REQUIRED, so the conflict stays
+visible. A user request that conflicts with operator policy ("skip the integration
+suite") does not silently override it: the policy criterion stays REQUIRED and the
+user is told that a [policy exception](#amendments) is needed. Two conflicting
+REQUIRED criteria of the same tier are a clarification question before Task creation.
 
 Authority invariants are not negotiable through precedence. A user criterion that
 would require a write in a READ_ONLY Task does not widen authority; the Task cannot
@@ -148,8 +191,8 @@ a version so its semantics can evolve without silently changing old evaluations.
 | `artifact_digest` | A named artifact exists with an exact SHA-256 | Yes | **Existing** (`evaluate`) | D2 |
 | `human_response` | A scoped typed HumanDecision was answered within its allowed set | Human judgement, deterministic admission | **Existing** | Kernel inc. 5 / D2 |
 | `capability_journal` | Predicates over the Task's own capability journal: allowed operation classes, workspace scope, no unadmitted execution, required operation present | Yes | New | E1 |
-| `evidence_citation` | A structured result artifact conforms to its schema and every claim cites admitted receipts; quoted spans match receipt content | Yes (provenance, not truth) | New | E1 |
-| `capability_result` | A specific admitted capability result satisfies a structured predicate (exit code, test report counts, HTTP status, state field) | Yes | New, specified; E1 does not need it | E2 |
+| `evidence_citation` | A structured result artifact conforms to its schema and every claim cites admitted receipts; quoted spans match receipt content (the Context Plane's exact-excerpt semantics) | Yes (provenance, not truth) | New | E1 |
+| `capability_result` | A specific admitted capability result satisfies a structured predicate (exit code, test report counts, HTTP status, state field); typical binding for project-policy build/test rules | Yes | New, specified; E1 does not need it | E2 |
 | `change_set` | The admitted diff touches only allowed paths / preserves listed signatures | Yes | Reserved | E2 |
 | `semantic_review` | A bounded model judgement over cited evidence (completeness, consistency, clarity) | No | New | E1 (advisory) |
 
@@ -308,7 +351,8 @@ Each entry is an immutable artifact linked by digest:
 user request / signal
   → Personal Agent interpretation (semantic)
   → contract synthesis: task-type template + user criteria + operator rules
-                        + advisory suggestions (project, memory, model)
+                        + designated project policy (pinned) for the relevant workspace
+                        + advisory suggestions (repository, memory, model)
   → deterministic validation (shape, provenance rules, verifier kinds, limits)
   → trusted TaskRequest envelope {task_spec, contract, grant}
   → workflow retains contract revision 0 before the first effect
@@ -317,6 +361,10 @@ user request / signal
 - **A contract exists before any effect.** The workflow retains revision 0 in the
   same pre-effect step sequence that already retains the TaskSpec. A Task without
   a valid contract is rejected at intake, exactly as an invalid TaskSpec is today.
+- **Sources come from the Context Plane.** Relevance (which workspace/project) is a
+  Context Plane resolution; the trust class of each discovered source (designated
+  policy, ordinary repository evidence, memory) comes from its trusted provenance,
+  not from its content. Synthesis never re-derives trust.
 - **Trivial Tasks need no ceremony.** A task-type template plus the objective yields
   a complete contract with no user question (e.g. `investigation@1` contributes
   no-mutation, scope and citation criteria automatically).
@@ -347,27 +395,36 @@ Completion criteria change only through an explicit, retained amendment.
 
 Operations: `add`, `bind` (replace an `unbound` or ADVISORY verifier), `rebind`
 (change a REQUIRED criterion's verifier), `waive`, `elevate` (ADVISORY → REQUIRED),
-`supersede`. Admission rules, enforced deterministically:
+`supersede`. A REQUIRED criterion leaves the evaluated set only by being satisfied,
+superseded, rebound or waived by an actor whose authority covers its source.
+Admission rules, enforced deterministically:
 
-| Operation on a REQUIRED criterion | Allowed actors |
-| --- | --- |
-| `add`, `elevate` | user, operator rule, task-type template upgrade applied at intake only |
-| `bind` | user, operator rule; cognition may **propose** (see below) |
-| `rebind`, `waive`, `supersede` | user only, through an explicit human action (signal or HumanDecision) |
-| any | never cognition, a worker, memory, or repository text directly |
+| REQUIRED criterion's source | `add` / `elevate` | `bind` | `rebind` / `supersede` / `waive` for this Task |
+| --- | --- | --- | --- |
+| `task_type` invariant | Template at intake | Template | **Nobody.** It changes only with the authority it evidences (a different Task with different effective authority) or a reviewed template revision |
+| `operator_rule`, `project_policy` | Operator policy at intake; `project_policy`/`operator_rule` actor when the policy tightens mid-Task | Operator policy | Only a **policy exception**: an explicit human decision through the operator path that names the rule id and pinned digest. Ordinary `modify-constraints` text is not enough. Changing the policy itself happens outside the Task and affects future Tasks |
+| `user`, `task_type` default | User | User; cognition may **propose** | User, through an explicit human action (signal or HumanDecision) |
+| `parent_task` | Parent at child creation | User | User; never the child's or parent's cognition |
+| any | never cognition, a worker, memory or repository text directly | | |
+
+In the single-owner personal deployment the same person is operator and user, but
+a policy exception remains a distinct, typed and retained act (`actor.kind =
+operator`, `exception_for: {rule, digest}`), so the result shows that policy was
+set aside rather than satisfied.
 
 ADVISORY criteria may be added by cognition as `model` provenance without human
 action; they cannot block completion, so the Task cannot make itself impossible.
 
 - **User changes requirements:** `modify-constraints` signal → amendment with
   `actor.kind = user`. The request carries the expected `from_revision`; a stale
-  revision is rejected (compare-and-set).
+  revision is rejected (compare-and-set). It cannot touch invariant or policy
+  criteria.
 - **Evidence shows a criterion impossible:** cognition may not drop it. It raises
-  a `human.request` asking to `waive`, `amend` or `fail`; the Task waits as usual.
-  The answer produces the amendment or a FAILED outcome with the evidence retained.
-- **Repository policy adds a mandatory verifier:** only via a promoted operator
-  rule; applied at intake, or as an amendment with `actor.kind = operator_rule`
-  when the rule is promoted while the Task runs.
+  a `human.request` asking to `waive`, `amend` or `fail`, typed as a policy
+  exception when the criterion is policy-sourced; the Task waits as usual. The
+  answer produces the amendment or a FAILED outcome with the evidence retained.
+- **Project policy adds a mandatory verifier:** at intake from the pinned designated
+  source, or mid-Task as a tightening amendment with `actor.kind = project_policy`.
 - **Human waives a requirement:** `waive` with the human action ref; the criterion
   stays in the contract and evaluates `waived`, visible in the result.
 
@@ -402,7 +459,9 @@ function over retained artifacts returns true:
 5. The capability journal is well-formed and contains no execution outside the
    effective authority recorded in its `authority_ref`s. PolicyGate denials are
    allowed (prevention worked) but are always listed in the result, never hidden.
-6. Every waiver references a retained human action.
+6. Every waiver references a retained human action whose authority covers the
+   criterion's source (a policy exception for `operator_rule`/`project_policy`);
+   no `task_type` invariant is waived.
 
 A model `COMPLETE` proposal, a worker exit, a write acknowledgement or a process
 exit code is neither necessary nor sufficient. "Why is this Task COMPLETED?" is
@@ -431,23 +490,27 @@ Restate deployment; in-flight Tasks are not replayed against changed code.
 ## Memory and learning
 
 ```text
-memory suggests          →  ADVISORY criterion, provenance memory, with MIRIX memory id
-repeated evidence        →  candidate rule (retained artifact: pattern, supporting Tasks)
-human promotion          →  operator_rule (versioned, reviewable, revocable)
-operator_rule            →  may contribute REQUIRED criteria to future contracts
+governed Memory (any origin)   →  ADVISORY criterion, provenance memory, with memory id
+verified outcomes, repeated    →  candidate rule (retained artifact: pattern, supporting Tasks)
+human adoption                 →  operator_rule, or a structured rule in a designated project policy
+operator_rule / project_policy →  may contribute REQUIRED criteria to future contracts
 ```
 
-- MIRIX output reaches synthesis only through the existing bounded `derived`
-  context seam (`runtime/kernel/memory.py`); it carries no authority.
-- A candidate rule is produced offline from retained evaluations and results
-  (e.g. "three accepted ORCHID coding Tasks all ran `./gradlew check` and the user
-  rejected one that did not"). It changes nothing until promoted.
-- Promotion is an explicit human act, following ADR 0024's pattern: history,
-  measurement, proposal, evaluation, then human promotion. Rules are versioned and
-  referenced by id and digest in criterion provenance, so old contracts remain
-  interpretable after a rule changes.
-- Storage of operator rules is deliberately not designed here; E1 needs none. The
-  first real rule (expected in E3) should choose the smallest reviewable store.
+- Memory reaches synthesis only through Context Plane resolution; results keep
+  their trusted origin and semantic qualification (declaration, unverified
+  observation, verified success/failure). None carries authority, including a
+  retrieved `USER_DECLARATION` preference.
+- Candidate rules are built offline from Completion Contract evaluations and
+  results, and from learned representations admitted by the Context Plane's
+  [VerifiedOutcomeAdmission](context-plane.md#9-promotion-and-verified-learning-contracts)
+  (e.g. "three accepted ORCHID coding Tasks all ran the check profile and the user
+  rejected one that did not"). A verified-failure representation can motivate a
+  rule but never counts as success guidance. Candidates change nothing until adopted.
+- Adoption is an explicit human act, following ADR 0024's pattern: history,
+  measurement, proposal, evaluation, then human promotion. It is distinct from the
+  Context Plane PromotionGate, which moves knowledge between contexts and grants no
+  policy authority. Rules are versioned and referenced by id and digest in
+  criterion provenance, so old contracts remain interpretable after a rule changes.
 
 ## Non-goals
 
