@@ -40,6 +40,11 @@ Follow-up decisions (2026-09-24):
    ordinary repository evidence, Memory and model inference stay advisory, per
    Context Plane source provenance.
 
+## Decision status
+
+ADRs 0026 and 0027 were accepted by the operator on 2026-09-24 after review. Both
+remain Unvalidated until E1.0 (kernel) and E1 live acceptance produce evidence.
+
 ## Reconciliation (2026-09-24)
 
 The design was first written on local `main` at `2327187`. `origin/main` had since
@@ -50,6 +55,11 @@ was rebuilt as: local `main` → merge of `origin/main` (clean) → replayed des
 corrections. ADR 0025 had become the Context Plane ADR, so the design ADRs are 0026
 and 0027. The pre-reconciliation commit is kept as local branch
 `backup/design-e1-dca1d77`.
+
+That intermediate base was itself built from a stale view of `origin/main`. The
+canonical trunk `813aba8` (E0.D closure merged with Track III) has a tree identical
+to it, so the two design commits were replayed cleanly onto `813aba8` without the
+branch-local merge. The previous topology is kept as `backup/design-e1-pre-813aba8`.
 
 ## Upstream observations (not live IDE evidence)
 

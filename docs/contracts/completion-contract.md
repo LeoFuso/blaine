@@ -1,6 +1,6 @@
 # Completion Contract v1 — design contract
 
-**Status: DESIGN, not implemented (2026-09-23).** Decision rationale:
+**Status: DESIGN, not implemented (2026-09-23).** Decision rationale (Accepted):
 [ADR 0026](../decisions/0026-completion-contract-is-a-durable-task-primitive.md).
 First consumer: [E1 workspace capability](workspace-capability.md). The current
 kernel implements the v0 subset described in [Current baseline](#current-baseline);

@@ -1,6 +1,6 @@
 # E1 workspace capability — IDE-delegated read-only design contract
 
-**Status: DESIGN, not implemented (2026-09-23).** Decision rationale:
+**Status: DESIGN, not implemented (2026-09-23).** Decision rationale (Accepted):
 [ADR 0027](../decisions/0027-ide-delegation-is-workspace-authority.md). This
 contract revises the E1 provider in the [Hub design](../personal-agent-hub.md#e1--remote-workspace-read)
 and is the first consumer of [Completion Contract v1](completion-contract.md).

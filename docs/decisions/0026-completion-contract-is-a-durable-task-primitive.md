@@ -1,6 +1,6 @@
 # ADR 0026 — Completion Contract is a durable, revisioned Task primitive
 
-**Status:** Proposed
+**Status:** Accepted (2026-09-24, operator review)
 **Validation:** Unvalidated
 **Date:** 2026-09-23
 

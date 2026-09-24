@@ -132,6 +132,7 @@ ADR’s own status before treating it as an accepted constraint.
   remains proposed and NOT STARTED. No existing accepted ADR is superseded.
 
 - [ADR 0026 — Completion Contract is a durable, revisioned Task primitive](0026-completion-contract-is-a-durable-task-primitive.md)
-  is **Proposed**; its first consumer is E1.
+  is **Accepted / Unvalidated**; its first consumer is E1 (E1.0 kernel slice validates it).
 - [ADR 0027 — IDE delegation is workspace authority; PolicyGate is the single enforcer](0027-ide-delegation-is-workspace-authority.md)
-  is **Proposed**; it revises the Hub E1 provider and local-guard statements.
+  is **Accepted / Unvalidated**; it revises the Hub E1 provider, local-guard and
+  JetBrains onboarding statements. Live validation is E1 acceptance.

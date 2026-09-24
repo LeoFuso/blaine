@@ -1,6 +1,6 @@
 # ADR 0027 — IDE delegation is workspace authority; PolicyGate is the single enforcer
 
-**Status:** Proposed
+**Status:** Accepted (2026-09-24, operator review)
 **Validation:** Unvalidated
 **Date:** 2026-09-23
 
