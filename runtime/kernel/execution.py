@@ -4,24 +4,31 @@ import json
 from pathlib import Path
 import sqlite3
 
-from runtime.kernel.human import human_requirement, validate_request, validate_response
+from runtime.kernel.human import validate_request
 from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.contracts import (
-    CAPABILITIES, MAX_CONTENT, SPECIALISTS, CapabilityRequest, CompletionEvaluation,
+    CAPABILITIES, MAX_CONTENT, SPECIALISTS, CapabilityRequest,
     TaskSpec, TaskState, encode, fields, identifier, message, text, unpack, validate_decision, validate_spec,
     child_task_id, spawn_specs,
 )
 
 
-def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None = None) -> dict:
+def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None = None,
+                contract: dict | None = None) -> dict:
     """Admissibility under effective authority.
 
     Effective capability authority is the TaskSpec's request intersected with an
     externally supplied grant. An absent grant preserves existing behaviour, and
     the routing evidence records that the Task was not externally bounded.
+    Human requests are admissible only as fixed by the current Completion
+    Contract revision; the contract never grants capability authority.
     """
+    from runtime.kernel.completion import human_binding, lower_spec
     from runtime.kernel.routing import effective_capabilities
     admissible = effective_capabilities(spec, grant)
+
+    def human(request_id):
+        return human_binding(contract or lower_spec(spec, state['task_id'], state.get('parent')), request_id)
     try:
         decision = validate_decision(raw)
         if (decision["task_id"] != state["task_id"] or
@@ -49,7 +56,7 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
             elif capability == 'human.request':
                 fields(value, {'request'})
                 request = validate_request(value['request'])
-                requirement = human_requirement(spec, request['request_id'])
+                requirement = human(request['request_id'])
                 if request['task_id'] != state['task_id'] or value['request'] != requirement['request']:
                     raise ValueError('Human interaction outside accepted scope')
             elif capability == 'youtrack.read':
@@ -77,7 +84,7 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
         elif action['type'] == 'WAIT' and action['input_type'] == 'human_response':
             if 'human.request' not in admissible:
                 raise ValueError('Human interaction denied')
-            requirement = human_requirement(spec, action['wait_id'])
+            requirement = human(action['wait_id'])
             request = requirement['request']
             if request['payload']['task_id'] != state['task_id']:
                 raise ValueError('Human wait Task mismatch')
@@ -223,31 +230,12 @@ class Capabilities:
 
 
 def evaluate(spec: TaskSpec, state: TaskState, store: ArtifactStore) -> dict:
-    findings = []
-    for criterion in spec["completion"]:
-        expected = criterion["evidence"]
-        ref = state["artifacts"].get(expected["artifact"])
-        outcome, detail = "unsatisfied", "Required artifact is missing"
-        if ref:
-            try:
-                content = store.read(state["task_id"], ref)
-                if expected.get('verifier') == 'human_response':
-                    request = expected['request']
-                    accepted = state.get('human_responses', {}).get(request['payload']['request_id'])
-                    if ref != accepted:
-                        raise ValueError('Artifact was not accepted through the human input boundary')
-                    validate_response(json.loads(content), request, state['task_id'])
-                    outcome, detail = 'satisfied', 'Scoped response accepted and allowed value independently verified'
-                else:
-                    outcome = "satisfied" if hashlib.sha256(content).hexdigest() == expected["sha256"] else "unsatisfied"
-                    detail = "Exact artifact digest verified" if outcome == "satisfied" else "Artifact does not match accepted digest"
-            except (OSError, ValueError) as error:
-                outcome, detail = "unknown", str(error)
-        findings.append({"criterion": criterion["criterion"], "outcome": outcome,
-                         "evidence_ref": ref, "detail": detail})
-    outcomes = {item["outcome"] for item in findings}
-    result: CompletionEvaluation = {
-        "outcome": "unsatisfied" if "unsatisfied" in outcomes else "unknown" if "unknown" in outcomes else "satisfied",
-        "criteria": findings,
-    }
-    return message("CompletionEvaluation", result)
+    """v1 CompletionEvaluation over the lowered revision 0, for existing readers.
+
+    Verdicts come from the same Completion Contract verifiers; the workflow itself
+    decides completion only through ``completion.evaluate_contract``/``legality``.
+    """
+    from runtime.kernel.completion import assess, lower_spec, project_v1
+    contract = lower_spec(spec, state['task_id'], state.get('parent'))
+    facts = {'error': None, 'analysis': None, 'authorities': {}, 'receipts': set()}
+    return project_v1(contract, assess(contract, state, store, facts))

@@ -102,6 +102,7 @@ class CognitiveTurn(TypedDict):
     iteration: int
     objective: str
     completion: list[CompletionCriterion]
+    contract: NotRequired[dict]
     specialist: str
     instructions: str
     observations: list[dict]
@@ -166,6 +167,14 @@ class TaskState(TypedDict):
     invocation_id: NotRequired[str]
     request_digest: NotRequired[str]
     initial_action: NotRequired[Invoke]
+    # Completion Contract v1: references and counters only; the contract,
+    # amendments, journal entries and evaluations are retained artifacts.
+    contract_ref: NotRequired[str]
+    contract_revision: NotRequired[int]
+    authority_ref: NotRequired[str]
+    journal_head: NotRequired[str | None]
+    journal_length: NotRequired[int]
+    semantic_reviews: NotRequired[dict[str, dict]]
 
 
 class CapabilityRequest(TypedDict):
@@ -265,11 +274,16 @@ def accept_task_request(value: dict, task_id: str) -> tuple[dict, dict | None, d
     if not isinstance(value, dict):
         raise ValueError('Task request must be an object')
     if value.get('kind') == 'TaskRequest':
-        request = fields(unpack(value, 'TaskRequest'), {'task_spec', 'initial_action'}, {'grant'})
-        decision = validate_decision(message('CognitiveDecision', {'task_id': task_id,
-            'task_revision': 0, 'turn_id': task_id + '/1', 'next_action': request['initial_action']}))
-        if decision['next_action']['type'] != 'INVOKE_CAPABILITY':
-            raise ValueError('Task intake accepts one bounded capability action')
+        # A trusted CompletionContract (validated by the workflow) may accompany the
+        # grant; such a cognition-driven Task needs no deterministic first action.
+        request = fields(unpack(value, 'TaskRequest'), {'task_spec'}, {'initial_action', 'grant', 'contract'})
+        if 'initial_action' in request:
+            decision = validate_decision(message('CognitiveDecision', {'task_id': task_id,
+                'task_revision': 0, 'turn_id': task_id + '/1', 'next_action': request['initial_action']}))
+            if decision['next_action']['type'] != 'INVOKE_CAPABILITY':
+                raise ValueError('Task intake accepts one bounded capability action')
+        elif not {'contract', 'grant'} <= request.keys():
+            raise ValueError('Task intake without an initial action requires a contract and a grant')
         grant = validate_grant(request['grant']) if 'grant' in request else None
         return validate_spec(request['task_spec']), None, grant
     if value.get('kind') != 'ChildTaskRequest':
