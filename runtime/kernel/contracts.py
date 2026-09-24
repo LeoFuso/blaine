@@ -13,7 +13,8 @@ SPECIALISTS = {
     "coordinator": "Coordinate the accepted objective using permitted actions.",
     "specialist": "Produce the required exact artifact and request verification.",
 }
-CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run", "workspace.read", "text.stats"}
+CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run",
+                "workspace.read", "text.stats", "workspace.write", "workspace.exec"}
 
 
 class EvidenceRequirement(TypedDict):
@@ -175,6 +176,8 @@ class TaskState(TypedDict):
     journal_head: NotRequired[str | None]
     journal_length: NotRequired[int]
     semantic_reviews: NotRequired[dict[str, dict]]
+    # E2.0: compact status per target effect (refs only); the journal stays authoritative.
+    effects: NotRequired[dict[str, dict]]
 
 
 class CapabilityRequest(TypedDict):

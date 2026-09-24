@@ -51,7 +51,7 @@ def validate_grant(value: object) -> dict:
     It does not itself dispatch anything: a remote dispatch still answers to the
     frontier authority contract when that path exists.
     """
-    grant = fields(value, {'capabilities'}, {'escalation_binding'})
+    grant = fields(value, {'capabilities'}, {'escalation_binding', 'workspaces', 'profiles', 'ask_before'})
     allowed = grant['capabilities']
     if not isinstance(allowed, list) or len(allowed) > 16 or len(set(allowed)) != len(allowed):
         raise ValueError('Expected a bounded unique capability grant')
@@ -60,7 +60,18 @@ def validate_grant(value: object) -> dict:
     binding = grant.get('escalation_binding')
     if binding is not None:
         identifier(binding)
-    return {'capabilities': sorted(allowed), 'escalation_binding': binding}
+    accepted = {'capabilities': sorted(allowed), 'escalation_binding': binding}
+    # E2.0 effect authority is envelope data too: target workspaces, reviewed
+    # command profiles (by id; definitions are Blaine-owned) and approval classes.
+    for key in ('workspaces', 'profiles', 'ask_before'):
+        if key in grant:
+            items = grant[key]
+            if not isinstance(items, list) or len(items) > 16 or len(set(items)) != len(items):
+                raise ValueError(f'Expected a bounded unique {key} list')
+            for item in items:
+                identifier(item) if key != 'ask_before' else text(item, 64)
+            accepted[key] = sorted(items)
+    return accepted
 
 
 def effective_capabilities(spec: dict, grant: dict | None) -> set[str]:

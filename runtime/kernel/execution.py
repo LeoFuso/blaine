@@ -14,7 +14,7 @@ from runtime.kernel.contracts import (
 
 
 def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None = None,
-                contract: dict | None = None) -> dict:
+                contract: dict | None = None, authority: dict | None = None) -> dict:
     """Admissibility under effective authority.
 
     Effective capability authority is the TaskSpec's request intersected with an
@@ -26,6 +26,10 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
     from runtime.kernel.completion import human_binding, lower_spec
     from runtime.kernel.routing import effective_capabilities
     admissible = effective_capabilities(spec, grant)
+
+    def target_scope(value):
+        if authority is None or value['workspace_id'] not in authority['workspaces']:
+            raise ValueError('Target workspace is not in effective authority')
 
     def human(request_id):
         return human_binding(contract or lower_spec(spec, state['task_id'], state.get('parent')), request_id)
@@ -72,12 +76,35 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
             elif capability == 'text.stats':
                 fields(value, {'text'})
                 text(value['text'], 1024)
+            elif capability == 'workspace.read' and isinstance(value, dict) and 'form' in value:
+                from runtime.kernel.effects import validate_read_input
+                validate_read_input(value)
+                target_scope(value)
+                if value['artifact'] not in state['artifacts'] and len(state['artifacts']) >= 16:
+                    raise ValueError('Artifact limit reached')
             elif capability == 'workspace.read':
                 from runtime.kernel.workspace import validate_read
                 validate_read(value)
                 # Scope is the exact persisted intake action, not all project access.
                 if action != state.get('initial_action'):
                     raise ValueError('Workspace read outside accepted operation scope')
+            elif capability in ('workspace.write', 'workspace.exec'):
+                # A proposal is not authority: the pinned effective authority decides,
+                # and no new target effect starts while an earlier one is unknown.
+                from runtime.kernel.effects import admit_exec, validate_exec_input, validate_write_input
+                open_effects = sorted(op for op, effect in (state.get('effects') or {}).items()
+                                      if effect['status'] == 'uncertain')
+                if open_effects:
+                    raise ValueError(f'Uncertain target effects must be reconciled first: {open_effects}')
+                if capability == 'workspace.write':
+                    validate_write_input(value)
+                    target_scope(value)
+                    if value['content_ref'] not in state['artifacts'].values():
+                        raise ValueError('Write content must be an admitted Task artifact')
+                else:
+                    validate_exec_input(value)
+                    target_scope(value)
+                    admit_exec(value, authority)
             else:
                 fields(value, {"value"})
                 text(value["value"], 256)

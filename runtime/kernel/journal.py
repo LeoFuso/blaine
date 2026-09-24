@@ -33,13 +33,19 @@ OPERATION_CLASSES = {
     'workspace.read': 'workspace.read',
     'worker.run': 'worker.run',
     'fixture.effect': 'external.effect',
+    'workspace.write': 'workspace.write',
+    'workspace.exec': 'workspace.exec',
 }
+# Target effects that run through the E2 effect lifecycle (dispatched, receipt,
+# reconciliation). Older kernel effects (fixture.effect, worker.run) keep the
+# admitted -> observed shape.
+LIFECYCLE_CLASSES = frozenset({'workspace.write', 'workspace.exec'})
 TARGET_READ_CLASSES = frozenset({'workspace.read', 'external.read'})
 TARGET_EFFECT_CLASSES = frozenset({'external.effect', 'worker.run', 'workspace.write', 'workspace.exec'})
 MUTATING_CLASSES = TARGET_EFFECT_CLASSES
 UNCLASSIFIED = 'unclassified'
-PHASES = ('denied', 'admitted', 'observed')
-OUTCOMES = ('success', 'failure', 'uncertain')
+PHASES = ('denied', 'admitted', 'dispatched', 'observed', 'reconciled')
+OUTCOMES = ('success', 'failure', 'uncertain', 'not_dispatched')
 MAX_ENTRIES = 256
 REF = r'artifact://[A-Za-z0-9_-]{1,80}/sha256:[0-9a-f]{64}'
 
@@ -75,23 +81,41 @@ def digest(value: object) -> str:
     return 'sha256:' + hashlib.sha256(encode(value)).hexdigest()
 
 
-def compile_authority(task_id: str, capabilities, workspaces, externally_bounded: bool) -> dict:
-    """E1.0 effective authority from the existing trusted grant intersection.
+def compile_authority(task_id: str, capabilities, workspaces, externally_bounded: bool,
+                      profiles: dict | None = None, ask_before=None) -> dict:
+    """Effective authority from the existing trusted grant intersection.
 
-    E1.C extends the same artifact with delegation and constraint provenance.
+    E2.0 pins reviewed command profiles (full definitions) and approval classes
+    when the grant names them; E1.C extends the same artifact with delegation and
+    constraint provenance.
     """
     names = sorted(set(capabilities))
-    return message('EffectiveAuthority', {
+    payload = {
         'task_id': identifier(task_id), 'revision': 0, 'classification': CLASSIFICATION,
         'capabilities': names,
         'operation_classes': sorted({operation_class(name) for name in names}),
-        'workspaces': sorted(set(workspaces)), 'externally_bounded': bool(externally_bounded)})
+        'workspaces': sorted(set(workspaces)), 'externally_bounded': bool(externally_bounded)}
+    if profiles:
+        payload['profiles'] = {name: profiles[name] for name in sorted(profiles)}
+    if ask_before:
+        payload['ask_before'] = sorted(set(ask_before))
+    return message('EffectiveAuthority', payload)
 
 
 def validate_authority(raw: object, task_id: str) -> dict:
     authority = fields(unpack(raw, 'EffectiveAuthority'), {
         'task_id', 'revision', 'classification', 'capabilities', 'operation_classes',
-        'workspaces', 'externally_bounded'})
+        'workspaces', 'externally_bounded'}, {'profiles', 'ask_before'})
+    if 'profiles' in authority:
+        from runtime.kernel.effects import validate_profile
+        if not isinstance(authority['profiles'], dict) or len(authority['profiles']) > 16:
+            raise ValueError('Invalid authority profiles')
+        for name, profile in authority['profiles'].items():
+            if validate_profile(profile)['id'] != name:
+                raise ValueError('Profile key mismatch')
+    if 'ask_before' in authority and (not isinstance(authority['ask_before'], list)
+                                      or not set(authority['ask_before']) <= LIFECYCLE_CLASSES):
+        raise ValueError('Approval applies to effect classes only')
     if authority['task_id'] != task_id or authority['classification'] != CLASSIFICATION:
         raise ValueError('Authority does not belong to this Task/classification')
     for key in ('capabilities', 'operation_classes', 'workspaces'):
@@ -108,7 +132,9 @@ SHAPES = {
                 'reason', 'authority_ref', 'contract_revision'}, {'workspace_id'}),
     'admitted': ({'decision_id', 'operation_id', 'capability', 'operation_class', 'provider',
                   'operation', 'request_digest', 'authority_ref', 'contract_revision'}, {'workspace_id'}),
+    'dispatched': ({'operation_id', 'request_ref', 'request_digest'}, {'approval_ref'}),
     'observed': ({'operation_id', 'outcome', 'receipt_ref'}, set()),
+    'reconciled': ({'operation_id', 'state', 'evidence_ref'}, {'receipt_ref'}),
 }
 
 
@@ -128,6 +154,20 @@ def validate_entry(raw: object, task_id: str) -> dict:
         if payload['outcome'] not in OUTCOMES:
             raise ValueError('Invalid observed outcome')
         ref(payload['receipt_ref'])
+    elif phase == 'dispatched':
+        text(payload['operation_id'], 100)
+        ref(payload['request_ref'])
+        if not re.fullmatch(r'sha256:[0-9a-f]{64}', str(payload['request_digest'])):
+            raise ValueError('Invalid request digest')
+        if 'approval_ref' in payload:
+            ref(payload['approval_ref'])
+    elif phase == 'reconciled':
+        text(payload['operation_id'], 100)
+        if payload['state'] not in ('APPLIED', 'NOT_APPLIED', 'DIFFERENT_STATE', 'STILL_UNKNOWN'):
+            raise ValueError('Invalid reconciliation state')
+        ref(payload['evidence_ref'])
+        if 'receipt_ref' in payload:
+            ref(payload['receipt_ref'])
     else:
         for key in ('decision_id', 'capability', 'operation_class', 'provider', 'operation'):
             text(payload[key], 100)
@@ -175,6 +215,7 @@ def read(store, task_id: str, head: str | None, length: int) -> list[tuple[str, 
 def analyze(entries: list[tuple[str, dict]], authorities: dict[str, dict]) -> dict:
     """Structural and authority facts every journal verdict and legality check share."""
     admitted, observed, denials, problems = {}, {}, [], []
+    dispatched, reconciled, uncertain = {}, {}, set()
     for entry_ref, entry in entries:
         match entry['phase']:
             case 'denied':
@@ -191,13 +232,34 @@ def analyze(entries: list[tuple[str, dict]], authorities: dict[str, dict]) -> di
                     problems.append(f"operation {entry['operation_id']} ({entry['operation_class']}) outside effective authority")
                 elif 'workspace_id' in entry and entry['workspace_id'] not in authority['workspaces']:
                     problems.append(f"operation {entry['operation_id']} targets a workspace outside effective authority")
+            case 'dispatched':
+                operation = entry['operation_id']
+                if operation not in admitted or admitted[operation]['operation_class'] not in LIFECYCLE_CLASSES:
+                    problems.append(f"operation {operation} dispatched without an effect admission")
+                if operation in dispatched or operation in observed:
+                    problems.append(f"operation {operation} dispatched out of order")
+                dispatched[operation] = entry
             case 'observed':
-                if entry['operation_id'] not in admitted:
-                    problems.append(f"operation {entry['operation_id']} observed without admission")
-                if entry['operation_id'] in observed:
-                    problems.append(f"operation {entry['operation_id']} observed twice")
-                observed[entry['operation_id']] = entry
+                operation = entry['operation_id']
+                if operation not in admitted:
+                    problems.append(f"operation {operation} observed without admission")
+                elif (admitted[operation]['operation_class'] in LIFECYCLE_CLASSES
+                      and (operation in dispatched) == (entry['outcome'] == 'not_dispatched')):
+                    problems.append(f"operation {operation} observed inconsistently with its dispatch")
+                if operation in observed:
+                    problems.append(f"operation {operation} observed twice")
+                observed[operation] = entry
+                if entry['outcome'] == 'uncertain':
+                    uncertain.add(operation)
+            case 'reconciled':
+                operation = entry['operation_id']
+                if operation not in uncertain:
+                    problems.append(f"operation {operation} reconciled without an uncertain outcome")
+                reconciled.setdefault(operation, []).append(entry)
+                if entry['state'] != 'STILL_UNKNOWN':
+                    uncertain.discard(operation)
     return {'admitted': admitted, 'observed': observed, 'denials': denials, 'problems': problems,
+            'dispatched': dispatched, 'reconciled': reconciled, 'unreconciled': sorted(uncertain),
             'length': len(entries)}
 
 
@@ -207,6 +269,7 @@ PREDICATES = {
     'workspace_subset': ({'name'}, set()),
     'observed_operation_present': ({'name', 'operations'}, set()),
     'no_target_effect': ({'name'}, {'allowed'}),
+    'effects_reconciled': ({'name'}, set()),
 }
 
 
@@ -256,6 +319,8 @@ def verify(predicates: list[dict], analysis: dict, authorities: dict[str, dict])
                                   and e['operation_class'] not in predicate.get('allowed', [])})
                 if effects:
                     return 'failed', f"Admitted target effects {effects}"
+            case 'effects_reconciled':
+                pass  # decided after every failing predicate had its chance
             case 'observed_operation_present':
                 if not any(observed.get(op, {}).get('outcome') == 'success' and entry['operation'] in predicate['operations']
                            for op, entry in admitted.items()):
@@ -263,6 +328,9 @@ def verify(predicates: list[dict], analysis: dict, authorities: dict[str, dict])
     classes = sorted({e['operation_class'] for e in admitted.values()})
     summary = (f"{analysis['length']} entries; admitted classes {classes}; "
                f"{len(analysis['denials'])} denial(s)")
+    if analysis['unreconciled'] and any(p['name'] == 'effects_reconciled' for p in predicates):
+        # Neither pass nor fail: the outcome of a target effect is not yet known.
+        return 'unknown', summary + f"; uncertain target effects not reconciled: {analysis['unreconciled']}"
     if pending:
         return 'pending', summary + f"; awaiting {pending}"
     return 'satisfied', summary

@@ -56,6 +56,17 @@ class Future:
         return self.context.await_promise(self.name).__await__()
 
 
+class Sleep:
+    """A durable timer. In this stand-in it fires as soon as it is awaited or raced."""
+    name = 'sleep'
+
+    def __init__(self, context):
+        self.context = context
+
+    def __await__(self):
+        return self.context.fire_sleep().__await__()
+
+
 class Promise:
     def __init__(self, context, name):
         self.context, self.name = context, name
@@ -121,6 +132,15 @@ class WorkflowContext:
             return value
         return self.record('peek', name, self.runtime.promises.get(name))
 
+    def sleep(self, delta, name=None):
+        return Sleep(self)
+
+    async def fire_sleep(self):
+        done, value = self.replayed('sleep', 'sleep')
+        if done:
+            return value
+        return self.record('sleep', 'sleep', None)
+
     async def await_promise(self, name):
         done, value = self.replayed('await', name)
         if done:
@@ -161,8 +181,11 @@ async def select(**futures):
     if done:
         return value
     for key, future in futures.items():
-        if future.name in context.runtime.promises:
+        if not isinstance(future, Sleep) and future.name in context.runtime.promises:
             return context.record('select', label, [key, context.runtime.promises[future.name]])
+    for key, future in futures.items():
+        if isinstance(future, Sleep):
+            return context.record('select', label, [key, None])
     raise Suspended(label)
 
 
