@@ -43,12 +43,17 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
     # Deployment-selected diagnostics and boundary control. The default bundle is
     # inert: no span, no event, no extra journal entry, no behavior change.
     instruments = instrumentation or Instrumentation()
+    context_plane = getattr(capabilities, 'context_plane', None)
+    if context_plane is not None and (providers or escalation_cognitive is not None):
+        raise ValueError('CP.1 requires governed sources and local cognition only')
 
     @workflow.main(workflow_retention=timedelta(days=7))
     async def run(ctx: restate.WorkflowContext, request: dict) -> dict:
         try:
             task_id = identifier(ctx.key())
             spec, parent, grant = accept_task_request(request, task_id)
+            if context_plane is not None and (request.get('kind') != 'TaskSpec' or parent is not None):
+                raise ValueError('CP.1 supports the hosted local TaskSpec route only')
             admissible = effective_capabilities(spec, grant)
             mutating = capability_journal.mutating(admissible)
             # Revision 0 exists before any effect; an invalid contract is rejected
@@ -150,7 +155,29 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
 
         await emit('start', 'task.started', 'RUNNING', 'blaine.kernel.workflow', refs={'parent_task_id': parent['task_id']} if parent else None, payload_refs=(state['spec_ref'],))
         concerns = []
+        # Private, runtime-owned values reconstructed from the existing journal.
+        # These are never loaded from TaskState.artifacts or worker/model payloads.
+        context_admission = None
+        context_worker_observed = False
+        context_delta_used = False
+        context_delivered_ref = None
+        context_fingerprint = None
         prepared_packet = None
+        def reconstruct_owned(state, spec, store, providers, contract):
+            packet = reconstruct(state, spec, store, providers, contract=contract)
+            if context_plane is not None:
+                packet['payload']['context'].append({'source': 'blaine:context-plane-v1',
+                    'revision': '1', 'authority': 'instruction', 'unknowns': [], 'content':
+                    'Use worker.run with the compiled-context artifact reference. After one worker observation, '
+                    'one context.request may express a new information need: version=1, kind=ContextRequest, '
+                    'payload={question,form,locator,base_ref}; base_ref is the compiled-context reference. '
+                    'Forms: exact-source, lexical-source (also requires exact), current-evidence, prior-context. '
+                    'The result replaces compiled-context with a fresh bounded input. Do not recreate packets '
+                    'or select scopes. Historical artifact references do not authorize fresh context reads.'})
+                if len(encode(packet)) > MAX_PACKET:
+                    from runtime.kernel.context_plane import ContextError
+                    raise ContextError('INSUFFICIENT_CONTEXT')
+            return packet
         tool_invocations, last_tool_outcome = 0, None
         def wait_still_bound(wait_id: str) -> bool:
             binding = completion.human_bindings(contract['criteria']).get(wait_id)
@@ -211,7 +238,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
 
         async def apply_amendment(submitted: dict) -> None:
             """Apply one submitted amendment in a journaled step: amendment, then revision."""
-            nonlocal contract, amendment_rejected
+            nonlocal contract, amendment_rejected, prepared_packet
             to_revision = contract['revision'] + 1
             def admit(submitted, contract, contract_ref, state):
                 try:
@@ -234,6 +261,9 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                                 contract_ref=state['contract_ref'], state=deepcopy(state))
             if result['outcome'] == 'applied':
                 contract = result['contract']
+                # A handoff may have prepared the next turn before this amendment.
+                # Reconstruct from the newly authoritative contract at delivery.
+                prepared_packet = None
                 state['contract_ref'], state['contract_revision'] = result['contract_ref'], contract['revision']
                 ctx.set('task', message('TaskState', state))
                 await emit(f'contract/{to_revision}', 'contract.amended', 'applied', 'blaine.kernel.completion',
@@ -311,6 +341,14 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
 
         try:
             await settle('accepted')
+            if context_plane is not None and state['lifecycle'] != 'COMPLETED':
+                if not {'worker.run', 'context.request'} <= effective_capabilities(spec, grant):
+                    raise restate.TerminalError('Context Plane: DENIED')
+                compiled = await step('context-plane/initial', context_plane.compile,
+                    state=deepcopy(state), spec=spec, operation=task_id + '/context-initial')
+                context_admission = compiled['admission']
+                state['artifacts'].update(compiled['result']['payload']['artifacts'])
+                ctx.set('task', message('TaskState', state))
             for iteration in range(1, MAX_TURNS + 1):
                 if state['lifecycle'] == 'COMPLETED':
                     break
@@ -346,7 +384,14 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                         'model_invocations': iteration - 1, 'tool_invocations': tool_invocations,
                         'last_tool_outcome': last_tool_outcome,
                         'evidence_digest': evidence_digest(state['artifacts'])})
-                packet = prepared_packet or await step(f"context/{iteration}", reconstruct,
+                if context_plane is not None:
+                    # Journal the observed binding, then compare current authority
+                    # inside every *physical* delivery, including a retried step.
+                    context_fingerprint = await step(f'context-plane/binding/{iteration}',
+                        lambda: context_plane.authority.resolve(state, spec).fingerprint)
+                    if context_fingerprint != context_admission['binding']:
+                        raise restate.TerminalError('Context Plane: STALE')
+                packet = prepared_packet or await step(f"context/{iteration}", reconstruct_owned,
                                                        state=deepcopy(state), spec=spec, store=store, providers=providers,
                                                        contract=contract)
                 prepared_packet = None
@@ -358,6 +403,8 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                     await checkpoint(ctx, "before_cognition", deepcopy(state))
 
                 def decide() -> dict:
+                    if context_plane is not None:
+                        context_plane.guard_binding(state, spec, context_fingerprint)
                     # Spans wrap the physical call inside the journaled step, so a
                     # replay that consumes the journal never fabricates inference.
                     with instruments.recorder.span(None, kind='model_invocation', attributes={
@@ -425,14 +472,49 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                                         **tool_attributes(name=action['capability'],
                                                           call_id=state['decision_id'],
                                                           tool_type='blaine.capability')}) as span:
-                                    result = capabilities.execute(request)
+                                    if context_plane is not None:
+                                        from runtime.kernel.context_plane import ContextError, failure
+                                        try:
+                                            if action['capability'] == 'context.request':
+                                                if context_delta_used or not context_worker_observed:
+                                                    raise ContextError('DENIED')
+                                                # A new admitted resolution reads current
+                                                # trusted state, not the old packet's grant.
+                                                return context_plane.compile(deepcopy(state), spec,
+                                                    state['decision_id'], request=action['input'],
+                                                    previous=context_admission)
+                                            context_plane.guard_binding(state, spec, context_fingerprint)
+                                            if (action['capability'] == 'worker.run'
+                                                    and context_delivered_ref == context_admission['packet_ref']):
+                                                raise ContextError('DENIED')
+                                            # CP.1 context access uses the governed request.
+                                            # Reading historical packets as raw artifacts
+                                            # would bypass current source validation.
+                                            if action['capability'] == 'artifact.read':
+                                                raise ContextError('DENIED')
+                                            result = capabilities.execute(request,
+                                                context_runtime=(deepcopy(state), spec, context_admission))
+                                        except ContextError as error:
+                                            result = failure(state['decision_id'], error)
+                                    else:
+                                        result = capabilities.execute(request)
                                     outcome = result['payload']['outcome']
                                     span.set(**{'blaine.tool.outcome': outcome})
                                     if outcome != 'success':
                                         span.fail('capability_failure')
-                                    return result
+                                    return ({'result': result, 'admission': None}
+                                            if context_plane is not None else result)
                             observation = await step(f"capability/{iteration}", execute_capability,
                                                      request=message("CapabilityRequest", capability_request))
+                            if context_plane is not None:
+                                admitted = observation['admission']
+                                observation = observation['result']
+                                if admitted is not None:
+                                    context_admission = admitted
+                                    context_delta_used = True
+                                if action['capability'] == 'worker.run' and observation['payload']['outcome'] == 'success':
+                                    context_worker_observed = True
+                                    context_delivered_ref = context_admission['packet_ref']
                             tool_invocations += 1
                             last_tool_outcome = observation['payload']['outcome']
                             state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
@@ -589,7 +671,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                 # fresh specialist packet before its next cognitive execution.
                 if state["lifecycle"] != "COMPLETED" and gate["outcome"] == "allow" and action["type"] == "HANDOFF":
                     next_state = {**state, "iteration": iteration + 1}
-                    next_packet = await step(f"handoff-context/{iteration}", reconstruct,
+                    next_packet = await step(f"handoff-context/{iteration}", reconstruct_owned,
                                              state=next_state, spec=spec, store=store, providers=providers,
                                              contract=contract)
                     state["context_ref"] = await retain(f"handoff-packet/{iteration}", next_packet)
@@ -602,6 +684,13 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             else:
                 concerns.append("Turn limit exhausted without verified completion")
                 state["lifecycle"] = "FAILED"
+        except ValueError as error:
+            from runtime.kernel.context_plane import ContextError
+            if not isinstance(error, ContextError):
+                raise
+            concerns.append(str(error))
+            state['lifecycle'] = 'FAILED'
+            state['wait'] = None
         except restate.TerminalError as error:
             concerns.append(f"Execution stopped: {error.message}".encode()[:512].decode(errors="ignore"))
             state["lifecycle"] = "CANCELLED" if error.status_code == 409 and error.message.lower() == 'cancelled' else "FAILED"

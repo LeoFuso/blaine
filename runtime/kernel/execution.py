@@ -69,6 +69,11 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
                     raise ValueError('Worker packet outside admitted artifacts')
                 if value['artifact'] not in state['artifacts'] and len(state['artifacts']) >= 16:
                     raise ValueError('Artifact limit reached')
+            elif capability == 'context.request':
+                from runtime.kernel.context_plane import validate_need
+                validate_need(value)
+                if 'compiled-context' not in state['artifacts']:
+                    raise ValueError('Context Plane is not active')
             elif capability == 'text.stats':
                 fields(value, {'text'})
                 text(value['text'], 1024)
@@ -118,10 +123,11 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
 
 class Capabilities:
     def __init__(self, store: ArtifactStore, fixture_database: Path, card_reader=None, worker=None,
-                 recorder=None):
+                 recorder=None, context_plane=None):
         self.store = store
         self.card_reader = card_reader
         self.worker = worker
+        self.context_plane = context_plane
         # Optional diagnostics only. No capability outcome depends on it.
         from runtime.kernel.instrument import safe
         self.recorder = safe(recorder)
@@ -150,7 +156,7 @@ class Capabilities:
                     span.fail('worker_outcome_' + str(result.get('outcome')))
             return result
 
-    def execute(self, request: dict) -> dict:
+    def execute(self, request: dict, *, context_runtime=None) -> dict:
         """Called only after admission; fixture row is the effect, not a Task ledger."""
         request: CapabilityRequest = unpack(request, "CapabilityRequest")
         operation = request["operation_id"]
@@ -178,6 +184,14 @@ class Capabilities:
                         raise ValueError('Worker input artifact exceeds budget')
                     packet = json.loads(raw)
                     validate_packet(packet, task_id)
+                    if self.context_plane is not None:
+                        from runtime.kernel.context_plane import ContextError
+                        if context_runtime is None:
+                            raise ContextError('DENIED')
+                        state, spec, admission = context_runtime
+                        if state['task_id'] != task_id:
+                            raise ContextError('DENIED')
+                        self.context_plane.guard_worker(state, spec, admission, value['packet_ref'], operation)
                     result = self.dispatch_worker(packet, operation, task_id)
                     ref = self.store.put_json(task_id, result)
                     output = {'worker_outcome':result['outcome'], 'attempt_id':result['attempt_id'],
@@ -225,6 +239,9 @@ class Capabilities:
             return message("CapabilityResult", {"operation_id": operation, "outcome": "success",
                            "output": output, "artifacts": artifacts, "error": None})
         except (ValueError, FileNotFoundError, UnicodeError) as error:
+            if self.context_plane is not None:
+                from runtime.kernel.context_plane import ContextError, failure
+                return failure(operation, error if isinstance(error, ContextError) else ContextError('UNAVAILABLE'))
             return message("CapabilityResult", {"operation_id": operation, "outcome": "failure",
                            "output": {}, "artifacts": {}, "error": str(error)})
 

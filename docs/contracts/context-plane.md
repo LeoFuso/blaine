@@ -1,12 +1,17 @@
 # Context Plane — semantic contracts
 
-**Status: Accepted architecture; production integration NOT STARTED.**
+**Status: Accepted architecture; CP.1 local production subset PASS (2026-09-24).**
 These are normative semantic obligations under [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md),
 not implemented API schemas or a new universal transport. [Architecture](../context-plane.md)
 owns rationale and evidence; the [implementation plan](../roadmap/002-context-plane-implementation.md)
 owns the supported subset proposed for each increment. Freeze only the necessary
 versioned `kind/version/payload` shapes at an implementation boundary. Existing strict
 validators must continue rejecting unknown fields/versions until explicitly extended.
+
+The [CP.1 executable contract](context-plane-cp1.md) now freezes its local reference,
+request, packet/admission and delta subset inside existing receiver bounds. Other phases
+remain unimplemented. [Acceptance evidence](../milestones/055-context-plane-cp1.md) does
+not establish live MIRIX qualification, general durability or deployment approval.
 
 MUST, MUST NOT and MAY describe obligations, prohibitions and permitted choices. A
 backend, model, persisted packet or successful transport cannot waive these obligations.

@@ -389,7 +389,8 @@ class NoMutation(JournalFixtures, unittest.TestCase):
         scopes = {name: journal.effect_scope(journal.operation_class(name)) for name in journal.OPERATION_CLASSES}
         self.assertEqual({n for n, s in scopes.items() if s == journal.INTERNAL_EFFECT},
                          {'artifact.write', 'artifact.read', 'human.request', 'text.stats'})
-        self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_READ}, {'workspace.read', 'youtrack.read'})
+        self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_READ},
+                         {'workspace.read', 'youtrack.read', 'context.request'})
         self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_EFFECT}, {'worker.run', 'fixture.effect'})
         for unreviewed in ('database.write', 'unclassified', 'workspace.write', 'workspace.exec'):
             self.assertEqual(journal.effect_scope(unreviewed), journal.TARGET_EFFECT)

@@ -1,6 +1,6 @@
 # Track III — Context Plane architecture
 
-**Decision: ACCEPTED ARCHITECTURE. Validation: Partially Validated.**
+**Decision: ACCEPTED ARCHITECTURE. Validation: Partially Validated; CP.1 production slice PASS.**
 Consolidated 2026-09-23 from repository baseline `db8b2a4`; this is architecture and
 contract consolidation, **not another research increment or production implementation**.
 Track III research is COMPLETE. III.8 remains FAIL; III.8R is its separate PASS recovery.
@@ -8,10 +8,18 @@ III.10 remains the planned sequence close; III.G is a complementary carveout.
 
 [ADR 0025](decisions/0025-context-plane-and-compiled-agent-context.md) records the decision.
 [Context Plane contracts](contracts/context-plane.md) own normative semantic interfaces;
-[implementation plan](roadmap/002-context-plane-implementation.md) owns the proposed,
-**NOT STARTED** production slices. Exact wire schemas remain implementation gates.
+[implementation plan](roadmap/002-context-plane-implementation.md) owns production sequencing:
+**CP.1 PASS; CP.2–CP.9 NOT STARTED**. The [CP.1 executable subset](contracts/context-plane-cp1.md)
+freezes only its local wire shapes. Later schemas remain implementation gates.
 The [main roadmap](roadmap/001-blaine-development-roadmap.md#current-next) owns scheduling
 relative to other programs. Historical experiment proposals are not new authorization.
+
+**2026-09-24 production update:** [CP.1](milestones/055-context-plane-cp1.md) implements
+one opt-in hosted/local initial projection and one fresh delta through the existing loop
+and Goose worker. Native local smoke and deterministic controls pass; live MIRIX remains
+unqualified/disabled, and general recovery/concurrency/remote propagation are not claimed.
+The architectural discussion and baseline gap inventory below remain the accepted design;
+the executable subset/milestone distinguish which gaps this first slice has closed.
 
 ## 1. Executive decision
 

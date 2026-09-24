@@ -1,6 +1,6 @@
 # Context Plane — bounded production implementation plan
 
-**Status: PROPOSED IMPLEMENTATION PLAN; all implementation increments NOT STARTED.**
+**Status: CP.1 PASS (2026-09-24); CP.2–CP.9 NOT STARTED.**
 2026-09-23 consolidation under [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md).
 [Architecture](../context-plane.md) and [semantic contracts](../contracts/context-plane.md)
 are accepted direction. Track III research is COMPLETE, including the retained III.8
@@ -8,11 +8,46 @@ FAIL and separate III.8R recovery PASS. This plan is not III.11 or another exper
 Production work needs separate authorization; the [main roadmap](001-blaine-development-roadmap.md#current-next)
 continues to own prioritization relative to Hub E0–E3 and other programs.
 
-The current authorized consolidation has outcome: reviewable contracts, evidence/status
-mapping and one bounded next implementation proposal, local commit only. No durable Task
-binding was available, so no runtime Task was submitted. No production code is changed.
+The authorized CP.1 implementation is complete within its opt-in hosted/local boundary.
+[Milestone and handoff](../milestones/055-context-plane-cp1.md),
+[executable subset](../contracts/context-plane-cp1.md), and
+[original acceptance](../../experiments/context-plane-cp1/evidence/acceptance.json)
+retain the initial 217-test/native result. The final
+[E1.0 reconciliation qualification](../../experiments/context-plane-cp1/evidence/reconciliation/qualification.json)
+is **READY_FOR_PIPELINE** at merge `e9e9196` over `origin/main f0a3ca5`:
+333 root tests (22 CP.1), native Restate/local Goose, E1.0 and parallel-child gates pass.
+The actual GitHub workflow filters match no CP.1 branch/PR paths; the retained CI matrix
+records commands and conditional CI-only services. Nothing was pushed or merged into main.
+The implementation request has an unsubmitted TaskSpec draft because no creation binding
+was available; the separate synthetic native acceptance Task completed with exact evidence.
+
+**Current production state:** deployment-selected ContextPlane on existing Capabilities /
+create_workflow / GooseWorker; trusted local Task/spec/principal/resource binding; separate
+Resolver and deterministic Compiler; qualified read-only configured Memory corpus; confined
+exact/lexical sources and admitted evidence; private compiler admissions; one fresh replacement
+delta; current authority/source checks before physical delivery. Compiler projections and
+private admissions use the authoritative E1.0 contract reference/revision; amendments
+invalidate stale worker delivery and prepared handoff context. `context.request` is a
+governed TARGET_READ with existing admission/observation journals. Default deployments and
+unaffected paths retain their behavior. Implementation acceptance is not deployment approval.
+
+**Blockers:** none for bounded CP.1. Live MIRIX remains unqualified/disabled on this path;
+headers/tags are not proven processing isolation or trusted provenance. Whole-file exact
+requirements must fit unchanged WorkerInput field/envelope limits, otherwise insufficiency
+is explicit. General concurrency/revocation/restart guarantees remain CP.8.
+
+**Next bounded increment:** CP.2 — Governed declared/observed writes, requiring separate
+authorization. Review and merge CP.1 first, then use a fresh CP.2 branch/worktree. First
+qualify existing MIRIX and Blaine-owned entry metadata in approved storage. Its acceptance
+boundary is trusted human declaration vs UNVERIFIED current-context observation, isolated
+read methods/metadata, scoped idempotency, committed readback, response-loss/restart evidence
+and provenance-preserving migration. CP.2 is not started here. No reflection/learning,
+semantic search, Graphify, promotion, declassification or remote propagation is included.
 
 ## 1. Repository baseline and dependency choices
+
+This section retains the pre-CP.1 seam analysis. The current implemented subset and its
+limits are recorded above and in the executable contract; later phases remain proposals.
 
 The kernel already reconstructs CognitiveTurn through bounded ContextProviders. It
 journals context/model/effect observations in Restate, admits actions through PolicyGate,
@@ -32,7 +67,11 @@ Reuse these seams. Do not create a universal event bus, context daemon, extra da
 second scheduler, new worker, new inference client or parallel TaskState. Freeze only
 wire shapes needed by one slice. No broad migration of existing Tasks or providers.
 
-## 2. Exact next increment: CP.1 — Local governed context projection and one delta
+<a id="2-exact-next-increment-cp1--local-governed-context-projection-and-one-delta"></a>
+## 2. CP.1 — Local governed context projection and one delta
+
+**Completed: PASS.** The scope and acceptance below are the authorization boundary,
+preserved for review; measured results live in the linked milestone/evidence above.
 
 **Hypothesis:** one real Blaine-owned local execution path can receive a useful initial
 compiled projection and one fresh delta, preserving current authority, source fidelity
@@ -214,7 +253,7 @@ and dynamic topology administration likewise need measured demand and scoped pla
 
 | Question | Current accepted/proposed default | Decision point |
 | --- | --- | --- |
-| Start and prioritize production work? | Recommend CP.1 only; other track priorities unchanged. | Human authorization before implementation, not a new research increment. |
+| Start and prioritize production work? | CP.1 authorized and PASS; CP.2 is next, not started. Other track priorities unchanged. | Separate authorization for CP.2; review CP.1 evidence before deployment enablement. |
 | First issuer and snapshot ownership? | Trusted single-host application binding, immutable configured snapshot, existing Task/artifact identities; no caller issuance. | Confirm exact local configuration/administration boundary in CP.1 preflight; stop if it requires production multi-principal auth. |
 | Durable entry metadata / MIRIX scope qualification? | Reuse existing substrate; Blaine-owned metadata is required, tags are not ACLs. Unqualified provider stays unavailable. | CP.2 storage/atomicity design; no new store silently chosen in CP.1. |
 | Remote and concurrency guarantees? | Do not claim them from III.10. Refuse detected stale authority at local delivery now. | CP.8 consistency/revocation model; CP.9 existing Hub trust boundary. |
@@ -226,12 +265,13 @@ and dynamic topology administration likewise need measured demand and scoped pla
 No unresolved conflict prevents architecture consolidation PASS. These decisions gate
 future expansion, not permission to silently fill unknowns during implementation.
 
-## 5. Acceptance of this consolidation
+## 5. Historical acceptance of the architecture consolidation
 
 Documentation-only review must confirm: historical evidence unchanged; exact result
 claims match retained summaries; concepts classified; contract owners do not move;
 initial/delta and egress semantics consistent; every implementation phase has boundary,
 acceptance/regression/non-goal criteria; current gaps named; local links and whitespace
 valid. No production tests, model calls or old experiments need to run to accept prose.
-The next authorized work request should name **CP.1 — Local governed context projection
-and one delta**, its opt-in local scope and these acceptance gates. Do not begin it here.
+That consolidation proposed **CP.1 — Local governed context projection and one delta**.
+CP.1 was subsequently authorized and completed as recorded at the top of this document;
+the original architecture/research evidence remains unchanged.

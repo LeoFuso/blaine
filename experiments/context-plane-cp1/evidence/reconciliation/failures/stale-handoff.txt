@@ -1,0 +1,32 @@
+test_authoritative_amendment_invalidates_packet_and_delta_reads_current_contract (tests.test_kernel_context_plane.WorkflowTests.test_authoritative_amendment_invalidates_packet_and_delta_reads_current_contract) ... FAIL
+
+======================================================================
+FAIL: test_authoritative_amendment_invalidates_packet_and_delta_reads_current_contract (tests.test_kernel_context_plane.WorkflowTests.test_authoritative_amendment_invalidates_packet_and_delta_reads_current_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/asyncio/runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/lib/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "<repo>/tests/test_kernel_context_plane.py", line 430, in test_authoritative_amendment_invalidates_packet_and_delta_reads_current_contract
+    self.assertEqual([p['payload']['contract']['revision'] for p in turns], [0, 0, 1, 1])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [0, 0, 0, 1] != [0, 0, 1, 1]
+
+First differing element 2:
+0
+1
+
+- [0, 0, 0, 1]
+?        ^
+
++ [0, 0, 1, 1]
+?        ^
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.017s
+
+FAILED (failures=1)

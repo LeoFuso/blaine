@@ -1,0 +1,14 @@
+======================================================================
+FAIL: test_effect_scopes_of_the_kernel_classification (test_completion_contract.NoMutation.test_effect_scopes_of_the_kernel_classification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>/tests/test_completion_contract.py", line 392, in test_effect_scopes_of_the_kernel_classification
+    self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_READ}, {'workspace.read', 'youtrack.read'})
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Items in the first set but not the second:
+'context.request'
+
+----------------------------------------------------------------------
+Ran 333 tests in 0.904s
+
+FAILED (failures=1)

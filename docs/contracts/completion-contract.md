@@ -658,7 +658,8 @@ the E1.0 evidence. None changes a decision in ADR 0026.
 - The kernel classification `kernel@1` maps the existing capabilities to operation
   classes: `artifact.write`/`artifact.read` → `task.artifact.*`, `human.request` →
   `task.human.request`, `text.stats` → `task.compute`, `youtrack.read` →
-  `external.read`, `workspace.read` → `workspace.read`, `worker.run` → `worker.run`,
+  `external.read`, `workspace.read` → `workspace.read`, `context.request` →
+  `context.read` (TARGET_READ), `worker.run` → `worker.run`,
   `fixture.effect` → `external.effect`; anything else is `unclassified`. Effect
   scopes are in [No mutation](#no-mutation-internal-versus-target-effects): an
   investigation may write its own `findings` artifact without breaking

@@ -1,0 +1,22 @@
+{
+  "submission": "NOT_SUBMITTED",
+  "reason": "No Blaine Task creation binding exposed in this Codex session; local implementation explicitly authorized by the user.",
+  "task_spec": {
+    "objective": "Implement only CP.1: opt-in local governed context projection and one fresh bounded delta through the existing hosted kernel/Goose seam.",
+    "mode": "interactive",
+    "context": [
+      {"need": "Accepted Context Plane architecture, normative contracts, ADR 0025 and CP.1 acceptance", "source": "docs/roadmap/002-context-plane-implementation.md", "sharing": "local-only"}
+    ],
+    "capabilities": ["read repository", "edit task workspace", "run bounded local tests and fixtures", "commit locally"],
+    "autonomy": {
+      "allowed": ["CP.1 production code, tests, documentation and retained evidence", "bounded existing local service fixtures", "local commit"],
+      "ask_before": [],
+      "forbidden": ["push", "merge", "change another worktree or branch", "CP.2", "semantic retrieval", "Graphify", "learning writes", "promotion", "declassification", "weaken authority or evidence"]
+    },
+    "cloud": {"policy": "forbid"},
+    "completion": [
+      {"criterion": "CP.1 satisfies the authoritative roadmap acceptance without widening authority or worker access", "evidence": "Production implementation, deterministic enforcement tests, bounded local Goose smoke, relevant regression results and milestone"},
+      {"criterion": "Fresh session can continue from repository state", "evidence": "Updated roadmap, milestone, evidence, next boundary and continuation prompt"}
+    ]
+  }
+}

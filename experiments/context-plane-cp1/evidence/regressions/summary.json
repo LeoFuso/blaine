@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "suites": [
+    {
+      "pattern": "test_kernel*.py",
+      "exit_code": 0,
+      "log": "suite-1.txt",
+      "sha256": "f837c20617bd3f0b0441ed0b879ed073a1478fdd6d9927b29c16fc64ddc3dd64"
+    },
+    {
+      "pattern": "test_personal*.py",
+      "exit_code": 0,
+      "log": "suite-2.txt",
+      "sha256": "aebb3b1ee2989c39b6d3f7c6768a7e49736e1156e89218ecc2a212e94d26cdeb"
+    },
+    {
+      "pattern": "test_acp.py",
+      "exit_code": 0,
+      "log": "suite-3.txt",
+      "sha256": "57426cd599d736571c962b9b8b33c02ad39f24180ffd0c440ce9f58a1c15331e"
+    },
+    {
+      "pattern": "test_host_connection.py",
+      "exit_code": 0,
+      "log": "suite-4.txt",
+      "sha256": "330bde8d462ca66c99d38054d35166bdf7406a64984dee15474a954d97953575"
+    },
+    {
+      "pattern": "test_direct_readiness.py",
+      "exit_code": 0,
+      "log": "suite-5.txt",
+      "sha256": "00ad7a5a612312a5d781974220e87b5f2f8805e9f5ca5b568ac3725e1dd704c6"
+    }
+  ],
+  "source_sha256": {
+    "runtime/kernel/__init__.py": "4abeaecfd74694342188dbf55245831fb2547f0afd5e8a3e4936b0f61f485009",
+    "runtime/kernel/adapter_profiles.py": "fe055b0adefe10495d83872c8544d9bf3738eacb30da4331e571b3976ceab56b",
+    "runtime/kernel/artifacts.py": "4e748f4e8e840aca630813467126ef85ba73abac0f5a04c0283dbccf67a4820a",
+    "runtime/kernel/cognition.py": "efe6f3683dd06050a4fb7950a48cec723fa68dfa1df2bdea1dd782cd62ee4778",
+    "runtime/kernel/context.py": "1cc9214fbda5cacd85f5ced20d8453f6e4f340e9a00c9f1f01fa9c33dff6b92e",
+    "runtime/kernel/context_plane.py": "2a046848d5f52b6ec24284254378937fc9f92c7e2639222c1c08d9bcbebe0608",
+    "runtime/kernel/contracts.py": "e2568e6d707ef3e62b46e7f13b50a07cf522aa6f5e024a6b834be7f0d271d28c",
+    "runtime/kernel/control.py": "d5eb62a3c059fe3770602a1c4ace15dd2e33c2d27f13b04f33a5d7ff10864f04",
+    "runtime/kernel/event_sinks.py": "456b4cc45705f27f560f98c379ca92df40eee6e2faa1c39e0d9ad39c34b79161",
+    "runtime/kernel/events.py": "b364ed06c60d3ee525946e4e2bebcd135751f57f1fc9fc2a1995b1947f6966dc",
+    "runtime/kernel/execution.py": "bbf80adbe72f0ab57ed7e6a9f196fe8f7328e18bb191e3317b699684b441025a",
+    "runtime/kernel/frontier.py": "69ffe5d0773767ff0f3e459aee0f231954c749f215f0bc6185326e8dec5156fb",
+    "runtime/kernel/frontier_context.py": "8cdff4048cb8a93d5ddfe63f9978111f89a5cfd32c2033f2b765bcb997fb9dbe",
+    "runtime/kernel/human.py": "7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+    "runtime/kernel/instrument.py": "faeb3d341f9005db5a8635919478ca6e808fba96a3d714d98d2b217683c4f41a",
+    "runtime/kernel/memory.py": "ebb778c8a10fc010562a9522e1386496b7e20f3b0c1ba4a1a9a5fc747397b1e8",
+    "runtime/kernel/model.py": "cc7f41b973ea72ed330f63e31c2207067fbf3adcc05466ee83f8a96f36c322aa",
+    "runtime/kernel/procedure.py": "49e55d203869f5ad5265a5bea1faa0f4c58240b49e7def290b59cc43c9d2f7ff",
+    "runtime/kernel/project_knowledge.py": "4c244b55f10a6afdd4bea371240c6c8a19d5a84293dc623f45882c28beacc394",
+    "runtime/kernel/routing.py": "27f598306c2b6858010d14499a86fc43292a30c6e9a694220a604bb2a0fbf50d",
+    "runtime/kernel/semantic_bridge.py": "c00fb9ac86838728b30f31fec2dea6578f56ec1270ef558295e1409afe09c1b3",
+    "runtime/kernel/semantic_human.py": "2cd063b42f044f49f944b51af6bed15a57de86e2ce68f3414b7824dfb467a694",
+    "runtime/kernel/semantic_provider.py": "75cc4543d3626952fc4a07387ba08b77c9286fc82f48820d4d87c417bc1564e4",
+    "runtime/kernel/telemetry_otel.py": "bd48afe12ebfde4287511fb2256f0b249a820762578e2a5550b9aedff08536d0",
+    "runtime/kernel/worker.py": "3f3db0ad1380ed328c3bce8c2aee17adca12b905e4aed8089d27e8b6f2ddd1f2",
+    "runtime/kernel/worker_routing.py": "f4e49291caa7a88d538dbe6dc20541eefb4696a0507b114d48458ad24c0a8b88",
+    "runtime/kernel/workflow.py": "5a1412b0ff464c84b170ecd3e463e9dd257f041c063a3576f825b0ff76e07a81",
+    "runtime/kernel/workspace.py": "00cefb20b5b0cbd7c76d622f6989e2d698a13dc2a9f7d58c579b1bf132948541",
+    "runtime/kernel/youtrack.py": "cde9c786e83c4a896da1cff13579953a96d553c0daf978a57e45266ad56dc22f",
+    "tests/test_kernel_context_plane.py": "ed64f15d4d5a7e9b1e2b9704b4a770a40afda2d49ade1ca9e1167f3db25d063d"
+  }
+}

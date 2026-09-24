@@ -31,10 +31,11 @@ OPERATION_CLASSES = {
     'text.stats': 'task.compute',
     'youtrack.read': 'external.read',
     'workspace.read': 'workspace.read',
+    'context.request': 'context.read',
     'worker.run': 'worker.run',
     'fixture.effect': 'external.effect',
 }
-TARGET_READ_CLASSES = frozenset({'workspace.read', 'external.read'})
+TARGET_READ_CLASSES = frozenset({'workspace.read', 'external.read', 'context.read'})
 TARGET_EFFECT_CLASSES = frozenset({'external.effect', 'worker.run', 'workspace.write', 'workspace.exec'})
 MUTATING_CLASSES = TARGET_EFFECT_CLASSES
 UNCLASSIFIED = 'unclassified'
