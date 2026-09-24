@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Increment 5: scoped human responses, joined children, wait recovery."""
+"""Increment 5: scoped human responses, joined children, wait recovery.
+
+HISTORICAL, NON-GATING (classified 2026-09-24, E1.0): milestone evidence for Increment 5,
+frozen as run. Its fixtures predate verifier-first progression (milestone 024) and fail
+identically on unchanged code; current coverage of its properties is mapped in
+experiments/personal-agent-hub/e1-0/regression.json and guarded by
+tests/test_regression_coverage.py. Do not edit it to pass; do not treat it as a gate."""
 from collections import Counter
 import hashlib
 import importlib.metadata

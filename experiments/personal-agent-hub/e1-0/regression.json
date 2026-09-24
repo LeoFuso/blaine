@@ -2,52 +2,133 @@
   "recorded": "2026-09-24",
   "branch": "impl/e1-completion-contract",
   "baseline": "b1b3073 (unchanged HEAD exported with git archive into a scratch directory)",
-  "unit_suite": {
-    "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m unittest discover -s tests -p 'test_*.py'",
-    "baseline_tests": 249,
-    "baseline_result": "OK",
-    "after_tests": 297,
-    "after_result": "OK",
-    "new_tests": {
-      "tests/test_completion_contract.py": 31,
-      "tests/test_completion_workflow.py": 17
+  "gating": {
+    "unit_suite": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m unittest discover -s tests -p 'test_*.py'",
+      "baseline_tests": 249,
+      "baseline_result": "OK",
+      "existing_test_changes": "tests/test_kernel_progression.py, test_kernel_routing.py, test_kernel_instrument.py: their in-process fake Restate contexts gained a promise().peek() stub returning None (no amendment submitted), required because the accepted amendment mechanism peeks contract/{n} at every iteration boundary. tests/test_personal_agent.py gained one binding test. No existing assertion changed.",
+      "after_tests": 311,
+      "after_result": "OK",
+      "new_tests": {
+        "tests/test_completion_contract.py": 39,
+        "tests/test_completion_workflow.py": 19,
+        "tests/test_regression_coverage.py": 3,
+        "tests/test_personal_agent.py (binding actor test)": 1
+      }
     },
-    "existing_test_changes": "tests/test_kernel_progression.py, test_kernel_routing.py, test_kernel_instrument.py: their in-process fake Restate contexts gained a promise().peek() stub returning None (no amendment submitted), required because the accepted amendment mechanism peeks contract/{n} at every iteration boundary. No assertion changed."
+    "restate_harnesses": [
+      {
+        "harness": "experiments/personal-agent-hub/e1-0/accept.py",
+        "scope": "E1.0 acceptance and the durability properties re-homed from Increments 1, 2 and 5",
+        "result": "PASS",
+        "evidence": "experiments/personal-agent-hub/e1-0/evidence/summary.json",
+        "notes": "9 Tasks (including a joined child waiting on a human), 8 runtime and 2 server SIGKILLs; rerun after the operator clarifications (effect scopes, binding-owned amendment actor, HANDOFF/stale-input/response-loss/child-human coverage re-homed from frozen harnesses)."
+      },
+      {
+        "harness": "scripts/verify-kernel-parallel.py",
+        "scope": "Increment 12 native parallel children",
+        "branch_result": "PASS",
+        "baseline_result": "PASS",
+        "notes": "12 native Tasks, 3 runtime and 3 server SIGKILLs, 0 duplicate turns/effects/children; rerun on the final follow-up code. Its offline verifier uses the v1 evaluate() projection, which still agrees."
+      }
+    ]
   },
-  "restate_harnesses": [
-    {
-      "harness": "experiments/personal-agent-hub/e1-0/accept.py",
-      "scope": "E1.0 acceptance",
-      "branch_result": "PASS",
-      "notes": "6 Tasks, 5 runtime and 2 server SIGKILLs; see evidence/summary.json"
-    },
-    {
-      "harness": "scripts/verify-kernel-parallel.py",
-      "scope": "Increment 12 native parallel children",
-      "branch_result": "PASS",
-      "baseline_result": "PASS",
-      "notes": "12 native Tasks, 3 runtime and 3 server SIGKILLs, 0 duplicate turns/effects/children; the inc-12 offline verifier uses the v1 evaluate() projection, which still agrees"
-    },
+  "historical_non_gating": [
     {
       "harness": "scripts/verify-kernel.py",
-      "scope": "Increment 1",
+      "increment": 1,
+      "role": "Increment 1 milestone acceptance probe (docs/milestones/003); evidence frozen in experiments/kernel-increment-1/evidence.",
+      "why_stale": "Its fixtures expect cognition to keep running after the exact artifact exists (e.g. the recovery Task's barrier at decision/3). Verifier-first progression (milestone 024) completes the Task as soon as the verifier is satisfied, which is the canonical lifecycle; the old expectation is superseded, not violated.",
       "branch_result": "FAIL",
-      "baseline_result": "FAIL (identical)",
-      "cause": "Pre-existing: the recovery fixture expects cognition iteration 3 (barrier decision/3), but since verifier-first progression (milestone 024) the Task completes at iteration 2 once the exact artifact exists. Not a regression."
+      "baseline_result": "FAIL (identical: committed decision barrier never reached)",
+      "covered_by": {
+        "premature COMPLETE rejected": [
+          "tests:test_kernel_progression.ProgressionTests.test_model_complete_still_cannot_bypass_verifier",
+          "tests:test_completion_workflow.Investigation.test_model_complete_is_neither_necessary_nor_sufficient"
+        ],
+        "multi-turn durable observations": [
+          "tests:test_kernel_progression.ProgressionTests.test_bad_artifact_returns_to_cognition",
+          "acceptance:investigation"
+        ],
+        "same-Task HANDOFF; owner and packet survive runtime SIGKILL": [
+          "acceptance:denial/outcome/4"
+        ],
+        "typed text WAIT/resume and stale-input rejection": [
+          "tests:test_completion_workflow.Revisions.test_legality_uses_the_current_revision",
+          "acceptance:policy-exception/stale-input"
+        ],
+        "policy denial without dispatch": [
+          "tests:test_completion_workflow.Investigation.test_policy_denial_is_journaled_and_reported",
+          "acceptance:denial"
+        ],
+        "journaled cognition not repeated after SIGKILL": [
+          "acceptance:investigation/contract_retained/0",
+          "tests:test_completion_workflow.Investigation.test_crash_and_replay_reproduce_identical_durable_state"
+        ],
+        "committed effect not repeated; response-loss retry deduplicated": [
+          "tests:test_kernel.KernelStorageAndContext.test_fixture_effect_is_atomic_and_idempotent",
+          "acceptance:response-loss"
+        ],
+        "artifact digests valid after recovery": [
+          "acceptance:investigation"
+        ]
+      }
     },
     {
       "harness": "scripts/verify-kernel-children.py",
-      "scope": "Increment 2",
+      "increment": 2,
+      "role": "Increment 2 milestone acceptance probe (docs/milestones/004); evidence frozen in experiments/kernel-increment-2/evidence.",
+      "why_stale": "Its child fixture expects a waiting phase that predates verifier-first progression; it fails identically on the unchanged baseline ('child waiting' timeout). Increment 12 superseded it as the native children harness.",
       "branch_result": "FAIL",
-      "baseline_result": "FAIL (identical: 'child waiting' timeout)",
-      "cause": "Pre-existing on unchanged HEAD; not investigated further in E1.0."
+      "baseline_result": "FAIL (identical)",
+      "covered_by": {
+        "stable explicit child identity and bounded result": [
+          "tests:test_kernel_parallel.ParallelContracts.test_explicit_relationship_and_stable_slot_identity",
+          "tests:test_kernel_children.ChildContracts.test_result_rejects_transcript_foreign_identity_and_evidence"
+        ],
+        "parent-independent completion; failed child never promoted": [
+          "tests:test_kernel_parallel.ParallelProgression.test_failure_truthful_not_parent_success",
+          "restate:scripts/verify-kernel-parallel.py"
+        ],
+        "single joined child path": [
+          "tests:test_kernel_parallel.ParallelProgression.test_existing_single_child_path_and_independent_state",
+          "acceptance:child-parent"
+        ],
+        "joined child recovery after SIGKILL": [
+          "restate:scripts/verify-kernel-parallel.py",
+          "acceptance:child-parent"
+        ]
+      }
     },
     {
       "harness": "scripts/verify-kernel-human.py",
-      "scope": "Increment 5",
+      "increment": 5,
+      "role": "Increment 5 milestone acceptance probe (docs/milestones/011); evidence frozen in experiments/kernel-increment-5/evidence.",
+      "why_stale": "Asserts exactly four cognitive turns; under verifier-first progression the Task completes in fewer. Fails identically on the unchanged baseline.",
       "branch_result": "FAIL",
       "baseline_result": "FAIL (identical: assert len(turns)==4)",
-      "cause": "Pre-existing on unchanged HEAD (turn-count expectation predates verifier-first progression); not a regression."
+      "covered_by": {
+        "scoped HumanDecision validation (scope, revision, digest, allowed set)": [
+          "tests:test_kernel_human.HumanTests.test_scope_version_staleness_and_malformed_controls",
+          "tests:test_kernel_human.HumanTests.test_verifier_requires_accepted_input_not_just_model_artifact"
+        ],
+        "human wait survives runtime and server SIGKILL; same Task resumes": [
+          "acceptance:human-resume",
+          "tests:test_completion_workflow.HumanBoundary.test_v0_human_criterion_waits_and_the_same_task_resumes"
+        ],
+        "duplicate response rejected": [
+          "acceptance:human-resume/duplicate-response"
+        ],
+        "child human request bound to parent origin and derived child identity": [
+          "tests:test_regression_coverage.ChildHumanBinding.test_child_human_request_must_bind_parent_and_child",
+          "acceptance:child-parent"
+        ],
+        "child waits on a human across runtime SIGKILL, then the parent completes": [
+          "acceptance:child-human/response",
+          "acceptance:child-parent"
+        ]
+      }
     }
   ],
   "not_run": {
