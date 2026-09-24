@@ -1,0 +1,33 @@
+{
+  "status": "PUBLISHED_VERIFIED",
+  "tag": "v0.1.0-alpha.4",
+  "prerelease": true,
+  "source_commit": "1c76a23a1640a5d69a0862ea8f39a32cd12a5ee1",
+  "metadata": {
+    "schema_version": 1,
+    "client_version": "0.1.0-alpha.4",
+    "protocol_version": 2,
+    "build_commit": "1c76a23a1640a5d69a0862ea8f39a32cd12a5ee1",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "url": "https://github.com/LeoFuso/blaine/releases/tag/v0.1.0-alpha.4",
+  "ci": "https://github.com/LeoFuso/blaine/actions/runs/35947021751",
+  "release_workflow": "https://github.com/LeoFuso/blaine/actions/runs/35947424058",
+  "actions_result": "PASS",
+  "assets": {
+    "blaine-darwin-amd64": "1f9629441e6e2f653972900fdf1409ad0f656ae00c72f71388ae5586f54c575b",
+    "blaine-darwin-arm64": "04f35b146cc197569420cfd57551f36a45a4faca5d8a4f0cf10723c869de04c1",
+    "blaine-linux-amd64": "09fdf4a0b5c3bf345b246c20e492977f33430762cf55bf182527ac98e01e071f",
+    "blaine-linux-arm64": "cfa3b9ef4528cfef73c7723a6087eb15d7cb050094fbe15b7ecb683a476700e5"
+  },
+  "checksum_manifest": "checksums.txt",
+  "public_download_checksums": "PASS",
+  "local_vs_Actions_reproducibility": "PASS_FOUR_TARGETS",
+  "public_installer_matches_tag": true,
+  "public_installer": "https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.4/client/install-jetbrains-agent.sh",
+  "attestation": "Deferred; no signing/attestation claim",
+  "generated_binaries_committed": false,
+  "runtime_scope": "Linux version execution after checksum verification. Primary Mac upgrade/receipt and WSL new-client acceptance pending."
+}

@@ -150,7 +150,7 @@ already admitted by Tailscale and the existing Blaine handshake. It adds no seco
 manual approval or authentication system. Tailscale owns strong device revocation;
 Blaine retirement/revocation is product state, not protection against retained Hub
 administrative SSH authority. Full Windows IntelliJ-to-WSL acceptance belongs to E0.F.
-Prior SSH and E0.A/B evidence keeps its original scope. E0.D is implemented locally; primary live registration/reconnect acceptance is pending.
+Prior SSH and E0.A/B evidence keeps its original scope. E0.D is deployed; primary Mac registration/reconnect and Hub edge restart passed. Protocol-2 client and alternate-peer acceptance remain pending.
 Full Blaine onboarding,
 remote effects and coding E2E remain unvalidated.
 Accepted platform/runtime capabilities are inputs, not a reason to reopen their
@@ -158,7 +158,7 @@ entire workstreams. Workstation and worker remain independent.
 
 | Milestone | Status / product outcome | Dependencies and D-series mapping |
 | --- | --- | --- |
-| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PASS; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. E0.C narrow tailnet policy and canonical persistent Hub deployment passed. Registration lifecycle belongs to E0.D; full second-peer Windows IDE/WSL acceptance belongs to E0.F. E0.D is active, with deterministic registry/protocol evidence and live acceptance pending. |
+| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C PASS; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. E0.C narrow tailnet policy and canonical persistent Hub deployment passed. Registration lifecycle belongs to E0.D; full second-peer Windows IDE/WSL acceptance belongs to E0.F. E0.D is active, with deterministic registry/protocol evidence and primary Mac lifecycle proof; protocol-2 client and alternate-peer evidence remain pending. |
 | E1 — Remote Workspace Read | **DESIGNED.** Actual second-workstation IntelliJ read, confined paths and evidence in the same durable Task across reconnect. | E0; delivers D3.A product proof. Live client capability/confinement gates remain open. |
 | E2 — Remote Workspace Effects | **DESIGNED.** Conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
 | E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |

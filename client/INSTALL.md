@@ -5,16 +5,14 @@ Blaine's private application protocol. E0.C is PASS, including its designated Ma
 IntelliJ acceptance. Full E0 and the client are not stable/accepted. **v0.1.0-alpha.1 is historical
 SSH-transport evidence and must not be used for current product acceptance.**
 
-## E0.D installer candidate (not published)
+## Current development onboarding
 
-This worktree prepares **v0.1.0-alpha.4**, including protocol-2 automatic
-workstation registration receipts. Publication requires separate operator
-authorization and has **not** occurred. Do not execute the alpha.4 URL below until
-its release is verified. The existing public alpha.3 installer remains available
-at its historical tag and works with the compatible Hub, but cannot expose the
-new receipt or supply architecture metadata.
-
-## Development onboarding after publication
+**v0.1.0-alpha.4** is published and checksum-verified. It adds the protocol-2
+registration receipt and descriptive client metadata for E0.D. It preserves the
+existing private installation state and tsnet identity across upgrade.
+[Alpha.4 delivery evidence](../experiments/personal-agent-hub/e0d/alpha4-delivery.json)
+records the exact source, workflows and artifact hashes. Publication alone does
+not establish E0.D live acceptance; see the [milestone evidence](../experiments/personal-agent-hub/e0d/README.md).
 
 On macOS or Linux (including the designated Ubuntu WSL2 environment):
 
@@ -22,7 +20,7 @@ On macOS or Linux (including the designated Ubuntu WSL2 environment):
 curl -fsSL https://raw.githubusercontent.com/LeoFuso/blaine/v0.1.0-alpha.4/client/install-jetbrains-agent.sh | sh
 ```
 
-The prepared target is **alpha.4**. Alpha.3 fixed the auxiliary `type` field rejected
+The current target is **alpha.4**. Alpha.3 fixed the auxiliary `type` field rejected
 by alpha.2 during real JetBrains launch. [Alpha.3 delivery evidence](../experiments/personal-agent-hub/e0c-direct/alpha3-delivery.json)
 records publication and validation status. The earlier
 [alpha.2 evidence](../experiments/personal-agent-hub/e0c-direct/alpha2-delivery.json)

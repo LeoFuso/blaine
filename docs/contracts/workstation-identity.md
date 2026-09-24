@@ -40,7 +40,7 @@ root daemon, HBA change or vendor database migration is required.
 | `principal_id` | Observed user/tag reference; descriptive binding evidence. |
 | `installation_id` | Latest proven application-key-derived ID; not registry authority. |
 | `display_name`, `platform`, `architecture`, `client_version` | Bounded descriptive metadata, never identity selectors. |
-| `first_seen_at`, `last_seen_at` | Hub/PostgreSQL UTC observations. |
+| `first_seen_at`, `last_seen_at` | Hub/PostgreSQL instants (`timestamptz`), serialized with a time-zone offset. |
 
 The same node keeps its workstation ID across IP/name/key/version changes and
 sequential ACP sessions. A distinct node gets a distinct workstation ID even

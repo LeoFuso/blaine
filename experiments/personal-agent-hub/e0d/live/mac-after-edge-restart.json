@@ -1,0 +1,155 @@
+{
+  "observed_at": "2026-09-24T02:18:25.985051+00:00",
+  "inventory": [
+    {
+      "workstation_id": "ws-4f6ac6af05280a601acfd0d5eb3bce59",
+      "tailnet": "tail0f2ece.ts.net",
+      "transport_node_id": "nEEbpyYWN921CNTRL",
+      "principal_id": "4301359180507170",
+      "installation_id": "ws-9f5788915e97f2dfb2fbcd1b4dbafd23",
+      "display_name": "blaine-9f5788915e97",
+      "platform": "macOS",
+      "architecture": "",
+      "client_version": "0.1.0-alpha.3",
+      "first_seen_at": "2026-09-23T23:08:32.818479-03:00",
+      "last_seen_at": "2026-09-23T23:18:18.246842-03:00",
+      "presence": "ONLINE"
+    }
+  ],
+  "events": [
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790215712633810"
+    },
+    {
+      "event": "workstation",
+      "stage": "created",
+      "workstation_id": "ws-4f6ac6af05280a601acfd0d5eb3bce59",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "ab3a3e19b8dbb27ef48ea6f4eeb0000b",
+      "outcome": "OK",
+      "protocol": 1,
+      "journal_timestamp_us": "1790215712835873"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "ab3a3e19b8dbb27ef48ea6f4eeb0000b",
+      "outcome": "OK",
+      "mode": "acp",
+      "journal_timestamp_us": "1790215712835912"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "ab3a3e19b8dbb27ef48ea6f4eeb0000b",
+      "outcome": "OK",
+      "mode": "acp",
+      "journal_timestamp_us": "1790215809561118"
+    },
+    {
+      "event": "workstation",
+      "stage": "disconnected",
+      "session_id": "ab3a3e19b8dbb27ef48ea6f4eeb0000b",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790215809574990"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790216150559167"
+    },
+    {
+      "event": "workstation",
+      "stage": "reconnected",
+      "workstation_id": "ws-4f6ac6af05280a601acfd0d5eb3bce59",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "9a50152801826111493e944805f3163c",
+      "outcome": "OK",
+      "protocol": 1,
+      "journal_timestamp_us": "1790216150678321"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "9a50152801826111493e944805f3163c",
+      "outcome": "OK",
+      "mode": "acp",
+      "journal_timestamp_us": "1790216150678379"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "9a50152801826111493e944805f3163c",
+      "outcome": "CANCELED",
+      "mode": "acp",
+      "journal_timestamp_us": "1790216210006281"
+    },
+    {
+      "event": "workstation",
+      "stage": "disconnected",
+      "session_id": "9a50152801826111493e944805f3163c",
+      "outcome": "REGISTRY_UNAVAILABLE",
+      "journal_timestamp_us": "1790216210017285"
+    },
+    {
+      "event": "private_listener_ready",
+      "protocol": 2,
+      "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+      "journal_timestamp_us": "1790216210037446"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790216268114178"
+    },
+    {
+      "event": "workstation",
+      "stage": "reconnected",
+      "workstation_id": "ws-4f6ac6af05280a601acfd0d5eb3bce59",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "07932ea4f92bc7c8ddee38211abaaa85",
+      "outcome": "OK",
+      "protocol": 1,
+      "journal_timestamp_us": "1790216268230819"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "07932ea4f92bc7c8ddee38211abaaa85",
+      "outcome": "OK",
+      "mode": "acp",
+      "journal_timestamp_us": "1790216268230860"
+    }
+  ],
+  "services": {
+    "blaine-hub-transport.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "2727447"
+    },
+    "blaine-runtime.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "2276403"
+    },
+    "blaine-restate.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "358882"
+    }
+  },
+  "operator_observation": "After edge restart, operator restarted IntelliJ and received UNAVAILABLE for inspect e0c"
+}

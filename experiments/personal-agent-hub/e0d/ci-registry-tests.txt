@@ -1,0 +1,12 @@
+=== RUN   TestDurableIdentityPresenceAndRestart
+--- PASS: TestDurableIdentityPresenceAndRestart (0.02s)
+=== RUN   TestConcurrencyReadOnlyInventoryAndExpiry
+--- PASS: TestConcurrencyReadOnlyInventoryAndExpiry (0.02s)
+=== RUN   TestStorageAndMetadataFailuresAreClosed
+--- PASS: TestStorageAndMetadataFailuresAreClosed (0.01s)
+PASS
+ok  	blaine.local/client/internal/workstation	1.061s
+=== RUN   TestOperatorInventoryIsReadOnlyAndSanitized
+--- PASS: TestOperatorInventoryIsReadOnlyAndSanitized (0.02s)
+PASS
+ok  	blaine.local/client/cmd/blaine-hub-transport	1.028s
