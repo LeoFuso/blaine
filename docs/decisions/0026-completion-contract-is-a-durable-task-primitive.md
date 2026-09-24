@@ -34,19 +34,26 @@ specified in [Completion Contract v1](../contracts/completion-contract.md):
    demonstrated; plans stay mutable cognition; authority stays in the trusted
    grant and PolicyGate. A criterion never grants authority.
 2. **Criteria carry identity, level, provenance and a verifier.** Levels are only
-   `REQUIRED` and `ADVISORY`. Only `user`, `operator_rule`, `task_type` and
-   `parent_task` provenance may create REQUIRED criteria; `project`, `memory` and
-   `model` provenance are ADVISORY (or bind a verifier for a higher criterion).
+   `REQUIRED` and `ADVISORY`. REQUIRED criteria may come from Blaine-owned
+   `task_type` templates (some marked invariant), operator policy (`operator_rule`
+   and designated `project_policy`), the Task's `user`, or a `parent_task` for its
+   child. Ordinary `repository` evidence, `memory` and `model` inference are
+   ADVISORY (or propose a verifier binding). Trust follows the Context Plane's
+   source provenance: a project policy source is authoritative only through an
+   operator designation, never because of its content (CP-B5).
 3. **Closed verifier taxonomy** extending the existing two kinds:
    `artifact_digest`, `human_response`, `capability_journal`, `evidence_citation`,
    `capability_result`, `change_set` (reserved) and `semantic_review`.
 4. **Deterministic-first.** A model is never the authoritative verifier of a fact a
    deterministic verifier can check; semantic review cannot override deterministic
    verdicts and resolves low confidence to `unknown` or a human request.
-5. **Explicit amendments only.** Revisions are retained artifacts with actor,
-   provenance and reason. Waiving, rebinding or superseding a REQUIRED criterion
-   requires an explicit human action. Cognition may add ADVISORY criteria and may
-   *request* a REQUIRED change only through the existing human-decision path.
+5. **Explicit amendments only, within the authority order.** Revisions are
+   retained artifacts with actor, provenance and reason. A REQUIRED criterion is
+   satisfied, superseded, rebound or waived only by an actor whose authority covers
+   its source: the user for user and default criteria; an explicit, recorded policy
+   exception for operator/project policy; nobody for task-type invariants.
+   Cognition may add ADVISORY criteria and may *request* a change only through the
+   existing human-decision path.
 6. **Capability journal.** Each Task keeps a hash-chained, artifact-backed record of
    PolicyGate admissions, denials and observed outcomes, appended before dispatch.
    It is Task evidence, not telemetry and not a cross-Task ledger.
@@ -59,6 +66,10 @@ artifacts. The v0 `TaskSpec.completion` form lowers into revision 0 unchanged.
 
 ## Alternatives considered
 
+- **Treat all checked-in project instructions as policy, or none of them.** All:
+  lets any README make Tasks impossible and contradicts CP-B5. None: forces every
+  canonical build/test rule into Blaine-held operator rules. Designated,
+  structured project policy is the middle path.
 - **Keep the contract inside the immutable TaskSpec.** Simplest, and safe against
   silent change, but makes every legitimate change a new Task and loses Task
   identity, evidence and human context across the change.
@@ -70,6 +81,18 @@ artifacts. The v0 `TaskSpec.completion` form lowers into revision 0 unchanged.
   need, and it would blur deterministic authority.
 - **Derive "no mutation" from ExecutionEvents.** Rejected: events are forensic,
   lossy by design and explicitly never lifecycle authority.
+
+## Relationship to existing decisions
+
+Refines [ADR 0015](0015-durable-task-execution-and-verification.md) without
+changing its authority rule. Composes with the accepted
+[Context Plane](0025-context-plane-and-compiled-agent-context.md): the contract is
+the "accepted Task criteria" that content cannot alter (CP-B5) and that the Context
+Compiler must carry exactly in packets; Context Plane provenance decides which
+discovered sources are policy, evidence or suggestion; verified-outcome admission
+(CP-L1) may feed candidate rules, whose adoption stays a human act distinct from
+the Context Plane PromotionGate. Retains ADR 0024's human-promotion pattern and
+ADR 0007's tools-before-inference rule.
 
 ## Consequences
 

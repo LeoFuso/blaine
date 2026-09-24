@@ -1,7 +1,7 @@
 # Completion Contract and E1 design slice
 
 **Status: DESIGN — no runtime, client, transport or deployment change.**
-Branch `design/completion-contract-e1`, 2026-09-23. Ran in parallel with E0.D
+Branch `design/completion-contract-e1`, 2026-09-23; reconciled 2026-09-24. Ran in parallel with E0.D
 implementation in another worktree; no E0.D files or uncommitted work were used.
 
 ## Outputs
@@ -28,6 +28,28 @@ implementation in another worktree; no E0.D files or uncommitted work were used.
 4. Do not fall back to a Blaine-owned filesystem provider for theoretical sandboxing.
 5. E1 must prove that a READ_ONLY Task invokes no mutating capability although the
    delegated surface contains them, using the capability journal as evidence.
+
+Follow-up decisions (2026-09-24):
+
+6. The Hub is in the trusted computing base of the personal deployment. The
+   compromised-Hub residual is accepted; no local authorization engine is added.
+7. `blaine connect` does not mutate JetBrains configuration. `blaine integration
+   jetbrains install` (invoked by the installers) registers Blaine and sets its
+   per-agent `use_idea_mcp = true`; `check`/`doctor` verify it.
+8. Designated, structured trusted project policy may create REQUIRED criteria;
+   ordinary repository evidence, Memory and model inference stay advisory, per
+   Context Plane source provenance.
+
+## Reconciliation (2026-09-24)
+
+The design was first written on local `main` at `2327187`. `origin/main` had since
+gained the Track III Context Plane (`6a0618d`) while local `main` gained accepted
+E0.D (`6608e17`, unpushed). A literal rebase onto `origin/main` would have rewritten
+the shared E0.C line (including commits behind published alpha tags), so the branch
+was rebuilt as: local `main` → merge of `origin/main` (clean) → replayed design →
+corrections. ADR 0025 had become the Context Plane ADR, so the design ADRs are 0026
+and 0027. The pre-reconciliation commit is kept as local branch
+`backup/design-e1-dca1d77`.
 
 ## Upstream observations (not live IDE evidence)
 

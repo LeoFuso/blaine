@@ -27,10 +27,14 @@ upstream source; see the [workspace contract](../contracts/workspace-capability.
 
 ## Decision
 
-1. **Delegation is authority.** Connecting Blaine to IntelliJ with `use_idea_mcp`
-   enabled is the operator's delegation of the IntelliJ-exposed project capability
-   surface. Blaine records it (`DelegationSnapshot`) and adds no second workspace
-   approval.
+1. **Delegation is authority.** Installing Blaine as a JetBrains ACP agent with
+   `use_idea_mcp` enabled is the operator's delegation of the IntelliJ-exposed
+   project capability surface, including every project IntelliJ exposes. Blaine
+   records it (`DelegationSnapshot`) and adds no second workspace approval, per
+   project or otherwise. `blaine integration jetbrains install` (invoked by the
+   installers) sets the per-agent `use_idea_mcp` for the Blaine entry, never the
+   global default; `check`/`doctor` report it. `blaine connect` stays Hub
+   connectivity only and does not touch JetBrains configuration.
 2. **IntelliJ MCP is the E1 capability provider.** No Blaine-owned filesystem
    provider is built for E1. ACP `fs/*` remains a possible future provider.
 3. **Four concepts stay separate:** delegated scope (what IntelliJ exposes), Task
@@ -43,16 +47,29 @@ upstream source; see the [workspace contract](../contracts/workspace-capability.
 5. **The workstation client is a bridge.** It relays MCP between the Hub and the
    IDE's local endpoint, keeps IDE tokens local, enforces framing/correlation/limits,
    and never filters, rewrites or originates tool calls.
-6. **Read-only is authority, proven by the journal.** A READ_ONLY Task has no
+6. **The Hub is trusted.** For the current personal deployment the Blaine Hub is
+   part of the trusted computing base. PolicyGate is the authoritative application
+   policy boundary; the client does not independently re-evaluate Task authority.
+   A compromised Hub is outside that protection. This residual is accepted.
+7. **Read-only is authority, proven by the journal.** A READ_ONLY Task has no
    mutating operation class; the capability journal
    ([ADR 0026](0026-completion-contract-is-a-durable-task-primitive.md)) shows that
    no mutating operation was admitted or executed even though the delegated surface
    contains mutating tools.
 
+Where [ADR 0022](0022-workstation-personal-agent-client.md), the Hub design and the
+[Context Plane](0025-context-plane-and-compiled-agent-context.md) refer to Hub-owned
+"workspace consent" for an IntelliJ-provided workspace, this delegation is that
+consent. The Context Plane Resolver supplies Task relevance; IntelliJ MCP can serve
+as the remote provider of its exact-read and lexical/symbol search semantics, with
+receipts using its result states. Workspace identity uses the E0.D Hub-assigned
+`workstation_id`; availability combines E0.D presence with a live delegation.
+
 This supersedes, for E1 onward, the Hub design's "local workspace consent",
 "independent local guard" and "E1 reads through the ACP client read" statements,
-and narrows [ADR 0022](0022-workstation-personal-agent-client.md)'s "the client
-must enforce local scope" to protocol integrity. Connection still grants nothing
+and narrows ADR 0022's "the client must enforce local scope" to protocol integrity,
+and replaces the Hub rule "do not enable MCP forwarding as an onboarding side
+effect" with the explicit per-agent delegation above. Connection still grants nothing
 by itself: without the IDE delegation there is no workspace capability.
 
 ## Alternatives considered
@@ -70,11 +87,14 @@ by itself: without the IDE delegation there is no workspace capability.
 
 - E1 gains search, symbol lookup and directory listing through the IDE's index,
   with no Blaine filesystem code.
-- **Accepted residual:** a compromised Hub can invoke any delegated IDE tool,
-  including mutating/executing ones, limited only by IDE-side controls (the IDE's
-  exposed-tool settings; command confirmation unless "brave mode" is on). The
-  operator controls exposure by what they delegate. The Hub security table is
-  updated accordingly.
+- **Accepted residual (current threat model):** a compromised Hub can invoke any
+  delegated IDE tool, including write, terminal, run-configuration, debugger and
+  database tools, limited only by IDE-side controls (exposed-tool settings;
+  command confirmation unless "brave mode" is on). No local authorization engine
+  is added against it. Revisit if the Hub leaves the TCB (see below).
+- Onboarding needs one fewer step: installing the integration delegates. The
+  per-agent key is undocumented and must be observed before it is frozen.
+- E2 reuses the same provider; only effective authority changes.
 - Evidence reflects the IDE's view (`ide_document` may contain unsaved edits); it is
   labelled, and E2 must address dirty-buffer reconciliation before disk-based checks.
 - The direct protocol gains a negotiated capability channel; the client gains an
@@ -114,6 +134,8 @@ routing, write/exec capabilities, IntelliJ plugin.
 
 ## Reconsider when
 
-IntelliJ stops passing its MCP server to custom ACP agents or changes project
-semantics; a demonstrated threat requires workstation-side enforcement independent
-of the Hub; or E2 shows IDE tools cannot provide safe conditional writes.
+IntelliJ stops passing its MCP server to custom ACP agents, offers no per-agent
+delegation, or changes project semantics; the Hub leaves the trusted computing base
+(for example multi-user or shared hosting) or a demonstrated threat requires
+workstation-side enforcement independent of the Hub; or E2 shows IDE tools cannot
+provide safe conditional writes.

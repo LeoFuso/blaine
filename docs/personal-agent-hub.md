@@ -39,10 +39,12 @@ The current [alpha.4 delivery](../experiments/personal-agent-hub/e0d/alpha4-deli
 provides the protocol-2 client. Development bootstrap is a shell-only release
 installer delegating JetBrains JSON registration to the Go client; it is not ACP Registry publication.
 
-**E1 design revision (2026-09-23, design only):** the operator selected IDE
-delegation as workspace authority. Connecting Blaine to IntelliJ with **Pass
-IntelliJ MCP server** enabled delegates the IntelliJ-exposed project surface; the
-IntelliJ MCP server is the E1 provider; PolicyGate is the single enforcer and the
+**E1 design revision (2026-09-23/24, design only):** the operator selected IDE
+delegation as workspace authority. Installing Blaine as an IntelliJ agent with
+`blaine integration jetbrains install`, which enables **Pass IntelliJ MCP server**
+for the Blaine entry, delegates the IntelliJ-exposed project surface; `connect`
+does not touch JetBrains configuration. The IntelliJ MCP server is the E1
+provider; PolicyGate on the trusted Hub is the single enforcer and the
 workstation client is a protocol/capability bridge. E1 is also the first consumer
 of [Completion Contract v1](contracts/completion-contract.md). See
 [ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md) and the
@@ -144,7 +146,7 @@ within the milestone gates. Acceptance of a design is not live validation.
 | ID | Decision |
 | --- | --- |
 | A1 | Ship a small local `blaine` client with only `connect`, `doctor`, `acp`, `disconnect`, `version` initially. No general CLI framework. |
-| A2 | `connect` owns onboarding and IntelliJ configuration. Human workstations use interactive Tailscale login when needed; no long-lived tailnet administrative credential. |
+| A2 | `connect` owns Hub onboarding (enrollment, discovery, identity, readiness). Human workstations use interactive Tailscale login when needed; no long-lived tailnet administrative credential. **Revised 2026-09-23:** IntelliJ configuration belongs to `blaine integration jetbrains install` (invoked by the installers), which also configures Blaine's per-agent `use_idea_mcp` delegation; `connect` does not mutate JetBrains configuration ([ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md)). |
 | A3 | IntelliJ launches a stable local `blaine acp`. Transport and remote entrypoint details live behind the client connection profile. |
 | A4 | No IntelliJ plugin is required for E0–E3. A later plugin may be a thin UI over the same client. |
 | A5 | ACP session is not Task identity. Disconnect/restart never implicitly completes, cancels, approves or restarts a Task. Human WAITING requires an explicit matching response. |
@@ -241,7 +243,7 @@ the residual risk under a compromised host is recorded in
 | Network principal | Embedded Tailscale stable node and user/tag principal derived from the actual socket. Never accept a claimed peer ID from request JSON. |
 | Client installation | Persistent Blaine Ed25519 key and derived installation ID, proven in the handshake. This is distinct from the server-assigned workstation ID; a different transport node cannot inherit an existing workstation through a copied key. |
 | Workstation registration | Durable server-assigned inventory ID bound uniquely to the authenticated tailnet/stable node; created automatically on first accepted connection. The proven installation key is recorded, not used to nominate the registry ID. Display name and client UUID cannot authenticate or select another record. |
-| Workspace | Registration ID + opaque workspace ID + locally canonical absolute root and path-platform tag. Two machines with `/home/user/project` are distinct. |
+| Workspace | E0.D `workstation_id` + path-platform tag + canonical IDE project root, hashed into `workspace_id` ([E1 workspace](contracts/workspace-capability.md#workspace)). Two machines with `/home/user/project` are distinct. |
 | Surface/session | Ephemeral ACP session/connection ID and generation bound to registration/workspace. Recreated on reconnect. |
 | Task / operation | Existing durable Task ID and stable capability operation ID; neither derived from ACP session ID. |
 
@@ -484,7 +486,7 @@ An idempotent flow based on observed state, not a persistent onboarding workflow
 | 4. Secure transport | Verify the expected Tailscale Hub node and signed Blaine server identity on the direct private endpoint. | Identity changes fail closed. No Unix account, SSH key/known_hosts input or shell framing. |
 | 5. Handshake | Check server identity, protocol compatibility and runtime readiness. | `INCOMPATIBLE` or `REMOTE_UNAVAILABLE`; registration is not proof of runtime readiness. No service restart or deployment mutation. |
 | 6. Register | Automatically upsert durable inventory/presence for the policy-authorized network peer and proven installation key after handshake. Persist receipt after authoritative success. | Lost response: retry the same binding, return the same registration. No second manual approval. Tailscale controls revocation/re-admission; a changed binding cannot inherit an old identity or grants. |
-| 7. Configure IDE | Merge owned Blaine agent entry with stable absolute local launcher. | Absent IntelliJ: retain connection, report `IDE_MISSING`, not full READY. Running IntelliJ: merge safely, report reload/restart action only if needed. Name conflict or malformed config: STOP with a reviewable proposed change. |
+| 7. Check IDE integration | Read-only: report whether `blaine integration jetbrains install` has registered the owned Blaine entry and its MCP delegation. **Revised:** `connect` no longer writes JetBrains configuration. | Absent IntelliJ or missing integration: retain connection, report `IDE_MISSING`/`INTEGRATION_MISSING` with the install command, not full READY. |
 | 8. Diagnose | Perform the read-only doctor checks. | All required E0 checks pass: `READY`. Exact existing connection/config: `ALREADY_CONNECTED`, then current diagnostics. Repairable owned drift: repair only that entry and verify again. |
 
 Second invocation must preserve registration ID, other agents, tailnet settings
@@ -538,11 +540,18 @@ clean stdio probe and live agent selection. Doctor can report disk configuration
 valid while marking IDE reload/launch unverified. A one-time live IntelliJ smoke
 is required for E0 acceptance, not every invocation of doctor.
 
-Do not enable MCP forwarding as an onboarding side effect. Preserve global
-settings for other agents. Use a documented per-agent disable option if supported
-by the installed version; otherwise the Blaine adapter must reject/ignore incoming
-MCP server descriptors and expose no MCP-derived capabilities. That rejection
-needs a negative test; changing global defaults is not the fallback.
+**Revised 2026-09-23 ([ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md)).**
+`blaine integration jetbrains install` enables **Pass IntelliJ MCP server** for
+the Blaine entry through the per-agent override: installing Blaine as an IntelliJ
+agent is the operator's delegation, so no separate manual toggle is required.
+Preserve `default_mcp_settings` and every other agent's MCP exposure; never
+change global defaults, and leave `use_custom_mcp` off for Blaine. If the installed
+IDE offers no per-agent override, report delegation *not configured* rather than
+changing globals. `check` and `doctor` verify it read-only. The per-entry key is
+undocumented: record it from the installed IDE (E0.E/E1.A) before freezing it in
+fixtures. Until E1 ships, the Hub adapter still rejects incoming MCP descriptors
+and exposes no MCP-derived capability; see
+[delegation onboarding](contracts/workspace-capability.md#delegation-onboarding).
 
 ### `blaine doctor`
 
@@ -1086,7 +1095,7 @@ compromised trusted machine or provide a new enterprise security platform.
 | Threat | Required control and residual boundary | Milestone |
 | --- | --- | --- |
 | Compromised workstation | Treat content/capability replies as untrusted inputs; validate schema, size and operation identity. Workstation cannot authorize host/global effects. Its own evidence can still be fabricated; no attestation claim. | E0 identity, E1 evidence, E2/E3 verification. |
-| Compromised Blaine host | **Revised (ADR 0027):** no independent local policy. A compromised host can invoke any tool in the IDE-delegated surface, including mutating/executing ones, limited by IDE-side controls (exposed-tool settings; command confirmation unless brave mode) and by what the operator delegates. IDE tokens and workstation credentials never leave the workstation. Accepted residual of the delegated-authority model. | E0 no ambient grants; E1 delegation only via `use_idea_mcp`; E2 revisits for writes. |
+| Compromised Blaine host | **Revised (ADR 0027): accepted residual.** The Hub is in the trusted computing base of the personal deployment; PolicyGate is the authoritative application boundary and the client does not re-evaluate Task authority. A compromised Hub can invoke any tool in the IDE-delegated surface (write, terminal, run configurations, debugger, database), limited only by IDE-side controls. The client keeps protocol integrity and IDE tokens local; no local authorization engine is claimed. | E0 no ambient grants; E1 delegation via the integration install; revisit if the Hub leaves the TCB. |
 | Device removed from tailnet | Tailscale owns strong network revocation; Blaine reflects observed state and invalidates affected routes. Measure propagation/session teardown; a registry flag cannot neutralize retained administrative SSH authority over the Hub. | E0.D state reflection; E0.F integrated negative probe; E1/E2 route invalidation. |
 | Stale/retired inventory | Preserve durable identity/history; last-seen is informational. A fresh policy-authorized handshake can restore presence without manual Blaine approval. Reinstall or a changed binding cannot inherit old grants. | E0.D onward. |
 | Path traversal / link races | E1 reads: IDE project model plus PolicyGate argument schema and project pinning; symlinked content the IDE treats as project content is an accepted residual. E2 writes: canonical workspace, operation-time containment, negative traversal/symlink/hard-link probes. | E1 reads, E2 writes. |
@@ -1126,10 +1135,10 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 | E0.B Tailscale state/login | Proposed platform prerequisite adapters; supported install assistance, native status/login, macOS approvals, Windows host inspection from WSL. | On available targets, prove install/missing/expired/login states; macOS native approval and WSL2 host status/topology probes; no changed unrelated preferences. Record untested targets. | Needs admin token/permanent root, duplicate WSL daemon, wrong tailnet, unsupported install or cannot distinguish auth/host/guest reachability. | E0.A; authorized test workstation. |
 | E0.C Host/transport/handshake — [PASS](../experiments/personal-agent-hub/e0c-direct/README.md) | Embedded tsnet, internal Hub profile, private application endpoint, signed handshake and bounded binary/ACP session. | Primary designated Mac: persistent peer identity across restart/reconnect, handshake, binary stream, cancellation/disconnect, narrow tailnet policy, persistent Hub service/readiness, Task independence and real Blaine IDE read-only round trip. Existing WSL transport evidence is additional; full second-workstation IDE acceptance belongs to E0.F. | Claimed peer identity, public endpoint, failed application pin/protocol accepted, unsafe state or hidden transport fallback. | E0.A; accepted E0.B history; authorized designated peers and private host deployment. E0.C and E0.D accepted; E0.E is next. |
 | E0.D Workstation identity/inventory/presence — [PASS](../experiments/personal-agent-hub/e0d/README.md) | PostgreSQL registry, automatic registration after the accepted handshake, signed protocol-2 receipt, read-only host inventory CLI and expiring connection presence; primary Mac lifecycle, public alpha.4 upgrade and designated WSL distinct-identity acceptance passed. | First connection/concurrent retry/response loss produce one registration; restart/reconnect/upgrade reuse it; copied identifiers cannot take over another binding; presence and stale-session fencing preserve inventory and Tasks. Retirement/revocation records reflect product/network state; Tailscale owns strong admission/revocation. | Second manual Blaine approval without a demonstrated threat; new Task ledger; registration grants workspace scope; unknown outcome reported success; registry revocation claimed to resist host-admin authority. | E0.C; effective narrow Tailscale admission; existing PostgreSQL access scoped to registry. |
-| E0.E IntelliJ config | Proposed client IDE config adapter and merge fixtures. | Actual IntelliJ with a second agent, closed/running merge/reload; correct OS user config and stable launcher; test supported Windows/WSL arrangement before that platform PASS. | Overwrites unrelated fields, managed installation blocks agents, version unsupported. | E0.A/C/D; supported IDE installation. |
+| E0.E IntelliJ config | Proposed client IDE config adapter and merge fixtures; `blaine integration jetbrains install` also sets Blaine's per-agent `use_idea_mcp` delegation, never global defaults ([ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md)). | Actual IntelliJ with a second agent, closed/running merge/reload; correct OS user config and stable launcher; test supported Windows/WSL arrangement before that platform PASS. | Overwrites unrelated fields, managed installation blocks agents, version unsupported. | E0.A/C/D; supported IDE installation. |
 | E0.F Doctor/connect acceptance | Integrate state flow, diagnostics, disconnect and release artifact; proposed E0 acceptance report. | New-workstation journey and E0 positive/negative matrix per implemented platform, twice-run connect, read-only doctor; full real IntelliJ acceptance on the designated second Windows/WSL workstation; mark other targets unverified. | False READY, any missing identity/config/stdio invariant; no live IntelliJ evidence. | E0.A–E; closes only explicitly validated platform scope of E0. |
 | E1.0 Completion Contract kernel (no workstation) | [Completion Contract v1](contracts/completion-contract.md): contract artifact/revision in TaskState, v0 lowering, CompletionEvaluation v2, legality function, capability journal on the single dispatch path, `capability_journal`/`evidence_citation` verifiers, human-only amendment handler. | Kernel fixtures: v0 parity; cited-findings completion; fabricated quote fails; cognition cannot drop REQUIRED; human waiver visible; SIGKILL/replay stable refs; unadmitted journal entry fails. | Contract mutable by cognition; journal bypassable; evaluation not tied to revision/evidence. | None beyond current kernel; new Restate deployment. |
-| E1.A Delegation observation | Allow `session/new` with the IntelliJ MCP entry in an observation mode; record redacted descriptor, `cwd`, IDE versions and `tools/list`; no tool calls. | Real IntelliJ with `use_idea_mcp` on: delegated surface recorded (including mutating tools); with it off: none. | IDE does not pass its MCP server to a custom ACP agent; no read/search tools in the surface. | E0.C client; E0.D registration ID preferred (installation ID allowed for this spike, labelled). |
+| E1.A Delegation observation | Allow `session/new` with the IntelliJ MCP entry in an observation mode; record redacted descriptor, `cwd`, IDE versions and `tools/list`; no tool calls. | Real IntelliJ with `use_idea_mcp` on: delegated surface recorded (including mutating tools); with it off: none. | IDE does not pass its MCP server to a custom ACP agent; no read/search tools in the surface. | E0.D `workstation_id` (PASS); per-agent `use_idea_mcp` from the E0.E integration install (or set by hand for this observation only, labelled). |
 | E1.B Capability relay | Direct-protocol `capability-relay/1` feature and frame kind 5; Go bridge to the observed MCP transport; Hub MCP client in `PersonalACP`; counting fake MCP server fixture. | Fixture: relayed `tools/list`/`tools/call` round trip with operation correlation; bridge never originates or filters calls; ACP stream unaffected. | Capability bytes on IntelliJ stdio; token leaves workstation; uncorrelated calls. | E1.A. |
 | E1.C Read-only authority and dispatch | `workspace.read` provider form, `intellij-mcp@1` classification, argument schemas, `EffectiveAuthority`, `access` configOption, `DelegationSnapshot`, receipts, `continue` delivery. | Fixture: READ_ONLY Task with mutating tools delegated → denials journaled, zero fake-IDE mutating calls; wrong workspace/registration/generation rejected. | Local tool filtering substituted for PolicyGate; unclassified tool admitted. | E1.0, E1.B. |
 | E1.D Investigation templates | `investigation@1`, `explanation@1`, `location@1` templates, findings schemas, bounded `investigate/explain/locate` intake; optional advisory `semantic_review` (local model). | Fixture Tasks for all three examples complete only with valid citations; unresolved conclusion completes honestly. | Completion from model sentiment; REQUIRED semantic without human path. | E1.C. |
