@@ -8,5 +8,56 @@
     "user_id": "probe-leofuso",
     "endpoint": "http://127.0.0.1:8531"
   },
-  "goose": "/home/leofuso/.local/bin/goose"
+  "goose": "/home/leofuso/.local/bin/goose",
+  "coding_workspaces": {
+    "blaine-pa3-target": {
+      "root": "/home/leofuso/workspace/blaine-pa3-target",
+      "description": "Dedicated Blaine worktree for PA-3 coding delegation (branch pa3/acceptance-target)",
+      "allowed_paths": [
+        "tests/"
+      ],
+      "inspect_paths": [
+        "runtime/kernel/"
+      ],
+      "targeted_profile": "pa3-targeted-tests",
+      "canonical_profiles": [
+        "pa3-completion-contract-suite"
+      ],
+      "ask_before": [
+        "workspace.write"
+      ]
+    }
+  },
+  "exec_profiles": {
+    "pa3-targeted-tests": {
+      "executable": "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+      "args": [
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "allowed_args": [
+        "tests/test_human_response_bounds.py"
+      ],
+      "timeout_seconds": 300,
+      "poll_seconds": 1.0,
+      "output_cap_bytes": 65536
+    },
+    "pa3-completion-contract-suite": {
+      "executable": "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+      "args": [
+        "-m",
+        "verification.cli",
+        "run",
+        "completion-contract",
+        "--worktree",
+        "."
+      ],
+      "timeout_seconds": 600,
+      "poll_seconds": 2.0,
+      "output_cap_bytes": 65536
+    }
+  }
 }
