@@ -1,0 +1,23 @@
+{
+  "phase": "Before first A/B/C comparative query run; primary corpus already frozen before extraction",
+  "sha256": {
+    "check.py": "4d37d61ba590e082c7b010a13440271432a807fb3ee18db37c7516ebe9a202ee",
+    "collect.py": "9ce0a2e1f326bebe62381dccc02582c33e5d8bdf765f549c9dae0df0ebda6140",
+    "controls.json": "83c0774033d3fbfa5e9eb42df09667a9ee8a32e102426f1f064c6ffeff00b502",
+    "discover.py": "c6c1462ba4bb62d6e6e6a6fe48a0ab4f0a95573fc4364d65f3b672f71371d5e9",
+    "evidence/indexes/jackson-databind/A/raw.json.gz": "7e4dd4ccbd57c08eac369bc95f634637d141accbec0f8108dccad652e36fe4c3",
+    "evidence/indexes/jackson-databind/A/source.json.gz": "c69e974621582a55e0d54e4bd3c3c38417127c7ee5e58c5b4826e9691ed91b3c",
+    "evidence/indexes/jackson-databind/A/source.tar.gz": "57d6fde1a7aa1dd994374ad892cab25b970e5a0f82855ebf0fcffc2133e2f81b",
+    "evidence/indexes/jackson-databind/B/raw.json.gz": "addb877bbb087db924f26ac62c6b85eae47de3deb5ebd4b5aceb1a42712f1034",
+    "evidence/indexes/jackson-databind/B/source.json.gz": "b25f94437f97fbe6a4ba0d67d7857998ca00315388b8a97f64a3e875a2ff75e7",
+    "evidence/indexes/jackson-databind/B/source.tar.gz": "9fac385eb4b4cad4bd4e6ff5cb7db19d4a595418aa23435d9e47e59eff24a2cf",
+    "evidence/indexes/spring-kafka/A/raw.json.gz": "ed7783de2ba76454ffbd485057f081688ee2b9db36df711f31ccd5310b88d6fb",
+    "evidence/indexes/spring-kafka/A/source.json.gz": "20f23125d751a18003b5007d180a1abd695f775b6dd0fc01d1a9f0b7b8bfc624",
+    "evidence/indexes/spring-kafka/A/source.tar.gz": "5000634fbb65bdd9169140dde638d5e8d3afb5e71006a9a3f2b66c730c65d9f5",
+    "evidence/indexes/spring-kafka/B/raw.json.gz": "d343f7a7bd0ae987c328f15a1bae7e9a85a8e9efe4fa1a20756c51f4e59c212e",
+    "evidence/indexes/spring-kafka/B/source.json.gz": "be16d395799c6af0f4e6276fbb49a55070a8d687074d724760e8e430e41d603a",
+    "evidence/indexes/spring-kafka/B/source.tar.gz": "d9d78e32b154ee26ec4933c6fa346e688893a2b88a5bf5c8f5d52ee20cbdbb98",
+    "run.py": "70916e316e87e7af5b66d4e2a9997c45a6fc5dcfff0563be09f3a57389a2fcff",
+    "source.py": "7b11a3df9206e7495bc16c9a1c264df81258f44a77062d1a75f088719a8a2cf1"
+  }
+}

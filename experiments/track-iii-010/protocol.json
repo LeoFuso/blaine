@@ -1,0 +1,64 @@
+{
+  "budget_bytes": 2048,
+  "current_state": "P2 denies old-rule; T2 reparents task-main under project-new; malformed entire topology rejects even behind a denied branch.",
+  "encoding": "UTF-8 compact sorted JSON; complete result/receipt/diagnostics plus stdout newline",
+  "groups": {
+    "CHECKPOINT_RESUME": 4,
+    "LOCAL_HANDOFF": 4,
+    "SECOND_PROCESS": 4
+  },
+  "increment": "III.10",
+  "mutations": [
+    "serialized-scope",
+    "stale-policy",
+    "serialized-provenance"
+  ],
+  "non_goals": [
+    "network",
+    "models",
+    "production lifecycle/authentication/concurrency",
+    "remote machines",
+    "further increment"
+  ],
+  "pass_criteria": [
+    "All frozen exact results match",
+    "No forbidden content or metadata",
+    "Every complete response <=2048 bytes",
+    "Real independent subprocesses",
+    "Each mutation yields actual forbidden data or provenance upgrade and checker exit 1"
+  ],
+  "primary_cases": 12,
+  "provenance_pairs": [
+    [
+      "USER_DECLARATION",
+      "DECLARED"
+    ],
+    [
+      "AGENT_OBSERVATION",
+      "UNVERIFIED"
+    ],
+    [
+      "VERIFIED_OUTCOME",
+      "VERIFIED_SUCCESS"
+    ],
+    [
+      "VERIFIED_OUTCOME",
+      "VERIFIED_FAILURE"
+    ]
+  ],
+  "selection": "Stable entry-ID ordering, whole entries; partial marker included before measuring complete response.",
+  "supplemental_probes": [
+    "EMPTY query",
+    "known/unknown forbidden ID indistinguishability",
+    "closed write shape and current-only observation",
+    "parent cannot see child write; descendant can",
+    "unknown revision and malformed JSON/reference",
+    "malformed hidden topology",
+    "policy unavailable/unknown/contradictory",
+    "forged execution reference",
+    "full response budget saturation",
+    "same-state replay and changed-state replay"
+  ],
+  "transfer": "Claims and historical packets are untrusted ignored baggage; typed references must match current trusted binding; known historical revision refs are diagnostic only.",
+  "trust": "Receiver route fixes execution-main independently of transfer. Trusted state loaded freshly from harness-owned file. Caller cannot supply trusted file/route or mutation selector."
+}

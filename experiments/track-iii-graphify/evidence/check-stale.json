@@ -1,0 +1,224 @@
+{
+  "actual_violation": true,
+  "audits": [
+    {
+      "errors": [
+        "stale references",
+        "invalid typed path"
+      ],
+      "forbidden": [],
+      "invalid": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "packet_bytes": 1966,
+      "returned_targets": [
+        "org.springframework.kafka.core.ConsumerFactory",
+        "org.springframework.kafka.core.KafkaTemplate",
+        "org.springframework.kafka.listener.AbstractMessageListenerContainer",
+        "org.springframework.kafka.listener.AfterRollbackProcessor",
+        "org.springframework.kafka.listener.BatchInterceptor",
+        "org.springframework.kafka.listener.CommonErrorHandler",
+        "org.springframework.kafka.listener.ContainerProperties",
+        "org.springframework.kafka.listener.MessageListenerContainer",
+        "org.springframework.kafka.listener.RecordInterceptor",
+        "org.springframework.kafka.listener.adapter.BatchToRecordAdapter",
+        "org.springframework.kafka.listener.adapter.RecordFilterStrategy"
+      ],
+      "stale": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "unsupported": [],
+      "valid_targets": []
+    },
+    {
+      "errors": [
+        "stale references",
+        "unsupported relations",
+        "invalid typed path"
+      ],
+      "forbidden": [],
+      "invalid": [
+        0,
+        1,
+        2
+      ],
+      "packet_bytes": 672,
+      "returned_targets": [
+        "tools.jackson.databind.JavaType",
+        "tools.jackson.databind.util.ClassUtil",
+        "tools.jackson.databind.util.internal.UnreflectHandleSupplier"
+      ],
+      "stale": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "unsupported": [
+        [
+          "file:src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "imports",
+          "tools.jackson.databind.util.internal.UnreflectHandleSupplier"
+        ]
+      ],
+      "valid_targets": []
+    }
+  ],
+  "checks": [
+    {
+      "check": "frozen PROTOCOL.md",
+      "ok": true
+    },
+    {
+      "check": "frozen graphify.json",
+      "ok": true
+    },
+    {
+      "check": "frozen oracles.json",
+      "ok": true
+    },
+    {
+      "check": "frozen protocol.json",
+      "ok": true
+    },
+    {
+      "check": "frozen queries.json",
+      "ok": true
+    },
+    {
+      "check": "frozen repositories.json",
+      "ok": true
+    },
+    {
+      "check": "frozen request.json",
+      "ok": true
+    },
+    {
+      "check": "frozen security.json",
+      "ok": true
+    },
+    {
+      "check": "frozen source.py",
+      "ok": true
+    },
+    {
+      "check": "original implementation pin check.py",
+      "ok": true
+    },
+    {
+      "check": "documented execution correction check.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin collect.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin controls.json",
+      "ok": true
+    },
+    {
+      "check": "original implementation pin discover.py",
+      "ok": true
+    },
+    {
+      "check": "documented execution correction discover.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/A/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/A/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/A/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/B/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/B/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/B/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/A/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/A/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/A/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/B/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/B/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/B/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin run.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin source.py",
+      "ok": true
+    },
+    {
+      "check": "20 unique questions",
+      "ok": true
+    },
+    {
+      "check": "five per category",
+      "ok": true
+    },
+    {
+      "check": "ten per repository",
+      "ok": true
+    },
+    {
+      "check": "normal structural/security requirements hold under control",
+      "ok": false
+    }
+  ],
+  "control": "stale",
+  "status": "FAIL"
+}

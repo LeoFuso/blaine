@@ -1,0 +1,15 @@
+{
+  "frozen_at_utc": "2026-09-23T18:25:16.574377+00:00",
+  "graphify_pin": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae",
+  "prior_comparative_runs": 0,
+  "source_sha256": {
+    "build_index.py": "d379811ade31d466f0f6f3d75c71a63f753677e71638150dd5a0715ea6df32dd",
+    "discover.py": "c05cbc35894e6da98621687799f02fc2fcdbbb532c376575928c8bbc544aeb9c",
+    "oracles.json": "d8c7090283d2fb9de17ccd361654c60b963478357ce33c725b851a4f7f93d1b2",
+    "protocol.json": "7469458c851b06402f1513251f5a8b04adb65048713cd04e48014e42381e66d9",
+    "queries.json": "dfcd606cc33c45c32d4ab466ba460a83be052806c0b2566dfcec31e95dbcbbae",
+    "revisions.json": "605c4249e8a8532560b79b3c6a8d923386d40b91d964b40a18679fb75aba11be",
+    "security.json": "0020008b2cd13f6823b85b631babb0bff3efddf83de077f64a0c5f10fc374dda",
+    "source.py": "52067a43259bc7d426f6092a73342db55d474f982d0462814142f1b6590d56f1"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "autonomy": {
+    "allowed": [
+      "III.9 bounded experiment",
+      "two paired repetitions and fixed mutation",
+      "minimal documentation",
+      "local commit"
+    ],
+    "forbidden": [
+      "cloud cognition",
+      "III.10",
+      "production changes",
+      "ranking or fixture tuning after outcomes",
+      "push"
+    ]
+  },
+  "capabilities": [
+    "read repository and existing Graphify environment",
+    "local BGE and Qwen inference through existing adapters",
+    "write isolated experiment and documentation",
+    "local commit"
+  ],
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Retain independent PASS/FAIL/BLOCKED decision, paired behavior and caught mutation under frozen protocol",
+      "evidence": "evidence/verification.json; evidence/behavior.json; evidence/mutation.json"
+    }
+  ],
+  "context": [
+    {
+      "need": "Accepted III.1\u2013III.7 research and experiment boundaries",
+      "sharing": "local-only",
+      "source": "git:4705592"
+    },
+    {
+      "need": "Frozen synthetic workspace/query/oracle fixtures",
+      "sharing": "local-only",
+      "source": "experiments/track-iii-008/protocol.json"
+    }
+  ],
+  "mode": "interactive",
+  "objective": "Execute III.9 only: frozen 12-proposal local-Qwen paired advisory experiment using unchanged III.8R selection, authoritative contract oracles and false-equivalence mutation; retain honest result and commit locally."
+}

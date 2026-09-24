@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/collect.py",
+    "--child",
+    "spring-kafka",
+    "/tmp/blaine-iii-g/spring-kafka-extract",
+    "/tmp/blaine-iii-g/spring-kafka-cache",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/indexes/spring-kafka/B"
+  ],
+  "commit": "fff33914d4e450a33e17195e11a79937c3505605",
+  "exit_code": 0,
+  "mode": "full graph rebuild with existing parse cache; not incremental graph update",
+  "repo": "spring-kafka",
+  "revision": "B",
+  "stderr": "",
+  "stdout": "  AST extraction: 14/14 uncached files (100%)\n",
+  "wall_seconds": 2.8624805939907674
+}

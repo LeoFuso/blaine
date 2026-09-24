@@ -1,0 +1,74 @@
+[
+  {
+    "group": "DUPLICATE",
+    "id": "D1",
+    "text": "Where is an account handle made independent of surrounding blank characters and upper versus lower spelling?"
+  },
+  {
+    "group": "DUPLICATE",
+    "id": "D2",
+    "text": "Where is eligibility for another network attempt determined after a transient rejection?"
+  },
+  {
+    "group": "DUPLICATE",
+    "id": "D3",
+    "text": "Where are previously seen messages recognized so their original confirmation can be reused?"
+  },
+  {
+    "group": "DUPLICATE",
+    "id": "D4",
+    "relation": {
+      "op": "implementations",
+      "target": "CommitPort"
+    },
+    "text": "Where can bytes be published so readers never see a partially written file?"
+  },
+  {
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L1",
+    "text": "Where is eligibility for another network attempt determined after a transient rejection?"
+  },
+  {
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L2",
+    "text": "Where are previously seen messages recognized so their original confirmation can be reused?"
+  },
+  {
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L3",
+    "relation": {
+      "op": "implementations",
+      "target": "CommitPort"
+    },
+    "text": "Where can bytes be published so readers never see a partially written file?"
+  },
+  {
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L4",
+    "text": "Where is an account handle made independent of surrounding blank characters and upper versus lower spelling?"
+  },
+  {
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N1",
+    "text": "Where is an account handle made independent of surrounding blank characters and upper versus lower spelling?"
+  },
+  {
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N2",
+    "text": "Where is eligibility for another network attempt determined after a transient rejection?"
+  },
+  {
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N3",
+    "text": "Where are previously seen messages recognized so their original confirmation can be reused?"
+  },
+  {
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N4",
+    "relation": {
+      "op": "implementations",
+      "target": "CommitPort"
+    },
+    "text": "Where can bytes be published so readers never see a partially written file?"
+  }
+]

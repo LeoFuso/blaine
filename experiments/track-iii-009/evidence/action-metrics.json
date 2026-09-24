@@ -1,0 +1,522 @@
+{
+  "actions": [
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D1"
+    },
+    {
+      "actions": 2,
+      "condition": "ON",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D1"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D2"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D2"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D3"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D3"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D4"
+    },
+    {
+      "actions": 2,
+      "condition": "ON",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "D4"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L1"
+    },
+    {
+      "actions": 2,
+      "condition": "ON",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L1"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L2"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L2"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L3"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L3"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L4"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "L4"
+    },
+    {
+      "actions": 2,
+      "condition": "OFF",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N1"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N1"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N2"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N2"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N3"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N3"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N4"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N4"
+    },
+    {
+      "actions": 2,
+      "condition": "ON",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D1"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D1"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D2"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D2"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D3"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D3"
+    },
+    {
+      "actions": 2,
+      "condition": "ON",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D4"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "D4"
+    },
+    {
+      "actions": 2,
+      "condition": "ON",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L1"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L1"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L2"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L2"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L3"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L3"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L4"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "L4"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N1"
+    },
+    {
+      "actions": 2,
+      "condition": "OFF",
+      "operations": [
+        "INVALID_DECISION",
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N1"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N2"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N2"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N3"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N3"
+    },
+    {
+      "actions": 1,
+      "condition": "ON",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N4"
+    },
+    {
+      "actions": 1,
+      "condition": "OFF",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N4"
+    },
+    {
+      "actions": 1,
+      "condition": "FALSE_EQUIVALENCE",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 0,
+      "task": "N1"
+    },
+    {
+      "actions": 1,
+      "condition": "FALSE_EQUIVALENCE",
+      "operations": [
+        "COMMITTED"
+      ],
+      "repeat": 1,
+      "task": "N1"
+    }
+  ],
+  "errors": [
+    {
+      "condition": "ON",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 0,
+      "task": "D1",
+      "turn": 0
+    },
+    {
+      "condition": "ON",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 0,
+      "task": "D4",
+      "turn": 0
+    },
+    {
+      "condition": "ON",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 0,
+      "task": "L1",
+      "turn": 0
+    },
+    {
+      "condition": "OFF",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 0,
+      "task": "N1",
+      "turn": 0
+    },
+    {
+      "condition": "ON",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 1,
+      "task": "D1",
+      "turn": 0
+    },
+    {
+      "condition": "ON",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 1,
+      "task": "D4",
+      "turn": 0
+    },
+    {
+      "condition": "ON",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 1,
+      "task": "L1",
+      "turn": 0
+    },
+    {
+      "condition": "OFF",
+      "error": "Invalid model CognitiveDecision",
+      "repeat": 1,
+      "task": "N1",
+      "turn": 0
+    }
+  ],
+  "mutation_calls": 2,
+  "primary_calls": 56
+}

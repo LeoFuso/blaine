@@ -1,0 +1,45 @@
+{
+  "retained_sha256": {
+    "literal-leakage.json": "61dce48198cc29316b3ff834e0b37513e2a7fd447f7ddacc1455a27db2258dce",
+    "observables.json": "46cec4adb883a0a1b31e540b68df5e49b03b5cc1d4c899d06e8dd8e9eafdbfc1",
+    "query-only-cache.json": "9035733f2ede699b83d0a6d32feb77ad8f20087f178259b1a42b6a86a4b44362",
+    "restored.json": "9958d915010caf7800515e361644debe9f4c01c66546e1622bb22ec39c685b9d",
+    "results.json": "9958d915010caf7800515e361644debe9f4c01c66546e1622bb22ec39c685b9d",
+    "structural-only.json": "1df936ff388a7850db0478234e470b7f8b0143f6c550bc00bd68e353357e4907",
+    "summary.json": "dee44bdc37dcd6684c33419f9e3551a06ea7c3a70ce92f79927ca6ca305ae7a1",
+    "verification.json": "768925734d9cdb0a948ad6f0a917ac90cf770757674314472b0590c9bf72b4d4"
+  },
+  "runs": [
+    {
+      "byte_equal": {
+        "literal-leakage.json": true,
+        "observables.json": true,
+        "query-only-cache.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "structural-only.json": true,
+        "summary.json": true,
+        "verification.json": true
+      },
+      "hash_seed": "1",
+      "probe_exit": 0,
+      "verify_exit": 0
+    },
+    {
+      "byte_equal": {
+        "literal-leakage.json": true,
+        "observables.json": true,
+        "query-only-cache.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "structural-only.json": true,
+        "summary.json": true,
+        "verification.json": true
+      },
+      "hash_seed": "97",
+      "probe_exit": 0,
+      "verify_exit": 0
+    }
+  ],
+  "status": "PASS"
+}

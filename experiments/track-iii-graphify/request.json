@@ -1,0 +1,30 @@
+{
+  "autonomy": {
+    "allowed": [
+      "III.G research carveout",
+      "local commit"
+    ],
+    "forbidden": [
+      "model cognition",
+      "production integration",
+      "push"
+    ]
+  },
+  "capabilities": [
+    "read public repository snapshots",
+    "local offline extraction and source validation",
+    "isolated experiment files",
+    "local commit"
+  ],
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Retain independent gate decision and architectural classification with actual negative controls",
+      "evidence": "evidence/summary.json"
+    }
+  ],
+  "mode": "interactive",
+  "objective": "Execute III.G only: compare bounded source exploration with pinned real Graphify on 20 source-oracled Java questions across Spring Kafka and Jackson; retain utility, freshness, security, cost and mutation evidence; local commit."
+}

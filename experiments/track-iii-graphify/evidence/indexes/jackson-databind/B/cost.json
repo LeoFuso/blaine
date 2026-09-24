@@ -1,0 +1,28 @@
+{
+  "build_seconds": 0.602120619994821,
+  "compressed_graph_bytes": 667218,
+  "confidence": {
+    "EXTRACTED": 38698,
+    "INFERRED": 5832
+  },
+  "extraction_seconds": 2.274073893990135,
+  "failed_sources": [],
+  "graph_edges": 39161,
+  "graph_nodes": 10617,
+  "java_files": 575,
+  "parse_cache_bytes": 27162736,
+  "peak_rss_kib": 205316,
+  "raw_edges": 44530,
+  "raw_json_bytes": 21024857,
+  "raw_nodes": 10423,
+  "relations": {
+    "calls": 10423,
+    "case_of": 206,
+    "contains": 859,
+    "implements": 88,
+    "imports": 6122,
+    "inherits": 515,
+    "method": 9257,
+    "references": 17060
+  }
+}

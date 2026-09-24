@@ -1,0 +1,15 @@
+{
+  "base_commit": "a40201f",
+  "phase": "Before any Graphify Java corpus extraction or comparative query execution",
+  "sha256": {
+    "PROTOCOL.md": "b1f29e3be356e2599cd47f9e8f1a5a3bcdefa3ebc1226b1084d98d0830e719a1",
+    "graphify.json": "ac5a206302be38955dd5adbd83bdfd9f884093e273a7c76d90ba68fff92927c3",
+    "oracles.json": "195e7298bacefbd0dbc86e8ed7cec08a7c03f282357666081ddc7e6141f6c59d",
+    "protocol.json": "bc725052a660f6a161ae03f7fdd49f1aa7927e1cee9f6a8efc50913d6a4c7085",
+    "queries.json": "3ca265a6bf43afb3de3bd325c22c74019195b005563074afb58347e41a233d93",
+    "repositories.json": "593dc2ec05de192846e1842373922093dc5a5e73a78dea84fa5e990ff65d470a",
+    "request.json": "eea4b92eb9e693b99ea7181a4c6e414235a59cae7cfe56460ae2a389c57a91e2",
+    "security.json": "50504383db371cc770a450c7e8ef90d224ea40cacf27efe7fc48fdba5591639f",
+    "source.py": "7b11a3df9206e7495bc16c9a1c264df81258f44a77062d1a75f088719a8a2cf1"
+  }
+}

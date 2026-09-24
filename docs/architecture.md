@@ -49,11 +49,32 @@ For the implemented control subset, configuration and evidence limits, read the
 
 ## Memory and context
 
-Chat is disposable working memory. The Durable Runtime (currently Restate) holds
-execution memory. Knowledge and artifact stores hold reusable findings with
-provenance; external systems remain
-authoritative for their own facts. Context is resolved just in time, with a minimal
-permitted packet for cloud work. A worker claiming success does not complete a Task.
+Blaine is a durable, bounded, evidence-driven execution system that learns from
+verified work. Chat is disposable working memory; Restate owns execution state,
+PolicyGate owns authority and deterministic Completion Contracts determine completion.
+Artifacts/evidence and current repository sources remain authoritative. Memory and
+workspace indexes are derived knowledge, never replacement truth.
+
+The accepted [Context Plane architecture](context-plane.md),
+[semantic contracts](contracts/context-plane.md) and
+[ADR 0025](decisions/0025-context-plane-and-compiled-agent-context.md) consolidate Track III.
+**The Context Plane may be broad; agent context must be compiled and narrow.**
+A Resolver routes bounded information needs to governed Memory, workspace, evidence
+and Task-state sources. A Compiler validates, selects and faithfully represents the
+smallest sufficient initial packet or delta for the next action. Continuous resolution
+does not mean unrestricted worker access to MIRIX, Graphify or vector stores.
+
+Generic ContextNode lineage, SecurityContext and current policy govern access;
+provenance is trusted, upward Memory movement requires explicit promotion, and
+serialized references never grant authority. Existing child-result/evidence delivery
+is retained, not conflated with Memory promotion. Graphify is an on-demand adapter
+direction; novelty/simplicity stays advisory. Cloud packets and deltas retain the
+existing exact-byte projection/egress boundary.
+
+These are accepted architectural contracts, **not deployed Context Plane integration**.
+Track III research is COMPLETE, including historical III.8 FAIL / III.8R PASS.
+The [first production slice and phases](roadmap/002-context-plane-implementation.md)
+are proposed and NOT STARTED; current sequencing remains in the main roadmap.
 
 ## Progressive disclosure and portability
 

@@ -1,0 +1,406 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "kind": "root",
+      "inherit_parent": true
+    },
+    {
+      "id": "personal",
+      "parent_id": "root",
+      "kind": "personal",
+      "inherit_parent": true
+    },
+    {
+      "id": "project-a",
+      "parent_id": "personal",
+      "kind": "project",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-a1",
+      "parent_id": "project-a",
+      "kind": "task",
+      "inherit_parent": true
+    },
+    {
+      "id": "work-a1",
+      "parent_id": "task-a1",
+      "kind": "work",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-a2",
+      "parent_id": "project-a",
+      "kind": "task",
+      "inherit_parent": true
+    },
+    {
+      "id": "employer-x",
+      "parent_id": "root",
+      "kind": "employer",
+      "inherit_parent": true
+    },
+    {
+      "id": "project-x",
+      "parent_id": "employer-x",
+      "kind": "project",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-x1",
+      "parent_id": "project-x",
+      "kind": "task",
+      "inherit_parent": true
+    },
+    {
+      "id": "work-x1",
+      "parent_id": "task-x1",
+      "kind": "work",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-x2",
+      "parent_id": "project-x",
+      "kind": "task",
+      "inherit_parent": true
+    }
+  ],
+  "entries": [
+    {
+      "id": "root-memory",
+      "context_id": "root",
+      "content": "Literal knowledge owned by root",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "personal-memory",
+      "context_id": "personal",
+      "content": "Literal knowledge owned by personal",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "project-a-memory",
+      "context_id": "project-a",
+      "content": "Literal knowledge owned by project-a",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "task-a1-memory",
+      "context_id": "task-a1",
+      "content": "Literal knowledge owned by task-a1",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "work-a1-memory",
+      "context_id": "work-a1",
+      "content": "Literal knowledge owned by work-a1",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "task-a2-memory",
+      "context_id": "task-a2",
+      "content": "Literal knowledge owned by task-a2",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "employer-x-memory",
+      "context_id": "employer-x",
+      "content": "Literal knowledge owned by employer-x",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "project-x-memory",
+      "context_id": "project-x",
+      "content": "Literal knowledge owned by project-x",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "task-x1-memory",
+      "context_id": "task-x1",
+      "content": "Literal knowledge owned by task-x1",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "work-x1-memory",
+      "context_id": "work-x1",
+      "content": "Literal knowledge owned by work-x1",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "task-x2-memory",
+      "context_id": "task-x2",
+      "content": "Literal knowledge owned by task-x2",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    }
+  ],
+  "expected_visibility": {
+    "root": [
+      "root-memory"
+    ],
+    "personal": [
+      "personal-memory",
+      "root-memory"
+    ],
+    "project-a": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "task-a1": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "work-a1": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "task-a2": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a2-memory"
+    ],
+    "employer-x": [
+      "employer-x-memory",
+      "root-memory"
+    ],
+    "project-x": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "task-x1": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory"
+    ],
+    "work-x1": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "task-x2": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x2-memory"
+    ]
+  },
+  "execution": {
+    "execution_id": "execution-iii3",
+    "context_id": "task-a1"
+  },
+  "callers": [
+    {
+      "caller_id": "human",
+      "caller_class": "human"
+    },
+    {
+      "caller_id": "cognition",
+      "caller_class": "cognition"
+    },
+    {
+      "caller_id": "worker",
+      "caller_class": "worker"
+    },
+    {
+      "caller_id": "verifier",
+      "caller_class": "verifier"
+    }
+  ],
+  "declaration": {
+    "op": "declare",
+    "entry_id": "human-declaration",
+    "content": "Prefer constructor injection in this project.",
+    "target_context": "project-a"
+  },
+  "cognition_observation": {
+    "op": "recordObservation",
+    "entry_id": "cognition-observation",
+    "content": "Hypothesis H selected for investigation."
+  },
+  "worker_observation": {
+    "op": "recordObservation",
+    "entry_id": "worker-observation",
+    "content": "Attempt A produced an observation, not verified success."
+  },
+  "expected_sequence": {
+    "cognition": [
+      "human-declaration",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "worker": [
+      "cognition-observation",
+      "human-declaration",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "verifier": [
+      "cognition-observation",
+      "human-declaration",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "worker-observation"
+    ]
+  },
+  "budget_entries": [
+    {
+      "id": "budget-00",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-01",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-02",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-03",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-04",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-05",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-06",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-07",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-08",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-09",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-10",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    },
+    {
+      "id": "budget-11",
+      "context_id": "task-a1",
+      "content": "budget é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界é界",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    }
+  ],
+  "budget_forbidden": [
+    {
+      "id": "budget-00-forbidden",
+      "context_id": "task-a2",
+      "content": "budget FORBIDDEN_FILLER",
+      "provenance": "AGENT_OBSERVATION",
+      "created_by": "fixture-agent",
+      "epistemic_status": "UNVERIFIED"
+    }
+  ],
+  "budget_expected_ids": [
+    "budget-00",
+    "budget-01",
+    "budget-02"
+  ],
+  "oversized_entry": {
+    "id": "oversized",
+    "context_id": "task-a1",
+    "content": "oversized 界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界界",
+    "provenance": "AGENT_OBSERVATION",
+    "created_by": "fixture-agent",
+    "epistemic_status": "UNVERIFIED"
+  }
+}

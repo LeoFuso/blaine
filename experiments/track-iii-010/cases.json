@@ -1,0 +1,615 @@
+[
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "old-rule",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "LOCAL_HANDOFF",
+    "id": "A1",
+    "state_change": "UNCHANGED",
+    "title": "Serialized cognition -> worker -> verifier"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "authority": "ADMIN",
+        "declassified": true,
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        },
+        "provenance": "USER_DECLARATION",
+        "readable_scopes": [
+          "root",
+          "project-old",
+          "task-main",
+          "task-x",
+          "task-sibling",
+          "attempt"
+        ],
+        "security_domain": "employer-x"
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-forged"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "old-rule",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "LOCAL_HANDOFF",
+    "id": "A2",
+    "state_change": "UNCHANGED",
+    "title": "Forged scopes and trace"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        },
+        "provenance": {
+          "failure": "VERIFIED_OUTCOME",
+          "observation": "USER_DECLARATION"
+        },
+        "semantic_status": {
+          "failure": "VERIFIED_SUCCESS",
+          "observation": "DECLARED"
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "old-rule",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "LOCAL_HANDOFF",
+    "id": "A3",
+    "state_change": "UNCHANGED",
+    "title": "Forged origin and failure status"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        },
+        "security_domain": "employer-x"
+      },
+      "context_id": "task-x",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [],
+    "expected_status": "DENIED",
+    "group": "LOCAL_HANDOFF",
+    "id": "A4",
+    "state_change": "UNCHANGED",
+    "title": "Foreign known context"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "old-rule",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "CHECKPOINT_RESUME",
+    "id": "B1",
+    "state_change": "UNCHANGED",
+    "title": "Valid persisted checkpoint"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "CHECKPOINT_RESUME",
+    "id": "B2",
+    "state_change": "NARROW_POLICY",
+    "title": "P2 removes old project entry"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "new-rule",
+      "observation",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "CHECKPOINT_RESUME",
+    "id": "B3",
+    "state_change": "REPARENT",
+    "title": "T2 reparents task to replacement project"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": null,
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [],
+    "expected_status": "INVALID_CONTEXT",
+    "group": "CHECKPOINT_RESUME",
+    "id": "B4",
+    "state_change": "UNCHANGED",
+    "title": "Missing context reference"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "old-rule",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "SECOND_PROCESS",
+    "id": "C1",
+    "state_change": "UNCHANGED",
+    "title": "Valid receiving process"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "authority": "ADMIN",
+        "declassified": true,
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        },
+        "provenance": "USER_DECLARATION",
+        "readable_scopes": [
+          "root",
+          "project-old",
+          "task-main",
+          "task-x",
+          "task-sibling",
+          "attempt"
+        ],
+        "security_domain": "employer-x"
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "old-rule",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "SECOND_PROCESS",
+    "id": "C2",
+    "state_change": "UNCHANGED",
+    "title": "Forged scopes and authority in receiver"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [
+      "failure",
+      "observation",
+      "public-rule",
+      "success"
+    ],
+    "expected_status": "SUCCESS",
+    "group": "SECOND_PROCESS",
+    "id": "C3",
+    "state_change": "NARROW_POLICY",
+    "title": "Stale permissive snapshot"
+  },
+  {
+    "envelope": {
+      "binding_ref": "binding-main",
+      "claims": {
+        "ancestor_ids": [
+          "root",
+          "personal",
+          "project-old",
+          "task-main"
+        ],
+        "historical_receipt": {
+          "status": "SUCCESS"
+        },
+        "policy_snapshot": {
+          "deny_ids": [],
+          "grants": {
+            "employer-x": [
+              "public",
+              "employer-x"
+            ],
+            "personal": [
+              "public",
+              "personal"
+            ],
+            "public": [
+              "public"
+            ]
+          }
+        }
+      },
+      "context_id": "task-main",
+      "execution_id": "execution-main",
+      "parent_operation_id": "op-origin",
+      "policy_ref": "P1",
+      "topology_ref": "T1",
+      "trace_id": "trace-main"
+    },
+    "expected_ids": [],
+    "expected_status": "UNAVAILABLE",
+    "group": "SECOND_PROCESS",
+    "id": "C4",
+    "state_change": "MISSING_EVIDENCE",
+    "title": "Replay after binding evidence disappears"
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "checks": 1468,
+  "exports_scanned": 60,
+  "failures": [
+    "B2/received exact visibility",
+    "B2/same_state_replay exact visibility",
+    "B2 current P2 beats snapshot",
+    "C3/received exact visibility",
+    "C3/same_state_replay exact visibility",
+    "C3 current P2 beats snapshot",
+    "zero forbidden content",
+    "zero forbidden metadata"
+  ],
+  "forbidden_content_hits": [
+    {
+      "export": "B2/received",
+      "literal": "Checkpoint-era project guidance."
+    },
+    {
+      "export": "B2/same_state_replay",
+      "literal": "Checkpoint-era project guidance."
+    },
+    {
+      "export": "C3/received",
+      "literal": "Checkpoint-era project guidance."
+    },
+    {
+      "export": "C3/same_state_replay",
+      "literal": "Checkpoint-era project guidance."
+    }
+  ],
+  "forbidden_metadata_hits": [
+    {
+      "export": "B2/received",
+      "literal": "old-rule"
+    },
+    {
+      "export": "B2/same_state_replay",
+      "literal": "old-rule"
+    },
+    {
+      "export": "C3/received",
+      "literal": "old-rule"
+    },
+    {
+      "export": "C3/same_state_replay",
+      "literal": "old-rule"
+    }
+  ],
+  "groups": {
+    "CHECKPOINT_RESUME": 4,
+    "LOCAL_HANDOFF": 4,
+    "SECOND_PROCESS": 4
+  },
+  "max_response_bytes": 1696,
+  "mutation": "stale-policy",
+  "primary_cases": 12,
+  "process_operations": 26,
+  "status": "FAIL"
+}

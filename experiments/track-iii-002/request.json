@@ -1,0 +1,55 @@
+{
+  "objective": "Execute only Track III.2: prove deterministic generic ContextNode tree visibility and scoped writes in an isolated experiment, with malformed/forged/direct-ID cases and a failing mutation control; retain evidence and documentation and commit locally.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Accepted III.1 research and current Track III roadmap/conventions",
+      "source": "git:3960289",
+      "sharing": "local-only"
+    },
+    {
+      "need": "User-specified 11-context topology and literal visibility/write oracles",
+      "source": "experiments/track-iii-002/fixtures.json",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit isolated experiment and documentation",
+    "run offline Python standard-library checks",
+    "create local commits"
+  ],
+  "autonomy": {
+    "allowed": [
+      "isolated III.2 evaluator and evidence",
+      "minimal milestone and navigation updates",
+      "preserve accepted III.1 in a separate baseline commit",
+      "local completed-increment commit"
+    ],
+    "forbidden": [
+      "III.3 or later execution",
+      "production runtime or lifecycle/policy/completion/worker changes",
+      "promotion or declassification implementation",
+      "memory backend, database, embedding or model integration",
+      "dependency adoption",
+      "push or merge"
+    ]
+  },
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "All literal visibility, write, binding, direct-ID and malformed-tree checks pass",
+      "evidence": "fixtures.json; evidence/results.json and summary.json; independent verify.py output"
+    },
+    {
+      "criterion": "Same oracle suite fails under the isolated wrong sibling-inheritance rule and correct results pass afterward",
+      "evidence": "mutation-results.json, mutation-control.json and restored-results.json with process exit and source hashes"
+    },
+    {
+      "criterion": "No production architecture change, III.3 unstarted, docs/evidence reproducible and committed locally",
+      "evidence": "Changed-file review, documentation checks, reproducibility.json and local commit identity"
+    }
+  ]
+}

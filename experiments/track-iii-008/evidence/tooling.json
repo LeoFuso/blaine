@@ -1,0 +1,16 @@
+{
+  "claude_context_decision": "Not executed/adopted. Generic semantic-search experiment uses in-memory cosine over existing local vectors; no Milvus/Zilliz dependency.",
+  "embedding": "Existing localhost:8001/v1 BAAI/bge-m3, 1024 dimensions, existing infra/inference/accept.py request helper",
+  "graphify_checkout": "/home/leofuso/workspace/graphify-upstream",
+  "graphify_clean": true,
+  "graphify_mode": "extract(paths, root=fixture, parallel=False); isolated caches, inherited offline socket guard, no LLM stage",
+  "graphify_pin": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae",
+  "inspected_sha256": {
+    "experiments/graphify-carveout/requirements.lock": "01d97e8bff4bfd50759a93722f5f5cb2e9abff87f009f1291c6679201b3ee229",
+    "experiments/track-iii-002/evaluator.py": "e4789efa17d81af51ae6612e63cb0cda7f6da44bcf057cecd884fe0701eba030",
+    "infra/inference/accept.py": "40aba60eb0b4272f55ecd816191305379627e314361d45e009cb1399689f1ab2",
+    "runtime/kernel/project_knowledge.py": "4c244b55f10a6afdd4bea371240c6c8a19d5a84293dc623f45882c28beacc394"
+  },
+  "integration_observation": "ProjectKnowledgeContext exists as optional bounded derived navigation. Repository instantiation found in kernel-increment-9 experiment, not default runtime wiring. No live deployment integration claim.",
+  "repository_baseline": "4705592"
+}

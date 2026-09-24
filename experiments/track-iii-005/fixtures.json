@@ -1,0 +1,568 @@
+{
+  "approval_fixture_note": "Trusted synthetic approval covers exact source digest, destination and candidate digest. Unsafe candidates also receive test approvals to isolate scanner enforcement, not to assert semantic safety.",
+  "approvals": [
+    {
+      "candidate_digest": "d7713a6541d9dcfa49f0303401fbf78b14ddcc7f5097243da426c2f241ae7873",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "fa2b6f3fecf9f701651e840d536ae96774c37460792ae45c0611e687a15cb92f",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "eb4394de23ae46be299d5742b4cf4c294d257ae2f00b373dc4334ed045b7db3d",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "845a2c05da7be0d5a98c9155e0dee04cc4965c47909133603555b59e1e186ba7",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "3f5a3b08b2774b8e023afa232ba9c9161b4bc557c768b62602478fc2326207c0",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "89f7c537fadad24c6d652428102c5576777f84ba3ff6123d4f44364cd870ebb1",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "bbc0b3df58546a8e7ab4b2f86fedc79483679f46bcc1216c807be8f6d54c5425",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "b45b63d1bd85ec18e9fd2466ad081c9ed14d0721a13a3040ff725cb17e55163c",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "f95e052d121b9903c8ac8d54af1451bf4118c07b27d9f2b73fe44bfe56b86405",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "678642542de5b9d8e71bd793b85e9e29df86b1caffd61ee508f04300bd0a6a8f",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "7ab402fbec3b2e0377faad1dc9623b0fe5558aa62dc177d167322fe3a733091a",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "48a9940bad18e3971c8d25ec0158226b7c29aa35b51f8f0f32c7fc15a753d991",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "3e370bdf00cfd7712ad3650a459d574cbccec7a36715523bb3c5fe39c36ab05a",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "14529f41233d4062d5778dd1045ae39f2387ba044b12455b8e3ab5a0e8f69c09",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "1b6799ec2f92549a89ea8a3dfe59544d4e88698699cd0ce2b5df06b80791fe0a",
+      "source_id": "protected-source"
+    },
+    {
+      "candidate_digest": "d7713a6541d9dcfa49f0303401fbf78b14ddcc7f5097243da426c2f241ae7873",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "fa2b6f3fecf9f701651e840d536ae96774c37460792ae45c0611e687a15cb92f",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "eb4394de23ae46be299d5742b4cf4c294d257ae2f00b373dc4334ed045b7db3d",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "845a2c05da7be0d5a98c9155e0dee04cc4965c47909133603555b59e1e186ba7",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "3f5a3b08b2774b8e023afa232ba9c9161b4bc557c768b62602478fc2326207c0",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "89f7c537fadad24c6d652428102c5576777f84ba3ff6123d4f44364cd870ebb1",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "bbc0b3df58546a8e7ab4b2f86fedc79483679f46bcc1216c807be8f6d54c5425",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "b45b63d1bd85ec18e9fd2466ad081c9ed14d0721a13a3040ff725cb17e55163c",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "f95e052d121b9903c8ac8d54af1451bf4118c07b27d9f2b73fe44bfe56b86405",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "678642542de5b9d8e71bd793b85e9e29df86b1caffd61ee508f04300bd0a6a8f",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "7ab402fbec3b2e0377faad1dc9623b0fe5558aa62dc177d167322fe3a733091a",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "48a9940bad18e3971c8d25ec0158226b7c29aa35b51f8f0f32c7fc15a753d991",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "3e370bdf00cfd7712ad3650a459d574cbccec7a36715523bb3c5fe39c36ab05a",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    },
+    {
+      "candidate_digest": "14529f41233d4062d5778dd1045ae39f2387ba044b12455b8e3ab5a0e8f69c09",
+      "decision": "APPROVED",
+      "destination": "root",
+      "reviewer": "synthetic-reviewer",
+      "source_digest": "0903eeeef3a4c9843fab9c17771a62e85430fb9c1b86cb2c4e93556ae141806a",
+      "source_id": "protected-human"
+    }
+  ],
+  "bindings": [
+    {
+      "context": "child-personal",
+      "name": "same-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    },
+    {
+      "context": "employer-x",
+      "name": "cross-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    },
+    {
+      "context": "task-x",
+      "name": "deep-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    },
+    {
+      "context": "child-personal",
+      "name": "agent",
+      "role": "AGENT"
+    },
+    {
+      "context": "child-personal",
+      "name": "human",
+      "role": "HUMAN"
+    },
+    {
+      "context": "personal",
+      "name": "personal-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    }
+  ],
+  "candidates": {
+    "database": {
+      "content": "Inspect table_x_internal."
+    },
+    "exact_literal": {
+      "content": "Remember employer-x-secret-memory."
+    },
+    "hostname_url": {
+      "content": "Contact https://internal-host-x.example.invalid."
+    },
+    "human-safe": {
+      "content": "Prefer explicit construction for dependencies."
+    },
+    "organization": {
+      "content": "Advice from employer-x."
+    },
+    "project_repository": {
+      "content": "Refactor repository-x-private."
+    },
+    "raw": {
+      "content": "ProprietaryRoutingClassX in repository-x-private uses internal-host-x.example.invalid for X-TICKET-481 and table_x_internal. employer-x-secret-memory. Amber engines route cobalt packets through concealed violet queues before morning checks."
+    },
+    "safe": {
+      "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction."
+    },
+    "safe-alternative": {
+      "content": "Search for a canonical abstraction before proposing another behavioral interface."
+    },
+    "same": {
+      "content": "An unverified local hypothesis."
+    },
+    "secret": {
+      "content": "Use SYNTH_TOKEN_ABCDEF123456."
+    },
+    "source_fragment": {
+      "content": "Amber engines: route cobalt packets through concealed violet queues, before morning checks."
+    },
+    "source_identifier": {
+      "content": "Change ProprietaryRoutingClassX in internal.routing.x."
+    },
+    "ticket": {
+      "content": "Apply X-TICKET-481."
+    }
+  },
+  "expected": {
+    "cross-human-safe": "ADMITTED",
+    "database": "REJECTED_SECURITY",
+    "exact_literal": "REJECTED_SECURITY",
+    "hostname_url": "REJECTED_SECURITY",
+    "organization": "REJECTED_SECURITY",
+    "project_repository": "REJECTED_SECURITY",
+    "raw": "REJECTED_SECURITY",
+    "safe": "ADMITTED",
+    "same": "ADMITTED",
+    "same-human": "ADMITTED",
+    "secret": "REJECTED_SECURITY",
+    "source_fragment": "REJECTED_SECURITY",
+    "source_identifier": "REJECTED_SECURITY",
+    "ticket": "REJECTED_SECURITY"
+  },
+  "memory": {
+    "context_domains": {
+      "attempt-personal": "personal",
+      "child-personal": "personal",
+      "employer-x": "employer-x",
+      "parent-personal": "personal",
+      "personal": "personal",
+      "project-personal": "personal",
+      "project-x": "employer-x",
+      "root": "public",
+      "sibling-personal": "personal",
+      "task-x": "employer-x"
+    },
+    "declaration_targets": {
+      "human-personal": "parent-personal",
+      "human-x": "project-x"
+    },
+    "derived": [],
+    "entries": [
+      {
+        "classification": "PUBLIC",
+        "content": "Public fixture baseline.",
+        "context_id": "root",
+        "created_by": "fixture-public",
+        "domain": "public",
+        "epistemic_status": "UNVERIFIED",
+        "id": "global-baseline",
+        "provenance": "AGENT_OBSERVATION"
+      },
+      {
+        "classification": "PRIVATE",
+        "content": "An unverified local hypothesis.",
+        "context_id": "child-personal",
+        "created_by": "agent-private",
+        "domain": "personal",
+        "epistemic_status": "UNVERIFIED",
+        "id": "local-observation",
+        "provenance": "AGENT_OBSERVATION"
+      },
+      {
+        "classification": "PRIVATE",
+        "content": "Explicit local preference.",
+        "context_id": "child-personal",
+        "created_by": "human-private",
+        "domain": "personal",
+        "epistemic_status": "DECLARED",
+        "id": "local-human",
+        "provenance": "USER_DECLARATION"
+      },
+      {
+        "classification": "PRIVATE",
+        "content": "ProprietaryRoutingClassX in repository-x-private uses internal-host-x.example.invalid for X-TICKET-481 and table_x_internal. employer-x-secret-memory. Amber engines route cobalt packets through concealed violet queues before morning checks.",
+        "context_id": "employer-x",
+        "created_by": "agent-private",
+        "domain": "employer-x",
+        "epistemic_status": "UNVERIFIED",
+        "id": "protected-source",
+        "provenance": "AGENT_OBSERVATION"
+      },
+      {
+        "classification": "PRIVATE",
+        "content": "ProprietaryRoutingClassX in repository-x-private uses internal-host-x.example.invalid for X-TICKET-481 and table_x_internal. employer-x-secret-memory. Amber engines route cobalt packets through concealed violet queues before morning checks.",
+        "context_id": "employer-x",
+        "created_by": "human-private",
+        "domain": "employer-x",
+        "epistemic_status": "DECLARED",
+        "id": "protected-human",
+        "provenance": "USER_DECLARATION"
+      },
+      {
+        "classification": "PRIVATE",
+        "content": "ProprietaryRoutingClassX in repository-x-private uses internal-host-x.example.invalid for X-TICKET-481 and table_x_internal. employer-x-secret-memory. Amber engines route cobalt packets through concealed violet queues before morning checks.",
+        "context_id": "task-x",
+        "created_by": "agent-private",
+        "domain": "employer-x",
+        "epistemic_status": "UNVERIFIED",
+        "id": "deep-protected",
+        "provenance": "AGENT_OBSERVATION"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "root",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": null
+      },
+      {
+        "id": "personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "project-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "personal"
+      },
+      {
+        "id": "parent-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project-personal"
+      },
+      {
+        "id": "child-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "parent-personal"
+      },
+      {
+        "id": "sibling-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "parent-personal"
+      },
+      {
+        "id": "attempt-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "child-personal"
+      },
+      {
+        "id": "employer-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "project-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "employer-x"
+      },
+      {
+        "id": "task-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project-x"
+      }
+    ],
+    "policy": {
+      "deny_ids": [],
+      "grants": {
+        "employer-x": [
+          "public",
+          "employer-x"
+        ],
+        "personal": [
+          "public",
+          "personal"
+        ],
+        "public": [
+          "public"
+        ]
+      },
+      "version": "fixture-v1"
+    }
+  },
+  "promotion_policy": {
+    "admissible_statuses": [
+      "UNVERIFIED",
+      "DECLARED"
+    ],
+    "routes": [
+      [
+        "child-personal",
+        "parent-personal"
+      ],
+      [
+        "employer-x",
+        "root"
+      ]
+    ],
+    "version": "promotion-policy-v1"
+  },
+  "protected_literals": [
+    "protected-source",
+    "protected-human",
+    "deep-protected",
+    "human-private",
+    "agent-private",
+    "employer-x",
+    "project-x",
+    "task-x",
+    "repository-x-private",
+    "internal-host-x.example.invalid",
+    "X-TICKET-481",
+    "ProprietaryRoutingClassX",
+    "internal.routing.x",
+    "src/private/RoutingX.java",
+    "table_x_internal",
+    "employer-x-secret-memory",
+    "SYNTH_TOKEN_ABCDEF123456",
+    "Amber engines"
+  ],
+  "scanner_faults": [
+    "unavailable",
+    "crash",
+    "malformed",
+    "unknown",
+    "timeout",
+    "cannot_evaluate"
+  ],
+  "scanner_manifest": {
+    "database": [
+      "table_x_internal"
+    ],
+    "exact_literal": [
+      "employer-x-secret-memory"
+    ],
+    "hostname_url": [
+      "internal-host-x.example.invalid",
+      "https://internal-host-x.example.invalid"
+    ],
+    "organization": [
+      "employer-x"
+    ],
+    "project_repository": [
+      "project-x",
+      "repository-x-private"
+    ],
+    "secret": [
+      "SYNTH_TOKEN_[A-Z0-9]{12}"
+    ],
+    "source_fragment": [],
+    "source_identifier": [
+      "ProprietaryRoutingClassX",
+      "internal.routing.x",
+      "src/private/RoutingX.java"
+    ],
+    "ticket": [
+      "X-TICKET-481"
+    ]
+  },
+  "scanner_names": [
+    "secret",
+    "organization",
+    "project_repository",
+    "hostname_url",
+    "ticket",
+    "source_identifier",
+    "database",
+    "exact_literal",
+    "source_fragment"
+  ]
+}

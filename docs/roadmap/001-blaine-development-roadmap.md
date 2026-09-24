@@ -657,6 +657,167 @@ WorkerSessions, role-scoped ContextPackets, explicit authority and typed outcome
 Parent/child completion remains independent. Unconstrained multi-agent debate is
 not the default, and parallelism should answer measured workload needs.
 
+## Track III — Hierarchical Context, Memory & Verified Learning
+
+**2026-09-23: Track III research COMPLETE; architecture consolidation PASS.**
+[ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md), the
+[Context Plane specification](../context-plane.md) and
+[semantic contracts](../contracts/context-plane.md) accept broad governed knowledge
+with compiled narrow agent context. Resolver and Compiler remain separate; current
+trusted binding, provenance, source/evidence authority and explicit promotion survive.
+III.8 remains FAIL; III.8R remains its separate PASS recovery; III.G is complementary
+PASS / ADAPT ON-DEMAND. III.10 remains the planned sequence close. All experiments
+and their historical results are unchanged.
+
+**Production is separate and NOT STARTED.** Recommend **CP.1 — Local governed context
+projection and one delta**, scoped to one existing local worker path, read-only Memory
+facade, exact/lexical sources, runtime-bound authority and deterministic compilation.
+The [bounded implementation plan](002-context-plane-implementation.md) defines staged
+acceptance and deferrals; no authorization to implement or deploy follows from this
+consolidation. Other tracks' priorities and E0–E3 dependencies are unchanged.
+
+**2026-09-23: complementary III.G Graphify structural utility PASS.**
+[Milestone](../milestones/054-track-iii-g-graphify-structural-utility.md) and
+[evidence](../../experiments/track-iii-graphify/README.md): twenty frozen questions on
+pinned Spring Kafka/Jackson, combined +9 distinct required targets over bounded source
+exploration, eight exploration-request reductions, no stale/forbidden output, <=1995
+bytes. Value is corpus-dependent; overload precision and validation costs remain limits.
+Classification **ADAPT / ON-DEMAND**, not production adoption. III.10 remains the
+planned sequence close; III.8 FAIL and III.8R PASS are unchanged.
+
+**2026-09-23: III.10 context propagation PASS within the offline fixture.**
+[Milestone 052](../milestones/053-track-iii-10-context-propagation.md) records 12 frozen
+handoff/checkpoint/second-process cases, 1,460 independent checks, zero content/metadata
+leaks and three caught scope/policy/provenance mutations. Receivers reconstruct access
+from trusted current state; serialization is not authority. Maximum complete response
+1696 bytes. No production integration or subsequent increment has started.
+
+**2026-09-23: III.9 novelty/simplicity advisory PASS within its synthetic corpus.**
+[Milestone 051](../milestones/052-track-iii-9-novelty-simplicity-advisory.md) records
+two local-model paired repetitions: duplicate choices 4/4 → 0/4, legitimate additions
+and near-match distinctions 4/4 → 4/4. Falsified contract presentation causes incorrect
+reuse in both mutation runs. 58 Qwen calls, 2012-byte maximum advisory, no stale or
+forbidden input. This supports advisory behavior, not a production hard gate.
+
+**III.8R remains PASS on the original frozen III.8 corpus and thresholds.**
+[Milestone 050](../milestones/051-track-iii-8r-narrow-consumption-recovery.md) records
+three additional required targets per revision with one predeclared recovery policy,
+all exact hits preserved, fresh fallback restored and three caught mutations.
+Complete responses remain within 2048 bytes. Its separately authorized III.9 follows below.
+
+**III.8 remains FAIL under its frozen workspace-discovery thresholds.**
+[Milestone 049](../milestones/050-track-iii-8-workspace-discovery.md) records one
+distinct non-lexical gain per revision, below two; exact hits, freshness, isolation
+and corrected full-response budget pass. The canonical reuse target was missed.
+Its separately authorized III.8R follow-up is recorded below; III.8 evidence is unchanged.
+
+**III.7 remains PASS within the fixed synthetic local-model workload.**
+[Milestone 048](../milestones/049-track-iii-7-learned-memory-utility.md) records two
+paired local-Qwen repetitions: matching 0/4 → 4/4, irrelevant and near-match 4/4 → 4/4.
+The failure-as-success rendering causes an actual incorrect commitment in both
+controls. 268 composition checks and 842 independent checks pass; 78 local model
+calls, 1761-byte maximum retrieval, no protected leakage. III.1–III.6 sources/history
+remain unchanged; no production runtime or model routing changes occurred.
+III.1 remains PASS within source-research scope. The
+[reference-systems report](../research/track-iii/001-reference-systems.md) and
+[milestone 042](../milestones/043-track-iii-1-reference-systems.md) retain current
+upstream pins, mechanism classifications, architectural constraints and evidence
+limits. This independent research track does not reopen the Cognitive Kernel,
+alter D1/D2, worker execution or remote-execution work, or add a v0 prerequisite.
+Existing Track A/B and post-v0 cycle names are unchanged.
+
+The accepted primitive is a generic ContextNode tree: permitted knowledge inherits
+downward, writes stay in the current context, and upward promotion is explicit and
+gated. Security applies to every derived representation. Memory remains derived;
+Restate owns lifecycle, PolicyGate authority, and Completion Contracts verification.
+The research studies continuous runtime memory access and learning from verified
+work, not just initial prompt injection.
+
+The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-iii-sequence-and-open-risks)
+covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
+III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
+III.9 Novelty/Simplicity advisory and III.10 local/checkpoint/process lineage.
+Remote-machine and production integration remain unproven and unauthorized.
+
+**III.2 executed** the user-assigned 11-context tree with literal read/write
+oracles, forged-binding/direct-ID/malformed-input checks and an isolated mutation.
+The [experiment](../../experiments/track-iii-002/README.md) records the refinement
+from III.1's tentative topology; no cache or traversal API was needed.
+
+**III.3 executed** continuous capability access with trusted caller bindings and
+unverified current-context observations. The accepted human-declaration refinement
+allows direct writes to an explicitly authorized context with trusted USER_DECLARATION
+provenance; this is not promotion, and agents cannot forge that provenance.
+
+**III.4 executed** explicit lineage/domain/policy intersection across raw and
+synthetic derived memory, graph/cache paths, diagnostics and policy faults. Human
+provenance remains domain-bound; shared public knowledge is explicitly classified.
+Write keys are destination-scoped in the experiment to avoid foreign-ID collision
+oracles. No promotion, declassification or production security system was implemented.
+
+**III.5 executed** immediate-parent promotion through a distinct trusted gate.
+Hand-authored cross-domain candidates require exact-bound approval and all required
+checks; human origin is not declassification, and promotion is not verification.
+Public receipts omit private source/audit data. Replay rechecks security; destination
+identifiers and visible revisions reveal only permitted activity.
+
+**III.6 executed** scoped reflection admission against trusted outcome/evidence
+snapshots and explicit hand-authored candidate-support pairs. Success requires all
+mandatory evidence; failure remains failure-qualified. Reflection is not promotion,
+verified status is not declassification, and replay rechecks current evidence. The
+unchanged III.5 prototype rejects the new verified-outcome provenance class; future
+promotion needs an explicit schema extension, not silent coercion.
+
+**III.7 executed** real local-model pairs with governed learned memory versus
+withheld memory. Trusted outcome admission feeds explicit immediate-parent promotion,
+then later siblings retrieve only the promoted representation. An isolated gate-v2
+schema extension preserves verified success/failure provenance without changing other
+gate logic. The frozen III.5 prototype/history remains unchanged. This demonstrates
+finite synthetic utility, not universal improvement or automatic lesson generation.
+
+**III.8 executed** real local BGE-M3 and Graphify extraction alongside a token-based
+lexical baseline on 12 frozen queries and two immutable source snapshots. The
+[experiment](../../experiments/track-iii-008/README.md) records FAIL: combined semantic
+coverage improves 1/4 → 2/4, structural coverage stays 8/8, and exact lexical coverage
+stays 4/4 in each revision. Only one distinct new target survives the bounded packet;
+the canonical reuse and retry-policy targets are missed. No stale/forbidden output
+appears with enforcement; both leakage mutations are caught. Complete responses fit
+2048 bytes after a documented budget-only correction. Stale derived candidates can
+also suppress fresh lexical fallback in the conservative merged-candidate design.
+
+**III.8R executed** one frozen recovery policy against exactly the retained III.8
+candidate sets, queries, oracles, sources and lexical baseline. Per-contribution
+validation precedes fusion, target deduplication preserves provenance, RRF uses k=60,
+source-family diversity defers repetitive declarations and compact shared metadata
+fits the complete envelope. Semantic coverage is 1/4 → 4/4 in both revisions, with
+three distinct gained targets each; exact 4/4 and structural 8/8 are preserved. No
+post-outcome ranking tuning occurred. Fresh lexical fallback retains all four exact
+hits against stale derived data. Freshness, isolation and late-invalidation mutations
+are caught. Structural incremental retrieval utility remains unproven on this corpus.
+
+**III.9 executed** 12 frozen abstraction proposals with advisory OFF/ON, identical
+local Qwen cognition and three-action budgets, in two reversed-order repetitions.
+The actual III.8R selector is unchanged, bound only to new synthetic data. Semantic
+candidate evidence enables four fewer duplicate choices per repetition without
+legitimate-addition or near-match losses. A fixed false contract excerpt causes two
+incorrect reuses and a nonzero oracle check. Advice remains derived evidence; current
+contracts remain primary. Structural incremental utility is still unproven without
+ablation, and source-family diversity is not evidence of contract equivalence.
+
+**III.10 executed** 12 deterministic transfer cases across local participants,
+checkpoint/resume and actual second OS processes. P2 removes prior P1 visibility;
+T2 reparenting replaces old ancestry; missing current evidence invalidates old success.
+Memory is re-queried, trusted provenance survives, and correlation grants no authority.
+Scope, stale-policy and provenance mutations cause actual caught violations. Whole-tree
+validation and per-operation trusted snapshots are explicit; concurrency, crash
+consistency, production authentication and remote-machine transport remain unproved.
+
+**Post-Track-III consolidation is complete.** The [accepted architecture](../context-plane.md)
+records trusted binding, scoped metadata, routing/compilation and durable revalidation
+obligations with explicit current-code gaps. [CP.1 and later implementation phases](002-context-plane-implementation.md)
+remain proposed, separately authorized work. No production lifecycle, authentication,
+hard gate or runtime adoption follows automatically; all historical results retain scope.
+
 ## How to resume development
 
 A future human/agent should be able to resume from `main` without this conversation:
@@ -753,6 +914,12 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
+- **Track III research COMPLETE; architecture consolidation PASS.**
+  [Accepted Context Plane](../context-plane.md) and [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md).
+  III.8 FAIL / III.8R PASS remain separate; III.G remains complementary PASS / ADAPT ON-DEMAND.
+  **Next proposal: [CP.1 — Local governed context projection and one delta](002-context-plane-implementation.md#2-exact-next-increment-cp1--local-governed-context-projection-and-one-delta), NOT STARTED.**
+  Implementation requires separate authorization; no automatic learning, hard novelty
+  gate or production adoption is implied. Other product/operational priorities unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux

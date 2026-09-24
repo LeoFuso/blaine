@@ -1,0 +1,546 @@
+{
+  "A": {
+    "edges": [
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/io/client.py::deliver",
+        "target": "personal/io/writer.py::SwapWriter"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/io/client.py::deliver",
+        "target": "personal/io/writer.py::SwapWriter"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/io/writer.py::SwapWriter",
+        "target": "personal/ports.py::CommitPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "inherits",
+        "source": "personal/io/writer.py::SwapWriter",
+        "target": "personal/ports.py::CommitPort"
+      }
+    ],
+    "revision": "sha256:11309396a9afe4cc361129aece403cc379ba61138432f3340196ecb7481e3ffd",
+    "rows": {
+      "employer-x/vault.py::VaultFold": {
+        "bases": [],
+        "calls": [
+          "value.strip",
+          "value.strip().casefold"
+        ],
+        "end_line": 4,
+        "file": "employer-x/vault.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "93e0d3de1227766502df0a1b202926c273d5368688595c783dfc058a49396fbd",
+        "symbol": "VaultFold",
+        "target": "employer-x/vault.py::VaultFold",
+        "text": "class VaultFold:\n    \"\"\"PRIVATE_FOLD_CANARY: remove surrounding blanks and fold case.\"\"\"\n    def apply(self, value):\n        return value.strip().casefold()"
+      },
+      "personal/app/entry.py::show_label": {
+        "bases": [],
+        "calls": [],
+        "end_line": 3,
+        "file": "personal/app/entry.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "c89f0560a5aa4117bbad5f5ff900e1d7a2b9a103ef8d9f1faa48a4def6127c2f",
+        "symbol": "show_label",
+        "target": "personal/app/entry.py::show_label",
+        "text": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value"
+      },
+      "personal/helpers.py::edge_trim": {
+        "bases": [],
+        "calls": [
+          "value.rstrip"
+        ],
+        "end_line": 3,
+        "file": "personal/helpers.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "5678e2476b37d068bc030e0ba83437846038060f8af2a335a604d0165ead39ee",
+        "symbol": "edge_trim",
+        "target": "personal/helpers.py::edge_trim",
+        "text": "def edge_trim(value):\n    \"\"\"Remove trailing blanks only; preserve leading blanks and case.\"\"\"\n    return value.rstrip()"
+      },
+      "personal/io/client.py::deliver": {
+        "bases": [],
+        "calls": [
+          "SwapWriter",
+          "SwapWriter().publish"
+        ],
+        "end_line": 5,
+        "file": "personal/io/client.py",
+        "imports": [
+          "SwapWriter"
+        ],
+        "line": 3,
+        "source_hash": "ad02bddd093ccaedf5ea70c3e0e0b8a16f4c95447308196dec0fdab29c573700",
+        "symbol": "deliver",
+        "target": "personal/io/client.py::deliver",
+        "text": "def deliver(path, data):\n    \"\"\"Publish bytes with the installed synchronous writer.\"\"\"\n    return SwapWriter().publish(path, data)"
+      },
+      "personal/io/writer.py::SwapWriter": {
+        "bases": [
+          "CommitPort"
+        ],
+        "calls": [
+          "os.replace",
+          "path.with_suffix",
+          "temporary.write_bytes"
+        ],
+        "end_line": 9,
+        "file": "personal/io/writer.py",
+        "imports": [
+          "CommitPort"
+        ],
+        "line": 4,
+        "source_hash": "31429bf50915e6820afd17bea9e88e62a401b793f41068bba26b8a573910ff54",
+        "symbol": "SwapWriter",
+        "target": "personal/io/writer.py::SwapWriter",
+        "text": "class SwapWriter(CommitPort):\n    \"\"\"Sync: overwrite one file by atomic rename.\"\"\"\n    def publish(self, path, data):\n        temporary = path.with_suffix('.pending')\n        temporary.write_bytes(data)\n        os.replace(temporary, path)"
+      },
+      "personal/lib/fence.py::Fence": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/lib/fence.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "671b5190adb3229d7b8cfe8b91ab096ba8417612795c4d609e4da9c49809468c",
+        "symbol": "Fence",
+        "target": "personal/lib/fence.py::Fence",
+        "text": "class Fence:\n    \"\"\"Policy only: status >= 500 AND attempts < limit; no execution.\"\"\"\n    def permits(self, status, attempts, limit):\n        return status >= 500 and attempts < limit"
+      },
+      "personal/lib/ledger.py::Ledger": {
+        "bases": [],
+        "calls": [
+          "hashlib.sha256",
+          "hashlib.sha256(payload).hexdigest",
+          "self.values.setdefault"
+        ],
+        "end_line": 8,
+        "file": "personal/lib/ledger.py",
+        "imports": [],
+        "line": 3,
+        "source_hash": "f70902de6aa92bb28db04b321f0b18c60d60110500e15119c42abbd3818fc731",
+        "symbol": "Ledger",
+        "target": "personal/lib/ledger.py::Ledger",
+        "text": "class Ledger:\n    \"\"\"RAM-only: digest(payload) -> first ack; mutable, no disk.\"\"\"\n    def __init__(self):\n        self.values = {}\n    def remember(self, payload, ack):\n        return self.values.setdefault(hashlib.sha256(payload).hexdigest(), ack)"
+      },
+      "personal/old/fold.py::ArchivedFold": {
+        "bases": [],
+        "calls": [
+          "value.strip",
+          "value.strip().casefold"
+        ],
+        "end_line": 4,
+        "file": "personal/old/fold.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "9dbf7e3dc12dbab905c7d22adff80b9cbcb7f2e9b3666aefa360225ab7978ef9",
+        "symbol": "ArchivedFold",
+        "target": "personal/old/fold.py::ArchivedFold",
+        "text": "class ArchivedFold:\n    \"\"\"Strip edges and casefold handles; lossy, synchronous.\"\"\"\n    def apply(self, value):\n        return value.strip().casefold()"
+      },
+      "personal/ports.py::CommitPort": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/ports.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "8a1c5049b0499caaee366892af73c3d8e2fc0a2a837801a09257e6e6915616fa",
+        "symbol": "CommitPort",
+        "target": "personal/ports.py::CommitPort",
+        "text": "class CommitPort:\n    \"\"\"Synchronous single-file byte publication interface.\"\"\"\n    def publish(self, path, data):\n        raise NotImplementedError"
+      },
+      "personal/route.py::RoutePick": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/route.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "9b93b62603cdc30f049745790d01a2ffd3f857ee876b43a535c290cd4eb72955",
+        "symbol": "RoutePick",
+        "target": "personal/route.py::RoutePick",
+        "text": "class RoutePick:\n    \"\"\"Choose a destination name; no IO, sessions or cancellation.\"\"\"\n    def choose(self, local):\n        return 'near' if local else 'far'"
+      },
+      "personal/telemetry/note_0.py::note_0": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_0.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "9ca5f2b28c69f8c424a33e543d817adba490fc0a9604071f25a4438e3258be2a",
+        "symbol": "note_0",
+        "target": "personal/telemetry/note_0.py::note_0",
+        "text": "def note_0(handle, attempt, ack):\n    \"\"\"Diagnostic 0: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_1.py::note_1": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_1.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "7d4141f9e279f31f1cfeefc9b1bb2b4364287b70f34366a7009e453d35adead6",
+        "symbol": "note_1",
+        "target": "personal/telemetry/note_1.py::note_1",
+        "text": "def note_1(handle, attempt, ack):\n    \"\"\"Diagnostic 1: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_2.py::note_2": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_2.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "2fb1667b8c9e03b79c49c9172740ad797ded957171d9ff6f0128e902e5d042a4",
+        "symbol": "note_2",
+        "target": "personal/telemetry/note_2.py::note_2",
+        "text": "def note_2(handle, attempt, ack):\n    \"\"\"Diagnostic 2: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_3.py::note_3": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_3.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "6d2776f1ca68222f65e685deaea58a589d99fd77beaab08093848bb4e39c69f3",
+        "symbol": "note_3",
+        "target": "personal/telemetry/note_3.py::note_3",
+        "text": "def note_3(handle, attempt, ack):\n    \"\"\"Diagnostic 3: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_4.py::note_4": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_4.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "d1caae5085fea619c19d97a7a4223d1d9d7237f951dd2287be69de0b8895038e",
+        "symbol": "note_4",
+        "target": "personal/telemetry/note_4.py::note_4",
+        "text": "def note_4(handle, attempt, ack):\n    \"\"\"Diagnostic 4: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_5.py::note_5": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_5.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "1ac983b0f18dbfadc9232a17fadd21bdda34a729f7a97e838f583f87907243ee",
+        "symbol": "note_5",
+        "target": "personal/telemetry/note_5.py::note_5",
+        "text": "def note_5(handle, attempt, ack):\n    \"\"\"Diagnostic 5: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_6.py::note_6": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_6.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "874222e7bb5f71fc5bb720157a2d717de775a742a222fbf04daaa07faaa6b028",
+        "symbol": "note_6",
+        "target": "personal/telemetry/note_6.py::note_6",
+        "text": "def note_6(handle, attempt, ack):\n    \"\"\"Diagnostic 6: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_7.py::note_7": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_7.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "e03e6af5e8854655c966e171e6557bfb81d07594f996a89f414cc80866a93c8b",
+        "symbol": "note_7",
+        "target": "personal/telemetry/note_7.py::note_7",
+        "text": "def note_7(handle, attempt, ack):\n    \"\"\"Diagnostic 7: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      }
+    }
+  },
+  "B": {
+    "edges": [
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/io/client.py::deliver",
+        "target": "personal/io/writer.py::SwapWriter"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/io/client.py::deliver",
+        "target": "personal/io/writer.py::SwapWriter"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/io/writer.py::SwapWriter",
+        "target": "personal/ports.py::CommitPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "inherits",
+        "source": "personal/io/writer.py::SwapWriter",
+        "target": "personal/ports.py::CommitPort"
+      }
+    ],
+    "revision": "sha256:0fa698619624e33725ad3227c615630374a51cc3848866a04587124626515771",
+    "rows": {
+      "employer-x/vault.py::VaultFold": {
+        "bases": [],
+        "calls": [
+          "value.strip",
+          "value.strip().casefold"
+        ],
+        "end_line": 4,
+        "file": "employer-x/vault.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "93e0d3de1227766502df0a1b202926c273d5368688595c783dfc058a49396fbd",
+        "symbol": "VaultFold",
+        "target": "employer-x/vault.py::VaultFold",
+        "text": "class VaultFold:\n    \"\"\"PRIVATE_FOLD_CANARY: remove surrounding blanks and fold case.\"\"\"\n    def apply(self, value):\n        return value.strip().casefold()"
+      },
+      "personal/app/entry.py::show_label": {
+        "bases": [],
+        "calls": [],
+        "end_line": 3,
+        "file": "personal/app/entry.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "c89f0560a5aa4117bbad5f5ff900e1d7a2b9a103ef8d9f1faa48a4def6127c2f",
+        "symbol": "show_label",
+        "target": "personal/app/entry.py::show_label",
+        "text": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value"
+      },
+      "personal/helpers.py::edge_trim": {
+        "bases": [],
+        "calls": [
+          "value.rstrip"
+        ],
+        "end_line": 3,
+        "file": "personal/helpers.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "5678e2476b37d068bc030e0ba83437846038060f8af2a335a604d0165ead39ee",
+        "symbol": "edge_trim",
+        "target": "personal/helpers.py::edge_trim",
+        "text": "def edge_trim(value):\n    \"\"\"Remove trailing blanks only; preserve leading blanks and case.\"\"\"\n    return value.rstrip()"
+      },
+      "personal/io/client.py::deliver": {
+        "bases": [],
+        "calls": [
+          "SwapWriter",
+          "SwapWriter().publish"
+        ],
+        "end_line": 5,
+        "file": "personal/io/client.py",
+        "imports": [
+          "SwapWriter"
+        ],
+        "line": 3,
+        "source_hash": "ad02bddd093ccaedf5ea70c3e0e0b8a16f4c95447308196dec0fdab29c573700",
+        "symbol": "deliver",
+        "target": "personal/io/client.py::deliver",
+        "text": "def deliver(path, data):\n    \"\"\"Publish bytes with the installed synchronous writer.\"\"\"\n    return SwapWriter().publish(path, data)"
+      },
+      "personal/io/writer.py::SwapWriter": {
+        "bases": [
+          "CommitPort"
+        ],
+        "calls": [
+          "os.replace",
+          "path.with_suffix",
+          "temporary.write_bytes"
+        ],
+        "end_line": 9,
+        "file": "personal/io/writer.py",
+        "imports": [
+          "CommitPort"
+        ],
+        "line": 4,
+        "source_hash": "31429bf50915e6820afd17bea9e88e62a401b793f41068bba26b8a573910ff54",
+        "symbol": "SwapWriter",
+        "target": "personal/io/writer.py::SwapWriter",
+        "text": "class SwapWriter(CommitPort):\n    \"\"\"Sync: overwrite one file by atomic rename.\"\"\"\n    def publish(self, path, data):\n        temporary = path.with_suffix('.pending')\n        temporary.write_bytes(data)\n        os.replace(temporary, path)"
+      },
+      "personal/lib/fence.py::Fence": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/lib/fence.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "671b5190adb3229d7b8cfe8b91ab096ba8417612795c4d609e4da9c49809468c",
+        "symbol": "Fence",
+        "target": "personal/lib/fence.py::Fence",
+        "text": "class Fence:\n    \"\"\"Policy only: status >= 500 AND attempts < limit; no execution.\"\"\"\n    def permits(self, status, attempts, limit):\n        return status >= 500 and attempts < limit"
+      },
+      "personal/lib/fold.py::RuneFold": {
+        "bases": [],
+        "calls": [
+          "value.strip",
+          "value.strip().casefold"
+        ],
+        "end_line": 4,
+        "file": "personal/lib/fold.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "1f614f645eeedee79c0a6a6f573b124350a5e3dcae364df68ca415ca1f265841",
+        "symbol": "RuneFold",
+        "target": "personal/lib/fold.py::RuneFold",
+        "text": "class RuneFold:\n    \"\"\"Strip edges and casefold handles; lossy, synchronous.\"\"\"\n    def apply(self, value):\n        return value.strip().casefold()"
+      },
+      "personal/lib/ledger.py::Ledger": {
+        "bases": [],
+        "calls": [
+          "hashlib.sha256",
+          "hashlib.sha256(payload).hexdigest",
+          "self.values.setdefault"
+        ],
+        "end_line": 8,
+        "file": "personal/lib/ledger.py",
+        "imports": [],
+        "line": 3,
+        "source_hash": "f70902de6aa92bb28db04b321f0b18c60d60110500e15119c42abbd3818fc731",
+        "symbol": "Ledger",
+        "target": "personal/lib/ledger.py::Ledger",
+        "text": "class Ledger:\n    \"\"\"RAM-only: digest(payload) -> first ack; mutable, no disk.\"\"\"\n    def __init__(self):\n        self.values = {}\n    def remember(self, payload, ack):\n        return self.values.setdefault(hashlib.sha256(payload).hexdigest(), ack)"
+      },
+      "personal/ports.py::CommitPort": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/ports.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "8a1c5049b0499caaee366892af73c3d8e2fc0a2a837801a09257e6e6915616fa",
+        "symbol": "CommitPort",
+        "target": "personal/ports.py::CommitPort",
+        "text": "class CommitPort:\n    \"\"\"Synchronous single-file byte publication interface.\"\"\"\n    def publish(self, path, data):\n        raise NotImplementedError"
+      },
+      "personal/route.py::RoutePick": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/route.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "9b93b62603cdc30f049745790d01a2ffd3f857ee876b43a535c290cd4eb72955",
+        "symbol": "RoutePick",
+        "target": "personal/route.py::RoutePick",
+        "text": "class RoutePick:\n    \"\"\"Choose a destination name; no IO, sessions or cancellation.\"\"\"\n    def choose(self, local):\n        return 'near' if local else 'far'"
+      },
+      "personal/telemetry/note_0.py::note_0": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_0.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "9ca5f2b28c69f8c424a33e543d817adba490fc0a9604071f25a4438e3258be2a",
+        "symbol": "note_0",
+        "target": "personal/telemetry/note_0.py::note_0",
+        "text": "def note_0(handle, attempt, ack):\n    \"\"\"Diagnostic 0: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_1.py::note_1": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_1.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "7d4141f9e279f31f1cfeefc9b1bb2b4364287b70f34366a7009e453d35adead6",
+        "symbol": "note_1",
+        "target": "personal/telemetry/note_1.py::note_1",
+        "text": "def note_1(handle, attempt, ack):\n    \"\"\"Diagnostic 1: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_2.py::note_2": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_2.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "2fb1667b8c9e03b79c49c9172740ad797ded957171d9ff6f0128e902e5d042a4",
+        "symbol": "note_2",
+        "target": "personal/telemetry/note_2.py::note_2",
+        "text": "def note_2(handle, attempt, ack):\n    \"\"\"Diagnostic 2: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_3.py::note_3": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_3.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "6d2776f1ca68222f65e685deaea58a589d99fd77beaab08093848bb4e39c69f3",
+        "symbol": "note_3",
+        "target": "personal/telemetry/note_3.py::note_3",
+        "text": "def note_3(handle, attempt, ack):\n    \"\"\"Diagnostic 3: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_4.py::note_4": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_4.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "d1caae5085fea619c19d97a7a4223d1d9d7237f951dd2287be69de0b8895038e",
+        "symbol": "note_4",
+        "target": "personal/telemetry/note_4.py::note_4",
+        "text": "def note_4(handle, attempt, ack):\n    \"\"\"Diagnostic 4: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_5.py::note_5": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_5.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "1ac983b0f18dbfadc9232a17fadd21bdda34a729f7a97e838f583f87907243ee",
+        "symbol": "note_5",
+        "target": "personal/telemetry/note_5.py::note_5",
+        "text": "def note_5(handle, attempt, ack):\n    \"\"\"Diagnostic 5: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_6.py::note_6": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_6.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "874222e7bb5f71fc5bb720157a2d717de775a742a222fbf04daaa07faaa6b028",
+        "symbol": "note_6",
+        "target": "personal/telemetry/note_6.py::note_6",
+        "text": "def note_6(handle, attempt, ack):\n    \"\"\"Diagnostic 6: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      },
+      "personal/telemetry/note_7.py::note_7": {
+        "bases": [],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/telemetry/note_7.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "e03e6af5e8854655c966e171e6557bfb81d07594f996a89f414cc80866a93c8b",
+        "symbol": "note_7",
+        "target": "personal/telemetry/note_7.py::note_7",
+        "text": "def note_7(handle, attempt, ack):\n    \"\"\"Diagnostic 7: report handle folding, attempts and acknowledgements.\n    Observe payload delivery, partially written bytes and caller requests.\n    Telemetry records events; it does not supply contract implementations.\n    \"\"\"\n    return (handle, attempt, ack)"
+      }
+    }
+  }
+}

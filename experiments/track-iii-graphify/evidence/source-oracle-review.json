@@ -1,0 +1,2095 @@
+{
+  "J-D1": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "src/main/java/tools/jackson/databind/ser/jdk/ObjectArraySerializer.java:25": {
+        "lines": [
+          [
+            23,
+            "@JacksonStdImpl"
+          ],
+          [
+            24,
+            "public class ObjectArraySerializer"
+          ],
+          [
+            25,
+            "    extends ArraySerializerBase<Object[]>"
+          ],
+          [
+            26,
+            "{"
+          ],
+          [
+            27,
+            "    protected final static Object MARKER_FOR_EMPTY = JsonInclude.Include.NON_EMPTY;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ser.jdk.ObjectArraySerializer",
+        "target": "tools.jackson.databind.ser.std.ArraySerializerBase"
+      }
+    }
+  },
+  "J-D2": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java:13": {
+        "lines": [
+          [
+            11,
+            "import java.util.Objects;"
+          ],
+          [
+            12,
+            ""
+          ],
+          [
+            13,
+            "import tools.jackson.databind.JavaType;"
+          ],
+          [
+            14,
+            "import tools.jackson.databind.util.ClassUtil;"
+          ],
+          [
+            15,
+            ""
+          ]
+        ],
+        "relation": "imports",
+        "source": "file:src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+        "target": "tools.jackson.databind.JavaType"
+      },
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java:14": {
+        "lines": [
+          [
+            12,
+            ""
+          ],
+          [
+            13,
+            "import tools.jackson.databind.JavaType;"
+          ],
+          [
+            14,
+            "import tools.jackson.databind.util.ClassUtil;"
+          ],
+          [
+            15,
+            ""
+          ],
+          [
+            16,
+            "import static java.lang.invoke.MethodType.methodType;"
+          ]
+        ],
+        "relation": "imports",
+        "source": "file:src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+        "target": "tools.jackson.databind.util.ClassUtil"
+      }
+    }
+  },
+  "J-I1": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java:39": {
+        "lines": [
+          [
+            37,
+            " */"
+          ],
+          [
+            38,
+            "public abstract class StdDeserializer<T>"
+          ],
+          [
+            39,
+            "    extends ValueDeserializer<T>"
+          ],
+          [
+            40,
+            "    implements ValueInstantiator.Gettable"
+          ],
+          [
+            41,
+            "{"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.deser.std.StdDeserializer",
+        "target": "tools.jackson.databind.ValueDeserializer"
+      },
+      "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java:13": {
+        "lines": [
+          [
+            11,
+            " * as JSON scalars (non-structured, i.e. non-Object, non-Array, values)."
+          ],
+          [
+            12,
+            " */"
+          ],
+          [
+            13,
+            "public abstract class StdScalarDeserializer<T> extends StdDeserializer<T>"
+          ],
+          [
+            14,
+            "{"
+          ],
+          [
+            15,
+            "    protected StdScalarDeserializer(Class<?> vc) { super(vc); }"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+        "target": "tools.jackson.databind.deser.std.StdDeserializer"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/DurationDeserializer.java:41": {
+        "lines": [
+          [
+            39,
+            " * Deserializer for {@code java.time} temporal {@link Duration}s."
+          ],
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "public class DurationDeserializer extends JSR310DeserializerBase<Duration>"
+          ],
+          [
+            42,
+            "{"
+          ],
+          [
+            43,
+            "    public static final DurationDeserializer INSTANCE = new DurationDeserializer();"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.DurationDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/InstantDeserializer.java:49": {
+        "lines": [
+          [
+            47,
+            " */"
+          ],
+          [
+            48,
+            "public class InstantDeserializer<T extends Temporal>"
+          ],
+          [
+            49,
+            "    extends JSR310DateTimeDeserializerBase<T>"
+          ],
+          [
+            50,
+            "{"
+          ],
+          [
+            51,
+            "    private final static boolean DEFAULT_NORMALIZE_ZONE_ID = DateTimeFeature.NORMALIZE_DESERIALIZED_ZONE_ID.enabledByDefault();"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.InstantDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java:18": {
+        "lines": [
+          [
+            16,
+            ""
+          ],
+          [
+            17,
+            "public abstract class JSR310DateTimeDeserializerBase<T>"
+          ],
+          [
+            18,
+            "    extends JSR310DeserializerBase<T>"
+          ],
+          [
+            19,
+            "{"
+          ],
+          [
+            20,
+            "    protected final DateTimeFormatter _formatter;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java:41": {
+        "lines": [
+          [
+            39,
+            " * @author Nick Williams"
+          ],
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "abstract class JSR310DeserializerBase<T> extends StdScalarDeserializer<T>"
+          ],
+          [
+            42,
+            "{"
+          ],
+          [
+            43,
+            "    /**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+        "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310StringParsableDeserializer.java:48": {
+        "lines": [
+          [
+            46,
+            " */"
+          ],
+          [
+            47,
+            "public class JSR310StringParsableDeserializer"
+          ],
+          [
+            48,
+            "    extends JSR310DeserializerBase<Object>"
+          ],
+          [
+            49,
+            "{"
+          ],
+          [
+            50,
+            "    protected final static int TYPE_PERIOD = 1;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.JSR310StringParsableDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/LocalDateDeserializer.java:41": {
+        "lines": [
+          [
+            39,
+            " * @author Nick Williams"
+          ],
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "public class LocalDateDeserializer extends JSR310DateTimeDeserializerBase<LocalDate>"
+          ],
+          [
+            42,
+            "{"
+          ],
+          [
+            43,
+            "    private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.LocalDateDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/LocalDateTimeDeserializer.java:39": {
+        "lines": [
+          [
+            37,
+            " */"
+          ],
+          [
+            38,
+            "public class LocalDateTimeDeserializer"
+          ],
+          [
+            39,
+            "    extends JSR310DateTimeDeserializerBase<LocalDateTime>"
+          ],
+          [
+            40,
+            "{"
+          ],
+          [
+            41,
+            "    private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.LocalDateTimeDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/LocalTimeDeserializer.java:41": {
+        "lines": [
+          [
+            39,
+            " * @author Nick Williams"
+          ],
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "public class LocalTimeDeserializer extends JSR310DateTimeDeserializerBase<LocalTime>"
+          ],
+          [
+            42,
+            "{"
+          ],
+          [
+            43,
+            "    private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.LocalTimeDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/MonthDayDeserializer.java:18": {
+        "lines": [
+          [
+            16,
+            " * Deserializer for Java 8 temporal {@link MonthDay}s."
+          ],
+          [
+            17,
+            " */"
+          ],
+          [
+            18,
+            "public class MonthDayDeserializer extends JSR310DateTimeDeserializerBase<MonthDay>"
+          ],
+          [
+            19,
+            "{"
+          ],
+          [
+            20,
+            "    public static final MonthDayDeserializer INSTANCE = new MonthDayDeserializer();"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.MonthDayDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/MonthDeserializer.java:28": {
+        "lines": [
+          [
+            26,
+            " * {@link JsonFormat.Feature#ACCEPT_CASE_INSENSITIVE_VALUES}."
+          ],
+          [
+            27,
+            " */"
+          ],
+          [
+            28,
+            "public class MonthDeserializer extends JSR310DateTimeDeserializerBase<Month>"
+          ],
+          [
+            29,
+            "{"
+          ],
+          [
+            30,
+            "    // @since 3.1"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.MonthDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/OffsetTimeDeserializer.java:37": {
+        "lines": [
+          [
+            35,
+            " * @author Nick Williams"
+          ],
+          [
+            36,
+            " */"
+          ],
+          [
+            37,
+            "public class OffsetTimeDeserializer extends JSR310DateTimeDeserializerBase<OffsetTime>"
+          ],
+          [
+            38,
+            "{"
+          ],
+          [
+            39,
+            "    public static final OffsetTimeDeserializer INSTANCE = new OffsetTimeDeserializer();"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.OffsetTimeDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/YearDeserializer.java:37": {
+        "lines": [
+          [
+            35,
+            " * @author Nick Williams"
+          ],
+          [
+            36,
+            " */"
+          ],
+          [
+            37,
+            "public class YearDeserializer extends JSR310DateTimeDeserializerBase<Year>"
+          ],
+          [
+            38,
+            "{"
+          ],
+          [
+            39,
+            "    public static final YearDeserializer INSTANCE = new YearDeserializer();"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.YearDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ext/javatime/deser/YearMonthDeserializer.java:37": {
+        "lines": [
+          [
+            35,
+            " * @since 2.2.0"
+          ],
+          [
+            36,
+            " */"
+          ],
+          [
+            37,
+            "public class YearMonthDeserializer extends JSR310DateTimeDeserializerBase<YearMonth>"
+          ],
+          [
+            38,
+            "{"
+          ],
+          [
+            39,
+            "    public static final YearMonthDeserializer INSTANCE = new YearMonthDeserializer();"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ext.javatime.deser.YearMonthDeserializer",
+        "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+      }
+    }
+  },
+  "J-I2": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedClass.java:15": {
+        "lines": [
+          [
+            13,
+            ""
+          ],
+          [
+            14,
+            "public final class AnnotatedClass"
+          ],
+          [
+            15,
+            "    extends Annotated"
+          ],
+          [
+            16,
+            "    implements TypeResolutionContext"
+          ],
+          [
+            17,
+            "{"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.AnnotatedClass",
+        "target": "tools.jackson.databind.introspect.Annotated"
+      },
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedConstructor.java:18": {
+        "lines": [
+          [
+            16,
+            ""
+          ],
+          [
+            17,
+            "public final class AnnotatedConstructor"
+          ],
+          [
+            18,
+            "    extends AnnotatedWithParams"
+          ],
+          [
+            19,
+            "{"
+          ],
+          [
+            20,
+            "    // Invocation types for the arity-specific handles; constant so no per-use lookup"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.AnnotatedConstructor",
+        "target": "tools.jackson.databind.introspect.AnnotatedWithParams"
+      },
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedField.java:14": {
+        "lines": [
+          [
+            12,
+            " */"
+          ],
+          [
+            13,
+            "public final class AnnotatedField"
+          ],
+          [
+            14,
+            "    extends AnnotatedMember"
+          ],
+          [
+            15,
+            "{"
+          ],
+          [
+            16,
+            "    /**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.AnnotatedField",
+        "target": "tools.jackson.databind.introspect.AnnotatedMember"
+      },
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java:16": {
+        "lines": [
+          [
+            14,
+            " */"
+          ],
+          [
+            15,
+            "public abstract class AnnotatedMember"
+          ],
+          [
+            16,
+            "    extends Annotated"
+          ],
+          [
+            17,
+            "{"
+          ],
+          [
+            18,
+            "    /**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.AnnotatedMember",
+        "target": "tools.jackson.databind.introspect.Annotated"
+      },
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java:21": {
+        "lines": [
+          [
+            19,
+            ""
+          ],
+          [
+            20,
+            "public final class AnnotatedMethod"
+          ],
+          [
+            21,
+            "    extends AnnotatedWithParams"
+          ],
+          [
+            22,
+            "{"
+          ],
+          [
+            23,
+            "    // Invocation types for the arity-specific handles; constant so no per-use lookup"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.AnnotatedMethod",
+        "target": "tools.jackson.databind.introspect.AnnotatedWithParams"
+      },
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedParameter.java:16": {
+        "lines": [
+          [
+            14,
+            " */"
+          ],
+          [
+            15,
+            "public final class AnnotatedParameter"
+          ],
+          [
+            16,
+            "    extends AnnotatedMember"
+          ],
+          [
+            17,
+            "{"
+          ],
+          [
+            18,
+            "    /**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.AnnotatedParameter",
+        "target": "tools.jackson.databind.introspect.AnnotatedMember"
+      },
+      "src/main/java/tools/jackson/databind/introspect/AnnotatedWithParams.java:12": {
+        "lines": [
+          [
+            10,
+            " */"
+          ],
+          [
+            11,
+            "public abstract class AnnotatedWithParams"
+          ],
+          [
+            12,
+            "    extends AnnotatedMember"
+          ],
+          [
+            13,
+            "{"
+          ],
+          [
+            14,
+            "    /**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.AnnotatedWithParams",
+        "target": "tools.jackson.databind.introspect.AnnotatedMember"
+      },
+      "src/main/java/tools/jackson/databind/introspect/VirtualAnnotatedMember.java:15": {
+        "lines": [
+          [
+            13,
+            " * @since 2.5"
+          ],
+          [
+            14,
+            " */"
+          ],
+          [
+            15,
+            "public class VirtualAnnotatedMember extends AnnotatedMember"
+          ],
+          [
+            16,
+            "    implements java.io.Serializable"
+          ],
+          [
+            17,
+            "{"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.introspect.VirtualAnnotatedMember",
+        "target": "tools.jackson.databind.introspect.AnnotatedMember"
+      }
+    }
+  },
+  "J-M1": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "src/main/java/tools/jackson/databind/ser/jdk/ObjectArraySerializer.java:25": {
+        "lines": [
+          [
+            23,
+            "@JacksonStdImpl"
+          ],
+          [
+            24,
+            "public class ObjectArraySerializer"
+          ],
+          [
+            25,
+            "    extends ArraySerializerBase<Object[]>"
+          ],
+          [
+            26,
+            "{"
+          ],
+          [
+            27,
+            "    protected final static Object MARKER_FOR_EMPTY = JsonInclude.Include.NON_EMPTY;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ser.jdk.ObjectArraySerializer",
+        "target": "tools.jackson.databind.ser.std.ArraySerializerBase"
+      },
+      "src/main/java/tools/jackson/databind/ser/std/ArraySerializerBase.java:21": {
+        "lines": [
+          [
+            19,
+            " */"
+          ],
+          [
+            20,
+            "public abstract class ArraySerializerBase<T>"
+          ],
+          [
+            21,
+            "    extends StdContainerSerializer<T>"
+          ],
+          [
+            22,
+            "{"
+          ],
+          [
+            23,
+            "    protected final static Object MARKER_FOR_EMPTY = JsonInclude.Include.NON_EMPTY;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ser.std.ArraySerializerBase",
+        "target": "tools.jackson.databind.ser.std.StdContainerSerializer"
+      },
+      "src/main/java/tools/jackson/databind/ser/std/StdContainerSerializer.java:20": {
+        "lines": [
+          [
+            18,
+            " */"
+          ],
+          [
+            19,
+            "public abstract class StdContainerSerializer<T>"
+          ],
+          [
+            20,
+            "    extends StdSerializer<T>"
+          ],
+          [
+            21,
+            "{"
+          ],
+          [
+            22,
+            "    /**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ser.std.StdContainerSerializer",
+        "target": "tools.jackson.databind.ser.std.StdSerializer"
+      },
+      "src/main/java/tools/jackson/databind/ser/std/StdSerializer.java:32": {
+        "lines": [
+          [
+            30,
+            " */"
+          ],
+          [
+            31,
+            "public abstract class StdSerializer<T>"
+          ],
+          [
+            32,
+            "    extends ValueSerializer<T>"
+          ],
+          [
+            33,
+            "    implements JsonFormatVisitable"
+          ],
+          [
+            34,
+            "{"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "tools.jackson.databind.ser.std.StdSerializer",
+        "target": "tools.jackson.databind.ValueSerializer"
+      }
+    }
+  },
+  "J-M2": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "src/main/java/tools/jackson/databind/DeserializationContext.java:752": {
+        "lines": [
+          [
+            750,
+            "    public final ValueDeserializer<Object> findRootValueDeserializer(JavaType type)"
+          ],
+          [
+            751,
+            "    {"
+          ],
+          [
+            752,
+            "        ValueDeserializer<Object> deser = _cache.findValueDeserializer(this,"
+          ],
+          [
+            753,
+            "                _factory, type);"
+          ],
+          [
+            754,
+            "        if (deser == null) { // can this occur?"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.DeserializationContext#findRootValueDeserializer/1",
+        "target": "tools.jackson.databind.deser.DeserializerCache#findValueDeserializer/3"
+      },
+      "src/main/java/tools/jackson/databind/ObjectMapper.java:2689": {
+        "lines": [
+          [
+            2687,
+            "            if (t == JsonToken.VALUE_NULL) {"
+          ],
+          [
+            2688,
+            "                // Ask deserializer what 'null value' to use:"
+          ],
+          [
+            2689,
+            "                result = _findRootDeserializer(ctxt, valueType).getNullValue(ctxt);"
+          ],
+          [
+            2690,
+            "            } else if (t == JsonToken.END_ARRAY || t == JsonToken.END_OBJECT) {"
+          ],
+          [
+            2691,
+            "                result = null;"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.ObjectMapper#_readMapAndClose/3",
+        "target": "tools.jackson.databind.ObjectMapper#_findRootDeserializer/2"
+      },
+      "src/main/java/tools/jackson/databind/ObjectMapper.java:2881": {
+        "lines": [
+          [
+            2879,
+            "        }"
+          ],
+          [
+            2880,
+            "        // Nope: need to ask provider to resolve it"
+          ],
+          [
+            2881,
+            "        deser = ctxt.findRootValueDeserializer(valueType);"
+          ],
+          [
+            2882,
+            "        if (deser == null) { // can this happen?"
+          ],
+          [
+            2883,
+            "            return ctxt.reportBadDefinition(valueType,"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.ObjectMapper#_findRootDeserializer/2",
+        "target": "tools.jackson.databind.DeserializationContext#findRootValueDeserializer/1"
+      },
+      "src/main/java/tools/jackson/databind/deser/DeserializerCache.java:163": {
+        "lines": [
+          [
+            161,
+            "        if (deser == null) {"
+          ],
+          [
+            162,
+            "            // If not, need to request factory to construct (or recycle)"
+          ],
+          [
+            163,
+            "            deser = _createAndCacheValueDeserializer(ctxt, factory, propertyType);"
+          ],
+          [
+            164,
+            "            if (deser == null) {"
+          ],
+          [
+            165,
+            "                // Should we let caller handle it? Let's have a helper method"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.DeserializerCache#findValueDeserializer/3",
+        "target": "tools.jackson.databind.deser.DeserializerCache#_createAndCacheValueDeserializer/3"
+      },
+      "src/main/java/tools/jackson/databind/deser/DeserializerCache.java:249": {
+        "lines": [
+          [
+            247,
+            "            // Nope: need to create and possibly cache"
+          ],
+          [
+            248,
+            "            try {"
+          ],
+          [
+            249,
+            "                return _createAndCache2(ctxt, factory, type, isCustom);"
+          ],
+          [
+            250,
+            "            } finally {"
+          ],
+          [
+            251,
+            "                // also: any deserializers that have been created are complete by now"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.DeserializerCache#_createAndCacheValueDeserializer/3",
+        "target": "tools.jackson.databind.deser.DeserializerCache#_createAndCache2/4"
+      },
+      "src/main/java/tools/jackson/databind/deser/DeserializerCache.java:270": {
+        "lines": [
+          [
+            268,
+            "        ValueDeserializer<Object> deser;"
+          ],
+          [
+            269,
+            "        try {"
+          ],
+          [
+            270,
+            "            deser = _createDeserializer(ctxt, factory, type);"
+          ],
+          [
+            271,
+            "        } catch (IllegalArgumentException iae) {"
+          ],
+          [
+            272,
+            "            // We better only expose checked exceptions, since those"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.DeserializerCache#_createAndCache2/4",
+        "target": "tools.jackson.databind.deser.DeserializerCache#_createDeserializer/3"
+      },
+      "src/main/java/tools/jackson/databind/deser/DeserializerCache.java:330": {
+        "lines": [
+          [
+            328,
+            "            type = config.mapAbstractType(type);"
+          ],
+          [
+            329,
+            "        }"
+          ],
+          [
+            330,
+            "        BeanDescription.Supplier beanDescRef = ctxt.lazyIntrospectBeanDescription(type);"
+          ],
+          [
+            331,
+            "        // Then: does type define explicit deserializer to use, with annotation(s)?"
+          ],
+          [
+            332,
+            "        ValueDeserializer<Object> deser = findDeserializerFromAnnotation(ctxt,"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.DeserializerCache#_createDeserializer/3",
+        "target": "tools.jackson.databind.DatabindContext#lazyIntrospectBeanDescription/1"
+      }
+    }
+  },
+  "J-M3": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "src/main/java/tools/jackson/databind/deser/BasicDeserializerFactory.java:1140": {
+        "lines": [
+          [
+            1138,
+            "                // Not sure this can really work but let's try:"
+          ],
+          [
+            1139,
+            "                ValueInstantiator inst = type.hasRawClass(Optional.class) ? null"
+          ],
+          [
+            1140,
+            "                        : findValueInstantiator(ctxt, beanDescRef);"
+          ],
+          [
+            1141,
+            "                return new Jdk8OptionalDeserializer(type, inst, contentTypeDeser, contentDeser);"
+          ],
+          [
+            1142,
+            "            }"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.BasicDeserializerFactory#createReferenceDeserializer/3",
+        "target": "tools.jackson.databind.deser.BasicDeserializerFactory#findValueInstantiator/2"
+      },
+      "src/main/java/tools/jackson/databind/deser/BasicDeserializerFactory.java:172": {
+        "lines": [
+          [
+            170,
+            "                // Fourth: create default one, if no custom"
+          ],
+          [
+            171,
+            "                if (instantiator == null) {"
+          ],
+          [
+            172,
+            "                    instantiator = _constructDefaultValueInstantiator(ctxt, beanDescRef);"
+          ],
+          [
+            173,
+            "                }"
+          ],
+          [
+            174,
+            "            }"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.BasicDeserializerFactory#findValueInstantiator/2",
+        "target": "tools.jackson.databind.deser.BasicDeserializerFactory#_constructDefaultValueInstantiator/2"
+      },
+      "src/main/java/tools/jackson/databind/deser/BasicDeserializerFactory.java:219": {
+        "lines": [
+          [
+            217,
+            "            //   method; and if so, may need to \"pull it out\" as default creator"
+          ],
+          [
+            218,
+            "            if (primaryPropsBased.paramCount() == 0) {"
+          ],
+          [
+            219,
+            "                creators.setDefaultCreator(primaryPropsBased.creator());"
+          ],
+          [
+            220,
+            "            } else {"
+          ],
+          [
+            221,
+            "                // Start by assigning the primary (and only) properties-based creator"
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.BasicDeserializerFactory#_constructDefaultValueInstantiator/2",
+        "target": "tools.jackson.databind.deser.bean.CreatorCollector#setDefaultCreator/1"
+      },
+      "src/main/java/tools/jackson/databind/deser/bean/CreatorCollector.java:119": {
+        "lines": [
+          [
+            117,
+            "     */"
+          ],
+          [
+            118,
+            "    public void setDefaultCreator(AnnotatedWithParams creator) {"
+          ],
+          [
+            119,
+            "        _creators[C_DEFAULT] = _fixAccess(creator);"
+          ],
+          [
+            120,
+            "    }"
+          ],
+          [
+            121,
+            ""
+          ]
+        ],
+        "relation": "calls",
+        "source": "tools.jackson.databind.deser.bean.CreatorCollector#setDefaultCreator/1",
+        "target": "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1"
+      }
+    }
+  },
+  "J-T1": {
+    "negative_reason": "Is ser.impl.PropertyBasedObjectIdGenerator a subclass of the distinct deser.impl.PropertyBasedObjectIdGenerator? Same simple names are not identity.",
+    "positive_witnesses": {}
+  },
+  "J-T2": {
+    "negative_reason": "Does ObjectArraySerializer implement ValueSerializer as an interface, as opposed to extending a class hierarchy?",
+    "positive_witnesses": {}
+  },
+  "J-T3": {
+    "negative_reason": "Is AnnotatedMethod calling JavaType established by a class-level calls edge? Imports or inferred uses alone do not establish a call.",
+    "positive_witnesses": {}
+  },
+  "S-D1": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java:43": {
+        "lines": [
+          [
+            41,
+            " */"
+          ],
+          [
+            42,
+            "public class FilteringBatchMessageListenerAdapter<K, V>"
+          ],
+          [
+            43,
+            "\t\textends AbstractFilteringMessageListener<K, V, BatchMessageListener<K, V>>"
+          ],
+          [
+            44,
+            "\t\timplements BatchAcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            45,
+            ""
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java:44": {
+        "lines": [
+          [
+            42,
+            "public class FilteringBatchMessageListenerAdapter<K, V>"
+          ],
+          [
+            43,
+            "\t\textends AbstractFilteringMessageListener<K, V, BatchMessageListener<K, V>>"
+          ],
+          [
+            44,
+            "\t\timplements BatchAcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            45,
+            ""
+          ],
+          [
+            46,
+            "\tprivate final boolean ackDiscarded;"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.BatchAcknowledgingConsumerAwareMessageListener"
+      }
+    }
+  },
+  "S-D2": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/DefaultBatchToRecordAdapter.java:42": {
+        "lines": [
+          [
+            40,
+            " * @since 2.4.2"
+          ],
+          [
+            41,
+            " */"
+          ],
+          [
+            42,
+            "public class DefaultBatchToRecordAdapter<K, V> implements BatchToRecordAdapter<K, V> {"
+          ],
+          [
+            43,
+            ""
+          ],
+          [
+            44,
+            "\tprivate static final LogAccessor LOGGER = new LogAccessor(DefaultBatchToRecordAdapter.class);"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.DefaultBatchToRecordAdapter",
+        "target": "org.springframework.kafka.listener.adapter.BatchToRecordAdapter"
+      }
+    }
+  },
+  "S-D3": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java:389": {
+        "lines": [
+          [
+            387,
+            "\t@Override"
+          ],
+          [
+            388,
+            "\tpublic C createListenerContainer(KafkaListenerEndpoint endpoint) {"
+          ],
+          [
+            389,
+            "\t\tC instance = createContainerInstance(endpoint);"
+          ],
+          [
+            390,
+            "\t\tJavaUtils.INSTANCE"
+          ],
+          [
+            391,
+            "\t\t\t\t.acceptIfNotNull(endpoint.getId(), instance::setBeanName)"
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+        "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createContainerInstance/1"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java:394": {
+        "lines": [
+          [
+            392,
+            "\t\t\t\t.acceptIfNotNull(endpoint.getMainListenerId(), instance::setMainListenerId);"
+          ],
+          [
+            393,
+            "\t\tif (endpoint instanceof AbstractKafkaListenerEndpoint) {"
+          ],
+          [
+            394,
+            "\t\t\tconfigureEndpoint((AbstractKafkaListenerEndpoint<K, V>) endpoint);"
+          ],
+          [
+            395,
+            "\t\t}"
+          ],
+          [
+            396,
+            ""
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+        "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#configureEndpoint/1"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java:403": {
+        "lines": [
+          [
+            401,
+            "\t\t\tendpoint.setupListenerContainer(instance, this.recordMessageConverter);"
+          ],
+          [
+            402,
+            "\t\t}"
+          ],
+          [
+            403,
+            "\t\tinitializeContainer(instance, endpoint);"
+          ],
+          [
+            404,
+            "\t\tcustomizeContainer(instance, endpoint);"
+          ],
+          [
+            405,
+            "\t\treturn instance;"
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+        "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#initializeContainer/2"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java:404": {
+        "lines": [
+          [
+            402,
+            "\t\t}"
+          ],
+          [
+            403,
+            "\t\tinitializeContainer(instance, endpoint);"
+          ],
+          [
+            404,
+            "\t\tcustomizeContainer(instance, endpoint);"
+          ],
+          [
+            405,
+            "\t\treturn instance;"
+          ],
+          [
+            406,
+            "\t}"
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+        "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#customizeContainer/2"
+      }
+    }
+  },
+  "S-I1": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java:36": {
+        "lines": [
+          [
+            34,
+            " *"
+          ],
+          [
+            35,
+            " */"
+          ],
+          [
+            36,
+            "public interface DelegatingMessageListener<T> extends AsyncRepliesAware {"
+          ],
+          [
+            37,
+            ""
+          ],
+          [
+            38,
+            "\t/**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+        "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java:42": {
+        "lines": [
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "public abstract class AbstractDelegatingMessageListenerAdapter<T>"
+          ],
+          [
+            42,
+            "\t\timplements ConsumerSeekAware, DelegatingMessageListener<T> {"
+          ],
+          [
+            43,
+            ""
+          ],
+          [
+            44,
+            "\tprotected final LogAccessor logger = new LogAccessor(LogFactory.getLog(this.getClass())); // NOSONAR"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java:35": {
+        "lines": [
+          [
+            33,
+            " */"
+          ],
+          [
+            34,
+            "public abstract class AbstractFilteringMessageListener<K, V, T>"
+          ],
+          [
+            35,
+            "\t\textends AbstractDelegatingMessageListenerAdapter<T> {"
+          ],
+          [
+            36,
+            ""
+          ],
+          [
+            37,
+            "\tprivate final RecordFilterStrategy<K, V> recordFilterStrategy;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+        "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/BatchMessagingMessageListenerAdapter.java:62": {
+        "lines": [
+          [
+            60,
+            " * @since 1.1"
+          ],
+          [
+            61,
+            " */"
+          ],
+          [
+            62,
+            "public class BatchMessagingMessageListenerAdapter<K, V> extends MessagingMessageListenerAdapter<K, V>"
+          ],
+          [
+            63,
+            "\t\timplements BatchAcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            64,
+            ""
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ConvertingMessageListener.java:56": {
+        "lines": [
+          [
+            54,
+            " */"
+          ],
+          [
+            55,
+            "@SuppressWarnings(\"rawtypes\")"
+          ],
+          [
+            56,
+            "public class ConvertingMessageListener<V> implements DelegatingMessageListener<MessageListener>, AcknowledgingConsumerAwareMessageListener<Object, Object> {"
+          ],
+          [
+            57,
+            ""
+          ],
+          [
+            58,
+            "\tprivate final MessageListener delegate;"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+        "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java:43": {
+        "lines": [
+          [
+            41,
+            " */"
+          ],
+          [
+            42,
+            "public class FilteringBatchMessageListenerAdapter<K, V>"
+          ],
+          [
+            43,
+            "\t\textends AbstractFilteringMessageListener<K, V, BatchMessageListener<K, V>>"
+          ],
+          [
+            44,
+            "\t\timplements BatchAcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            45,
+            ""
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java:42": {
+        "lines": [
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "public class FilteringMessageListenerAdapter<K, V>"
+          ],
+          [
+            42,
+            "\t\textends AbstractFilteringMessageListener<K, V, MessageListener<K, V>>"
+          ],
+          [
+            43,
+            "\t\timplements AcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            44,
+            ""
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java:107": {
+        "lines": [
+          [
+            105,
+            " * @author Nikita Kibitkin"
+          ],
+          [
+            106,
+            " */"
+          ],
+          [
+            107,
+            "public abstract class MessagingMessageListenerAdapter<K, V> implements ConsumerSeekAware, AsyncRepliesAware {"
+          ],
+          [
+            108,
+            ""
+          ],
+          [
+            109,
+            "\tprivate static final SpelExpressionParser PARSER = new SpelExpressionParser();"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java:52": {
+        "lines": [
+          [
+            50,
+            " * @author Venil Noronha"
+          ],
+          [
+            51,
+            " */"
+          ],
+          [
+            52,
+            "public class RecordMessagingMessageListenerAdapter<K, V> extends MessagingMessageListenerAdapter<K, V>"
+          ],
+          [
+            53,
+            "\t\timplements AcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            54,
+            ""
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ShareRecordMessagingMessageListenerAdapter.java:49": {
+        "lines": [
+          [
+            47,
+            " * @since 4.0"
+          ],
+          [
+            48,
+            " */"
+          ],
+          [
+            49,
+            "public class ShareRecordMessagingMessageListenerAdapter<K, V> extends MessagingMessageListenerAdapter<K, V>"
+          ],
+          [
+            50,
+            "\t\timplements AcknowledgingShareConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            51,
+            ""
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+      }
+    }
+  },
+  "S-I2": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerEndpoint.java:72": {
+        "lines": [
+          [
+            70,
+            " */"
+          ],
+          [
+            71,
+            "public abstract class AbstractKafkaListenerEndpoint<K, V>"
+          ],
+          [
+            72,
+            "\t\timplements KafkaListenerEndpoint, BeanFactoryAware, InitializingBean {"
+          ],
+          [
+            73,
+            ""
+          ],
+          [
+            74,
+            "\tprivate final LogAccessor logger = new LogAccessor(LogFactory.getLog(getClass()));"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.config.AbstractKafkaListenerEndpoint",
+        "target": "org.springframework.kafka.config.KafkaListenerEndpoint"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointAdapter.java:38": {
+        "lines": [
+          [
+            36,
+            " *"
+          ],
+          [
+            37,
+            " */"
+          ],
+          [
+            38,
+            "class KafkaListenerEndpointAdapter implements KafkaListenerEndpoint {"
+          ],
+          [
+            39,
+            ""
+          ],
+          [
+            40,
+            "\tKafkaListenerEndpointAdapter() {"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.config.KafkaListenerEndpointAdapter",
+        "target": "org.springframework.kafka.config.KafkaListenerEndpoint"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/MethodKafkaListenerEndpoint.java:62": {
+        "lines": [
+          [
+            60,
+            " * @author Venil Noronha"
+          ],
+          [
+            61,
+            " */"
+          ],
+          [
+            62,
+            "public class MethodKafkaListenerEndpoint<K, V> extends AbstractKafkaListenerEndpoint<K, V> {"
+          ],
+          [
+            63,
+            ""
+          ],
+          [
+            64,
+            "\tprivate final LogAccessor logger = new LogAccessor(LogFactory.getLog(getClass()));"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.config.MethodKafkaListenerEndpoint",
+        "target": "org.springframework.kafka.config.AbstractKafkaListenerEndpoint"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/MultiMethodKafkaListenerEndpoint.java:45": {
+        "lines": [
+          [
+            43,
+            " * @see DelegatingInvocableHandler"
+          ],
+          [
+            44,
+            " */"
+          ],
+          [
+            45,
+            "public class MultiMethodKafkaListenerEndpoint<K, V> extends MethodKafkaListenerEndpoint<K, V> {"
+          ],
+          [
+            46,
+            ""
+          ],
+          [
+            47,
+            "\tprivate List<Method> methods;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.config.MultiMethodKafkaListenerEndpoint",
+        "target": "org.springframework.kafka.config.MethodKafkaListenerEndpoint"
+      }
+    }
+  },
+  "S-I3": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/AcknowledgingConsumerAwareMessageListener.java:37": {
+        "lines": [
+          [
+            35,
+            " */"
+          ],
+          [
+            36,
+            "@FunctionalInterface"
+          ],
+          [
+            37,
+            "public interface AcknowledgingConsumerAwareMessageListener<K, V> extends MessageListener<K, V> {"
+          ],
+          [
+            38,
+            ""
+          ],
+          [
+            39,
+            "\t/**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener",
+        "target": "org.springframework.kafka.listener.MessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ConvertingMessageListener.java:56": {
+        "lines": [
+          [
+            54,
+            " */"
+          ],
+          [
+            55,
+            "@SuppressWarnings(\"rawtypes\")"
+          ],
+          [
+            56,
+            "public class ConvertingMessageListener<V> implements DelegatingMessageListener<MessageListener>, AcknowledgingConsumerAwareMessageListener<Object, Object> {"
+          ],
+          [
+            57,
+            ""
+          ],
+          [
+            58,
+            "\tprivate final MessageListener delegate;"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+        "target": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java:43": {
+        "lines": [
+          [
+            41,
+            "public class FilteringMessageListenerAdapter<K, V>"
+          ],
+          [
+            42,
+            "\t\textends AbstractFilteringMessageListener<K, V, MessageListener<K, V>>"
+          ],
+          [
+            43,
+            "\t\timplements AcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            44,
+            ""
+          ],
+          [
+            45,
+            "\tprivate final boolean ackDiscarded;"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java:53": {
+        "lines": [
+          [
+            51,
+            " */"
+          ],
+          [
+            52,
+            "public class RecordMessagingMessageListenerAdapter<K, V> extends MessagingMessageListenerAdapter<K, V>"
+          ],
+          [
+            53,
+            "\t\timplements AcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            54,
+            ""
+          ],
+          [
+            55,
+            "\tpublic RecordMessagingMessageListenerAdapter(@Nullable Object bean, @Nullable Method method) {"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener"
+      }
+    }
+  },
+  "S-M1": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java:36": {
+        "lines": [
+          [
+            34,
+            " *"
+          ],
+          [
+            35,
+            " */"
+          ],
+          [
+            36,
+            "public interface DelegatingMessageListener<T> extends AsyncRepliesAware {"
+          ],
+          [
+            37,
+            ""
+          ],
+          [
+            38,
+            "\t/**"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+        "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java:42": {
+        "lines": [
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "public abstract class AbstractDelegatingMessageListenerAdapter<T>"
+          ],
+          [
+            42,
+            "\t\timplements ConsumerSeekAware, DelegatingMessageListener<T> {"
+          ],
+          [
+            43,
+            ""
+          ],
+          [
+            44,
+            "\tprotected final LogAccessor logger = new LogAccessor(LogFactory.getLog(this.getClass())); // NOSONAR"
+          ]
+        ],
+        "relation": "implements",
+        "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java:35": {
+        "lines": [
+          [
+            33,
+            " */"
+          ],
+          [
+            34,
+            "public abstract class AbstractFilteringMessageListener<K, V, T>"
+          ],
+          [
+            35,
+            "\t\textends AbstractDelegatingMessageListenerAdapter<T> {"
+          ],
+          [
+            36,
+            ""
+          ],
+          [
+            37,
+            "\tprivate final RecordFilterStrategy<K, V> recordFilterStrategy;"
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+        "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java:42": {
+        "lines": [
+          [
+            40,
+            " */"
+          ],
+          [
+            41,
+            "public class FilteringMessageListenerAdapter<K, V>"
+          ],
+          [
+            42,
+            "\t\textends AbstractFilteringMessageListener<K, V, MessageListener<K, V>>"
+          ],
+          [
+            43,
+            "\t\timplements AcknowledgingConsumerAwareMessageListener<K, V> {"
+          ],
+          [
+            44,
+            ""
+          ]
+        ],
+        "relation": "inherits",
+        "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+        "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+      }
+    }
+  },
+  "S-M2": {
+    "negative_reason": null,
+    "positive_witnesses": {
+      "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistrar.java:202": {
+        "lines": [
+          [
+            200,
+            "\t\t\t\t}"
+          ],
+          [
+            201,
+            "\t\t\t\tif (this.endpointRegistry != null) {"
+          ],
+          [
+            202,
+            "\t\t\t\t\tthis.endpointRegistry.registerListenerContainer("
+          ],
+          [
+            203,
+            "\t\t\t\t\t\t\tdescriptor.endpoint, resolveContainerFactory(descriptor));"
+          ],
+          [
+            204,
+            "\t\t\t\t}"
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistrar#registerAllEndpoints/0",
+        "target": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/2"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistry.java:249": {
+        "lines": [
+          [
+            247,
+            "\t */"
+          ],
+          [
+            248,
+            "\tpublic void registerListenerContainer(KafkaListenerEndpoint endpoint, KafkaListenerContainerFactory<?> factory) {"
+          ],
+          [
+            249,
+            "\t\tregisterListenerContainer(endpoint, factory, false);"
+          ],
+          [
+            250,
+            "\t}"
+          ],
+          [
+            251,
+            ""
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/2",
+        "target": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/3"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistry.java:277": {
+        "lines": [
+          [
+            275,
+            "\t\t\tAssert.state(!this.listenerContainers.containsKey(id),"
+          ],
+          [
+            276,
+            "\t\t\t\t\t\"Another endpoint is already registered with id '\" + id + \"'\");"
+          ],
+          [
+            277,
+            "\t\t\tMessageListenerContainer container = createListenerContainer(endpoint, factory);"
+          ],
+          [
+            278,
+            "\t\t\tthis.listenerContainers.put(id, container);"
+          ],
+          [
+            279,
+            "\t\t\tConfigurableApplicationContext appContext = this.applicationContext;"
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/3",
+        "target": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#createListenerContainer/2"
+      },
+      "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistry.java:349": {
+        "lines": [
+          [
+            347,
+            "\t\t\t}"
+          ],
+          [
+            348,
+            "\t\t}"
+          ],
+          [
+            349,
+            "\t\tMessageListenerContainer listenerContainer = factory.createListenerContainer(endpoint);"
+          ],
+          [
+            350,
+            ""
+          ],
+          [
+            351,
+            "\t\tif (listenerContainer instanceof InitializingBean initializingBean) {"
+          ]
+        ],
+        "relation": "calls",
+        "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#createListenerContainer/2",
+        "target": "org.springframework.kafka.config.KafkaListenerContainerFactory#createListenerContainer/1"
+      }
+    }
+  },
+  "S-T1": {
+    "negative_reason": "Does FilteringMessageListenerAdapter DIRECTLY declare implementation of ConsumerSeekAware, rather than inherit it through a base?",
+    "positive_witnesses": {}
+  },
+  "S-T2": {
+    "negative_reason": "Does the factory class have a calls edge to KafkaAdmin, rather than merely import/type-use connectivity? Do not convert uses/imports into calls.",
+    "positive_witnesses": {}
+  }
+}

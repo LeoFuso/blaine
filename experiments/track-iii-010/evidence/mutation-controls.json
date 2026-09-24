@@ -1,0 +1,32 @@
+[
+  {
+    "checker_exit": 1,
+    "content_leaks": 16,
+    "failed_checks": 6,
+    "metadata_leaks": 24,
+    "mutation": "serialized-scope",
+    "runner_exit": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "checker_exit": 1,
+    "content_leaks": 4,
+    "failed_checks": 8,
+    "metadata_leaks": 4,
+    "mutation": "stale-policy",
+    "runner_exit": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "checker_exit": 1,
+    "content_leaks": 0,
+    "failed_checks": 4,
+    "metadata_leaks": 0,
+    "mutation": "serialized-provenance",
+    "runner_exit": 0,
+    "stderr": "",
+    "stdout": ""
+  }
+]
