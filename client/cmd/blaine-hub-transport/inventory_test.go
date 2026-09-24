@@ -45,7 +45,9 @@ func TestOperatorInventoryIsReadOnlyAndSanitized(t *testing.T) {
 		t.Fatal(e)
 	}
 	var rows []workstation.Record
-	if json.Unmarshal(out.Bytes(), &rows) != nil || len(rows) != 1 || rows[0].ID != r.ID || rows[0].Presence != "ONLINE" || rows[0].LastSeen != r.LastSeen {
+	// JSON UTC decoding and pgx may use different Location pointers for the
+	// same instant. Inventory reads must preserve the instant, not that pointer.
+	if json.Unmarshal(out.Bytes(), &rows) != nil || len(rows) != 1 || rows[0].ID != r.ID || rows[0].Presence != "ONLINE" || !rows[0].LastSeen.Equal(r.LastSeen) {
 		t.Fatal(out.String())
 	}
 	for _, secret := range []string{"password", "private_key", "auth_key", dsn} {
@@ -58,7 +60,7 @@ func TestOperatorInventoryIsReadOnlyAndSanitized(t *testing.T) {
 		t.Fatal(e)
 	}
 	var row workstation.Record
-	if json.Unmarshal(out.Bytes(), &row) != nil || row.ID != r.ID || row.LastSeen != r.LastSeen {
+	if json.Unmarshal(out.Bytes(), &row) != nil || row.ID != r.ID || !row.LastSeen.Equal(r.LastSeen) {
 		t.Fatal(out.String())
 	}
 	out.Reset()
