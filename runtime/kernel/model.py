@@ -33,6 +33,13 @@ def decision_schema(turn):
                for name, properties in [('artifact.write', {'name': string, 'content': string}),
                                          ('artifact.read', {'ref': string}), ('fixture.effect', {'value': string}),
                                          ('human.request', {'request': human_request}), ('youtrack.read', {'issue_id': string}), ('worker.run', {'packet_ref': string, 'artifact': string})]]
+    if 'context.request' in turn.get('allowed_capabilities', []):
+        need = obj({'question': {'type': 'string', 'minLength': 1, 'maxLength': 256},
+            'form': {'enum': ['exact-source', 'lexical-source', 'current-evidence', 'prior-context']},
+            'locator': string, 'exact': string, 'base_ref': string,
+            'max_bytes': {'type': 'integer', 'minimum': 256, 'maximum': 4096}}, ['question', 'form'])
+        actions.append(obj({'type': {'const': 'INVOKE_CAPABILITY'}, 'capability': {'const': 'context.request'},
+            'input': obj({'version': {'const': 1}, 'kind': {'const': 'ContextRequest'}, 'payload': need})}))
     actions += [obj({'type': {'const': 'HANDOFF'}, 'specialist': string}),
                 obj({'type': {'const': 'WAIT'}, 'wait_id': string, 'input_type': {'enum': ['text', 'human_response']}}),
                 obj({'type': {'const': 'SPAWN_TASK'}, 'task_spec': task_spec}), obj({'type': {'const': 'COMPLETE'}})]

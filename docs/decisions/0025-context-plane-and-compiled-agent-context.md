@@ -62,7 +62,10 @@ reduce useful final coverage when provenance consumes the budget.
 Accept the [bounded production plan](../roadmap/002-context-plane-implementation.md) as
 proposed sequencing. Recommend CP.1, one opt-in local worker path with trusted binding,
 read-only Memory facade, exact/lexical resolution, deterministic initial compilation and
-one owned-loop delta. **Implementation NOT STARTED; separate authorization required.**
+one owned-loop delta. At acceptance, implementation was **NOT STARTED** and required
+separate authorization. On 2026-09-24, separately authorized
+[CP.1 passed](../milestones/055-context-plane-cp1.md) within the opt-in local boundary;
+later phases remain unstarted and separately gated.
 
 ## Relationship to existing decisions
 
@@ -114,9 +117,10 @@ weakening lifecycle, evidence, authority or security across bounded execution bo
 ### Validation level
 
 **Partially Validated:** isolated deterministic Track III semantics, paired synthetic
-local-model utility and two-repository Graphify retrieval. Production Integration and
-End-to-end validation are still outstanding; no general authentication/concurrency/DLP
-or distributed durability claim follows from the experiments.
+local-model utility and two-repository Graphify retrieval. The subsequently authorized
+CP.1 local production integration now passes within its retained fixture/smoke boundary.
+Broader end-to-end validation remains outstanding; no general authentication/concurrency/DLP
+or distributed durability claim follows from those results.
 
 ### Minimal validation and evidence
 

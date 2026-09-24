@@ -6,7 +6,8 @@ limitations; their historical “next” instructions do not override that roadm
 
 | Program | Latest accepted checkpoint | Evidence |
 | --- | --- | --- |
-| Track III — Hierarchical Context, Memory & Verified Learning | Research COMPLETE; [architecture consolidation PASS / ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md); III.8 FAIL / III.8R PASS preserved | [III.10 propagation PASS](053-track-iii-10-context-propagation.md); [III.G PASS / ADAPT ON-DEMAND](054-track-iii-g-graphify-structural-utility.md); [CP.1 proposed, NOT STARTED](../roadmap/002-context-plane-implementation.md) |
+| Track III — Hierarchical Context, Memory & Verified Learning | Research COMPLETE; [architecture consolidation PASS / ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md); III.8 FAIL / III.8R PASS preserved | [III.10 propagation PASS](053-track-iii-10-context-propagation.md); [III.G PASS / ADAPT ON-DEMAND](054-track-iii-g-graphify-structural-utility.md) |
+| Context Plane production | [CP.1 PASS: local initial projection and one fresh delta](055-context-plane-cp1.md); opt-in, not deployment approval | [217 relevant tests + native local Goose](../../experiments/context-plane-cp1/evidence/acceptance.json); [CP.2 next, NOT STARTED](../roadmap/002-context-plane-implementation.md) |
 | Cognitive Kernel 1–12 | COMPLETE: [progress and increment index](cognitive-kernel-progress.md), [Increment 12](037-cognitive-kernel-increment-12-parallel-children.md) | [Parallel children](../../experiments/kernel-increment-12/evidence/summary.json) |
 | Frontier boundary | [Increment 11 PASS / CLOSED](036-cognitive-kernel-increment-11-live-pass.md) | [Authorized live probe 002](../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json) |
 | D1.C inference | [Accepted local services, 128k](038-d1-local-inference.md) | [21 checks](../../experiments/d1-service-adoption/evidence/inference-summary.json) |

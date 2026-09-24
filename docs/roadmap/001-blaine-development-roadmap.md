@@ -686,12 +686,15 @@ III.8 remains FAIL; III.8R remains its separate PASS recovery; III.G is compleme
 PASS / ADAPT ON-DEMAND. III.10 remains the planned sequence close. All experiments
 and their historical results are unchanged.
 
-**Production is separate and NOT STARTED.** Recommend **CP.1 — Local governed context
-projection and one delta**, scoped to one existing local worker path, read-only Memory
-facade, exact/lexical sources, runtime-bound authority and deterministic compilation.
-The [bounded implementation plan](002-context-plane-implementation.md) defines staged
-acceptance and deferrals; no authorization to implement or deploy follows from this
-consolidation. Other tracks' priorities and E0–E3 dependencies are unchanged.
+**2026-09-24: CP.1 production slice PASS**, opt-in on the existing hosted local Goose
+worker path: read-only Memory facade, exact/lexical sources, trusted binding, compiler
+admission and one fresh bounded delta. [Milestone](../milestones/055-context-plane-cp1.md)
+and [evidence](../../experiments/context-plane-cp1/evidence/acceptance.json) retain 217
+passing relevant tests and native local smoke. Live MIRIX remains unqualified/disabled.
+The [bounded implementation plan](002-context-plane-implementation.md) owns remaining
+gates: **CP.2 is next, NOT STARTED**, requiring separate authorization. Review/merge CP.1
+before starting a fresh CP.2 worktree; deployment enablement still requires evidence review.
+Other tracks' priorities and E0–E3 dependencies are unchanged.
 
 **2026-09-23: complementary III.G Graphify structural utility PASS.**
 [Milestone](../milestones/054-track-iii-g-graphify-structural-utility.md) and
@@ -936,9 +939,13 @@ operator procedures; this document owns development direction and dependencies.
 - **Track III research COMPLETE; architecture consolidation PASS.**
   [Accepted Context Plane](../context-plane.md) and [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md).
   III.8 FAIL / III.8R PASS remain separate; III.G remains complementary PASS / ADAPT ON-DEMAND.
-  **Next proposal: [CP.1 — Local governed context projection and one delta](002-context-plane-implementation.md#2-exact-next-increment-cp1--local-governed-context-projection-and-one-delta), NOT STARTED.**
-  Implementation requires separate authorization; no automatic learning, hard novelty
-  gate or production adoption is implied. Other product/operational priorities unchanged.
+  **Latest production increment: [CP.1 PASS](../milestones/055-context-plane-cp1.md)**
+  (opt-in local initial packet + one delta; 217 relevant tests and native Goose smoke).
+  **Next proposal: [CP.2 — Governed declared/observed writes](002-context-plane-implementation.md#3-subsequent-bounded-phases), NOT STARTED.**
+  Review/merge CP.1 first; use a fresh CP.2 worktree only after authorization. Qualify
+  existing MIRIX/metadata before writes; live MIRIX remains disabled on the CP.1 path.
+  No automatic learning, semantic retrieval, Graphify, promotion or declassification is
+  authorized. Deployment requires evidence review. Other product priorities unchanged.
 - **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
   client, platform/config locations and clean stdio/process proof
   ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux

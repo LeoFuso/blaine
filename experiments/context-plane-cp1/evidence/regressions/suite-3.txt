@@ -1,0 +1,10 @@
+test_errors_are_protocol_updates (test_acp.Bridge.test_errors_are_protocol_updates) ... ok
+test_status_reads_runtime_without_local_task (test_acp.Bridge.test_status_reads_runtime_without_local_task) ... ok
+test_uncertain_create_preserves_id (test_acp.Bridge.test_uncertain_create_preserves_id) ... ok
+test_multiline_objective_and_signal (test_acp.Commands.test_multiline_objective_and_signal) ... ok
+test_rejects_empty_and_path_injection (test_acp.Commands.test_rejects_empty_and_path_injection) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.005s
+
+OK

@@ -13,7 +13,7 @@ SPECIALISTS = {
     "coordinator": "Coordinate the accepted objective using permitted actions.",
     "specialist": "Produce the required exact artifact and request verification.",
 }
-CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run", "workspace.read", "text.stats"}
+CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run", "workspace.read", "text.stats", "context.request"}
 
 
 class EvidenceRequirement(TypedDict):
