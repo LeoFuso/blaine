@@ -14,6 +14,8 @@ owns delivery status; [architecture](../architecture.md) owns current boundaries
 | [Frontier dispatch](frontier-dispatch.md) | Paid-worker authority, context projection and dispatch evidence. |
 | [ExecutionEvent](execution-event.md) | Versioned forensic metadata; never Task lifecycle authority. |
 | [Worker execution boundary](worker-execution-boundary.md) | Continuation boundary, adapter capability honesty, synchronous control and asynchronous telemetry; never Task authority. |
+| [Completion Contract v1](completion-contract.md) | **Design, not implemented.** Durable revisioned criteria, provenance, verifier taxonomy, amendments, capability journal and completion legality. |
+| [E1 workspace capability](workspace-capability.md) | **Design, not implemented.** IDE-delegated read-only workspace authority, IntelliJ MCP provider, operation/receipt schemas, capability relay, E1 acceptance. |
 
 [Lifecycle/evidence](../policies/task-completion-and-lifecycle.md) and
 [local-first/context](../policies/local-first-and-context.md) policies apply across

@@ -125,3 +125,7 @@ ADR’s own status before treating it as an accepted constraint.
   distinction is enforced. No production remote binding is provisioned, so
   escalation currently denies as unavailable; classifier and heuristic
   pre-routing remain future work.
+- [ADR 0025 — Completion Contract is a durable, revisioned Task primitive](0025-completion-contract-is-a-durable-task-primitive.md)
+  is **Proposed**; its first consumer is E1.
+- [ADR 0026 — IDE delegation is workspace authority; PolicyGate is the single enforcer](0026-ide-delegation-is-workspace-authority.md)
+  is **Proposed**; it revises the Hub E1 provider and local-guard statements.
