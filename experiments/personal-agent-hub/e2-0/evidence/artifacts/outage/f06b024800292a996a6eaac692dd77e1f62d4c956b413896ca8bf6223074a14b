@@ -1,0 +1,1 @@
+{"kind":"PolicyDecision","payload":{"decision_id":"outage/4","outcome":"deny","reason":"Uncertain target effects must be reconciled first: ['outage/3']"},"version":1}

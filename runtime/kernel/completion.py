@@ -11,7 +11,7 @@ import hashlib
 import json
 import re
 
-from runtime.kernel import citation, journal, review
+from runtime.kernel import citation, effect_evidence, journal, review
 from runtime.kernel.contracts import encode, fields, identifier, message, text, unpack
 from runtime.kernel.human import validate_request, validate_response
 
@@ -20,10 +20,9 @@ AUTHORITATIVE = ('task_type', 'operator_rule', 'project_policy', 'user', 'parent
 DERIVED = ('repository', 'memory', 'model')
 SOURCES = AUTHORITATIVE + DERIVED
 VERIFIERS = ('artifact_digest', 'human_response', 'capability_journal', 'evidence_citation',
-             'semantic_review', 'unbound')
-NOT_IMPLEMENTED = {'capability_result': 'specified with E2 as first consumer; not implemented in E1.0',
-                   'change_set': 'reserved for E2'}
-DETERMINISTIC = ('artifact_digest', 'capability_journal', 'evidence_citation')
+             'capability_result', 'change_set', 'semantic_review', 'unbound')
+NOT_IMPLEMENTED = {}
+DETERMINISTIC = ('artifact_digest', 'capability_journal', 'evidence_citation', 'capability_result', 'change_set')
 STATUSES = ('satisfied', 'pending', 'failed', 'unknown', 'waiting_human', 'waived')
 PASSING = ('satisfied', 'waived')
 MAX_CRITERIA = 16
@@ -130,6 +129,10 @@ def validate_verifier(value: object, task_id: str) -> dict:
             journal.validate_predicates(value['predicates'])
         case 'evidence_citation':
             citation.validate_params(value)
+        case 'capability_result':
+            effect_evidence.validate_result_params(value)
+        case 'change_set':
+            effect_evidence.validate_change_params(value)
         case 'semantic_review':
             review.validate_params(value)
             if 'request' in value:
@@ -388,7 +391,13 @@ def load_journal(state: dict, store) -> dict:
         return {'error': f'Capability journal unreadable: {error}'[:512]}
     analysis = journal.analyze(entries, authorities)
     receipts = {e['receipt_ref'] for e in analysis['observed'].values() if e['outcome'] == 'success'}
-    return {'error': None, 'entries': entries, 'authorities': authorities, 'analysis': analysis, 'receipts': receipts}
+    facts = {'error': None, 'entries': entries, 'authorities': authorities, 'analysis': analysis, 'receipts': receipts}
+    try:
+        facts['effects'], facts['effects_error'] = effect_evidence.records(facts, store, task_id), None
+    except (OSError, ValueError, TypeError, KeyError) as error:
+        # Only the effect verifiers lose their evidence; journal facts stay usable.
+        facts['effects'], facts['effects_error'] = None, f'Effect evidence unreadable: {error}'[:512]
+    return facts
 
 
 def retained_review(record: dict | None, contract_revision: int, digest: str, state: dict, store) -> dict | None:
@@ -423,6 +432,15 @@ def assess(contract: dict, state: dict, store, facts: dict | None = None) -> lis
             else:
                 entry['status'], entry['detail'] = journal.verify(verifier['predicates'], facts['analysis'], facts['authorities'])
                 entry['journal_range'] = [0, facts['analysis']['length']]
+        elif kind in ('capability_result', 'change_set'):
+            if facts['error'] or facts.get('effects') is None:
+                entry['status'], entry['detail'] = 'unknown', facts['error'] or facts['effects_error']
+            elif kind == 'capability_result':
+                entry['status'], entry['detail'], entry['evidence_refs'] = effect_evidence.verify_result(
+                    verifier, facts['effects'])
+            else:
+                entry['status'], entry['detail'], entry['evidence_refs'] = effect_evidence.verify_change_set(
+                    verifier, facts['effects'], lambda r: r in state['artifacts'].values() or r in facts['receipts'])
         elif kind == 'evidence_citation':
             if facts['error']:
                 entry['status'], entry['detail'] = 'unknown', facts['error']
@@ -472,6 +490,8 @@ def concerns(contract: dict, results: list[dict], facts: dict) -> list[str]:
     for criterion, entry in zip(contract['criteria'], results):
         if entry['status'] == 'waived':
             ordered.append(f"{entry['level']} criterion {entry['id']} waived, not satisfied: {entry['detail']}"[:512])
+    if not facts['error'] and facts['analysis'].get('unresolved_effects'):
+        ordered.append(f"Target effects with unresolved outcome: {facts['analysis']['unresolved_effects']}"[:512])
     if not facts['error'] and facts['analysis']['denials']:
         denials = facts['analysis']['denials']
         ordered.append(f"PolicyGate denied {len(denials)} capability request(s): "
@@ -523,6 +543,10 @@ def legality(contract: dict, contract_ref: str | None, evaluation: dict, state: 
         blockers.append(facts['error'])
     elif facts['analysis']['problems']:
         blockers.append('Capability journal violation: ' + '; '.join(facts['analysis']['problems'])[:400])
+    if not facts['error'] and facts['analysis'].get('unresolved_effects'):
+        # Lifecycle invariant, independent of the contract: never COMPLETED while
+        # an admitted target effect's outcome is unknown.
+        blockers.append('Target effects with unresolved outcome: ' + ', '.join(facts['analysis']['unresolved_effects'])[:400])
     for criterion in contract['criteria']:
         if 'waiver' not in criterion:
             continue

@@ -1,0 +1,1 @@
+{"kind":"EffectReceipt","payload":{"exec":{"cleanup":"confirmed","signal":"SIGKILL","started":true},"operation_class":"workspace.exec","operation_id":"process-control/5","provider":"fixture-target","request_digest":"sha256:e9d43bc27fa218b6a7dc19a54d7542619d8085a4c5b603f68e14d4cb0b3f69d7","state":"canceled","task_id":"process-control"},"version":1}

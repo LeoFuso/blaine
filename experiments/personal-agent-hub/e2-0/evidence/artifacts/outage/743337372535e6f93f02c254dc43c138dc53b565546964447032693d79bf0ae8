@@ -1,0 +1,1 @@
+{"kind":"CapabilityJournalEntry","payload":{"operation_id":"outage/1","outcome":"success","phase":"observed","previous_ref":"artifact://outage/sha256:35044d19b240fc7b6178949b40974bbca3401545668f3dee36ae98b11305ffb4","receipt_ref":"artifact://outage/sha256:90174f48594352a00d92caf9c5ad0e24b046eb1846abc5a084acf954ab7d0a97","seq":1,"task_id":"outage"},"version":1}

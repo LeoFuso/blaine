@@ -1,0 +1,1 @@
+{"kind":"EffectObservation","payload":{"operation_id":"lost-reply/3","outcome":"success","receipt_ref":"artifact://lost-reply/sha256:d664346d4dbfe49b195a5218a6cbf507a259c1829cde1d6979784816a90f9bc3","request_ref":"artifact://lost-reply/sha256:48b846fac052dbda2f8800bb264d4df57c1f4206f34c90be728b5e71639dc4e5","status":"applied"},"version":1}

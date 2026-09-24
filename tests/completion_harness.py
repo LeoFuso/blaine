@@ -46,6 +46,7 @@ class Runtime:
     def __init__(self, key):
         self.key, self.journal, self.state, self.promises = key, [], {}, {}
         self.executions, self.invocations, self.result, self.request = Counter(), 0, None, None
+        self.cancel_requested = self.cancel_delivered = False
 
 
 class Future:
@@ -54,6 +55,17 @@ class Future:
 
     def __await__(self):
         return self.context.await_promise(self.name).__await__()
+
+
+class Sleep:
+    """A durable timer. In this stand-in it fires as soon as it is awaited or raced."""
+    name = 'sleep'
+
+    def __init__(self, context):
+        self.context = context
+
+    def __await__(self):
+        return self.context.fire_sleep().__await__()
 
 
 class Promise:
@@ -121,7 +133,28 @@ class WorkflowContext:
             return value
         return self.record('peek', name, self.runtime.promises.get(name))
 
+    def sleep(self, delta, name=None):
+        return Sleep(self)
+
+    def check_cancel(self):
+        """Restate delivers a cancellation once, at a suspension point, and journals it."""
+        if self.cursor < len(self.runtime.journal) and self.runtime.journal[self.cursor][0] == 'cancel':
+            self.cursor += 1
+            raise restate.TerminalError('cancelled', status_code=409)
+        if self.cursor >= len(self.runtime.journal) and self.runtime.cancel_requested and not self.runtime.cancel_delivered:
+            self.runtime.cancel_delivered = True
+            self.record('cancel', 'cancel', None)
+            raise restate.TerminalError('cancelled', status_code=409)
+
+    async def fire_sleep(self):
+        self.check_cancel()
+        done, value = self.replayed('sleep', 'sleep')
+        if done:
+            return value
+        return self.record('sleep', 'sleep', None)
+
     async def await_promise(self, name):
+        self.check_cancel()
         done, value = self.replayed('await', name)
         if done:
             return value
@@ -151,18 +184,22 @@ class SharedContext:
         return deepcopy(self.runtime.promises.get(name))
 
     def cancel_invocation(self, invocation_id):
-        raise NotImplementedError
+        self.runtime.cancel_requested = True
 
 
 async def select(**futures):
     context = next(iter(futures.values())).context
+    context.check_cancel()
     label = json.dumps(sorted((key, future.name) for key, future in futures.items()))
     done, value = context.replayed('select', label)
     if done:
         return value
     for key, future in futures.items():
-        if future.name in context.runtime.promises:
+        if not isinstance(future, Sleep) and future.name in context.runtime.promises:
             return context.record('select', label, [key, context.runtime.promises[future.name]])
+    for key, future in futures.items():
+        if isinstance(future, Sleep):
+            return context.record('select', label, [key, None])
     raise Suspended(label)
 
 

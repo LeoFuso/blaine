@@ -1,0 +1,1 @@
+{"kind":"HumanDecisionRequest","payload":{"allowed_responses":["APPROVE","DENY"],"origin_task_id":"cancel-before-dispatch","question":"Approve workspace.write service/config/limits.properties in wsp-e2-fixture (operation cancel-before-dispatch/3, request 9c284742409ee9cb)?","request_id":"approve-3","revision":0,"task_id":"cancel-before-dispatch"},"version":1}

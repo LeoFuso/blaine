@@ -16,6 +16,7 @@ owns delivery status; [architecture](../architecture.md) owns current boundaries
 | [Worker execution boundary](worker-execution-boundary.md) | Continuation boundary, adapter capability honesty, synchronous control and asynchronous telemetry; never Task authority. |
 | [Context Plane](context-plane.md) | Accepted semantic contracts for trusted binding, Memory/workspace/evidence access, Resolver, Compiler, packets/deltas, promotion and verified learning; production schemas/integration NOT STARTED. |
 | [Completion Contract v1](completion-contract.md) | **Implemented in the kernel (E1.0 PASS); E1 end-to-end pending.** Durable revisioned criteria, provenance, verifier taxonomy, amendments, capability journal and completion legality. |
+| [Target effects](target-effects.md) | **Implemented in the kernel with a fixture provider (E2.0 PASS); no real provider.** Effect identity, conditional writes, bounded execution, cancellation, uncertainty and reconciliation, `change_set`/`capability_result`. |
 | [E1 workspace capability](workspace-capability.md) | **Design, not implemented.** IDE-delegated read-only workspace authority, IntelliJ MCP provider, operation/receipt schemas, capability relay, E1 acceptance. |
 
 [Lifecycle/evidence](../policies/task-completion-and-lifecycle.md) and
