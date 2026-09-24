@@ -1,0 +1,15 @@
+{
+  "build": "extract(paths,root=corpus,cache_root=shared_cache,parallel=False); build_from_json(raw,directed=True,root=corpus)",
+  "checkout": "/home/leofuso/workspace/graphify-upstream",
+  "clustering": false,
+  "commit": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae",
+  "directed": true,
+  "java": "tree-sitter-java; class/interface/record/enum/annotation/method/constructor/import/call extraction; provenance EXTRACTED or INFERRED; source validation required for either",
+  "network": "existing offline/sitecustomize.py socket guard",
+  "parallel": false,
+  "python": "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+  "refresh": "same extract/build on B with retained parse cache; full graph rebuild, not claimed incremental graph update",
+  "semantic_extraction": false,
+  "url": "https://github.com/Graphify-Labs/graphify",
+  "version": "0.9.64"
+}

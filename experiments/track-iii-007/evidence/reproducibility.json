@@ -1,0 +1,30 @@
+{
+  "model_invocations": 0,
+  "retained_sha256": {
+    "behavior.json": "9fc193f68cd9115f523254770c9225cde35a4a6cabb801e7b27ab76084403381",
+    "composition.json": "9cd8db2d5a6ec1eca1a29172924e8f31dce864426fe052a4e50007ef9092e67b",
+    "mutation.json": "9923dd45a8bc79691f1323fc5afd92bc8daf48658443aa5e0d8e81c6af3ef879",
+    "summary.json": "0aab9ad0b3595f24fef0510faeb7caf9f6086b1bd1d8591f6231b9e801da2d92",
+    "verification.json": "88020bf0ff139fb25d7924e0d05f00496b0a2e37800f0a48e0498d80e5330c19"
+  },
+  "runs": [
+    {
+      "checker_byte_equal": true,
+      "checker_exit": 0,
+      "composition_byte_equal": true,
+      "composition_exit": 0,
+      "hash_seed": "1",
+      "mutation_exit": 1
+    },
+    {
+      "checker_byte_equal": true,
+      "checker_exit": 0,
+      "composition_byte_equal": true,
+      "composition_exit": 0,
+      "hash_seed": "97",
+      "mutation_exit": 1
+    }
+  ],
+  "scope": "Offline composition and retained-evidence checking only. No byte-reproducibility claim for model behavior.",
+  "status": "PASS"
+}

@@ -1,0 +1,34 @@
+{
+  "budget_actions": 3,
+  "conditions": [
+    "OFF",
+    "ON"
+  ],
+  "enable_thinking": false,
+  "endpoint": "http://127.0.0.1:8000/v1",
+  "max_tokens": 768,
+  "maximum_cognition_calls": 150,
+  "model": "nvidia/Qwen3.8-27B-NVFP4",
+  "mutation": "Replace selected RuneFold source excerpt with a false lossless strip-only contract; leave Task requirements unchanged. No reuse command.",
+  "mutation_repetitions": 2,
+  "mutation_tasks": [
+    "N1"
+  ],
+  "order": "repeat 0 OFF then ON per proposal; repeat 1 ON then OFF. Mutation follows primary.",
+  "packet_bytes": 2048,
+  "provider": "local.vllm",
+  "repetitions": 2,
+  "stop": "One fixed run; no prompts, fixtures, selector or thresholds change after outcomes. Infrastructure failure BLOCKED; criterion miss FAIL.",
+  "temperature": 0,
+  "threshold": {
+    "duplicate_reduction_each_repeat": 2,
+    "forbidden_max": 0,
+    "legitimate_correct_on_each_repeat": 4,
+    "mutation_false_equivalence_min": 1,
+    "near_match_correct_on_each_repeat": 4,
+    "regressions_max": 0,
+    "stale_max": 0,
+    "verified_reuse_improvement_each_repeat": 2
+  },
+  "version": "iii9-one-frozen-corpus-v1"
+}

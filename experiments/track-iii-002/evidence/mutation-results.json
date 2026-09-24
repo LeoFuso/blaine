@@ -1,0 +1,3257 @@
+[
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "visibility/employer-x",
+    "expected": [
+      "employer-x-memory",
+      "root-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "visibility/personal",
+    "expected": [
+      "personal-memory",
+      "root-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "case": "visibility/project-a",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "case": "visibility/project-x",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "root-memory"
+    ],
+    "case": "visibility/root",
+    "expected": [
+      "root-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "visibility/task-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "visibility/task-a2",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a2-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "visibility/task-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "visibility/task-x2",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x2-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "case": "visibility/work-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "case": "visibility/work-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "invariant": "exact_lineage_visibility",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/employer-x/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "case": "direct/employer-x/personal-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "FAIL"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/project-a-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "case": "direct/employer-x/employer-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/project-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/employer-x/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/personal/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "case": "direct/personal/personal-memory",
+    "expected": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/project-a-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "case": "direct/personal/employer-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "FAIL"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/project-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/personal/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/project-a/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "case": "direct/project-a/personal-memory",
+    "expected": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "case": "direct/project-a/project-a-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/employer-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/project-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-a/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/project-x/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/personal-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/project-a-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "case": "direct/project-x/employer-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "case": "direct/project-x/project-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/project-x/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/root/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/personal-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/project-a-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/employer-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/project-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/root/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/task-a1/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "case": "direct/task-a1/personal-memory",
+    "expected": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "case": "direct/task-a1/project-a-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-a1",
+      "context_id": "task-a1",
+      "id": "task-a1-memory"
+    },
+    "case": "direct/task-a1/task-a1-memory",
+    "expected": {
+      "content": "Literal knowledge owned by task-a1",
+      "context_id": "task-a1",
+      "id": "task-a1-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a1/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-a2",
+      "context_id": "task-a2",
+      "id": "task-a2-memory"
+    },
+    "case": "direct/task-a1/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "FAIL"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a1/employer-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a1/project-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a1/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a1/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a1/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/task-a2/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "case": "direct/task-a2/personal-memory",
+    "expected": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "case": "direct/task-a2/project-a-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-a1",
+      "context_id": "task-a1",
+      "id": "task-a1-memory"
+    },
+    "case": "direct/task-a2/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "FAIL"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a2/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-a2",
+      "context_id": "task-a2",
+      "id": "task-a2-memory"
+    },
+    "case": "direct/task-a2/task-a2-memory",
+    "expected": {
+      "content": "Literal knowledge owned by task-a2",
+      "context_id": "task-a2",
+      "id": "task-a2-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a2/employer-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a2/project-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a2/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a2/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-a2/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/task-x1/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x1/personal-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x1/project-a-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x1/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x1/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x1/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "case": "direct/task-x1/employer-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "case": "direct/task-x1/project-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-x1",
+      "context_id": "task-x1",
+      "id": "task-x1-memory"
+    },
+    "case": "direct/task-x1/task-x1-memory",
+    "expected": {
+      "content": "Literal knowledge owned by task-x1",
+      "context_id": "task-x1",
+      "id": "task-x1-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x1/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-x2",
+      "context_id": "task-x2",
+      "id": "task-x2-memory"
+    },
+    "case": "direct/task-x1/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "FAIL"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/task-x2/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x2/personal-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x2/project-a-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x2/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x2/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x2/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "case": "direct/task-x2/employer-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "case": "direct/task-x2/project-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-x1",
+      "context_id": "task-x1",
+      "id": "task-x1-memory"
+    },
+    "case": "direct/task-x2/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "FAIL"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/task-x2/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-x2",
+      "context_id": "task-x2",
+      "id": "task-x2-memory"
+    },
+    "case": "direct/task-x2/task-x2-memory",
+    "expected": {
+      "content": "Literal knowledge owned by task-x2",
+      "context_id": "task-x2",
+      "id": "task-x2-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/work-a1/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "case": "direct/work-a1/personal-memory",
+    "expected": {
+      "content": "Literal knowledge owned by personal",
+      "context_id": "personal",
+      "id": "personal-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "case": "direct/work-a1/project-a-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-a",
+      "context_id": "project-a",
+      "id": "project-a-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-a1",
+      "context_id": "task-a1",
+      "id": "task-a1-memory"
+    },
+    "case": "direct/work-a1/task-a1-memory",
+    "expected": {
+      "content": "Literal knowledge owned by task-a1",
+      "context_id": "task-a1",
+      "id": "task-a1-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by work-a1",
+      "context_id": "work-a1",
+      "id": "work-a1-memory"
+    },
+    "case": "direct/work-a1/work-a1-memory",
+    "expected": {
+      "content": "Literal knowledge owned by work-a1",
+      "context_id": "work-a1",
+      "id": "work-a1-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-a1/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-a1/employer-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-a1/project-x-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-a1/task-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-a1/work-x1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-a1/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "case": "direct/work-x1/root-memory",
+    "expected": {
+      "content": "Literal knowledge owned by root",
+      "context_id": "root",
+      "id": "root-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-x1/personal-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-x1/project-a-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-x1/task-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-x1/work-a1-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-x1/task-a2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "case": "direct/work-x1/employer-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by employer-x",
+      "context_id": "employer-x",
+      "id": "employer-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "case": "direct/work-x1/project-x-memory",
+    "expected": {
+      "content": "Literal knowledge owned by project-x",
+      "context_id": "project-x",
+      "id": "project-x-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by task-x1",
+      "context_id": "task-x1",
+      "id": "task-x1-memory"
+    },
+    "case": "direct/work-x1/task-x1-memory",
+    "expected": {
+      "content": "Literal knowledge owned by task-x1",
+      "context_id": "task-x1",
+      "id": "task-x1-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "Literal knowledge owned by work-x1",
+      "context_id": "work-x1",
+      "id": "work-x1-memory"
+    },
+    "case": "direct/work-x1/work-x1-memory",
+    "expected": {
+      "content": "Literal knowledge owned by work-x1",
+      "context_id": "work-x1",
+      "id": "work-x1-memory"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/work-x1/task-x2-memory",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "direct/unknown",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "direct_id_isolation",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-0",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-1",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-2",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-3",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-4",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-5",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-6",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-7",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-8",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-9",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-10",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "forged/request-11",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      {
+        "content": "Literal knowledge owned by employer-x",
+        "context_id": "employer-x",
+        "id": "employer-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by personal",
+        "context_id": "personal",
+        "id": "personal-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-a",
+        "context_id": "project-a",
+        "id": "project-a-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-x",
+        "context_id": "project-x",
+        "id": "project-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by root",
+        "context_id": "root",
+        "id": "root-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a1",
+        "context_id": "task-a1",
+        "id": "task-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a2",
+        "context_id": "task-a2",
+        "id": "task-a2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x1",
+        "context_id": "task-x1",
+        "id": "task-x1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x2",
+        "context_id": "task-x2",
+        "id": "task-x2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-a1",
+        "context_id": "work-a1",
+        "id": "work-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-x1",
+        "context_id": "work-x1",
+        "id": "work-x1-memory"
+      }
+    ],
+    "case": "forged/no-mutation",
+    "expected": [
+      {
+        "content": "Literal knowledge owned by employer-x",
+        "context_id": "employer-x",
+        "id": "employer-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by personal",
+        "context_id": "personal",
+        "id": "personal-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-a",
+        "context_id": "project-a",
+        "id": "project-a-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-x",
+        "context_id": "project-x",
+        "id": "project-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by root",
+        "context_id": "root",
+        "id": "root-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a1",
+        "context_id": "task-a1",
+        "id": "task-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a2",
+        "context_id": "task-a2",
+        "id": "task-a2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x1",
+        "context_id": "task-x1",
+        "id": "task-x1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x2",
+        "context_id": "task-x2",
+        "id": "task-x2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-a1",
+        "context_id": "work-a1",
+        "id": "work-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-x1",
+        "context_id": "work-x1",
+        "id": "work-x1-memory"
+      }
+    ],
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "untrusted_binding"
+    },
+    "case": "binding/constructed-token",
+    "expected": {
+      "denied": "untrusted_binding"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "untrusted_binding"
+    },
+    "case": "binding/foreign-tree-token",
+    "expected": {
+      "denied": "untrusted_binding"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "untrusted_binding"
+    },
+    "case": "binding/string-id",
+    "expected": {
+      "denied": "untrusted_binding"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "unknown_context"
+    },
+    "case": "binding/unknown-context",
+    "expected": {
+      "denied": "unknown_context"
+    },
+    "invariant": "binding_authority",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "unsupported/bind",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "closed_request_surface",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "unsupported/children",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "closed_request_surface",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "unsupported/parent",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "closed_request_surface",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "unsupported/promote",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "closed_request_surface",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "unsupported/get_context",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "closed_request_surface",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "content": "A scoped observation; no success or authority claim.",
+      "context_id": "task-a1",
+      "id": "new-observation"
+    },
+    "case": "write/receipt",
+    "expected": {
+      "content": "A scoped observation; no success or authority claim.",
+      "context_id": "task-a1",
+      "id": "new-observation"
+    },
+    "invariant": "current_context_write",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      {
+        "content": "Literal knowledge owned by employer-x",
+        "context_id": "employer-x",
+        "id": "employer-x-memory"
+      },
+      {
+        "content": "A scoped observation; no success or authority claim.",
+        "context_id": "task-a1",
+        "id": "new-observation"
+      },
+      {
+        "content": "Literal knowledge owned by personal",
+        "context_id": "personal",
+        "id": "personal-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-a",
+        "context_id": "project-a",
+        "id": "project-a-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-x",
+        "context_id": "project-x",
+        "id": "project-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by root",
+        "context_id": "root",
+        "id": "root-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a1",
+        "context_id": "task-a1",
+        "id": "task-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a2",
+        "context_id": "task-a2",
+        "id": "task-a2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x1",
+        "context_id": "task-x1",
+        "id": "task-x1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x2",
+        "context_id": "task-x2",
+        "id": "task-x2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-a1",
+        "context_id": "work-a1",
+        "id": "work-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-x1",
+        "context_id": "work-x1",
+        "id": "work-x1-memory"
+      }
+    ],
+    "case": "write/storage",
+    "expected": [
+      {
+        "content": "Literal knowledge owned by employer-x",
+        "context_id": "employer-x",
+        "id": "employer-x-memory"
+      },
+      {
+        "content": "A scoped observation; no success or authority claim.",
+        "context_id": "task-a1",
+        "id": "new-observation"
+      },
+      {
+        "content": "Literal knowledge owned by personal",
+        "context_id": "personal",
+        "id": "personal-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-a",
+        "context_id": "project-a",
+        "id": "project-a-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-x",
+        "context_id": "project-x",
+        "id": "project-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by root",
+        "context_id": "root",
+        "id": "root-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a1",
+        "context_id": "task-a1",
+        "id": "task-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a2",
+        "context_id": "task-a2",
+        "id": "task-a2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x1",
+        "context_id": "task-x1",
+        "id": "task-x1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x2",
+        "context_id": "task-x2",
+        "id": "task-x2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-a1",
+        "context_id": "work-a1",
+        "id": "work-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-x1",
+        "context_id": "work-x1",
+        "id": "work-x1-memory"
+      }
+    ],
+    "invariant": "current_context_write",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "write/visibility/employer-x",
+    "expected": [
+      "employer-x-memory",
+      "root-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "write/visibility/personal",
+    "expected": [
+      "personal-memory",
+      "root-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "case": "write/visibility/project-a",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "case": "write/visibility/project-x",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "root-memory"
+    ],
+    "case": "write/visibility/root",
+    "expected": [
+      "root-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "new-observation",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "write/visibility/task-a1",
+    "expected": [
+      "new-observation",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "new-observation",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "write/visibility/task-a2",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a2-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "write/visibility/task-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "write/visibility/task-x2",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x2-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "new-observation",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "case": "write/visibility/work-a1",
+    "expected": [
+      "new-observation",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "case": "write/visibility/work-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "invariant": "write_inheritance_no_upward_flow",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "duplicate_entry_id"
+    },
+    "case": "write/duplicate-foreign-entry",
+    "expected": {
+      "denied": "duplicate_entry_id"
+    },
+    "invariant": "current_context_write",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      {
+        "content": "Literal knowledge owned by employer-x",
+        "context_id": "employer-x",
+        "id": "employer-x-memory"
+      },
+      {
+        "content": "A scoped observation; no success or authority claim.",
+        "context_id": "task-a1",
+        "id": "new-observation"
+      },
+      {
+        "content": "Literal knowledge owned by personal",
+        "context_id": "personal",
+        "id": "personal-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-a",
+        "context_id": "project-a",
+        "id": "project-a-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-x",
+        "context_id": "project-x",
+        "id": "project-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by root",
+        "context_id": "root",
+        "id": "root-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a1",
+        "context_id": "task-a1",
+        "id": "task-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a2",
+        "context_id": "task-a2",
+        "id": "task-a2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x1",
+        "context_id": "task-x1",
+        "id": "task-x1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x2",
+        "context_id": "task-x2",
+        "id": "task-x2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-a1",
+        "context_id": "work-a1",
+        "id": "work-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-x1",
+        "context_id": "work-x1",
+        "id": "work-x1-memory"
+      }
+    ],
+    "case": "write/no-overwrite",
+    "expected": [
+      {
+        "content": "Literal knowledge owned by employer-x",
+        "context_id": "employer-x",
+        "id": "employer-x-memory"
+      },
+      {
+        "content": "A scoped observation; no success or authority claim.",
+        "context_id": "task-a1",
+        "id": "new-observation"
+      },
+      {
+        "content": "Literal knowledge owned by personal",
+        "context_id": "personal",
+        "id": "personal-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-a",
+        "context_id": "project-a",
+        "id": "project-a-memory"
+      },
+      {
+        "content": "Literal knowledge owned by project-x",
+        "context_id": "project-x",
+        "id": "project-x-memory"
+      },
+      {
+        "content": "Literal knowledge owned by root",
+        "context_id": "root",
+        "id": "root-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a1",
+        "context_id": "task-a1",
+        "id": "task-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-a2",
+        "context_id": "task-a2",
+        "id": "task-a2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x1",
+        "context_id": "task-x1",
+        "id": "task-x1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by task-x2",
+        "context_id": "task-x2",
+        "id": "task-x2-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-a1",
+        "context_id": "work-a1",
+        "id": "work-a1-memory"
+      },
+      {
+        "content": "Literal knowledge owned by work-x1",
+        "context_id": "work-x1",
+        "id": "work-x1-memory"
+      }
+    ],
+    "invariant": "current_context_write",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "missing_parent"
+    },
+    "case": "malformed/missing-parent",
+    "expected": {
+      "denied": "missing_parent"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "self_parent"
+    },
+    "case": "malformed/self-parent",
+    "expected": {
+      "denied": "self_parent"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "cycle"
+    },
+    "case": "malformed/cycle",
+    "expected": {
+      "denied": "cycle"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "cycle"
+    },
+    "case": "malformed/cycle-behind-boundary",
+    "expected": {
+      "denied": "cycle"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "duplicate_context_id"
+    },
+    "case": "malformed/duplicate-id",
+    "expected": {
+      "denied": "duplicate_context_id"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "root_count"
+    },
+    "case": "malformed/second-root",
+    "expected": {
+      "denied": "root_count"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "cycle"
+    },
+    "case": "malformed/no-root",
+    "expected": {
+      "denied": "cycle"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_node"
+    },
+    "case": "malformed/multiple-parents",
+    "expected": {
+      "denied": "invalid_node"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_node"
+    },
+    "case": "malformed/missing-policy",
+    "expected": {
+      "denied": "invalid_node"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_node"
+    },
+    "case": "malformed/nonboolean-policy",
+    "expected": {
+      "denied": "invalid_node"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "root_count"
+    },
+    "case": "malformed/empty-tree",
+    "expected": {
+      "denied": "root_count"
+    },
+    "invariant": "malformed_tree_fail_closed",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "unknown_entry_context"
+    },
+    "case": "malformed-entry/unknown-owner",
+    "expected": {
+      "denied": "unknown_entry_context"
+    },
+    "invariant": "entry_integrity",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "duplicate_entry_id"
+    },
+    "case": "malformed-entry/duplicate-entry",
+    "expected": {
+      "denied": "duplicate_entry_id"
+    },
+    "invariant": "entry_integrity",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "labels/employer-x",
+    "expected": [
+      "employer-x-memory",
+      "root-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "ordering/employer-x",
+    "expected": [
+      "employer-x-memory",
+      "root-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "labels/personal",
+    "expected": [
+      "personal-memory",
+      "root-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "ordering/personal",
+    "expected": [
+      "personal-memory",
+      "root-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "case": "labels/project-a",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "case": "ordering/project-a",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "case": "labels/project-x",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "case": "ordering/project-x",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "root-memory"
+    ],
+    "case": "labels/root",
+    "expected": [
+      "root-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "root-memory"
+    ],
+    "case": "ordering/root",
+    "expected": [
+      "root-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "labels/task-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "ordering/task-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "labels/task-a2",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a2-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "ordering/task-a2",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a2-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "labels/task-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "ordering/task-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "labels/task-x2",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x2-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "ordering/task-x2",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x2-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "case": "labels/work-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "case": "ordering/work-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "case": "labels/work-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "invariant": "label_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "case": "ordering/work-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "invariant": "input_order_independence",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "extra-memory",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "case": "extension/new-level",
+    "expected": [
+      "extra-memory",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "extension/old-context/employer-x",
+    "expected": [
+      "employer-x-memory",
+      "root-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "personal-memory",
+      "root-memory"
+    ],
+    "case": "extension/old-context/personal",
+    "expected": [
+      "personal-memory",
+      "root-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "case": "extension/old-context/project-a",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "case": "extension/old-context/project-x",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "root-memory"
+    ],
+    "case": "extension/old-context/root",
+    "expected": [
+      "root-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "extension/old-context/task-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "extension/old-context/task-a2",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a2-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "extension/old-context/task-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "task-x2-memory"
+    ],
+    "case": "extension/old-context/task-x2",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x2-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "FAIL"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "case": "extension/old-context/work-a1",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "case": "extension/old-context/work-x1",
+    "expected": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "invariant": "generic_specialization",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "project-a-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "case": "boundary/permitted-ancestors",
+    "expected": [
+      "project-a-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "invariant": "trusted_read_boundary",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "not_visible"
+    },
+    "case": "boundary/root-direct-denied",
+    "expected": {
+      "denied": "not_visible"
+    },
+    "invariant": "trusted_read_boundary",
+    "status": "PASS"
+  },
+  {
+    "actual": {
+      "denied": "invalid_request"
+    },
+    "case": "boundary/caller-cannot-open",
+    "expected": {
+      "denied": "invalid_request"
+    },
+    "invariant": "trusted_read_boundary",
+    "status": "PASS"
+  },
+  {
+    "actual": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "task-a2-memory"
+    ],
+    "case": "binding/input-copy",
+    "expected": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "invariant": "binding_authority",
+    "status": "FAIL"
+  }
+]

@@ -1,0 +1,726 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "query": "J-D1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-D1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-D1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-D1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-D1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-D1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-D2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-D2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-D2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-D2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-D2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-D2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M3",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M3",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M3",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M3",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-M3",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-M3",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-I1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-I1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-I1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-I1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-I1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-I1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-I2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-I2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-I2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-I2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-I2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-I2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T3",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T3",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T3",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T3",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "J-T3",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "J-T3",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D3",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D3",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D3",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D3",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-D3",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-D3",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-M1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-M1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-M1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-M1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-M1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-M1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-M2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-M2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-M2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-M2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-M2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-M2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I3",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I3",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I3",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I3",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-I3",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-I3",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-T1",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-T1",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-T1",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-T1",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-T1",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-T1",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-T2",
+      "condition": "A",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-T2",
+      "condition": "A",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-T2",
+      "condition": "B",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-T2",
+      "condition": "B",
+      "kind": "total response bytes",
+      "ok": true
+    },
+    {
+      "query": "S-T2",
+      "condition": "C",
+      "kind": "literal/reference",
+      "ok": true
+    },
+    {
+      "query": "S-T2",
+      "condition": "C",
+      "kind": "total response bytes",
+      "ok": true
+    }
+  ],
+  "note": "Includes all packet fields and export wrapper diagnostics/metadata. Raw indexes and administrative candidates are not caller-visible."
+}

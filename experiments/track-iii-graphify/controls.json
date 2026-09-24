@@ -1,0 +1,55 @@
+{
+  "freshness": [
+    {
+      "depth": 1,
+      "direction": "out",
+      "end": null,
+      "group": "FRESHNESS_CONTROL",
+      "id": "REFRESH-spring-kafka",
+      "kind": "neighbors",
+      "local": false,
+      "relations": [
+        "imports"
+      ],
+      "repo": "spring-kafka",
+      "scope": null,
+      "start": "file:spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+      "text": "Current explicit internal imports of the changed source unit."
+    },
+    {
+      "depth": 1,
+      "direction": "out",
+      "end": null,
+      "group": "FRESHNESS_CONTROL",
+      "id": "REFRESH-jackson-databind",
+      "kind": "neighbors",
+      "local": false,
+      "relations": [
+        "imports"
+      ],
+      "repo": "jackson-databind",
+      "scope": null,
+      "start": "file:src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+      "text": "Current explicit internal imports of the changed source unit."
+    }
+  ],
+  "inferred_trust": {
+    "depth": 1,
+    "direction": "out",
+    "end": "org.springframework.kafka.core.KafkaResourceFactory#checkBootstrap/1",
+    "expected_required": [],
+    "group": "TRAP_CONTROL",
+    "id": "CONTROL-INFERRED",
+    "kind": "path",
+    "local": false,
+    "raw_edge_index": 14181,
+    "relations": [
+      "calls"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.core.DefaultKafkaConsumerFactory#createKafkaConsumer/4",
+    "text": "Does the four-argument createKafkaConsumer directly call checkBootstrap? A merged overload node is not source evidence for that claim.",
+    "witness": "Graphify points its merged caller node at L339 (four-argument overload ends L379), but the inferred call is L436 inside the Map overload. No fixture/source edge is injected."
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "phase": "Before evaluator implementation or experimental execution",
+  "sha256": {
+    "cases.json": "147f4dc5a520d18e1bb111e97704d841748f5d0ee12296172b2fd93a43c21239",
+    "protocol.json": "299f8868464b0ca6df123d42c6bef733e89eae976b5ba7a5be617957a7167b74",
+    "request.json": "6a04737706f4080eb88e65248c44fe940f54d02897612f9ca3137761c7724cbd",
+    "security.json": "a00f45201a9ece98df564783ab474abd4cff8c157a3f72424f9c1addf1b9462c",
+    "state.json": "b9e7a5c604aed99e5d1d96a55389f1cf5cba6b3f9c95f0f89e14db117f740650"
+  }
+}

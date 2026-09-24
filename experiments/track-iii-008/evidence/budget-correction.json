@@ -1,0 +1,10 @@
+{
+  "after_sha256": "b072a05c89c1c97f8f9b473fec16962c0d10615aafa45997c5baf4a47d5e3b95",
+  "before_sha256": "c05cbc35894e6da98621687799f02fc2fcdbbb532c376575928c8bbc544aeb9c",
+  "initial_max_envelope_bytes": 2118,
+  "initial_max_payload_bytes": 2045,
+  "initial_oversize_envelopes": 10,
+  "initial_unique_gain_per_revision": 1,
+  "initial_utility_status": "FAIL",
+  "reason": "Include diagnostics and two possible true->false byte increments in complete caller-visible 2048-byte envelope. No ranking/query/oracle/threshold changes."
+}

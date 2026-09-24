@@ -1,0 +1,1423 @@
+{
+  "J-D1": {
+    "acceptable": [
+      "tools.jackson.databind.ser.std.ArraySerializerBase"
+    ],
+    "negative": false,
+    "required": [
+      "tools.jackson.databind.ser.std.ArraySerializerBase"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "tools.jackson.databind.ser.std.ArraySerializerBase": [
+        {
+          "file": "src/main/java/tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "line": 25,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ser.jdk.ObjectArraySerializer",
+          "target": "tools.jackson.databind.ser.std.ArraySerializerBase"
+        }
+      ]
+    }
+  },
+  "J-D2": {
+    "acceptable": [
+      "tools.jackson.databind.JavaType",
+      "tools.jackson.databind.util.ClassUtil"
+    ],
+    "negative": false,
+    "required": [
+      "tools.jackson.databind.JavaType",
+      "tools.jackson.databind.util.ClassUtil"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "tools.jackson.databind.JavaType": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "line": 13,
+          "relation": "imports",
+          "source": "file:src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "target": "tools.jackson.databind.JavaType"
+        }
+      ],
+      "tools.jackson.databind.util.ClassUtil": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "line": 14,
+          "relation": "imports",
+          "source": "file:src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "target": "tools.jackson.databind.util.ClassUtil"
+        }
+      ]
+    }
+  },
+  "J-I1": {
+    "acceptable": [
+      "tools.jackson.databind.ext.javatime.deser.DurationDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.InstantDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+      "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+      "tools.jackson.databind.ext.javatime.deser.JSR310StringParsableDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.LocalDateDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.LocalDateTimeDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.LocalTimeDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.MonthDayDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.MonthDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.OffsetTimeDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.YearDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.YearMonthDeserializer"
+    ],
+    "negative": false,
+    "required": [
+      "tools.jackson.databind.ext.javatime.deser.DurationDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.InstantDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+      "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+      "tools.jackson.databind.ext.javatime.deser.JSR310StringParsableDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.LocalDateDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.LocalDateTimeDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.LocalTimeDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.MonthDayDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.MonthDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.OffsetTimeDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.YearDeserializer",
+      "tools.jackson.databind.ext.javatime.deser.YearMonthDeserializer"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "tools.jackson.databind.ext.javatime.deser.DurationDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/DurationDeserializer.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.DurationDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.InstantDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/InstantDeserializer.java",
+          "line": 49,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.InstantDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.JSR310StringParsableDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310StringParsableDeserializer.java",
+          "line": 48,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310StringParsableDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.LocalDateDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/LocalDateDeserializer.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.LocalDateDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.LocalDateTimeDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/LocalDateTimeDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.LocalDateTimeDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.LocalTimeDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/LocalTimeDeserializer.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.LocalTimeDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.MonthDayDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/MonthDayDeserializer.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.MonthDayDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.MonthDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/MonthDeserializer.java",
+          "line": 28,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.MonthDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.OffsetTimeDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/OffsetTimeDeserializer.java",
+          "line": 37,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.OffsetTimeDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.YearDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/YearDeserializer.java",
+          "line": 37,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.YearDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ],
+      "tools.jackson.databind.ext.javatime.deser.YearMonthDeserializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdDeserializer.java",
+          "line": 39,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdDeserializer",
+          "target": "tools.jackson.databind.ValueDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "line": 13,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.deser.std.StdScalarDeserializer",
+          "target": "tools.jackson.databind.deser.std.StdDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "line": 41,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase",
+          "target": "tools.jackson.databind.deser.std.StdScalarDeserializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ext/javatime/deser/YearMonthDeserializer.java",
+          "line": 37,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ext.javatime.deser.YearMonthDeserializer",
+          "target": "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+        }
+      ]
+    }
+  },
+  "J-I2": {
+    "acceptable": [
+      "tools.jackson.databind.introspect.AnnotatedClass",
+      "tools.jackson.databind.introspect.AnnotatedConstructor",
+      "tools.jackson.databind.introspect.AnnotatedField",
+      "tools.jackson.databind.introspect.AnnotatedMember",
+      "tools.jackson.databind.introspect.AnnotatedMethod",
+      "tools.jackson.databind.introspect.AnnotatedParameter",
+      "tools.jackson.databind.introspect.AnnotatedWithParams",
+      "tools.jackson.databind.introspect.VirtualAnnotatedMember"
+    ],
+    "negative": false,
+    "required": [
+      "tools.jackson.databind.introspect.AnnotatedClass",
+      "tools.jackson.databind.introspect.AnnotatedConstructor",
+      "tools.jackson.databind.introspect.AnnotatedField",
+      "tools.jackson.databind.introspect.AnnotatedMember",
+      "tools.jackson.databind.introspect.AnnotatedMethod",
+      "tools.jackson.databind.introspect.AnnotatedParameter",
+      "tools.jackson.databind.introspect.AnnotatedWithParams",
+      "tools.jackson.databind.introspect.VirtualAnnotatedMember"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "tools.jackson.databind.introspect.AnnotatedClass": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedClass.java",
+          "line": 15,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedClass",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        }
+      ],
+      "tools.jackson.databind.introspect.AnnotatedConstructor": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMember",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedWithParams.java",
+          "line": 12,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedWithParams",
+          "target": "tools.jackson.databind.introspect.AnnotatedMember"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedConstructor.java",
+          "line": 18,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedConstructor",
+          "target": "tools.jackson.databind.introspect.AnnotatedWithParams"
+        }
+      ],
+      "tools.jackson.databind.introspect.AnnotatedField": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMember",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedField.java",
+          "line": 14,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedField",
+          "target": "tools.jackson.databind.introspect.AnnotatedMember"
+        }
+      ],
+      "tools.jackson.databind.introspect.AnnotatedMember": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMember",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        }
+      ],
+      "tools.jackson.databind.introspect.AnnotatedMethod": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMember",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedWithParams.java",
+          "line": 12,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedWithParams",
+          "target": "tools.jackson.databind.introspect.AnnotatedMember"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "line": 21,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMethod",
+          "target": "tools.jackson.databind.introspect.AnnotatedWithParams"
+        }
+      ],
+      "tools.jackson.databind.introspect.AnnotatedParameter": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMember",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedParameter.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedParameter",
+          "target": "tools.jackson.databind.introspect.AnnotatedMember"
+        }
+      ],
+      "tools.jackson.databind.introspect.AnnotatedWithParams": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMember",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedWithParams.java",
+          "line": 12,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedWithParams",
+          "target": "tools.jackson.databind.introspect.AnnotatedMember"
+        }
+      ],
+      "tools.jackson.databind.introspect.VirtualAnnotatedMember": [
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/AnnotatedMember.java",
+          "line": 16,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.AnnotatedMember",
+          "target": "tools.jackson.databind.introspect.Annotated"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/introspect/VirtualAnnotatedMember.java",
+          "line": 15,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.introspect.VirtualAnnotatedMember",
+          "target": "tools.jackson.databind.introspect.AnnotatedMember"
+        }
+      ]
+    }
+  },
+  "J-M1": {
+    "acceptable": [
+      "tools.jackson.databind.ValueSerializer"
+    ],
+    "negative": false,
+    "required": [
+      "tools.jackson.databind.ValueSerializer"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "tools.jackson.databind.ValueSerializer": [
+        {
+          "file": "src/main/java/tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "line": 25,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ser.jdk.ObjectArraySerializer",
+          "target": "tools.jackson.databind.ser.std.ArraySerializerBase"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ser/std/ArraySerializerBase.java",
+          "line": 21,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ser.std.ArraySerializerBase",
+          "target": "tools.jackson.databind.ser.std.StdContainerSerializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ser/std/StdContainerSerializer.java",
+          "line": 20,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ser.std.StdContainerSerializer",
+          "target": "tools.jackson.databind.ser.std.StdSerializer"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ser/std/StdSerializer.java",
+          "line": 32,
+          "relation": "inherits",
+          "source": "tools.jackson.databind.ser.std.StdSerializer",
+          "target": "tools.jackson.databind.ValueSerializer"
+        }
+      ]
+    }
+  },
+  "J-M2": {
+    "acceptable": [
+      "tools.jackson.databind.DatabindContext#lazyIntrospectBeanDescription/1"
+    ],
+    "negative": false,
+    "required": [
+      "tools.jackson.databind.DatabindContext#lazyIntrospectBeanDescription/1"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "tools.jackson.databind.DatabindContext#lazyIntrospectBeanDescription/1": [
+        {
+          "file": "src/main/java/tools/jackson/databind/ObjectMapper.java",
+          "line": 2689,
+          "relation": "calls",
+          "source": "tools.jackson.databind.ObjectMapper#_readMapAndClose/3",
+          "target": "tools.jackson.databind.ObjectMapper#_findRootDeserializer/2"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/ObjectMapper.java",
+          "line": 2881,
+          "relation": "calls",
+          "source": "tools.jackson.databind.ObjectMapper#_findRootDeserializer/2",
+          "target": "tools.jackson.databind.DeserializationContext#findRootValueDeserializer/1"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/DeserializationContext.java",
+          "line": 752,
+          "relation": "calls",
+          "source": "tools.jackson.databind.DeserializationContext#findRootValueDeserializer/1",
+          "target": "tools.jackson.databind.deser.DeserializerCache#findValueDeserializer/3"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/DeserializerCache.java",
+          "line": 163,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.DeserializerCache#findValueDeserializer/3",
+          "target": "tools.jackson.databind.deser.DeserializerCache#_createAndCacheValueDeserializer/3"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/DeserializerCache.java",
+          "line": 249,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.DeserializerCache#_createAndCacheValueDeserializer/3",
+          "target": "tools.jackson.databind.deser.DeserializerCache#_createAndCache2/4"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/DeserializerCache.java",
+          "line": 270,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.DeserializerCache#_createAndCache2/4",
+          "target": "tools.jackson.databind.deser.DeserializerCache#_createDeserializer/3"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/DeserializerCache.java",
+          "line": 330,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.DeserializerCache#_createDeserializer/3",
+          "target": "tools.jackson.databind.DatabindContext#lazyIntrospectBeanDescription/1"
+        }
+      ]
+    }
+  },
+  "J-M3": {
+    "acceptable": [
+      "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1"
+    ],
+    "negative": false,
+    "required": [
+      "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1": [
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "line": 1140,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.BasicDeserializerFactory#createReferenceDeserializer/3",
+          "target": "tools.jackson.databind.deser.BasicDeserializerFactory#findValueInstantiator/2"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "line": 172,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.BasicDeserializerFactory#findValueInstantiator/2",
+          "target": "tools.jackson.databind.deser.BasicDeserializerFactory#_constructDefaultValueInstantiator/2"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "line": 219,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.BasicDeserializerFactory#_constructDefaultValueInstantiator/2",
+          "target": "tools.jackson.databind.deser.bean.CreatorCollector#setDefaultCreator/1"
+        },
+        {
+          "file": "src/main/java/tools/jackson/databind/deser/bean/CreatorCollector.java",
+          "line": 119,
+          "relation": "calls",
+          "source": "tools.jackson.databind.deser.bean.CreatorCollector#setDefaultCreator/1",
+          "target": "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1"
+        }
+      ]
+    }
+  },
+  "J-T1": {
+    "acceptable": [],
+    "negative": true,
+    "required": [],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {}
+  },
+  "J-T2": {
+    "acceptable": [],
+    "negative": true,
+    "required": [],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {}
+  },
+  "J-T3": {
+    "acceptable": [],
+    "negative": true,
+    "required": [],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {}
+  },
+  "S-D1": {
+    "acceptable": [
+      "org.springframework.kafka.listener.BatchAcknowledgingConsumerAwareMessageListener",
+      "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.listener.BatchAcknowledgingConsumerAwareMessageListener",
+      "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.listener.BatchAcknowledgingConsumerAwareMessageListener": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java",
+          "line": 44,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.BatchAcknowledgingConsumerAwareMessageListener"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java",
+          "line": 43,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+        }
+      ]
+    }
+  },
+  "S-D2": {
+    "acceptable": [
+      "org.springframework.kafka.listener.adapter.DefaultBatchToRecordAdapter"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.listener.adapter.DefaultBatchToRecordAdapter"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.listener.adapter.DefaultBatchToRecordAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/DefaultBatchToRecordAdapter.java",
+          "line": 42,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.DefaultBatchToRecordAdapter",
+          "target": "org.springframework.kafka.listener.adapter.BatchToRecordAdapter"
+        }
+      ]
+    }
+  },
+  "S-D3": {
+    "acceptable": [
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#configureEndpoint/1",
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createContainerInstance/1",
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#customizeContainer/2",
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#initializeContainer/2"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#configureEndpoint/1",
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createContainerInstance/1",
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#customizeContainer/2",
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#initializeContainer/2"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#configureEndpoint/1": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "line": 394,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+          "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#configureEndpoint/1"
+        }
+      ],
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createContainerInstance/1": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "line": 389,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+          "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createContainerInstance/1"
+        }
+      ],
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#customizeContainer/2": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "line": 404,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+          "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#customizeContainer/2"
+        }
+      ],
+      "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#initializeContainer/2": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "line": 403,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+          "target": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#initializeContainer/2"
+        }
+      ]
+    }
+  },
+  "S-I1": {
+    "acceptable": [
+      "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+      "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+      "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+      "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+      "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "line": 36,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "line": 42,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "line": 36,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "line": 42,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "line": 35,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+          "line": 107,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/BatchMessagingMessageListenerAdapter.java",
+          "line": 62,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.ConvertingMessageListener": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "line": 36,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "line": 56,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "line": 36,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "line": 42,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "line": 35,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java",
+          "line": 43,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "line": 36,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "line": 42,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "line": 35,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "line": 42,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+          "line": 107,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+          "line": 107,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "line": 52,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+          "line": 107,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ShareRecordMessagingMessageListenerAdapter.java",
+          "line": 49,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ]
+    }
+  },
+  "S-I2": {
+    "acceptable": [
+      "org.springframework.kafka.config.AbstractKafkaListenerEndpoint",
+      "org.springframework.kafka.config.KafkaListenerEndpointAdapter",
+      "org.springframework.kafka.config.MethodKafkaListenerEndpoint",
+      "org.springframework.kafka.config.MultiMethodKafkaListenerEndpoint"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.config.AbstractKafkaListenerEndpoint",
+      "org.springframework.kafka.config.KafkaListenerEndpointAdapter",
+      "org.springframework.kafka.config.MethodKafkaListenerEndpoint",
+      "org.springframework.kafka.config.MultiMethodKafkaListenerEndpoint"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.config.AbstractKafkaListenerEndpoint": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerEndpoint.java",
+          "line": 72,
+          "relation": "implements",
+          "source": "org.springframework.kafka.config.AbstractKafkaListenerEndpoint",
+          "target": "org.springframework.kafka.config.KafkaListenerEndpoint"
+        }
+      ],
+      "org.springframework.kafka.config.KafkaListenerEndpointAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointAdapter.java",
+          "line": 38,
+          "relation": "implements",
+          "source": "org.springframework.kafka.config.KafkaListenerEndpointAdapter",
+          "target": "org.springframework.kafka.config.KafkaListenerEndpoint"
+        }
+      ],
+      "org.springframework.kafka.config.MethodKafkaListenerEndpoint": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerEndpoint.java",
+          "line": 72,
+          "relation": "implements",
+          "source": "org.springframework.kafka.config.AbstractKafkaListenerEndpoint",
+          "target": "org.springframework.kafka.config.KafkaListenerEndpoint"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/MethodKafkaListenerEndpoint.java",
+          "line": 62,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.config.MethodKafkaListenerEndpoint",
+          "target": "org.springframework.kafka.config.AbstractKafkaListenerEndpoint"
+        }
+      ],
+      "org.springframework.kafka.config.MultiMethodKafkaListenerEndpoint": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/AbstractKafkaListenerEndpoint.java",
+          "line": 72,
+          "relation": "implements",
+          "source": "org.springframework.kafka.config.AbstractKafkaListenerEndpoint",
+          "target": "org.springframework.kafka.config.KafkaListenerEndpoint"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/MethodKafkaListenerEndpoint.java",
+          "line": 62,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.config.MethodKafkaListenerEndpoint",
+          "target": "org.springframework.kafka.config.AbstractKafkaListenerEndpoint"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/MultiMethodKafkaListenerEndpoint.java",
+          "line": 45,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.config.MultiMethodKafkaListenerEndpoint",
+          "target": "org.springframework.kafka.config.MethodKafkaListenerEndpoint"
+        }
+      ]
+    }
+  },
+  "S-I3": {
+    "acceptable": [
+      "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+      "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+      "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+      "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.listener.adapter.ConvertingMessageListener": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/AcknowledgingConsumerAwareMessageListener.java",
+          "line": 37,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener",
+          "target": "org.springframework.kafka.listener.MessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "line": 56,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+          "target": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/AcknowledgingConsumerAwareMessageListener.java",
+          "line": 37,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener",
+          "target": "org.springframework.kafka.listener.MessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "line": 43,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener"
+        }
+      ],
+      "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/AcknowledgingConsumerAwareMessageListener.java",
+          "line": 37,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener",
+          "target": "org.springframework.kafka.listener.MessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "line": 53,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.AcknowledgingConsumerAwareMessageListener"
+        }
+      ]
+    }
+  },
+  "S-M1": {
+    "acceptable": [
+      "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.listener.adapter.AsyncRepliesAware": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "line": 42,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "line": 35,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "line": 42,
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "line": 36,
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        }
+      ]
+    }
+  },
+  "S-M2": {
+    "acceptable": [
+      "org.springframework.kafka.config.KafkaListenerContainerFactory#createListenerContainer/1"
+    ],
+    "negative": false,
+    "required": [
+      "org.springframework.kafka.config.KafkaListenerContainerFactory#createListenerContainer/1"
+    ],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {
+      "org.springframework.kafka.config.KafkaListenerContainerFactory#createListenerContainer/1": [
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistrar.java",
+          "line": 202,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistrar#registerAllEndpoints/0",
+          "target": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/2"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "line": 249,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/2",
+          "target": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/3"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "line": 277,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#registerListenerContainer/3",
+          "target": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#createListenerContainer/2"
+        },
+        {
+          "file": "spring-kafka/src/main/java/org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "line": 349,
+          "relation": "calls",
+          "source": "org.springframework.kafka.config.KafkaListenerEndpointRegistry#createListenerContainer/2",
+          "target": "org.springframework.kafka.config.KafkaListenerContainerFactory#createListenerContainer/1"
+        }
+      ]
+    }
+  },
+  "S-T1": {
+    "acceptable": [],
+    "negative": true,
+    "required": [],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {}
+  },
+  "S-T2": {
+    "acceptable": [],
+    "negative": true,
+    "required": [],
+    "runtime_impact_proven": false,
+    "scope": "current B, production main Java, synthetic allowed domain",
+    "source_witnesses": {}
+  }
+}

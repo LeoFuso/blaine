@@ -1,0 +1,3603 @@
+{
+  "check_count": 842,
+  "checks": [
+    {
+      "check": "predeclared",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen-inputs",
+      "status": "PASS"
+    },
+    {
+      "check": "all-fixture-answers",
+      "status": "PASS"
+    },
+    {
+      "check": "three-groups",
+      "status": "PASS"
+    },
+    {
+      "check": "all-pairs",
+      "status": "PASS"
+    },
+    {
+      "check": "composition-oracles",
+      "status": "PASS"
+    },
+    {
+      "check": "composition-restored",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/amber",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/amber",
+      "status": "PASS"
+    },
+    {
+      "check": "verified-provenance/amber",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/cobalt",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/cobalt",
+      "status": "PASS"
+    },
+    {
+      "check": "verified-provenance/cobalt",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/jade",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/jade",
+      "status": "PASS"
+    },
+    {
+      "check": "verified-provenance/jade",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/ivory",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/ivory",
+      "status": "PASS"
+    },
+    {
+      "check": "verified-provenance/ivory",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/legacy-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/legacy-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "verified-provenance/legacy-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/noise",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/noise",
+      "status": "PASS"
+    },
+    {
+      "check": "verified-provenance/noise",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/protected",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/protected",
+      "status": "PASS"
+    },
+    {
+      "check": "verified-provenance/protected",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/uncertain",
+      "status": "PASS"
+    },
+    {
+      "check": "authoritative-link/uncertain",
+      "status": "PASS"
+    },
+    {
+      "check": "unverified-not-upgraded",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-1/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-2/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-3/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/irrelevant-4/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-1/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-2/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-3/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/match-4/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-1/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-2/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-3/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/amber/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/amber/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/cobalt/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/cobalt/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/jade/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/jade/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/ivory/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/ivory/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/legacy-failure/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/legacy-failure/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/noise/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/noise/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/protected/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/protected/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/uncertain/source",
+      "status": "PASS"
+    },
+    {
+      "check": "isolation/trap-4/uncertain/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "cross/raw",
+      "status": "PASS"
+    },
+    {
+      "check": "cross/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "cross/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "cross/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "cross/forged",
+      "status": "PASS"
+    },
+    {
+      "check": "cross/authority",
+      "status": "PASS"
+    },
+    {
+      "check": "cross-replay-current-scanner",
+      "status": "PASS"
+    },
+    {
+      "check": "human-path",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid-consumes-budget/(0, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'irrelevant-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'irrelevant-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'irrelevant-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'match-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'match-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'match-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(0, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(0, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'irrelevant-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'irrelevant-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "invalid-consumes-budget/(1, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'irrelevant-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'irrelevant-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'irrelevant-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'irrelevant-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'irrelevant-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'irrelevant-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'irrelevant-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'irrelevant-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'irrelevant-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'irrelevant-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'match-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-1', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-1', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'match-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-2', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-2', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'match-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-3', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-3', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'match-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'match-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'match-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'match-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-4', 'NO_MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'match-4', 'NO_MEMORY')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-1', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'trap-1', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-1', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'trap-1', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-2', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'trap-2', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'trap-2', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-2', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'trap-2', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-3', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'trap-3', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'trap-3', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-3', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'trap-3', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-4', 'MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'trap-4', 'MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-render/(1, 'trap-4', 'MEMORY')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-4', 'NO_MEMORY')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "withheld/(1, 'trap-4', 'NO_MEMORY')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(0, 'trap-1', 'FAILURE_AS_SUCCESS')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(0, 'trap-1', 'FAILURE_AS_SUCCESS')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(0, 'trap-1', 'FAILURE_AS_SUCCESS')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "isolated-mutation/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "isolated-mutation/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "isolated-mutation/(0, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "actual-verifier/(1, 'trap-1', 'FAILURE_AS_SUCCESS')",
+      "status": "PASS"
+    },
+    {
+      "check": "visible-metadata/(1, 'trap-1', 'FAILURE_AS_SUCCESS')",
+      "status": "PASS"
+    },
+    {
+      "check": "budget/(1, 'trap-1', 'FAILURE_AS_SUCCESS')",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "isolated-mutation/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/0",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "isolated-mutation/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/1",
+      "status": "PASS"
+    },
+    {
+      "check": "retrieval/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "instruction-identity/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "model-input/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "raw-decision/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-memory/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "isolated-mutation/(1, 'trap-1', 'FAILURE_AS_SUCCESS')/2",
+      "status": "PASS"
+    },
+    {
+      "check": "bounded-packets",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-leaks",
+      "status": "PASS"
+    },
+    {
+      "check": "invocation-count",
+      "status": "PASS"
+    },
+    {
+      "check": "multi-memory-control",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/irrelevant-1",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/irrelevant-2",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/irrelevant-3",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/irrelevant-4",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/match-1",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/match-2",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/match-3",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/match-4",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/trap-1",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/trap-2",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/trap-3",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/0/trap-4",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/irrelevant-1",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/irrelevant-2",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/irrelevant-3",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/irrelevant-4",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/match-1",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/match-2",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/match-3",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/match-4",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/trap-1",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/trap-2",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/trap-3",
+      "status": "PASS"
+    },
+    {
+      "check": "paired-input/1/trap-4",
+      "status": "PASS"
+    },
+    {
+      "check": "utility-threshold/0",
+      "status": "PASS"
+    },
+    {
+      "check": "utility-threshold/1",
+      "status": "PASS"
+    },
+    {
+      "check": "independent-totals",
+      "status": "PASS"
+    },
+    {
+      "check": "behavioral-mutation",
+      "status": "PASS"
+    },
+    {
+      "check": "summary-consistent",
+      "status": "PASS"
+    }
+  ],
+  "leaks": [],
+  "max_packet_bytes": 1761,
+  "metrics": {
+    "calls_by_group": {
+      "IRRELEVANT": {
+        "MEMORY": 10,
+        "NO_MEMORY": 8
+      },
+      "MATCHING": {
+        "MEMORY": 8,
+        "NO_MEMORY": 24
+      },
+      "NEAR_MATCH_TRAP": {
+        "MEMORY": 14,
+        "NO_MEMORY": 8
+      }
+    },
+    "invalid_decisions": [
+      {
+        "condition": "MEMORY",
+        "repeat": 0,
+        "task": "irrelevant-2",
+        "turn": 0
+      },
+      {
+        "condition": "MEMORY",
+        "repeat": 1,
+        "task": "irrelevant-2",
+        "turn": 0
+      }
+    ],
+    "reported_usage": {
+      "completion_tokens": 7412,
+      "prompt_tokens": 188612,
+      "total_tokens": 196024
+    }
+  },
+  "model_invocations": 78,
+  "mutation_regressions": 2,
+  "status": "PASS",
+  "totals": [
+    {
+      "groups": {
+        "IRRELEVANT": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        },
+        "MATCHING": {
+          "MEMORY": 4,
+          "NO_MEMORY": 0,
+          "delta": 4
+        },
+        "NEAR_MATCH_TRAP": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        }
+      },
+      "regressions": [],
+      "repeat": 0
+    },
+    {
+      "groups": {
+        "IRRELEVANT": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        },
+        "MATCHING": {
+          "MEMORY": 4,
+          "NO_MEMORY": 0,
+          "delta": 4
+        },
+        "NEAR_MATCH_TRAP": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        }
+      },
+      "regressions": [],
+      "repeat": 1
+    }
+  ],
+  "variance": [
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-1"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-1"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-2"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-2"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-3"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-3"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-4"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "irrelevant-4"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "match-1"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "match-1"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "match-2"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "match-2"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "match-3"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "match-3"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "match-4"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "match-4"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "trap-1"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "trap-1"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "trap-2"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "trap-2"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "trap-3"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "trap-3"
+    },
+    {
+      "completion_changed": false,
+      "condition": "NO_MEMORY",
+      "decisions_changed": false,
+      "task": "trap-4"
+    },
+    {
+      "completion_changed": false,
+      "condition": "MEMORY",
+      "decisions_changed": false,
+      "task": "trap-4"
+    }
+  ]
+}

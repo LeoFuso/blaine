@@ -1,0 +1,53 @@
+[
+  {
+    "actual_violation": true,
+    "command": [
+      "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+      "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/check.py",
+      "--control",
+      "stale",
+      "--output",
+      "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/check-stale.json"
+    ],
+    "exit_code": 1,
+    "mandatory": true,
+    "mode": "stale",
+    "status": "FAIL",
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "actual_violation": true,
+    "command": [
+      "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+      "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/check.py",
+      "--control",
+      "inferred",
+      "--output",
+      "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/check-inferred.json"
+    ],
+    "exit_code": 1,
+    "mandatory": true,
+    "mode": "inferred",
+    "status": "FAIL",
+    "stderr": "",
+    "stdout": ""
+  },
+  {
+    "actual_violation": false,
+    "command": [
+      "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+      "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/check.py",
+      "--control",
+      "isolation",
+      "--output",
+      "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/check-isolation.json"
+    ],
+    "exit_code": 0,
+    "mandatory": false,
+    "mode": "isolation",
+    "status": "PASS",
+    "stderr": "",
+    "stdout": ""
+  }
+]

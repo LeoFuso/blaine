@@ -1,0 +1,122 @@
+{
+  "checks": [
+    {
+      "check": "discovery/1/correct",
+      "exit_code": 0,
+      "sha256": "2b8cd1c566bbda3828fb31bd76e11c1ae96cc525a026a48000cd81e7e0d89751",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/1/correct",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "sha256": "846a476945414028a39069753add0517a5db226450b96ab0550a28ee010a822c",
+      "status": "PASS"
+    },
+    {
+      "check": "discovery/1/freshness",
+      "exit_code": 0,
+      "sha256": "7ad92742a1f2852398508340678a4b40c3bcd274664ebaf6b7a1862d01d24627",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/1/freshness",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "sha256": "82675466b60ab6754fe9af41b63232346742968d85ad2b4b49fa3a3d9c81aa19",
+      "status": "PASS"
+    },
+    {
+      "check": "discovery/1/isolation",
+      "exit_code": 0,
+      "sha256": "863b9fcb51b182c9650c8e099310472b9ac075c8b126688ffae72bcdf4f4fd96",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/1/isolation",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "sha256": "200727d05a73ee8b317e41c57b0f4f49e1c75fc0f7902bab1706d9811b18a6a2",
+      "status": "PASS"
+    },
+    {
+      "check": "discovery/1/stale-safe",
+      "exit_code": 0,
+      "sha256": "dc4c912412207b728fc98c97293f7e52943be736eb2b34059c013886a70752eb",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/1/stale-safe",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "sha256": "ba0ea6afc5e260f0cf515e0d3d28e62098af5bae45b052b12241356db01be566",
+      "status": "PASS"
+    },
+    {
+      "check": "boundaries/1",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "check": "discovery/97/correct",
+      "exit_code": 0,
+      "sha256": "2b8cd1c566bbda3828fb31bd76e11c1ae96cc525a026a48000cd81e7e0d89751",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/97/correct",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "sha256": "846a476945414028a39069753add0517a5db226450b96ab0550a28ee010a822c",
+      "status": "PASS"
+    },
+    {
+      "check": "discovery/97/freshness",
+      "exit_code": 0,
+      "sha256": "7ad92742a1f2852398508340678a4b40c3bcd274664ebaf6b7a1862d01d24627",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/97/freshness",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "sha256": "82675466b60ab6754fe9af41b63232346742968d85ad2b4b49fa3a3d9c81aa19",
+      "status": "PASS"
+    },
+    {
+      "check": "discovery/97/isolation",
+      "exit_code": 0,
+      "sha256": "863b9fcb51b182c9650c8e099310472b9ac075c8b126688ffae72bcdf4f4fd96",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/97/isolation",
+      "exit_code": 1,
+      "expected_exit_code": 1,
+      "sha256": "200727d05a73ee8b317e41c57b0f4f49e1c75fc0f7902bab1706d9811b18a6a2",
+      "status": "PASS"
+    },
+    {
+      "check": "discovery/97/stale-safe",
+      "exit_code": 0,
+      "sha256": "dc4c912412207b728fc98c97293f7e52943be736eb2b34059c013886a70752eb",
+      "status": "PASS"
+    },
+    {
+      "check": "checker/97/stale-safe",
+      "exit_code": 0,
+      "expected_exit_code": 0,
+      "sha256": "ba0ea6afc5e260f0cf515e0d3d28e62098af5bae45b052b12241356db01be566",
+      "status": "PASS"
+    },
+    {
+      "check": "boundaries/97",
+      "exit_code": 0,
+      "status": "PASS"
+    }
+  ],
+  "model_calls": 0,
+  "research_status": "FAIL",
+  "scope": "Byte-identical replay from retained vectors/indexes under two PYTHONHASHSEED values; no new inference or graph extraction",
+  "status": "PASS"
+}

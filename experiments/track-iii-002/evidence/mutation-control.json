@@ -1,0 +1,163 @@
+{
+  "actual_process_exit": 1,
+  "correct_after_control": {
+    "case_count": 221,
+    "failed": 0,
+    "failed_cases": [],
+    "invariants": {
+      "binding_authority": {
+        "failed": 0,
+        "passed": 18
+      },
+      "closed_request_surface": {
+        "failed": 0,
+        "passed": 5
+      },
+      "current_context_write": {
+        "failed": 0,
+        "passed": 4
+      },
+      "direct_id_isolation": {
+        "failed": 0,
+        "passed": 122
+      },
+      "entry_integrity": {
+        "failed": 0,
+        "passed": 2
+      },
+      "exact_lineage_visibility": {
+        "failed": 0,
+        "passed": 11
+      },
+      "generic_specialization": {
+        "failed": 0,
+        "passed": 12
+      },
+      "input_order_independence": {
+        "failed": 0,
+        "passed": 11
+      },
+      "label_independence": {
+        "failed": 0,
+        "passed": 11
+      },
+      "malformed_tree_fail_closed": {
+        "failed": 0,
+        "passed": 11
+      },
+      "trusted_read_boundary": {
+        "failed": 0,
+        "passed": 3
+      },
+      "write_inheritance_no_upward_flow": {
+        "failed": 0,
+        "passed": 11
+      }
+    },
+    "passed": 221,
+    "status": "PASS"
+  },
+  "correct_results_byte_equivalent": true,
+  "detected": true,
+  "evaluator_and_oracle_hashes_unchanged": true,
+  "expected_process_exit": 1,
+  "rule": "incorrectly include current-context siblings in readable lineage",
+  "stderr": "",
+  "stdout": "",
+  "suite": {
+    "case_count": 221,
+    "failed": 37,
+    "failed_cases": [
+      "visibility/employer-x",
+      "visibility/personal",
+      "visibility/task-a1",
+      "visibility/task-a2",
+      "visibility/task-x1",
+      "visibility/task-x2",
+      "direct/employer-x/personal-memory",
+      "direct/personal/employer-x-memory",
+      "direct/task-a1/task-a2-memory",
+      "direct/task-a2/task-a1-memory",
+      "direct/task-x1/task-x2-memory",
+      "direct/task-x2/task-x1-memory",
+      "write/visibility/employer-x",
+      "write/visibility/personal",
+      "write/visibility/task-a1",
+      "write/visibility/task-a2",
+      "write/visibility/task-x1",
+      "write/visibility/task-x2",
+      "labels/employer-x",
+      "ordering/employer-x",
+      "labels/personal",
+      "ordering/personal",
+      "labels/task-a1",
+      "ordering/task-a1",
+      "labels/task-a2",
+      "ordering/task-a2",
+      "labels/task-x1",
+      "ordering/task-x1",
+      "labels/task-x2",
+      "ordering/task-x2",
+      "extension/old-context/employer-x",
+      "extension/old-context/personal",
+      "extension/old-context/task-a1",
+      "extension/old-context/task-a2",
+      "extension/old-context/task-x1",
+      "extension/old-context/task-x2",
+      "binding/input-copy"
+    ],
+    "invariants": {
+      "binding_authority": {
+        "failed": 1,
+        "passed": 17
+      },
+      "closed_request_surface": {
+        "failed": 0,
+        "passed": 5
+      },
+      "current_context_write": {
+        "failed": 0,
+        "passed": 4
+      },
+      "direct_id_isolation": {
+        "failed": 6,
+        "passed": 116
+      },
+      "entry_integrity": {
+        "failed": 0,
+        "passed": 2
+      },
+      "exact_lineage_visibility": {
+        "failed": 6,
+        "passed": 5
+      },
+      "generic_specialization": {
+        "failed": 6,
+        "passed": 6
+      },
+      "input_order_independence": {
+        "failed": 6,
+        "passed": 5
+      },
+      "label_independence": {
+        "failed": 6,
+        "passed": 5
+      },
+      "malformed_tree_fail_closed": {
+        "failed": 0,
+        "passed": 11
+      },
+      "trusted_read_boundary": {
+        "failed": 0,
+        "passed": 3
+      },
+      "write_inheritance_no_upward_flow": {
+        "failed": 6,
+        "passed": 5
+      }
+    },
+    "passed": 184,
+    "status": "FAIL"
+  },
+  "variant_location": "probe.py:SiblingLeakControl"
+}

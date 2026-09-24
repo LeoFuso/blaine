@@ -14,6 +14,7 @@ owns delivery status; [architecture](../architecture.md) owns current boundaries
 | [Frontier dispatch](frontier-dispatch.md) | Paid-worker authority, context projection and dispatch evidence. |
 | [ExecutionEvent](execution-event.md) | Versioned forensic metadata; never Task lifecycle authority. |
 | [Worker execution boundary](worker-execution-boundary.md) | Continuation boundary, adapter capability honesty, synchronous control and asynchronous telemetry; never Task authority. |
+| [Context Plane](context-plane.md) | Accepted semantic contracts for trusted binding, Memory/workspace/evidence access, Resolver, Compiler, packets/deltas, promotion and verified learning; production schemas/integration NOT STARTED. |
 
 [Lifecycle/evidence](../policies/task-completion-and-lifecycle.md) and
 [local-first/context](../policies/local-first-and-context.md) policies apply across

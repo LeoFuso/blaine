@@ -1,0 +1,25 @@
+{
+  "artifact_sha256": {
+    "cost.json": "d7dda077e618367d72957c7569b89fc15a5325ab19e3f9d0036aa914883e5dda",
+    "raw.json.gz": "7e4dd4ccbd57c08eac369bc95f634637d141accbec0f8108dccad652e36fe4c3",
+    "source.json.gz": "c69e974621582a55e0d54e4bd3c3c38417127c7ee5e58c5b4826e9691ed91b3c",
+    "source.tar.gz": "57d6fde1a7aa1dd994374ad892cab25b970e5a0f82855ebf0fcffc2133e2f81b"
+  },
+  "command": [
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/collect.py",
+    "--child",
+    "jackson-databind",
+    "/tmp/blaine-iii-g/jackson-databind-extract",
+    "/tmp/blaine-iii-g/jackson-databind-cache",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/indexes/jackson-databind/A"
+  ],
+  "commit": "b12300930e69cd050345878375bdb730c3632bac",
+  "exit_code": 0,
+  "mode": "initial full extraction",
+  "repo": "jackson-databind",
+  "revision": "A",
+  "stderr": "",
+  "stdout": "  AST extraction: 100/576 uncached files (17%)\n  AST extraction: 200/576 uncached files (34%)\n  AST extraction: 300/576 uncached files (52%)\n  AST extraction: 400/576 uncached files (69%)\n  AST extraction: 500/576 uncached files (86%)\n  AST extraction: 576/576 uncached files (100%)\n",
+  "wall_seconds": 7.081319621996954
+}

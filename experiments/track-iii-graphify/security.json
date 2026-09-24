@@ -1,0 +1,20 @@
+{
+  "jackson-databind": {
+    "denied_files": [
+      "src/main/java/tools/jackson/databind/ser/jdk/StringArraySerializer.java"
+    ],
+    "domain": "synthetic-restricted",
+    "protected_literals": [
+      "StringArraySerializer"
+    ]
+  },
+  "spring-kafka": {
+    "denied_files": [
+      "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/KafkaBackoffAwareMessageListenerAdapter.java"
+    ],
+    "domain": "synthetic-restricted",
+    "protected_literals": [
+      "KafkaBackoffAwareMessageListenerAdapter"
+    ]
+  }
+}

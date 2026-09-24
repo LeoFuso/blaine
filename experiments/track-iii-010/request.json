@@ -1,0 +1,39 @@
+{
+  "autonomy": {
+    "allowed": [
+      "III.10 offline experiment",
+      "local commit"
+    ],
+    "forbidden": [
+      "subsequent increments",
+      "production integration",
+      "network",
+      "inference",
+      "push"
+    ]
+  },
+  "capabilities": [
+    "local source reads",
+    "isolated fixture/files/subprocesses",
+    "documentation",
+    "local commit"
+  ],
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Retain independently verified PASS/FAIL/BLOCKED and mutation evidence",
+      "evidence": "evidence/verification.json"
+    }
+  ],
+  "context": [
+    {
+      "need": "Accepted Track III experiments and architecture",
+      "sharing": "local-only",
+      "source": "git:fedcaf5"
+    }
+  ],
+  "mode": "interactive",
+  "objective": "Execute only III.10: deterministic 12-case local/checkpoint/process propagation experiment, independent checker, caught mutations, documentation and local commit."
+}

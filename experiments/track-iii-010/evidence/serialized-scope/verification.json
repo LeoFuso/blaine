@@ -1,0 +1,186 @@
+{
+  "checks": 1492,
+  "exports_scanned": 60,
+  "failures": [
+    "A2/received exact visibility",
+    "A2/same_state_replay exact visibility",
+    "C2/received exact visibility",
+    "C2/same_state_replay exact visibility",
+    "zero forbidden content",
+    "zero forbidden metadata"
+  ],
+  "forbidden_content_hits": [
+    {
+      "export": "A2/received",
+      "literal": "SIBLING_CONTENT_CANARY"
+    },
+    {
+      "export": "A2/received",
+      "literal": "DESCENDANT_CONTENT_CANARY"
+    },
+    {
+      "export": "A2/received",
+      "literal": "ROOT_PROTECTED_CONTENT_CANARY"
+    },
+    {
+      "export": "A2/received",
+      "literal": "EMPLOYER_CONTENT_CANARY"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "SIBLING_CONTENT_CANARY"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "DESCENDANT_CONTENT_CANARY"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "ROOT_PROTECTED_CONTENT_CANARY"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "EMPLOYER_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/received",
+      "literal": "SIBLING_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/received",
+      "literal": "DESCENDANT_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/received",
+      "literal": "ROOT_PROTECTED_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/received",
+      "literal": "EMPLOYER_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "SIBLING_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "DESCENDANT_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "ROOT_PROTECTED_CONTENT_CANARY"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "EMPLOYER_CONTENT_CANARY"
+    }
+  ],
+  "forbidden_metadata_hits": [
+    {
+      "export": "A2/received",
+      "literal": "sibling-private"
+    },
+    {
+      "export": "A2/received",
+      "literal": "descendant-private"
+    },
+    {
+      "export": "A2/received",
+      "literal": "protected-root"
+    },
+    {
+      "export": "A2/received",
+      "literal": "protected-x"
+    },
+    {
+      "export": "A2/received",
+      "literal": "task-x"
+    },
+    {
+      "export": "A2/received",
+      "literal": "employer-x"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "sibling-private"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "descendant-private"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "protected-root"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "protected-x"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "task-x"
+    },
+    {
+      "export": "A2/same_state_replay",
+      "literal": "employer-x"
+    },
+    {
+      "export": "C2/received",
+      "literal": "sibling-private"
+    },
+    {
+      "export": "C2/received",
+      "literal": "descendant-private"
+    },
+    {
+      "export": "C2/received",
+      "literal": "protected-root"
+    },
+    {
+      "export": "C2/received",
+      "literal": "protected-x"
+    },
+    {
+      "export": "C2/received",
+      "literal": "task-x"
+    },
+    {
+      "export": "C2/received",
+      "literal": "employer-x"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "sibling-private"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "descendant-private"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "protected-root"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "protected-x"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "task-x"
+    },
+    {
+      "export": "C2/same_state_replay",
+      "literal": "employer-x"
+    }
+  ],
+  "groups": {
+    "CHECKPOINT_RESUME": 4,
+    "LOCAL_HANDOFF": 4,
+    "SECOND_PROCESS": 4
+  },
+  "max_response_bytes": 1732,
+  "mutation": "serialized-scope",
+  "primary_cases": 12,
+  "process_operations": 26,
+  "status": "FAIL"
+}

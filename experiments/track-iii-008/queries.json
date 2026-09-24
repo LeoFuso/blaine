@@ -1,0 +1,79 @@
+[
+  {
+    "group": "LEXICAL",
+    "id": "L1",
+    "text": "DeliveryPort"
+  },
+  {
+    "group": "LEXICAL",
+    "id": "L2",
+    "text": "retry_ceiling"
+  },
+  {
+    "group": "LEXICAL",
+    "id": "L3",
+    "text": "dispatch"
+  },
+  {
+    "group": "LEXICAL",
+    "id": "L4",
+    "text": "READY_MARKER"
+  },
+  {
+    "group": "SEMANTIC",
+    "id": "S1",
+    "text": "Is there already a canonical way to remove surrounding blanks and ignore upper versus lower case in an account handle before dispatch?"
+  },
+  {
+    "group": "SEMANTIC",
+    "id": "S2",
+    "text": "Which component decides whether another delivery attempt is allowed after a temporary service rejection?"
+  },
+  {
+    "group": "SEMANTIC",
+    "id": "S3",
+    "text": "Where are repeated submissions recognized using a fingerprint so an earlier acknowledgement can be reused?"
+  },
+  {
+    "group": "SEMANTIC",
+    "id": "S4",
+    "text": "Where is write output made visible all at once so readers cannot observe a partially written file?"
+  },
+  {
+    "group": "STRUCTURAL",
+    "id": "T1",
+    "relation": {
+      "op": "implementations",
+      "target": "DeliveryPort"
+    },
+    "text": "What implementations satisfy DeliveryPort?"
+  },
+  {
+    "group": "STRUCTURAL",
+    "id": "T2",
+    "relation": {
+      "op": "callers",
+      "target": "seal"
+    },
+    "text": "Who calls seal?"
+  },
+  {
+    "group": "STRUCTURAL",
+    "id": "T3",
+    "relation": {
+      "op": "imports",
+      "target": "DeliveryPort"
+    },
+    "text": "Which modules import DeliveryPort?"
+  },
+  {
+    "group": "STRUCTURAL",
+    "id": "T4",
+    "relation": {
+      "op": "path",
+      "start": "dispatch",
+      "target": "seal"
+    },
+    "text": "What is the call path from dispatch to seal?"
+  }
+]

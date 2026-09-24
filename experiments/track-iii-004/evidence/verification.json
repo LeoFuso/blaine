@@ -1,0 +1,5346 @@
+{
+  "check_count": 1335,
+  "checks": [
+    {
+      "check": "unique-cases",
+      "status": "PASS"
+    },
+    {
+      "check": "all-correct",
+      "status": "PASS"
+    },
+    {
+      "check": "source-hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "accepted-III2-source",
+      "status": "PASS"
+    },
+    {
+      "check": "accepted-III3-source",
+      "status": "PASS"
+    },
+    {
+      "check": "restored",
+      "status": "PASS"
+    },
+    {
+      "check": "budget",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-personal/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/root",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/root",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/task-personal-a",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/task-personal-a",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-a/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/task-personal-b",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/task-personal-b",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-personal-b/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-a/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "raw/task-x-b",
+      "status": "PASS"
+    },
+    {
+      "check": "derived-oracle/task-x-b",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x-b/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "visibility-matrix",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/employer-x/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/employer-x/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/employer-x/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/employer-x/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/employer-x/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/employer-x/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/employer-x/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/employer-x/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/employer-x/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/personal/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/personal/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/personal/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/personal/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/personal/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/personal/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/personal/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/personal/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/personal/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-personal/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-personal/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-personal/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-personal/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-personal/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-personal/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-personal/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-personal/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-personal/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/project-x/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/project-x/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-x/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-x/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-x/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-x/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-x/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-x/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/project-x/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/root",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/root/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/root/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/root/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/root/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/root/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/derived/root/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/root/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/root/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/root/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/root/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/root",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/task-personal-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-a/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-a/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-a/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-a/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-a/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-a/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-a/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-a/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-a/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/task-personal-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/task-personal-b",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-personal-b/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-personal-b/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-b/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-b/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-b/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-b/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-b/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-b/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-personal-b/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/task-personal-b",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-a/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-a/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-a/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-a/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-a/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-a/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-a/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-a/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-a/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/search/task-x-b",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/cross-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-engineering-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/global-x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/personal-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-artifact_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-edge",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-embedding_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-local-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/direct/task-x-b/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-semantic_index_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-summary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/direct/task-x-b/x-tool_output_stub",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-b/ARTIFACT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-b/EMBEDDING_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-b/GRAPH_EDGE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-b/GRAPH_NODE",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-b/SEMANTIC_INDEX_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-b/SUMMARY",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/derived/task-x-b/TOOL_OUTPUT_STUB",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/diagnostic/task-x-b",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/graph/task-personal-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/graph/task-personal-a/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/graph/task-personal-a/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/graph/task-personal-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/graph/task-personal-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/graph/task-x-a/x-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/graph/task-x-a/global-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/graph/task-x-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/graph/task-x-a/personal-node",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/domain",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/domain",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/domain",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/domain",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/security_domain",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/context_kind",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/context_kind",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/context_kind",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/context_kind",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/classification",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/classification",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/classification",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/classification",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/source",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/source",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/source",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/source",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/created_by",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/created_by",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/created_by",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/created_by",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/context_id",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/context_id",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/context_id",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/context_id",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/scopes",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/scopes",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/scopes",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/scopes",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/read/policy",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/read/policy",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/forgery/write/policy",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/forgery/write/policy",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-target/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-target/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-target/task-personal-b",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-target/task-personal-b",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-target/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-target/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/binding/execution-copy",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/binding/execution-copy",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/binding/caller-copy",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/binding/caller-copy",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/binding/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/binding/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache/own",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/cache/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache/sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/cache/sibling",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache/forged-envelope",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/cache/forged-envelope",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache/stale",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/cache/stale",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache-activity/initial",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache-activity/write/task-personal-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache-activity/read-after/task-personal-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache-activity/write/task-x-b",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache-activity/read-after/task-x-b",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache-activity/write/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/cache-activity/read-after/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/cache-activity/read-after/task-x-a",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/agent-declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/personal/agent-declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/human-wrong-target",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/personal/human-wrong-target",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/verifier-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/personal/verifier-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/initial",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/personal/initial",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/cognition-write",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/worker-read",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/worker-write",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/verifier/human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/verifier/cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/personal/verifier/worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/agent-declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/x/agent-declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/human-wrong-target",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/x/human-wrong-target",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/verifier-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/x/verifier-write-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/initial",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/sequence/x/initial",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/cognition-write",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/worker-read",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/worker-write",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/verifier/human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/verifier/cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/sequence/x/verifier/worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/employer-x/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/employer-x/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/employer-x/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/employer-x/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/employer-x/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/employer-x/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/employer-x/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/employer-x/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/employer-x/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/employer-x/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/employer-x/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/employer-x/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/personal/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/personal/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/personal/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/personal/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/personal/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/personal/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/personal/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/personal/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/personal/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/personal/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/personal/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/personal/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-personal/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-personal/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-personal/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-personal/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-personal/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-personal/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-personal/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-personal/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-personal/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-personal/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-personal/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-x/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-x/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-x/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-x/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-x/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-x/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-x/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-x/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-x/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/project-x/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/project-x/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/root/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/root/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/root/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/root/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/root/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/root/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/root/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/root/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/root/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/root/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/root/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/root/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-a/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-a/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-a/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-a/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-a/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-a/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-a/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-a/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-a/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-b/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-b/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-b/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-b/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-b/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-b/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-b/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-b/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-b/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-personal-b/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-personal-b/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-a/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-a/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-a/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-a/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-a/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-a/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-a/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-a/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-a/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-b/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-b/project-personal::personal-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-b/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-b/task-personal-a::personal-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-b/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-b/task-personal-a::personal-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-b/project-x::x-human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-b/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-b/task-x-a::x-cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/write-visibility/task-x-b/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/write-visibility/task-x-b/task-x-a::x-worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unavailable/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unavailable/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unavailable/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unavailable/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unavailable/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unavailable/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unavailable/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unavailable/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unavailable/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unavailable/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unavailable/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unavailable/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unavailable/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unavailable/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-binding/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-binding/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-binding/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-binding/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-binding/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-binding/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-binding/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-binding/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-binding/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-binding/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-binding/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-binding/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-binding/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-binding/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/malformed-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/malformed-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-classification/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-classification/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-classification/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-classification/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-classification/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-classification/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-classification/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-classification/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-classification/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-classification/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-classification/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-classification/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/contradictory-classification/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/contradictory-classification/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-entry-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-entry-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-entry-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-entry-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-entry-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-entry-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-entry-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-entry-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-entry-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-entry-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-entry-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-entry-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/unknown-entry-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/unknown-entry-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-entry-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-entry-domain/search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-entry-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-entry-domain/get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-entry-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-entry-domain/neighbors",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-entry-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-entry-domain/cached",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-entry-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-entry-domain/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-entry-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-entry-domain/recordObservation",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/missing-entry-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/policy/missing-entry-domain/declare",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/full/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/reduced/debug",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/full/hidden-get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/full/hidden-get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/reduced/hidden-get",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/reduced/hidden-get",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/full/hidden-search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/full/hidden-search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/reduced/hidden-search",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/reduced/hidden-search",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/full/graph",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/full/graph",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/reduced/graph",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/reduced/graph",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/full/empty",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/full/empty",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/noninterference/reduced/empty",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/noninterference/reduced/empty",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/collision/full",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/collision/hidden-removed",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/lineage/closed-boundary",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/labels/no-authority",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/policy/public-opt-out",
+      "status": "PASS"
+    },
+    {
+      "check": "diagnostic/state/capability-unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "empty-envelope/state/capability-unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "observable-export",
+      "status": "PASS"
+    },
+    {
+      "check": "complete-export",
+      "status": "PASS"
+    },
+    {
+      "check": "independent-literal-scan",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/personal-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/x-root-private",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/x-policy-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/project-personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/task-personal-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/task-personal-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/task-x-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "literal-manifest/task-x-b-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "control/structural-only",
+      "status": "PASS"
+    },
+    {
+      "check": "control-leak/structural-only",
+      "status": "PASS"
+    },
+    {
+      "check": "control/query-only-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "control-leak/query-only-cache",
+      "status": "PASS"
+    },
+    {
+      "check": "continuous-binding/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/personal/human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/personal/cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/personal/worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "continuous-binding/x",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/x/human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/x/cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/x/worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "stop-boundary",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

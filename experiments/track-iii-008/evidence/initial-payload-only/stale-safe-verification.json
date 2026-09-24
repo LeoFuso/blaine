@@ -1,0 +1,3508 @@
+{
+  "aggregate": [
+    {
+      "exact_baseline": 4,
+      "exact_combined": 4,
+      "exact_losses": [],
+      "gain_count": 1,
+      "revision": "A",
+      "semantic_gains": [
+        "personal/book.py::StampBook"
+      ],
+      "structural_gains": [],
+      "unique_nonlexical_gains": [
+        "personal/book.py::StampBook"
+      ]
+    },
+    {
+      "exact_baseline": 4,
+      "exact_combined": 0,
+      "exact_losses": [
+        "personal/contracts.py::DeliveryPort",
+        "personal/settings.py::retry_ceiling",
+        "personal/workflow.py::dispatch",
+        "personal/settings.py::READY_MARKER"
+      ],
+      "gain_count": 2,
+      "revision": "B",
+      "semantic_gains": [
+        "personal/gate.py::AttemptFence",
+        "personal/identity.py::IdentityFold"
+      ],
+      "structural_gains": [],
+      "unique_nonlexical_gains": [
+        "personal/gate.py::AttemptFence",
+        "personal/identity.py::IdentityFold"
+      ]
+    }
+  ],
+  "check_count": 321,
+  "checks": [
+    {
+      "check": "query-taxonomy",
+      "status": "PASS"
+    },
+    {
+      "check": "threshold-frozen",
+      "status": "PASS"
+    },
+    {
+      "check": "frozen-files",
+      "status": "PASS"
+    },
+    {
+      "check": "all-48-comparisons",
+      "status": "PASS"
+    },
+    {
+      "check": "source-revision/A",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/LEXICAL/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/LEXICAL/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/LEXICAL/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/COMBINED/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/COMBINED/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/COMBINED/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L1/COMBINED/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/LEXICAL/personal/settings.py::retry_ceiling",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/LEXICAL/personal/gate.py::WindowGate",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/COMBINED/personal/settings.py::retry_ceiling",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/COMBINED/personal/gate.py::WindowGate",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/COMBINED/personal/notes/note_04.py::note_04",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/COMBINED/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/COMBINED/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L2/COMBINED/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L3/LEXICAL/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L3/COMBINED/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L3/COMBINED/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L3/COMBINED/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L3/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L3/COMBINED/personal/book.py::StampBook",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L3/COMBINED/personal/settings.py::retry_ceiling",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L4/LEXICAL/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/L4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/L4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/L4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L4/COMBINED/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L4/COMBINED/personal/book.py::StampBook",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L4/COMBINED/personal/settings.py::retry_ceiling",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L4/COMBINED/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L4/COMBINED/personal/legacy.py::persist",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/L4/COMBINED/personal/notes/note_04.py::note_04",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/LEXICAL/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/COMBINED/personal/book.py::StampBook",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/COMBINED/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/COMBINED/personal/helpers.py::quick_handle",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/COMBINED/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S1/COMBINED/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/LEXICAL/personal/notes/note_04.py::note_04",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/COMBINED/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/COMBINED/personal/notes/note_07.py::note_07",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/COMBINED/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S2/COMBINED/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/LEXICAL/personal/notes/note_04.py::note_04",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/COMBINED/personal/book.py::StampBook",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/COMBINED/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/COMBINED/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S3/COMBINED/personal/notes/note_10.py::note_10",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/LEXICAL/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/S4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/S4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/S4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/COMBINED/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/COMBINED/personal/notes/note_09.py::note_09",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/COMBINED/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/COMBINED/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/S4/COMBINED/personal/notes/note_07.py::note_07",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/LEXICAL/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/LEXICAL/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/LEXICAL/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/COMBINED/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/COMBINED/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/COMBINED/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T1/COMBINED/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/LEXICAL/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/LEXICAL/personal/legacy.py::persist",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/COMBINED/personal/legacy.py::persist",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/COMBINED/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/COMBINED/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/COMBINED/personal/settings.py::retry_ceiling",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/COMBINED/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T2/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/LEXICAL/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/LEXICAL/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/LEXICAL/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/COMBINED/personal/transport.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/COMBINED/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/COMBINED/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T3/COMBINED/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/LEXICAL/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/LEXICAL/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/LEXICAL/personal/legacy.py::persist",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/A/T4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/A/T4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/A/T4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/COMBINED/personal/legacy.py::persist",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/COMBINED/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/COMBINED/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/COMBINED/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/A/T4/COMBINED/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "source-revision/B",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L1/LEXICAL/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L1/LEXICAL/personal/adapters/parcel.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L1/LEXICAL/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L1/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L1/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L1/COMBINED/personal/adapters/parcel.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L2/LEXICAL/personal/settings.py::retry_ceiling",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L2/LEXICAL/personal/gate.py::AttemptFence",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L2/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L2/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L2/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L2/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L2/COMBINED/personal/gate.py::AttemptFence",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L3/LEXICAL/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/L4/LEXICAL/personal/settings.py::READY_MARKER",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/L4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/L4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/L4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S1/LEXICAL/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S1/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S1/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S1/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S1/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S1/COMBINED/personal/identity.py::IdentityFold",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S2/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S2/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S2/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S2/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S2/LEXICAL/personal/notes/note_04.py::note_04",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S2/COMBINED/personal/gate.py::AttemptFence",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S2/COMBINED/personal/adapters/parcel.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S3/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S3/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S3/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S3/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S3/LEXICAL/personal/notes/note_04.py::note_04",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S4/LEXICAL/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S4/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S4/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S4/LEXICAL/personal/notes/note_02.py::note_02",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/S4/LEXICAL/personal/notes/note_03.py::note_03",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/S4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/S4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/S4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T1/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T1/LEXICAL/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T1/LEXICAL/personal/adapters/parcel.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T1/LEXICAL/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T1/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T1/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T1/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T1/COMBINED/personal/adapters/parcel.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T2/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T2/LEXICAL/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T2/LEXICAL/personal/store.py::checkpoint",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T2/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T2/COMBINED/personal/store.py::checkpoint",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T3/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T3/LEXICAL/personal/contracts.py::DeliveryPort",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T3/LEXICAL/personal/adapters/parcel.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T3/LEXICAL/personal/audit.py::AuditSender",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T3/LEXICAL/personal/notes/note_00.py::note_00",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T3/LEXICAL/personal/notes/note_01.py::note_01",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T3/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T3/COMBINED/personal/adapters/parcel.py::ParcelSender",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T4/LEXICAL",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T4/LEXICAL/personal/workflow.py::dispatch",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T4/LEXICAL/personal/publish.py::seal",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T4/LEXICAL/personal/store.py::checkpoint",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-revision/B/T4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "packet-budget/B/T4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "no-duplicate-targets/B/T4/COMBINED",
+      "status": "PASS"
+    },
+    {
+      "check": "mechanism-origin/B/T4/COMBINED/personal/store.py::checkpoint",
+      "status": "PASS"
+    },
+    {
+      "check": "no-stale-emission",
+      "status": "PASS"
+    },
+    {
+      "check": "no-forbidden-emission",
+      "status": "PASS"
+    }
+  ],
+  "forbidden_emitted": [],
+  "max_packet_bytes": 2039,
+  "metrics": [
+    {
+      "acceptable_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 1839,
+      "query": "L1",
+      "raw_bytes": 12530,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "required_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/legacy.py::persist",
+        "personal/notes/note_01.py::note_01",
+        "personal/settings.py::READY_MARKER",
+        "personal/notes/note_02.py::note_02",
+        "personal/book.py::StampBook",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/gate.py::WindowGate",
+        "personal/identity.py::HandleFold",
+        "personal/publish.py::seal",
+        "personal/helpers.py::quick_handle",
+        "personal/settings.py::retry_ceiling"
+      ],
+      "packet_bytes": 1883,
+      "query": "L1",
+      "raw_bytes": 17854,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "required_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/workflow.py::dispatch": [
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 2022,
+      "query": "L2",
+      "raw_bytes": 11815,
+      "raw_count": 14,
+      "raw_required_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "required_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "revision": "A",
+      "selected_count": 6,
+      "selected_mechanisms": {
+        "personal/gate.py::WindowGate": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/settings.py::retry_ceiling": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_01.py::note_01",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_11.py::note_11",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_08.py::note_08",
+        "personal/book.py::StampBook",
+        "personal/helpers.py::quick_handle",
+        "personal/contracts.py::DeliveryPort",
+        "personal/identity.py::HandleFold",
+        "personal/audit.py::AuditSender",
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/transport.py::ParcelSender",
+        "personal/workflow.py::dispatch"
+      ],
+      "packet_bytes": 1963,
+      "query": "L2",
+      "raw_bytes": 17824,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "required_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "revision": "A",
+      "selected_count": 6,
+      "selected_mechanisms": {
+        "personal/gate.py::WindowGate": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_04.py::note_04": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/settings.py::READY_MARKER": [
+          "SEMANTIC"
+        ],
+        "personal/settings.py::retry_ceiling": [
+          "LEXICAL",
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 582,
+      "query": "L3",
+      "raw_bytes": 621,
+      "raw_count": 1,
+      "raw_required_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "A",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/workflow.py::dispatch": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/legacy.py::persist",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_01.py::note_01",
+        "personal/settings.py::READY_MARKER",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_00.py::note_00",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_11.py::note_11",
+        "personal/gate.py::WindowGate",
+        "personal/publish.py::seal",
+        "personal/helpers.py::quick_handle",
+        "personal/identity.py::HandleFold"
+      ],
+      "packet_bytes": 2039,
+      "query": "L3",
+      "raw_bytes": 17533,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "A",
+      "selected_count": 6,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "SEMANTIC"
+        ],
+        "personal/book.py::StampBook": [
+          "SEMANTIC"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "SEMANTIC"
+        ],
+        "personal/settings.py::retry_ceiling": [
+          "SEMANTIC"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "SEMANTIC"
+        ],
+        "personal/workflow.py::dispatch": [
+          "LEXICAL",
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 468,
+      "query": "L4",
+      "raw_bytes": 399,
+      "raw_count": 1,
+      "raw_required_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "required_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "revision": "A",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/settings.py::READY_MARKER": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_01.py::note_01",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_00.py::note_00",
+        "personal/publish.py::seal",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_08.py::note_08",
+        "personal/gate.py::WindowGate",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_05.py::note_05",
+        "personal/helpers.py::quick_handle",
+        "personal/audit.py::AuditSender",
+        "personal/notes/note_11.py::note_11",
+        "personal/transport.py::ParcelSender",
+        "personal/contracts.py::DeliveryPort",
+        "personal/identity.py::HandleFold"
+      ],
+      "packet_bytes": 1882,
+      "query": "L4",
+      "raw_bytes": 17533,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "required_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "revision": "A",
+      "selected_count": 6,
+      "selected_mechanisms": {
+        "personal/book.py::StampBook": [
+          "SEMANTIC"
+        ],
+        "personal/legacy.py::persist": [
+          "SEMANTIC"
+        ],
+        "personal/notes/note_04.py::note_04": [
+          "SEMANTIC"
+        ],
+        "personal/settings.py::READY_MARKER": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/settings.py::retry_ceiling": [
+          "SEMANTIC"
+        ],
+        "personal/workflow.py::dispatch": [
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/identity.py::HandleFold"
+      ],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/helpers.py::quick_handle",
+        "personal/identity.py::HandleFold"
+      ],
+      "packet_bytes": 1837,
+      "query": "S1",
+      "raw_bytes": 12583,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/identity.py::HandleFold"
+      ],
+      "required_hits": [],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/workflow.py::dispatch": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/identity.py::HandleFold"
+      ],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_11.py::note_11",
+        "personal/identity.py::HandleFold",
+        "personal/settings.py::READY_MARKER",
+        "personal/contracts.py::DeliveryPort",
+        "personal/audit.py::AuditSender",
+        "personal/gate.py::WindowGate",
+        "personal/settings.py::retry_ceiling",
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/transport.py::ParcelSender"
+      ],
+      "packet_bytes": 1873,
+      "query": "S1",
+      "raw_bytes": 17861,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/identity.py::HandleFold"
+      ],
+      "required_hits": [],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/book.py::StampBook": [
+          "SEMANTIC"
+        ],
+        "personal/helpers.py::quick_handle": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/workflow.py::dispatch": [
+          "LEXICAL",
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/gate.py::WindowGate"
+      ],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/publish.py::seal",
+        "personal/contracts.py::DeliveryPort",
+        "personal/transport.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "packet_bytes": 1837,
+      "query": "S2",
+      "raw_bytes": 13128,
+      "raw_count": 16,
+      "raw_required_hits": [],
+      "required_hits": [],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_04.py::note_04": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/gate.py::WindowGate"
+      ],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_11.py::note_11",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_06.py::note_06",
+        "personal/contracts.py::DeliveryPort",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/publish.py::seal",
+        "personal/gate.py::WindowGate",
+        "personal/transport.py::ParcelSender",
+        "personal/book.py::StampBook",
+        "personal/legacy.py::persist",
+        "personal/settings.py::retry_ceiling",
+        "personal/workflow.py::dispatch",
+        "personal/helpers.py::quick_handle",
+        "personal/identity.py::HandleFold",
+        "personal/settings.py::READY_MARKER"
+      ],
+      "packet_bytes": 1891,
+      "query": "S2",
+      "raw_bytes": 17888,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/gate.py::WindowGate"
+      ],
+      "required_hits": [],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_07.py::note_07": [
+          "LEXICAL",
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/book.py::StampBook"
+      ],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/book.py::StampBook",
+        "personal/audit.py::AuditSender"
+      ],
+      "packet_bytes": 1837,
+      "query": "S3",
+      "raw_bytes": 12308,
+      "raw_count": 14,
+      "raw_required_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "required_hits": [],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_04.py::note_04": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/legacy.py::persist",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_11.py::note_11",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_09.py::note_09",
+        "personal/gate.py::WindowGate",
+        "personal/settings.py::retry_ceiling",
+        "personal/identity.py::HandleFold",
+        "personal/workflow.py::dispatch",
+        "personal/publish.py::seal",
+        "personal/helpers.py::quick_handle",
+        "personal/settings.py::READY_MARKER",
+        "personal/contracts.py::DeliveryPort",
+        "personal/transport.py::ParcelSender"
+      ],
+      "packet_bytes": 1889,
+      "query": "S3",
+      "raw_bytes": 17841,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "required_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/book.py::StampBook": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_10.py::note_10": [
+          "LEXICAL",
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/publish.py::seal"
+      ],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/workflow.py::dispatch"
+      ],
+      "packet_bytes": 1834,
+      "query": "S4",
+      "raw_bytes": 12100,
+      "raw_count": 14,
+      "raw_required_hits": [
+        "personal/publish.py::seal"
+      ],
+      "required_hits": [
+        "personal/publish.py::seal"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/publish.py::seal": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/publish.py::seal"
+      ],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_11.py::note_11",
+        "personal/notes/note_10.py::note_10",
+        "personal/settings.py::READY_MARKER",
+        "personal/workflow.py::dispatch",
+        "personal/book.py::StampBook",
+        "personal/helpers.py::quick_handle",
+        "personal/identity.py::HandleFold",
+        "personal/legacy.py::persist",
+        "personal/gate.py::WindowGate",
+        "personal/settings.py::retry_ceiling",
+        "personal/audit.py::AuditSender",
+        "personal/contracts.py::DeliveryPort",
+        "personal/transport.py::ParcelSender"
+      ],
+      "packet_bytes": 1888,
+      "query": "S4",
+      "raw_bytes": 17855,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/publish.py::seal"
+      ],
+      "required_hits": [
+        "personal/publish.py::seal"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_07.py::note_07": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/notes/note_09.py::note_09": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/publish.py::seal": [
+          "LEXICAL",
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 1839,
+      "query": "T1",
+      "raw_bytes": 12530,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_00.py::note_00",
+        "personal/legacy.py::persist",
+        "personal/notes/note_01.py::note_01",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_11.py::note_11",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_08.py::note_08",
+        "personal/book.py::StampBook",
+        "personal/notes/note_10.py::note_10",
+        "personal/identity.py::HandleFold",
+        "personal/gate.py::WindowGate",
+        "personal/publish.py::seal",
+        "personal/helpers.py::quick_handle",
+        "personal/settings.py::retry_ceiling"
+      ],
+      "packet_bytes": 2015,
+      "query": "T1",
+      "raw_bytes": 17894,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/settings.py::READY_MARKER": [
+          "SEMANTIC"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ],
+        "personal/workflow.py::dispatch": [
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 852,
+      "query": "T2",
+      "raw_bytes": 1067,
+      "raw_count": 2,
+      "raw_required_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "required_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "revision": "A",
+      "selected_count": 2,
+      "selected_mechanisms": {
+        "personal/legacy.py::persist": [
+          "LEXICAL"
+        ],
+        "personal/publish.py::seal": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/book.py::StampBook",
+        "personal/notes/note_09.py::note_09",
+        "personal/helpers.py::quick_handle",
+        "personal/notes/note_07.py::note_07",
+        "personal/contracts.py::DeliveryPort",
+        "personal/identity.py::HandleFold",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_06.py::note_06",
+        "personal/workflow.py::dispatch",
+        "personal/notes/note_00.py::note_00",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_01.py::note_01",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_04.py::note_04",
+        "personal/gate.py::WindowGate",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 2006,
+      "query": "T2",
+      "raw_bytes": 17582,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "required_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "revision": "A",
+      "selected_count": 6,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "SEMANTIC"
+        ],
+        "personal/legacy.py::persist": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ],
+        "personal/publish.py::seal": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/settings.py::READY_MARKER": [
+          "SEMANTIC"
+        ],
+        "personal/settings.py::retry_ceiling": [
+          "SEMANTIC"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 1839,
+      "query": "T3",
+      "raw_bytes": 12530,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/notes/note_00.py::note_00",
+        "personal/legacy.py::persist",
+        "personal/notes/note_01.py::note_01",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_11.py::note_11",
+        "personal/notes/note_10.py::note_10",
+        "personal/book.py::StampBook",
+        "personal/identity.py::HandleFold",
+        "personal/gate.py::WindowGate",
+        "personal/publish.py::seal",
+        "personal/helpers.py::quick_handle",
+        "personal/settings.py::retry_ceiling"
+      ],
+      "packet_bytes": 2013,
+      "query": "T3",
+      "raw_bytes": 17905,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "required_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL",
+          "SEMANTIC"
+        ],
+        "personal/settings.py::READY_MARKER": [
+          "SEMANTIC"
+        ],
+        "personal/transport.py::ParcelSender": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ],
+        "personal/workflow.py::dispatch": [
+          "SEMANTIC"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 1166,
+      "query": "T4",
+      "raw_bytes": 1687,
+      "raw_count": 3,
+      "raw_required_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "A",
+      "selected_count": 3,
+      "selected_mechanisms": {
+        "personal/legacy.py::persist": [
+          "LEXICAL"
+        ],
+        "personal/publish.py::seal": [
+          "LEXICAL"
+        ],
+        "personal/workflow.py::dispatch": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [
+        "personal/contracts.py::DeliveryPort",
+        "personal/transport.py::ParcelSender",
+        "personal/book.py::StampBook",
+        "personal/settings.py::retry_ceiling",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_01.py::note_01",
+        "personal/notes/note_00.py::note_00",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_03.py::note_03",
+        "personal/gate.py::WindowGate",
+        "personal/notes/note_11.py::note_11",
+        "personal/helpers.py::quick_handle",
+        "personal/identity.py::HandleFold"
+      ],
+      "packet_bytes": 1950,
+      "query": "T4",
+      "raw_bytes": 17659,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "A",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/audit.py::AuditSender": [
+          "SEMANTIC"
+        ],
+        "personal/legacy.py::persist": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ],
+        "personal/publish.py::seal": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ],
+        "personal/settings.py::READY_MARKER": [
+          "SEMANTIC"
+        ],
+        "personal/workflow.py::dispatch": [
+          "LEXICAL",
+          "SEMANTIC",
+          "STRUCTURAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 1845,
+      "query": "L1",
+      "raw_bytes": 12548,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "required_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "revision": "B",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/adapters/parcel.py::ParcelSender": [
+          "LEXICAL"
+        ],
+        "personal/audit.py::AuditSender": [
+          "LEXICAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 600,
+      "query": "L1",
+      "raw_bytes": 18410,
+      "raw_count": 25,
+      "raw_required_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/adapters/parcel.py::ParcelSender": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 2024,
+      "query": "L2",
+      "raw_bytes": 11823,
+      "raw_count": 14,
+      "raw_required_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "required_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "revision": "B",
+      "selected_count": 6,
+      "selected_mechanisms": {
+        "personal/gate.py::AttemptFence": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/settings.py::retry_ceiling": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 588,
+      "query": "L2",
+      "raw_bytes": 18356,
+      "raw_count": 25,
+      "raw_required_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/gate.py::AttemptFence": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 582,
+      "query": "L3",
+      "raw_bytes": 638,
+      "raw_count": 1,
+      "raw_required_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/workflow.py::dispatch": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [
+        "personal/workflow.py::dispatch"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 273,
+      "query": "L3",
+      "raw_bytes": 17550,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 0,
+      "selected_mechanisms": {},
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 468,
+      "query": "L4",
+      "raw_bytes": 399,
+      "raw_count": 1,
+      "raw_required_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "required_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/settings.py::READY_MARKER": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "LEXICAL",
+      "misses": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 273,
+      "query": "L4",
+      "raw_bytes": 17533,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 0,
+      "selected_mechanisms": {},
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/helpers.py::quick_handle",
+        "personal/identity.py::IdentityFold"
+      ],
+      "packet_bytes": 1837,
+      "query": "S1",
+      "raw_bytes": 12608,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/workflow.py::dispatch": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 592,
+      "query": "S1",
+      "raw_bytes": 18427,
+      "raw_count": 25,
+      "raw_required_hits": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "required_hits": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/identity.py::IdentityFold": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/publish.py::seal",
+        "personal/gate.py::AttemptFence",
+        "personal/contracts.py::DeliveryPort",
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "packet_bytes": 1837,
+      "query": "S2",
+      "raw_bytes": 13699,
+      "raw_count": 17,
+      "raw_required_hits": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_04.py::note_04": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 914,
+      "query": "S2",
+      "raw_bytes": 18996,
+      "raw_count": 26,
+      "raw_required_hits": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "required_hits": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "revision": "B",
+      "selected_count": 2,
+      "selected_mechanisms": {
+        "personal/adapters/parcel.py::ParcelSender": [
+          "LEXICAL"
+        ],
+        "personal/gate.py::AttemptFence": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/book.py::StampBook"
+      ],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/book.py::StampBook",
+        "personal/audit.py::AuditSender"
+      ],
+      "packet_bytes": 1837,
+      "query": "S3",
+      "raw_bytes": 12308,
+      "raw_count": 14,
+      "raw_required_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_04.py::note_04": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/book.py::StampBook"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 273,
+      "query": "S3",
+      "raw_bytes": 17841,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 0,
+      "selected_mechanisms": {},
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/publish.py::seal"
+      ],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11",
+        "personal/workflow.py::dispatch"
+      ],
+      "packet_bytes": 1834,
+      "query": "S4",
+      "raw_bytes": 12117,
+      "raw_count": 14,
+      "raw_required_hits": [
+        "personal/publish.py::seal"
+      ],
+      "required_hits": [
+        "personal/publish.py::seal"
+      ],
+      "revision": "B",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_02.py::note_02": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_03.py::note_03": [
+          "LEXICAL"
+        ],
+        "personal/publish.py::seal": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [],
+      "forbidden_candidates": 1,
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/publish.py::seal"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 273,
+      "query": "S4",
+      "raw_bytes": 17872,
+      "raw_count": 24,
+      "raw_required_hits": [
+        "personal/publish.py::seal"
+      ],
+      "required_hits": [],
+      "revision": "B",
+      "selected_count": 0,
+      "selected_mechanisms": {},
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 1845,
+      "query": "T1",
+      "raw_bytes": 12548,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "required_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "revision": "B",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/adapters/parcel.py::ParcelSender": [
+          "LEXICAL"
+        ],
+        "personal/audit.py::AuditSender": [
+          "LEXICAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [
+        "personal/audit.py::AuditSender"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 600,
+      "query": "T1",
+      "raw_bytes": 18449,
+      "raw_count": 25,
+      "raw_required_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "required_hits": [
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/adapters/parcel.py::ParcelSender": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 857,
+      "query": "T2",
+      "raw_bytes": 1076,
+      "raw_count": 2,
+      "raw_required_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "required_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "revision": "B",
+      "selected_count": 2,
+      "selected_mechanisms": {
+        "personal/publish.py::seal": [
+          "LEXICAL"
+        ],
+        "personal/store.py::checkpoint": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 552,
+      "query": "T2",
+      "raw_bytes": 18038,
+      "raw_count": 25,
+      "raw_required_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "required_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/store.py::checkpoint": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [
+        "personal/notes/note_02.py::note_02",
+        "personal/notes/note_03.py::note_03",
+        "personal/notes/note_04.py::note_04",
+        "personal/notes/note_05.py::note_05",
+        "personal/notes/note_06.py::note_06",
+        "personal/notes/note_07.py::note_07",
+        "personal/notes/note_08.py::note_08",
+        "personal/notes/note_09.py::note_09",
+        "personal/notes/note_10.py::note_10",
+        "personal/notes/note_11.py::note_11"
+      ],
+      "packet_bytes": 1845,
+      "query": "T3",
+      "raw_bytes": 12548,
+      "raw_count": 15,
+      "raw_required_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "required_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "revision": "B",
+      "selected_count": 5,
+      "selected_mechanisms": {
+        "personal/adapters/parcel.py::ParcelSender": [
+          "LEXICAL"
+        ],
+        "personal/audit.py::AuditSender": [
+          "LEXICAL"
+        ],
+        "personal/contracts.py::DeliveryPort": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_00.py::note_00": [
+          "LEXICAL"
+        ],
+        "personal/notes/note_01.py::note_01": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [
+        "personal/audit.py::AuditSender"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 600,
+      "query": "T3",
+      "raw_bytes": 18460,
+      "raw_count": 25,
+      "raw_required_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "required_hits": [
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/adapters/parcel.py::ParcelSender": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    },
+    {
+      "acceptable_hits": [
+        "personal/publish.py::seal",
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [],
+      "mode": "LEXICAL",
+      "omitted": [],
+      "packet_bytes": 1171,
+      "query": "T4",
+      "raw_bytes": 1713,
+      "raw_count": 3,
+      "raw_required_hits": [
+        "personal/publish.py::seal",
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [
+        "personal/publish.py::seal",
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "B",
+      "selected_count": 3,
+      "selected_mechanisms": {
+        "personal/publish.py::seal": [
+          "LEXICAL"
+        ],
+        "personal/store.py::checkpoint": [
+          "LEXICAL"
+        ],
+        "personal/workflow.py::dispatch": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 0
+    },
+    {
+      "acceptable_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "forbidden_candidates": 1,
+      "group": "STRUCTURAL",
+      "misses": [
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "mode": "COMBINED",
+      "omitted": [],
+      "packet_bytes": 552,
+      "query": "T4",
+      "raw_bytes": 18132,
+      "raw_count": 25,
+      "raw_required_hits": [
+        "personal/publish.py::seal",
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch"
+      ],
+      "required_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "revision": "B",
+      "selected_count": 1,
+      "selected_mechanisms": {
+        "personal/store.py::checkpoint": [
+          "LEXICAL"
+        ]
+      },
+      "stale_candidates": 24
+    }
+  ],
+  "stale_emitted": [],
+  "status": "PASS"
+}

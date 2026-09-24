@@ -1,0 +1,2996 @@
+{
+  "A": {
+    "employer-x": {
+      "edges": [
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "employer_x_hidden",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L1",
+          "target": "contracts",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "employer_x_hidden",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L3",
+          "target": "employer_x_hidden_hiddensender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "inherits",
+          "source": "employer_x_hidden_hiddensender",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L3",
+          "target": "deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "employer_x_hidden_hiddensender",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L5",
+          "target": "employer_x_hidden_hiddensender_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "employer_x_hidden_rationale_4",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L4",
+          "target": "employer_x_hidden_hiddensender",
+          "weight": 1.0
+        }
+      ],
+      "extracted_sources": [
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/employer-x/hidden.py"
+      ],
+      "failed_sources": [],
+      "input_tokens": 0,
+      "nodes": [
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "employer_x_hidden",
+          "label": "hidden.py",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "employer_x_hidden_hiddensender",
+          "label": "HiddenSender",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "deliveryport",
+          "label": "DeliveryPort",
+          "source_file": "",
+          "source_location": ""
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "employer_x_hidden_hiddensender_send",
+          "label": ".send()",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L5"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "employer_x_hidden_rationale_4",
+          "label": "PRIVATE_CODE_CANARY: remove surrounding blanks and ignore upper versus lower…",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L4"
+        }
+      ],
+      "output_tokens": 0
+    },
+    "personal": {
+      "edges": [
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_audit",
+          "source_file": "personal/audit.py",
+          "source_location": "L1",
+          "target": "personal_contracts",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_audit",
+          "source_file": "personal/audit.py",
+          "source_location": "L3",
+          "target": "personal_audit_auditsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "inherits",
+          "source": "personal_audit_auditsender",
+          "source_file": "personal/audit.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_audit_auditsender",
+          "source_file": "personal/audit.py",
+          "source_location": "L5",
+          "target": "personal_audit_auditsender_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_audit_rationale_4",
+          "source_file": "personal/audit.py",
+          "source_location": "L4",
+          "target": "personal_audit_auditsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_book",
+          "source_file": "personal/book.py",
+          "source_location": "L1",
+          "target": "hashlib",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_book",
+          "source_file": "personal/book.py",
+          "source_location": "L3",
+          "target": "personal_book_stampbook",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_book_stampbook",
+          "source_file": "personal/book.py",
+          "source_location": "L5",
+          "target": "personal_book_stampbook_init",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_book_stampbook",
+          "source_file": "personal/book.py",
+          "source_location": "L7",
+          "target": "personal_book_stampbook_remember",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_book_rationale_4",
+          "source_file": "personal/book.py",
+          "source_location": "L4",
+          "target": "personal_book_stampbook",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_contracts",
+          "source_file": "personal/contracts.py",
+          "source_location": "L1",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_contracts_deliveryport",
+          "source_file": "personal/contracts.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_contracts_rationale_2",
+          "source_file": "personal/contracts.py",
+          "source_location": "L2",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_gate",
+          "source_file": "personal/gate.py",
+          "source_location": "L1",
+          "target": "personal_gate_windowgate",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_gate_windowgate",
+          "source_file": "personal/gate.py",
+          "source_location": "L3",
+          "target": "personal_gate_windowgate_permits",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_gate_rationale_2",
+          "source_file": "personal/gate.py",
+          "source_location": "L2",
+          "target": "personal_gate_windowgate",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_helpers",
+          "source_file": "personal/helpers.py",
+          "source_location": "L1",
+          "target": "personal_helpers_quick_handle",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_helpers_rationale_2",
+          "source_file": "personal/helpers.py",
+          "source_location": "L2",
+          "target": "personal_helpers_quick_handle",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_identity",
+          "source_file": "personal/identity.py",
+          "source_location": "L1",
+          "target": "personal_identity_handlefold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_identity_handlefold",
+          "source_file": "personal/identity.py",
+          "source_location": "L3",
+          "target": "personal_identity_handlefold_apply",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_identity_rationale_2",
+          "source_file": "personal/identity.py",
+          "source_location": "L2",
+          "target": "personal_identity_handlefold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_legacy",
+          "source_file": "personal/legacy.py",
+          "source_location": "L1",
+          "target": "personal_publish",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_legacy",
+          "source_file": "personal/legacy.py",
+          "source_location": "L3",
+          "target": "personal_legacy_persist",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_legacy_rationale_4",
+          "source_file": "personal/legacy.py",
+          "source_location": "L4",
+          "target": "personal_legacy_persist",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_00",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_00_note_00",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_00_rationale_2",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_00_note_00",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_01",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_01_note_01",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_01_rationale_2",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_01_note_01",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_02",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_02_note_02",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_02_rationale_2",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_02_note_02",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_03",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_03_note_03",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_03_rationale_2",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_03_note_03",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_04",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_04_note_04",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_04_rationale_2",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_04_note_04",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_05",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_05_note_05",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_05_rationale_2",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_05_note_05",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_06",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_06_note_06",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_06_rationale_2",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_06_note_06",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_07",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_07_note_07",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_07_rationale_2",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_07_note_07",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_08",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_08_note_08",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_08_rationale_2",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_08_note_08",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_09",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_09_note_09",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_09_rationale_2",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_09_note_09",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_10",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_10_note_10",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_10_rationale_2",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_10_note_10",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_11",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_11_note_11",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_11_rationale_2",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_11_note_11",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_publish",
+          "source_file": "personal/publish.py",
+          "source_location": "L1",
+          "target": "os",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_publish",
+          "source_file": "personal/publish.py",
+          "source_location": "L3",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_publish_rationale_4",
+          "source_file": "personal/publish.py",
+          "source_location": "L4",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_transport",
+          "source_file": "personal/transport.py",
+          "source_location": "L1",
+          "target": "personal_contracts",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_transport",
+          "source_file": "personal/transport.py",
+          "source_location": "L3",
+          "target": "personal_transport_parcelsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "inherits",
+          "source": "personal_transport_parcelsender",
+          "source_file": "personal/transport.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_transport_parcelsender",
+          "source_file": "personal/transport.py",
+          "source_location": "L5",
+          "target": "personal_transport_parcelsender_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_transport_rationale_4",
+          "source_file": "personal/transport.py",
+          "source_location": "L4",
+          "target": "personal_transport_parcelsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L1",
+          "target": "personal_legacy",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L2",
+          "target": "personal_identity",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L4",
+          "target": "personal_workflow_dispatch",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_workflow_rationale_5",
+          "source_file": "personal/workflow.py",
+          "source_location": "L5",
+          "target": "personal_workflow_dispatch",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_audit",
+          "source_file": "personal/audit.py",
+          "source_location": "L1",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_legacy",
+          "source_file": "personal/legacy.py",
+          "source_location": "L1",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_transport",
+          "source_file": "personal/transport.py",
+          "source_location": "L1",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L1",
+          "target": "personal_legacy_persist",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L2",
+          "target": "personal_identity_handlefold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "call",
+          "relation": "calls",
+          "source": "personal_legacy_persist",
+          "source_file": "personal/legacy.py",
+          "source_location": "L5",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "call",
+          "relation": "calls",
+          "source": "personal_workflow_dispatch",
+          "source_file": "personal/workflow.py",
+          "source_location": "L6",
+          "target": "personal_identity_handlefold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "call",
+          "relation": "calls",
+          "source": "personal_workflow_dispatch",
+          "source_file": "personal/workflow.py",
+          "source_location": "L7",
+          "target": "personal_legacy_persist",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "relation": "uses",
+          "source": "personal_audit_auditsender",
+          "source_file": "personal/audit.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 0.8
+        },
+        {
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "relation": "uses",
+          "source": "personal_transport_parcelsender",
+          "source_file": "personal/transport.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 0.8
+        },
+        {
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "relation": "uses",
+          "source": "personal_workflow_dispatch",
+          "source_file": "personal/workflow.py",
+          "source_location": "L6",
+          "target": "personal_identity_handlefold",
+          "weight": 0.8
+        }
+      ],
+      "extracted_sources": [
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/audit.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/book.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/contracts.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/gate.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/helpers.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/identity.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/legacy.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_00.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_01.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_02.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_03.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_04.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_05.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_06.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_07.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_08.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_09.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_10.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/notes/note_11.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/publish.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/settings.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/transport.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/A/personal/workflow.py"
+      ],
+      "failed_sources": [],
+      "input_tokens": 0,
+      "nodes": [
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_audit",
+          "label": "audit.py",
+          "source_file": "personal/audit.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_audit_auditsender",
+          "label": "AuditSender",
+          "source_file": "personal/audit.py",
+          "source_location": "L3"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_audit_auditsender_send",
+          "label": ".send()",
+          "source_file": "personal/audit.py",
+          "source_location": "L5"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_audit_rationale_4",
+          "label": "Transport implementation retaining a local acknowledgement.",
+          "source_file": "personal/audit.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book",
+          "label": "book.py",
+          "source_file": "personal/book.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book_stampbook",
+          "label": "StampBook",
+          "source_file": "personal/book.py",
+          "source_location": "L3"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book_stampbook_init",
+          "label": ".__init__()",
+          "source_file": "personal/book.py",
+          "source_location": "L5"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book_stampbook_remember",
+          "label": ".remember()",
+          "source_file": "personal/book.py",
+          "source_location": "L7"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_book_rationale_4",
+          "label": "Memoize successful send receipts under a stable digest.",
+          "source_file": "personal/book.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_contracts",
+          "label": "contracts.py",
+          "source_file": "personal/contracts.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_contracts_deliveryport",
+          "label": "DeliveryPort",
+          "source_file": "personal/contracts.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_contracts_deliveryport_send",
+          "label": ".send()",
+          "source_file": "personal/contracts.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_contracts_rationale_2",
+          "label": "Contract for outbound parcel transport.",
+          "source_file": "personal/contracts.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_gate",
+          "label": "gate.py",
+          "source_file": "personal/gate.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_gate_windowgate",
+          "label": "WindowGate",
+          "source_file": "personal/gate.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_gate_windowgate_permits",
+          "label": ".permits()",
+          "source_file": "personal/gate.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_gate_rationale_2",
+          "label": "Admission of transient retries within capped expenditure.",
+          "source_file": "personal/gate.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_helpers",
+          "label": "helpers.py",
+          "source_file": "personal/helpers.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_helpers_quick_handle",
+          "label": "quick_handle()",
+          "source_file": "personal/helpers.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_helpers_rationale_2",
+          "label": "Tempting one-off helper: trim only; does not merge letter-case variants.",
+          "source_file": "personal/helpers.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_identity",
+          "label": "identity.py",
+          "source_file": "personal/identity.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_identity_handlefold",
+          "label": "HandleFold",
+          "source_file": "personal/identity.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_identity_handlefold_apply",
+          "label": ".apply()",
+          "source_file": "personal/identity.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_identity_rationale_2",
+          "label": "Collapse user handle variants to one stable representation.",
+          "source_file": "personal/identity.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_legacy",
+          "label": "legacy.py",
+          "source_file": "personal/legacy.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_legacy_persist",
+          "label": "persist()",
+          "source_file": "personal/legacy.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_legacy_rationale_4",
+          "label": "Store a completed parcel snapshot.",
+          "source_file": "personal/legacy.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_00",
+          "label": "note_00.py",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_00_note_00",
+          "label": "note_00()",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_00_rationale_2",
+          "label": "Diagnostic note 0: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_01",
+          "label": "note_01.py",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_01_note_01",
+          "label": "note_01()",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_01_rationale_2",
+          "label": "Diagnostic note 1: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_02",
+          "label": "note_02.py",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_02_note_02",
+          "label": "note_02()",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_02_rationale_2",
+          "label": "Diagnostic note 2: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_03",
+          "label": "note_03.py",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_03_note_03",
+          "label": "note_03()",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_03_rationale_2",
+          "label": "Diagnostic note 3: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_04",
+          "label": "note_04.py",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_04_note_04",
+          "label": "note_04()",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_04_rationale_2",
+          "label": "Diagnostic note 4: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_05",
+          "label": "note_05.py",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_05_note_05",
+          "label": "note_05()",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_05_rationale_2",
+          "label": "Diagnostic note 5: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_06",
+          "label": "note_06.py",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_06_note_06",
+          "label": "note_06()",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_06_rationale_2",
+          "label": "Diagnostic note 6: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_07",
+          "label": "note_07.py",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_07_note_07",
+          "label": "note_07()",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_07_rationale_2",
+          "label": "Diagnostic note 7: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_08",
+          "label": "note_08.py",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_08_note_08",
+          "label": "note_08()",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_08_rationale_2",
+          "label": "Diagnostic note 8: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_09",
+          "label": "note_09.py",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_09_note_09",
+          "label": "note_09()",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_09_rationale_2",
+          "label": "Diagnostic note 9: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_10",
+          "label": "note_10.py",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_10_note_10",
+          "label": "note_10()",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_10_rationale_2",
+          "label": "Diagnostic note 10: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_11",
+          "label": "note_11.py",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_11_note_11",
+          "label": "note_11()",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_11_rationale_2",
+          "label": "Diagnostic note 11: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_publish",
+          "label": "publish.py",
+          "source_file": "personal/publish.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_publish_seal",
+          "label": "seal()",
+          "source_file": "personal/publish.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_publish_rationale_4",
+          "label": "Publish staged bytes in a single filesystem swap.",
+          "source_file": "personal/publish.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_settings",
+          "label": "settings.py",
+          "source_file": "personal/settings.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_transport",
+          "label": "transport.py",
+          "source_file": "personal/transport.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_transport_parcelsender",
+          "label": "ParcelSender",
+          "source_file": "personal/transport.py",
+          "source_location": "L3"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_transport_parcelsender_send",
+          "label": ".send()",
+          "source_file": "personal/transport.py",
+          "source_location": "L5"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_transport_rationale_4",
+          "label": "Transport implementation for outbound parcels.",
+          "source_file": "personal/transport.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_workflow",
+          "label": "workflow.py",
+          "source_file": "personal/workflow.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_workflow_dispatch",
+          "label": "dispatch()",
+          "source_file": "personal/workflow.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_workflow_rationale_5",
+          "label": "Coordinate parcel preparation and durable output.",
+          "source_file": "personal/workflow.py",
+          "source_location": "L5"
+        }
+      ],
+      "output_tokens": 0
+    }
+  },
+  "B": {
+    "employer-x": {
+      "edges": [
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "employer_x_hidden",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L1",
+          "target": "contracts",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "employer_x_hidden",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L3",
+          "target": "employer_x_hidden_hiddensender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "inherits",
+          "source": "employer_x_hidden_hiddensender",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L3",
+          "target": "deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "employer_x_hidden_hiddensender",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L5",
+          "target": "employer_x_hidden_hiddensender_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "employer_x_hidden_rationale_4",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L4",
+          "target": "employer_x_hidden_hiddensender",
+          "weight": 1.0
+        }
+      ],
+      "extracted_sources": [
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/employer-x/hidden.py"
+      ],
+      "failed_sources": [],
+      "input_tokens": 0,
+      "nodes": [
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "employer_x_hidden",
+          "label": "hidden.py",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "employer_x_hidden_hiddensender",
+          "label": "HiddenSender",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "deliveryport",
+          "label": "DeliveryPort",
+          "source_file": "",
+          "source_location": ""
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "employer_x_hidden_hiddensender_send",
+          "label": ".send()",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L5"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "employer_x_hidden_rationale_4",
+          "label": "PRIVATE_CODE_CANARY: remove surrounding blanks and ignore upper versus lower…",
+          "source_file": "employer-x/hidden.py",
+          "source_location": "L4"
+        }
+      ],
+      "output_tokens": 0
+    },
+    "personal": {
+      "edges": [
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_adapters_parcel",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L1",
+          "target": "contracts",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_adapters_parcel",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L3",
+          "target": "personal_adapters_parcel_parcelsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "inherits",
+          "source": "personal_adapters_parcel_parcelsender",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_adapters_parcel_parcelsender",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L5",
+          "target": "personal_adapters_parcel_parcelsender_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_adapters_parcel_rationale_4",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L4",
+          "target": "personal_adapters_parcel_parcelsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_audit",
+          "source_file": "personal/audit.py",
+          "source_location": "L1",
+          "target": "personal_contracts",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_audit",
+          "source_file": "personal/audit.py",
+          "source_location": "L3",
+          "target": "personal_audit_auditsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "inherits",
+          "source": "personal_audit_auditsender",
+          "source_file": "personal/audit.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_audit_auditsender",
+          "source_file": "personal/audit.py",
+          "source_location": "L5",
+          "target": "personal_audit_auditsender_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_audit_rationale_4",
+          "source_file": "personal/audit.py",
+          "source_location": "L4",
+          "target": "personal_audit_auditsender",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_book",
+          "source_file": "personal/book.py",
+          "source_location": "L1",
+          "target": "hashlib",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_book",
+          "source_file": "personal/book.py",
+          "source_location": "L3",
+          "target": "personal_book_stampbook",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_book_stampbook",
+          "source_file": "personal/book.py",
+          "source_location": "L5",
+          "target": "personal_book_stampbook_init",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_book_stampbook",
+          "source_file": "personal/book.py",
+          "source_location": "L7",
+          "target": "personal_book_stampbook_remember",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_book_rationale_4",
+          "source_file": "personal/book.py",
+          "source_location": "L4",
+          "target": "personal_book_stampbook",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_contracts",
+          "source_file": "personal/contracts.py",
+          "source_location": "L1",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_contracts_deliveryport",
+          "source_file": "personal/contracts.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport_send",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_contracts_rationale_2",
+          "source_file": "personal/contracts.py",
+          "source_location": "L2",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_gate",
+          "source_file": "personal/gate.py",
+          "source_location": "L1",
+          "target": "personal_gate_attemptfence",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_gate_attemptfence",
+          "source_file": "personal/gate.py",
+          "source_location": "L3",
+          "target": "personal_gate_attemptfence_permits",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_gate_rationale_2",
+          "source_file": "personal/gate.py",
+          "source_location": "L2",
+          "target": "personal_gate_attemptfence",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_helpers",
+          "source_file": "personal/helpers.py",
+          "source_location": "L1",
+          "target": "personal_helpers_quick_handle",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_helpers_rationale_2",
+          "source_file": "personal/helpers.py",
+          "source_location": "L2",
+          "target": "personal_helpers_quick_handle",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_identity",
+          "source_file": "personal/identity.py",
+          "source_location": "L1",
+          "target": "personal_identity_identityfold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "method",
+          "source": "personal_identity_identityfold",
+          "source_file": "personal/identity.py",
+          "source_location": "L3",
+          "target": "personal_identity_identityfold_apply",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_identity_rationale_2",
+          "source_file": "personal/identity.py",
+          "source_location": "L2",
+          "target": "personal_identity_identityfold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_00",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_00_note_00",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_00_rationale_2",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_00_note_00",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_01",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_01_note_01",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_01_rationale_2",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_01_note_01",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_02",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_02_note_02",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_02_rationale_2",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_02_note_02",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_03",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_03_note_03",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_03_rationale_2",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_03_note_03",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_04",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_04_note_04",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_04_rationale_2",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_04_note_04",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_05",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_05_note_05",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_05_rationale_2",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_05_note_05",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_06",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_06_note_06",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_06_rationale_2",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_06_note_06",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_07",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_07_note_07",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_07_rationale_2",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_07_note_07",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_08",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_08_note_08",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_08_rationale_2",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_08_note_08",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_09",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_09_note_09",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_09_rationale_2",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_09_note_09",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_10",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_10_note_10",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_10_rationale_2",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_10_note_10",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_notes_note_11",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L1",
+          "target": "personal_notes_note_11_note_11",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_notes_note_11_rationale_2",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L2",
+          "target": "personal_notes_note_11_note_11",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_publish",
+          "source_file": "personal/publish.py",
+          "source_location": "L1",
+          "target": "os",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_publish",
+          "source_file": "personal/publish.py",
+          "source_location": "L3",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_publish_rationale_4",
+          "source_file": "personal/publish.py",
+          "source_location": "L4",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_store",
+          "source_file": "personal/store.py",
+          "source_location": "L1",
+          "target": "personal_publish",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_store",
+          "source_file": "personal/store.py",
+          "source_location": "L3",
+          "target": "personal_store_checkpoint",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_store_rationale_4",
+          "source_file": "personal/store.py",
+          "source_location": "L4",
+          "target": "personal_store_checkpoint",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L1",
+          "target": "personal_store",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports_from",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L2",
+          "target": "personal_identity",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "contains",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L4",
+          "target": "personal_workflow_dispatch",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "relation": "rationale_for",
+          "source": "personal_workflow_rationale_5",
+          "source_file": "personal/workflow.py",
+          "source_location": "L5",
+          "target": "personal_workflow_dispatch",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_adapters_parcel",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L1",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_audit",
+          "source_file": "personal/audit.py",
+          "source_location": "L1",
+          "target": "personal_contracts_deliveryport",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_store",
+          "source_file": "personal/store.py",
+          "source_location": "L1",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L1",
+          "target": "personal_store_checkpoint",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "import",
+          "relation": "imports",
+          "source": "personal_workflow",
+          "source_file": "personal/workflow.py",
+          "source_location": "L2",
+          "target": "personal_identity_identityfold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "call",
+          "relation": "calls",
+          "source": "personal_store_checkpoint",
+          "source_file": "personal/store.py",
+          "source_location": "L5",
+          "target": "personal_publish_seal",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "call",
+          "relation": "calls",
+          "source": "personal_workflow_dispatch",
+          "source_file": "personal/workflow.py",
+          "source_location": "L6",
+          "target": "personal_identity_identityfold",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "EXTRACTED",
+          "context": "call",
+          "relation": "calls",
+          "source": "personal_workflow_dispatch",
+          "source_file": "personal/workflow.py",
+          "source_location": "L7",
+          "target": "personal_store_checkpoint",
+          "weight": 1.0
+        },
+        {
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "relation": "uses",
+          "source": "personal_adapters_parcel_parcelsender",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 0.8
+        },
+        {
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "relation": "uses",
+          "source": "personal_audit_auditsender",
+          "source_file": "personal/audit.py",
+          "source_location": "L3",
+          "target": "personal_contracts_deliveryport",
+          "weight": 0.8
+        },
+        {
+          "_origin": "ast",
+          "confidence": "INFERRED",
+          "confidence_score": 0.95,
+          "relation": "uses",
+          "source": "personal_workflow_dispatch",
+          "source_file": "personal/workflow.py",
+          "source_location": "L6",
+          "target": "personal_identity_identityfold",
+          "weight": 0.8
+        }
+      ],
+      "extracted_sources": [
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/adapters/parcel.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/audit.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/book.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/contracts.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/gate.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/helpers.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/identity.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_00.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_01.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_02.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_03.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_04.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_05.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_06.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_07.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_08.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_09.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_10.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/notes/note_11.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/publish.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/settings.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/store.py",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-008/workspace/B/personal/workflow.py"
+      ],
+      "failed_sources": [],
+      "input_tokens": 0,
+      "nodes": [
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_adapters_parcel",
+          "label": "parcel.py",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_adapters_parcel_parcelsender",
+          "label": "ParcelSender",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L3"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_adapters_parcel_parcelsender_send",
+          "label": ".send()",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L5"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_adapters_parcel_rationale_4",
+          "label": "Transport implementation for outbound parcels.",
+          "source_file": "personal/adapters/parcel.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_audit",
+          "label": "audit.py",
+          "source_file": "personal/audit.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_audit_auditsender",
+          "label": "AuditSender",
+          "source_file": "personal/audit.py",
+          "source_location": "L3"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_audit_auditsender_send",
+          "label": ".send()",
+          "source_file": "personal/audit.py",
+          "source_location": "L5"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_audit_rationale_4",
+          "label": "Transport implementation retaining a local acknowledgement.",
+          "source_file": "personal/audit.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book",
+          "label": "book.py",
+          "source_file": "personal/book.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book_stampbook",
+          "label": "StampBook",
+          "source_file": "personal/book.py",
+          "source_location": "L3"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book_stampbook_init",
+          "label": ".__init__()",
+          "source_file": "personal/book.py",
+          "source_location": "L5"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_book_stampbook_remember",
+          "label": ".remember()",
+          "source_file": "personal/book.py",
+          "source_location": "L7"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_book_rationale_4",
+          "label": "Memoize successful send receipts under a stable digest.",
+          "source_file": "personal/book.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_contracts",
+          "label": "contracts.py",
+          "source_file": "personal/contracts.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_contracts_deliveryport",
+          "label": "DeliveryPort",
+          "source_file": "personal/contracts.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_contracts_deliveryport_send",
+          "label": ".send()",
+          "source_file": "personal/contracts.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_contracts_rationale_2",
+          "label": "Contract for outbound parcel transport.",
+          "source_file": "personal/contracts.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_gate",
+          "label": "gate.py",
+          "source_file": "personal/gate.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_gate_attemptfence",
+          "label": "AttemptFence",
+          "source_file": "personal/gate.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_gate_attemptfence_permits",
+          "label": ".permits()",
+          "source_file": "personal/gate.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_gate_rationale_2",
+          "label": "Admission of transient retries within capped expenditure.",
+          "source_file": "personal/gate.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_helpers",
+          "label": "helpers.py",
+          "source_file": "personal/helpers.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_helpers_quick_handle",
+          "label": "quick_handle()",
+          "source_file": "personal/helpers.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_helpers_rationale_2",
+          "label": "Tempting one-off helper: trim only; does not merge letter-case variants.",
+          "source_file": "personal/helpers.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_identity",
+          "label": "identity.py",
+          "source_file": "personal/identity.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_callable_class": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_identity_identityfold",
+          "label": "IdentityFold",
+          "source_file": "personal/identity.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_identity_identityfold_apply",
+          "label": ".apply()",
+          "source_file": "personal/identity.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_identity_rationale_2",
+          "label": "Collapse user handle variants to one stable representation.",
+          "source_file": "personal/identity.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_00",
+          "label": "note_00.py",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_00_note_00",
+          "label": "note_00()",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_00_rationale_2",
+          "label": "Diagnostic note 0: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_00.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_01",
+          "label": "note_01.py",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_01_note_01",
+          "label": "note_01()",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_01_rationale_2",
+          "label": "Diagnostic note 1: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_01.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_02",
+          "label": "note_02.py",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_02_note_02",
+          "label": "note_02()",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_02_rationale_2",
+          "label": "Diagnostic note 2: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_02.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_03",
+          "label": "note_03.py",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_03_note_03",
+          "label": "note_03()",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_03_rationale_2",
+          "label": "Diagnostic note 3: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_03.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_04",
+          "label": "note_04.py",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_04_note_04",
+          "label": "note_04()",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_04_rationale_2",
+          "label": "Diagnostic note 4: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_04.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_05",
+          "label": "note_05.py",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_05_note_05",
+          "label": "note_05()",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_05_rationale_2",
+          "label": "Diagnostic note 5: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_05.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_06",
+          "label": "note_06.py",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_06_note_06",
+          "label": "note_06()",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_06_rationale_2",
+          "label": "Diagnostic note 6: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_06.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_07",
+          "label": "note_07.py",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_07_note_07",
+          "label": "note_07()",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_07_rationale_2",
+          "label": "Diagnostic note 7: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_07.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_08",
+          "label": "note_08.py",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_08_note_08",
+          "label": "note_08()",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_08_rationale_2",
+          "label": "Diagnostic note 8: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_08.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_09",
+          "label": "note_09.py",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_09_note_09",
+          "label": "note_09()",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_09_rationale_2",
+          "label": "Diagnostic note 9: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_09.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_10",
+          "label": "note_10.py",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_10_note_10",
+          "label": "note_10()",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_10_rationale_2",
+          "label": "Diagnostic note 10: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_10.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_11",
+          "label": "note_11.py",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_notes_note_11_note_11",
+          "label": "note_11()",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_notes_note_11_rationale_2",
+          "label": "Diagnostic note 11: record account identifiers and delivery attempt…",
+          "source_file": "personal/notes/note_11.py",
+          "source_location": "L2"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_publish",
+          "label": "publish.py",
+          "source_file": "personal/publish.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_publish_seal",
+          "label": "seal()",
+          "source_file": "personal/publish.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_publish_rationale_4",
+          "label": "Publish staged bytes in a single filesystem swap.",
+          "source_file": "personal/publish.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_settings",
+          "label": "settings.py",
+          "source_file": "personal/settings.py",
+          "source_location": "L1"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_store",
+          "label": "store.py",
+          "source_file": "personal/store.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_store_checkpoint",
+          "label": "checkpoint()",
+          "source_file": "personal/store.py",
+          "source_location": "L3"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_store_rationale_4",
+          "label": "Store a completed parcel snapshot.",
+          "source_file": "personal/store.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_workflow",
+          "label": "workflow.py",
+          "source_file": "personal/workflow.py",
+          "source_location": "L1"
+        },
+        {
+          "_callable": true,
+          "_origin": "ast",
+          "file_type": "code",
+          "id": "personal_workflow_dispatch",
+          "label": "dispatch()",
+          "source_file": "personal/workflow.py",
+          "source_location": "L4"
+        },
+        {
+          "_origin": "ast",
+          "file_type": "rationale",
+          "id": "personal_workflow_rationale_5",
+          "label": "Coordinate parcel preparation and durable output.",
+          "source_file": "personal/workflow.py",
+          "source_location": "L5"
+        }
+      ],
+      "output_tokens": 0
+    }
+  }
+}

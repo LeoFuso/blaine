@@ -1,0 +1,56 @@
+{
+  "anchors_checked": 9,
+  "changed_files": [
+    "README.md",
+    "docs/README.md",
+    "docs/milestones/043-track-iii-2-deterministic-context-semantics.md",
+    "docs/milestones/README.md",
+    "docs/roadmap/001-blaine-development-roadmap.md",
+    "experiments/track-iii-002/README.md",
+    "experiments/track-iii-002/evaluator.py",
+    "experiments/track-iii-002/evidence/documentation-checks.json",
+    "experiments/track-iii-002/evidence/mutation-control.json",
+    "experiments/track-iii-002/evidence/mutation-results.json",
+    "experiments/track-iii-002/evidence/reproducibility.json",
+    "experiments/track-iii-002/evidence/restored-results.json",
+    "experiments/track-iii-002/evidence/results.json",
+    "experiments/track-iii-002/evidence/summary.json",
+    "experiments/track-iii-002/evidence/verification.json",
+    "experiments/track-iii-002/fixtures.json",
+    "experiments/track-iii-002/probe.py",
+    "experiments/track-iii-002/request.json",
+    "experiments/track-iii-002/verify.py"
+  ],
+  "comparison_baseline": "3960289",
+  "errors": [],
+  "git_diff_check_exit": 0,
+  "json_files_parsed": 10,
+  "local_links_checked": 193,
+  "method": "Python stdlib JSON/AST and local link/anchor checks; exact experiment/docs path allowlist; whitespace checks for tracked and new files; git diff --check",
+  "production_paths_changed": false,
+  "python_imports": {
+    "evaluator.py": [
+      "dataclasses",
+      "types"
+    ],
+    "probe.py": [
+      "argparse",
+      "copy",
+      "dataclasses",
+      "evaluator",
+      "hashlib",
+      "json",
+      "pathlib",
+      "subprocess",
+      "sys",
+      "tempfile"
+    ],
+    "verify.py": [
+      "argparse",
+      "hashlib",
+      "json",
+      "pathlib"
+    ]
+  },
+  "status": "PASS"
+}

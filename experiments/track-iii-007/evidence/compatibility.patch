@@ -1,0 +1,16 @@
+--- III.5/gate.py
++++ III.7/promotion_v2.py
+@@ -72 +72 @@
+-        internal={'gate_version':'gate-v1','request':deepcopy(request),'scanners':[]}
++        internal={'gate_version':'gate-v2','request':deepcopy(request),'scanners':[]}
+@@ -106,2 +106,2 @@
+-        if (source['provenance'] not in ('USER_DECLARATION','AGENT_OBSERVATION')
+-                or source['epistemic_status']!=('DECLARED' if source['provenance']=='USER_DECLARATION' else 'UNVERIFIED')
++        if (source['provenance'] not in ('USER_DECLARATION','AGENT_OBSERVATION','VERIFIED_OUTCOME')
++                or source['epistemic_status'] not in {'USER_DECLARATION':('DECLARED',), 'AGENT_OBSERVATION':('UNVERIFIED',), 'VERIFIED_OUTCOME':('VERIFIED_SUCCESS','VERIFIED_FAILURE')}[source['provenance']]
+@@ -157 +157 @@
+-               'admission':{'kind':'PROMOTED_REPRESENTATION','gate_version':'gate-v1','policy_version':self.policy['version']}}
++               'admission':{'kind':'PROMOTED_REPRESENTATION','gate_version':'gate-v2','policy_version':self.policy['version']}}
+@@ -162 +162 @@
+-                 'epistemic_status':source['epistemic_status'],'gate_version':'gate-v1','policy_version':self.policy['version']}
++                 'epistemic_status':source['epistemic_status'],'gate_version':'gate-v2','policy_version':self.policy['version']}

@@ -1,0 +1,25 @@
+{
+  "artifact_sha256": {
+    "cost.json": "f07fc13a87bf59f8c15b79d1bb9f8511dfd77860e21449b57fb77bda287240df",
+    "raw.json.gz": "ed7783de2ba76454ffbd485057f081688ee2b9db36df711f31ccd5310b88d6fb",
+    "source.json.gz": "20f23125d751a18003b5007d180a1abd695f775b6dd0fc01d1a9f0b7b8bfc624",
+    "source.tar.gz": "5000634fbb65bdd9169140dde638d5e8d3afb5e71006a9a3f2b66c730c65d9f5"
+  },
+  "command": [
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/collect.py",
+    "--child",
+    "spring-kafka",
+    "/tmp/blaine-iii-g/spring-kafka-extract",
+    "/tmp/blaine-iii-g/spring-kafka-cache",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/indexes/spring-kafka/A"
+  ],
+  "commit": "7d71e8d3765a6139188bc84c5e6560a02e85a97c",
+  "exit_code": 0,
+  "mode": "initial full extraction",
+  "repo": "spring-kafka",
+  "revision": "A",
+  "stderr": "",
+  "stdout": "  AST extraction: 100/353 uncached files (28%)\n  AST extraction: 200/353 uncached files (56%)\n  AST extraction: 300/353 uncached files (84%)\n  AST extraction: 353/353 uncached files (100%)\n",
+  "wall_seconds": 3.40960055400501
+}

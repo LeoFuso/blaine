@@ -1,0 +1,25 @@
+{
+  "graph_requests": 1,
+  "groups": {
+    "DIRECT": 5,
+    "IMPACT": 5,
+    "MULTI_HOP": 5,
+    "TRAP": 5
+  },
+  "max_depth": 8,
+  "max_edges": 10000,
+  "max_nodes": 2500,
+  "maximum_direct_losses": 0,
+  "maximum_forbidden": 0,
+  "maximum_stale": 0,
+  "minimum_exploration_reductions": 3,
+  "minimum_unique_target_gain": 3,
+  "models": false,
+  "packet_bytes": 2048,
+  "primary_revision": "B",
+  "queries": 20,
+  "ranking": "shortest-hop then canonical target; whole answers with shared node table",
+  "repo_questions": 10,
+  "source_operations": 3,
+  "trap_invalid_must_not_exceed_baseline": true
+}

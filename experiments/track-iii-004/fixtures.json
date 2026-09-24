@@ -1,0 +1,722 @@
+{
+  "collision_entry": {
+    "classification": "PRIVATE",
+    "content": "employer-x-secret-memory internal-host-x.example.invalid ProprietaryRoutingClassX X-TICKET-481 table_x_internal repository-x-private",
+    "context_id": "root",
+    "created_by": "employer-x-author",
+    "domain": "employer-x",
+    "epistemic_status": "UNVERIFIED",
+    "id": "opaque-collision-key",
+    "provenance": "AGENT_OBSERVATION"
+  },
+  "context_domains": {
+    "employer-x": "employer-x",
+    "personal": "personal",
+    "project-personal": "personal",
+    "project-x": "employer-x",
+    "root": "public",
+    "task-personal-a": "personal",
+    "task-personal-b": "personal",
+    "task-x-a": "employer-x",
+    "task-x-b": "employer-x"
+  },
+  "declaration_targets": {
+    "human-personal": "project-personal",
+    "human-x": "project-x"
+  },
+  "derived": [
+    {
+      "id": "global-summary",
+      "kind": "SUMMARY",
+      "payload": "global-summary-synthetic-payload",
+      "source_ids": [
+        "global-engineering-memory"
+      ]
+    },
+    {
+      "id": "global-embedding_stub",
+      "kind": "EMBEDDING_STUB",
+      "payload": "global-embedding_stub-synthetic-payload",
+      "source_ids": [
+        "global-engineering-memory"
+      ]
+    },
+    {
+      "id": "global-semantic_index_stub",
+      "kind": "SEMANTIC_INDEX_STUB",
+      "payload": "global-semantic_index_stub-synthetic-payload",
+      "source_ids": [
+        "global-engineering-memory"
+      ]
+    },
+    {
+      "id": "global-node",
+      "kind": "GRAPH_NODE",
+      "payload": "global-node-synthetic-payload",
+      "source_ids": [
+        "global-engineering-memory"
+      ]
+    },
+    {
+      "id": "global-artifact_stub",
+      "kind": "ARTIFACT_STUB",
+      "payload": "global-artifact_stub-synthetic-payload",
+      "source_ids": [
+        "global-engineering-memory"
+      ]
+    },
+    {
+      "id": "global-tool_output_stub",
+      "kind": "TOOL_OUTPUT_STUB",
+      "payload": "global-tool_output_stub-synthetic-payload",
+      "source_ids": [
+        "global-engineering-memory"
+      ]
+    },
+    {
+      "id": "personal-summary",
+      "kind": "SUMMARY",
+      "payload": "personal-summary-synthetic-payload",
+      "source_ids": [
+        "personal-root-private"
+      ]
+    },
+    {
+      "id": "personal-embedding_stub",
+      "kind": "EMBEDDING_STUB",
+      "payload": "personal-embedding_stub-synthetic-payload",
+      "source_ids": [
+        "personal-root-private"
+      ]
+    },
+    {
+      "id": "personal-semantic_index_stub",
+      "kind": "SEMANTIC_INDEX_STUB",
+      "payload": "personal-semantic_index_stub-synthetic-payload",
+      "source_ids": [
+        "personal-root-private"
+      ]
+    },
+    {
+      "id": "personal-node",
+      "kind": "GRAPH_NODE",
+      "payload": "personal-node-synthetic-payload",
+      "source_ids": [
+        "personal-root-private"
+      ]
+    },
+    {
+      "id": "personal-artifact_stub",
+      "kind": "ARTIFACT_STUB",
+      "payload": "personal-artifact_stub-synthetic-payload",
+      "source_ids": [
+        "personal-root-private"
+      ]
+    },
+    {
+      "id": "personal-tool_output_stub",
+      "kind": "TOOL_OUTPUT_STUB",
+      "payload": "personal-tool_output_stub-synthetic-payload",
+      "source_ids": [
+        "personal-root-private"
+      ]
+    },
+    {
+      "id": "x-summary",
+      "kind": "SUMMARY",
+      "payload": "x-summary-synthetic-payload",
+      "source_ids": [
+        "x-root-private"
+      ]
+    },
+    {
+      "id": "x-embedding_stub",
+      "kind": "EMBEDDING_STUB",
+      "payload": "x-embedding_stub-synthetic-payload",
+      "source_ids": [
+        "x-root-private"
+      ]
+    },
+    {
+      "id": "x-semantic_index_stub",
+      "kind": "SEMANTIC_INDEX_STUB",
+      "payload": "x-semantic_index_stub-synthetic-payload",
+      "source_ids": [
+        "x-root-private"
+      ]
+    },
+    {
+      "id": "x-node",
+      "kind": "GRAPH_NODE",
+      "payload": "x-node-synthetic-payload",
+      "source_ids": [
+        "x-root-private"
+      ]
+    },
+    {
+      "id": "x-artifact_stub",
+      "kind": "ARTIFACT_STUB",
+      "payload": "x-artifact_stub-synthetic-payload",
+      "source_ids": [
+        "x-root-private"
+      ]
+    },
+    {
+      "id": "x-tool_output_stub",
+      "kind": "TOOL_OUTPUT_STUB",
+      "payload": "x-tool_output_stub-synthetic-payload",
+      "source_ids": [
+        "x-root-private"
+      ]
+    },
+    {
+      "id": "personal-local-node",
+      "kind": "GRAPH_NODE",
+      "payload": "personal-local-node-payload",
+      "source_ids": [
+        "personal-memory"
+      ]
+    },
+    {
+      "id": "x-local-node",
+      "kind": "GRAPH_NODE",
+      "payload": "x-local-node-payload",
+      "source_ids": [
+        "employer-x-memory"
+      ]
+    },
+    {
+      "end": "personal-local-node",
+      "id": "personal-edge",
+      "kind": "GRAPH_EDGE",
+      "payload": "personal-edge-private-payload",
+      "source_ids": [
+        "personal-memory",
+        "personal-root-private"
+      ],
+      "start": "personal-node"
+    },
+    {
+      "end": "x-local-node",
+      "id": "x-edge",
+      "kind": "GRAPH_EDGE",
+      "payload": "x-edge-private-payload",
+      "source_ids": [
+        "employer-x-memory",
+        "x-root-private"
+      ],
+      "start": "x-node"
+    },
+    {
+      "end": "x-node",
+      "id": "cross-edge",
+      "kind": "GRAPH_EDGE",
+      "payload": "cross-edge-private-payload",
+      "source_ids": [
+        "personal-root-private",
+        "x-root-private"
+      ],
+      "start": "personal-node"
+    },
+    {
+      "end": "x-node",
+      "id": "global-x-edge",
+      "kind": "GRAPH_EDGE",
+      "payload": "global-x-edge-private-payload",
+      "source_ids": [
+        "global-engineering-memory",
+        "x-root-private"
+      ],
+      "start": "global-node"
+    }
+  ],
+  "entries": [
+    {
+      "classification": "PUBLIC",
+      "content": "global engineering fixture",
+      "context_id": "root",
+      "created_by": "fixture",
+      "domain": "public",
+      "epistemic_status": "UNVERIFIED",
+      "id": "global-engineering-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "personal-private-memory personal-host.example.invalid PersonalClassFixture P-TICKET-12 personal_table personal_repository",
+      "context_id": "root",
+      "created_by": "personal-author",
+      "domain": "personal",
+      "epistemic_status": "UNVERIFIED",
+      "id": "personal-root-private",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "employer-x-secret-memory internal-host-x.example.invalid ProprietaryRoutingClassX X-TICKET-481 table_x_internal repository-x-private",
+      "context_id": "root",
+      "created_by": "employer-x-author",
+      "domain": "employer-x",
+      "epistemic_status": "UNVERIFIED",
+      "id": "x-root-private",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "employer-x-policy-blocked",
+      "context_id": "root",
+      "created_by": "employer-x-author",
+      "domain": "employer-x",
+      "epistemic_status": "UNVERIFIED",
+      "id": "x-policy-denied",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "personal-literal-private",
+      "context_id": "personal",
+      "created_by": "personal-author",
+      "domain": "personal",
+      "epistemic_status": "UNVERIFIED",
+      "id": "personal-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "project-personal-literal-private",
+      "context_id": "project-personal",
+      "created_by": "personal-author",
+      "domain": "personal",
+      "epistemic_status": "UNVERIFIED",
+      "id": "project-personal-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "task-personal-a-literal-private",
+      "context_id": "task-personal-a",
+      "created_by": "personal-author",
+      "domain": "personal",
+      "epistemic_status": "UNVERIFIED",
+      "id": "task-personal-a-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "task-personal-b-literal-private",
+      "context_id": "task-personal-b",
+      "created_by": "personal-author",
+      "domain": "personal",
+      "epistemic_status": "UNVERIFIED",
+      "id": "task-personal-b-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "employer-x-literal-private",
+      "context_id": "employer-x",
+      "created_by": "employer-x-author",
+      "domain": "employer-x",
+      "epistemic_status": "UNVERIFIED",
+      "id": "employer-x-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "project-x-literal-private",
+      "context_id": "project-x",
+      "created_by": "employer-x-author",
+      "domain": "employer-x",
+      "epistemic_status": "UNVERIFIED",
+      "id": "project-x-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "task-x-a-literal-private",
+      "context_id": "task-x-a",
+      "created_by": "employer-x-author",
+      "domain": "employer-x",
+      "epistemic_status": "UNVERIFIED",
+      "id": "task-x-a-memory",
+      "provenance": "AGENT_OBSERVATION"
+    },
+    {
+      "classification": "PRIVATE",
+      "content": "task-x-b-literal-private",
+      "context_id": "task-x-b",
+      "created_by": "employer-x-author",
+      "domain": "employer-x",
+      "epistemic_status": "UNVERIFIED",
+      "id": "task-x-b-memory",
+      "provenance": "AGENT_OBSERVATION"
+    }
+  ],
+  "expected_derived": {
+    "employer-x": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "global-x-edge",
+      "x-artifact_stub",
+      "x-edge",
+      "x-embedding_stub",
+      "x-local-node",
+      "x-node",
+      "x-semantic_index_stub",
+      "x-summary",
+      "x-tool_output_stub"
+    ],
+    "personal": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "personal-artifact_stub",
+      "personal-edge",
+      "personal-embedding_stub",
+      "personal-local-node",
+      "personal-node",
+      "personal-semantic_index_stub",
+      "personal-summary",
+      "personal-tool_output_stub"
+    ],
+    "project-personal": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "personal-artifact_stub",
+      "personal-edge",
+      "personal-embedding_stub",
+      "personal-local-node",
+      "personal-node",
+      "personal-semantic_index_stub",
+      "personal-summary",
+      "personal-tool_output_stub"
+    ],
+    "project-x": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "global-x-edge",
+      "x-artifact_stub",
+      "x-edge",
+      "x-embedding_stub",
+      "x-local-node",
+      "x-node",
+      "x-semantic_index_stub",
+      "x-summary",
+      "x-tool_output_stub"
+    ],
+    "root": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub"
+    ],
+    "task-personal-a": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "personal-artifact_stub",
+      "personal-edge",
+      "personal-embedding_stub",
+      "personal-local-node",
+      "personal-node",
+      "personal-semantic_index_stub",
+      "personal-summary",
+      "personal-tool_output_stub"
+    ],
+    "task-personal-b": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "personal-artifact_stub",
+      "personal-edge",
+      "personal-embedding_stub",
+      "personal-local-node",
+      "personal-node",
+      "personal-semantic_index_stub",
+      "personal-summary",
+      "personal-tool_output_stub"
+    ],
+    "task-x-a": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "global-x-edge",
+      "x-artifact_stub",
+      "x-edge",
+      "x-embedding_stub",
+      "x-local-node",
+      "x-node",
+      "x-semantic_index_stub",
+      "x-summary",
+      "x-tool_output_stub"
+    ],
+    "task-x-b": [
+      "global-artifact_stub",
+      "global-embedding_stub",
+      "global-node",
+      "global-semantic_index_stub",
+      "global-summary",
+      "global-tool_output_stub",
+      "global-x-edge",
+      "x-artifact_stub",
+      "x-edge",
+      "x-embedding_stub",
+      "x-local-node",
+      "x-node",
+      "x-semantic_index_stub",
+      "x-summary",
+      "x-tool_output_stub"
+    ]
+  },
+  "expected_raw": {
+    "employer-x": [
+      "employer-x-memory",
+      "global-engineering-memory",
+      "x-root-private"
+    ],
+    "personal": [
+      "global-engineering-memory",
+      "personal-memory",
+      "personal-root-private"
+    ],
+    "project-personal": [
+      "global-engineering-memory",
+      "personal-memory",
+      "personal-root-private",
+      "project-personal-memory"
+    ],
+    "project-x": [
+      "employer-x-memory",
+      "global-engineering-memory",
+      "project-x-memory",
+      "x-root-private"
+    ],
+    "root": [
+      "global-engineering-memory"
+    ],
+    "task-personal-a": [
+      "global-engineering-memory",
+      "personal-memory",
+      "personal-root-private",
+      "project-personal-memory",
+      "task-personal-a-memory"
+    ],
+    "task-personal-b": [
+      "global-engineering-memory",
+      "personal-memory",
+      "personal-root-private",
+      "project-personal-memory",
+      "task-personal-b-memory"
+    ],
+    "task-x-a": [
+      "employer-x-memory",
+      "global-engineering-memory",
+      "project-x-memory",
+      "task-x-a-memory",
+      "x-root-private"
+    ],
+    "task-x-b": [
+      "employer-x-memory",
+      "global-engineering-memory",
+      "project-x-memory",
+      "task-x-b-memory",
+      "x-root-private"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "root",
+      "inherit_parent": true,
+      "kind": "initiative",
+      "parent_id": null
+    },
+    {
+      "id": "personal",
+      "inherit_parent": true,
+      "kind": "experiment",
+      "parent_id": "root"
+    },
+    {
+      "id": "project-personal",
+      "inherit_parent": true,
+      "kind": "task",
+      "parent_id": "personal"
+    },
+    {
+      "id": "task-personal-a",
+      "inherit_parent": true,
+      "kind": "initiative",
+      "parent_id": "project-personal"
+    },
+    {
+      "id": "task-personal-b",
+      "inherit_parent": true,
+      "kind": "experiment",
+      "parent_id": "project-personal"
+    },
+    {
+      "id": "employer-x",
+      "inherit_parent": true,
+      "kind": "task",
+      "parent_id": "root"
+    },
+    {
+      "id": "project-x",
+      "inherit_parent": true,
+      "kind": "initiative",
+      "parent_id": "employer-x"
+    },
+    {
+      "id": "task-x-a",
+      "inherit_parent": true,
+      "kind": "experiment",
+      "parent_id": "project-x"
+    },
+    {
+      "id": "task-x-b",
+      "inherit_parent": true,
+      "kind": "task",
+      "parent_id": "project-x"
+    }
+  ],
+  "policy": {
+    "deny_ids": [
+      "x-policy-denied"
+    ],
+    "grants": {
+      "employer-x": [
+        "public",
+        "employer-x"
+      ],
+      "personal": [
+        "public",
+        "personal"
+      ],
+      "public": [
+        "public"
+      ]
+    },
+    "version": "fixture-v1"
+  },
+  "protected_literals": {
+    "employer-x": [
+      "ProprietaryRoutingClassX",
+      "X-TICKET-481",
+      "cross-edge",
+      "cross-edge-private-payload",
+      "employer-x",
+      "employer-x-author",
+      "employer-x-literal-private",
+      "employer-x-memory",
+      "employer-x-policy-blocked",
+      "employer-x-secret-memory",
+      "global-x-edge",
+      "global-x-edge-private-payload",
+      "internal-host-x.example.invalid",
+      "project-x-literal-private",
+      "project-x-memory",
+      "repository-x-private",
+      "table_x_internal",
+      "task-x-a-literal-private",
+      "task-x-a-memory",
+      "task-x-b-literal-private",
+      "task-x-b-memory",
+      "x-artifact_stub",
+      "x-artifact_stub-synthetic-payload",
+      "x-cognition-literal",
+      "x-cognition-observation",
+      "x-declaration-literal",
+      "x-edge",
+      "x-edge-private-payload",
+      "x-embedding_stub",
+      "x-embedding_stub-synthetic-payload",
+      "x-human-declaration",
+      "x-local-node",
+      "x-local-node-payload",
+      "x-node",
+      "x-node-synthetic-payload",
+      "x-policy-denied",
+      "x-root-private",
+      "x-semantic_index_stub",
+      "x-semantic_index_stub-synthetic-payload",
+      "x-summary",
+      "x-summary-synthetic-payload",
+      "x-tool_output_stub",
+      "x-tool_output_stub-synthetic-payload",
+      "x-worker-literal",
+      "x-worker-observation"
+    ],
+    "personal": [
+      "P-TICKET-12",
+      "PersonalClassFixture",
+      "cross-edge",
+      "cross-edge-private-payload",
+      "personal",
+      "personal-artifact_stub",
+      "personal-artifact_stub-synthetic-payload",
+      "personal-author",
+      "personal-cognition-literal",
+      "personal-cognition-observation",
+      "personal-declaration-literal",
+      "personal-edge",
+      "personal-edge-private-payload",
+      "personal-embedding_stub",
+      "personal-embedding_stub-synthetic-payload",
+      "personal-host.example.invalid",
+      "personal-human-declaration",
+      "personal-literal-private",
+      "personal-local-node",
+      "personal-local-node-payload",
+      "personal-memory",
+      "personal-node",
+      "personal-node-synthetic-payload",
+      "personal-private-memory",
+      "personal-root-private",
+      "personal-semantic_index_stub",
+      "personal-semantic_index_stub-synthetic-payload",
+      "personal-summary",
+      "personal-summary-synthetic-payload",
+      "personal-tool_output_stub",
+      "personal-tool_output_stub-synthetic-payload",
+      "personal-worker-literal",
+      "personal-worker-observation",
+      "personal_repository",
+      "personal_table",
+      "project-personal-literal-private",
+      "project-personal-memory",
+      "task-personal-a-literal-private",
+      "task-personal-a-memory",
+      "task-personal-b-literal-private",
+      "task-personal-b-memory"
+    ]
+  },
+  "publicly_known_probe_identifiers": [
+    "opaque-collision-key"
+  ]
+}

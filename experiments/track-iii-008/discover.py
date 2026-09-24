@@ -1,0 +1,114 @@
+"""III.8 bounded discovery only. Indexes propose; scoped source snapshots validate."""
+from collections import Counter
+from copy import deepcopy
+import math
+import re
+import sys
+from source import HERE,load,save,wire,digest,declarations,relation_valid
+sys.path.insert(0,str(HERE.parent/'track-iii-002'))
+from evaluator import ContextTree
+
+STOP=set('a an the is are there already way to and or in on of for from before after where which whether another so can be at all once what who does do using with how as it'.split())
+def tokens(text):
+    text=re.sub(r'([a-z])([A-Z])',r'\1 \2',text)
+    return [w for w in re.findall(r'[a-z0-9]+',text.lower()) if w not in STOP]
+def cosine(a,b):return round(sum(x*y for x,y in zip(a,b))/math.sqrt(sum(x*x for x in a)*sum(y*y for y in b)),8)
+
+
+class Discovery:
+    def __init__(self,indexes=None):
+        self.indexes=indexes or load('evidence/indexes.json');self.vectors=load('evidence/vectors.json');self.policy=load('security.json')
+        self.tree=ContextTree(self.policy['nodes'],[]);self.binding=self.tree.bind(self.policy['binding']['context']);self.tokens={self.binding}
+    def permitted(self,target,binding):
+        if binding not in self.tokens or not isinstance(self.policy,dict):return False
+        ownership=next((p for prefix,p in self.policy['partitions'].items() if target.startswith(prefix)),None)
+        return bool(ownership and ownership['context'] in self.tree._lineage(self.policy['binding']['context']) and ownership['domain'] in self.policy['grants'][self.policy['binding']['domain']])
+    def scope_revision(self,rows,binding):
+        return 'sha256:'+digest({r['file']:r['source_hash'] for t,r in rows.items() if self.permitted(t,binding)})
+    def lexical(self,query,rows):
+        terms=tokens(query['text']);docs={i:tokens(r['text']+' '+r['symbol']) for i,r in rows.items()};n=len(docs);avg=sum(map(len,docs.values()))/max(1,n);scores=[]
+        for i,words in docs.items():
+            freq=Counter(words);score=0
+            for term in set(terms):
+                df=sum(term in d for d in docs.values());tf=freq[term]
+                score+=math.log(1+(n-df+0.5)/(df+0.5))*tf*2.2/(tf+1.2*(0.25+0.75*len(words)/max(1,avg)))
+            if score:scores.append({'target':i,'score':round(score,8)})
+        return sorted(scores,key=lambda r:(-int(rows[r['target']]['symbol'].casefold()==query['text'].casefold()),-r['score'],r['target']))
+    def structural(self,q,index,rows):
+        rel=q.get('relation');edges=[e for e in index['edges'] if e['source'] in rows and e['target'] in rows]
+        if not rel:return [],[]
+        names={r['symbol']:i for i,r in rows.items()};dest=names.get(rel['target']);chosen=[]
+        if rel['op'] in ('implementations','callers','imports'):
+            kind={'implementations':'inherits','callers':'calls','imports':'imports'}[rel['op']]
+            chosen=[e for e in edges if e['target']==dest and e['relation']==kind];ids=sorted({e['source'] for e in chosen})
+        else:
+            start=names.get(rel['start']);queue=[(start,[])];visited=set();path=None
+            while queue:
+                node,chain=queue.pop(0)
+                if node==dest:path=chain;break
+                if node in visited or len(chain)>=4:continue
+                visited.add(node)
+                for e in edges:
+                    if e['source']==node and e['relation']=='calls':queue.append((e['target'],chain+[e]))
+            chosen=path or [];ids=sorted({n for e in chosen for n in (e['source'],e['target'])})
+        return [{'target':i,'score':1.0} for i in ids],chosen
+    def query(self,binding,q,rev,mode,variant='correct'):
+        if binding not in self.tokens:return {'packet':{'status':'DENIED','entries':[]},'diagnostic':{'status':'DENIED'}}
+        if self.policy!=load('security.json'):
+            state='UNAVAILABLE' if self.policy is None else 'DENIED'
+            return {'packet':{'status':state,'entries':[]},'diagnostic':{'status':state}}
+        current=declarations(rev);idx_rev='A' if variant in ('stale-safe','freshness') and rev=='B' else rev;idx=self.indexes[idx_rev]
+        allow=lambda t:variant=='isolation' or self.permitted(t,binding)
+        fresh_rows={i:r for i,r in current.items() if allow(i)};indexed_rows={i:r for i,r in idx['rows'].items() if allow(i)}
+        lexical=self.lexical(q,fresh_rows)
+        semantic=sorted([{'target':i,'score':cosine(self.vectors['query|'+q['id']],self.vectors[idx_rev+'|'+i])} for i in indexed_rows],key=lambda r:(-r['score'],r['target'])) if mode=='COMBINED' else []
+        structural,relations=self.structural(q,idx,indexed_rows) if mode=='COMBINED' else ([],[])
+        mechanisms={'LEXICAL':lexical,'SEMANTIC':semantic,'STRUCTURAL':structural};candidate={}
+        for mechanism,ranked in mechanisms.items():
+            for rank,r in enumerate(ranked):
+                i=r['target'];row=deepcopy(fresh_rows[i] if mechanism=='LEXICAL' else indexed_rows[i])
+                c=candidate.setdefault(i,{'record':row,'via':[],'ranks':{},'score':0})
+                c['via'].append(mechanism);c['ranks'][mechanism]=rank;c['score']+=1/(20+rank+1)
+        def priority(item):
+            i,c=item;exact=c['record']['symbol'].casefold()==q['text'].casefold()
+            if exact:return (0,0,i)
+            if 'STRUCTURAL' in c['via']:return (1,c['ranks']['STRUCTURAL'],i)
+            # Interleave semantic and lexical heads for conceptual queries; neither is discarded.
+            ranks=[2*r+(0 if mech=='SEMANTIC' else 1) for mech,r in c['ranks'].items()]
+            return (2,min(ranks),-c['score'],i)
+        ordered=sorted(candidate.items(),key=priority if mode=='COMBINED' else lambda x:(x[1]['ranks']['LEXICAL'],x[0]))
+        scope=self.scope_revision(current,binding);derived_scope=self.scope_revision(idx['rows'],binding);admitted=[];validation=[]
+        for i,c in ordered:
+            row=c['record'];derived=any(x!='LEXICAL' for x in c['via']);reasons=[]
+            if variant!='isolation' and not self.permitted(i,binding):reasons.append('FORBIDDEN')
+            if variant!='freshness':
+                if derived and scope!=derived_scope:reasons.append('STALE_SCOPE_REVISION')
+                if i not in current or row['source_hash']!=current[i]['source_hash'] or row['text']!=current[i]['text']:reasons.append('STALE_SOURCE')
+                if 'STRUCTURAL' in c['via'] and any(not relation_valid(e,current) for e in relations if i in (e['source'],e['target'])):reasons.append('STALE_RELATION')
+            validation.append({'target':i,'via':c['via'],'reasons':reasons})
+            if not reasons:admitted.append((i,c))
+        packet={'status':'SUCCESS' if admitted else 'EMPTY','revision':scope,'derived_revision':derived_scope if mode=='COMBINED' else scope,'derived_state':'NOT_USED' if mode=='LEXICAL' else 'CURRENT' if scope==derived_scope or variant=='freshness' else 'STALE_EXCLUDED','entries':[],'relations':[],'partial':False}
+        omitted=[]
+        for i,c in admitted:
+            row=c['record'];entry={'target':i,'line':row['line'],'source_hash':row['source_hash'],'excerpt':row['text'][:140],'via':sorted(c['via'])}
+            proposed=deepcopy(packet);proposed['entries'].append(entry);ids={x['target'] for x in proposed['entries']}
+            proposed['relations']=[{k:e[k] for k in ('source','target','relation')} for e in relations if e['source'] in ids and e['target'] in ids]
+            proposed['partial']=True  # Conservative reserve; false is one byte longer.
+            envelope={'packet':proposed,'diagnostic':{'status':proposed['status'],'selected':len(proposed['entries']),'partial':True}}
+            if len(wire(envelope))+2<=2048:packet=proposed
+            else:omitted.append(i)
+        packet['partial']=bool(omitted)
+        # Diagnostics disclose neither global counts nor excluded IDs/revisions.
+        output={'packet':packet,'diagnostic':{'status':packet['status'],'selected':len(packet['entries']),'partial':packet['partial']}}
+        return {'query':q['id'],'group':q['group'],'revision':rev,'mode':mode,'variant':variant,'raw':mechanisms,'candidates':candidate,'ordered':[i for i,c in ordered],'validation':validation,'omitted':omitted,'output':output,'metrics':{'raw_count':len(candidate),'raw_bytes':len(wire(candidate)),'selected_count':len(packet['entries']),'packet_bytes':len(wire(packet)),'stale_candidates':sum(bool(x['reasons']) for x in validation),'forbidden_partition_targets':[i for i in idx['rows'] if not self.permitted(i,binding)]}}
+
+
+def run(variant='correct'):
+    d=Discovery();return [d.query(d.binding,q,rev,mode,variant) for rev in ('A','B') for q in load('queries.json') for mode in ('LEXICAL','COMBINED')]
+
+
+if __name__=='__main__':
+    import argparse
+    p=argparse.ArgumentParser();p.add_argument('--variant',choices=['correct','stale-safe','freshness','isolation'],default='correct');p.add_argument('--output',required=True);a=p.parse_args()
+    from pathlib import Path
+    save(Path(a.output),run(a.variant))

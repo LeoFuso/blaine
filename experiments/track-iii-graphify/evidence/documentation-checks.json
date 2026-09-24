@@ -1,0 +1,1069 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "check": "README.md: docs/roadmap/001-blaine-development-roadmap.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/roadmap/001-blaine-development-roadmap.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/roadmap/001-blaine-development-roadmap.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: experiments/track-iii-010/README.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: experiments/track-iii-graphify/README.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/README.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/architecture.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/decisions/README.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/milestones/README.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/contracts/task-spec.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/contracts/task-operations.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/contracts/frontier-dispatch.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/contracts/execution-event.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/platform-infrastructure.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/platform-rootless-docker.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/platform-observability-inventory.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: experiments/d1-grafana-cloud-data-plane/README.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/platform-grafana-cloud.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/platform-operations.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/platform-grafana-cloud.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: docs/daily-driver-d2.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: BLAINE.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: skills/SKILL.md",
+      "ok": true
+    },
+    {
+      "check": "README.md: LICENSE",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: architecture.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: roadmap/001-blaine-development-roadmap.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../client/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/e0a-blaine-client/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-secrets.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/jev-provider-carveout/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: contracts/worker-execution-boundary.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/worker-execution-instrumentation/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: contracts/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: policies/task-completion-and-lifecycle.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: decisions/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: daily-driver-d2.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: milestones/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: research/track-iii/001-reference-systems.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-002/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-003/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-004/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-005/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-006/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-007/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-008/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-008r/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-009/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-010/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/track-iii-graphify/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../experiments/",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../infra/",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../BLAINE.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: ../skills/SKILL.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-infrastructure.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-rootless-docker.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-observability-inventory.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-secrets.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-gpu-vllm-telemetry.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-grafana-cloud.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-operations.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: platform-d1.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: agentic-development-kit.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: blaine-refactor-plan.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: research/cognitive-loop-checkpoint.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: research/multica-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/README.md: research/graphify-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../roadmap/001-blaine-development-roadmap.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 052-track-iii-10-context-propagation.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 053-track-iii-g-graphify-structural-utility.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/track-iii-graphify/evidence/summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: cognitive-kernel-progress.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 037-cognitive-kernel-increment-12-parallel-children.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/kernel-increment-12/evidence/summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 036-cognitive-kernel-increment-11-live-pass.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 038-d1-local-inference.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/d1-service-adoption/evidence/inference-summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 039-d1-service-adoption.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../infra/validation-d1-infrastructure.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../platform-d1.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../infra/volume-preparation-d1.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 040-worker-execution-instrumentation.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/worker-execution-instrumentation/evidence/evidence-summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../decisions/0023-runtime-secret-delivery-and-materialization.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../infra/validation-secret-delivery.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/secret-delivery-spike/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../platform-secrets.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: 041-jev-provider-candidate.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/jev-provider-carveout/evidence/live/summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../daily-driver-d2.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/daily-driver-d2/evidence/summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/daily-driver-d2/evidence/validation.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../../experiments/daily-driver-d2/evidence/post-sync-native-summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/README.md: ../personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/e0b-tailscale-onboarding/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../policies/local-first-and-context.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0001-task-is-the-unit-of-work.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0003-evaluate-restate-as-durable-runtime.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/cognitive-kernel-progress.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/024-cognitive-kernel-increment-8-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../research/cognitive-loop-checkpoint.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/011-cognitive-kernel-increment-5-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/037-cognitive-kernel-increment-12-parallel-children.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../policies/task-completion-and-lifecycle.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/024-cognitive-kernel-increment-8-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/037-cognitive-kernel-increment-12-parallel-children.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../contracts/frontier-dispatch.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/012-cognitive-kernel-increment-6-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../daily-driver-d2.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/009-cognitive-kernel-increment-4-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/025-cognitive-kernel-increment-9-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../contracts/frontier-dispatch.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/015-cognitive-kernel-increment-7-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/036-cognitive-kernel-increment-11-live-pass.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../contracts/execution-event.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/027-cognitive-kernel-increment-10.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/cognitive-kernel-progress.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/036-cognitive-kernel-increment-11-live-pass.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/037-cognitive-kernel-increment-12-parallel-children.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0022-workstation-personal-agent-client.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../client/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/e0a-blaine-client/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-rootless-docker.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0020-rootless-docker-operator-runtime.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0019-local-inference-serving-baseline.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-d1.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-infrastructure.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../infra/validation-d1-infrastructure.json",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-operations.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0018-local-platform-durability-and-observability.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-grafana-cloud.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0021-fleet-observability-control-plane.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-d1.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../daily-driver-d2.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/daily-driver-d2/evidence/summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/daily-driver-d2/evidence/validation.json",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-grafana-cloud.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../research/multica-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0016-agent-harnesses-are-replaceable-execution-capabilities.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../contracts/frontier-dispatch.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0013-protected-context-transformations.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../policies/local-first-and-context.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/041-jev-provider-candidate.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../contracts/frontier-dispatch.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/0010-worker-selection-is-capability-and-quality-driven.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/025-cognitive-kernel-increment-9-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../research/graphify-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/053-track-iii-g-graphify-structural-utility.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/track-iii-graphify/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/052-track-iii-10-context-propagation.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/051-track-iii-9-novelty-simplicity-advisory.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/050-track-iii-8r-narrow-consumption-recovery.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/049-track-iii-8-workspace-discovery.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/048-track-iii-7-learned-memory-utility.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../research/track-iii/001-reference-systems.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/042-track-iii-1-reference-systems.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../research/track-iii/001-reference-systems.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/track-iii-002/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/track-iii-008/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../decisions/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/track-iii-010/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/e0a-blaine-client/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../../experiments/e0b-tailscale-onboarding/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-observability-inventory.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-observability-inventory.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-gpu-vllm-telemetry.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../platform-secrets.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/041-jev-provider-candidate.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../milestones/040-worker-execution-instrumentation.md",
+      "ok": true
+    },
+    {
+      "check": "docs/roadmap/001-blaine-development-roadmap.md: ../contracts/worker-execution-boundary.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/044-track-iii-3-continuous-memory-capability.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../roadmap/001-blaine-development-roadmap.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/045-track-iii-4-bounded-security-context-isolation.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/046-track-iii-5-promotion-declassification-admission.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/047-track-iii-6-verified-outcome-admission.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/048-track-iii-7-learned-memory-utility.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/049-track-iii-8-workspace-discovery.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/050-track-iii-8r-narrow-consumption-recovery.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/051-track-iii-9-novelty-simplicity-advisory.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/052-track-iii-10-context-propagation.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/053-track-iii-g-graphify-structural-utility.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../experiments/track-iii-001/evidence/source-manifest.json",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../experiments/track-iii-001/evidence/review.json",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../experiments/track-iii-001/request.json",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../architecture.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../roadmap/001-blaine-development-roadmap.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0001-task-is-the-unit-of-work.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0003-evaluate-restate-as-durable-runtime.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0015-durable-task-execution-and-verification.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/cognitive-kernel-progress.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../cognitive-loop-checkpoint.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0007-tools-before-model-inference.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0008-paid-cloud-crosses-single-dispatch-boundary.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0009-cloud-context-packet.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0010-worker-selection-is-capability-and-quality-driven.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0011-local-inference-is-a-scheduled-shared-resource.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0013-protected-context-transformations.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0014-project-knowledge-is-retrieval-first.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../contracts/frontier-dispatch.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../contracts/worker-execution-boundary.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../contracts/execution-event.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../policies/task-completion-and-lifecycle.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../mirix-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/009-cognitive-kernel-increment-4-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../runtime/kernel/memory.py",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../runtime/kernel/context.py",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../runtime/kernel/workflow.py",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../graphify-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../milestones/025-cognitive-kernel-increment-9-passed.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../runtime/kernel/project_knowledge.py",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../daily-driver-d2.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../personal-agent-hub.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../platform-services.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../decisions/0024-routing-ground-truth-from-restricted-replay.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../mirix-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../mirix-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../graphify-carveout.md",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../../runtime/kernel/project_knowledge.py",
+      "ok": true
+    },
+    {
+      "check": "docs/research/track-iii/001-reference-systems.md: ../../contracts/frontier-dispatch.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/README.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/PROTOCOL.md",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/evidence/corpus-freeze.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/oracles.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/evidence/summary.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/evidence/verification.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/evidence/mutation-controls.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/evidence/reproduction.json",
+      "ok": true
+    },
+    {
+      "check": "docs/milestones/053-track-iii-g-graphify-structural-utility.md: ../../experiments/track-iii-graphify/evidence/execution-errata.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: request.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: PROTOCOL.md",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: queries.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: oracles.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: security.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/corpus-freeze.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/preregistration.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: repositories.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/source-oracle-review.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: graphify.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/packages.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/validation.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/summary.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/mutation-controls.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/verification.json",
+      "ok": true
+    },
+    {
+      "check": "experiments/track-iii-graphify/README.md: evidence/execution-errata.json",
+      "ok": true
+    },
+    {
+      "check": "prior experiment evidence unchanged",
+      "ok": true
+    },
+    {
+      "check": "production runtime unchanged",
+      "ok": true
+    },
+    {
+      "check": "completed primary comparison preserved",
+      "ok": true
+    }
+  ]
+}
