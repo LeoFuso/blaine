@@ -92,7 +92,12 @@ Not every signal is valid in every runtime state.
 
 `modify-constraints` is also the route for user-originated Completion Contract
 amendments; waiving or rebinding a required criterion is only possible through an
-explicit human action ([Completion Contract amendments](completion-contract.md#amendments), design).
+explicit human action ([Completion Contract amendments](completion-contract.md#amendments)).
+The kernel implements this as the `amend_contract` workflow handler (E1.0): a typed
+`CompletionContractAmendmentRequest` naming the expected `from_revision`, answered
+`SUBMITTED`/`ALREADY_SUBMITTED` or rejected (403 authority, 409 stale or already
+amended). No Personal Agent or ACP binding maps `modify-constraints` to it yet, so
+the agent must still say such a change is not submitted.
 
 ## Result
 

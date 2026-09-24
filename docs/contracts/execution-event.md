@@ -17,6 +17,9 @@ The current runtime publishes seven event classes: `task.started`,
 `verifier.evaluated`, `completion.finished`. Cognition events mean a committed
 proposal, not admission; the subsequent policy event records authorization.
 Successful effects do not imply completion. Only the existing verifier controls it.
+A Completion Contract amendment additionally emits `contract.amended` (`applied` or
+`rejected`) with the amendment and revision refs; like every event it is forensic,
+never contract or lifecycle authority.
 
 `ExecutionEventPublisher.publish(event)` is the backend-independent boundary.
 The deployment opts in through `create_workflow(event_publisher=...)`; the default

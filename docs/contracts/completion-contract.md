@@ -1,10 +1,13 @@
-# Completion Contract v1 — design contract
+# Completion Contract v1
 
-**Status: DESIGN, not implemented (2026-09-23).** Decision rationale (Accepted):
+**Status: IMPLEMENTED in the kernel (E1.0 PASS, 2026-09-24); E1 end-to-end pending.**
+Decision rationale (Accepted / Partially Validated):
 [ADR 0026](../decisions/0026-completion-contract-is-a-durable-task-primitive.md).
-First consumer: [E1 workspace capability](workspace-capability.md). The current
-kernel implements the v0 subset described in [Current baseline](#current-baseline);
-nothing here claims that the v1 additions run.
+First consumer: [E1 workspace capability](workspace-capability.md). What runs, and
+the precise choices implementation made, are in [Implementation status](#implementation-status-e10)
+and [E1.0 clarifications](#e10-implementation-clarifications); evidence is in
+[`experiments/personal-agent-hub/e1-0`](../../experiments/personal-agent-hub/e1-0/README.md).
+No live workstation, IDE or provider path uses it yet (E1.A–E).
 
 A Completion Contract states **what evidence must exist before a Task may become
 COMPLETED**. It is durable Task data, separate from the plan and from cognition.
@@ -22,27 +25,31 @@ and PolicyGate ([ADR 0024](../decisions/0024-local-first-execution-with-bounded-
 authority invariants such as READ_ONLY are enforced by PolicyGate; the contract
 only requires *evidence* that they held.
 
-## Current baseline
+## Implementation status (E1.0)
 
-Implemented today (`runtime/kernel/contracts.py`, `execution.py`, `workflow.py`):
+Before E1.0 the kernel implemented a v0 subset: `TaskSpec.completion` as 1..8
+`{criterion, evidence}` items (exact digest or typed human decision), frozen in the
+immutable TaskSpec, evaluated verifier-first, with the final `CompletionEvaluation`
+linked from `TaskResult`. Criteria had no identity, provenance or level; nothing
+recorded which capabilities actually ran; any change needed a new Task.
 
-- `TaskSpec.completion` is a list of 1..8 `{criterion, evidence}` items. Evidence
-  is either an exact artifact digest `{artifact, sha256}` or a typed human decision
-  `{artifact, verifier: "human_response", request}`.
-- The accepted TaskSpec is retained immutably (`TaskState.spec_ref`) before any effect.
-- `evaluate()` runs after acceptance and after every effect/outcome (verifier-first
-  progression, [milestone 024](../milestones/024-cognitive-kernel-increment-8-passed.md)).
-  Satisfied → `COMPLETED`; a model `COMPLETE` only requests the same evaluation.
-- Every evaluation is retained as a `CompletionEvaluation` artifact
-  (`TaskState.completion_ref`); the `TaskResult` links the final one.
-- Capability authority is envelope data (`grant`), never TaskSpec data, so a
-  model-written specification cannot widen its own authority.
+E1.0 implements this contract in the kernel, reusing the workflow, `ArtifactStore`,
+PolicyGate and the human-decision boundary:
 
-Gaps that v1 closes: criteria have no stable identity, provenance or level; every
-criterion is implicitly required; only two verifier kinds exist; the contract is
-frozen inside the TaskSpec, so any legitimate change requires a new Task; there is
-no deterministic record of which capabilities actually ran; and an evaluation
-does not say which contract revision or evidence set it judged.
+| Area | Implementation |
+| --- | --- |
+| Contract model, validation, v0 lowering, amendments, evaluation v2, legality | `runtime/kernel/completion.py` |
+| Capability journal, `kernel@1` operation classes, `EffectiveAuthority` (E1.0 form) | `runtime/kernel/journal.py` |
+| `evidence_citation@1` with `InvestigationFindings@1` | `runtime/kernel/citation.py` |
+| `semantic_review@1` interface and deterministic admission (no model shipped) | `runtime/kernel/review.py` |
+| Contract/authority retention before effects, journal on the single dispatch path, `settle()` as the only path to COMPLETED, `amend_contract` handler, amendment admission | `runtime/kernel/workflow.py` |
+| Contract-fixed human requests in PolicyGate; v1 `evaluate()` kept as a projection of the same verifiers | `runtime/kernel/execution.py` |
+| Current contract and admitted read receipts in cognition packets | `runtime/kernel/context.py` |
+
+Verifier kinds implemented: `artifact_digest`, `human_response`, `capability_journal`,
+`evidence_citation`, `semantic_review`, plus `unbound`. `capability_result` (first
+consumer E2) and `change_set` (reserved) are rejected at validation, so no contract
+can depend on a verifier that does not run.
 
 ## Model
 
@@ -76,7 +83,8 @@ only references and counters. No new store, table or ledger is introduced.
      "level": "REQUIRED",
      "provenance": {"source": "task_type", "ref": "investigation@1", "invariant": true},
      "verifier": {"kind": "capability_journal", "version": 1,
-                  "predicate": "operation_classes_subset", "allowed": ["workspace.read"]}}
+                  "predicates": [{"name": "operation_classes_subset", "allowed": ["workspace.read"]},
+                                 {"name": "admitted_before_observed"}]}}
   ]}}
 ```
 
@@ -439,10 +447,15 @@ validates shape and actor, then resolves the one-shot durable promise
 boundary and whenever it resumes from a wait, applies the amendment in a journaled
 step, retains the new revision, and re-runs evaluation before the next cognition.
 One-shot promise naming by revision gives compare-and-set: of two concurrent
-amendments to the same revision, only the first resolves. Implementation check:
-confirm non-blocking promise inspection (`peek`) in the pinned Restate Python SDK;
-if unavailable, admit amendments at the next durable wait only and document it.
-Each amendment emits an ExecutionEvent (`contract.amended`) for forensics only.
+amendments to the same revision, only the first resolves. Implementation check
+(done, E1.0): `DurablePromise.peek()` works in the workflow main handler of the
+pinned SDK 1.0.5 against restate-server 1.7.9 and is journaled; a second `resolve`
+fails with a catchable `409 promise was already completed` while `peek` returns the
+winner, which is how the handler recognises an identical retry. A human `WAITING`
+Task additionally races its input promise against `contract/{n}` with
+`restate.select`, so an amendment can end that wait (see
+[clarifications](#e10-implementation-clarifications)). Each amendment emits an
+ExecutionEvent (`contract.amended`, outcome `applied` or `rejected`) for forensics only.
 
 ## Completion legality
 
@@ -511,6 +524,131 @@ operator_rule / project_policy →  may contribute REQUIRED criteria to future c
   Context Plane PromotionGate, which moves knowledge between contexts and grants no
   policy authority. Rules are versioned and referenced by id and digest in
   criterion provenance, so old contracts remain interpretable after a rule changes.
+
+## E1.0 implementation clarifications
+
+Choices the accepted text left open, made at the narrowest boundary and validated by
+the E1.0 evidence. None changes a decision in ADR 0026.
+
+**Intake and representation**
+
+- Lowered v0 criteria are numbered from one: item *n* of `TaskSpec.completion` is
+  `c{n}` (`c1` is the first). A child's lowered criteria carry
+  `{source: parent_task, ref: <parent task id>}`.
+- An envelope contract must contain every lowered `TaskSpec.completion` criterion
+  unchanged (same id, level, provenance and verifier) and may add more. The TaskSpec
+  is still validated by its v0 rules; a summary-only TaskSpec form for contract
+  Tasks is left to E1.D intake. A child contract is always lowered, never supplied.
+- `TaskRequest` accepts `{task_spec, initial_action?, grant?, contract?}`;
+  `initial_action` may be absent only when both `contract` and `grant` are present.
+- A contract needs at least one REQUIRED criterion that is not superseded.
+- `operator_rule` provenance, like `project_policy`, requires `ref` and a pinned
+  `source_digest` (Memory and learning: rules are referenced by id and digest), so
+  a policy exception can name exactly what it sets aside. The kernel checks the
+  shape of `designation_ref`; checking the designation itself belongs to contract
+  synthesis through Context Plane provenance, exactly as the grant is trusted
+  envelope data. No designation or rule store exists yet (Operator-rule storage row).
+- Deterministic verifiers may declare an optional `subject`. The deterministic-first
+  rule is enforced on declared subjects: a `semantic_review` whose `subject` equals a
+  deterministic criterion's `subject` is rejected. An `evidence_citation` over the
+  `findings` artifact does not implicitly claim the subject `findings`.
+- `human_response` may declare `accept` (a subset of the allowed responses). With
+  `accept`, another allowed answer evaluates `failed`; without it, any allowed answer
+  satisfies, which is the v0 meaning.
+- `semantic_review` may declare `depends_on` (deterministic criterion ids). With
+  `on_low_confidence: request_human` it must also carry a contract-fixed
+  HumanDecisionRequest (`request`, `artifact`, optional `accept`) so the escalation
+  question and answers exist before any wait.
+- `capability_journal` parameters are a `predicates` list:
+  `operation_classes_subset {allowed}`, `admitted_before_observed`,
+  `workspace_subset`, `observed_operation_present {operations}`.
+- `evidence_citation@1` implements schema `InvestigationFindings@1` and predicates
+  `every_claim_cited`, `quotes_match_receipts`, `min_cited_receipts {operation, count,
+  path_prefix?}`, `conclusion_status_present`, `unresolved_requires_uncertainty`.
+  `ExplanationFindings@1` and `LocationFindings@1` (and their predicates) arrive with
+  the E1.D templates and are rejected until then.
+
+**Journal and authority**
+
+- The kernel classification `kernel@1` maps the existing capabilities to operation
+  classes: `artifact.write`/`artifact.read` → `task.artifact.*`, `human.request` →
+  `task.human.request`, `text.stats` → `task.compute`, `youtrack.read` →
+  `external.read`, `workspace.read` → `workspace.read`, `worker.run` → `worker.run`,
+  `fixture.effect` → `external.effect`; anything else is `unclassified`. `task.*`
+  classes never leave the Task, so `operation_classes_subset` constrains only
+  external classes: an investigation may write its own `findings` artifact without
+  breaking `no-mutation`. "Mutating authority" (for `unbound`) means any of
+  `external.effect`, `worker.run`, `workspace.write`, `workspace.exec` or an
+  unclassified capability.
+- E1.0 retains an `EffectiveAuthority` artifact (`classification: kernel@1`,
+  capabilities, operation classes, workspaces, `externally_bounded`) compiled from
+  the existing TaskSpec ∩ grant; for the D2 exact-path read its workspace is the
+  accepted intake root. E1.C extends the same artifact with delegation and
+  constraint provenance and `intellij-mcp@1`.
+- Journal entries record `provider`/`operation` (`kernel`/capability name; the D2
+  read is `acp-client`/`read_file`). An `observed` entry's `receipt_ref` is the
+  retained capability observation, or for the D2 read a `WorkspaceReadReceipt`
+  written when the ACP client result is admitted (`source.view: acp_text_file`, the
+  whole returned text as the line range). Denials are journaled whenever the denied
+  proposal names a capability; malformed proposals and non-capability actions stay
+  `PolicyDecision` observations only.
+- Admitted receipts are projected into cognition packets as evidence references
+  (`content.name: receipt`, operation, path and lines, never new authority), so
+  later turns can cite what the Task admitted.
+
+**Evaluation and legality**
+
+- `CompletionEvaluation` v2 criterion entries also carry `gating` (REQUIRED and not
+  superseded) and, when present, `superseded_by`, `waiver_ref` and `journal_range`.
+  The payload adds `concerns`, `irrecoverable` and `legality {legal, blockers}`: the
+  legality decision is retained with the evaluation it judged, and is recomputable
+  offline by `completion.legality`. `unbound` reports `pending` and is always a
+  legality blocker.
+- A waived criterion stays in the contract with
+  `waiver {revision, actor {kind, via, ref, response_ref?, exception_for?}, reason}`;
+  `actor.ref` is the retained amendment request (the human action). Legality
+  rechecks the authority matrix and that the action is retained.
+- A gating task-type **invariant** `capability_journal` criterion that is `failed`
+  can never recover (append-only journal, unwaivable), so the Task ends `FAILED`
+  immediately (`Invariant criteria failed: …`) with that evaluation attached.
+- ADVISORY non-passing results, waivers, supersessions, PolicyGate denial counts and
+  semantic contradictions become `TaskResult.concerns` (still at most 8).
+- `semantic_review` runs, as journaled steps, only when its `depends_on` criteria are
+  `satisfied`/`failed`/`waived` and no retained review matches the current revision
+  and evidence digest. No reviewer deployed, adapter errors and malformed outputs are
+  retained as `SemanticReviewFailure` and evaluate `unknown` (or `waiting_human` under
+  `request_human`). High-confidence `unsatisfied` evaluates `failed`. A `satisfied`
+  verdict while a dependency `failed` evaluates `unknown` with a concern; the
+  deterministic verdict stands. The reviewer's `evidence_refs` must come from its packet.
+
+**Amendments**
+
+- The signal is `CompletionContractAmendmentRequest {task_id, request_id,
+  from_revision, operations[1..8], actor {kind, via, ref?, exception_for?}, reason}`.
+  Actor channels: `user` via `modify-constraints` or `human_response` (with `ref` to
+  an accepted response); `operator` via `policy_exception` (with `exception_for
+  {rule, digest}`) or `policy_update`; `project_policy` via `policy_update`. The
+  caller binding asserts the actor, as it does for `submit_human_response`; the
+  kernel enforces the authority matrix for that actor. Cognition has no path to the
+  handler: a model output that tries to change the contract is an unknown NextAction
+  and is denied by PolicyGate.
+- `amend_contract` answers `SUBMITTED` or `ALREADY_SUBMITTED` (identical retry),
+  `400` malformed, `403` authority not covering the criterion's source, `409` stale
+  revision, already-amended revision, or terminal Task. A receipt means submitted,
+  not applied; `contract_revision` shows application.
+- Application is at every iteration boundary and, for a human `WAITING` Task, as soon
+  as the amendment arrives. If the waited-for criterion is no longer gating (waived,
+  superseded, rebound away from that request) the wait is withdrawn
+  (`HumanWaitWithdrawn`) and a late response is rejected; otherwise the Task keeps
+  waiting on the new revision. Workspace, text and child waits apply amendments when
+  they resume.
+- The handler validates against the same immutable revision the main handler
+  applies, so a rejection at application is a defect path: it is retained as
+  `CompletionContractAmendmentRejection`, the revision number stays closed and the
+  Task continues on its current revision.
+- Not implemented in E1.0: cognition adding ADVISORY `model` criteria, and cognition
+  raising a typed "waive / amend / fail" `human.request` for an impossible criterion.
+  Neither has a consumer before E1.D; the human path above covers user waivers.
 
 ## Non-goals
 

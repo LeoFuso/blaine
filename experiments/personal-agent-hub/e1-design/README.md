@@ -42,8 +42,9 @@ Follow-up decisions (2026-09-24):
 
 ## Decision status
 
-ADRs 0026 and 0027 were accepted by the operator on 2026-09-24 after review. Both
-remain Unvalidated until E1.0 (kernel) and E1 live acceptance produce evidence.
+ADRs 0026 and 0027 were accepted by the operator on 2026-09-24 after review. E1.0
+(kernel) then passed ([evidence](../e1-0/README.md)), moving ADR 0026 to Partially
+Validated; ADR 0027 remains Unvalidated until E1 live acceptance.
 
 ## Reconciliation (2026-09-24)
 
