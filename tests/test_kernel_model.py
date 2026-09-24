@@ -58,6 +58,23 @@ class ModelBoundary(unittest.TestCase):
             with self.subTest(response=response), self.assertRaises(ValueError):
                 LocalModelCognition(transport=lambda _: response)(self.packet)
 
+    def test_one_bounded_correction_after_invalid_output(self):
+        raw = decision({'type': 'COMPLETE'})
+        answers = [self.response('I will now complete the task.'), self.response(json.dumps(raw))]
+        requests = []
+        def transport(body):
+            requests.append(body)
+            return answers.pop(0)
+        self.assertEqual(LocalModelCognition(transport=transport)(self.packet), raw)
+        self.assertEqual(len(requests), 2)
+        self.assertEqual(requests[1]['messages'][-2], {'role': 'assistant', 'content': 'I will now complete the task.'})
+        self.assertIn('not a valid CognitiveDecision', requests[1]['messages'][-1]['content'])
+        # Still invalid after the one correction: rejected, never guessed.
+        calls = []
+        with self.assertRaises(ValueError):
+            LocalModelCognition(transport=lambda body: calls.append(body) or self.response('nope'))(self.packet)
+        self.assertEqual(len(calls), 2)
+
     def test_input_budget_and_local_endpoint_enforced(self):
         with self.assertRaises(ValueError):
             LocalModelCognition(endpoint='https://external.example/v1')

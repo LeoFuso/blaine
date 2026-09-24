@@ -183,14 +183,35 @@ class LocalModelCognition:
                 raise ValueError('Model response exceeds transport bound')
             return strict_json(data)
 
+    CORRECTIONS = 1  # one corrective re-prompt; validators stay authoritative
+
     def __call__(self, packet: dict, observe=None) -> dict:
         turn = unpack(packet, 'CognitiveTurn')
         guidance = SYSTEM
         if {'workspace.write', 'workspace.exec'} & set(turn.get('allowed_capabilities', [])):
             guidance += '\n' + TARGET_GUIDANCE
         guidance += '\nRequired output JSON Schema (guidance only; emit an instance, not the schema):\n' + encode(decision_schema(turn)).decode()
-        body = {'model': self.model, 'messages': [{'role': 'system', 'content': guidance},
-                    {'role': 'user', 'content': encode(packet).decode()}],
+        messages = [{'role': 'system', 'content': guidance}, {'role': 'user', 'content': encode(packet).decode()}]
+        for attempt in range(self.CORRECTIONS + 1):
+            content, error = None, None
+            try:
+                decision, content = self.attempt(turn, packet, messages, observe)
+                return decision
+            except ValueError as failure:
+                error = failure
+                content = getattr(failure, 'content', None)
+            if attempt < self.CORRECTIONS:
+                # A bounded correction: the same turn, the same validators. The prior
+                # output is echoed only as the model's own (untrusted) text.
+                if isinstance(content, str) and content:
+                    messages = [*messages, {'role': 'assistant', 'content': content[:2048]}]
+                messages = [*messages, {'role': 'user', 'content':
+                    f'That was not a valid CognitiveDecision ({str(error.__cause__ or error)[:160]}). '
+                    'Return ONLY the single CognitiveDecision JSON object for the same turn.'}]
+        raise error
+
+    def attempt(self, turn: dict, packet: dict, messages: list[dict], observe=None) -> tuple[dict, str]:
+        body = {'model': self.model, 'messages': messages,
                 'temperature': 0, 'max_tokens': 768, 'chat_template_kwargs': {'enable_thinking': False}}
         response = (self.transport or self.request)(body)
         record = {'turn_id': turn['turn_id'], 'model': self.model,
@@ -204,6 +225,7 @@ class LocalModelCognition:
                 response_model=response.get('model'), response_id=response.get('id'),
                 finish_reason=finish if isinstance(finish, str) else None,
                 usage=observed_usage(response.get('usage'))))
+        content = None
         try:
             choices = response.get('choices', [])
             if len(choices) != 1 or choices[0].get('finish_reason') != 'stop':
@@ -213,6 +235,7 @@ class LocalModelCognition:
                 raise ValueError('Native tool calls are not CognitiveDecision')
             content = reply.get('content')
             if not isinstance(content, str) or len(content.encode()) > MAX_PACKET:
+                content = None
                 raise ValueError('Invalid or oversized model content')
             record['content_sha256'] = hashlib.sha256(content.encode()).hexdigest()
             if observe is not None:
@@ -225,7 +248,9 @@ class LocalModelCognition:
         except (ValueError, TypeError, KeyError) as error:
             if self.audit:
                 self.audit({**record, 'outcome': 'rejected', 'error': str(error)[:256]})
-            raise ValueError('Invalid model CognitiveDecision') from error
+            invalid = ValueError('Invalid model CognitiveDecision')
+            invalid.content = content
+            raise invalid from error
         if self.audit:
             self.audit({**record, 'outcome': 'validated', 'decision': decision})
-        return decision
+        return decision, content
