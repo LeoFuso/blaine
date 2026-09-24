@@ -12,7 +12,7 @@ from runtime.kernel.conversation import ConversationService
 from runtime.kernel.execution import policy_gate
 from runtime.kernel.human import request_digest
 from runtime.kernel.routing import effective_capabilities
-from runtime.kernel.worker import strip_outer_fence, validate_packet
+from runtime.kernel.worker import goose_reply, strip_outer_fence, validate_packet
 from runtime.personal_agent import human_response, task_identity
 from runtime.personal_brief import BriefService, CodingPolicy
 from runtime.personal_conversation import ConversationModel, PersonalConversation, short_id
@@ -323,6 +323,18 @@ class WorkerCodingTests(unittest.TestCase):
         for output in ({'kind': 'file', 'path': '../x.py'}, {'kind': 'shell', 'path': 'x'}, {'kind': 'file'}):
             with self.subTest(output=output), self.assertRaises(ValueError):
                 validate_packet(self.packet(output=output), 'task')
+
+    def test_file_replies_come_verbatim_from_the_json_transcript(self):
+        body = 'x = 1\n' * 80  # long enough that Goose's text renderer would shorten it
+        transcript = {'messages': [{'role': 'user', 'content': [{'type': 'text', 'text': 'go'}]},
+                                   {'role': 'assistant', 'content': [{'type': 'text', 'text': body}]}],
+                      'metadata': {'status': 'completed'}}
+        self.assertEqual(goose_reply(json.dumps(transcript).encode()), body)
+        for bad in ({**transcript, 'metadata': {'status': 'failed'}},
+                    {**transcript, 'messages': transcript['messages'][:1]},
+                    {**transcript, 'messages': [{'role': 'assistant', 'content': [{'type': 'toolRequest'}]}]}):
+            with self.subTest(bad=bad), self.assertRaises(ValueError):
+                goose_reply(json.dumps(bad).encode())
 
     def test_outer_fence_is_removed_once(self):
         self.assertEqual(strip_outer_fence('```python\nx = 1\n```\n'), 'x = 1\n')

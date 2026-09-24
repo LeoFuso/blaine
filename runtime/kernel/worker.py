@@ -8,6 +8,7 @@ Two output forms, both toolless and local-only:
 """
 from dataclasses import dataclass
 from pathlib import Path
+import json
 import os
 import subprocess
 import tempfile
@@ -33,6 +34,26 @@ def validate_output(output):
 
 def output_limit(packet):
     return FILE_OUTPUT_BYTES if packet['payload'].get('output') else TEXT_OUTPUT_BYTES
+
+
+def goose_reply(stdout: bytes) -> str:
+    """The final assistant text from `goose run --output-format json`.
+
+    Goose's text renderer shortens long replies for display ("... (N more lines
+    → /tmp/…)"), which corrupted a proposed file in the live PA-3 acceptance.
+    The JSON transcript carries the model's reply verbatim. A reply with any
+    non-text content (e.g. a tool request) is rejected: the worker is toolless.
+    """
+    transcript = json.loads(stdout)
+    if (transcript.get('metadata') or {}).get('status') != 'completed':
+        raise ValueError('Worker session did not complete')
+    replies = [m for m in transcript.get('messages', []) if m.get('role') == 'assistant']
+    if not replies:
+        raise ValueError('Worker produced no reply')
+    content = replies[-1].get('content') or []
+    if any(item.get('type') != 'text' for item in content):
+        raise ValueError('Worker reply is not plain text')
+    return ''.join(item.get('text', '') for item in content)
 
 
 def strip_outer_fence(content):
@@ -91,6 +112,8 @@ class GooseWorker:
             env.update(settings)
             command = [str(self.executable), 'run', '--no-profile', '--no-session', '--provider', 'openai',
                        '--model', self.model, '--max-turns', '1', '--quiet', '--instructions', '-']
+            if output:
+                command[-2:-2] = ['--output-format', 'json']
             prompt = ('Execute only this bounded WorkerInput. You have no Task authority. '
                       'Use only supplied context. Return only the requested result, no reasoning or tools.\n' + encode(packet).decode())
             if output:
@@ -107,7 +130,15 @@ class GooseWorker:
             except subprocess.TimeoutExpired:
                 process.kill(); stdout, stderr = process.communicate(timeout=5)
             outcome = 'success' if process.returncode == 0 else 'interrupted' if process.returncode < 0 else 'failure'
-            if len(stdout) > limit or b'<think>' in stdout:
+            if output and outcome == 'success':
+                # The JSON transcript wraps the reply; bound the transcript and the reply.
+                try:
+                    public = goose_reply(stdout) if len(stdout) <= 4 * limit else ''
+                except (ValueError, UnicodeDecodeError):
+                    public = ''
+                if not public or len(public.encode()) > limit or '<think>' in public:
+                    outcome = 'failure'; public = ''
+            elif len(stdout) > limit or b'<think>' in stdout:
                 outcome = 'failure'; public = ''
             else:
                 public = stdout.decode('utf-8', errors='strict')

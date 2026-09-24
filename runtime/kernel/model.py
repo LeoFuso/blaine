@@ -103,7 +103,9 @@ A write may wait for human approval; that is expected. Completion is decided by 
 Re-running an unchanged file cannot change a failed result. After a workspace.exec with outcome "failure",
 the next step is worker.run with context_refs including that run's output_artifact reference (and the
 source refs), then workspace.read the file, then workspace.write the new draft with that read's receipt,
-and only then run the tests again.'''
+and only then run the tests again. A write receipt in state "conflict" means its precondition was stale:
+workspace.read the file and write again with {"receipt": <that read receipt ref>}, never {"absent":true}
+for a file that exists.'''
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
