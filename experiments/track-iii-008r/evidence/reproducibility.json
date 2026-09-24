@@ -1,0 +1,49 @@
+{
+  "model_calls": 0,
+  "original_iii8_git_diff_exit": 0,
+  "repetitions": [
+    {
+      "byte_identical": true,
+      "exit_code": 0,
+      "files_sha256": {
+        "controls.json": "9091e88772a5333671b36e5f8e3b9672d6fb446bddb60a620c688197865a2974",
+        "fallback-verification.json": "e519a6b6fad963671d16f1ca0f20491bdddc185f3af0e9cab0a22b663c2d790f",
+        "fallback.json": "3e28a37bb379f5c571931e3631cb032c94a07db9277728de399751c13a9003a0",
+        "freshness-verification.json": "63da609492cea5ed380762d5a862d168404187b878a4103257235468d47135f6",
+        "freshness.json": "4a5ebc7a8b6648dd700fadc3ff77e21b4c706cf5aac3fded3f46b32aae493e69",
+        "isolation-verification.json": "b217152f95f1d6c0ba4990247cda4e148aca2ad856f5be73d638a6039053f0f7",
+        "isolation.json": "6471edb512846164f684e97a7c537f977ad139e5a638cb159281698166c63219",
+        "restored.json": "97f4ed98e597c4f24e7f0c5ce3145c6da639826fb9678af5d5c403d1e146084c",
+        "results-verification.json": "43d3fa9cbc9e0d90982690b67b5ef155da03327f975670d11968fdb63a4657c4",
+        "results.json": "97f4ed98e597c4f24e7f0c5ce3145c6da639826fb9678af5d5c403d1e146084c",
+        "stale-safe-verification.json": "a8f153b8d8be67dd8892a57b66eb43be9d06540c89df96aa726e3eecfa1e55e7",
+        "stale-safe.json": "51bb97df7ab52b8b6b5ee1844c1dd60d64be1410c2e33e83f12f745eeeae6441",
+        "summary.json": "507f727dc0c41ade4d69b1a9c66d373ff803f0effb41b2871b144f96c45e2694"
+      },
+      "hash_seed": "1",
+      "status": "PASS"
+    },
+    {
+      "byte_identical": true,
+      "exit_code": 0,
+      "files_sha256": {
+        "controls.json": "9091e88772a5333671b36e5f8e3b9672d6fb446bddb60a620c688197865a2974",
+        "fallback-verification.json": "e519a6b6fad963671d16f1ca0f20491bdddc185f3af0e9cab0a22b663c2d790f",
+        "fallback.json": "3e28a37bb379f5c571931e3631cb032c94a07db9277728de399751c13a9003a0",
+        "freshness-verification.json": "63da609492cea5ed380762d5a862d168404187b878a4103257235468d47135f6",
+        "freshness.json": "4a5ebc7a8b6648dd700fadc3ff77e21b4c706cf5aac3fded3f46b32aae493e69",
+        "isolation-verification.json": "b217152f95f1d6c0ba4990247cda4e148aca2ad856f5be73d638a6039053f0f7",
+        "isolation.json": "6471edb512846164f684e97a7c537f977ad139e5a638cb159281698166c63219",
+        "restored.json": "97f4ed98e597c4f24e7f0c5ce3145c6da639826fb9678af5d5c403d1e146084c",
+        "results-verification.json": "43d3fa9cbc9e0d90982690b67b5ef155da03327f975670d11968fdb63a4657c4",
+        "results.json": "97f4ed98e597c4f24e7f0c5ce3145c6da639826fb9678af5d5c403d1e146084c",
+        "stale-safe-verification.json": "a8f153b8d8be67dd8892a57b66eb43be9d06540c89df96aa726e3eecfa1e55e7",
+        "stale-safe.json": "51bb97df7ab52b8b6b5ee1844c1dd60d64be1410c2e33e83f12f745eeeae6441",
+        "summary.json": "507f727dc0c41ade4d69b1a9c66d373ff803f0effb41b2871b144f96c45e2694"
+      },
+      "hash_seed": "97",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

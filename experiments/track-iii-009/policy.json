@@ -1,0 +1,21 @@
+{
+  "comparison": "original lexical packets unchanged versus recovered combined",
+  "diversity": "Source family = SHA256 of declaration text after replacing every decimal digit run by #. No identifier, query, path, oracle or semantic classification exceptions. Within each mechanism, valid contributions from the same source family share the first-occurrence family rank. Selection uses rounds: one target per family in the first round, second representatives only after all families have had a turn. This is redundancy management, NOT semantic equivalence.",
+  "excerpt_characters": 80,
+  "fusion": "Sum exact rational 1/(60+one-based distinct-family rank) over contributing mechanisms; no numeric score mixing. Sort confidence (exact symbol equal to entire query, then structural answers, then others), descending RRF, best family rank, target lexical tie-break.",
+  "identity": "(requested visible source-manifest revision, relative source path, symbol, declaration line); source revision commits source hashes. One payload per target.",
+  "input": "exact retained III.8 ranked mechanism lists; no new embeddings/extraction/search",
+  "mutations": {
+    "fallback": "Use stale A-derived lists for B; fuse/select before validation; then drop any selected merged target containing an invalid contribution without refill, suppressing fresh lexical contributions.",
+    "freshness": "Use retained A-derived lists for requested B; bypass derived revision/source/edge checks.",
+    "isolation": "Use retained global III.8 isolation lists; skip domain enforcement."
+  },
+  "packet": "One scoped current revision hash; entries with target/path::symbol, authoritative line, first 80 source characters, discovery codes L/S/G. Structural edges use entry indices. Complete envelope includes diagnostics (selected count, partial), status and derived freshness state. Greedy whole-entry additions tested with complete serialized UTF-8 bytes and final metadata; rejected entries never consume bytes.",
+  "packet_bytes": 2048,
+  "post_outcome_tuning": "Forbidden; only implementation corrections to execute this declared policy may occur, explicitly retained.",
+  "reservation": "All valid exact whole-symbol lexical matches precede other candidates; generic equality confidence, never oracle membership.",
+  "rrf_k": 60,
+  "threshold_unique_gain_each_revision": 2,
+  "validation": "Per contribution: trusted lineage/domain/policy, current source identity/hash/text/line, derived visible revision and structural AST relations; remove invalid contributions before any fusion/ranking/budget competition. Independently fresh lexical contributions survive.",
+  "version": "iii8r-one-policy-v1"
+}

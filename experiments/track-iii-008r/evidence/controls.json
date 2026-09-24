@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "fallback_mutation_caught": true,
+    "freshness_mutation_caught": true,
+    "isolation_mutation_caught": true,
+    "restored_equal": true,
+    "safe_fallback": true
+  },
+  "controls": {
+    "correct": {
+      "exit_code": 0,
+      "failed": [],
+      "forbidden": 0,
+      "stale": 0
+    },
+    "fallback": {
+      "exit_code": 1,
+      "failed": [
+        "exact-retention/B/L1",
+        "exact-retention/B/L2",
+        "exact-retention/B/L3",
+        "exact-retention/B/L4"
+      ],
+      "forbidden": 0,
+      "stale": 0
+    },
+    "freshness": {
+      "exit_code": 1,
+      "failed": [
+        "no-stale-emission"
+      ],
+      "forbidden": 0,
+      "stale": 139
+    },
+    "isolation": {
+      "exit_code": 1,
+      "failed": [
+        "no-forbidden-emission"
+      ],
+      "forbidden": 48,
+      "stale": 0
+    },
+    "stale-safe": {
+      "exit_code": 0,
+      "failed": [],
+      "forbidden": 0,
+      "stale": 0
+    }
+  }
+}

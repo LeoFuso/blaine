@@ -1,0 +1,334 @@
+{
+  "A": {
+    "L1": {
+      "acceptable": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "L2": {
+      "acceptable": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "L3": {
+      "acceptable": [
+        "personal/workflow.py::dispatch"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "L4": {
+      "acceptable": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "S1": {
+      "acceptable": [
+        "personal/identity.py::HandleFold"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/identity.py::HandleFold"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "S2": {
+      "acceptable": [
+        "personal/gate.py::WindowGate"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/gate.py::WindowGate"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "S3": {
+      "acceptable": [
+        "personal/book.py::StampBook"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/book.py::StampBook"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "S4": {
+      "acceptable": [
+        "personal/publish.py::seal"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/publish.py::seal"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "T1": {
+      "acceptable": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "T2": {
+      "acceptable": [
+        "personal/legacy.py::persist"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/legacy.py::persist"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "T3": {
+      "acceptable": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    },
+    "T4": {
+      "acceptable": [
+        "personal/legacy.py::persist",
+        "personal/workflow.py::dispatch",
+        "personal/publish.py::seal"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/legacy.py::persist",
+        "personal/workflow.py::dispatch",
+        "personal/publish.py::seal"
+      ],
+      "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b"
+    }
+  },
+  "B": {
+    "L1": {
+      "acceptable": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "L2": {
+      "acceptable": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "L3": {
+      "acceptable": [
+        "personal/workflow.py::dispatch"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "L4": {
+      "acceptable": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "S1": {
+      "acceptable": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "S2": {
+      "acceptable": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "S3": {
+      "acceptable": [
+        "personal/book.py::StampBook"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/book.py::StampBook"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "S4": {
+      "acceptable": [
+        "personal/publish.py::seal"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/publish.py::seal"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "T1": {
+      "acceptable": [
+        "personal/audit.py::AuditSender",
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/audit.py::AuditSender",
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "T2": {
+      "acceptable": [
+        "personal/store.py::checkpoint"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/store.py::checkpoint"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "T3": {
+      "acceptable": [
+        "personal/audit.py::AuditSender",
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/audit.py::AuditSender",
+        "personal/adapters/parcel.py::ParcelSender"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    },
+    "T4": {
+      "acceptable": [
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch",
+        "personal/publish.py::seal"
+      ],
+      "context": "personal-task",
+      "forbidden": [
+        "employer-x/hidden.py::HiddenSender"
+      ],
+      "required": [
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch",
+        "personal/publish.py::seal"
+      ],
+      "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac"
+    }
+  }
+}

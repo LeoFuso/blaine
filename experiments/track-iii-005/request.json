@@ -1,0 +1,55 @@
+{
+  "objective": "Execute only Track III.5: prove explicit promotion and cross-domain declassification admission using deterministic candidates, trusted authority, fail-closed scanners, non-leaking receipts and replay/leakage controls; retain evidence and commit locally.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Accepted III.1–III.4 research, experiments and roadmap",
+      "source": "git:d4efe81",
+      "sharing": "local-only"
+    },
+    {
+      "need": "Synthetic hierarchy, sources, promotion policy, authority, approval and scanner fixtures",
+      "source": "experiments/track-iii-005/fixtures.json",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit isolated III.5 experiment and documentation",
+    "run offline standard-library Python",
+    "create local commit"
+  ],
+  "autonomy": {
+    "allowed": [
+      "III.5 evaluator and deterministic controls",
+      "minimal milestone/research/navigation updates",
+      "completed-increment local commit"
+    ],
+    "forbidden": [
+      "III.6 or later execution",
+      "LLM-generated abstraction or reflection",
+      "verified-learning/runtime integration",
+      "real secrets or DLP integration",
+      "database/embedding/provider adoption",
+      "production contract changes",
+      "push or merge"
+    ]
+  },
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Explicit same-domain and cross-domain admission preserves authority, source security/provenance and metadata isolation",
+      "evidence": "fixtures.json; evidence/results.json; destination-exports.json; leakage.json"
+    },
+    {
+      "criterion": "Required scanner failures reject; unchanged-oracle fail-open mutation causes detectable unsafe admission; replay rechecks security",
+      "evidence": "evidence/fail-open.json; restored.json; summary.json; verification.json"
+    },
+    {
+      "criterion": "Offline evidence reproduces, prior/runtime code unchanged, III.6 unstarted and work committed locally",
+      "evidence": "evidence/reproducibility.json; documentation-checks.json; milestone 046 and local commit identity"
+    }
+  ]
+}

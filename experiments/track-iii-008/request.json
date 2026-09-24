@@ -1,0 +1,51 @@
+{
+  "autonomy": {
+    "allowed": [
+      "fixed III.8 retrieval comparison and isolated defect controls",
+      "minimal research/roadmap/milestone updates",
+      "local completion commit"
+    ],
+    "forbidden": [
+      "III.9 or later execution",
+      "production/runtime/model routing changes",
+      "persistent dependency adoption",
+      "cloud calls",
+      "automatic reflection or promotion changes",
+      "push or merge"
+    ]
+  },
+  "capabilities": [
+    "read repository and existing Graphify checkout",
+    "run existing isolated Graphify environment",
+    "invoke existing local BGE-M3 embeddings",
+    "write isolated III.8 experiment/evidence/documentation",
+    "create local commit"
+  ],
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Retain honest PASS/FAIL/BLOCKED result under predeclared query/gain/security/freshness/budget thresholds",
+      "evidence": "protocol.json; oracles.json; evidence/results.json; verification.json; summary.json"
+    },
+    {
+      "criterion": "Record actual Graphify/semantic implementation, detected stale/isolation controls, source authority and byte reproducibility limits",
+      "evidence": "evidence/tooling.json; indexes.json; controls.json; reproducibility.json; milestone 049"
+    }
+  ],
+  "context": [
+    {
+      "need": "Accepted III.1\u2013III.7 research and experiment boundaries",
+      "sharing": "local-only",
+      "source": "git:4705592"
+    },
+    {
+      "need": "Frozen synthetic workspace/query/oracle fixtures",
+      "sharing": "local-only",
+      "source": "experiments/track-iii-008/protocol.json"
+    }
+  ],
+  "mode": "interactive",
+  "objective": "Execute only III.8 broad workspace awareness/narrow context consumption: frozen two-revision 12-query lexical versus semantic/structural comparison, source/security revalidation, bounded packets and mutation evidence; commit locally."
+}

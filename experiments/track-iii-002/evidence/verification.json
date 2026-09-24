@@ -1,0 +1,10 @@
+{
+  "correct_after_control": true,
+  "correct_cases": 221,
+  "direct_id_pairs": 121,
+  "malformed_trees_rejected": 11,
+  "mutation_failures": 37,
+  "same_oracle_for_mutant": true,
+  "source_hashes_verified": 4,
+  "status": "PASS"
+}

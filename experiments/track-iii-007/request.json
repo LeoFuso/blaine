@@ -1,0 +1,58 @@
+{
+  "objective": "Execute only Track III.7 learned-memory utility: compose verified outcome admission and explicit schema-compatible promotion, then compare 12 synthetic later Tasks with/without governed memory using the existing local Qwen adapter, retained evidence and a local commit.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Accepted III.1–III.6 artifacts and current local inference deployment",
+      "source": "git:5f97bd0",
+      "sharing": "local-only"
+    },
+    {
+      "need": "Predeclared paired behavioral protocol and synthetic fixtures",
+      "source": "experiments/track-iii-007/protocol.json",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit isolated III.7 experiment and documentation",
+    "run standard-library deterministic checks",
+    "invoke existing loopback Qwen via existing bounded adapter",
+    "create local commit"
+  ],
+  "autonomy": {
+    "allowed": [
+      "III.7 explicit promotion schema compatibility extension",
+      "fixed local-only paired model runs and negative controls",
+      "minimal milestone/research/navigation updates",
+      "completed-increment local commit"
+    ],
+    "forbidden": [
+      "III.8 or later execution",
+      "cloud cognition for experimental Tasks",
+      "production model routing or Cognitive Loop changes",
+      "runtime or service configuration changes",
+      "LLM reflection or arbitrary-language entailment",
+      "automatic promotion, consolidation, utility/voting/decay",
+      "new retrieval/storage dependencies",
+      "push or merge"
+    ]
+  },
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Admission/promotion/retrieval preserves semantic status, security and private evidence isolation",
+      "evidence": "fixtures.json; gate-fixture.json; evidence/composition.json; compatibility.patch"
+    },
+    {
+      "criterion": "Each repeat has matching delta >=2 and no irrelevant/trap paired regression; failure-as-success control causes a verified regression",
+      "evidence": "protocol.json; evidence/preregistration.json; behavior.json; mutation.json; summary.json; verification.json"
+    },
+    {
+      "criterion": "Bounded real local inference only, exact inputs/results retained, historical/runtime sources unchanged and III.8 unstarted",
+      "evidence": "evidence/model-availability.json; documentation-checks.json; milestone 048 and local commit"
+    }
+  ]
+}

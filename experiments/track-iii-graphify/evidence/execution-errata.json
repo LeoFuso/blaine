@@ -1,0 +1,18 @@
+{
+  "reason": "Mutation bypass predicates returned None or strings rather than bool, raising TypeError. Explicit boolean conversion only. Primary normal variant unaffected. No query/selector change.",
+  "file": "discover.py",
+  "original_sha256": "c6c1462ba4bb62d6e6e6a6fe48a0ab4f0a95573fc4364d65f3b672f71371d5e9",
+  "corrected_sha256": "9aea374b59557d17703698f0b704b1f5a1cc296e33f6b1e3d695e6bbf8f8102f",
+  "completed_results_sha256": "31d80ed24bb4c69f9ec2523e5227df1d8f01eb7c75d493f177319c1fdea3fe0b",
+  "corrections": {
+    "discover.py": {
+      "original": "evidence/discover-preregistered.py.txt",
+      "corrected_sha256": "9aea374b59557d17703698f0b704b1f5a1cc296e33f6b1e3d695e6bbf8f8102f"
+    },
+    "check.py": {
+      "original": "evidence/check-preregistered.py.txt",
+      "corrected_sha256": "72ea3de9f787954f1ff12687a510989e727d6221623431af3d8456cb9124187d"
+    }
+  },
+  "checker_change": "Verify original and corrected source pins. Align mutation gate with frozen PROTOCOL: stale and inferred mandatory; isolation explicitly optional. Initial checker erroneously required the optional isolation mutation to leak. Retain initial FAIL report and non-leaking optional control; no primary outcomes, thresholds, selection or corpus changes."
+}

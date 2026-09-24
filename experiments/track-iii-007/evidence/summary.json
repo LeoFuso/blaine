@@ -1,0 +1,56 @@
+{
+  "III_8_started": false,
+  "composition_unchanged_after_mutation": true,
+  "model_invocations": 78,
+  "mutation_regressions": 2,
+  "source_freeze_unchanged": true,
+  "status": "PASS",
+  "task_submission": {
+    "submitted": false,
+    "task_id": null
+  },
+  "totals": [
+    {
+      "groups": {
+        "IRRELEVANT": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        },
+        "MATCHING": {
+          "MEMORY": 4,
+          "NO_MEMORY": 0,
+          "delta": 4
+        },
+        "NEAR_MATCH_TRAP": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        }
+      },
+      "regressions": [],
+      "repeat": 0
+    },
+    {
+      "groups": {
+        "IRRELEVANT": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        },
+        "MATCHING": {
+          "MEMORY": 4,
+          "NO_MEMORY": 0,
+          "delta": 4
+        },
+        "NEAR_MATCH_TRAP": {
+          "MEMORY": 4,
+          "NO_MEMORY": 4,
+          "delta": 0
+        }
+      },
+      "regressions": [],
+      "repeat": 1
+    }
+  ]
+}

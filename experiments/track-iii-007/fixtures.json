@@ -1,0 +1,1136 @@
+{
+  "envelopes": {
+    "prior-amber": {
+      "context_id": "prior",
+      "contract_ref": "prior-amber-evidence-0",
+      "domain": "personal",
+      "execution_id": "prior-amber",
+      "id": "prior-amber-outcome",
+      "required_evidence": [
+        "prior-amber-evidence-0",
+        "prior-amber-evidence-1",
+        "prior-amber-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "prior-cobalt": {
+      "context_id": "prior",
+      "contract_ref": "prior-cobalt-evidence-0",
+      "domain": "personal",
+      "execution_id": "prior-cobalt",
+      "id": "prior-cobalt-outcome",
+      "required_evidence": [
+        "prior-cobalt-evidence-0",
+        "prior-cobalt-evidence-1",
+        "prior-cobalt-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "prior-ivory": {
+      "context_id": "prior",
+      "contract_ref": "prior-ivory-evidence-0",
+      "domain": "personal",
+      "execution_id": "prior-ivory",
+      "id": "prior-ivory-outcome",
+      "required_evidence": [
+        "prior-ivory-evidence-0",
+        "prior-ivory-evidence-1",
+        "prior-ivory-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "prior-jade": {
+      "context_id": "prior",
+      "contract_ref": "prior-jade-evidence-0",
+      "domain": "personal",
+      "execution_id": "prior-jade",
+      "id": "prior-jade-outcome",
+      "required_evidence": [
+        "prior-jade-evidence-0",
+        "prior-jade-evidence-1",
+        "prior-jade-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "prior-legacy-failure": {
+      "context_id": "prior",
+      "contract_ref": "prior-legacy-failure-evidence-0",
+      "domain": "personal",
+      "execution_id": "prior-legacy-failure",
+      "id": "prior-legacy-failure-outcome",
+      "required_evidence": [
+        "prior-legacy-failure-evidence-0",
+        "prior-legacy-failure-evidence-1",
+        "prior-legacy-failure-evidence-2"
+      ],
+      "status": "FAILED"
+    },
+    "prior-noise": {
+      "context_id": "prior",
+      "contract_ref": "prior-noise-evidence-0",
+      "domain": "personal",
+      "execution_id": "prior-noise",
+      "id": "prior-noise-outcome",
+      "required_evidence": [
+        "prior-noise-evidence-0",
+        "prior-noise-evidence-1",
+        "prior-noise-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "prior-protected": {
+      "context_id": "protected-prior",
+      "contract_ref": "prior-protected-evidence-0",
+      "domain": "employer-x",
+      "execution_id": "prior-protected",
+      "id": "prior-protected-outcome",
+      "required_evidence": [
+        "prior-protected-evidence-0",
+        "prior-protected-evidence-1",
+        "prior-protected-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "prior-uncertain": {
+      "context_id": "prior",
+      "contract_ref": "prior-uncertain-evidence-0",
+      "domain": "personal",
+      "execution_id": "prior-uncertain",
+      "id": "prior-uncertain-outcome",
+      "required_evidence": [
+        "prior-uncertain-evidence-0",
+        "prior-uncertain-evidence-1",
+        "prior-uncertain-evidence-2"
+      ],
+      "status": "INCOMPLETE"
+    }
+  },
+  "evidence": {
+    "prior-amber-evidence-0": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-amber",
+      "facts": [
+        "amber"
+      ],
+      "id": "prior-amber-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_amber",
+      "result": "PASS",
+      "verifier_id": "private-verifier-amber"
+    },
+    "prior-amber-evidence-1": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-amber",
+      "facts": [
+        "amber"
+      ],
+      "id": "prior-amber-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_amber",
+      "result": "PASS",
+      "verifier_id": "private-verifier-amber"
+    },
+    "prior-amber-evidence-2": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-amber",
+      "facts": [
+        "amber"
+      ],
+      "id": "prior-amber-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_amber",
+      "result": "PRESENT",
+      "verifier_id": "private-verifier-amber"
+    },
+    "prior-cobalt-evidence-0": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-cobalt",
+      "facts": [
+        "cobalt"
+      ],
+      "id": "prior-cobalt-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_cobalt",
+      "result": "PASS",
+      "verifier_id": "private-verifier-cobalt"
+    },
+    "prior-cobalt-evidence-1": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-cobalt",
+      "facts": [
+        "cobalt"
+      ],
+      "id": "prior-cobalt-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_cobalt",
+      "result": "PASS",
+      "verifier_id": "private-verifier-cobalt"
+    },
+    "prior-cobalt-evidence-2": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-cobalt",
+      "facts": [
+        "cobalt"
+      ],
+      "id": "prior-cobalt-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_cobalt",
+      "result": "PRESENT",
+      "verifier_id": "private-verifier-cobalt"
+    },
+    "prior-ivory-evidence-0": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-ivory",
+      "facts": [
+        "ivory"
+      ],
+      "id": "prior-ivory-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_ivory",
+      "result": "PASS",
+      "verifier_id": "private-verifier-ivory"
+    },
+    "prior-ivory-evidence-1": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-ivory",
+      "facts": [
+        "ivory"
+      ],
+      "id": "prior-ivory-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_ivory",
+      "result": "PASS",
+      "verifier_id": "private-verifier-ivory"
+    },
+    "prior-ivory-evidence-2": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-ivory",
+      "facts": [
+        "ivory"
+      ],
+      "id": "prior-ivory-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_ivory",
+      "result": "PRESENT",
+      "verifier_id": "private-verifier-ivory"
+    },
+    "prior-jade-evidence-0": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-jade",
+      "facts": [
+        "jade"
+      ],
+      "id": "prior-jade-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_jade",
+      "result": "PASS",
+      "verifier_id": "private-verifier-jade"
+    },
+    "prior-jade-evidence-1": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-jade",
+      "facts": [
+        "jade"
+      ],
+      "id": "prior-jade-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_jade",
+      "result": "PASS",
+      "verifier_id": "private-verifier-jade"
+    },
+    "prior-jade-evidence-2": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-jade",
+      "facts": [
+        "jade"
+      ],
+      "id": "prior-jade-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_jade",
+      "result": "PRESENT",
+      "verifier_id": "private-verifier-jade"
+    },
+    "prior-legacy-failure-evidence-0": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-legacy-failure",
+      "facts": [
+        "legacy-failure"
+      ],
+      "id": "prior-legacy-failure-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_legacy-failure",
+      "result": "FAIL",
+      "verifier_id": "private-verifier-legacy-failure"
+    },
+    "prior-legacy-failure-evidence-1": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-legacy-failure",
+      "facts": [
+        "legacy-failure"
+      ],
+      "id": "prior-legacy-failure-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_legacy-failure",
+      "result": "FAIL",
+      "verifier_id": "private-verifier-legacy-failure"
+    },
+    "prior-legacy-failure-evidence-2": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-legacy-failure",
+      "facts": [
+        "legacy-failure"
+      ],
+      "id": "prior-legacy-failure-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_legacy-failure",
+      "result": "PRESENT",
+      "verifier_id": "private-verifier-legacy-failure"
+    },
+    "prior-noise-evidence-0": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-noise",
+      "facts": [
+        "noise"
+      ],
+      "id": "prior-noise-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_noise",
+      "result": "PASS",
+      "verifier_id": "private-verifier-noise"
+    },
+    "prior-noise-evidence-1": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-noise",
+      "facts": [
+        "noise"
+      ],
+      "id": "prior-noise-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_noise",
+      "result": "PASS",
+      "verifier_id": "private-verifier-noise"
+    },
+    "prior-noise-evidence-2": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-noise",
+      "facts": [
+        "noise"
+      ],
+      "id": "prior-noise-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_noise",
+      "result": "PRESENT",
+      "verifier_id": "private-verifier-noise"
+    },
+    "prior-protected-evidence-0": {
+      "context_id": "protected-prior",
+      "domain": "employer-x",
+      "execution_id": "prior-protected",
+      "facts": [
+        "protected"
+      ],
+      "id": "prior-protected-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_protected",
+      "result": "PASS",
+      "verifier_id": "private-verifier-protected"
+    },
+    "prior-protected-evidence-1": {
+      "context_id": "protected-prior",
+      "domain": "employer-x",
+      "execution_id": "prior-protected",
+      "facts": [
+        "protected"
+      ],
+      "id": "prior-protected-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_protected",
+      "result": "PASS",
+      "verifier_id": "private-verifier-protected"
+    },
+    "prior-protected-evidence-2": {
+      "context_id": "protected-prior",
+      "domain": "employer-x",
+      "execution_id": "prior-protected",
+      "facts": [
+        "protected"
+      ],
+      "id": "prior-protected-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_protected",
+      "result": "PRESENT",
+      "verifier_id": "private-verifier-protected"
+    },
+    "prior-uncertain-evidence-0": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-uncertain",
+      "facts": [
+        "uncertain"
+      ],
+      "id": "prior-uncertain-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_EVIDENCE_uncertain",
+      "result": "UNKNOWN",
+      "verifier_id": "private-verifier-uncertain"
+    },
+    "prior-uncertain-evidence-1": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-uncertain",
+      "facts": [
+        "uncertain"
+      ],
+      "id": "prior-uncertain-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_EVIDENCE_uncertain",
+      "result": "NOT_RUN",
+      "verifier_id": "private-verifier-uncertain"
+    },
+    "prior-uncertain-evidence-2": {
+      "context_id": "prior",
+      "domain": "personal",
+      "execution_id": "prior-uncertain",
+      "facts": [
+        "uncertain"
+      ],
+      "id": "prior-uncertain-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_EVIDENCE_uncertain",
+      "result": "MISSING",
+      "verifier_id": "private-verifier-uncertain"
+    }
+  },
+  "executions": {
+    "prior-amber": {
+      "context_id": "prior",
+      "contract_ref": "prior-amber-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "prior-amber-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-amber-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-amber-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "prior-cobalt": {
+      "context_id": "prior",
+      "contract_ref": "prior-cobalt-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "prior-cobalt-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-cobalt-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-cobalt-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "prior-ivory": {
+      "context_id": "prior",
+      "contract_ref": "prior-ivory-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "prior-ivory-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-ivory-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-ivory-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "prior-jade": {
+      "context_id": "prior",
+      "contract_ref": "prior-jade-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "prior-jade-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-jade-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-jade-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "prior-legacy-failure": {
+      "context_id": "prior",
+      "contract_ref": "prior-legacy-failure-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "prior-legacy-failure-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-legacy-failure-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-legacy-failure-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "prior-noise": {
+      "context_id": "prior",
+      "contract_ref": "prior-noise-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "prior-noise-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-noise-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-noise-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "prior-protected": {
+      "context_id": "protected-prior",
+      "contract_ref": "prior-protected-evidence-0",
+      "domain": "employer-x",
+      "requirements": [
+        {
+          "id": "prior-protected-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-protected-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-protected-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "prior-uncertain": {
+      "context_id": "prior",
+      "contract_ref": "prior-uncertain-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "prior-uncertain-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-uncertain-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "prior-uncertain-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    }
+  },
+  "memory": {
+    "context_domains": {
+      "employer-x": "employer-x",
+      "irrelevant-1": "personal",
+      "irrelevant-2": "personal",
+      "irrelevant-3": "personal",
+      "irrelevant-4": "personal",
+      "match-1": "personal",
+      "match-2": "personal",
+      "match-3": "personal",
+      "match-4": "personal",
+      "personal": "personal",
+      "prior": "personal",
+      "project": "personal",
+      "protected-prior": "employer-x",
+      "root": "public",
+      "trap-1": "personal",
+      "trap-2": "personal",
+      "trap-3": "personal",
+      "trap-4": "personal"
+    },
+    "declaration_targets": {
+      "human-personal": "project"
+    },
+    "derived": [],
+    "entries": [],
+    "nodes": [
+      {
+        "id": "root",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": null
+      },
+      {
+        "id": "personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "project",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "personal"
+      },
+      {
+        "id": "prior",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "employer-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "protected-prior",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "employer-x"
+      },
+      {
+        "id": "irrelevant-1",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "irrelevant-2",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "irrelevant-3",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "irrelevant-4",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-1",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-2",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-3",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-4",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-1",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-2",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-3",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-4",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      }
+    ],
+    "policy": {
+      "deny_ids": [],
+      "grants": {
+        "employer-x": [
+          "public",
+          "employer-x"
+        ],
+        "personal": [
+          "public",
+          "personal"
+        ],
+        "public": [
+          "public"
+        ]
+      },
+      "version": "fixture-v1"
+    }
+  },
+  "prior_cases": [
+    {
+      "attempt": 19,
+      "content": "topic:amber. Conditions: family=amber, folded=true, version=2. Tested canonical transform: multiply x by 3, then add 7. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+      "context": "prior",
+      "expected": 19,
+      "intent": "SUCCESS",
+      "key": "amber",
+      "prior_input": 4
+    },
+    {
+      "attempt": 3,
+      "content": "topic:cobalt. Conditions: family=cobalt, folded=true, version=2. Tested canonical transform: multiply x by 2, then add -5. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+      "context": "prior",
+      "expected": 3,
+      "intent": "SUCCESS",
+      "key": "cobalt",
+      "prior_input": 4
+    },
+    {
+      "attempt": 22,
+      "content": "topic:jade. Conditions: family=jade, folded=true, version=2. Tested canonical transform: multiply x by 5, then add 2. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+      "context": "prior",
+      "expected": 22,
+      "intent": "SUCCESS",
+      "key": "jade",
+      "prior_input": 4
+    },
+    {
+      "attempt": 25,
+      "content": "topic:ivory. Conditions: family=ivory, folded=true, version=2. Tested canonical transform: multiply x by 4, then add 9. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+      "context": "prior",
+      "expected": 25,
+      "intent": "SUCCESS",
+      "key": "ivory",
+      "prior_input": 4
+    },
+    {
+      "attempt": 24,
+      "content": "topic:amber. Conditions: family=amber, folded=true, version=1. Tested canonical transform: multiply x by 7, then subtract 4. Outcome is qualified by epistemic_status; do not infer a successful rule from a failure.",
+      "context": "prior",
+      "expected": 4,
+      "intent": "FAILURE",
+      "key": "legacy-failure",
+      "prior_input": 4
+    },
+    {
+      "attempt": "a,z",
+      "content": "topic:amber topic:cobalt topic:jade topic:ivory. Conditions: operation=log-format. Tested formatting rule: sort log field names alphabetically before emitting diagnostic records. This experience concerns logging, not numeric canonicalization.",
+      "context": "prior",
+      "expected": "a,z",
+      "intent": "SUCCESS",
+      "key": "noise",
+      "prior_input": [
+        "z",
+        "a"
+      ]
+    },
+    {
+      "attempt": 198,
+      "content": "topic:amber. employer-x-secret-memory: folded version 2 uses proprietary coefficient 99; repository-x-private.",
+      "context": "protected-prior",
+      "expected": 198,
+      "intent": "SUCCESS",
+      "key": "protected",
+      "prior_input": 2
+    },
+    {
+      "attempt": null,
+      "content": "Unverified observation: a future protocol version may need further investigation.",
+      "context": "prior",
+      "expected": null,
+      "intent": "OBSERVATION",
+      "key": "uncertain",
+      "prior_input": 3
+    }
+  ],
+  "private_literals": [
+    "PRIVATE_EVIDENCE_",
+    "private-verifier-",
+    "prior-amber-evidence",
+    "prior::reflection",
+    "protected-prior::reflection"
+  ],
+  "protected_literals": [
+    "employer-x",
+    "protected-prior",
+    "employer-x-secret-memory",
+    "repository-x-private"
+  ],
+  "support_catalog": {
+    "prior-amber": [
+      {
+        "candidate": {
+          "content": "topic:amber. Conditions: family=amber, folded=true, version=2. Tested canonical transform: multiply x by 3, then add 7. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "amber"
+        ]
+      }
+    ],
+    "prior-cobalt": [
+      {
+        "candidate": {
+          "content": "topic:cobalt. Conditions: family=cobalt, folded=true, version=2. Tested canonical transform: multiply x by 2, then add -5. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "cobalt"
+        ]
+      }
+    ],
+    "prior-ivory": [
+      {
+        "candidate": {
+          "content": "topic:ivory. Conditions: family=ivory, folded=true, version=2. Tested canonical transform: multiply x by 4, then add 9. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "ivory"
+        ]
+      }
+    ],
+    "prior-jade": [
+      {
+        "candidate": {
+          "content": "topic:jade. Conditions: family=jade, folded=true, version=2. Tested canonical transform: multiply x by 5, then add 2. Outcome is qualified by epistemic_status; other versions are outside this experience.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "jade"
+        ]
+      }
+    ],
+    "prior-legacy-failure": [
+      {
+        "candidate": {
+          "content": "topic:amber. Conditions: family=amber, folded=true, version=1. Tested canonical transform: multiply x by 7, then subtract 4. Outcome is qualified by epistemic_status; do not infer a successful rule from a failure.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "legacy-failure"
+        ]
+      }
+    ],
+    "prior-noise": [
+      {
+        "candidate": {
+          "content": "topic:amber topic:cobalt topic:jade topic:ivory. Conditions: operation=log-format. Tested formatting rule: sort log field names alphabetically before emitting diagnostic records. This experience concerns logging, not numeric canonicalization.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "noise"
+        ]
+      }
+    ],
+    "prior-protected": [
+      {
+        "candidate": {
+          "content": "topic:amber. employer-x-secret-memory: folded version 2 uses proprietary coefficient 99; repository-x-private.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "protected"
+        ]
+      }
+    ],
+    "prior-uncertain": [
+      {
+        "candidate": {
+          "content": "Unverified observation: a future protocol version may need further investigation.",
+          "intent": "OBSERVATION"
+        },
+        "facts": [
+          "uncertain"
+        ]
+      }
+    ]
+  },
+  "tasks": [
+    {
+      "expected": "15",
+      "facts": {
+        "current_requirement": "Return the sum of values as a base-10 integer.",
+        "operation": "sum",
+        "values": [
+          8,
+          2,
+          5
+        ]
+      },
+      "group": "IRRELEVANT",
+      "id": "irrelevant-1",
+      "rule": {
+        "operation": "sum"
+      },
+      "topic": "amber"
+    },
+    {
+      "expected": "14",
+      "facts": {
+        "current_requirement": "Return the sum of values as a base-10 integer.",
+        "operation": "sum",
+        "values": [
+          4,
+          9,
+          1
+        ]
+      },
+      "group": "IRRELEVANT",
+      "id": "irrelevant-2",
+      "rule": {
+        "operation": "sum"
+      },
+      "topic": "amber"
+    },
+    {
+      "expected": "16",
+      "facts": {
+        "current_requirement": "Return the sum of values as a base-10 integer.",
+        "operation": "sum",
+        "values": [
+          7,
+          3,
+          6
+        ]
+      },
+      "group": "IRRELEVANT",
+      "id": "irrelevant-3",
+      "rule": {
+        "operation": "sum"
+      },
+      "topic": "amber"
+    },
+    {
+      "expected": "14",
+      "facts": {
+        "current_requirement": "Return the sum of values as a base-10 integer.",
+        "operation": "sum",
+        "values": [
+          2,
+          8,
+          4
+        ]
+      },
+      "group": "IRRELEVANT",
+      "id": "irrelevant-4",
+      "rule": {
+        "operation": "sum"
+      },
+      "topic": "amber"
+    },
+    {
+      "expected": "40",
+      "facts": {
+        "family": "amber",
+        "folded": true,
+        "version": 2,
+        "x": 11
+      },
+      "group": "MATCHING",
+      "id": "match-1",
+      "rule": {
+        "multiplier": 3,
+        "offset": 7
+      },
+      "topic": "amber"
+    },
+    {
+      "expected": "29",
+      "facts": {
+        "family": "cobalt",
+        "folded": true,
+        "version": 2,
+        "x": 17
+      },
+      "group": "MATCHING",
+      "id": "match-2",
+      "rule": {
+        "multiplier": 2,
+        "offset": -5
+      },
+      "topic": "cobalt"
+    },
+    {
+      "expected": "117",
+      "facts": {
+        "family": "jade",
+        "folded": true,
+        "version": 2,
+        "x": 23
+      },
+      "group": "MATCHING",
+      "id": "match-3",
+      "rule": {
+        "multiplier": 5,
+        "offset": 2
+      },
+      "topic": "jade"
+    },
+    {
+      "expected": "133",
+      "facts": {
+        "family": "ivory",
+        "folded": true,
+        "version": 2,
+        "x": 31
+      },
+      "group": "MATCHING",
+      "id": "match-4",
+      "rule": {
+        "multiplier": 4,
+        "offset": 9
+      },
+      "topic": "ivory"
+    },
+    {
+      "expected": "13",
+      "facts": {
+        "family": "amber",
+        "folded": true,
+        "version": 1,
+        "x": 13
+      },
+      "group": "NEAR_MATCH_TRAP",
+      "id": "trap-1",
+      "rule": {
+        "multiplier": 1,
+        "offset": 0
+      },
+      "topic": "amber"
+    },
+    {
+      "expected": "19",
+      "facts": {
+        "family": "cobalt",
+        "folded": true,
+        "version": 1,
+        "x": 19
+      },
+      "group": "NEAR_MATCH_TRAP",
+      "id": "trap-2",
+      "rule": {
+        "multiplier": 1,
+        "offset": 0
+      },
+      "topic": "cobalt"
+    },
+    {
+      "expected": "25",
+      "facts": {
+        "family": "jade",
+        "folded": true,
+        "version": 1,
+        "x": 25
+      },
+      "group": "NEAR_MATCH_TRAP",
+      "id": "trap-3",
+      "rule": {
+        "multiplier": 1,
+        "offset": 0
+      },
+      "topic": "jade"
+    },
+    {
+      "expected": "33",
+      "facts": {
+        "family": "ivory",
+        "folded": true,
+        "version": 1,
+        "x": 33
+      },
+      "group": "NEAR_MATCH_TRAP",
+      "id": "trap-4",
+      "rule": {
+        "multiplier": 1,
+        "offset": 0
+      },
+      "topic": "ivory"
+    }
+  ]
+}

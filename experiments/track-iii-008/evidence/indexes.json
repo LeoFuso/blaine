@@ -1,0 +1,810 @@
+{
+  "A": {
+    "edges": [
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/audit.py::AuditSender",
+        "target": "personal/contracts.py::DeliveryPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "inherits",
+        "source": "personal/audit.py::AuditSender",
+        "target": "personal/contracts.py::DeliveryPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/legacy.py::persist",
+        "target": "personal/publish.py::seal"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/legacy.py::persist",
+        "target": "personal/publish.py::seal"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/transport.py::ParcelSender",
+        "target": "personal/contracts.py::DeliveryPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "inherits",
+        "source": "personal/transport.py::ParcelSender",
+        "target": "personal/contracts.py::DeliveryPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/identity.py::HandleFold"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/identity.py::HandleFold"
+      },
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/legacy.py::persist"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/legacy.py::persist"
+      }
+    ],
+    "revision": "sha256:7c732c1b8130ed57b234972207bcea55c0ee6e79e8ffc725418f9009d8721f0b",
+    "rows": {
+      "employer-x/hidden.py::HiddenSender": {
+        "bases": [
+          "DeliveryPort"
+        ],
+        "calls": [
+          "parcel.strip",
+          "parcel.strip().casefold"
+        ],
+        "end_line": 6,
+        "file": "employer-x/hidden.py",
+        "imports": [
+          "DeliveryPort"
+        ],
+        "line": 3,
+        "source_hash": "83a28384f8c091e73cab83e1604578520bee186893b7115104883554ae7badff",
+        "symbol": "HiddenSender",
+        "target": "employer-x/hidden.py::HiddenSender",
+        "text": "class HiddenSender(DeliveryPort):\n    \"\"\"PRIVATE_CODE_CANARY: remove surrounding blanks and ignore upper versus lower case in account handles before dispatch.\"\"\"\n    def send(self, parcel):\n        return parcel.strip().casefold()"
+      },
+      "personal/audit.py::AuditSender": {
+        "bases": [
+          "DeliveryPort"
+        ],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/audit.py",
+        "imports": [
+          "DeliveryPort"
+        ],
+        "line": 3,
+        "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+        "symbol": "AuditSender",
+        "target": "personal/audit.py::AuditSender",
+        "text": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        return {\"accepted\": True, \"parcel\": parcel}"
+      },
+      "personal/book.py::StampBook": {
+        "bases": [],
+        "calls": [
+          "hashlib.sha256",
+          "hashlib.sha256(payload).hexdigest",
+          "self.receipts.get"
+        ],
+        "end_line": 13,
+        "file": "personal/book.py",
+        "imports": [],
+        "line": 3,
+        "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+        "symbol": "StampBook",
+        "target": "personal/book.py::StampBook",
+        "text": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    def remember(self, payload, acknowledgement):\n        key = hashlib.sha256(payload).hexdigest()\n        previous = self.receipts.get(key)\n        if previous is not None:\n            return previous\n        self.receipts[key] = acknowledgement\n        return acknowledgement"
+      },
+      "personal/contracts.py::DeliveryPort": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/contracts.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+        "symbol": "DeliveryPort",
+        "target": "personal/contracts.py::DeliveryPort",
+        "text": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError"
+      },
+      "personal/gate.py::WindowGate": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/gate.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "327402a6817eaeb28f7dd2911ab13256bbeff6b1908e9c64ad235bc821d01f50",
+        "symbol": "WindowGate",
+        "target": "personal/gate.py::WindowGate",
+        "text": "class WindowGate:\n    \"\"\"Admission of transient retries within capped expenditure.\"\"\"\n    def permits(self, status, attempts, ceiling):\n        return status >= 500 and attempts < ceiling"
+      },
+      "personal/helpers.py::quick_handle": {
+        "bases": [],
+        "calls": [
+          "value.strip"
+        ],
+        "end_line": 3,
+        "file": "personal/helpers.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+        "symbol": "quick_handle",
+        "target": "personal/helpers.py::quick_handle",
+        "text": "def quick_handle(value):\n    \"\"\"Tempting one-off helper: trim only; does not merge letter-case variants.\"\"\"\n    return value.strip()"
+      },
+      "personal/identity.py::HandleFold": {
+        "bases": [],
+        "calls": [
+          "value.strip",
+          "value.strip().casefold"
+        ],
+        "end_line": 4,
+        "file": "personal/identity.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "32a063042df50ccde0d030012c243ccd022608bd50ba2aa05eed77296ac13655",
+        "symbol": "HandleFold",
+        "target": "personal/identity.py::HandleFold",
+        "text": "class HandleFold:\n    \"\"\"Collapse user handle variants to one stable representation.\"\"\"\n    def apply(self, value):\n        return value.strip().casefold()"
+      },
+      "personal/legacy.py::persist": {
+        "bases": [],
+        "calls": [
+          "seal"
+        ],
+        "end_line": 5,
+        "file": "personal/legacy.py",
+        "imports": [
+          "seal"
+        ],
+        "line": 3,
+        "source_hash": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+        "symbol": "persist",
+        "target": "personal/legacy.py::persist",
+        "text": "def persist(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)"
+      },
+      "personal/notes/note_00.py::note_00": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_00.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+        "symbol": "note_00",
+        "target": "personal/notes/note_00.py::note_00",
+        "text": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_01.py::note_01": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_01.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+        "symbol": "note_01",
+        "target": "personal/notes/note_01.py::note_01",
+        "text": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_02.py::note_02": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_02.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+        "symbol": "note_02",
+        "target": "personal/notes/note_02.py::note_02",
+        "text": "def note_02(handle, attempts, output):\n    \"\"\"Diagnostic note 2: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_03.py::note_03": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_03.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+        "symbol": "note_03",
+        "target": "personal/notes/note_03.py::note_03",
+        "text": "def note_03(handle, attempts, output):\n    \"\"\"Diagnostic note 3: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_04.py::note_04": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_04.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+        "symbol": "note_04",
+        "target": "personal/notes/note_04.py::note_04",
+        "text": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_05.py::note_05": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_05.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "93f1e948ce59ddc0912091eb2a7e80bd4cf443b6a8db2a33ebe4113fc3fbd701",
+        "symbol": "note_05",
+        "target": "personal/notes/note_05.py::note_05",
+        "text": "def note_05(handle, attempts, output):\n    \"\"\"Diagnostic note 5: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_06.py::note_06": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_06.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "9c0f550268dfb7337ef069a9a4c7e6dd04c4b76ffab17942afb82e35688a8107",
+        "symbol": "note_06",
+        "target": "personal/notes/note_06.py::note_06",
+        "text": "def note_06(handle, attempts, output):\n    \"\"\"Diagnostic note 6: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_07.py::note_07": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_07.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+        "symbol": "note_07",
+        "target": "personal/notes/note_07.py::note_07",
+        "text": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_08.py::note_08": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_08.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "fb4a1afd54c78717172798807ab02714e59a2e95c4a4e8f7b7e9048edcabcf2a",
+        "symbol": "note_08",
+        "target": "personal/notes/note_08.py::note_08",
+        "text": "def note_08(handle, attempts, output):\n    \"\"\"Diagnostic note 8: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_09.py::note_09": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_09.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+        "symbol": "note_09",
+        "target": "personal/notes/note_09.py::note_09",
+        "text": "def note_09(handle, attempts, output):\n    \"\"\"Diagnostic note 9: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_10.py::note_10": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_10.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "0531f5bb083e04bcbcbee04fd9c9478a94e041c1171779c28e92a0fc3475e27c",
+        "symbol": "note_10",
+        "target": "personal/notes/note_10.py::note_10",
+        "text": "def note_10(handle, attempts, output):\n    \"\"\"Diagnostic note 10: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_11.py::note_11": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_11.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "ca3d10886311deef09d18ee4c0fc890d5fd6aab7476ea29cffd3eea81b9bd67c",
+        "symbol": "note_11",
+        "target": "personal/notes/note_11.py::note_11",
+        "text": "def note_11(handle, attempts, output):\n    \"\"\"Diagnostic note 11: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/publish.py::seal": {
+        "bases": [],
+        "calls": [
+          "os.replace",
+          "path.with_suffix",
+          "temporary.write_bytes"
+        ],
+        "end_line": 7,
+        "file": "personal/publish.py",
+        "imports": [],
+        "line": 3,
+        "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+        "symbol": "seal",
+        "target": "personal/publish.py::seal",
+        "text": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary.write_bytes(data)\n    os.replace(temporary, path)"
+      },
+      "personal/settings.py::READY_MARKER": {
+        "bases": [],
+        "calls": [],
+        "end_line": 2,
+        "file": "personal/settings.py",
+        "imports": [],
+        "line": 2,
+        "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+        "symbol": "READY_MARKER",
+        "target": "personal/settings.py::READY_MARKER",
+        "text": "READY_MARKER = \"parcel-ready\""
+      },
+      "personal/settings.py::retry_ceiling": {
+        "bases": [],
+        "calls": [],
+        "end_line": 1,
+        "file": "personal/settings.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+        "symbol": "retry_ceiling",
+        "target": "personal/settings.py::retry_ceiling",
+        "text": "retry_ceiling = 4"
+      },
+      "personal/transport.py::ParcelSender": {
+        "bases": [
+          "DeliveryPort"
+        ],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/transport.py",
+        "imports": [
+          "DeliveryPort"
+        ],
+        "line": 3,
+        "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+        "symbol": "ParcelSender",
+        "target": "personal/transport.py::ParcelSender",
+        "text": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent\": parcel}"
+      },
+      "personal/workflow.py::dispatch": {
+        "bases": [],
+        "calls": [
+          "HandleFold",
+          "HandleFold().apply",
+          "persist",
+          "prepared.encode"
+        ],
+        "end_line": 7,
+        "file": "personal/workflow.py",
+        "imports": [
+          "persist",
+          "HandleFold"
+        ],
+        "line": 4,
+        "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+        "symbol": "dispatch",
+        "target": "personal/workflow.py::dispatch",
+        "text": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return persist(path, prepared.encode())"
+      }
+    }
+  },
+  "B": {
+    "edges": [
+      {
+        "origin": "graphify",
+        "relation": "inherits",
+        "source": "personal/adapters/parcel.py::ParcelSender",
+        "target": "personal/contracts.py::DeliveryPort"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/audit.py::AuditSender",
+        "target": "personal/contracts.py::DeliveryPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "inherits",
+        "source": "personal/audit.py::AuditSender",
+        "target": "personal/contracts.py::DeliveryPort"
+      },
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/store.py::checkpoint",
+        "target": "personal/publish.py::seal"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/store.py::checkpoint",
+        "target": "personal/publish.py::seal"
+      },
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/identity.py::IdentityFold"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/identity.py::IdentityFold"
+      },
+      {
+        "origin": "graphify",
+        "relation": "calls",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/store.py::checkpoint"
+      },
+      {
+        "origin": "graphify+source-import-resolution",
+        "relation": "imports",
+        "source": "personal/workflow.py::dispatch",
+        "target": "personal/store.py::checkpoint"
+      }
+    ],
+    "revision": "sha256:6ca2bbce0775ec482550b64f226624deb461a08b33e4b048500882e4edf9c6ac",
+    "rows": {
+      "employer-x/hidden.py::HiddenSender": {
+        "bases": [
+          "DeliveryPort"
+        ],
+        "calls": [
+          "parcel.strip",
+          "parcel.strip().casefold"
+        ],
+        "end_line": 6,
+        "file": "employer-x/hidden.py",
+        "imports": [
+          "DeliveryPort"
+        ],
+        "line": 3,
+        "source_hash": "83a28384f8c091e73cab83e1604578520bee186893b7115104883554ae7badff",
+        "symbol": "HiddenSender",
+        "target": "employer-x/hidden.py::HiddenSender",
+        "text": "class HiddenSender(DeliveryPort):\n    \"\"\"PRIVATE_CODE_CANARY: remove surrounding blanks and ignore upper versus lower case in account handles before dispatch.\"\"\"\n    def send(self, parcel):\n        return parcel.strip().casefold()"
+      },
+      "personal/adapters/parcel.py::ParcelSender": {
+        "bases": [
+          "DeliveryPort"
+        ],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/adapters/parcel.py",
+        "imports": [
+          "DeliveryPort"
+        ],
+        "line": 3,
+        "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+        "symbol": "ParcelSender",
+        "target": "personal/adapters/parcel.py::ParcelSender",
+        "text": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent\": parcel}"
+      },
+      "personal/audit.py::AuditSender": {
+        "bases": [
+          "DeliveryPort"
+        ],
+        "calls": [],
+        "end_line": 6,
+        "file": "personal/audit.py",
+        "imports": [
+          "DeliveryPort"
+        ],
+        "line": 3,
+        "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+        "symbol": "AuditSender",
+        "target": "personal/audit.py::AuditSender",
+        "text": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        return {\"accepted\": True, \"parcel\": parcel}"
+      },
+      "personal/book.py::StampBook": {
+        "bases": [],
+        "calls": [
+          "hashlib.sha256",
+          "hashlib.sha256(payload).hexdigest",
+          "self.receipts.get"
+        ],
+        "end_line": 13,
+        "file": "personal/book.py",
+        "imports": [],
+        "line": 3,
+        "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+        "symbol": "StampBook",
+        "target": "personal/book.py::StampBook",
+        "text": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    def remember(self, payload, acknowledgement):\n        key = hashlib.sha256(payload).hexdigest()\n        previous = self.receipts.get(key)\n        if previous is not None:\n            return previous\n        self.receipts[key] = acknowledgement\n        return acknowledgement"
+      },
+      "personal/contracts.py::DeliveryPort": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/contracts.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+        "symbol": "DeliveryPort",
+        "target": "personal/contracts.py::DeliveryPort",
+        "text": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError"
+      },
+      "personal/gate.py::AttemptFence": {
+        "bases": [],
+        "calls": [],
+        "end_line": 4,
+        "file": "personal/gate.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "067a4f3d457fa539721f31651849469c053ff285668f34babb3731ac5057484a",
+        "symbol": "AttemptFence",
+        "target": "personal/gate.py::AttemptFence",
+        "text": "class AttemptFence:\n    \"\"\"Admission of transient retries within capped expenditure.\"\"\"\n    def permits(self, status, attempts, ceiling):\n        return status >= 500 and attempts < ceiling"
+      },
+      "personal/helpers.py::quick_handle": {
+        "bases": [],
+        "calls": [
+          "value.strip"
+        ],
+        "end_line": 3,
+        "file": "personal/helpers.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+        "symbol": "quick_handle",
+        "target": "personal/helpers.py::quick_handle",
+        "text": "def quick_handle(value):\n    \"\"\"Tempting one-off helper: trim only; does not merge letter-case variants.\"\"\"\n    return value.strip()"
+      },
+      "personal/identity.py::IdentityFold": {
+        "bases": [],
+        "calls": [
+          "value.strip",
+          "value.strip().casefold"
+        ],
+        "end_line": 4,
+        "file": "personal/identity.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "65d1b43e370771997abad2cc30bb386cd44eef19b010a0a408669b4c41052bfd",
+        "symbol": "IdentityFold",
+        "target": "personal/identity.py::IdentityFold",
+        "text": "class IdentityFold:\n    \"\"\"Collapse user handle variants to one stable representation.\"\"\"\n    def apply(self, value):\n        return value.strip().casefold()"
+      },
+      "personal/notes/note_00.py::note_00": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_00.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+        "symbol": "note_00",
+        "target": "personal/notes/note_00.py::note_00",
+        "text": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_01.py::note_01": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_01.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+        "symbol": "note_01",
+        "target": "personal/notes/note_01.py::note_01",
+        "text": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_02.py::note_02": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_02.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+        "symbol": "note_02",
+        "target": "personal/notes/note_02.py::note_02",
+        "text": "def note_02(handle, attempts, output):\n    \"\"\"Diagnostic note 2: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_03.py::note_03": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_03.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+        "symbol": "note_03",
+        "target": "personal/notes/note_03.py::note_03",
+        "text": "def note_03(handle, attempts, output):\n    \"\"\"Diagnostic note 3: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_04.py::note_04": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_04.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+        "symbol": "note_04",
+        "target": "personal/notes/note_04.py::note_04",
+        "text": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_05.py::note_05": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_05.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "93f1e948ce59ddc0912091eb2a7e80bd4cf443b6a8db2a33ebe4113fc3fbd701",
+        "symbol": "note_05",
+        "target": "personal/notes/note_05.py::note_05",
+        "text": "def note_05(handle, attempts, output):\n    \"\"\"Diagnostic note 5: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_06.py::note_06": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_06.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "9c0f550268dfb7337ef069a9a4c7e6dd04c4b76ffab17942afb82e35688a8107",
+        "symbol": "note_06",
+        "target": "personal/notes/note_06.py::note_06",
+        "text": "def note_06(handle, attempts, output):\n    \"\"\"Diagnostic note 6: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_07.py::note_07": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_07.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+        "symbol": "note_07",
+        "target": "personal/notes/note_07.py::note_07",
+        "text": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_08.py::note_08": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_08.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "fb4a1afd54c78717172798807ab02714e59a2e95c4a4e8f7b7e9048edcabcf2a",
+        "symbol": "note_08",
+        "target": "personal/notes/note_08.py::note_08",
+        "text": "def note_08(handle, attempts, output):\n    \"\"\"Diagnostic note 8: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_09.py::note_09": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_09.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+        "symbol": "note_09",
+        "target": "personal/notes/note_09.py::note_09",
+        "text": "def note_09(handle, attempts, output):\n    \"\"\"Diagnostic note 9: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_10.py::note_10": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_10.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "0531f5bb083e04bcbcbee04fd9c9478a94e041c1171779c28e92a0fc3475e27c",
+        "symbol": "note_10",
+        "target": "personal/notes/note_10.py::note_10",
+        "text": "def note_10(handle, attempts, output):\n    \"\"\"Diagnostic note 10: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/notes/note_11.py::note_11": {
+        "bases": [],
+        "calls": [],
+        "end_line": 8,
+        "file": "personal/notes/note_11.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "ca3d10886311deef09d18ee4c0fc890d5fd6aab7476ea29cffd3eea81b9bd67c",
+        "symbol": "note_11",
+        "target": "personal/notes/note_11.py::note_11",
+        "text": "def note_11(handle, attempts, output):\n    \"\"\"Diagnostic note 11: record account identifiers and delivery attempt observations.\n    Reports surrounding whitespace counts, letter case, temporary service rejection,\n    repeated submissions, acknowledgement latency and partially written file alerts.\n    This telemetry helper measures events; it does not implement canonicalization,\n    retry admission, receipt deduplication or atomic publication.\n    \"\"\"\n    return {\"handle\": handle, \"attempts\": attempts, \"output\": output}"
+      },
+      "personal/publish.py::seal": {
+        "bases": [],
+        "calls": [
+          "os.replace",
+          "path.with_suffix",
+          "temporary.write_bytes"
+        ],
+        "end_line": 7,
+        "file": "personal/publish.py",
+        "imports": [],
+        "line": 3,
+        "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+        "symbol": "seal",
+        "target": "personal/publish.py::seal",
+        "text": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary.write_bytes(data)\n    os.replace(temporary, path)"
+      },
+      "personal/settings.py::READY_MARKER": {
+        "bases": [],
+        "calls": [],
+        "end_line": 2,
+        "file": "personal/settings.py",
+        "imports": [],
+        "line": 2,
+        "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+        "symbol": "READY_MARKER",
+        "target": "personal/settings.py::READY_MARKER",
+        "text": "READY_MARKER = \"parcel-ready\""
+      },
+      "personal/settings.py::retry_ceiling": {
+        "bases": [],
+        "calls": [],
+        "end_line": 1,
+        "file": "personal/settings.py",
+        "imports": [],
+        "line": 1,
+        "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+        "symbol": "retry_ceiling",
+        "target": "personal/settings.py::retry_ceiling",
+        "text": "retry_ceiling = 4"
+      },
+      "personal/store.py::checkpoint": {
+        "bases": [],
+        "calls": [
+          "seal"
+        ],
+        "end_line": 5,
+        "file": "personal/store.py",
+        "imports": [
+          "seal"
+        ],
+        "line": 3,
+        "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+        "symbol": "checkpoint",
+        "target": "personal/store.py::checkpoint",
+        "text": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)"
+      },
+      "personal/workflow.py::dispatch": {
+        "bases": [],
+        "calls": [
+          "IdentityFold",
+          "IdentityFold().apply",
+          "checkpoint",
+          "prepared.encode"
+        ],
+        "end_line": 7,
+        "file": "personal/workflow.py",
+        "imports": [
+          "checkpoint",
+          "IdentityFold"
+        ],
+        "line": 4,
+        "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+        "symbol": "dispatch",
+        "target": "personal/workflow.py::dispatch",
+        "text": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    return checkpoint(path, prepared.encode())"
+      }
+    }
+  }
+}

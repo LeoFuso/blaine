@@ -125,3 +125,8 @@ ADR’s own status before treating it as an accepted constraint.
   distinction is enforced. No production remote binding is provisioned, so
   escalation currently denies as unavailable; classifier and heuristic
   pre-routing remain future work.
+
+- [ADR 0025 — Blaine Context Plane and compiled agent context](0025-context-plane-and-compiled-agent-context.md)
+  is **Accepted / Partially Validated**: consolidates completed Track III research into
+  Blaine-owned semantics; [production plan](../roadmap/002-context-plane-implementation.md)
+  remains proposed and NOT STARTED. No existing accepted ADR is superseded.

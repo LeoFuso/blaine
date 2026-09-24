@@ -1,0 +1,1015 @@
+{
+  "checker_assertions": 2067,
+  "classification": "ADAPT / ON-DEMAND",
+  "confidence": {
+    "jackson-databind": {
+      "B_raw": {
+        "EXTRACTED": 38698,
+        "INFERRED": 5832
+      },
+      "EXTRACTED_selected": {
+        "answer_occurrences": 18,
+        "false_positives": 0,
+        "note": "Answer may use both confidence classes. Unsupported/unresolved validation counts are conservative exclusions, not all proven upstream false positives.",
+        "query_targets": [
+          [
+            "J-D1",
+            "tools.jackson.databind.ser.std.ArraySerializerBase"
+          ],
+          [
+            "J-D2",
+            "tools.jackson.databind.JavaType"
+          ],
+          [
+            "J-D2",
+            "tools.jackson.databind.util.ClassUtil"
+          ],
+          [
+            "J-M1",
+            "tools.jackson.databind.ValueSerializer"
+          ],
+          [
+            "J-M3",
+            "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1"
+          ],
+          [
+            "J-I1",
+            "tools.jackson.databind.ext.javatime.deser.JSR310DeserializerBase"
+          ],
+          [
+            "J-I1",
+            "tools.jackson.databind.ext.javatime.deser.DurationDeserializer"
+          ],
+          [
+            "J-I1",
+            "tools.jackson.databind.ext.javatime.deser.JSR310DateTimeDeserializerBase"
+          ],
+          [
+            "J-I1",
+            "tools.jackson.databind.ext.javatime.deser.JSR310StringParsableDeserializer"
+          ],
+          [
+            "J-I1",
+            "tools.jackson.databind.ext.javatime.deser.InstantDeserializer"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.AnnotatedClass"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.AnnotatedMember"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.AnnotatedField"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.AnnotatedParameter"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.AnnotatedWithParams"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.VirtualAnnotatedMember"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.AnnotatedConstructor"
+          ],
+          [
+            "J-I2",
+            "tools.jackson.databind.introspect.AnnotatedMethod"
+          ]
+        ]
+      },
+      "INFERRED_selected": {
+        "answer_occurrences": 1,
+        "false_positives": 0,
+        "note": "Answer may use both confidence classes. Unsupported/unresolved validation counts are conservative exclusions, not all proven upstream false positives.",
+        "query_targets": [
+          [
+            "J-M3",
+            "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1"
+          ]
+        ]
+      },
+      "validation": {
+        "EXTRACTED/AMBIGUOUS_OVERLOAD": 7442,
+        "EXTRACTED/FORBIDDEN": 58,
+        "EXTRACTED/UNRESOLVED_NODE": 9338,
+        "EXTRACTED/UNSUPPORTED_RELATION": 9012,
+        "EXTRACTED/VALID": 12848,
+        "INFERRED/AMBIGUOUS_OVERLOAD": 1628,
+        "INFERRED/FORBIDDEN": 17,
+        "INFERRED/UNRESOLVED_NODE": 9,
+        "INFERRED/UNSUPPORTED_RELATION": 179,
+        "INFERRED/VALID": 3999
+      }
+    },
+    "spring-kafka": {
+      "B_raw": {
+        "EXTRACTED": 14307,
+        "INFERRED": 786
+      },
+      "EXTRACTED_selected": {
+        "answer_occurrences": 22,
+        "false_positives": 0,
+        "note": "Answer may use both confidence classes. Unsupported/unresolved validation counts are conservative exclusions, not all proven upstream false positives.",
+        "query_targets": [
+          [
+            "S-D1",
+            "org.springframework.kafka.listener.BatchAcknowledgingConsumerAwareMessageListener"
+          ],
+          [
+            "S-D1",
+            "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+          ],
+          [
+            "S-D2",
+            "org.springframework.kafka.listener.adapter.DefaultBatchToRecordAdapter"
+          ],
+          [
+            "S-D3",
+            "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#configureEndpoint/1"
+          ],
+          [
+            "S-D3",
+            "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createContainerInstance/1"
+          ],
+          [
+            "S-D3",
+            "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#customizeContainer/2"
+          ],
+          [
+            "S-D3",
+            "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#initializeContainer/2"
+          ],
+          [
+            "S-M1",
+            "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+          ],
+          [
+            "S-I1",
+            "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+          ],
+          [
+            "S-I1",
+            "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+          ],
+          [
+            "S-I1",
+            "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter"
+          ],
+          [
+            "S-I1",
+            "org.springframework.kafka.listener.adapter.ConvertingMessageListener"
+          ],
+          [
+            "S-I1",
+            "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter"
+          ],
+          [
+            "S-I1",
+            "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter"
+          ],
+          [
+            "S-I1",
+            "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+          ],
+          [
+            "S-I2",
+            "org.springframework.kafka.config.AbstractKafkaListenerEndpoint"
+          ],
+          [
+            "S-I2",
+            "org.springframework.kafka.config.KafkaListenerEndpointAdapter"
+          ],
+          [
+            "S-I2",
+            "org.springframework.kafka.config.MethodKafkaListenerEndpoint"
+          ],
+          [
+            "S-I2",
+            "org.springframework.kafka.config.MultiMethodKafkaListenerEndpoint"
+          ],
+          [
+            "S-I3",
+            "org.springframework.kafka.listener.adapter.ConvertingMessageListener"
+          ],
+          [
+            "S-I3",
+            "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter"
+          ],
+          [
+            "S-I3",
+            "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter"
+          ]
+        ]
+      },
+      "INFERRED_selected": {
+        "answer_occurrences": 0,
+        "false_positives": 0,
+        "note": "Answer may use both confidence classes. Unsupported/unresolved validation counts are conservative exclusions, not all proven upstream false positives.",
+        "query_targets": []
+      },
+      "validation": {
+        "EXTRACTED/AMBIGUOUS_OVERLOAD": 1557,
+        "EXTRACTED/FORBIDDEN": 23,
+        "EXTRACTED/UNRESOLVED_NODE": 6522,
+        "EXTRACTED/UNSUPPORTED_RELATION": 1699,
+        "EXTRACTED/VALID": 4506,
+        "INFERRED/AMBIGUOUS_OVERLOAD": 156,
+        "INFERRED/FORBIDDEN": 2,
+        "INFERRED/UNSUPPORTED_RELATION": 33,
+        "INFERRED/VALID": 595
+      }
+    }
+  },
+  "costs": {
+    "jackson-databind": {
+      "A": {
+        "build_seconds": 0.5891108860087115,
+        "compressed_graph_bytes": 666133,
+        "confidence": {
+          "EXTRACTED": 38661,
+          "INFERRED": 5799
+        },
+        "extraction_seconds": 3.7116213340195827,
+        "failed_sources": [],
+        "graph_edges": 39094,
+        "graph_nodes": 10608,
+        "java_files": 576,
+        "parse_cache_bytes": 24748774,
+        "peak_rss_kib": 176560,
+        "raw_edges": 44460,
+        "raw_json_bytes": 20991722,
+        "raw_nodes": 10412,
+        "relations": {
+          "calls": 10365,
+          "case_of": 206,
+          "contains": 863,
+          "implements": 88,
+          "imports": 6131,
+          "inherits": 518,
+          "method": 9239,
+          "references": 17050
+        }
+      },
+      "B": {
+        "build_seconds": 0.602120619994821,
+        "compressed_graph_bytes": 667218,
+        "confidence": {
+          "EXTRACTED": 38698,
+          "INFERRED": 5832
+        },
+        "extraction_seconds": 2.274073893990135,
+        "failed_sources": [],
+        "graph_edges": 39161,
+        "graph_nodes": 10617,
+        "java_files": 575,
+        "parse_cache_bytes": 27162736,
+        "peak_rss_kib": 205316,
+        "raw_edges": 44530,
+        "raw_json_bytes": 21024857,
+        "raw_nodes": 10423,
+        "relations": {
+          "calls": 10423,
+          "case_of": 206,
+          "contains": 859,
+          "implements": 88,
+          "imports": 6122,
+          "inherits": 515,
+          "method": 9257,
+          "references": 17060
+        }
+      },
+      "collection_wall_seconds": {
+        "A": 7.081319621996954,
+        "B": 5.751784501015209
+      },
+      "validation_setup": {
+        "construction_seconds": 0.3627493430103641,
+        "source_validation": {
+          "mode": "snapshot source digests read before queries",
+          "seconds": 0.009671259991591796,
+          "source_files": 574
+        }
+      }
+    },
+    "spring-kafka": {
+      "A": {
+        "build_seconds": 0.2272575609968044,
+        "compressed_graph_bytes": 286626,
+        "confidence": {
+          "EXTRACTED": 14223,
+          "INFERRED": 775
+        },
+        "extraction_seconds": 1.5585623730148654,
+        "failed_sources": [],
+        "graph_edges": 13637,
+        "graph_nodes": 4701,
+        "java_files": 353,
+        "parse_cache_bytes": 11412899,
+        "peak_rss_kib": 101448,
+        "raw_edges": 14998,
+        "raw_json_bytes": 8625708,
+        "raw_nodes": 4444,
+        "relations": {
+          "calls": 2115,
+          "case_of": 92,
+          "contains": 440,
+          "implements": 183,
+          "imports": 3756,
+          "inherits": 146,
+          "method": 3385,
+          "references": 4881
+        }
+      },
+      "B": {
+        "build_seconds": 0.22270084501360543,
+        "compressed_graph_bytes": 288860,
+        "confidence": {
+          "EXTRACTED": 14307,
+          "INFERRED": 786
+        },
+        "extraction_seconds": 1.010443948005559,
+        "failed_sources": [],
+        "graph_edges": 13724,
+        "graph_nodes": 4732,
+        "java_files": 354,
+        "parse_cache_bytes": 14026302,
+        "peak_rss_kib": 113160,
+        "raw_edges": 15093,
+        "raw_json_bytes": 8684989,
+        "raw_nodes": 4473,
+        "relations": {
+          "calls": 2146,
+          "case_of": 92,
+          "contains": 442,
+          "implements": 183,
+          "imports": 3769,
+          "inherits": 146,
+          "method": 3411,
+          "references": 4904
+        }
+      },
+      "collection_wall_seconds": {
+        "A": 3.40960055400501,
+        "B": 2.8624805939907674
+      },
+      "validation_setup": {
+        "construction_seconds": 0.18353666499024257,
+        "source_validation": {
+          "mode": "snapshot source digests read before queries",
+          "seconds": 0.0053788220102433115,
+          "source_files": 354
+        }
+      }
+    }
+  },
+  "freshness": [
+    {
+      "missing_current_refs": [
+        "org.springframework.kafka.listener.adapter.RecordFilterStrategy",
+        "org.springframework.kafka.listener.adapter.ReplyHeadersConfigurer",
+        "org.springframework.kafka.requestreply.ReplyingKafkaOperations",
+        "org.springframework.kafka.support.JavaUtils",
+        "org.springframework.kafka.support.TopicPartitionOffset",
+        "org.springframework.kafka.support.converter.BatchMessageConverter",
+        "org.springframework.kafka.support.converter.RecordMessageConverter"
+      ],
+      "new_graph_edges": 44,
+      "new_source_edges": 55,
+      "removed_graph_edges": 0,
+      "removed_source_edges": 0,
+      "repo": "spring-kafka",
+      "stale_emitted": 0
+    },
+    {
+      "missing_current_refs": [],
+      "new_graph_edges": 78,
+      "new_source_edges": 109,
+      "removed_graph_edges": 35,
+      "removed_source_edges": 50,
+      "repo": "jackson-databind",
+      "stale_emitted": 0
+    }
+  ],
+  "gates": {
+    "additional_unique_targets": {
+      "B": 8,
+      "C": 9
+    },
+    "direct_losses": [],
+    "exploration_reductions": [
+      "S-M1",
+      "J-M1",
+      "J-M3",
+      "S-I1",
+      "S-I2",
+      "S-I3",
+      "J-I1",
+      "J-I2"
+    ],
+    "forbidden_emitted": 0,
+    "max_packet_bytes": 1995,
+    "stale_emitted": 0,
+    "trap_regressions": []
+  },
+  "graphify": {
+    "build": "extract(paths,root=corpus,cache_root=shared_cache,parallel=False); build_from_json(raw,directed=True,root=corpus)",
+    "checkout": "/home/leofuso/workspace/graphify-upstream",
+    "clustering": false,
+    "commit": "b9cd9570728a5ff3485d2a1e36fe9a1272a368ae",
+    "directed": true,
+    "java": "tree-sitter-java; class/interface/record/enum/annotation/method/constructor/import/call extraction; provenance EXTRACTED or INFERRED; source validation required for either",
+    "network": "existing offline/sitecustomize.py socket guard",
+    "parallel": false,
+    "python": "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+    "refresh": "same extract/build on B with retained parse cache; full graph rebuild, not claimed incremental graph update",
+    "semantic_extraction": false,
+    "url": "https://github.com/Graphify-Labs/graphify",
+    "version": "0.9.64"
+  },
+  "interpretation": "Useful bounded structural neighborhoods; corpus-dependent gain, overload/call limitations, nonzero source-validation cost, no local wall-time improvement, no production adoption.",
+  "model_calls": 0,
+  "mutations": [
+    {
+      "actual_violation": true,
+      "command": [
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/check.py",
+        "--control",
+        "stale",
+        "--output",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/check-stale.json"
+      ],
+      "exit_code": 1,
+      "mandatory": true,
+      "mode": "stale",
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "actual_violation": true,
+      "command": [
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/check.py",
+        "--control",
+        "inferred",
+        "--output",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/check-inferred.json"
+      ],
+      "exit_code": 1,
+      "mandatory": true,
+      "mode": "inferred",
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "actual_violation": false,
+      "command": [
+        "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/check.py",
+        "--control",
+        "isolation",
+        "--output",
+        "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/check-isolation.json"
+      ],
+      "exit_code": 0,
+      "mandatory": false,
+      "mode": "isolation",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "optional_isolation_control": "Protected candidate reached internal mutant candidates but did not fit packet; no emitted leak, control inconclusive. Not a frozen mandatory gate.",
+  "production_changes": false,
+  "query_manifest_sha256": "3ca265a6bf43afb3de3bd325c22c74019195b005563074afb58347e41a233d93",
+  "ranking_or_oracle_tuning": false,
+  "repository_pins": {
+    "jackson-databind": {
+      "A": "b12300930e69cd050345878375bdb730c3632bac",
+      "B": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99"
+    },
+    "spring-kafka": {
+      "A": "7d71e8d3765a6139188bc84c5e6560a02e85a97c",
+      "B": "fff33914d4e450a33e17195e11a79937c3505605"
+    }
+  },
+  "reproduction": "PASS",
+  "status": "PASS",
+  "totals": [
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.17923710800823756,
+      "repo": "ALL",
+      "requests": 15,
+      "required_hits": 10,
+      "required_total": 10,
+      "source_files": 314,
+      "unsupported": 0,
+      "validation_files": 11
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.2092026220052503,
+      "repo": "ALL",
+      "requests": 5,
+      "required_hits": 10,
+      "required_total": 10,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 11
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.38744090299587697,
+      "repo": "ALL",
+      "requests": 20,
+      "required_hits": 10,
+      "required_total": 10,
+      "source_files": 314,
+      "unsupported": 0,
+      "validation_files": 11
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.16328890796285123,
+      "repo": "ALL",
+      "requests": 15,
+      "required_hits": 18,
+      "required_total": 37,
+      "source_files": 268,
+      "unsupported": 0,
+      "validation_files": 24
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.07592775899684057,
+      "repo": "ALL",
+      "requests": 5,
+      "required_hits": 27,
+      "required_total": 37,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 46
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.23832737194607034,
+      "repo": "ALL",
+      "requests": 20,
+      "required_hits": 26,
+      "required_total": 37,
+      "source_files": 268,
+      "unsupported": 0,
+      "validation_files": 46
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.17769777600187808,
+      "repo": "ALL",
+      "requests": 15,
+      "required_hits": 4,
+      "required_total": 5,
+      "source_files": 300,
+      "unsupported": 0,
+      "validation_files": 15
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.9024311829998624,
+      "repo": "ALL",
+      "requests": 5,
+      "required_hits": 3,
+      "required_total": 5,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 12
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 1.0787449769850355,
+      "repo": "ALL",
+      "requests": 20,
+      "required_hits": 5,
+      "required_total": 5,
+      "source_files": 300,
+      "unsupported": 0,
+      "validation_files": 19
+    },
+    {
+      "condition": "A",
+      "correct_negative": 5,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.2942944140522741,
+      "repo": "ALL",
+      "requests": 15,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 390,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "B",
+      "correct_negative": 5,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.5323139500105754,
+      "repo": "ALL",
+      "requests": 5,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "C",
+      "correct_negative": 5,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.825876788032474,
+      "repo": "ALL",
+      "requests": 20,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 390,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.14859212600276805,
+      "repo": "jackson-databind",
+      "requests": 6,
+      "required_hits": 3,
+      "required_total": 3,
+      "source_files": 293,
+      "unsupported": 0,
+      "validation_files": 5
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.16075668099801987,
+      "repo": "jackson-databind",
+      "requests": 2,
+      "required_hits": 3,
+      "required_total": 3,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 5
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.3087001290114131,
+      "repo": "jackson-databind",
+      "requests": 8,
+      "required_hits": 3,
+      "required_total": 3,
+      "source_files": 293,
+      "unsupported": 0,
+      "validation_files": 5
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.12390064098872244,
+      "repo": "jackson-databind",
+      "requests": 6,
+      "required_hits": 6,
+      "required_total": 21,
+      "source_files": 211,
+      "unsupported": 0,
+      "validation_files": 7
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.04895023800781928,
+      "repo": "jackson-databind",
+      "requests": 2,
+      "required_hits": 13,
+      "required_total": 21,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 25
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.1723701620067004,
+      "repo": "jackson-databind",
+      "requests": 8,
+      "required_hits": 13,
+      "required_total": 21,
+      "source_files": 211,
+      "unsupported": 0,
+      "validation_files": 25
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.15199266700074077,
+      "repo": "jackson-databind",
+      "requests": 9,
+      "required_hits": 2,
+      "required_total": 3,
+      "source_files": 269,
+      "unsupported": 0,
+      "validation_files": 7
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.7659298460057471,
+      "repo": "jackson-databind",
+      "requests": 3,
+      "required_hits": 2,
+      "required_total": 3,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 7
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.9167247989971656,
+      "repo": "jackson-databind",
+      "requests": 12,
+      "required_hits": 3,
+      "required_total": 3,
+      "source_files": 269,
+      "unsupported": 0,
+      "validation_files": 11
+    },
+    {
+      "condition": "A",
+      "correct_negative": 3,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.2681317500246223,
+      "repo": "jackson-databind",
+      "requests": 9,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 361,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "B",
+      "correct_negative": 3,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.40394328100956045,
+      "repo": "jackson-databind",
+      "requests": 3,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "C",
+      "correct_negative": 3,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.6714418540068436,
+      "repo": "jackson-databind",
+      "requests": 12,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 361,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.0306449820054695,
+      "repo": "spring-kafka",
+      "requests": 9,
+      "required_hits": 7,
+      "required_total": 7,
+      "source_files": 21,
+      "unsupported": 0,
+      "validation_files": 6
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.04844594100723043,
+      "repo": "spring-kafka",
+      "requests": 3,
+      "required_hits": 7,
+      "required_total": 7,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 6
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "DIRECT",
+      "query_seconds": 0.07874077398446389,
+      "repo": "spring-kafka",
+      "requests": 12,
+      "required_hits": 7,
+      "required_total": 7,
+      "source_files": 21,
+      "unsupported": 0,
+      "validation_files": 6
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.03938826697412878,
+      "repo": "spring-kafka",
+      "requests": 9,
+      "required_hits": 12,
+      "required_total": 16,
+      "source_files": 57,
+      "unsupported": 0,
+      "validation_files": 17
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.026977520989021286,
+      "repo": "spring-kafka",
+      "requests": 3,
+      "required_hits": 14,
+      "required_total": 16,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 21
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "IMPACT",
+      "query_seconds": 0.06595720993936993,
+      "repo": "spring-kafka",
+      "requests": 12,
+      "required_hits": 13,
+      "required_total": 16,
+      "source_files": 57,
+      "unsupported": 0,
+      "validation_files": 21
+    },
+    {
+      "condition": "A",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.025705109001137316,
+      "repo": "spring-kafka",
+      "requests": 6,
+      "required_hits": 2,
+      "required_total": 2,
+      "source_files": 31,
+      "unsupported": 0,
+      "validation_files": 8
+    },
+    {
+      "condition": "B",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.13650133699411526,
+      "repo": "spring-kafka",
+      "requests": 2,
+      "required_hits": 1,
+      "required_total": 2,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 5
+    },
+    {
+      "condition": "C",
+      "correct_negative": 0,
+      "false_positives": 0,
+      "group": "MULTI_HOP",
+      "query_seconds": 0.16202017798786983,
+      "repo": "spring-kafka",
+      "requests": 8,
+      "required_hits": 2,
+      "required_total": 2,
+      "source_files": 31,
+      "unsupported": 0,
+      "validation_files": 8
+    },
+    {
+      "condition": "A",
+      "correct_negative": 2,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.026162664027651772,
+      "repo": "spring-kafka",
+      "requests": 6,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 29,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "B",
+      "correct_negative": 2,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.1283706690010149,
+      "repo": "spring-kafka",
+      "requests": 2,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 0,
+      "unsupported": 0,
+      "validation_files": 0
+    },
+    {
+      "condition": "C",
+      "correct_negative": 2,
+      "false_positives": 0,
+      "group": "TRAP",
+      "query_seconds": 0.15443493402563035,
+      "repo": "spring-kafka",
+      "requests": 8,
+      "required_hits": 0,
+      "required_total": 0,
+      "source_files": 29,
+      "unsupported": 0,
+      "validation_files": 0
+    }
+  ]
+}

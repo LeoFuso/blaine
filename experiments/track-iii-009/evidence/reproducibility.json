@@ -1,0 +1,21 @@
+{
+  "additional_model_calls": 0,
+  "checks": [
+    {
+      "checker_byte_identical": true,
+      "checker_exit": 0,
+      "seed": "1",
+      "selector_byte_identical": true,
+      "selector_exit": 0
+    },
+    {
+      "checker_byte_identical": true,
+      "checker_exit": 0,
+      "seed": "97",
+      "selector_byte_identical": true,
+      "selector_exit": 0
+    }
+  ],
+  "scope": "Retained-vector selector and evidence checker only; model outputs are retained, not regenerated.",
+  "status": "PASS"
+}

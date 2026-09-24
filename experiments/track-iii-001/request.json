@@ -1,0 +1,55 @@
+{
+  "objective": "Perform only Track III.1: current-source comparative research and architecture documentation for hierarchical context, memory and verified learning; specify but do not execute III.2.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Blaine architecture, roadmap, relevant ADRs, kernel/policy/completion contracts, milestone history and MIRIX/project-knowledge integration",
+      "source": "git:b172dd646712c1b1fde4453a779320b96eefe523",
+      "sharing": "local-only"
+    },
+    {
+      "need": "Current upstream source for the seven user-named reference systems",
+      "source": "experiments/track-iii-001/evidence/source-manifest.json",
+      "freshness": "inspected 2026-09-23",
+      "sharing": "cloud-allowed"
+    }
+  ],
+  "capabilities": [
+    "read repository and history",
+    "read public upstream source and documentation",
+    "edit research and navigation documentation",
+    "validate documentation"
+  ],
+  "autonomy": {
+    "allowed": [
+      "read-only upstream research",
+      "documentation and research evidence artifacts",
+      "minimal roadmap and navigation updates"
+    ],
+    "forbidden": [
+      "III.2 or later execution",
+      "runtime changes",
+      "dependency installation or adoption",
+      "live service or credential mutations",
+      "external model dispatch",
+      "commit, push or merge"
+    ]
+  },
+  "cloud": {
+    "policy": "ask"
+  },
+  "completion": [
+    {
+      "criterion": "All seven reference systems assessed at mechanism level with pinned primary sources, evidence types, classifications, costs and limitations",
+      "evidence": "Research report and source-manifest.json"
+    },
+    {
+      "criterion": "Accepted hierarchy, security, runtime capability and verified-learning invariants reconciled with current Blaine; risks and exact bounded III.2 experiment specified",
+      "evidence": "Research report sections 1\u201311 and review.json"
+    },
+    {
+      "criterion": "Track III discoverable with truthful PASS/FAIL/BLOCKED status; changes limited to documentation/research records",
+      "evidence": "Milestone, roadmap/navigation diff, local link/JSON checks and git diff --check"
+    }
+  ]
+}

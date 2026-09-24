@@ -1,0 +1,167 @@
+{
+  "actual_violation": false,
+  "audits": [
+    {
+      "errors": [],
+      "forbidden": [],
+      "invalid": [],
+      "packet_bytes": 1995,
+      "returned_targets": [
+        "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+        "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+      ],
+      "stale": [],
+      "unsupported": [],
+      "valid_targets": [
+        "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+        "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+        "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+        "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "check": "frozen PROTOCOL.md",
+      "ok": true
+    },
+    {
+      "check": "frozen graphify.json",
+      "ok": true
+    },
+    {
+      "check": "frozen oracles.json",
+      "ok": true
+    },
+    {
+      "check": "frozen protocol.json",
+      "ok": true
+    },
+    {
+      "check": "frozen queries.json",
+      "ok": true
+    },
+    {
+      "check": "frozen repositories.json",
+      "ok": true
+    },
+    {
+      "check": "frozen request.json",
+      "ok": true
+    },
+    {
+      "check": "frozen security.json",
+      "ok": true
+    },
+    {
+      "check": "frozen source.py",
+      "ok": true
+    },
+    {
+      "check": "original implementation pin check.py",
+      "ok": true
+    },
+    {
+      "check": "documented execution correction check.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin collect.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin controls.json",
+      "ok": true
+    },
+    {
+      "check": "original implementation pin discover.py",
+      "ok": true
+    },
+    {
+      "check": "documented execution correction discover.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/A/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/A/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/A/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/B/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/B/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/jackson-databind/B/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/A/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/A/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/A/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/B/raw.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/B/source.json.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin evidence/indexes/spring-kafka/B/source.tar.gz",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin run.py",
+      "ok": true
+    },
+    {
+      "check": "implementation/index pin source.py",
+      "ok": true
+    },
+    {
+      "check": "20 unique questions",
+      "ok": true
+    },
+    {
+      "check": "five per category",
+      "ok": true
+    },
+    {
+      "check": "ten per repository",
+      "ok": true
+    },
+    {
+      "check": "normal structural/security requirements hold under control",
+      "ok": true
+    }
+  ],
+  "control": "isolation",
+  "status": "PASS"
+}

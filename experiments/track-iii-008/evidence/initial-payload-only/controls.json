@@ -1,0 +1,139 @@
+{
+  "freshness": {
+    "exit_code": 1,
+    "result": {
+      "aggregate": [
+        {
+          "exact_baseline": 4,
+          "exact_combined": 4,
+          "exact_losses": [],
+          "gain_count": 1,
+          "revision": "A",
+          "semantic_gains": [
+            "personal/book.py::StampBook"
+          ],
+          "structural_gains": [],
+          "unique_nonlexical_gains": [
+            "personal/book.py::StampBook"
+          ]
+        },
+        {
+          "exact_baseline": 4,
+          "exact_combined": 4,
+          "exact_losses": [],
+          "gain_count": 1,
+          "revision": "B",
+          "semantic_gains": [
+            "personal/book.py::StampBook"
+          ],
+          "structural_gains": [],
+          "unique_nonlexical_gains": [
+            "personal/book.py::StampBook"
+          ]
+        }
+      ],
+      "checks": 376,
+      "failed": [
+        "no-stale-emission"
+      ],
+      "forbidden": 0,
+      "max_packet_bytes": 2039,
+      "stale": 63,
+      "status": "FAIL"
+    },
+    "stderr": ""
+  },
+  "isolation": {
+    "exit_code": 1,
+    "result": {
+      "aggregate": [
+        {
+          "exact_baseline": 4,
+          "exact_combined": 4,
+          "exact_losses": [],
+          "gain_count": 1,
+          "revision": "A",
+          "semantic_gains": [
+            "personal/book.py::StampBook"
+          ],
+          "structural_gains": [],
+          "unique_nonlexical_gains": [
+            "personal/book.py::StampBook"
+          ]
+        },
+        {
+          "exact_baseline": 4,
+          "exact_combined": 4,
+          "exact_losses": [],
+          "gain_count": 1,
+          "revision": "B",
+          "semantic_gains": [
+            "personal/book.py::StampBook"
+          ],
+          "structural_gains": [],
+          "unique_nonlexical_gains": [
+            "personal/book.py::StampBook"
+          ]
+        }
+      ],
+      "checks": 378,
+      "failed": [
+        "no-forbidden-emission"
+      ],
+      "forbidden": 48,
+      "max_packet_bytes": 2027,
+      "stale": 0,
+      "status": "FAIL"
+    },
+    "stderr": ""
+  },
+  "stale-safe": {
+    "exit_code": 0,
+    "result": {
+      "aggregate": [
+        {
+          "exact_baseline": 4,
+          "exact_combined": 4,
+          "exact_losses": [],
+          "gain_count": 1,
+          "revision": "A",
+          "semantic_gains": [
+            "personal/book.py::StampBook"
+          ],
+          "structural_gains": [],
+          "unique_nonlexical_gains": [
+            "personal/book.py::StampBook"
+          ]
+        },
+        {
+          "exact_baseline": 4,
+          "exact_combined": 0,
+          "exact_losses": [
+            "personal/contracts.py::DeliveryPort",
+            "personal/settings.py::retry_ceiling",
+            "personal/workflow.py::dispatch",
+            "personal/settings.py::READY_MARKER"
+          ],
+          "gain_count": 2,
+          "revision": "B",
+          "semantic_gains": [
+            "personal/gate.py::AttemptFence",
+            "personal/identity.py::IdentityFold"
+          ],
+          "structural_gains": [],
+          "unique_nonlexical_gains": [
+            "personal/gate.py::AttemptFence",
+            "personal/identity.py::IdentityFold"
+          ]
+        }
+      ],
+      "checks": 321,
+      "failed": [],
+      "forbidden": 0,
+      "max_packet_bytes": 2039,
+      "stale": 0,
+      "status": "PASS"
+    },
+    "stderr": ""
+  }
+}

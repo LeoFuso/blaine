@@ -1,0 +1,1025 @@
+{
+  "assembly_seconds": 0.0006717870128341019,
+  "candidate_answers": [
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.ConvertingMessageListener"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.KafkaBackoffAwareMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.KafkaBackoffAwareMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter"
+    }
+  ],
+  "condition": "B",
+  "confidence_selected": {
+    "EXTRACTED": 14
+  },
+  "discovery": [
+    {
+      "edges_traversed": 11,
+      "native_calls": [
+        "graphify.build.build_from_json",
+        "graphify.serve._bfs"
+      ],
+      "native_text": null,
+      "nodes_traversed": 12,
+      "requests": 1,
+      "seconds": 0.00917947298148647,
+      "source_files_opened": [],
+      "traversal_limit_exceeded": false
+    }
+  ],
+  "exploration_files": [],
+  "exploration_requests": 1,
+  "packet": {
+    "answers": [
+      {
+        "steps": [
+          [
+            0,
+            "implements",
+            1,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ]
+        ],
+        "target": 0
+      },
+      {
+        "steps": [
+          [
+            2,
+            "inherits",
+            1,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ],
+          [
+            3,
+            "implements",
+            2,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ]
+        ],
+        "target": 3
+      },
+      {
+        "steps": [
+          [
+            0,
+            "implements",
+            1,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ],
+          [
+            4,
+            "inherits",
+            0,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ]
+        ],
+        "target": 4
+      },
+      {
+        "steps": [
+          [
+            2,
+            "inherits",
+            1,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ],
+          [
+            5,
+            "implements",
+            2,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ]
+        ],
+        "target": 5
+      },
+      {
+        "steps": [
+          [
+            0,
+            "implements",
+            1,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ],
+          [
+            6,
+            "inherits",
+            0,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ]
+        ],
+        "target": 6
+      },
+      {
+        "steps": [
+          [
+            0,
+            "implements",
+            1,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ],
+          [
+            7,
+            "inherits",
+            0,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ]
+        ],
+        "target": 7
+      },
+      {
+        "steps": [
+          [
+            2,
+            "inherits",
+            1,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ],
+          [
+            3,
+            "implements",
+            2,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ],
+          [
+            8,
+            "inherits",
+            3,
+            [
+              "EXTRACTED"
+            ],
+            "G"
+          ]
+        ],
+        "target": 8
+      }
+    ],
+    "diagnostic": "structural evidence; runtime effect not established",
+    "nodes": [
+      [
+        "org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+        "MessagingMessageListenerAdapter",
+        107,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+        "AsyncRepliesAware",
+        26,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/DelegatingMessageListener.java",
+        "DelegatingMessageListener",
+        36,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+        "AbstractDelegatingMessageListenerAdapter",
+        41,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/adapter/BatchMessagingMessageListenerAdapter.java",
+        "BatchMessagingMessageListenerAdapter",
+        62,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+        "ConvertingMessageListener",
+        55,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+        "RecordMessagingMessageListenerAdapter",
+        52,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/adapter/ShareRecordMessagingMessageListenerAdapter.java",
+        "ShareRecordMessagingMessageListenerAdapter",
+        49,
+        "B"
+      ],
+      [
+        "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+        "AbstractFilteringMessageListener",
+        34,
+        "B"
+      ]
+    ],
+    "partial": true,
+    "repo": "spring-kafka",
+    "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+    "status": "RESULTS"
+  },
+  "packet_bytes": 1995,
+  "query": "S-I1",
+  "raw_candidates": [
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 5592,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+      "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 7589,
+      "relation": "implements",
+      "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 7613,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+      "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 7667,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 7776,
+      "relation": "implements",
+      "source": "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+      "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 7946,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 7984,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 8061,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.adapter.KafkaBackoffAwareMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 8223,
+      "relation": "implements",
+      "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 8456,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+    },
+    {
+      "confidence": "EXTRACTED",
+      "index_revision": "B",
+      "mechanisms": [
+        "G"
+      ],
+      "raw_index": 8487,
+      "relation": "inherits",
+      "source": "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter",
+      "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+    }
+  ],
+  "repo": "spring-kafka",
+  "selected": [
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.BatchMessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.ConvertingMessageListener",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.ConvertingMessageListener"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.RecordMessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.adapter.MessagingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.ShareRecordMessagingMessageListenerAdapter"
+    },
+    {
+      "steps": [
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.DelegatingMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AsyncRepliesAware"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "implements",
+          "source": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter",
+          "target": "org.springframework.kafka.listener.DelegatingMessageListener"
+        },
+        {
+          "confidence": [
+            "EXTRACTED"
+          ],
+          "index_revisions": [
+            "B"
+          ],
+          "mechanisms": [
+            "G"
+          ],
+          "relation": "inherits",
+          "source": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener",
+          "target": "org.springframework.kafka.listener.adapter.AbstractDelegatingMessageListenerAdapter"
+        }
+      ],
+      "target": "org.springframework.kafka.listener.adapter.AbstractFilteringMessageListener"
+    }
+  ],
+  "source_revalidation_files": [
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/DelegatingMessageListener.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/BatchMessagingMessageListenerAdapter.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/KafkaBackoffAwareMessageListenerAdapter.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+    "spring-kafka/src/main/java/org/springframework/kafka/listener/adapter/ShareRecordMessagingMessageListenerAdapter.java"
+  ]
+}

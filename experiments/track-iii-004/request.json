@@ -1,0 +1,55 @@
+{
+  "objective": "Execute only Track III.4: prove bounded security-domain isolation across raw/derived memory, graph/cache/diagnostic paths with trusted provenance, fail-closed faults, literal leakage scans and isolated failing controls; retain evidence and commit locally.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Accepted III.1–III.3 research, hierarchy/capability experiments and roadmap",
+      "source": "git:2d2edcc",
+      "sharing": "local-only"
+    },
+    {
+      "need": "Synthetic domain/tree/security policy and literal visibility/leakage oracles",
+      "source": "experiments/track-iii-004/fixtures.json",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit isolated III.4 experiment and documentation",
+    "execute offline standard-library Python",
+    "create local commit"
+  ],
+  "autonomy": {
+    "allowed": [
+      "III.4 evaluator, fixtures, evidence and controls",
+      "minimal milestone/research/navigation updates",
+      "completed-increment local commit"
+    ],
+    "forbidden": [
+      "III.5 or later execution",
+      "production runtime/contract changes",
+      "real secrets/environment scanning",
+      "promotion/declassification implementation",
+      "real provider/database/model integration",
+      "dependency adoption",
+      "push or merge"
+    ]
+  },
+  "cloud": {
+    "policy": "forbid"
+  },
+  "completion": [
+    {
+      "criterion": "Every enumerated path enforces lineage/domain/policy and trusted provenance with explicit result states",
+      "evidence": "fixtures.json; evidence/results.json; summary.json"
+    },
+    {
+      "criterion": "Independent cross-domain literal scan passes, intentional leakage controls fail, correct results restored",
+      "evidence": "evidence/observables.json; literal-leakage.json; structural-only.json; query-only-cache.json; restored.json; verification.json"
+    },
+    {
+      "criterion": "Reproducible bounded increment with unchanged runtime and prior experiments, III.5 not started, locally committed",
+      "evidence": "evidence/reproducibility.json; documentation-checks.json; milestone 045; local commit identity"
+    }
+  ]
+}
