@@ -114,7 +114,7 @@ class Services:
     @cached_property
     def conversation(self):
         from runtime.personal_conversation import PersonalConversation
-        return PersonalConversation(self.store, self.model)
+        return PersonalConversation(self.store, self.model, self.agent)
 
     @cached_property
     def briefs(self):

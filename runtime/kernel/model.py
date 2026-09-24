@@ -99,7 +99,11 @@ workspace.write {workspace_id,path,precondition,content_ref} writes an admitted 
 file; precondition is {"absent":true} for a new file or {"receipt":<read receipt ref>}.
 workspace.exec {workspace_id,profile,args} runs a reviewed profile; args must be allowlisted.
 Artifact references appear in context items as "source" values. Use exact references only.
-A write may wait for human approval; that is expected. Completion is decided by independent verification.'''
+A write may wait for human approval; that is expected. Completion is decided by independent verification.
+Re-running an unchanged file cannot change a failed result. After a workspace.exec with outcome "failure",
+the next step is worker.run with context_refs including that run's output_artifact reference (and the
+source refs), then workspace.read the file, then workspace.write the new draft with that read's receipt,
+and only then run the tests again.'''
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):

@@ -118,6 +118,21 @@ class ConversationTests(Base):
         self.assertEqual([m['role'] for m in self.store.list_messages(CID)], ['human'])
         self.assertEqual(service.converse(CID, 'm1', 'Hello')['reply']['content'], 'Now I can answer.')
 
+    def test_delegations_enter_history_as_system_facts_and_task_state_is_visible(self):
+        self.discuss()
+        self.store.begin_delegation(CID, 'task-' + 'e' * 64, 'dlg-x', '{"objective": "tests"}', 'brf-x')
+        self.agent.views['task-' + 'e' * 64] = {'lifecycle': 'WAITING', 'pending_human_decision': {'payload': {
+            'question': 'Approve workspace.write tests/t.py?'}}, 'effects': [
+            {'operation_class': 'workspace.exec', 'profile': 'targeted', 'status': 'completed', 'exit_code': 1}]}
+        model = ScriptedModel(['It is waiting for your approval.'])
+        PersonalConversation(self.store, model, self.agent).converse(CID, 'm3', 'Is the task running?')
+        sent = model.calls[0]
+        self.assertIn('lifecycle WAITING', sent[1]['content'])
+        self.assertIn('approval card', sent[1]['content'])
+        self.assertIn('run targeted: completed exit 1', sent[1]['content'])
+        delegations = [t for t in sent if 'Blaine created this durable Task' in t['content']]
+        self.assertEqual([t['role'] for t in delegations], ['user'])  # a fact, never the assistant's words
+
     def test_message_cursor(self):
         self.discuss()
         messages = self.store.list_messages(CID)
