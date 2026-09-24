@@ -478,6 +478,49 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             ctx.set('task', message('TaskState', state))
             return received['payload']['value'], response_ref
 
+        async def close_effects(reason: str) -> list[str]:
+            """Task stop (cancellation or failure) through the effect machinery. Not rollback.
+
+            Never-dispatched effects close as not_dispatched (proven); dispatched or
+            running effects get the ordinary stop or their finished receipt; anything
+            uncertain gets one bounded reconciliation. Each actual outcome is journaled
+            and whatever stays unknown is reported, never hidden or presumed undone.
+            """
+            nonlocal last_evaluation
+            if not state['effects']:
+                return []
+            for operation in sorted(state['effects']):
+                record_ = state['effects'][operation]
+                if record_['status'] in ('admitted', 'awaiting_approval'):
+                    closed = message('EffectOutcome', {'kind': 'not_dispatched',
+                                                       'reason': f'Task {reason} before dispatch'})
+                    record_.update(status='not_dispatched', receipt_ref=await retain(f'task-stop-closed/{operation}', closed))
+                    await record(f'task-stop/{operation}/observed', {'phase': 'observed', 'operation_id': operation,
+                        'outcome': 'not_dispatched', 'receipt_ref': record_['receipt_ref']})
+                elif record_['status'] in ('dispatched', 'running'):
+                    request = await step(f'task-stop-request/{operation}', store.read_json,
+                                         task_id=task_id, ref=record_['request_ref'])
+                    result = await step(f'task-stop/{operation}', effects.stop_for_task, provider=target_provider,
+                                        request=request, store=store)
+                    await settle_effect(operation, f'task-stop/{operation}', result)
+                if checkpoint:
+                    await checkpoint(ctx, 'task_stop_effect', deepcopy(state))
+            await reconcile_effects('task-stop')
+            # Evidence only: the final evaluation is retained, the lifecycle stays as is.
+            evaluation = await step('task-stop-evaluation', lambda state, contract: completion.evaluate_contract(
+                contract, state['contract_ref'], state, store), state=deepcopy(state), contract=deepcopy(contract))
+            last_evaluation = evaluation['payload']
+            state['completion_ref'] = await retain('task-stop-evaluation-artifact', evaluation)
+            ctx.set('task', message('TaskState', state))
+            notes = {'uncertain': 'outcome STILL_UNKNOWN after bounded reconciliation',
+                     'different_state': 'target changed by someone else; own outcome unknown',
+                     'canceled': 'process stop confirmed; partial effects possible',
+                     'completed': 'completed before the stop', 'applied': 'applied before the stop',
+                     'not_dispatched': 'never dispatched', 'not_applied': 'provider confirms it never ran'}
+            return [f"Effect {op} after Task {reason}: {record_['status']} ({notes.get(record_['status'], 'see receipt')})"[:512]
+                    for op, record_ in sorted(state['effects'].items())
+                    if record_['status'] not in ('conflict', 'rejected')][:4]
+
         async def reconcile_effects(label: str) -> bool:
             """One reconciliation attempt per uncertain effect. Never redispatches."""
             concluded = False
@@ -815,6 +858,8 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             concerns.append(f"Execution stopped: {error.message}".encode()[:512].decode(errors="ignore"))
             state["lifecycle"] = "CANCELLED" if error.status_code == 409 and error.message.lower() == 'cancelled' else "FAILED"
             state["wait"] = None
+            # No cognition runs from here, so no new target effect can be admitted.
+            concerns.extend(await close_effects(state['lifecycle'].lower()))
         # Waivers, PolicyGate denials and unmet ADVISORY criteria stay visible.
         if last_evaluation is not None:
             concerns = (concerns + [c for c in last_evaluation['concerns'] if c not in concerns])[:8]

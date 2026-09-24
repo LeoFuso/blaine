@@ -162,7 +162,7 @@ class Reconciliation(Fixture):
         self.assertEqual(effects.reconcile(None, self.write_request(), self.store)['payload']['state'], effects.STILL_UNKNOWN)
 
 
-class JournalLifecycle(Fixture):
+class JournalFixture(Fixture):
     def chain(self, entries):
         head, length = None, 0
         authority = self.store.put_json(TASK, journal.compile_authority(TASK, ['workspace.write'], [ef.WORKSPACE], True))
@@ -189,6 +189,8 @@ class JournalLifecycle(Fixture):
     def reconciled(self, state, op='t/1'):
         return {'phase': 'reconciled', 'operation_id': op, 'state': state, 'evidence_ref': self.draft}
 
+
+class JournalLifecycle(JournalFixture):
     def test_effect_lifecycle_integrity(self):
         cases = {
             'dispatch without admission': [self.dispatched()],
@@ -211,6 +213,21 @@ class JournalLifecycle(Fixture):
         forbidden = self.chain([self.admitted(), self.dispatched(), self.observed('uncertain')])
         self.assertEqual(journal.verify([{'name': 'no_target_effect'}, {'name': 'effects_reconciled'}],
                                         forbidden['analysis'], forbidden['authorities'])[0], 'failed')  # failure dominates
+
+
+class UnresolvedInvariantInput(JournalFixture):
+    def test_only_target_effects_are_unresolved(self):
+        internal = {**self.admitted('t/2'), 'capability': 'artifact.write', 'operation_class': 'task.artifact.write'}
+        internal.pop('workspace_id')
+        read = {**self.admitted('t/3'), 'capability': 'workspace.read', 'operation_class': 'workspace.read'}
+        facts = self.chain([internal, self.observed('uncertain', 't/2'), read, self.observed('uncertain', 't/3')])
+        self.assertEqual(facts['analysis']['unresolved_effects'], [])
+        facts = self.chain([self.admitted(), self.dispatched()])  # in flight
+        self.assertEqual(facts['analysis']['unresolved_effects'], ['t/1'])
+        facts = self.chain([self.admitted(), self.dispatched(), self.observed('uncertain'), self.reconciled('STILL_UNKNOWN')])
+        self.assertEqual(facts['analysis']['unresolved_effects'], ['t/1'])
+        facts = self.chain([self.admitted(), self.dispatched(), self.observed('uncertain'), self.reconciled('APPLIED')])
+        self.assertEqual(facts['analysis']['unresolved_effects'], [])
 
 
 def record(op, status, path=ef.CONFIG, before=None, after=None, at=0, exit_code=None, result=None, cls='workspace.write',

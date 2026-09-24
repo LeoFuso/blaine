@@ -164,6 +164,36 @@ an effect is unreconciled.
 Both are `pending` with no matching effect, `unknown` when the relevant effect is
 uncertain, `failed` when a predicate is false (remediable), `satisfied` otherwise.
 
+## Lifecycle invariant
+
+A Task never becomes COMPLETED while any admitted TARGET_EFFECT has an unresolved
+outcome (dispatched without an observation, or `uncertain` and not concluded).
+This is a legality rule in the kernel, not a criterion a contract author must
+remember: a contract without `effects_reconciled` still cannot complete. Reads and
+internal effects are outside it. FAILED and CANCELLED remain possible and carry the
+unresolved effect in their final evaluation, journal and `TaskResult.concerns`.
+
+## Task cancellation
+
+Task-level `cancel` uses the same machinery as `cancel_effect`. It is not rollback:
+`CANCELLED` never implies an effect did not happen.
+
+```text
+cancel delivered (a durable await; no cognition runs after it, so no new effect)
+  → never-dispatched effects (admitted, awaiting approval) → not_dispatched (proven)
+  → dispatched or running effects → query first:
+        terminal receipt  → that outcome (completed / applied first)
+        running           → ordinary stop → canceled (confirmed) or uncertain
+        no receipt        → uncertain
+  → one bounded reconciliation of every uncertain effect (never a redispatch)
+  → final evaluation retained as evidence; lifecycle stays CANCELLED
+  → TaskResult.concerns name each effect's actual outcome, including STILL_UNKNOWN
+```
+
+Every step is journaled, so a crash during cancellation replays without a second
+stop request (the stopped process's terminal receipt is found first) or a second
+execution. The same path runs when a Task stops FAILED on a terminal error.
+
 ## Terminal versus remediable
 
 | Situation | Treatment |
@@ -187,5 +217,5 @@ cancellation closes it `not_dispatched`.
 Real provider mapping (IntelliJ MCP `apply_patch`, terminal, run configurations),
 dirty editor buffers, access-time confinement and link races, environment and
 descendant-process control, profile/build-input hashing beyond the pinned profile
-definition, Task-level cancellation of an in-flight effect, and a global legality
-rule for unreconciled effects (contracts express it with `effects_reconciled`).
+definition. A Task whose cancellation leaves an effect STILL_UNKNOWN is not
+revisited later by the kernel; its result states the effect as unresolved.

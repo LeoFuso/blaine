@@ -258,9 +258,15 @@ def analyze(entries: list[tuple[str, dict]], authorities: dict[str, dict]) -> di
                 reconciled.setdefault(operation, []).append(entry)
                 if entry['state'] != 'STILL_UNKNOWN':
                     uncertain.discard(operation)
+    # Lifecycle invariant input: a TARGET_EFFECT whose outcome is not established
+    # (dispatched without an observation, or uncertain and not yet concluded).
+    # Reads and internal effects never belong here.
+    unresolved = sorted(op for op, entry in admitted.items()
+                        if effect_scope(entry['operation_class']) == TARGET_EFFECT
+                        and ((op in dispatched and op not in observed) or op in uncertain))
     return {'admitted': admitted, 'observed': observed, 'denials': denials, 'problems': problems,
             'dispatched': dispatched, 'reconciled': reconciled, 'unreconciled': sorted(uncertain),
-            'length': len(entries)}
+            'unresolved_effects': unresolved, 'length': len(entries)}
 
 
 PREDICATES = {

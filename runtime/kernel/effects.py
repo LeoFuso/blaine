@@ -356,6 +356,32 @@ def cancel(provider: TargetProvider, request: dict, store, reason: str) -> dict:
     return outcome('receipt', delivery='completed_first' if state == 'completed' else 'stopped', receipt=receipt)
 
 
+def stop_for_task(provider: TargetProvider | None, request: dict, store) -> dict:
+    """Task cancellation of a dispatched effect. Not rollback, never a redispatch.
+
+    Query first: a terminal receipt means the effect finished before the stop
+    (completed first); a running process gets the ordinary stop request, and
+    because a stopped process has a terminal receipt, a replayed step finds it and
+    never sends a second cancellation. Anything else is uncertain and goes to
+    reconciliation.
+    """
+    task_id = request['payload']['task_id']
+    if provider is None:
+        return outcome('uncertain', reason='Task stopped; no target provider to ask')
+    try:
+        found = provider.query(request['payload']['operation_id'], request_digest(request))
+        if found.get('found'):
+            receipt = normalize(validate_receipt(found['receipt'], request, store), store, task_id)
+            if receipt['payload']['state'] == 'running':
+                return cancel(provider, request, store, 'requested')
+            return outcome('receipt', delivery='completed_first', receipt=receipt)
+    except (ProviderUnavailable, ResponseLost) as error:
+        return outcome('uncertain', reason=f'Task stopped; provider unavailable: {error}'[:512])
+    except (ValueError, TypeError, KeyError) as error:
+        return outcome('uncertain', reason=f'Task stopped; provider answer rejected: {error}'[:512])
+    return outcome('uncertain', reason='Task stopped while the effect was in flight; no receipt yet')
+
+
 def reconcile(provider: TargetProvider | None, request: dict, store) -> dict:
     """Decide what an uncertain effect did, from deterministic provider evidence only."""
     payload = request['payload']

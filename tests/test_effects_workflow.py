@@ -18,7 +18,7 @@ import effect_fixtures as ef
 TASK = 'task-e20'
 
 
-class Effects(Base):
+class EffectsBase(Base):
     def setUp(self):
         super().setUp()
         self.target = ef.FixtureTarget(self.root / 'target.sqlite')
@@ -73,6 +73,9 @@ class Effects(Base):
     def evaluation(self, harness, key=TASK):
         return self.store.read_json(key, harness.state(key)['completion_ref'])
 
+
+
+class Effects(EffectsBase):
     # ------------------------------------------------------------------ happy path and legality
     async def test_conditional_write_and_verified_tests_complete_the_task(self):
         harness, request = self.start(self.happy())
@@ -310,6 +313,114 @@ class Effects(Base):
         for key in ('journal_head', 'journal_length', 'completion_ref', 'effects', 'artifacts', 'result_ref'):
             self.assertEqual(harness.state(TASK)[key], baseline_state[key], key)
         self.assertEqual(sorted(k for _, k in self.target.executions()), ['exec', 'write'])
+
+
+class LifecycleInvariant(EffectsBase):
+    """Never COMPLETED with an unresolved target effect, whatever the contract says."""
+    async def test_contract_without_reconciliation_criterion_still_cannot_complete(self):
+        request = ef.change_request(TASK)
+        request['payload']['contract']['payload']['criteria'] = request['payload']['contract']['payload']['criteria'][:1]
+        fired = set()
+        async def outage(stage, state):  # checkpoints re-fire on replay; act once
+            if stage == 'dispatched' and state['iteration'] == 3 and 'down' not in fired:
+                fired.add('down')
+                self.target.set_fault('unavailable', True)
+            if stage == 'effect_observed' and state['iteration'] == 3 and 'up' not in fired:
+                fired.add('up')
+                self.target.set_fault('unavailable', None)
+                self.target.set_fault('receipts_authoritative', False)
+        script = {1: lambda t: ef.read(),
+                  2: lambda t: {'type': 'INVOKE_CAPABILITY', 'capability': 'artifact.write',
+                                'input': {'name': 'content', 'content': ef.AFTER}},
+                  3: lambda t: ef.write(ef.artifact_ref(t, 'content'), receipt_ref=ef.latest_receipt(t)),
+                  4: lambda t: ef.draft(),  # satisfies the only criterion
+                  5: lambda t: {'type': 'WAIT', 'wait_id': 'hold', 'input_type': 'text'}}
+        harness, _ = self.start(script, request=request)
+        self.hooks.append(outage)
+        self.assertIsNone(await self.drive(harness, request=request))
+        state = harness.state(TASK)
+        self.assertEqual((state['lifecycle'], state['effects'][f'{TASK}/3']['status']), ('WAITING', 'uncertain'))
+        evaluation = self.evaluation(harness)['payload']
+        self.assertEqual(evaluation['outcome'], 'satisfied')  # the contract alone would allow completion
+        self.assertFalse(evaluation['legality']['legal'])
+        self.assertIn(f'Target effects with unresolved outcome: {TASK}/3', evaluation['legality']['blockers'])
+        self.target.set_fault('receipts_authoritative', True)
+        await harness.call(TASK, 'submit_input', message('ExternalInput', {
+            'wait_id': 'hold', 'task_revision': state['wait']['task_revision'], 'input_type': 'text', 'value': 'go'}))
+        result = await self.drive(harness)
+        self.assertEqual(result['payload']['outcome'], 'COMPLETED')  # once reconciled NOT_APPLIED
+        self.assertEqual(harness.state(TASK)['effects'][f'{TASK}/3']['status'], 'not_applied')
+
+
+class TaskCancellation(EffectsBase):
+    """Task cancel uses the effect machinery: stop, recover or reconcile. Not rollback."""
+    def running(self, **behaviour):
+        self.target.behave('unit-tests', polls=99, operation=f'{TASK}/1', **behaviour)
+        return {1: lambda t: ef.run(), 2: lambda t: {'type': 'WAIT', 'wait_id': 'hold', 'input_type': 'text'}}
+
+    async def cancel_at_dispatch(self, harness, before=None):
+        async def hook(stage, state):
+            if stage == 'dispatched' and state['iteration'] == 1 and not harness.tasks[TASK].cancel_requested:
+                if before:
+                    before()
+                await harness.call(TASK, 'cancel')
+        self.hooks.append(hook)
+
+    def kinds(self, operation=f'{TASK}/1'):
+        return sorted(kind for _, kind in self.target.executions(operation))
+
+    async def test_task_cancel_before_dispatch_closes_the_effect_as_never_dispatched(self):
+        harness, request = self.start(self.happy(), request=ef.change_request(TASK, ask_before=('workspace.write',)))
+        self.assertIsNone(await self.drive(harness, request=request))
+        await harness.call(TASK, 'cancel')
+        result = await self.drive(harness)
+        self.assertEqual(result['payload']['outcome'], 'CANCELLED')
+        self.assertEqual(harness.state(TASK)['effects'][f'{TASK}/3']['status'], 'not_dispatched')
+        self.assertNotIn('dispatched', [e['phase'] for e in self.entries(harness)])
+        self.assertEqual(self.target.executions(), [])
+        self.assertTrue(any('never dispatched' in c for c in result['payload']['concerns']))
+
+    async def test_task_cancel_stops_an_active_effect_with_confirmed_stop(self):
+        harness, request = self.start(self.running())
+        await self.cancel_at_dispatch(harness)
+        result = await self.drive(harness, request=request)
+        self.assertEqual(result['payload']['outcome'], 'CANCELLED')
+        record = harness.state(TASK)['effects'][f'{TASK}/1']
+        receipt = self.store.read_json(TASK, record['receipt_ref'])['payload']
+        self.assertEqual((record['status'], receipt['exec']['started'], receipt['exec']['cleanup']), ('canceled', True, 'confirmed'))
+        self.assertEqual(self.kinds(), ['cancel', 'exec'])  # one execution, one stop request
+        self.assertTrue(any('partial effects possible' in c for c in result['payload']['concerns']))
+
+    async def test_effect_completion_can_win_the_race_with_task_cancel(self):
+        harness, request = self.start(self.running())
+        await self.cancel_at_dispatch(harness, before=lambda: self.target.behave(
+            'unit-tests', polls=1, exit_code=0, result={'failures': 0}, operation=f'{TASK}/1'))
+        result = await self.drive(harness, request=request)
+        self.assertEqual(result['payload']['outcome'], 'CANCELLED')
+        self.assertEqual(harness.state(TASK)['effects'][f'{TASK}/1']['status'], 'completed')
+        self.assertEqual(self.kinds(), ['exec'])  # no stop request was needed or sent
+        self.assertTrue(any('completed before the stop' in c for c in result['payload']['concerns']))
+
+    async def test_task_cancel_keeps_a_still_unknown_effect_explicit(self):
+        harness, request = self.start(self.running(stop='unknown'))
+        await self.cancel_at_dispatch(harness)
+        result = await self.drive(harness, request=request)
+        self.assertEqual(result['payload']['outcome'], 'CANCELLED')
+        self.assertEqual(harness.state(TASK)['effects'][f'{TASK}/1']['status'], 'uncertain')
+        self.assertTrue(any('STILL_UNKNOWN' in c for c in result['payload']['concerns']))
+        evaluation = self.store.read_json(TASK, result['payload']['completion_ref'])['payload']
+        self.assertIn(f'Target effects with unresolved outcome: {TASK}/1', evaluation['legality']['blockers'])
+        self.assertEqual([e['state'] for e in self.entries(harness) if e['phase'] == 'reconciled'], ['STILL_UNKNOWN'])
+
+    async def test_crash_during_task_cancellation_replays_without_duplicate_stop(self):
+        harness, request = self.start(self.running(), crash_at=('task_stop_effect',))
+        await self.cancel_at_dispatch(harness)
+        result = await self.drive(harness, request=request)
+        self.assertEqual(result['payload']['outcome'], 'CANCELLED')
+        self.assertEqual(harness.state(TASK)['effects'][f'{TASK}/1']['status'], 'canceled')
+        self.assertEqual(self.kinds(), ['cancel', 'exec'])
+        self.assertEqual(harness.tasks[TASK].executions[f'task-stop/{TASK}/1'], 1)
+        self.assertGreater(harness.tasks[TASK].invocations, 1)
 
 
 if __name__ == '__main__':

@@ -48,6 +48,15 @@ FIXTURES = {
                  'expected': 'COMPLETED'},
     'cancel-before-dispatch': {'request': ef.change_request('cancel-before-dispatch', ask_before=('workspace.write',)),
                                'script': {'1': 'read', '2': 'draft', '3': 'write', '4': 'wait'}, 'expected': 'CANCELLED'},
+    # Task-level cancellation through the effect machinery (not rollback).
+    'task-cancel-approval': {'request': ef.change_request('task-cancel-approval', ask_before=('workspace.write',)),
+                             'script': {'1': 'read', '2': 'draft', '3': 'write'}, 'expected': 'CANCELLED'},
+    'task-cancel-active': {'request': ef.change_request('task-cancel-active'), 'script': {'1': 'run', '2': 'wait'},
+                           'barriers': ['task_stop_effect/1'], 'expected': 'CANCELLED'},
+    'task-cancel-race': {'request': ef.change_request('task-cancel-race'), 'script': {'1': 'run', '2': 'wait'},
+                         'expected': 'CANCELLED'},
+    'task-cancel-unknown': {'request': ef.change_request('task-cancel-unknown'), 'script': {'1': 'run', '2': 'wait'},
+                            'expected': 'CANCELLED'},
 }
 
 
@@ -98,6 +107,7 @@ def verify(evidence: Path) -> dict:
         assert not analysis['problems'], (task, analysis['problems'])
         for operation, effect in final['effects'].items():
             ran = executions[(operation, 'write')] + executions[(operation, 'exec')]
+            assert executions[(operation, 'cancel')] <= 1, (task, operation, 'duplicate stop request')
             # Each logical effect executed at most once at the provider, whatever retries happened.
             assert ran <= 1, (task, operation, ran)
             if effect['status'] in ('applied', 'completed', 'timed_out', 'canceled'):
@@ -342,6 +352,39 @@ bind-address = "127.0.0.1:38380"
         waiting('cancel-before-dispatch', 'text')
         call('cancel-before-dispatch', 'cancel')
         finish('cancel-before-dispatch')
+
+        # 8. Task cancel while awaiting approval: the effect closes as never dispatched.
+        submit('task-cancel-approval')
+        waiting('task-cancel-approval', 'human_response')
+        call('task-cancel-approval', 'cancel')
+        finish('task-cancel-approval')
+
+        # 9. Task cancel with an active process: confirmed stop; the runtime dies in
+        # the middle of the cancellation and the replay sends no second stop.
+        target.behave('unit-tests', polls=99, operation='task-cancel-active/1')
+        submit('task-cancel-active')
+        effect('task-cancel-active', 1, ('running',))
+        call('task-cancel-active', 'cancel')
+        barrier('task-cancel-active', 'task_stop_effect/1', 'runtime dies during Task cancellation')
+        finish('task-cancel-active')
+
+        # 10. The process completes before the stop: its completion is the outcome.
+        target.behave('unit-tests', polls=99, operation='task-cancel-race/1')
+        submit('task-cancel-race')
+        effect('task-cancel-race', 1, ('running',))
+        target.behave('unit-tests', polls=1, exit_code=0, result={'failures': 0}, operation='task-cancel-race/1')
+        call('task-cancel-race', 'cancel')
+        finish('task-cancel-race')
+
+        # 11. The stop cannot be confirmed: CANCELLED, with the effect explicitly STILL_UNKNOWN.
+        target.behave('unit-tests', polls=99, stop='unknown', operation='task-cancel-unknown/1')
+        submit('task-cancel-unknown')
+        effect('task-cancel-unknown', 1, ('running',))
+        call('task-cancel-unknown', 'cancel')
+        final = finish('task-cancel-unknown')
+        checks['task-cancel-unknown/effect'] = final['effects']['task-cancel-unknown/1']['status']
+        checks['task-cancel-unknown/concerns'] = http(INGRESS, '/restate/workflow/CognitiveTaskV1/task-cancel-unknown/attach',
+                                                      method='GET')['payload']['concerns']
 
         save('checks', checks)
         save('journal-prefixes', prefixes)

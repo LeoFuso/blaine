@@ -540,6 +540,12 @@ function over retained artifacts returns true:
 6. Every waiver references a retained human action whose authority covers the
    criterion's source (a policy exception for `operator_rule`/`project_policy`);
    no `task_type` invariant is waived.
+7. **Lifecycle invariant (E2.0):** no admitted TARGET_EFFECT has an unresolved
+   outcome — dispatched without an observation, or `uncertain` and not concluded by
+   reconciliation. This holds whether or not the contract contains an
+   `effects_reconciled` criterion; TARGET_READ and INTERNAL_EFFECT never trigger it
+   ([target effects](target-effects.md#lifecycle-invariant)). It does not prevent
+   FAILED or CANCELLED; those keep the unresolved effect in their evidence.
 
 A model `COMPLETE` proposal, a worker exit, a write acknowledgement or a process
 exit code is neither necessary nor sufficient. "Why is this Task COMPLETED?" is

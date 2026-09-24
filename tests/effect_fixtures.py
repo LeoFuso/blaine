@@ -183,7 +183,9 @@ class FixtureTarget:
             if receipt['payload']['state'] != 'running':
                 return {'receipt': receipt}  # it completed before the cancellation won
             process = db.execute('SELECT profile FROM processes WHERE operation_id=?', (operation_id,)).fetchone()
+            db.execute('INSERT INTO executions VALUES (?, ?)', (operation_id, 'cancel'))  # a kill actually sent
             if self.behaviour(operation_id, process[0]).get('stop') == 'unknown':
+                db.commit()
                 raise effects.ResponseLost('kill sent; process state not confirmed')
             receipt['payload'].update(state='timed_out' if reason == 'timeout' else 'canceled',
                                       exec={'started': True, 'cleanup': 'confirmed', 'signal': 'SIGKILL'})

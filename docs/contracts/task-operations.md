@@ -109,8 +109,11 @@ yet, so in chat the agent must still say such a change is not submitted.
 awaiting approval or running. The receipt (`REQUESTED` / `ALREADY_REQUESTED`) is not
 proof that anything stopped; the effect's journal outcome says what happened, and
 only a cancellation before dispatch proves the effect did not happen. Effect
-approvals use the ordinary human-decision response. No Personal Agent or ACP
-binding exposes either yet ([target effects](target-effects.md)).
+approvals use the ordinary human-decision response. Task-level `cancel` runs the
+same effect stop and reconciliation before the Task ends CANCELLED; it is not
+rollback, and the result names every effect's actual outcome
+([Task cancellation](target-effects.md#task-cancellation)). No Personal Agent or ACP
+binding exposes `cancel_effect` or effect approvals yet ([target effects](target-effects.md)).
 
 ## Result
 

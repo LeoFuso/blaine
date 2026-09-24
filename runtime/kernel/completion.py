@@ -490,8 +490,8 @@ def concerns(contract: dict, results: list[dict], facts: dict) -> list[str]:
     for criterion, entry in zip(contract['criteria'], results):
         if entry['status'] == 'waived':
             ordered.append(f"{entry['level']} criterion {entry['id']} waived, not satisfied: {entry['detail']}"[:512])
-    if not facts['error'] and facts['analysis'].get('unreconciled'):
-        ordered.append(f"Target effects with unknown outcome, not reconciled: {facts['analysis']['unreconciled']}"[:512])
+    if not facts['error'] and facts['analysis'].get('unresolved_effects'):
+        ordered.append(f"Target effects with unresolved outcome: {facts['analysis']['unresolved_effects']}"[:512])
     if not facts['error'] and facts['analysis']['denials']:
         denials = facts['analysis']['denials']
         ordered.append(f"PolicyGate denied {len(denials)} capability request(s): "
@@ -543,6 +543,10 @@ def legality(contract: dict, contract_ref: str | None, evaluation: dict, state: 
         blockers.append(facts['error'])
     elif facts['analysis']['problems']:
         blockers.append('Capability journal violation: ' + '; '.join(facts['analysis']['problems'])[:400])
+    if not facts['error'] and facts['analysis'].get('unresolved_effects'):
+        # Lifecycle invariant, independent of the contract: never COMPLETED while
+        # an admitted target effect's outcome is unknown.
+        blockers.append('Target effects with unresolved outcome: ' + ', '.join(facts['analysis']['unresolved_effects'])[:400])
     for criterion in contract['criteria']:
         if 'waiver' not in criterion:
             continue
