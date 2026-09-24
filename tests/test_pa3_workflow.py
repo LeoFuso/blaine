@@ -141,6 +141,10 @@ class PA3Workflow(Base):
                                     'workspace.exec', 'workspace.exec'])
         self.assertEqual(len([e for e in entries if e['phase'] == 'dispatched']), 3)  # write + two execs
 
+        # Cognition observed the exit status of each finished run.
+        observation = self.store.read_json(task_id, harness.state(task_id)['observation_ref'])['payload']
+        self.assertEqual((observation['exit_code'], observation['outcome'], observation['output_artifact']),
+                         (0, 'success', 'output-canonical-suite'))
         # Each reviewed profile's latest output is admitted Task evidence (worker-visible on remediation).
         artifacts = harness.state(task_id)['artifacts']
         self.assertIn('Ran 1 test', self.store.read(task_id, artifacts['output-targeted-tests']).decode())
@@ -158,6 +162,39 @@ class PA3Workflow(Base):
         self.assertEqual([c['path'] for c in facts['changed_files']], [DELIVERABLE])
         self.assertIn('+from pkg.greeting import greet', facts['diff']['unified'])
         self.assertIn('COMPLETED', render(facts))
+
+    async def test_a_failing_run_is_observed_as_failure_with_its_output(self):
+        task_id, request = self.request()
+        provider, profiles = target_effects(self.root, self.deployment)
+        broken = TEST_FILE.replace('"Hello, Ada!"', '"Bye"')
+        class Broken(ScriptedWorker):
+            def __call__(self, packet, operation_id, attachments=()):
+                return {**super().__call__(packet, operation_id, attachments), 'content': broken}
+        script = {
+            2: lambda t: {'type': 'INVOKE_CAPABILITY', 'capability': 'worker.run',
+                          'input': {'packet_ref': ref(t, 'worker-input'), 'artifact': 'draft'}},
+            3: lambda t: {'type': 'INVOKE_CAPABILITY', 'capability': 'workspace.write',
+                          'input': {'workspace_id': WS, 'path': DELIVERABLE, 'precondition': {'absent': True},
+                                    'content_ref': ref(t, 'draft')}},
+            4: lambda t: {'type': 'INVOKE_CAPABILITY', 'capability': 'workspace.exec',
+                          'input': {'workspace_id': WS, 'profile': 'targeted-tests', 'args': [DELIVERABLE]}},
+            5: lambda t: {'type': 'WAIT', 'wait_id': 'hold', 'input_type': 'text'},
+        }
+        holder = []
+        capabilities = Audited(self.store, self.root / 'fixture.sqlite', holder)
+        capabilities.worker = Broken()
+        request['payload']['grant'].pop('ask_before')
+        harness = Harness(self.store, Cognition(script), capabilities, target_provider=SlowPolls(provider),
+                          exec_profiles=profiles)
+        holder.append(harness)
+        self.assertIsNone(await harness.invoke(task_id, request))
+        state = harness.state(task_id)
+        observation = self.store.read_json(task_id, state['observation_ref'])['payload']
+        self.assertEqual((observation['outcome'], observation['exit_code'], observation['output_artifact']),
+                         ('failure', 1, 'output-targeted-tests'))
+        self.assertIn('AssertionError', self.store.read(task_id, state['artifacts']['output-targeted-tests']).decode())
+        evaluation = self.store.read_json(task_id, state['completion_ref'])['payload']
+        self.assertEqual({c['id']: c['status'] for c in evaluation['criteria']}['tests-pass'], 'failed')
 
     async def test_denied_write_never_touches_the_workspace(self):
         task_id, request = self.request()

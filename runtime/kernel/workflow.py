@@ -367,7 +367,7 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             outcome = {'applied': 'success', 'completed': 'success', 'uncertain': 'uncertain'}.get(record['status'], 'failure')
             return message('EffectObservation', {'operation_id': operation, 'status': record['status'],
                 'outcome': outcome, 'request_ref': record.get('request_ref'), 'receipt_ref': record.get('receipt_ref'),
-                **extra})
+                **extra})  # a finished process that exited non-zero overrides outcome with 'failure'
 
         async def perform_target(action: dict, iteration: int) -> dict:
             operation = state['decision_id']
@@ -440,12 +440,30 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             if (result['payload']['kind'] == 'receipt'
                     and result['payload']['receipt']['payload']['state'] == 'running'):
                 result = await supervise(request, operation, iteration)
-            await settle_effect(operation, iteration, result,
-                                output_name=('output-' + request['payload']['profile']['id']
-                                             if action['capability'] == effects.EXEC else None))
+            output_name = ('output-' + request['payload']['profile']['id']
+                           if action['capability'] == effects.EXEC else None)
+            await settle_effect(operation, iteration, result, output_name=output_name)
             if state['effects'][operation]['status'] == 'uncertain':
                 await reconcile_effects(f'{iteration}/immediate')
-            return effect_observation(operation)
+            return effect_observation(operation, **observed_facts(result, output_name))
+
+        def observed_facts(result: dict, output_name: str | None) -> dict:
+            """What cognition needs to react to an effect: the exit status of a finished
+            process (a non-zero exit is a failed run, not a success) and where its output
+            is admitted. Receipts stay authoritative; this is a projection."""
+            if result['payload']['kind'] != 'receipt':
+                return {}
+            body = result['payload']['receipt']['payload']
+            if 'exec' in body and body['state'] == 'completed':
+                facts = {k: body['exec'][k] for k in ('exit_code', 'signal', 'result') if k in body['exec']}
+                if output_name in state['artifacts']:
+                    facts['output_artifact'] = output_name
+                if body['exec'].get('exit_code') not in (0, None) or 'signal' in body['exec']:
+                    facts['outcome'] = 'failure'
+                return facts
+            if 'write' in body:
+                return {'path': body['write']['path']}
+            return {}
 
         async def settle_effect(operation: str, iteration: int, result: dict, output_name: str | None = None) -> None:
             kind = result['payload']['kind']
