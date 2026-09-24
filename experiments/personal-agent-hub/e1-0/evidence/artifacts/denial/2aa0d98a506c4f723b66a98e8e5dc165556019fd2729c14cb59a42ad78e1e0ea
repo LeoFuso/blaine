@@ -1,0 +1,1 @@
+{"kind":"CapabilityJournalEntry","payload":{"operation_id":"denial/4","outcome":"success","phase":"observed","previous_ref":"artifact://denial/sha256:bb86a2a03eb25b45eb4f82e0ea08c1df9a0777187d394d8a939d124e1b509fcb","receipt_ref":"artifact://denial/sha256:7fda034e1b39f4036d0a0e3e55c1979fbbe772c6413255e25dac6b4618489342","seq":4,"task_id":"denial"},"version":1}

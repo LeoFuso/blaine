@@ -1,0 +1,1 @@
+{"kind":"EffectiveAuthority","payload":{"capabilities":["artifact.write","human.request"],"classification":"kernel@1","externally_bounded":false,"operation_classes":["task.artifact.write","task.human.request"],"revision":0,"task_id":"human-resume","workspaces":[]},"version":1}

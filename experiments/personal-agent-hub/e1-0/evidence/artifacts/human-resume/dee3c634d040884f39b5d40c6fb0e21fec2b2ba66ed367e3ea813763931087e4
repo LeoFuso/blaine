@@ -1,0 +1,1 @@
+{"kind":"HumanDecisionResponse","payload":{"request_digest":"0f00b6494abe2ba45c09b38a04ebf0f65412ee82f90b88233773d00863400ee8","request_id":"decide","request_revision":0,"response_id":"response-1","task_id":"human-resume","value":"NO"},"version":1}

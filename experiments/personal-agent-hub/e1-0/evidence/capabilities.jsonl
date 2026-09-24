@@ -1,0 +1,12 @@
+{"capability":"workspace.read","operation_id":"investigation/1","pid":2825325,"task_id":"investigation"}
+{"capability":"artifact.write","operation_id":"investigation/2","pid":2826009,"task_id":"investigation"}
+{"capability":"artifact.write","operation_id":"investigation/3","pid":2826009,"task_id":"investigation"}
+{"capability":"workspace.read","operation_id":"denial/1","pid":2826009,"task_id":"denial"}
+{"capability":"artifact.write","operation_id":"denial/4","pid":2826009,"task_id":"denial"}
+{"capability":"workspace.read","operation_id":"irrecoverable/1","pid":2826009,"task_id":"irrecoverable"}
+{"capability":"fixture.effect","operation_id":"irrecoverable/2","pid":2826009,"task_id":"irrecoverable"}
+{"capability":"artifact.write","operation_id":"human-resume/1","pid":2826009,"task_id":"human-resume"}
+{"capability":"human.request","operation_id":"human-resume/2","pid":2826009,"task_id":"human-resume"}
+{"capability":"artifact.write","operation_id":"human-waiver/1","pid":2826218,"task_id":"human-waiver"}
+{"capability":"human.request","operation_id":"human-waiver/2","pid":2826218,"task_id":"human-waiver"}
+{"capability":"artifact.write","operation_id":"policy-exception/1","pid":2826679,"task_id":"policy-exception"}

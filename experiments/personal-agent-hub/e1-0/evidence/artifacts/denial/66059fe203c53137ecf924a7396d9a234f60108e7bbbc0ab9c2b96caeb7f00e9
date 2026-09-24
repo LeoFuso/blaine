@@ -1,0 +1,1 @@
+{"kind":"WorkspaceReadRequest","payload":{"artifact":"source","operation_id":"denial/1","path":"service/src/main/java/example/ExampleService.java","task_id":"denial","workspace":"/work/example"},"version":1}

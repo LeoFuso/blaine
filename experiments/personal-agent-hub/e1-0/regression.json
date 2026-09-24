@@ -1,0 +1,57 @@
+{
+  "recorded": "2026-09-24",
+  "branch": "impl/e1-completion-contract",
+  "baseline": "b1b3073 (unchanged HEAD exported with git archive into a scratch directory)",
+  "unit_suite": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m unittest discover -s tests -p 'test_*.py'",
+    "baseline_tests": 249,
+    "baseline_result": "OK",
+    "after_tests": 297,
+    "after_result": "OK",
+    "new_tests": {
+      "tests/test_completion_contract.py": 31,
+      "tests/test_completion_workflow.py": 17
+    },
+    "existing_test_changes": "tests/test_kernel_progression.py, test_kernel_routing.py, test_kernel_instrument.py: their in-process fake Restate contexts gained a promise().peek() stub returning None (no amendment submitted), required because the accepted amendment mechanism peeks contract/{n} at every iteration boundary. No assertion changed."
+  },
+  "restate_harnesses": [
+    {
+      "harness": "experiments/personal-agent-hub/e1-0/accept.py",
+      "scope": "E1.0 acceptance",
+      "branch_result": "PASS",
+      "notes": "6 Tasks, 5 runtime and 2 server SIGKILLs; see evidence/summary.json"
+    },
+    {
+      "harness": "scripts/verify-kernel-parallel.py",
+      "scope": "Increment 12 native parallel children",
+      "branch_result": "PASS",
+      "baseline_result": "PASS",
+      "notes": "12 native Tasks, 3 runtime and 3 server SIGKILLs, 0 duplicate turns/effects/children; the inc-12 offline verifier uses the v1 evaluate() projection, which still agrees"
+    },
+    {
+      "harness": "scripts/verify-kernel.py",
+      "scope": "Increment 1",
+      "branch_result": "FAIL",
+      "baseline_result": "FAIL (identical)",
+      "cause": "Pre-existing: the recovery fixture expects cognition iteration 3 (barrier decision/3), but since verifier-first progression (milestone 024) the Task completes at iteration 2 once the exact artifact exists. Not a regression."
+    },
+    {
+      "harness": "scripts/verify-kernel-children.py",
+      "scope": "Increment 2",
+      "branch_result": "FAIL",
+      "baseline_result": "FAIL (identical: 'child waiting' timeout)",
+      "cause": "Pre-existing on unchanged HEAD; not investigated further in E1.0."
+    },
+    {
+      "harness": "scripts/verify-kernel-human.py",
+      "scope": "Increment 5",
+      "branch_result": "FAIL",
+      "baseline_result": "FAIL (identical: assert len(turns)==4)",
+      "cause": "Pre-existing on unchanged HEAD (turn-count expectation predates verifier-first progression); not a regression."
+    }
+  ],
+  "not_run": {
+    "scripts/verify-kernel-model.py, -memory.py, -worker.py, -youtrack.py": "Require live local inference, MIRIX, Goose or YouTrack; unrelated to E1.0 and excluded by the session scope (no GPU/network validations).",
+    "client (Go) tests": "No client change in E1.0."
+  }
+}
