@@ -1,0 +1,67 @@
+{
+  "processes": [
+    {
+      "pid": 346052,
+      "roles": [
+        "inference"
+      ],
+      "ppid": 6244,
+      "tty": 0,
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-embedding.service"
+    },
+    {
+      "pid": 346175,
+      "roles": [
+        "inference"
+      ],
+      "ppid": 346052,
+      "tty": 0,
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-embedding.service"
+    },
+    {
+      "pid": 346389,
+      "roles": [
+        "inference"
+      ],
+      "ppid": 6244,
+      "tty": 0,
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-generation.service"
+    },
+    {
+      "pid": 346430,
+      "roles": [
+        "inference"
+      ],
+      "ppid": 346389,
+      "tty": 0,
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-generation.service"
+    },
+    {
+      "pid": 356517,
+      "roles": [
+        "mirix"
+      ],
+      "ppid": 6244,
+      "tty": 0,
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-mirix.service"
+    },
+    {
+      "pid": 358882,
+      "roles": [
+        "restate"
+      ],
+      "ppid": 6244,
+      "tty": 0,
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-restate.service"
+    },
+    {
+      "pid": 360671,
+      "roles": [
+        "blaine"
+      ],
+      "ppid": 6244,
+      "tty": 0,
+      "cgroup": "0::/user.slice/user-1000.slice/user@1000.service/app.slice/blaine-runtime.service"
+    }
+  ]
+}

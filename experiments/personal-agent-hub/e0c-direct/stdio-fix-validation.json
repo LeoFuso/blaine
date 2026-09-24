@@ -1,0 +1,68 @@
+{
+  "status": "PASS_LOCAL",
+  "scope": "Linux development runtime and four-target build verification; corrected macOS/WSL runtime acceptance pending",
+  "base_commit": "dadb3c540b18bd943064f9b7a2a160cb3c3b3c2a",
+  "source": "Uncommitted stdio correction validated by client/ci.sh before the fix commit",
+  "format": "PASS",
+  "go_tests": "PASS",
+  "race": "PASS",
+  "vet": "PASS",
+  "host_regressions": "PASS (6 tests)",
+  "reproducible_builds": [
+    "linux/amd64",
+    "linux/arm64",
+    "darwin/amd64",
+    "darwin/arm64"
+  ],
+  "regressions": [
+    {
+      "stdio": "pipe",
+      "signal": "SIGINT",
+      "exit": 130,
+      "elapsed_ms": 113,
+      "stdin_kept_open": true
+    },
+    {
+      "stdio": "pipe",
+      "signal": "SIGTERM",
+      "exit": 130,
+      "elapsed_ms": 113,
+      "stdin_kept_open": true
+    },
+    {
+      "stdio": "fifo",
+      "signal": "SIGINT",
+      "exit": 130,
+      "elapsed_ms": 113,
+      "stdin_kept_open": true
+    },
+    {
+      "stdio": "fifo",
+      "signal": "SIGTERM",
+      "exit": 130,
+      "elapsed_ms": 113,
+      "stdin_kept_open": true
+    },
+    {
+      "stdio": "backpressure",
+      "signal": "SIGINT",
+      "exit": 130,
+      "elapsed_ms": 113,
+      "stdin_kept_open": true
+    },
+    {
+      "stdio": "backpressure",
+      "signal": "SIGTERM",
+      "exit": 130,
+      "elapsed_ms": 113,
+      "stdin_kept_open": true
+    }
+  ],
+  "additional_tests": [
+    "Relay cancellation with blocking input/backpressured output",
+    "Remote clean exit and abrupt disconnect unblock open inherited input",
+    "1 MiB byte preservation, EOF, descriptor ownership and restored flags"
+  ],
+  "real_github_actions_run": "NOT_RUN",
+  "new_release": "NOT_PUBLISHED"
+}

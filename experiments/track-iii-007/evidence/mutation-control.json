@@ -1,0 +1,22 @@
+{
+  "exit_code": 1,
+  "result": {
+    "failures": [
+      {
+        "actual": "87",
+        "expected": "13",
+        "repeat": 0,
+        "task": "trap-1"
+      },
+      {
+        "actual": "87",
+        "expected": "13",
+        "repeat": 1,
+        "task": "trap-1"
+      }
+    ],
+    "oracle": "Original unchanged exact-answer verifier against mutated model decisions.",
+    "status": "FAIL"
+  },
+  "stderr": ""
+}

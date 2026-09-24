@@ -1,0 +1,130 @@
+[
+  {
+    "path": "runtime/personal_runtime.py",
+    "sha256": "bba81eb466f7a6128cec55f69afec81cd3a0281289e2a2c9f60dba1ab2e36032"
+  },
+  {
+    "path": "runtime/interactive.py",
+    "sha256": "d8f30e7b9cfe662111cf23117038a52c86331cd9cf08a1a27f512e52604a0969"
+  },
+  {
+    "path": "runtime/personal_agent.py",
+    "sha256": "0eee7becda7e17f105c5c7f857816ffff74d4d82fa343b9cbef51fb6fffdd3f8"
+  },
+  {
+    "path": "runtime/task.py",
+    "sha256": "1366a1cf4f38a895dfc067cf722012619e1a37a2b19d7d7b9941a16b3a79a445"
+  },
+  {
+    "path": "runtime/personal_acp.py",
+    "sha256": "3d5f1408f776bf989b210c0da6b93d4c0cceccebeb63d43d1f9aa436c9cf2a9e"
+  },
+  {
+    "path": "runtime/app.py",
+    "sha256": "04e4820af054dc4e8e9d475428e650d2a403df99af3dd8c11b6c923b2f5da171"
+  },
+  {
+    "path": "runtime/acp_agent.py",
+    "sha256": "e3084c65707646763b9378550aff759c8c36b519fef5cae27dc689ecd762ebd5"
+  },
+  {
+    "path": "runtime/kernel/frontier.py",
+    "sha256": "69ffe5d0773767ff0f3e459aee0f231954c749f215f0bc6185326e8dec5156fb"
+  },
+  {
+    "path": "runtime/kernel/project_knowledge.py",
+    "sha256": "4c244b55f10a6afdd4bea371240c6c8a19d5a84293dc623f45882c28beacc394"
+  },
+  {
+    "path": "runtime/kernel/semantic_bridge.py",
+    "sha256": "c00fb9ac86838728b30f31fec2dea6578f56ec1270ef558295e1409afe09c1b3"
+  },
+  {
+    "path": "runtime/kernel/workspace.py",
+    "sha256": "00cefb20b5b0cbd7c76d622f6989e2d698a13dc2a9f7d58c579b1bf132948541"
+  },
+  {
+    "path": "runtime/kernel/semantic_provider.py",
+    "sha256": "75cc4543d3626952fc4a07387ba08b77c9286fc82f48820d4d87c417bc1564e4"
+  },
+  {
+    "path": "runtime/kernel/contracts.py",
+    "sha256": "27dc945d3ef27f069c23a2e221d4d2b5bd67c6a06ff2f0c059bca93888d10008"
+  },
+  {
+    "path": "runtime/kernel/cognition.py",
+    "sha256": "efe6f3683dd06050a4fb7950a48cec723fa68dfa1df2bdea1dd782cd62ee4778"
+  },
+  {
+    "path": "runtime/kernel/human.py",
+    "sha256": "7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec"
+  },
+  {
+    "path": "runtime/kernel/execution.py",
+    "sha256": "b640b47e72812e75b7ec3998b4178a62bc472549ed6359ffd1b9d4ba0c2c0cf0"
+  },
+  {
+    "path": "runtime/kernel/context.py",
+    "sha256": "1cc9214fbda5cacd85f5ced20d8453f6e4f340e9a00c9f1f01fa9c33dff6b92e"
+  },
+  {
+    "path": "runtime/kernel/semantic-human-request-v1.json",
+    "sha256": "a7fd0761978c443b58c2b62fb242b9480a434c78309c6cef7505ed09f4bac71e"
+  },
+  {
+    "path": "runtime/kernel/artifacts.py",
+    "sha256": "4e748f4e8e840aca630813467126ef85ba73abac0f5a04c0283dbccf67a4820a"
+  },
+  {
+    "path": "runtime/kernel/events.py",
+    "sha256": "b364ed06c60d3ee525946e4e2bebcd135751f57f1fc9fc2a1995b1947f6966dc"
+  },
+  {
+    "path": "runtime/kernel/semantic_human.py",
+    "sha256": "2cd063b42f044f49f944b51af6bed15a57de86e2ce68f3414b7824dfb467a694"
+  },
+  {
+    "path": "runtime/kernel/model.py",
+    "sha256": "c3acbcc5e2830bd1d56c08d7a962516e8c353d367dc51cf814f0a70878aaaaf6"
+  },
+  {
+    "path": "runtime/kernel/memory.py",
+    "sha256": "ebb778c8a10fc010562a9522e1386496b7e20f3b0c1ba4a1a9a5fc747397b1e8"
+  },
+  {
+    "path": "runtime/kernel/frontier_context.py",
+    "sha256": "8cdff4048cb8a93d5ddfe63f9978111f89a5cfd32c2033f2b765bcb997fb9dbe"
+  },
+  {
+    "path": "runtime/kernel/worker_routing.py",
+    "sha256": "f4e49291caa7a88d538dbe6dc20541eefb4696a0507b114d48458ad24c0a8b88"
+  },
+  {
+    "path": "runtime/kernel/procedure.py",
+    "sha256": "49e55d203869f5ad5265a5bea1faa0f4c58240b49e7def290b59cc43c9d2f7ff"
+  },
+  {
+    "path": "runtime/kernel/__init__.py",
+    "sha256": "4abeaecfd74694342188dbf55245831fb2547f0afd5e8a3e4936b0f61f485009"
+  },
+  {
+    "path": "runtime/kernel/workflow.py",
+    "sha256": "53fccf92cb7051290743eb746d3c0b1d0ca261717b6c469ae97ef42614042355"
+  },
+  {
+    "path": "runtime/kernel/control.py",
+    "sha256": "d5eb62a3c059fe3770602a1c4ace15dd2e33c2d27f13b04f33a5d7ff10864f04"
+  },
+  {
+    "path": "runtime/kernel/youtrack.py",
+    "sha256": "cde9c786e83c4a896da1cff13579953a96d553c0daf978a57e45266ad56dc22f"
+  },
+  {
+    "path": "runtime/kernel/worker.py",
+    "sha256": "7488a4aa4a9df65ec209e1e2c6b23c9109ff6cbc1da534423e1ecec3e9302320"
+  },
+  {
+    "path": "runtime/kernel/event_sinks.py",
+    "sha256": "456b4cc45705f27f560f98c379ca92df40eee6e2faa1c39e0d9ad39c34b79161"
+  }
+]

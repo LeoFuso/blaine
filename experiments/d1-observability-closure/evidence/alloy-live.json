@@ -1,0 +1,43 @@
+{
+  "observed_at": 1790036600.3784232,
+  "active_config_sha256": "2c0168ecb501f0c9553e59a9ec91b367150afc714d7ce18999db8d29bb6bdb5d",
+  "scrapes": [
+    "host",
+    "alloy"
+  ],
+  "exporters": [
+    "otelcol.exporter.file \"local\"",
+    "prometheus.remote_write \"grafana_metrics\""
+  ],
+  "journal_unit_filters": [
+    "_SYSTEMD_UNIT=docker.service _SYSTEMD_UNIT=blaine-infra.service _SYSTEMD_UNIT=alloy.service",
+    "_UID=1000 _SYSTEMD_USER_UNIT=docker.service",
+    "_UID=1000 _SYSTEMD_USER_UNIT=blaine-infra.service",
+    "_UID=1000 _SYSTEMD_USER_UNIT=blaine-generation.service",
+    "_UID=1000 _SYSTEMD_USER_UNIT=blaine-embedding.service",
+    "_UID=1000 _SYSTEMD_USER_UNIT=blaine-mirix.service",
+    "_UID=1000 _SYSTEMD_USER_UNIT=blaine-restate.service",
+    "_UID=1000 _SYSTEMD_USER_UNIT=blaine-runtime.service"
+  ],
+  "otlp_receivers": [
+    "grpc 127.0.0.1:4317",
+    "http 127.0.0.1:4318"
+  ],
+  "pipeline_counters": [
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_embedding\",component_path=\"/\"} 6",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_generation\",component_path=\"/\"} 3",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_mirix\",component_path=\"/\"} 2",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_restate\",component_path=\"/\"} 0",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_runtime\",component_path=\"/\"} 0",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.platform\",component_path=\"/\"} 101",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.rootless_docker\",component_path=\"/\"} 0",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.rootless_infra\",component_path=\"/\"} 0",
+    "otelcol_exporter_sent_log_records_total{component_id=\"otelcol.exporter.file.local\",component_path=\"/\",exporter=\"file/otelcol.exporter.file.local\",otel_scope_name=\"go.opentelemetry.io/collector/exporter/exporterhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\"} 113",
+    "otelcol_exporter_sent_spans_total{component_id=\"otelcol.exporter.file.local\",component_path=\"/\",exporter=\"file/otelcol.exporter.file.local\",otel_scope_name=\"go.opentelemetry.io/collector/exporter/exporterhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\"} 69664",
+    "otelcol_receiver_accepted_log_records_total{component_id=\"otelcol.receiver.otlp.local\",component_path=\"/\",otel_scope_name=\"go.opentelemetry.io/collector/receiver/receiverhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\",receiver=\"otlp/otelcol.receiver.otlp.local\",transport=\"http\"} 1",
+    "otelcol_receiver_accepted_spans_total{component_id=\"otelcol.receiver.otlp.local\",component_path=\"/\",otel_scope_name=\"go.opentelemetry.io/collector/receiver/receiverhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\",receiver=\"otlp/otelcol.receiver.otlp.local\",transport=\"http\"} 70009"
+  ],
+  "cloud_logs_active": false,
+  "cloud_traces_active": false,
+  "fleet_active": false
+}

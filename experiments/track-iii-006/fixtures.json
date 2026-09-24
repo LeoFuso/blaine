@@ -1,0 +1,1322 @@
+{
+  "cases": [
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-A",
+      "expected": "ADMITTED_VERIFIED_SUCCESS",
+      "name": "A-success"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-B",
+      "expected": "REJECTED_UNSUPPORTED",
+      "name": "B-success"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A failed under condition Q.",
+        "intent": "FAILURE"
+      },
+      "execution": "execution-B",
+      "expected": "ADMITTED_VERIFIED_FAILURE",
+      "name": "B-failure"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-C",
+      "expected": "REJECTED_UNSUPPORTED",
+      "name": "C-success"
+    },
+    {
+      "candidate": {
+        "content": "Implementation was attempted; remaining verification is incomplete.",
+        "intent": "OBSERVATION"
+      },
+      "execution": "execution-C",
+      "expected": "RETAINED_UNVERIFIED",
+      "name": "C-observation"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-D",
+      "expected": "REJECTED_UNSUPPORTED",
+      "name": "D-success"
+    },
+    {
+      "candidate": {
+        "content": "Approach B failed when condition Q was present.",
+        "intent": "FAILURE"
+      },
+      "execution": "execution-D",
+      "expected": "ADMITTED_VERIFIED_FAILURE",
+      "name": "D-failure"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-E",
+      "expected": "REJECTED_CONTRADICTORY",
+      "name": "E-success"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-F",
+      "expected": "REJECTED_UNSUPPORTED",
+      "name": "F-success"
+    },
+    {
+      "candidate": {
+        "content": "Implementation was attempted; remaining verification is incomplete.",
+        "intent": "OBSERVATION"
+      },
+      "execution": "execution-F",
+      "expected": "RETAINED_UNVERIFIED",
+      "name": "F-observation"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-G",
+      "expected": "REJECTED_UNSUPPORTED",
+      "name": "G-success"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-X",
+      "expected": "ADMITTED_VERIFIED_SUCCESS",
+      "name": "X-success"
+    },
+    {
+      "candidate": {
+        "content": "Strategy A succeeded for problem shape P.",
+        "intent": "SUCCESS"
+      },
+      "execution": "execution-cancelled",
+      "expected": "REJECTED_UNSUPPORTED",
+      "name": "cancelled-success"
+    },
+    {
+      "candidate": {
+        "content": "Implementation was attempted; remaining verification is incomplete.",
+        "intent": "OBSERVATION"
+      },
+      "execution": "execution-cancelled",
+      "expected": "RETAINED_UNVERIFIED",
+      "name": "cancelled-observation"
+    }
+  ],
+  "envelopes": {
+    "execution-A": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-A-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-A",
+      "id": "execution-A-outcome-1",
+      "required_evidence": [
+        "execution-A-evidence-0",
+        "execution-A-evidence-1",
+        "execution-A-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "execution-B": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-B-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-B",
+      "id": "execution-B-outcome-1",
+      "required_evidence": [
+        "execution-B-evidence-0",
+        "execution-B-evidence-1",
+        "execution-B-evidence-2"
+      ],
+      "status": "FAILED"
+    },
+    "execution-C": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-C-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-C",
+      "id": "execution-C-outcome-1",
+      "required_evidence": [
+        "execution-C-evidence-0",
+        "execution-C-evidence-1",
+        "execution-C-evidence-2"
+      ],
+      "status": "UNKNOWN"
+    },
+    "execution-D": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-D-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-D",
+      "id": "execution-D-outcome-1",
+      "required_evidence": [
+        "execution-D-evidence-0",
+        "execution-D-evidence-1",
+        "execution-D-evidence-2"
+      ],
+      "status": "FAILED"
+    },
+    "execution-E": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-E-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-E",
+      "id": "execution-E-outcome-1",
+      "required_evidence": [
+        "execution-E-evidence-0",
+        "execution-E-evidence-1",
+        "execution-E-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "execution-F": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-F-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-F",
+      "id": "execution-F-outcome-1",
+      "required_evidence": [
+        "execution-F-evidence-0",
+        "execution-F-evidence-1",
+        "execution-F-evidence-2",
+        "execution-F-evidence-3"
+      ],
+      "status": "INCOMPLETE"
+    },
+    "execution-G": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-G-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-G",
+      "id": "execution-G-outcome-1",
+      "required_evidence": [
+        "execution-G-evidence-0",
+        "execution-G-evidence-1",
+        "execution-G-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "execution-X": {
+      "context_id": "task-x",
+      "contract_ref": "execution-X-evidence-0",
+      "domain": "employer-x",
+      "execution_id": "execution-X",
+      "id": "execution-X-outcome-1",
+      "required_evidence": [
+        "execution-X-evidence-0",
+        "execution-X-evidence-1",
+        "execution-X-evidence-2"
+      ],
+      "status": "SUCCEEDED"
+    },
+    "execution-cancelled": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-cancelled-evidence-0",
+      "domain": "personal",
+      "execution_id": "execution-cancelled",
+      "id": "execution-cancelled-outcome-1",
+      "required_evidence": [
+        "execution-cancelled-evidence-0",
+        "execution-cancelled-evidence-1",
+        "execution-cancelled-evidence-2"
+      ],
+      "status": "CANCELLED"
+    }
+  },
+  "evidence": {
+    "execution-A-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-A",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-A-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_A_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PASS",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-A-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-A",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-A-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_A_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PASS",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-A-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-A",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-A-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_A_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PRESENT",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-B-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-B",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-B-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_B_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "FAIL",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-B-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-B",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-B-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_B_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "FAIL",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-B-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-B",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-B-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_B_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "MISSING",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-C-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-C",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-C-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_C_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "UNKNOWN",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-C-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-C",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-C-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_C_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "MISSING",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-C-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-C",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-C-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_C_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "MISSING",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-D-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-D",
+      "facts": [
+        "approach-B",
+        "condition-Q"
+      ],
+      "id": "execution-D-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_D_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "FAIL",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-D-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-D",
+      "facts": [
+        "approach-B",
+        "condition-Q"
+      ],
+      "id": "execution-D-evidence-1",
+      "kind": "VERIFIER",
+      "raw": "PRIVATE_LOG_D_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "FAIL",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-D-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-D",
+      "facts": [
+        "approach-B",
+        "condition-Q"
+      ],
+      "id": "execution-D-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_D_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "MISSING",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-E-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-E",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-E-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_E_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PASS",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-E-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-E",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-E-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_E_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "FAIL",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-E-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-E",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-E-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_E_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PRESENT",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-F-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-F",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-F-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_F_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "UNKNOWN",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-F-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-F",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-F-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_F_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PASS",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-F-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-F",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-F-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_F_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PRESENT",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-F-evidence-3": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-F",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-F-evidence-3",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_F_3 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "NOT_RUN",
+      "verifier_id": "synthetic-verifier-3"
+    },
+    "execution-G-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-G",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-G-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_G_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PASS",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-G-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-G",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-G-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_G_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "MISSING",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-G-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-G",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-G-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_G_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PRESENT",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-X-evidence-0": {
+      "context_id": "task-x",
+      "domain": "employer-x",
+      "execution_id": "execution-X",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-X-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_X_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PASS",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-X-evidence-1": {
+      "context_id": "task-x",
+      "domain": "employer-x",
+      "execution_id": "execution-X",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-X-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_X_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PASS",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-X-evidence-2": {
+      "context_id": "task-x",
+      "domain": "employer-x",
+      "execution_id": "execution-X",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-X-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_X_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "PRESENT",
+      "verifier_id": "synthetic-verifier-2"
+    },
+    "execution-cancelled-evidence-0": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-cancelled",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-cancelled-evidence-0",
+      "kind": "CONTRACT",
+      "raw": "PRIVATE_LOG_cancelled_0 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "UNKNOWN",
+      "verifier_id": "synthetic-verifier-0"
+    },
+    "execution-cancelled-evidence-1": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-cancelled",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-cancelled-evidence-1",
+      "kind": "TEST",
+      "raw": "PRIVATE_LOG_cancelled_1 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "NOT_RUN",
+      "verifier_id": "synthetic-verifier-1"
+    },
+    "execution-cancelled-evidence-2": {
+      "context_id": "child-personal",
+      "domain": "personal",
+      "execution_id": "execution-cancelled",
+      "facts": [
+        "strategy-A",
+        "problem-P",
+        "condition-Q"
+      ],
+      "id": "execution-cancelled-evidence-2",
+      "kind": "ARTIFACT",
+      "raw": "PRIVATE_LOG_cancelled_2 internal-host-x.example.invalid proprietary-source-diagnostic",
+      "result": "MISSING",
+      "verifier_id": "synthetic-verifier-2"
+    }
+  },
+  "executions": {
+    "execution-A": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-A-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-A-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-A-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-A-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "execution-B": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-B-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-B-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-B-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-B-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "execution-C": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-C-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-C-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-C-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-C-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "execution-D": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-D-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-D-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-D-evidence-1",
+          "kind": "VERIFIER",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-D-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "execution-E": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-E-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-E-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-E-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-E-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "execution-F": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-F-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-F-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-F-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-F-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        },
+        {
+          "id": "execution-F-evidence-3",
+          "kind": "TEST",
+          "success": "PASS"
+        }
+      ]
+    },
+    "execution-G": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-G-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-G-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-G-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-G-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "execution-X": {
+      "context_id": "task-x",
+      "contract_ref": "execution-X-evidence-0",
+      "domain": "employer-x",
+      "requirements": [
+        {
+          "id": "execution-X-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-X-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-X-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    },
+    "execution-cancelled": {
+      "context_id": "child-personal",
+      "contract_ref": "execution-cancelled-evidence-0",
+      "domain": "personal",
+      "requirements": [
+        {
+          "id": "execution-cancelled-evidence-0",
+          "kind": "CONTRACT",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-cancelled-evidence-1",
+          "kind": "TEST",
+          "success": "PASS"
+        },
+        {
+          "id": "execution-cancelled-evidence-2",
+          "kind": "ARTIFACT",
+          "success": "PRESENT"
+        }
+      ]
+    }
+  },
+  "memory": {
+    "context_domains": {
+      "attempt-personal": "personal",
+      "child-personal": "personal",
+      "employer-x": "employer-x",
+      "parent-personal": "personal",
+      "personal": "personal",
+      "project-personal": "personal",
+      "project-x": "employer-x",
+      "root": "public",
+      "sibling-personal": "personal",
+      "task-x": "employer-x",
+      "task-x-sibling": "employer-x",
+      "work-x": "employer-x"
+    },
+    "declaration_targets": {
+      "human-personal": "parent-personal",
+      "human-x": "project-x"
+    },
+    "derived": [],
+    "entries": [
+      {
+        "classification": "PUBLIC",
+        "content": "Public fixture baseline.",
+        "context_id": "root",
+        "created_by": "fixture-public",
+        "domain": "public",
+        "epistemic_status": "UNVERIFIED",
+        "id": "global-baseline",
+        "provenance": "AGENT_OBSERVATION"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "root",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": null
+      },
+      {
+        "id": "personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "project-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "personal"
+      },
+      {
+        "id": "parent-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project-personal"
+      },
+      {
+        "id": "child-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "parent-personal"
+      },
+      {
+        "id": "sibling-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "parent-personal"
+      },
+      {
+        "id": "attempt-personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "child-personal"
+      },
+      {
+        "id": "employer-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "project-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "employer-x"
+      },
+      {
+        "id": "task-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project-x"
+      },
+      {
+        "id": "work-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "task-x"
+      },
+      {
+        "id": "task-x-sibling",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project-x"
+      }
+    ],
+    "policy": {
+      "deny_ids": [],
+      "grants": {
+        "employer-x": [
+          "public",
+          "employer-x"
+        ],
+        "personal": [
+          "public",
+          "personal"
+        ],
+        "public": [
+          "public"
+        ]
+      },
+      "version": "fixture-v1"
+    }
+  },
+  "private_evidence_literals": [
+    "PRIVATE_LOG_",
+    "internal-host-x.example.invalid",
+    "proprietary-source-diagnostic",
+    "synthetic-verifier-",
+    "execution-A-evidence-0",
+    "execution-A-evidence-1",
+    "execution-A-evidence-2",
+    "execution-B-evidence-0",
+    "execution-B-evidence-1",
+    "execution-B-evidence-2",
+    "execution-C-evidence-0",
+    "execution-C-evidence-1",
+    "execution-C-evidence-2",
+    "execution-D-evidence-0",
+    "execution-D-evidence-1",
+    "execution-D-evidence-2",
+    "execution-E-evidence-0",
+    "execution-E-evidence-1",
+    "execution-E-evidence-2",
+    "execution-F-evidence-0",
+    "execution-F-evidence-1",
+    "execution-F-evidence-2",
+    "execution-F-evidence-3",
+    "execution-G-evidence-0",
+    "execution-G-evidence-1",
+    "execution-G-evidence-2",
+    "execution-X-evidence-0",
+    "execution-X-evidence-1",
+    "execution-X-evidence-2",
+    "execution-cancelled-evidence-0",
+    "execution-cancelled-evidence-1",
+    "execution-cancelled-evidence-2",
+    "execution-A-outcome-1",
+    "execution-B-outcome-1",
+    "execution-C-outcome-1",
+    "execution-D-outcome-1",
+    "execution-E-outcome-1",
+    "execution-F-outcome-1",
+    "execution-G-outcome-1",
+    "execution-X-outcome-1",
+    "execution-cancelled-outcome-1"
+  ],
+  "protected_memory_literals": [
+    "task-x::reflection-",
+    "employer-x",
+    "task-x",
+    "work-x"
+  ],
+  "support_catalog": {
+    "execution-A": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-B": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-C": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-D": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Approach B failed when condition Q was present.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "approach-B",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-E": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-F": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-G": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-X": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ],
+    "execution-cancelled": [
+      {
+        "candidate": {
+          "content": "Strategy A succeeded for problem shape P.",
+          "intent": "SUCCESS"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Strategy A failed under condition Q.",
+          "intent": "FAILURE"
+        },
+        "facts": [
+          "strategy-A",
+          "problem-P",
+          "condition-Q"
+        ]
+      },
+      {
+        "candidate": {
+          "content": "Implementation was attempted; remaining verification is incomplete.",
+          "intent": "OBSERVATION"
+        },
+        "facts": []
+      }
+    ]
+  },
+  "worker_claim": {
+    "status": "SUCCESS",
+    "text": "Strategy A solved the problem; everything passed."
+  }
+}

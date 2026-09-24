@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"max.retries=5\ntimeout.seconds=30\n","name":"draft"},"type":"INVOKE_CAPABILITY"},"task_id":"approval","task_revision":1,"turn_id":"approval/2"},"version":1}

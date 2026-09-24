@@ -1,0 +1,14 @@
+{
+  "validation_exit": 0,
+  "config": "composed host/self local fanout + native remote-write",
+  "alloy": "1.19.2 becfd48",
+  "nonsecret_url_and_instance": "versioned Alloy fragment",
+  "only_secret": "GRAFANA_CLOUD_METRICS_API_KEY",
+  "credential_used": "synthetic validation value; no authentication claim",
+  "scrape_limits": {
+    "body": "2MiB",
+    "samples": 5000,
+    "targets": 1,
+    "interval": "30s"
+  }
+}

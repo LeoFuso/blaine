@@ -1,0 +1,19 @@
+{
+  "installed_version": "1.102.4-t3caf7d9e7-g084ee3b64",
+  "source_ref": "v1.102.4",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/tailscale/tailscale/v1.102.4/ssh/tailssh/incubator.go",
+      "sha256": "1df5f92a68aab6c9a860aa1ce26ae4b247f5f913ec8c7f9cc11cb275b5b1f861"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tailscale/tailscale/v1.102.4/ssh/tailssh/tailssh.go",
+      "sha256": "3aaffcc066e17577ff8cb0e40b530427f13250e754575a9f66f9f35af75ea214"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/tailscale/tailscale/v1.102.4/cmd/tailscale/cli/ssh.go",
+      "sha256": "8e7c8733f07ec5efaa91d1a25ea5efcdc8d5491ec32ed3389a668328aac294e2"
+    }
+  ],
+  "conclusion": "Source inspection identifies candidate transport observations, not proof that the installed launcher can bind a caller. Live designated second-workstation gate remains pending."
+}

@@ -1,0 +1,72 @@
+{
+  "objective": "Adopt D1.C vLLM, D1.D MIRIX, D1.B Restate and D1.A real Blaine runtime as non-root restart-safe user services; prepare but do not execute final D1.G reboot acceptance.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Current host and repository service topology and accepted ADR0019",
+      "source": "/home/leofuso/workspace/blaine",
+      "freshness": "2026-09-21 live observation",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository",
+    "edit task workspace",
+    "inspect local host",
+    "rootless Docker operation",
+    "bounded host administration when sudo -n succeeds",
+    "local git commits"
+  ],
+  "autonomy": {
+    "allowed": [
+      "isolated candidate validation",
+      "reversible user runtime staging",
+      "coherent cutover only after full candidate PASS",
+      "bounded sudo host actions when noninteractive authentication succeeds",
+      "local commits"
+    ],
+    "ask_before": [
+      "a later host reboot"
+    ],
+    "forbidden": [
+      "reboot",
+      "push or rewrite history",
+      "sudoers changes",
+      "weaken secret permissions",
+      "delete state or rollback models",
+      "backup execution",
+      "public inference exposure",
+      "weight offload"
+    ]
+  },
+  "cloud": {
+    "policy": "ask"
+  },
+  "completion": [
+    {
+      "criterion": "Each adoption subsection is supported by live acceptance or an explicit STOP with evidence",
+      "evidence": "experiments/d1-service-adoption/evidence/"
+    },
+    {
+      "criterion": "Reproducible desired state and precise final reboot gate are retained",
+      "evidence": "repository validation, runbooks and local commits"
+    }
+  ],
+  "operator_amendments": [
+    {
+      "date": "2026-09-21",
+      "source": "operator instruction in recovery session",
+      "constraint": "Prioritize balanced daily use of GPU Qwen and embeddings alongside other Blaine services. No machine benchmarking or maximum-context exploration; use bounded functional acceptance and RAM/CPU limits."
+    },
+    {
+      "date": "2026-09-21",
+      "source": "operator follow-up",
+      "constraint": "Hybrid CPU/GPU execution investigation is low priority and deferred until all remaining tasks are complete."
+    },
+    {
+      "date": "2026-09-21",
+      "source": "operator follow-up on concurrency and context",
+      "constraint": "One Qwen generation at a time. Preserve original 128k target where coexistence permits; the host compiler OOM is not evidence for reducing context to 32k."
+    }
+  ]
+}

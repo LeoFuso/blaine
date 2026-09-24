@@ -1,0 +1,117 @@
+{
+  "III_10_started": false,
+  "III_8R_status": "PASS",
+  "III_8_status": "FAIL",
+  "cognition_invocations": 58,
+  "decision_variance": [],
+  "embedding_invocations": 5,
+  "failure_classification": null,
+  "forbidden_emitted": 0,
+  "hard_gate_justified": false,
+  "independent_checks": 406,
+  "max_packet_bytes": 2012,
+  "mutation_calls": 2,
+  "mutation_false_equivalences": 2,
+  "primary_calls": 56,
+  "proposal_sha256": "54c7e368549820df132102a3682342eed01e9d193d5fdac7e87888ae1297b2f5",
+  "ranking_adjustments_after_outcomes": 0,
+  "recovered_partial_fixtures_unchanged": true,
+  "stale_emitted": 0,
+  "status": "PASS",
+  "structural_incremental_utility": "UNPROVEN: no structural-only behavioral ablation",
+  "task_submitted": false,
+  "totals": [
+    {
+      "duplicate_reduction": 4,
+      "groups": {
+        "DUPLICATE": {
+          "OFF": {
+            "correct": 0,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 0,
+            "reuse_existing": 4
+          },
+          "regressions": []
+        },
+        "LEGITIMATE_ADDITION": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        },
+        "NEAR_MATCH_MISMATCH": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        }
+      },
+      "repeat": 0,
+      "verified_reuse_improvement": 4
+    },
+    {
+      "duplicate_reduction": 4,
+      "groups": {
+        "DUPLICATE": {
+          "OFF": {
+            "correct": 0,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 0,
+            "reuse_existing": 4
+          },
+          "regressions": []
+        },
+        "LEGITIMATE_ADDITION": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        },
+        "NEAR_MATCH_MISMATCH": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        }
+      },
+      "repeat": 1,
+      "verified_reuse_improvement": 4
+    }
+  ]
+}

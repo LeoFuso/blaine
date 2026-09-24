@@ -1,0 +1,128 @@
+{
+  "D1": {
+    "decision": "REUSE_EXISTING",
+    "existing_target": "personal/lib/fold.py::RuneFold",
+    "group": "DUPLICATE",
+    "material_contract": {
+      "case_loss_allowed": true,
+      "lifecycle": "synchronous",
+      "transformation": "strip both edges, then Unicode casefold"
+    },
+    "required_candidate": "personal/lib/fold.py::RuneFold"
+  },
+  "D2": {
+    "decision": "REUSE_EXISTING",
+    "existing_target": "personal/lib/fence.py::Fence",
+    "group": "DUPLICATE",
+    "material_contract": {
+      "allow_iff": "status >= 500 and attempts < limit",
+      "responsibility": "decision only; execute no retry"
+    },
+    "required_candidate": "personal/lib/fence.py::Fence"
+  },
+  "D3": {
+    "decision": "REUSE_EXISTING",
+    "existing_target": "personal/lib/ledger.py::Ledger",
+    "group": "DUPLICATE",
+    "material_contract": {
+      "key": "SHA256(payload)",
+      "storage": "mutable process-local RAM; no persistence",
+      "value": "first acknowledgement"
+    },
+    "required_candidate": "personal/lib/ledger.py::Ledger"
+  },
+  "D4": {
+    "decision": "REUSE_EXISTING",
+    "existing_target": "personal/io/writer.py::SwapWriter",
+    "group": "DUPLICATE",
+    "material_contract": {
+      "mode": "synchronous atomic same-filesystem rename",
+      "ownership": "one path; overwrite previous bytes"
+    },
+    "required_candidate": "personal/io/writer.py::SwapWriter"
+  },
+  "L1": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "LEGITIMATE_ADDITION",
+    "material_contract": {
+      "policy": "retry eligibility alone is insufficient",
+      "responsibility": "execute remote transfers, persist progress, cancel and resume"
+    },
+    "required_candidate": "personal/lib/fence.py::Fence"
+  },
+  "L2": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "LEGITIMATE_ADDITION",
+    "material_contract": {
+      "key": "tenant identity",
+      "responsibility": "atomically decrement each tenant quota and reset at a deadline",
+      "storage": "persistent concurrent accounting"
+    },
+    "required_candidate": "personal/lib/ledger.py::Ledger"
+  },
+  "L3": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "LEGITIMATE_ADDITION",
+    "material_contract": {
+      "operations": "read historical versions; never replace a snapshot",
+      "ownership": "retain all versioned snapshots across many files"
+    },
+    "required_candidate": "personal/io/writer.py::SwapWriter"
+  },
+  "L4": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "LEGITIMATE_ADDITION",
+    "material_contract": {
+      "input_output": "two original labels and locale -> relative ordering",
+      "mutation": "do not transform labels",
+      "responsibility": "comparison, not canonicalization"
+    },
+    "required_candidate": "personal/lib/fold.py::RuneFold"
+  },
+  "N1": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "NEAR_MATCH_MISMATCH",
+    "material_contract": {
+      "case_loss_allowed": false,
+      "transformation": "strip both edges only; preserve every internal character and case",
+      "why": "Ab and ab identify different owners"
+    },
+    "required_candidate": "personal/lib/fold.py::RuneFold"
+  },
+  "N2": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "NEAR_MATCH_MISMATCH",
+    "material_contract": {
+      "allow_iff": "status == 429 and attempts < limit",
+      "must_reject": "all 5xx statuses; retries could duplicate a charge"
+    },
+    "required_candidate": "personal/lib/fence.py::Fence"
+  },
+  "N3": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "NEAR_MATCH_MISMATCH",
+    "material_contract": {
+      "key": "SHA256(payload)",
+      "storage": "persistent shared storage surviving restarts; RAM-only is invalid",
+      "value": "first acknowledgement"
+    },
+    "required_candidate": "personal/lib/ledger.py::Ledger"
+  },
+  "N4": {
+    "decision": "CREATE_NEW",
+    "existing_target": null,
+    "group": "NEAR_MATCH_MISMATCH",
+    "material_contract": {
+      "mode": "append a complete record; never overwrite existing content",
+      "ownership": "one file; retain all prior bytes"
+    },
+    "required_candidate": "personal/io/writer.py::SwapWriter"
+  }
+}

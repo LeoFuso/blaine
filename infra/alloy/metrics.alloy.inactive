@@ -1,0 +1,31 @@
+// Prepared data plane only. Fleet stays absent. No activation without readback.
+// Feed host/self scrape receivers here in addition to their existing local receiver.
+prometheus.remote_write "grafana_metrics" {
+  external_labels = {environment = "blaine-dev", host = "blaine"}
+  endpoint {
+    name = "grafana_metrics"
+    url = "https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push"
+    follow_redirects = false
+    remote_timeout = "10s"
+    basic_auth {
+      username = "3602220"
+      password = sys.env("GRAFANA_CLOUD_METRICS_API_KEY")
+    }
+    queue_config {
+      capacity = 2500
+      min_shards = 1
+      max_shards = 2
+      max_samples_per_send = 500
+      batch_send_deadline = "5s"
+      min_backoff = "1s"
+      max_backoff = "30s"
+      retry_on_http_429 = true
+      sample_age_limit = "1h"
+    }
+  }
+  wal {
+    truncate_frequency = "5m"
+    min_keepalive_time = "5m"
+    max_keepalive_time = "1h"
+  }
+}

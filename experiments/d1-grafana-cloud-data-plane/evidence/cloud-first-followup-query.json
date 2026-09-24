@@ -1,0 +1,64 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "matrix",
+    "result": [
+      {
+        "metric": {
+          "__name__": "blaine_d1_cloud_delivery_test",
+          "branch": "HEAD",
+          "environment": "blaine-dev",
+          "goarch": "amd64",
+          "goos": "linux",
+          "goversion": "go1.26.7",
+          "host": "blaine",
+          "instance": "blaine",
+          "job": "integrations/self",
+          "phase": "connected",
+          "revision": "becfd48",
+          "run_id": "cloud-f5934188a291423abe3c3bf1bf13aa96",
+          "tags": "gore2regex,netgo,embedalloyui,promtail_journal_enabled",
+          "version": "v1.19.2"
+        },
+        "values": [
+          [
+            1790034926.91,
+            "1"
+          ]
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "blaine_d1_cloud_delivery_test",
+          "branch": "HEAD",
+          "environment": "blaine-dev",
+          "goarch": "amd64",
+          "goos": "linux",
+          "goversion": "go1.26.7",
+          "host": "blaine",
+          "instance": "blaine",
+          "job": "integrations/self",
+          "phase": "restored",
+          "revision": "becfd48",
+          "run_id": "cloud-f5934188a291423abe3c3bf1bf13aa96",
+          "tags": "gore2regex,netgo,embedalloyui,promtail_journal_enabled",
+          "version": "v1.19.2"
+        },
+        "values": [
+          [
+            1790035106.911,
+            "1"
+          ],
+          [
+            1790035136.911,
+            "1"
+          ],
+          [
+            1790035166.911,
+            "1"
+          ]
+        ]
+      }
+    ]
+  }
+}

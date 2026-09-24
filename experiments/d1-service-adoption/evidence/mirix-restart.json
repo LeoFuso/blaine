@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "memory_ids": [
+    "sem_CWMT"
+  ],
+  "content_sha256": "7cc37282da2c910703d6cc53e37b1b03785b9756559032613afe82337c5bc352",
+  "observed_at": "2026-09-21T20:58:30.052570+00:00"
+}

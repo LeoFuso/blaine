@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"artifact.write","input":{"content":"GOOD","name":"answer"},"type":"INVOKE_CAPABILITY"},"task_id":"human-waiver","task_revision":0,"turn_id":"human-waiver/1"},"version":1}

@@ -10,6 +10,10 @@ from runtime.kernel.contracts import accept_task_request, encode, fields, identi
 from runtime.kernel.events import safe_prepare, safe_publish
 from runtime.task import summarize_objective
 
+# The Personal Agent binding speaks for the Task's user over its private session;
+# it has no operator or project-policy principal to establish.
+USER_ACTOR = {'kind': 'user', 'via': 'modify-constraints', 'binding': 'personal-agent'}
+
 
 def task_identity(request_id):
     return 'task-' + hashlib.sha256(identifier(request_id).encode()).hexdigest()
@@ -23,9 +27,12 @@ def small_request(objective):
         'completion': [{'criterion': 'Exact deterministic objective summary',
             'evidence': {'artifact': 'answer', 'sha256': hashlib.sha256(content.encode()).hexdigest()}}],
         'capabilities': ['text.stats'], 'autonomy': {'allowed': ['text.stats']}})
+    # Trusted envelope: the grant bounds effective authority to exactly what this
+    # intake intends, and authorizes no escalation binding.
     return message('TaskRequest', {'task_spec': spec, 'initial_action': {
         'type': 'INVOKE_CAPABILITY', 'capability': 'text.stats',
-        'input': {'text': objective}}})
+        'input': {'text': objective}},
+        'grant': {'capabilities': ['text.stats'], 'escalation_binding': None}})
 
 
 def decision_request(request_id, question):
@@ -38,42 +45,8 @@ def decision_request(request_id, question):
             'artifact': 'response', 'verifier': 'human_response', 'request': human}}],
         'capabilities': ['human.request'], 'autonomy': {'allowed': ['human.request']}})
     return message('TaskRequest', {'task_spec': spec, 'initial_action': {
-        'type': 'INVOKE_CAPABILITY', 'capability': 'human.request', 'input': {'request': human}}})
-
-
-def local_summary_request(objective, marker, limit_words):
-    """PoC Task shape that exercises the deployment's real local cognition.
-
-    The objective is the material to summarize plus a word limit and a marker
-    instruction; the local model must produce a summary that embeds the
-    objective (its real material) and the marker. Completion uses the bounded
-    local_model_summary verifier (objective embedded + marker present + bounded
-    word count), the existing artifact evidence path. Unlike
-    small_request/decision_request there is no initial_action: the kernel
-    invokes its configured cognition adapter (LocalModelCognition in the
-    canonical D2 deployment) to decide every turn. A bounded PoC fixture, not a
-    general open-ended contract.
-    """
-    text(objective, 1024)
-    identifier(marker)
-    if type(limit_words) is not int or limit_words < 1 or limit_words > 40:
-        raise ValueError('Expected a bounded summary word limit (1..40)')
-    # The user-visible requested bound and the verifier-enforced bound are the
-    # same number: the instruction states "at most {limit_words} words" and the
-    # local_model_summary verifier checks the answer against exactly that bound
-    # (the model must keep the marker inside the summary, which is why the
-    # instruction ends with it). No silent drift between request and contract.
-    instruction = (f'Summarize the following material in at most {limit_words} words: {objective} '
-                   f'End your summary with the exact marker: {marker}')
-    spec = message('TaskSpec', {'objective': instruction,
-        'completion': [{'criterion': 'Local-model summary of the material, marker present, bounded length',
-            'evidence': {'artifact': 'answer', 'verifier': 'local_model_summary',
-                         'objective': objective, 'marker': marker, 'max_words': limit_words}}],
-        'capabilities': ['artifact.write', 'artifact.read'],
-        'autonomy': {'allowed': ['artifact.write', 'artifact.read']}})
-    # A bare TaskSpec (no initial_action) so the kernel calls its cognition
-    # adapter for every turn, including the first.
-    return spec
+        'type': 'INVOKE_CAPABILITY', 'capability': 'human.request', 'input': {'request': human}},
+        'grant': {'capabilities': ['human.request'], 'escalation_binding': None}})
 
 
 class ControlRejected(ValueError):
@@ -112,13 +85,13 @@ class PersonalAgent:
         outcome = 'rejected'
         operation = 'invalid'
         try:
-            fields(request, {'operation'}, {'request_id', 'task_request', 'task_id', 'response', 'name'})
+            fields(request, {'operation'}, {'request_id', 'task_request', 'task_id', 'response', 'name', 'amendment'})
             operation = text(request['operation'], 32)
             if operation == 'create':
                 fields(request, {'operation', 'request_id', 'task_request'})
                 task_id = task_identity(request['request_id'])
                 raw = request['task_request']
-                spec, parent = accept_task_request(raw, task_id)
+                spec, parent, _grant = accept_task_request(raw, task_id)
                 if parent is not None:
                     raise ValueError('Child Tasks are submitted by their parent runtime')
                 for criterion in spec['completion']:
@@ -150,6 +123,13 @@ class PersonalAgent:
                 handler = {'respond': 'submit_human_response', 'workspace-result': 'submit_workspace_result',
                            'signal': 'submit_input'}[operation]
                 result = self.binding.call(task_id, handler, request['response'])
+            elif operation == 'amend':
+                # This binding's principal is the Task's user, so it can only ever
+                # establish user authority. The amendment content is forwarded as
+                # untrusted data; the kernel rejects any authority field inside it.
+                fields(request, {'operation', 'task_id', 'amendment'})
+                result = self.binding.call(task_id, 'amend_contract', message(
+                    'CompletionContractAmendmentSubmission', {'actor': USER_ACTOR, 'amendment': request['amendment']}))
             else:
                 raise ValueError('Unsupported Task control operation')
             outcome = 'accepted'
@@ -164,7 +144,7 @@ class PersonalAgent:
         finally:
             if self.publisher:
                 event = safe_prepare(task_id=task_id, run_id='control-' + uuid4().hex,
-                    step_id=operation if operation in {'create', 'inspect', 'result', 'cancel', 'artifact', 'respond', 'workspace-result', 'signal'} else 'invalid',
+                    step_id=operation if operation in {'create', 'inspect', 'result', 'cancel', 'artifact', 'respond', 'workspace-result', 'signal', 'amend'} else 'invalid',
                     event_type='personal_agent.control', outcome=outcome,
                     producer={'kind': 'deterministic_application', 'component': 'blaine.personal_agent'})
                 safe_publish(self.publisher, event)

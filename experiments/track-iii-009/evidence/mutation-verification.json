@@ -1,0 +1,2379 @@
+{
+  "III_10_started": false,
+  "III_8R_status": "PASS",
+  "III_8_status": "FAIL",
+  "candidate_metrics": [
+    {
+      "broad": true,
+      "bytes": 1992,
+      "excerpt": "class RuneFold:\n    \"\"\"Strip edges and casefold handles; lossy, synchronous.\"\"\"\n",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/fold.py::RuneFold",
+      "selected_mechanisms": "S",
+      "task": "D1"
+    },
+    {
+      "broad": true,
+      "bytes": 1992,
+      "excerpt": "class Fence:\n    \"\"\"Policy only: status >= 500 AND attempts < limit; no executio",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/fence.py::Fence",
+      "selected_mechanisms": "S",
+      "task": "D2"
+    },
+    {
+      "broad": true,
+      "bytes": 1990,
+      "excerpt": "class Ledger:\n    \"\"\"RAM-only: digest(payload) -> first ack; mutable, no disk.\"\"",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/ledger.py::Ledger",
+      "selected_mechanisms": "S",
+      "task": "D3"
+    },
+    {
+      "broad": true,
+      "bytes": 2012,
+      "excerpt": "class SwapWriter(CommitPort):\n    \"\"\"Sync: overwrite one file by atomic rename.\"",
+      "included": true,
+      "lexical_found": true,
+      "required_candidate": "personal/io/writer.py::SwapWriter",
+      "selected_mechanisms": "LSG",
+      "task": "D4"
+    },
+    {
+      "broad": true,
+      "bytes": 1992,
+      "excerpt": "class Fence:\n    \"\"\"Policy only: status >= 500 AND attempts < limit; no executio",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/fence.py::Fence",
+      "selected_mechanisms": "S",
+      "task": "L1"
+    },
+    {
+      "broad": true,
+      "bytes": 1990,
+      "excerpt": "class Ledger:\n    \"\"\"RAM-only: digest(payload) -> first ack; mutable, no disk.\"\"",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/ledger.py::Ledger",
+      "selected_mechanisms": "S",
+      "task": "L2"
+    },
+    {
+      "broad": true,
+      "bytes": 2012,
+      "excerpt": "class SwapWriter(CommitPort):\n    \"\"\"Sync: overwrite one file by atomic rename.\"",
+      "included": true,
+      "lexical_found": true,
+      "required_candidate": "personal/io/writer.py::SwapWriter",
+      "selected_mechanisms": "LSG",
+      "task": "L3"
+    },
+    {
+      "broad": true,
+      "bytes": 1992,
+      "excerpt": "class RuneFold:\n    \"\"\"Strip edges and casefold handles; lossy, synchronous.\"\"\"\n",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/fold.py::RuneFold",
+      "selected_mechanisms": "S",
+      "task": "L4"
+    },
+    {
+      "broad": true,
+      "bytes": 1992,
+      "excerpt": "class RuneFold:\n    \"\"\"Strip edges and casefold handles; lossy, synchronous.\"\"\"\n",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/fold.py::RuneFold",
+      "selected_mechanisms": "S",
+      "task": "N1"
+    },
+    {
+      "broad": true,
+      "bytes": 1992,
+      "excerpt": "class Fence:\n    \"\"\"Policy only: status >= 500 AND attempts < limit; no executio",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/fence.py::Fence",
+      "selected_mechanisms": "S",
+      "task": "N2"
+    },
+    {
+      "broad": true,
+      "bytes": 1990,
+      "excerpt": "class Ledger:\n    \"\"\"RAM-only: digest(payload) -> first ack; mutable, no disk.\"\"",
+      "included": true,
+      "lexical_found": false,
+      "required_candidate": "personal/lib/ledger.py::Ledger",
+      "selected_mechanisms": "S",
+      "task": "N3"
+    },
+    {
+      "broad": true,
+      "bytes": 2012,
+      "excerpt": "class SwapWriter(CommitPort):\n    \"\"\"Sync: overwrite one file by atomic rename.\"",
+      "included": true,
+      "lexical_found": true,
+      "required_candidate": "personal/io/writer.py::SwapWriter",
+      "selected_mechanisms": "LSG",
+      "task": "N4"
+    }
+  ],
+  "checks": [
+    {
+      "check": "fixture-freeze",
+      "pass": true
+    },
+    {
+      "check": "behavior-freeze",
+      "pass": true
+    },
+    {
+      "check": "unchanged-iii8r-policy",
+      "pass": true
+    },
+    {
+      "check": "12-frozen-proposals",
+      "pass": true
+    },
+    {
+      "check": "thresholds",
+      "pass": true
+    },
+    {
+      "check": "revision/A",
+      "pass": true
+    },
+    {
+      "check": "revision/B",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/D1",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/D1",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/D2",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/D2",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/D3",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/D3",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/D4",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/D4",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/L1",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/L1",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/L2",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/L2",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/L3",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/L3",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/L4",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/L4",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/N1",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/N1",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/N2",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/N2",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/N3",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/N3",
+      "pass": true
+    },
+    {
+      "check": "packet-budget/N4",
+      "pass": true
+    },
+    {
+      "check": "visible-revision/N4",
+      "pass": true
+    },
+    {
+      "check": "zero-stale",
+      "pass": true
+    },
+    {
+      "check": "zero-forbidden",
+      "pass": true
+    },
+    {
+      "check": "canonical-broad-nonlexical",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/D1",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/D1",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/D2",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/D2",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/D3",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/D3",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/D4",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/D4",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/L1",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/L1",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/L2",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/L2",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/L3",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/L3",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/L4",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/L4",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/N1",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/N1",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/N2",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/N2",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/N3",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/N3",
+      "pass": true
+    },
+    {
+      "check": "stale-derived-excluded/N4",
+      "pass": true
+    },
+    {
+      "check": "fallback-valid-contributions/N4",
+      "pass": true
+    },
+    {
+      "check": "attractive-stale-candidate-exercised",
+      "pass": true
+    },
+    {
+      "check": "relevant-protected-candidate",
+      "pass": true
+    },
+    {
+      "check": "complete-primary-pairs",
+      "pass": true
+    },
+    {
+      "check": "complete-mutation-pairs",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D1/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/D1/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D1/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/D1/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/D1/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D2/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/D2/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D2/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/D2/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/D2/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D3/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/D3/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D3/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/D3/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/D3/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D4/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/D4/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/D4/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/D4/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/D4/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L1/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/L1/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L1/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/L1/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/L1/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L2/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/L2/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L2/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/L2/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/L2/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L3/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/L3/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L3/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/L3/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/L3/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L4/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/L4/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/L4/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/L4/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/L4/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N1/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/N1/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N1/OFF/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N1/OFF/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N1/OFF/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N1/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/N1/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/N1/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N2/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/N2/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N2/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/N2/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/N2/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N3/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/N3/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N3/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/N3/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/N3/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N4/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/0/N4/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N4/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/0/N4/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/0/N4/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D1/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/D1/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/D1/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D1/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/D1/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D2/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/D2/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/D2/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D2/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/D2/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D3/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/D3/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/D3/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D3/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/D3/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D4/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/D4/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/D4/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D4/ON/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/D4/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/D4/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/D4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/D4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/D4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L1/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/L1/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/L1/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L1/ON/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L1/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/L1/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L2/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/L2/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/L2/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L2/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/L2/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L3/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/L3/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/L3/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L3/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/L3/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L4/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/L4/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/L4/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/L4/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/L4/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/L4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/L4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/L4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N1/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/N1/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/N1/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N1/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N1/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/N1/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N1/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N1/OFF/1",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N1/OFF/1",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N1/OFF/1",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N2/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/N2/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/N2/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N2/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N2/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/N2/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N2/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N3/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/N3/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/N3/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N3/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N3/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/N3/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N3/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N4/ON",
+      "pass": true
+    },
+    {
+      "check": "on-exact-advice/1/N4/ON",
+      "pass": true
+    },
+    {
+      "check": "model-advisory-budget/1/N4/ON",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N4/ON/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N4/OFF",
+      "pass": true
+    },
+    {
+      "check": "off-no-advice/1/N4/OFF",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N4/OFF/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/0/N1/FALSE_EQUIVALENCE",
+      "pass": true
+    },
+    {
+      "check": "isolated-mutation/0/N1/FALSE_EQUIVALENCE",
+      "pass": true
+    },
+    {
+      "check": "contract-oracle/0/N1/FALSE_EQUIVALENCE",
+      "pass": false
+    },
+    {
+      "check": "model-advisory-budget/0/N1/FALSE_EQUIVALENCE",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/0/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/0/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/0/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/0/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "valid-run/1/N1/FALSE_EQUIVALENCE",
+      "pass": true
+    },
+    {
+      "check": "isolated-mutation/1/N1/FALSE_EQUIVALENCE",
+      "pass": true
+    },
+    {
+      "check": "contract-oracle/1/N1/FALSE_EQUIVALENCE",
+      "pass": false
+    },
+    {
+      "check": "model-advisory-budget/1/N1/FALSE_EQUIVALENCE",
+      "pass": true
+    },
+    {
+      "check": "identical-current-evidence/1/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "model-received-advice/1/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "model-input-no-forbidden/1/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "local-model-config/1/N1/FALSE_EQUIVALENCE/0",
+      "pass": true
+    },
+    {
+      "check": "call-accounting",
+      "pass": true
+    },
+    {
+      "check": "absolute-correct/0/LEGITIMATE_ADDITION",
+      "pass": true
+    },
+    {
+      "check": "zero-regression/0/LEGITIMATE_ADDITION",
+      "pass": true
+    },
+    {
+      "check": "absolute-correct/0/NEAR_MATCH_MISMATCH",
+      "pass": true
+    },
+    {
+      "check": "zero-regression/0/NEAR_MATCH_MISMATCH",
+      "pass": true
+    },
+    {
+      "check": "duplicate-reduction/0",
+      "pass": true
+    },
+    {
+      "check": "absolute-correct/1/LEGITIMATE_ADDITION",
+      "pass": true
+    },
+    {
+      "check": "zero-regression/1/LEGITIMATE_ADDITION",
+      "pass": true
+    },
+    {
+      "check": "absolute-correct/1/NEAR_MATCH_MISMATCH",
+      "pass": true
+    },
+    {
+      "check": "zero-regression/1/NEAR_MATCH_MISMATCH",
+      "pass": true
+    },
+    {
+      "check": "duplicate-reduction/1",
+      "pass": true
+    },
+    {
+      "check": "actual-behavioral-mutation",
+      "pass": true
+    }
+  ],
+  "cognition_invocations": 58,
+  "decision_variance": [],
+  "decisions": [
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D1"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/fold.py::RuneFold"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D2"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/fence.py::Fence"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D3"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/ledger.py::Ledger"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D4"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/io/writer.py::SwapWriter"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 0,
+      "task": "D4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 0,
+      "task": "L4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N4"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/fold.py::RuneFold"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D1"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/fence.py::Fence"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D2"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/ledger.py::Ledger"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D3"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/io/writer.py::SwapWriter"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": false,
+      "group": "DUPLICATE",
+      "repeat": 1,
+      "task": "D4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "LEGITIMATE_ADDITION",
+      "repeat": 1,
+      "task": "L4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N1"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N2"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N3"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "ON",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N4"
+    },
+    {
+      "answer": {
+        "decision": "CREATE_NEW"
+      },
+      "condition": "OFF",
+      "correct": true,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N4"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/fold.py::RuneFold"
+      },
+      "condition": "FALSE_EQUIVALENCE",
+      "correct": false,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 0,
+      "task": "N1"
+    },
+    {
+      "answer": {
+        "decision": "REUSE_EXISTING",
+        "existing_target": "personal/lib/fold.py::RuneFold"
+      },
+      "condition": "FALSE_EQUIVALENCE",
+      "correct": false,
+      "group": "NEAR_MATCH_MISMATCH",
+      "repeat": 1,
+      "task": "N1"
+    }
+  ],
+  "failed": [
+    "contract-oracle/0/N1/FALSE_EQUIVALENCE",
+    "contract-oracle/1/N1/FALSE_EQUIVALENCE"
+  ],
+  "forbidden": [],
+  "max_packet_bytes": 2012,
+  "mutation_false_equivalences": 2,
+  "stale": [],
+  "status": "FAIL",
+  "structural_incremental_utility": "UNPROVEN: no structural-only behavioral ablation",
+  "totals": [
+    {
+      "duplicate_reduction": 4,
+      "groups": {
+        "DUPLICATE": {
+          "OFF": {
+            "correct": 0,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 0,
+            "reuse_existing": 4
+          },
+          "regressions": []
+        },
+        "LEGITIMATE_ADDITION": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        },
+        "NEAR_MATCH_MISMATCH": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        }
+      },
+      "repeat": 0,
+      "verified_reuse_improvement": 4
+    },
+    {
+      "duplicate_reduction": 4,
+      "groups": {
+        "DUPLICATE": {
+          "OFF": {
+            "correct": 0,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 0,
+            "reuse_existing": 4
+          },
+          "regressions": []
+        },
+        "LEGITIMATE_ADDITION": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        },
+        "NEAR_MATCH_MISMATCH": {
+          "OFF": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "ON": {
+            "correct": 4,
+            "create_new": 4,
+            "reuse_existing": 0
+          },
+          "regressions": []
+        }
+      },
+      "repeat": 1,
+      "verified_reuse_improvement": 4
+    }
+  ]
+}

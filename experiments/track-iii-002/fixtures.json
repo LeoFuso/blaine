@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "root",
+      "parent_id": null,
+      "kind": "root",
+      "inherit_parent": true
+    },
+    {
+      "id": "personal",
+      "parent_id": "root",
+      "kind": "personal",
+      "inherit_parent": true
+    },
+    {
+      "id": "project-a",
+      "parent_id": "personal",
+      "kind": "project",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-a1",
+      "parent_id": "project-a",
+      "kind": "task",
+      "inherit_parent": true
+    },
+    {
+      "id": "work-a1",
+      "parent_id": "task-a1",
+      "kind": "work",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-a2",
+      "parent_id": "project-a",
+      "kind": "task",
+      "inherit_parent": true
+    },
+    {
+      "id": "employer-x",
+      "parent_id": "root",
+      "kind": "employer",
+      "inherit_parent": true
+    },
+    {
+      "id": "project-x",
+      "parent_id": "employer-x",
+      "kind": "project",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-x1",
+      "parent_id": "project-x",
+      "kind": "task",
+      "inherit_parent": true
+    },
+    {
+      "id": "work-x1",
+      "parent_id": "task-x1",
+      "kind": "work",
+      "inherit_parent": true
+    },
+    {
+      "id": "task-x2",
+      "parent_id": "project-x",
+      "kind": "task",
+      "inherit_parent": true
+    }
+  ],
+  "entries": [
+    {
+      "id": "root-memory",
+      "context_id": "root",
+      "content": "Literal knowledge owned by root"
+    },
+    {
+      "id": "personal-memory",
+      "context_id": "personal",
+      "content": "Literal knowledge owned by personal"
+    },
+    {
+      "id": "project-a-memory",
+      "context_id": "project-a",
+      "content": "Literal knowledge owned by project-a"
+    },
+    {
+      "id": "task-a1-memory",
+      "context_id": "task-a1",
+      "content": "Literal knowledge owned by task-a1"
+    },
+    {
+      "id": "work-a1-memory",
+      "context_id": "work-a1",
+      "content": "Literal knowledge owned by work-a1"
+    },
+    {
+      "id": "task-a2-memory",
+      "context_id": "task-a2",
+      "content": "Literal knowledge owned by task-a2"
+    },
+    {
+      "id": "employer-x-memory",
+      "context_id": "employer-x",
+      "content": "Literal knowledge owned by employer-x"
+    },
+    {
+      "id": "project-x-memory",
+      "context_id": "project-x",
+      "content": "Literal knowledge owned by project-x"
+    },
+    {
+      "id": "task-x1-memory",
+      "context_id": "task-x1",
+      "content": "Literal knowledge owned by task-x1"
+    },
+    {
+      "id": "work-x1-memory",
+      "context_id": "work-x1",
+      "content": "Literal knowledge owned by work-x1"
+    },
+    {
+      "id": "task-x2-memory",
+      "context_id": "task-x2",
+      "content": "Literal knowledge owned by task-x2"
+    }
+  ],
+  "expected_visibility": {
+    "root": [
+      "root-memory"
+    ],
+    "personal": [
+      "personal-memory",
+      "root-memory"
+    ],
+    "project-a": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory"
+    ],
+    "task-a1": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory"
+    ],
+    "work-a1": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ],
+    "task-a2": [
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a2-memory"
+    ],
+    "employer-x": [
+      "employer-x-memory",
+      "root-memory"
+    ],
+    "project-x": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory"
+    ],
+    "task-x1": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory"
+    ],
+    "work-x1": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x1-memory",
+      "work-x1-memory"
+    ],
+    "task-x2": [
+      "employer-x-memory",
+      "project-x-memory",
+      "root-memory",
+      "task-x2-memory"
+    ]
+  },
+  "write": {
+    "binding": "task-a1",
+    "request": {
+      "op": "write",
+      "entry_id": "new-observation",
+      "content": "A scoped observation; no success or authority claim."
+    },
+    "expected_owner": "task-a1",
+    "expected_observers": [
+      "task-a1",
+      "work-a1"
+    ]
+  },
+  "forged_requests": [
+    {
+      "op": "read",
+      "scopes": [
+        "task-x1"
+      ]
+    },
+    {
+      "op": "read",
+      "scopes": [
+        "project-x"
+      ]
+    },
+    {
+      "op": "read",
+      "scopes": [
+        "work-a1"
+      ]
+    },
+    {
+      "op": "read",
+      "scopes": [
+        "task-a2"
+      ]
+    },
+    {
+      "op": "read",
+      "context_id": "task-x1"
+    },
+    {
+      "op": "read",
+      "ancestors": [
+        "root",
+        "project-x"
+      ]
+    },
+    {
+      "op": "read",
+      "parent_id": "project-x"
+    }
+  ],
+  "forged_writes": [
+    {
+      "op": "write",
+      "entry_id": "forged-root",
+      "content": "must not be stored",
+      "context_id": "root"
+    },
+    {
+      "op": "write",
+      "entry_id": "forged-personal",
+      "content": "must not be stored",
+      "context_id": "personal"
+    },
+    {
+      "op": "write",
+      "entry_id": "forged-project-a",
+      "content": "must not be stored",
+      "context_id": "project-a"
+    },
+    {
+      "op": "write",
+      "entry_id": "forged-task-a2",
+      "content": "must not be stored",
+      "context_id": "task-a2"
+    },
+    {
+      "op": "write",
+      "entry_id": "forged-task-x1",
+      "content": "must not be stored",
+      "context_id": "task-x1"
+    }
+  ],
+  "boundary": {
+    "node": "project-a",
+    "binding": "work-a1",
+    "expected_ids": [
+      "project-a-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ]
+  },
+  "extension": {
+    "node": {
+      "id": "extra",
+      "parent_id": "work-a1",
+      "kind": "arbitrary-specialization",
+      "inherit_parent": true
+    },
+    "entry": {
+      "id": "extra-memory",
+      "context_id": "extra",
+      "content": "Additional specialization"
+    },
+    "expected_ids": [
+      "extra-memory",
+      "personal-memory",
+      "project-a-memory",
+      "root-memory",
+      "task-a1-memory",
+      "work-a1-memory"
+    ]
+  },
+  "malformed": [
+    {
+      "id": "missing-parent",
+      "change": {
+        "node": "task-a1",
+        "set": {
+          "parent_id": "absent"
+        }
+      },
+      "expected_reason": "missing_parent"
+    },
+    {
+      "id": "self-parent",
+      "change": {
+        "node": "task-a1",
+        "set": {
+          "parent_id": "task-a1"
+        }
+      },
+      "expected_reason": "self_parent"
+    },
+    {
+      "id": "cycle",
+      "change": {
+        "node": "task-a1",
+        "set": {
+          "parent_id": "work-a1"
+        }
+      },
+      "expected_reason": "cycle"
+    },
+    {
+      "id": "cycle-behind-boundary",
+      "change": {
+        "node": "task-a1",
+        "set": {
+          "parent_id": "work-a1",
+          "inherit_parent": false
+        }
+      },
+      "expected_reason": "cycle"
+    },
+    {
+      "id": "duplicate-id",
+      "duplicate": "task-a1",
+      "expected_reason": "duplicate_context_id"
+    },
+    {
+      "id": "second-root",
+      "change": {
+        "node": "task-a1",
+        "set": {
+          "parent_id": null
+        }
+      },
+      "expected_reason": "root_count"
+    },
+    {
+      "id": "no-root",
+      "change": {
+        "node": "root",
+        "set": {
+          "parent_id": "personal"
+        }
+      },
+      "expected_reason": "cycle"
+    },
+    {
+      "id": "multiple-parents",
+      "change": {
+        "node": "task-a1",
+        "set": {
+          "parent_id": [
+            "project-a",
+            "project-x"
+          ]
+        }
+      },
+      "expected_reason": "invalid_node"
+    },
+    {
+      "id": "missing-policy",
+      "change": {
+        "node": "task-a1",
+        "remove": "inherit_parent"
+      },
+      "expected_reason": "invalid_node"
+    },
+    {
+      "id": "nonboolean-policy",
+      "change": {
+        "node": "task-a1",
+        "set": {
+          "inherit_parent": "true"
+        }
+      },
+      "expected_reason": "invalid_node"
+    },
+    {
+      "id": "empty-tree",
+      "empty": true,
+      "expected_reason": "root_count"
+    }
+  ]
+}

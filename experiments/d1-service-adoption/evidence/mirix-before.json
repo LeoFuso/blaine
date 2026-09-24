@@ -1,0 +1,155 @@
+{
+  "observed_at": "2026-09-21T20:41:59.641343+00:00",
+  "config_path": "/home/leofuso/.mirix/config",
+  "config_mode": "0o600",
+  "database": {
+    "host": "127.0.0.1",
+    "port": 5432,
+    "database": "/mirix",
+    "user": "mirix"
+  },
+  "mirix_revision": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "python": "3.13.15",
+  "agents": [
+    {
+      "id": "agent-12b9afe9-442d-47cb-9473-7c090f47dcd2",
+      "name": "meta_memory_agent_resource_memory_agent",
+      "llm_config": {
+        "model": "Qwen/Qwen3.5-9B",
+        "model_endpoint_type": "openai",
+        "model_endpoint": "http://127.0.0.1:8000/v1",
+        "context_window": 32768
+      },
+      "embedding_config": {
+        "embedding_endpoint_type": "hugging-face",
+        "embedding_endpoint": "http://127.0.0.1:8001/v1",
+        "embedding_model": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "embedding_chunk_size": 300
+      }
+    },
+    {
+      "id": "agent-1613807e-fcef-4796-8cfe-7a72a83c7dad",
+      "name": "meta_memory_agent_procedural_memory_agent",
+      "llm_config": {
+        "model": "Qwen/Qwen3.5-9B",
+        "model_endpoint_type": "openai",
+        "model_endpoint": "http://127.0.0.1:8000/v1",
+        "context_window": 32768
+      },
+      "embedding_config": {
+        "embedding_endpoint_type": "hugging-face",
+        "embedding_endpoint": "http://127.0.0.1:8001/v1",
+        "embedding_model": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "embedding_chunk_size": 300
+      }
+    },
+    {
+      "id": "agent-6a9e85e1-6ebe-41ee-bc38-783a56ffb276",
+      "name": "meta_memory_agent_episodic_memory_agent",
+      "llm_config": {
+        "model": "Qwen/Qwen3.5-9B",
+        "model_endpoint_type": "openai",
+        "model_endpoint": "http://127.0.0.1:8000/v1",
+        "context_window": 32768
+      },
+      "embedding_config": {
+        "embedding_endpoint_type": "hugging-face",
+        "embedding_endpoint": "http://127.0.0.1:8001/v1",
+        "embedding_model": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "embedding_chunk_size": 300
+      }
+    },
+    {
+      "id": "agent-9286ebcf-b920-4445-b14f-84ebfcfa8d3b",
+      "name": "meta_memory_agent_knowledge_vault_memory_agent",
+      "llm_config": {
+        "model": "Qwen/Qwen3.5-9B",
+        "model_endpoint_type": "openai",
+        "model_endpoint": "http://127.0.0.1:8000/v1",
+        "context_window": 32768
+      },
+      "embedding_config": {
+        "embedding_endpoint_type": "hugging-face",
+        "embedding_endpoint": "http://127.0.0.1:8001/v1",
+        "embedding_model": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "embedding_chunk_size": 300
+      }
+    },
+    {
+      "id": "agent-afc4ab06-c8f8-4035-9d03-a0376b0dc521",
+      "name": "meta_memory_agent",
+      "llm_config": {
+        "model": "Qwen/Qwen3.5-9B",
+        "model_endpoint_type": "openai",
+        "model_endpoint": "http://127.0.0.1:8000/v1",
+        "context_window": 32768
+      },
+      "embedding_config": {
+        "embedding_endpoint_type": "hugging-face",
+        "embedding_endpoint": "http://127.0.0.1:8001/v1",
+        "embedding_model": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "embedding_chunk_size": 300
+      }
+    },
+    {
+      "id": "agent-c14989c5-b5e8-4424-a3d8-2d0cf8046e3d",
+      "name": "meta_memory_agent_core_memory_agent",
+      "llm_config": {
+        "model": "Qwen/Qwen3.5-9B",
+        "model_endpoint_type": "openai",
+        "model_endpoint": "http://127.0.0.1:8000/v1",
+        "context_window": 32768
+      },
+      "embedding_config": {
+        "embedding_endpoint_type": "hugging-face",
+        "embedding_endpoint": "http://127.0.0.1:8001/v1",
+        "embedding_model": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "embedding_chunk_size": 300
+      }
+    },
+    {
+      "id": "agent-d2a1b6b2-48d7-4ace-8d91-0150c9e48321",
+      "name": "meta_memory_agent_semantic_memory_agent",
+      "llm_config": {
+        "model": "Qwen/Qwen3.5-9B",
+        "model_endpoint_type": "openai",
+        "model_endpoint": "http://127.0.0.1:8000/v1",
+        "context_window": 32768
+      },
+      "embedding_config": {
+        "embedding_endpoint_type": "hugging-face",
+        "embedding_endpoint": "http://127.0.0.1:8001/v1",
+        "embedding_model": "BAAI/bge-m3",
+        "embedding_dim": 1024,
+        "embedding_chunk_size": 300
+      }
+    }
+  ],
+  "semantic_memories": [
+    {
+      "id": "sem_DTLG",
+      "client_id": "client-df3da0d9",
+      "user_id": "probe-leofuso",
+      "content_sha256": "5bf476645851761577d09a8ed8fb02e2e7490218bd6546a57474a68da88314c3"
+    },
+    {
+      "id": "sem_MFYP",
+      "client_id": "client-df3da0d9",
+      "user_id": "probe-leofuso",
+      "content_sha256": "1bc56944bf0daf06e7a23cb81fa2758c610cbc626959b0d0c9628ee5019802db"
+    },
+    {
+      "id": "sem_WSAB",
+      "client_id": "client-df3da0d9",
+      "user_id": "probe-leofuso-vector-memory-v2",
+      "content_sha256": "b9e54862079d17ac3acd03260ee0927994b31afcf6452d00d431df3c205a10c1"
+    }
+  ],
+  "postgresql_version": "PostgreSQL 18.6 (Ubuntu 18.6-1.pgdg26.04+2) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0, 64-bit"
+}

@@ -1,0 +1,162 @@
+{
+  "status": "PASS",
+  "observed_at": "2026-09-23T20:33:18.623479+00:00",
+  "evidence": "Live Hub LocalAPI effective PacketFilter after accepted policy update; only selected node rules retained",
+  "app_addresses": [
+    "100.73.122.62",
+    "fd7a:115c:a1e0::7928:7a3f",
+    "100.100.250.88",
+    "fd7a:115c:a1e0::7528:fa59"
+  ],
+  "human_addresses": [
+    "100.96.239.72",
+    "100.122.70.70"
+  ],
+  "effective_rules": {
+    "100.73.122.62": [
+      {
+        "destinations": [
+          {
+            "Net": "100.94.139.5/32",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          },
+          {
+            "Net": "fd7a:115c:a1e0::b701:8bcf/128",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          }
+        ],
+        "ip_protocols": [
+          6
+        ]
+      }
+    ],
+    "fd7a:115c:a1e0::7928:7a3f": [
+      {
+        "destinations": [
+          {
+            "Net": "100.94.139.5/32",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          },
+          {
+            "Net": "fd7a:115c:a1e0::b701:8bcf/128",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          }
+        ],
+        "ip_protocols": [
+          6
+        ]
+      }
+    ],
+    "100.100.250.88": [
+      {
+        "destinations": [
+          {
+            "Net": "100.94.139.5/32",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          },
+          {
+            "Net": "fd7a:115c:a1e0::b701:8bcf/128",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          }
+        ],
+        "ip_protocols": [
+          6
+        ]
+      }
+    ],
+    "fd7a:115c:a1e0::7528:fa59": [
+      {
+        "destinations": [
+          {
+            "Net": "100.94.139.5/32",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          },
+          {
+            "Net": "fd7a:115c:a1e0::b701:8bcf/128",
+            "Ports": {
+              "First": 7443,
+              "Last": 7443
+            }
+          }
+        ],
+        "ip_protocols": [
+          6
+        ]
+      }
+    ],
+    "100.96.239.72": [
+      {
+        "destinations": [
+          {
+            "Net": "0.0.0.0/0",
+            "Ports": {
+              "First": 0,
+              "Last": 65535
+            }
+          },
+          {
+            "Net": "::/0",
+            "Ports": {
+              "First": 0,
+              "Last": 65535
+            }
+          }
+        ],
+        "ip_protocols": [
+          6,
+          17,
+          1,
+          58
+        ]
+      }
+    ],
+    "100.122.70.70": [
+      {
+        "destinations": [
+          {
+            "Net": "0.0.0.0/0",
+            "Ports": {
+              "First": 0,
+              "Last": 65535
+            }
+          },
+          {
+            "Net": "::/0",
+            "Ports": {
+              "First": 0,
+              "Last": 65535
+            }
+          }
+        ],
+        "ip_protocols": [
+          6,
+          17,
+          1,
+          58
+        ]
+      }
+    ]
+  },
+  "limitations": "Negative authorization proved by vendor policy assertions and compiled live packet filter, not a workstation socket probe. Exact installation-address policy requires reviewed update on future re-enrollment; E0.D owns that lifecycle."
+}

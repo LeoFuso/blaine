@@ -1,0 +1,9 @@
+{
+  "synthetic_trace_id": "0cb6216ba813964e85acaf39a0534f74",
+  "persisted_after_final_restore": {
+    "trace": true,
+    "metric": true,
+    "log": true
+  },
+  "local_file_age_seconds": 3.821105718612671
+}

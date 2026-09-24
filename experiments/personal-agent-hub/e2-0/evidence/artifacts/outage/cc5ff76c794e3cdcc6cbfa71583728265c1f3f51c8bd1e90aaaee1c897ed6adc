@@ -1,0 +1,2 @@
+max.retries=5
+timeout.seconds=30

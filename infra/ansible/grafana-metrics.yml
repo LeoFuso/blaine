@@ -1,0 +1,48 @@
+---
+- name: Stage BWS materialization and inactive metrics data-plane configuration
+  hosts: blaine
+  gather_facts: false
+  vars:
+    blaine_prefix: ""
+  tasks:
+    - name: Require a bounded staging destination
+      ansible.builtin.assert:
+        that:
+          - blaine_prefix == '' or blaine_prefix is match('^/tmp/blaine-d1-metrics-[A-Za-z0-9_-]+$')
+    - name: Require real-host root ownership or isolated scratch execution
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - |
+            import os, sys
+            from pathlib import Path
+            prefix = sys.argv[1]
+            assert prefix or os.geteuid() == 0, 'Real staging requires bounded maintenance privilege'
+            for relative in ['/usr/local/lib/blaine', '/etc/blaine/infra']:
+                p = Path(prefix + relative)
+                assert p.resolve() == p, 'Refuse redirected staging paths'
+          - '{{ blaine_prefix }}'
+      changed_when: false
+      check_mode: false
+    - name: Create only staging directories
+      ansible.builtin.file:
+        path: '{{ blaine_prefix }}{{ item.path }}'
+        state: directory
+        mode: '{{ item.mode }}'
+      loop:
+        - {path: /usr/local/lib/blaine, mode: '0755'}
+        - {path: /etc/blaine/infra, mode: '0700'}
+    - name: Stage the existing materializer with its BWS extension
+      ansible.builtin.copy:
+        src: ../grafana-cloud.py
+        dest: '{{ blaine_prefix }}/usr/local/lib/blaine/grafana-cloud.py'
+        mode: '0644'
+    - name: Stage native metrics syntax without activation
+      ansible.builtin.copy:
+        src: ../alloy/metrics.alloy.inactive
+        dest: '{{ blaine_prefix }}/etc/blaine/infra/metrics.alloy.inactive'
+        mode: '0640'
+    - name: Record the activation boundary
+      ansible.builtin.debug:
+        msg: No secret retrieval, active config, EnvironmentFile, restart, enable or remote pipeline mutation. Metrics activation pending credentials and Cloud readback; Fleet remains STOPPED.

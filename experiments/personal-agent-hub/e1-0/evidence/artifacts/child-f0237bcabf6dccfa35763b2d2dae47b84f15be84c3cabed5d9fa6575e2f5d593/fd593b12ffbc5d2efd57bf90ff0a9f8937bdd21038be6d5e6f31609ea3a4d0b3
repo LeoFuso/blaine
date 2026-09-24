@@ -1,0 +1,1 @@
+{"kind":"EffectiveAuthority","payload":{"capabilities":["human.request"],"classification":"kernel@1","externally_bounded":false,"operation_classes":["task.human.request"],"revision":0,"task_id":"child-f0237bcabf6dccfa35763b2d2dae47b84f15be84c3cabed5d9fa6575e2f5d593","workspaces":[]},"version":1}

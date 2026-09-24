@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "alloy_version": "alloy, version v1.19.2 (branch: HEAD, revision: becfd48)\n  build user:       root@6e82bcbc397d\n  build date:       2026-08-26T20:17:42Z\n  go version:       go1.26.7\n  platform:         linux/amd64\n  tags:             gore2regex,netgo,embedalloyui,promtail_journal_enabled\n",
+  "native_fleet_validation_with_materialized_credentials": "PASS (validation only)",
+  "secret_source": "BWS blaine-dev through GNOME Keyring; bootstrap not persisted",
+  "runtime_secret_metadata": {
+    "path": "/etc/blaine/secrets/grafana-fleet.env",
+    "owner": "root:root",
+    "mode": "0600",
+    "loaded_by_alloy": false
+  },
+  "active_config_exactly_preserved": true,
+  "active_config_sha256": "3ba1564eb34b1f5139484c8ee944134f06a363ee5fcbaf137651ed5a6825f967",
+  "service": "ActiveState=active\nUnitFileState=enabled\nMainPID=396702\nNRestarts=0\nUser=alloy\n",
+  "local_synthetic_trace_id": "112af6a9d21d6ff57eba530c1a160de1",
+  "three_signals_persisted_locally": true,
+  "cpu_and_ram_metrics_persisted": true,
+  "rotation_included_in_readback": true,
+  "journal_collection_counters": [
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_embedding\",component_path=\"/\"} 5",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_generation\",component_path=\"/\"} 2",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_mirix\",component_path=\"/\"} 2",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_restate\",component_path=\"/\"} 0",
+    "loki_source_journal_target_lines_total{component_id=\"loki.source.journal.blaine_runtime\",component_path=\"/\"} 0"
+  ],
+  "journal_counter_note": "Zero since restart is valid when the service emitted no new logs; all five sources remain configured.",
+  "remote_delivery": {
+    "metrics": "INACTIVE_UNVALIDATED",
+    "logs": "INACTIVE_UNVALIDATED",
+    "traces": "INACTIVE_UNVALIDATED"
+  },
+  "fleet_runtime": "NOT_ACTIVATED",
+  "restored_after_bounded_failure": true
+}

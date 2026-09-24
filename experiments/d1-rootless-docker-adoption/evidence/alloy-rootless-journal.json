@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "observed_at": "2026-09-21T17:20:16.880530+00:00",
+  "journal_lines_collected": {
+    "rootless_docker": 680.0,
+    "rootless_infra": 97.0
+  },
+  "journal_records_persisted": {
+    "rootless_docker": 680,
+    "rootless_infra": 97
+  },
+  "alloy_http_health": 200,
+  "cloud_export": "unchanged/inactive",
+  "label_behavior": "Alloy sets job to the static component name; unit is explicitly allowlisted; no raw journal bodies emitted in evidence"
+}

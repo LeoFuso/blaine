@@ -1,0 +1,136 @@
+{
+  "milestone": "E0.D",
+  "status": "PASS",
+  "accepted_at": "2026-09-24T02:49:10Z",
+  "baseline": "23271871da4a27b3f86655602393756f8665dc7d",
+  "implementation_commit": "ebaa77824a520199b6c67363093c5728116046e2",
+  "released_client_commit": "1c76a23a1640a5d69a0862ea8f39a32cd12a5ee1",
+  "release": "v0.1.0-alpha.4",
+  "persistence": {
+    "instance": "existing PostgreSQL",
+    "database": "blaine",
+    "schema": "blaine_workstations",
+    "version": 1,
+    "identity_key": [
+      "tailnet",
+      "transport_node_id"
+    ],
+    "presence": "ONLINE while any 45-second connection lease is valid; OFFLINE otherwise",
+    "heartbeat_seconds": 15
+  },
+  "primary": {
+    "hostname": "Leonardos-MacBook-Pro.local",
+    "platform": "darwin/arm64",
+    "node_id": "nEEbpyYWN921CNTRL",
+    "workstation_id": "ws-4f6ac6af05280a601acfd0d5eb3bce59",
+    "sequential_live_acp_connections": 4,
+    "alpha3_to_alpha4_same_identity": true
+  },
+  "alternate": {
+    "hostname": "ST00251",
+    "environment": "Ubuntu WSL2 linux/amd64",
+    "node_id": "nPvKcFBuW821CNTRL",
+    "workstation_id": "ws-83213e398cf99b29d28cf8f3cc966d28",
+    "same_principal_as_primary": true,
+    "new_identity_created_without_manual_approval": true,
+    "scope": "Terminal connect only; no Windows IntelliJ claim"
+  },
+  "criteria": [
+    {
+      "criterion": "Policy-authorized authenticated peer automatically registers",
+      "result": "PASS",
+      "evidence": [
+        "live/mac-alpha3-first-open.json",
+        "live/wsl-alpha4-connected.json"
+      ]
+    },
+    {
+      "criterion": "Hub assigns stable workstation_id",
+      "result": "PASS",
+      "evidence": [
+        "live/mac-alpha3-reopened.json",
+        "live/mac-alpha4-open.json"
+      ]
+    },
+    {
+      "criterion": "Same transport reconnects as same workstation",
+      "result": "PASS",
+      "evidence": [
+        "live/mac-alpha3-reopened.json",
+        "live/mac-after-edge-restart.json"
+      ]
+    },
+    {
+      "criterion": "ACP sessions do not create devices",
+      "result": "PASS",
+      "evidence": [
+        "live/mac-alpha4-open.json",
+        "ci-registry-tests.txt"
+      ]
+    },
+    {
+      "criterion": "Disconnect changes presence, not durable identity or Tasks",
+      "result": "PASS",
+      "evidence": [
+        "live/mac-alpha3-closed.json",
+        "live/mac-alpha4-offline.json",
+        "task-independence.json"
+      ]
+    },
+    {
+      "criterion": "Edge restart preserves inventory",
+      "result": "PASS",
+      "evidence": [
+        "live/edge-restarted.json",
+        "live/mac-after-edge-restart.json"
+      ]
+    },
+    {
+      "criterion": "Distinct admitted identity gets distinct workstation",
+      "result": "PASS",
+      "evidence": [
+        "live/wsl-alpha4-connected.json",
+        "ci-registry-tests.txt"
+      ],
+      "scope": "Two real designated peers; identical metadata/key spoofing covered by deterministic tests"
+    },
+    {
+      "criterion": "Registration grants no workspace/file/terminal authority",
+      "result": "PASS",
+      "evidence": [
+        "ci-race.txt",
+        "validation.json"
+      ],
+      "scope": "Existing ACP guard and resource-link behavior preserved; no capability semantics added"
+    },
+    {
+      "criterion": "Operator can inspect inventory",
+      "result": "PASS",
+      "evidence": [
+        "live/mac-inspect.json",
+        "live/storage-access.json",
+        "ci-registry-tests.txt"
+      ]
+    },
+    {
+      "criterion": "Automated and live evidence retained",
+      "result": "PASS",
+      "evidence": [
+        "validation.json",
+        "ci-investigation.json",
+        "alpha4-delivery.json"
+      ]
+    }
+  ],
+  "limitations": [
+    "No actual workstation or whole-host reboot performed; process/IDE restart, binary upgrade and edge-service restart were measured.",
+    "Abrupt loss presence is bounded by the 45-second lease, not instantaneous.",
+    "Single writer edge and bounded 1000-record listing; this is not fleet management.",
+    "Store-close/disconnect ordering produced a shutdown REGISTRY_UNAVAILABLE diagnostic; inventory/presence recovery passed and evidence is retained.",
+    "Initial CI process-cleanup observation failed once, did not reproduce in 30 targeted runs, and subsequent full source/release CI passed; cause not established.",
+    "Full Windows IntelliJ/WSL UI acceptance remains E0.F; new Mac/WSL identity registration did not test Tailscale revocation internals."
+  ],
+  "next_canonical_slice": "E0.E \u2014 IntelliJ configuration acceptance",
+  "sequencing": "E0.E then E0.F; neither automatically started; no E1/E2 capabilities implemented",
+  "e0c_status": "PASS, unchanged"
+}

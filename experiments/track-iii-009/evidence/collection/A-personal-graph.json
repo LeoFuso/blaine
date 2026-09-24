@@ -1,0 +1,1041 @@
+{
+  "edges": [
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_app_entry",
+      "source_file": "personal/app/entry.py",
+      "source_location": "L1",
+      "target": "personal_app_entry_show_label",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_app_entry_rationale_2",
+      "source_file": "personal/app/entry.py",
+      "source_location": "L2",
+      "target": "personal_app_entry_show_label",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_helpers",
+      "source_file": "personal/helpers.py",
+      "source_location": "L1",
+      "target": "personal_helpers_edge_trim",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_helpers_rationale_2",
+      "source_file": "personal/helpers.py",
+      "source_location": "L2",
+      "target": "personal_helpers_edge_trim",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "context": "import",
+      "relation": "imports_from",
+      "source": "personal_io_client",
+      "source_file": "personal/io/client.py",
+      "source_location": "L1",
+      "target": "personal_io_writer",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_io_client",
+      "source_file": "personal/io/client.py",
+      "source_location": "L3",
+      "target": "personal_io_client_deliver",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_io_client_rationale_4",
+      "source_file": "personal/io/client.py",
+      "source_location": "L4",
+      "target": "personal_io_client_deliver",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "context": "import",
+      "relation": "imports",
+      "source": "personal_io_writer",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L1",
+      "target": "os",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "context": "import",
+      "relation": "imports_from",
+      "source": "personal_io_writer",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L2",
+      "target": "personal_ports",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_io_writer",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L4",
+      "target": "personal_io_writer_swapwriter",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "inherits",
+      "source": "personal_io_writer_swapwriter",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L4",
+      "target": "personal_ports_commitport",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "personal_io_writer_swapwriter",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L6",
+      "target": "personal_io_writer_swapwriter_publish",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_io_writer_rationale_5",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L5",
+      "target": "personal_io_writer_swapwriter",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_lib_fence",
+      "source_file": "personal/lib/fence.py",
+      "source_location": "L1",
+      "target": "personal_lib_fence_fence",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "personal_lib_fence_fence",
+      "source_file": "personal/lib/fence.py",
+      "source_location": "L3",
+      "target": "personal_lib_fence_fence_permits",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_lib_fence_rationale_2",
+      "source_file": "personal/lib/fence.py",
+      "source_location": "L2",
+      "target": "personal_lib_fence_fence",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "context": "import",
+      "relation": "imports",
+      "source": "personal_lib_ledger",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L1",
+      "target": "hashlib",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_lib_ledger",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L3",
+      "target": "personal_lib_ledger_ledger",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "personal_lib_ledger_ledger",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L5",
+      "target": "personal_lib_ledger_ledger_init",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "personal_lib_ledger_ledger",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L7",
+      "target": "personal_lib_ledger_ledger_remember",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_lib_ledger_rationale_4",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L4",
+      "target": "personal_lib_ledger_ledger",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_old_fold",
+      "source_file": "personal/old/fold.py",
+      "source_location": "L1",
+      "target": "personal_old_fold_archivedfold",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "personal_old_fold_archivedfold",
+      "source_file": "personal/old/fold.py",
+      "source_location": "L3",
+      "target": "personal_old_fold_archivedfold_apply",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_old_fold_rationale_2",
+      "source_file": "personal/old/fold.py",
+      "source_location": "L2",
+      "target": "personal_old_fold_archivedfold",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_ports",
+      "source_file": "personal/ports.py",
+      "source_location": "L1",
+      "target": "personal_ports_commitport",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "personal_ports_commitport",
+      "source_file": "personal/ports.py",
+      "source_location": "L3",
+      "target": "personal_ports_commitport_publish",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_ports_rationale_2",
+      "source_file": "personal/ports.py",
+      "source_location": "L2",
+      "target": "personal_ports_commitport",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_route",
+      "source_file": "personal/route.py",
+      "source_location": "L1",
+      "target": "personal_route_routepick",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "personal_route_routepick",
+      "source_file": "personal/route.py",
+      "source_location": "L3",
+      "target": "personal_route_routepick_choose",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_route_rationale_2",
+      "source_file": "personal/route.py",
+      "source_location": "L2",
+      "target": "personal_route_routepick",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_0",
+      "source_file": "personal/telemetry/note_0.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_0_note_0",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_0_rationale_2",
+      "source_file": "personal/telemetry/note_0.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_0_note_0",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_1",
+      "source_file": "personal/telemetry/note_1.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_1_note_1",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_1_rationale_2",
+      "source_file": "personal/telemetry/note_1.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_1_note_1",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_2",
+      "source_file": "personal/telemetry/note_2.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_2_note_2",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_2_rationale_2",
+      "source_file": "personal/telemetry/note_2.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_2_note_2",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_3",
+      "source_file": "personal/telemetry/note_3.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_3_note_3",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_3_rationale_2",
+      "source_file": "personal/telemetry/note_3.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_3_note_3",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_4",
+      "source_file": "personal/telemetry/note_4.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_4_note_4",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_4_rationale_2",
+      "source_file": "personal/telemetry/note_4.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_4_note_4",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_5",
+      "source_file": "personal/telemetry/note_5.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_5_note_5",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_5_rationale_2",
+      "source_file": "personal/telemetry/note_5.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_5_note_5",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_6",
+      "source_file": "personal/telemetry/note_6.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_6_note_6",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_6_rationale_2",
+      "source_file": "personal/telemetry/note_6.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_6_note_6",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "personal_telemetry_note_7",
+      "source_file": "personal/telemetry/note_7.py",
+      "source_location": "L1",
+      "target": "personal_telemetry_note_7_note_7",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "personal_telemetry_note_7_rationale_2",
+      "source_file": "personal/telemetry/note_7.py",
+      "source_location": "L2",
+      "target": "personal_telemetry_note_7_note_7",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "context": "import",
+      "relation": "imports",
+      "source": "personal_io_client",
+      "source_file": "personal/io/client.py",
+      "source_location": "L1",
+      "target": "personal_io_writer_swapwriter",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "context": "import",
+      "relation": "imports",
+      "source": "personal_io_writer",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L2",
+      "target": "personal_ports_commitport",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "context": "call",
+      "relation": "calls",
+      "source": "personal_io_client_deliver",
+      "source_file": "personal/io/client.py",
+      "source_location": "L5",
+      "target": "personal_io_writer_swapwriter",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "relation": "uses",
+      "source": "personal_io_client_deliver",
+      "source_file": "personal/io/client.py",
+      "source_location": "L5",
+      "target": "personal_io_writer_swapwriter",
+      "weight": 0.8
+    },
+    {
+      "_origin": "ast",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "relation": "uses",
+      "source": "personal_io_writer_swapwriter",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L4",
+      "target": "personal_ports_commitport",
+      "weight": 0.8
+    }
+  ],
+  "extracted_sources": [
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/app/entry.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/helpers.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/io/client.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/io/writer.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/lib/fence.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/lib/ledger.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/old/fold.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/ports.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/route.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_0.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_1.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_2.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_3.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_4.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_5.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_6.py",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/personal/telemetry/note_7.py"
+  ],
+  "failed_sources": [],
+  "input_tokens": 0,
+  "nodes": [
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_app_entry",
+      "label": "entry.py",
+      "source_file": "personal/app/entry.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_app_entry_show_label",
+      "label": "show_label()",
+      "source_file": "personal/app/entry.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_app_entry_rationale_2",
+      "label": "Display the received label unchanged.",
+      "source_file": "personal/app/entry.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_helpers",
+      "label": "helpers.py",
+      "source_file": "personal/helpers.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_helpers_edge_trim",
+      "label": "edge_trim()",
+      "source_file": "personal/helpers.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_helpers_rationale_2",
+      "label": "Remove trailing blanks only; preserve leading blanks and case.",
+      "source_file": "personal/helpers.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_io_client",
+      "label": "client.py",
+      "source_file": "personal/io/client.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_io_client_deliver",
+      "label": "deliver()",
+      "source_file": "personal/io/client.py",
+      "source_location": "L3"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_io_client_rationale_4",
+      "label": "Publish bytes with the installed synchronous writer.",
+      "source_file": "personal/io/client.py",
+      "source_location": "L4"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_io_writer",
+      "label": "writer.py",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_io_writer_swapwriter",
+      "label": "SwapWriter",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L4"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_io_writer_swapwriter_publish",
+      "label": ".publish()",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L6"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_io_writer_rationale_5",
+      "label": "Sync: overwrite one file by atomic rename.",
+      "source_file": "personal/io/writer.py",
+      "source_location": "L5"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_lib_fence",
+      "label": "fence.py",
+      "source_file": "personal/lib/fence.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_lib_fence_fence",
+      "label": "Fence",
+      "source_file": "personal/lib/fence.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_lib_fence_fence_permits",
+      "label": ".permits()",
+      "source_file": "personal/lib/fence.py",
+      "source_location": "L3"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_lib_fence_rationale_2",
+      "label": "Policy only: status >= 500 AND attempts < limit; no execution.",
+      "source_file": "personal/lib/fence.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_lib_ledger",
+      "label": "ledger.py",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_lib_ledger_ledger",
+      "label": "Ledger",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L3"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_lib_ledger_ledger_init",
+      "label": ".__init__()",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L5"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_lib_ledger_ledger_remember",
+      "label": ".remember()",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L7"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_lib_ledger_rationale_4",
+      "label": "RAM-only: digest(payload) -> first ack; mutable, no disk.",
+      "source_file": "personal/lib/ledger.py",
+      "source_location": "L4"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_old_fold",
+      "label": "fold.py",
+      "source_file": "personal/old/fold.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_old_fold_archivedfold",
+      "label": "ArchivedFold",
+      "source_file": "personal/old/fold.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_old_fold_archivedfold_apply",
+      "label": ".apply()",
+      "source_file": "personal/old/fold.py",
+      "source_location": "L3"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_old_fold_rationale_2",
+      "label": "Strip edges and casefold handles; lossy, synchronous.",
+      "source_file": "personal/old/fold.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_ports",
+      "label": "ports.py",
+      "source_file": "personal/ports.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_ports_commitport",
+      "label": "CommitPort",
+      "source_file": "personal/ports.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_ports_commitport_publish",
+      "label": ".publish()",
+      "source_file": "personal/ports.py",
+      "source_location": "L3"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_ports_rationale_2",
+      "label": "Synchronous single-file byte publication interface.",
+      "source_file": "personal/ports.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_route",
+      "label": "route.py",
+      "source_file": "personal/route.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_route_routepick",
+      "label": "RoutePick",
+      "source_file": "personal/route.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_route_routepick_choose",
+      "label": ".choose()",
+      "source_file": "personal/route.py",
+      "source_location": "L3"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_route_rationale_2",
+      "label": "Choose a destination name; no IO, sessions or cancellation.",
+      "source_file": "personal/route.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_0",
+      "label": "note_0.py",
+      "source_file": "personal/telemetry/note_0.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_0_note_0",
+      "label": "note_0()",
+      "source_file": "personal/telemetry/note_0.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_0_rationale_2",
+      "label": "Diagnostic 0: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_0.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_1",
+      "label": "note_1.py",
+      "source_file": "personal/telemetry/note_1.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_1_note_1",
+      "label": "note_1()",
+      "source_file": "personal/telemetry/note_1.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_1_rationale_2",
+      "label": "Diagnostic 1: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_1.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_2",
+      "label": "note_2.py",
+      "source_file": "personal/telemetry/note_2.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_2_note_2",
+      "label": "note_2()",
+      "source_file": "personal/telemetry/note_2.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_2_rationale_2",
+      "label": "Diagnostic 2: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_2.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_3",
+      "label": "note_3.py",
+      "source_file": "personal/telemetry/note_3.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_3_note_3",
+      "label": "note_3()",
+      "source_file": "personal/telemetry/note_3.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_3_rationale_2",
+      "label": "Diagnostic 3: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_3.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_4",
+      "label": "note_4.py",
+      "source_file": "personal/telemetry/note_4.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_4_note_4",
+      "label": "note_4()",
+      "source_file": "personal/telemetry/note_4.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_4_rationale_2",
+      "label": "Diagnostic 4: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_4.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_5",
+      "label": "note_5.py",
+      "source_file": "personal/telemetry/note_5.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_5_note_5",
+      "label": "note_5()",
+      "source_file": "personal/telemetry/note_5.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_5_rationale_2",
+      "label": "Diagnostic 5: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_5.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_6",
+      "label": "note_6.py",
+      "source_file": "personal/telemetry/note_6.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_6_note_6",
+      "label": "note_6()",
+      "source_file": "personal/telemetry/note_6.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_6_rationale_2",
+      "label": "Diagnostic 6: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_6.py",
+      "source_location": "L2"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_7",
+      "label": "note_7.py",
+      "source_file": "personal/telemetry/note_7.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "personal_telemetry_note_7_note_7",
+      "label": "note_7()",
+      "source_file": "personal/telemetry/note_7.py",
+      "source_location": "L1"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "personal_telemetry_note_7_rationale_2",
+      "label": "Diagnostic 7: report handle folding, attempts and acknowledgements. Observe…",
+      "source_file": "personal/telemetry/note_7.py",
+      "source_location": "L2"
+    }
+  ],
+  "output_tokens": 0
+}

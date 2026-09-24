@@ -1,0 +1,24 @@
+{
+  "checks": 1450,
+  "exports_scanned": 59,
+  "failures": [
+    "zero forbidden metadata"
+  ],
+  "forbidden_content_hits": [],
+  "forbidden_metadata_hits": [
+    {
+      "export": "probe/scoped-write",
+      "literal": "observation"
+    }
+  ],
+  "groups": {
+    "CHECKPOINT_RESUME": 4,
+    "LOCAL_HANDOFF": 4,
+    "SECOND_PROCESS": 4
+  },
+  "max_response_bytes": 1696,
+  "mutation": null,
+  "primary_cases": 12,
+  "process_operations": 26,
+  "status": "FAIL"
+}

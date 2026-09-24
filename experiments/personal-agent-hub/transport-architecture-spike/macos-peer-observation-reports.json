@@ -1,0 +1,194 @@
+{
+  "date": "2026-09-23",
+  "evidence_origin": "Three complete terminal JSON reports supplied by designated Mac operator",
+  "system_tailscale_condition": "System GUI previously disconnected and quit; no subsequent change reported",
+  "reports_in_order": [
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 30,
+        "error": {
+          "kind": "network_operation",
+          "timeout": false
+        },
+        "tcp": "FAIL"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 9,
+        "error": {
+          "kind": "network_operation",
+          "timeout": false
+        },
+        "tcp": "FAIL"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 5,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": false
+            }
+          },
+          {
+            "elapsed_ms": 3018,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19018,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20017
+      }
+    },
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 13,
+        "error": {
+          "kind": "network_operation",
+          "timeout": false
+        },
+        "tcp": "FAIL"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 4,
+        "error": {
+          "kind": "network_operation",
+          "timeout": false
+        },
+        "tcp": "FAIL"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 7,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19017,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20016
+      }
+    },
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 13,
+        "error": {
+          "kind": "network_operation",
+          "timeout": false
+        },
+        "tcp": "FAIL"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 4,
+        "error": {
+          "kind": "network_operation",
+          "timeout": false
+        },
+        "tcp": "FAIL"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 4,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": false
+            }
+          },
+          {
+            "elapsed_ms": 3019,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19021,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20017
+      }
+    }
+  ],
+  "host_followup": {
+    "checked_at_utc": "2026-09-23T15:07:14Z",
+    "fixture_process_exit_code": 0,
+    "tcp_49173": "ConnectionRefusedError errno=111",
+    "tailscale_backend": "Running",
+    "tailscale_self_online": true,
+    "health_warning_count": 0
+  },
+  "interpretation": "Same-process peer-map arrival measured; TCP outcomes are confounded by fixture expiry. Client invocation timestamps were not recorded, so exact failure-time listener state is unavailable."
+}

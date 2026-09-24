@@ -1,0 +1,13 @@
+{
+  "client_id": "client-df3da0d9",
+  "user_id": "probe-leofuso",
+  "project": "D1Persistence_61e17b6f3500",
+  "marker": "D1_AMBER_61E17B6F3500",
+  "tags": {
+    "experiment": "d1-service-adoption",
+    "fixture": "61e17b6f3500"
+  },
+  "memory_ids": [
+    "sem_CWMT"
+  ]
+}

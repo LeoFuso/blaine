@@ -1,0 +1,11 @@
+test_fixture_negotiation_and_unknown_readiness (tests.test_host_connection.HostConnectionTests.test_fixture_negotiation_and_unknown_readiness) ... ok
+test_identity_protocol_and_claim_rejections (tests.test_host_connection.HostConnectionTests.test_identity_protocol_and_claim_rejections) ... ok
+test_malformed_input (tests.test_host_connection.HostConnectionTests.test_malformed_input) ... ok
+test_production_cannot_accept_spoofed_environment (tests.test_host_connection.HostConnectionTests.test_production_cannot_accept_spoofed_environment) ... ok
+test_readiness_does_not_infer_runtime_health (tests.test_host_connection.HostConnectionTests.test_readiness_does_not_infer_runtime_health) ... ok
+test_liveness_does_not_substitute_for_memory_readiness (tests.test_direct_readiness.DirectReadinessTests.test_liveness_does_not_substitute_for_memory_readiness) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

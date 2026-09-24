@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-09-21T17:10:15.025469+00:00",
+  "rootful_running": [],
+  "rootless_running": [
+    "blaine-infra-rootless-langfuse-worker-1 Up 27 seconds (healthy)",
+    "blaine-infra-rootless-langfuse-web-1 Up 33 seconds (healthy)",
+    "blaine-infra-rootless-clickhouse-1 Up 43 seconds (healthy)",
+    "blaine-infra-rootless-object-storage-1 Up 43 seconds (healthy)"
+  ],
+  "native_pids": {
+    "postgresql@18-main": "2795",
+    "redis-server": "2741",
+    "alloy": "8845"
+  },
+  "native_services_unchanged": "PASS"
+}

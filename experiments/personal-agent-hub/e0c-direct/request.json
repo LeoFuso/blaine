@@ -1,0 +1,35 @@
+{
+  "objective": "Migrate E0.C to the operator-selected embedded tsnet and direct private Blaine transport; validate designated macOS and WSL peers without implementing registration or workspace capabilities.",
+  "mode": "interactive",
+  "capabilities": [
+    "edit E0.C client and host adapter",
+    "run bounded private transport acceptance",
+    "coordinate designated workstation and JetBrains checks"
+  ],
+  "autonomy": {
+    "allowed": [
+      "private host deployment",
+      "local candidate distribution",
+      "bounded read-only dependency probes",
+      "controlled lifecycle acceptance Task"
+    ],
+    "forbidden": [
+      "public endpoint",
+      "prerelease publication before live acceptance",
+      "push",
+      "E0.D registration implementation",
+      "E1/E2 workspace effects",
+      "system Tailscale changes"
+    ]
+  },
+  "completion": [
+    {
+      "criterion": "Direct transport and application identity pass on the designated peers",
+      "evidence": "Actual candidate checksums, handshake, binary stream, cancellation and reconnect reports"
+    },
+    {
+      "criterion": "Task independence and real IDE launch verified",
+      "evidence": "Authoritative Restate snapshots across disconnect and measured JetBrains ACP behavior"
+    }
+  ]
+}

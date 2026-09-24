@@ -1,0 +1,54 @@
+{
+  "binding": {
+    "context": "personal-task",
+    "domain": "personal",
+    "execution": "discovery-run"
+  },
+  "forbidden_literals": [
+    "employer-x/",
+    "HiddenSender",
+    "PRIVATE_CODE_CANARY"
+  ],
+  "grants": {
+    "personal": [
+      "personal",
+      "public"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "root",
+      "inherit_parent": true,
+      "kind": "generic",
+      "parent_id": null
+    },
+    {
+      "id": "personal",
+      "inherit_parent": true,
+      "kind": "generic",
+      "parent_id": "root"
+    },
+    {
+      "id": "personal-task",
+      "inherit_parent": true,
+      "kind": "generic",
+      "parent_id": "personal"
+    },
+    {
+      "id": "employer-x",
+      "inherit_parent": true,
+      "kind": "generic",
+      "parent_id": "root"
+    }
+  ],
+  "partitions": {
+    "employer-x/": {
+      "context": "employer-x",
+      "domain": "employer-x"
+    },
+    "personal/": {
+      "context": "personal",
+      "domain": "personal"
+    }
+  }
+}

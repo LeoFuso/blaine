@@ -1,0 +1,29 @@
+{
+  "work_status": "CONCLUDED",
+  "operational_acceptance": "ACCEPTED_BEST_EFFORT",
+  "technical_experiment_result": "PARTIAL",
+  "accepted_experiment_commit": "254e09b",
+  "guarantees": {
+    "live_delivery": "PASS",
+    "temporary_network_buffering_retry": "PASS",
+    "same_process_reconnect_drain": "PASS",
+    "cloud_independent_alloy_startup": "PASS",
+    "replay_across_process_restart": "NOT GUARANTEED / FAIL",
+    "lossless_durable_transport": "NOT CLAIMED"
+  },
+  "follow_up": {
+    "alias": "OBS-001",
+    "youtrack_id": "NCP-3",
+    "url": "https://leofuso.youtrack.cloud/issue/NCP-3",
+    "state": "Backlog",
+    "card_plane": "Upstream",
+    "external_creation": "CREATED AND READ BACK"
+  },
+  "configuration_changed": false,
+  "D1_G": "PREPARED; not executed; independent of Cloud",
+  "backup": "PAUSED",
+  "reboot": false,
+  "push": false,
+  "overall_observability_coverage": "PARTIAL; current transport acceptance is not full observability rollout completion",
+  "next_coverage_work": "Map/collect vLLM generation+embedding endpoints, GPU hardware and user-service state/readiness first; then runtime/infrastructure/application metrics. Planned, not implemented."
+}

@@ -1,0 +1,6 @@
+{
+  "task_id": "task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0",
+  "name": "answer",
+  "ref": "artifact://task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0/sha256:c76ceb3af451b8cffb8b419a109204422107145633bff09f831373c49c31d111",
+  "content": "{\"objective\":\"D1 durable service persistence proof\",\"sha256\":\"a8ac6044474fb7968afa7f6ea217d908a5bee87a6bc6784907fb9ebffd234649\",\"word_count\":5}"
+}

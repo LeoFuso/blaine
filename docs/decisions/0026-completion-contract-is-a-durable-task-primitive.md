@@ -1,0 +1,209 @@
+# ADR 0026 — Completion Contract is a durable, revisioned Task primitive
+
+**Status:** Accepted (2026-09-24, operator review)
+**Validation:** Partially Validated — Integration minimal validation PASS in E1.0 (2026-09-24); end-to-end inside E1 acceptance pending
+**Date:** 2026-09-23
+
+## Context
+
+[ADR 0015](0015-durable-task-execution-and-verification.md) established that a
+Task completes only by satisfying its Completion Contract, never by model
+assertion. The kernel implements a narrow form: `TaskSpec.completion` criteria with
+exact-digest or typed-human evidence, frozen in the immutable accepted TaskSpec,
+evaluated verifier-first after every effect.
+
+E1 read-only investigation Tasks, and later E2/E3 coding Tasks, expose the gaps:
+
+- investigations produce findings whose correctness no digest can know in advance;
+- repository conventions, Task-type defaults, memory and models all want to
+  contribute criteria, with very different authority;
+- users legitimately change requirements mid-Task, and some requirements turn out
+  to be impossible — today either case requires a new Task;
+- nothing deterministic records which capabilities a Task actually ran, so
+  "no workspace mutation" can only be asserted, not verified.
+
+The risk on the other side is a plan-like or DSL-like contract that cognition can
+rewrite until the Task passes.
+
+## Decision
+
+Make the Completion Contract a first-class, durable, revisioned Task artifact,
+specified in [Completion Contract v1](../contracts/completion-contract.md):
+
+1. **Separate from plan and authority.** The contract says what must be
+   demonstrated; plans stay mutable cognition; authority stays in the trusted
+   grant and PolicyGate. A criterion never grants authority.
+2. **Criteria carry identity, level, provenance and a verifier.** Levels are only
+   `REQUIRED` and `ADVISORY`. REQUIRED criteria may come from Blaine-owned
+   `task_type` templates (some marked invariant), operator policy (`operator_rule`
+   and designated `project_policy`), the Task's `user`, or a `parent_task` for its
+   child. Ordinary `repository` evidence, `memory` and `model` inference are
+   ADVISORY (or propose a verifier binding). Trust follows the Context Plane's
+   source provenance: a project policy source is authoritative only through an
+   operator designation, never because of its content (CP-B5).
+3. **Closed verifier taxonomy** extending the existing two kinds:
+   `artifact_digest`, `human_response`, `capability_journal`, `evidence_citation`,
+   `capability_result`, `change_set` (reserved) and `semantic_review`.
+4. **Deterministic-first.** A model is never the authoritative verifier of a fact a
+   deterministic verifier can check; semantic review cannot override deterministic
+   verdicts and resolves low confidence to `unknown` or a human request.
+5. **Explicit amendments only, within the authority order.** Revisions are
+   retained artifacts with actor, provenance and reason. A REQUIRED criterion is
+   satisfied, superseded, rebound or waived only by an actor whose authority covers
+   its source: the user for user and default criteria; an explicit, recorded policy
+   exception for operator/project policy; nobody for task-type invariants.
+   Cognition may add ADVISORY criteria and may *request* a change only through the
+   existing human-decision path.
+6. **Capability journal.** Each Task keeps a hash-chained, artifact-backed record of
+   PolicyGate admissions, denials and observed outcomes, appended before dispatch.
+   It is Task evidence, not telemetry and not a cross-Task ledger.
+7. **Completion legality is one deterministic function** over the current contract
+   revision, a fresh evaluation, the journal and waiver references.
+
+Storage reuses what exists: artifacts in the content-addressed store, references
+and counters in Restate Task state, evaluations as extended `CompletionEvaluation`
+artifacts. The v0 `TaskSpec.completion` form lowers into revision 0 unchanged.
+
+## Alternatives considered
+
+- **Treat all checked-in project instructions as policy, or none of them.** All:
+  lets any README make Tasks impossible and contradicts CP-B5. None: forces every
+  canonical build/test rule into Blaine-held operator rules. Designated,
+  structured project policy is the middle path.
+- **Keep the contract inside the immutable TaskSpec.** Simplest, and safe against
+  silent change, but makes every legitimate change a new Task and loses Task
+  identity, evidence and human context across the change.
+- **Let cognition maintain the contract as part of its plan.** Rejected: the model
+  could drop a failing criterion to reach COMPLETED, which ADR 0015 forbids.
+- **A general acceptance DSL or scriptable verifier.** Rejected: becomes arbitrary
+  execution and a second workflow engine; the closed taxonomy covers E1–E3.
+- **Mandatory semantic critic on every Task.** Rejected: cost without evidence of
+  need, and it would blur deterministic authority.
+- **Derive "no mutation" from ExecutionEvents.** Rejected: events are forensic,
+  lossy by design and explicitly never lifecycle authority.
+
+## Relationship to existing decisions
+
+Refines [ADR 0015](0015-durable-task-execution-and-verification.md) without
+changing its authority rule. Composes with the accepted
+[Context Plane](0025-context-plane-and-compiled-agent-context.md): the contract is
+the "accepted Task criteria" that content cannot alter (CP-B5) and that the Context
+Compiler must carry exactly in packets; Context Plane provenance decides which
+discovered sources are policy, evidence or suggestion; verified-outcome admission
+(CP-L1) may feed candidate rules, whose adoption stays a human act distinct from
+the Context Plane PromotionGate. Retains ADR 0024's human-promotion pattern and
+ADR 0007's tools-before-inference rule.
+
+## Consequences
+
+- "Why is this Task COMPLETED?" is answerable from `TaskResult.completion_ref`
+  through the evaluation, contract revision, journal and evidence artifacts.
+- Investigations can complete honestly with an `unresolved` conclusion; truth
+  judgements go to advisory semantic review or the user.
+- Contract changes keep the same Task; each change is visible and attributable.
+- Requires new kernel code: contract artifact and revision state, evaluation v2,
+  journal append on the single dispatch path, three verifiers, an amendment
+  handler with revision compare-and-set, and new event types. These are new
+  journal-producing code paths and deploy as a new Restate deployment.
+- Operator-rule storage and promotion tooling are deferred until a first real rule.
+
+## Validation
+
+### Hypothesis
+
+A revisioned, provenance-bearing contract with a closed verifier set lets E1
+investigation Tasks complete only on deterministic provenance and scope evidence,
+keeps completion stable across crash, retry and model change, and prevents
+cognition from weakening REQUIRED criteria — without a DSL or a second engine.
+
+### Validation level
+
+Integration (kernel + Restate + artifacts), then end-to-end inside E1 acceptance.
+
+### Minimal validation
+
+Kernel fixture Tasks with scripted cognition: (a) a v0 TaskSpec produces the same
+verdicts as today; (b) an investigation contract completes only after cited
+findings exist; a fabricated quote fails it; (c) scripted cognition tries to
+remove a REQUIRED criterion and is denied; a human waiver then passes it with a
+visible `waived` status; (d) SIGKILL at contract retention, at amendment
+application and after evidence admission recovers the same revisions and
+verdicts; (e) a synthetic journal with an unadmitted execution fails
+`capability_journal`.
+
+### Evidence
+
+Retained contracts, amendments, evaluations, journals and TaskResults whose chain
+reproduces each verdict offline; zero COMPLETED Tasks with an unsatisfied REQUIRED
+criterion; identical refs across replay; negative cases rejected with reasons.
+
+### Result (E1.0, 2026-09-24): Integration PASS; end-to-end pending
+
+Kernel implementation on `impl/e1-completion-contract`; evidence in
+[`experiments/personal-agent-hub/e1-0`](../../experiments/personal-agent-hub/e1-0/README.md).
+
+- (a) v0 parity: every pre-existing test (249) passes unchanged in assertions; the
+  v1 `evaluate()` projection gives the same verdicts as before; revision 0 is the
+  lowered `TaskSpec.completion`.
+- (b) An investigation contract completes only after cited findings exist; a
+  fabricated quote fails `findings-cited`, and a later verified citation completes
+  the same Task.
+- (c) Scripted cognition proposing a contract change is denied by PolicyGate and the
+  revision is unchanged; a user waiver through `amend_contract` passes the criterion
+  as visibly `waived`; invariant waivers, user waivers of project policy and policy
+  exceptions naming the wrong digest are refused (403).
+- (d) On restate-server 1.7.9 with five runtime and two server SIGKILLs — at contract
+  retention, after evidence admission, between admission and dispatch, after
+  amendment application and during workspace/human waits — every Task recovered the
+  same contract revision, journal head, evaluation and result refs, with zero
+  duplicate cognition, capability executions or semantic reviews; the retained
+  journal prefix was byte-identical after recovery.
+- (e) A synthetic journal with an observed entry lacking admission fails
+  `capability_journal`; an admitted external effect fails the `no-mutation` invariant
+  and the Task ends FAILED.
+
+Every final verdict was recomputed offline from retained artifacts and matched; no
+COMPLETED Task has an unsatisfied REQUIRED criterion. Still open: the hypothesis is
+about E1 investigation Tasks, so end-to-end validation needs E1.C–E (real
+receipts from the delegated IDE, templates, a live semantic reviewer if any).
+Model-change stability is covered by construction (the contract is not cognition
+state) and by the unchanged escalation tests, not by a dedicated E1.0 case.
+
+### Follow-up clarifications (operator review, 2026-09-24)
+
+Applied without changing the decision; evidence rerun on real Restate (9 Tasks,
+8 runtime and 2 server SIGKILLs, PASS):
+
+- "No mutation" is **no unauthorized TARGET_EFFECT**; the Task's INTERNAL_EFFECTs
+  (its state, journal, artifacts, evaluations, human requests, local computation)
+  never count ([effect scopes](../contracts/completion-contract.md#no-mutation-internal-versus-target-effects)).
+- Only a gating, unwaivable, monotonic invariant failure ends a Task at once; every
+  other failed REQUIRED criterion is remediable
+  ([terminal versus remediable](../contracts/completion-contract.md#terminal-versus-remediable)).
+- Amendment authority comes from the binding-established actor, never from request
+  content; payload forgery through the real Personal Agent binding is refused
+  ([binding-owned actor](../contracts/completion-contract.md#amendment-actor-is-binding-owned)).
+- Revision 0 preserves intake criteria verbatim; policy criteria stay pinned to
+  their source digest in every revision, and exceptions must name that pin.
+
+### E2.0 extension (2026-09-24)
+
+`change_set` and `capability_result` are implemented provider-independently and
+exercised with a fixture provider on real Restate ([target effects](../contracts/target-effects.md),
+[evidence](../../experiments/personal-agent-hub/e2-0/README.md)): effect criteria stay
+`unknown` while an effect's outcome is unreconciled, failed effect criteria are
+remediable, and completion is legal only once receipts satisfy them. This extends
+the verifier taxonomy without changing the decision; validation status is unchanged
+because the hypothesis concerns E1 end-to-end.
+
+### Not required for validation
+
+Operator-rule store, MIRIX-driven candidate rules, `change_set`, paid semantic
+review, natural-language contract synthesis, UI for amendments.
+
+## Reconsider when
+
+Real Tasks repeatedly need criteria the taxonomy cannot express without a
+semantic verifier doing deterministic work; amendments become routine enough that
+human-only waivers are the dominant friction; or the journal cost per operation
+becomes material for high-volume read Tasks.

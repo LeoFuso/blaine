@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"workspace.exec","input":{"profile":"unit-tests","workspace_id":"wsp-e2-fixture"},"type":"INVOKE_CAPABILITY"},"task_id":"task-cancel-unknown","task_revision":0,"turn_id":"task-cancel-unknown/1"},"version":1}

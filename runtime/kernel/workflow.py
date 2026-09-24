@@ -2,6 +2,7 @@
 from collections.abc import Awaitable, Callable, Sequence
 from copy import deepcopy
 import hashlib
+import math
 from datetime import timedelta
 
 import restate
@@ -12,9 +13,17 @@ from runtime.kernel.contracts import (
     MAX_PACKET, MAX_TURNS, TaskResult, TaskState, encode, fields, identifier,
     child_task_id, child_request, accept_task_request, spawn_specs, message, text, unpack, validate_spec, validate_result,
 )
-from runtime.kernel.execution import Capabilities, evaluate, policy_gate
-from runtime.kernel.human import human_requirement, validate_response
+from runtime.kernel import completion, effects, journal as capability_journal, review
+from runtime.kernel.execution import Capabilities, policy_gate
+from runtime.kernel.human import validate_response
 from runtime.kernel.events import ExecutionEventPublisher, event_identity, safe_prepare, safe_publish
+from runtime.kernel.instrument import (
+    ExecutionIdentity, Instrumentation, evidence_digest, model_attributes, tool_attributes,
+)
+from runtime.kernel.routing import (
+    LOCAL_BINDING, RoutingRecord, admit_escalation, effective_capabilities,
+    escalation_condition, narrow_grant, verifier_signature,
+)
 
 CognitiveAdapter = Callable[[dict], dict]
 # Deployment-injected probe hook, never selected by a Task/model or exposed by
@@ -26,23 +35,54 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                     capabilities: Capabilities, providers: Sequence[ContextProvider] = (),
                     checkpoint: Checkpoint | None = None,
                     event_publisher: ExecutionEventPublisher | None = None,
-                    event_producer_revision: str | None = None) -> restate.Workflow:
+                    event_producer_revision: str | None = None,
+                    instrumentation: Instrumentation | None = None,
+                    escalation_cognitive: CognitiveAdapter | None = None,
+                    escalation_binding: str | None = None,
+                    semantic_reviewer: review.SemanticReviewer | None = None,
+                    target_provider: effects.TargetProvider | None = None,
+                    exec_profiles: dict[str, effects.ExecProfile] | None = None) -> restate.Workflow:
     workflow = restate.Workflow("CognitiveTaskV1")
+    # Deployment-selected diagnostics and boundary control. The default bundle is
+    # inert: no span, no event, no extra journal entry, no behavior change.
+    instruments = instrumentation or Instrumentation()
+    context_plane = getattr(capabilities, 'context_plane', None)
+    if context_plane is not None and (providers or escalation_cognitive is not None):
+        raise ValueError('CP.1 requires governed sources and local cognition only')
 
     @workflow.main(workflow_retention=timedelta(days=7))
     async def run(ctx: restate.WorkflowContext, request: dict) -> dict:
         try:
             task_id = identifier(ctx.key())
-            spec, parent = accept_task_request(request, task_id)
-            for criterion in spec['completion']:
-                evidence = criterion['evidence']
-                if evidence.get('verifier') == 'human_response' and evidence['request']['payload']['task_id'] != task_id:
-                    raise ValueError('Human request does not belong to this Task')
+            spec, parent, grant = accept_task_request(request, task_id)
+            if context_plane is not None and (request.get('kind') != 'TaskSpec' or parent is not None):
+                raise ValueError('CP.1 supports the hosted local TaskSpec route only')
+            admissible = effective_capabilities(spec, grant)
+            mutating = capability_journal.mutating(admissible)
+            # Revision 0 exists before any effect; an invalid contract is rejected
+            # at intake exactly like an invalid TaskSpec.
+            contract = completion.accept_contract(spec, parent, completion.envelope_contract(request),
+                                                  task_id, mutating)
+            # Reviewed profiles are Blaine-owned; a grant can only select among them,
+            # and the selected definitions are pinned into this Task's authority.
+            unknown = set((grant or {}).get('profiles', [])) - set(exec_profiles or {})
+            if unknown:
+                raise ValueError(f'Grant names unreviewed command profiles: {sorted(unknown)}')
+            pinned = {name: exec_profiles[name].payload() for name in (grant or {}).get('profiles', [])}
         except (ValueError, TypeError) as error:
             raise restate.TerminalError(str(error), status_code=400) from error
+        initial_action = request['payload'].get('initial_action') if request.get('kind') == 'TaskRequest' else None
+        read_scope = initial_action['input'].get('workspace') if (
+            initial_action and initial_action.get('capability') == 'workspace.read'
+            and isinstance(initial_action.get('input'), dict)) else None
 
         async def step(name, function, **kwargs):
             return await ctx.run_typed(name, function, restate.RunOptions(max_attempts=3), **kwargs)
+
+        compiled_authority = capability_journal.compile_authority(
+            task_id, admissible, ([read_scope] if isinstance(read_scope, str) else []) + (grant or {}).get('workspaces', []),
+            grant is not None, profiles=pinned, ask_before=(grant or {}).get('ask_before'))
+        authority = compiled_authority['payload']
 
         async def retain(name: str, value: dict) -> str:
             return await step(name, store.put_json, task_id=task_id, value=value)
@@ -56,13 +96,60 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             "remaining_children": spec["autonomy"].get("child_tasks", 0), "children": {},
             "invocation_id": ctx.request().id,
             "request_digest": hashlib.sha256(encode(request)).hexdigest(),
+            # Policy C. The binding is execution context, never Task data, and a
+            # Task without an external grant is recorded as unbounded rather than
+            # silently treated as if it had been bounded.
+            "grant": grant, "binding": LOCAL_BINDING, "verifier_history": [],
+            "escalation": None, "local_turns": 0, "context_refs": [],
+            # Completion Contract v1: authority and contract are retained before any
+            # effect; the journal starts empty and only this workflow appends to it.
+            "authority_ref": await retain("accept-authority", compiled_authority),
+            "contract_ref": await retain("accept-contract", message("CompletionContract", contract)),
+            "contract_revision": 0, "journal_head": None, "journal_length": 0, "semantic_reviews": {},
+            "effects": {},
         }
-        initial_action = request['payload'].get('initial_action') if request.get('kind') == 'TaskRequest' else None
         if initial_action is not None:
             state['initial_action'] = initial_action
         if parent is not None:
             state["parent"] = parent
         ctx.set("task", message("TaskState", state))
+        if checkpoint:
+            await checkpoint(ctx, 'contract_retained', deepcopy(state))
+        last_evaluation = None
+        amendment_rejected = None
+
+        async def record(label: str, entry: dict) -> None:
+            # Appended in a journaled step, so replay reproduces the identical chain.
+            state['journal_head'] = await step(f'journal/{label}', capability_journal.append, store=store,
+                task_id=task_id, head=state['journal_head'], length=state['journal_length'], entry=entry)
+            state['journal_length'] += 1
+            ctx.set('task', message('TaskState', state))
+
+        def capability_entry(action: dict, phase: str, **extra) -> dict:
+            capability = action['capability']
+            provided = isinstance(action.get('input'), dict) and 'workspace_id' in action['input'] and (
+                capability in effects.OPERATIONS or 'form' in action['input'])
+            entry = {'phase': phase, 'decision_id': state['decision_id'], 'capability': capability,
+                     'operation_class': capability_journal.operation_class(capability),
+                     'provider': (getattr(target_provider, 'provider_id', 'unconfigured') if provided
+                                  else 'acp-client' if capability == 'workspace.read' else 'kernel'),
+                     'operation': (effects.OPERATIONS.get(capability, 'read_file') if provided
+                                   else 'read_file' if capability == 'workspace.read' else capability),
+                     'authority_ref': state['authority_ref'], 'contract_revision': state['contract_revision'], **extra}
+            target = action['input'].get('workspace_id' if provided else 'workspace') if isinstance(action.get('input'), dict) else None
+            if (capability == 'workspace.read' or provided) and isinstance(target, str) and target.strip() and len(target.encode()) <= 512:
+                entry['workspace_id'] = target
+            return entry
+
+        def denied_action(raw: dict) -> dict | None:
+            # A denied proposal is journaled whenever it names a capability at all.
+            payload = raw.get('payload') if isinstance(raw, dict) else None
+            action = payload.get('next_action') if isinstance(payload, dict) else None
+            if (isinstance(action, dict) and action.get('type') == 'INVOKE_CAPABILITY'
+                    and isinstance(action.get('capability'), str) and action['capability'].strip()
+                    and len(action['capability'].encode()) <= 100):
+                return action
+            return None
         # Optional diagnostics. No Task state, authorization or progression reads
         # these events or the publication result. Keep this deployment option stable
         # for an invocation's lifetime, like its other journal-producing code.
@@ -86,18 +173,70 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
 
         await emit('start', 'task.started', 'RUNNING', 'blaine.kernel.workflow', refs={'parent_task_id': parent['task_id']} if parent else None, payload_refs=(state['spec_ref'],))
         concerns = []
+        # Private, runtime-owned values reconstructed from the existing journal.
+        # These are never loaded from TaskState.artifacts or worker/model payloads.
+        context_admission = None
+        context_worker_observed = False
+        context_delta_used = False
+        context_delivered_ref = None
+        context_fingerprint = None
         prepared_packet = None
+        def reconstruct_owned(state, spec, store, providers, contract):
+            packet = reconstruct(state, spec, store, providers, contract=contract)
+            if context_plane is not None:
+                packet['payload']['context'].append({'source': 'blaine:context-plane-v1',
+                    'revision': '1', 'authority': 'instruction', 'unknowns': [], 'content':
+                    'Use worker.run with the compiled-context artifact reference. After one worker observation, '
+                    'one context.request may express a new information need: version=1, kind=ContextRequest, '
+                    'payload={question,form,locator,base_ref}; base_ref is the compiled-context reference. '
+                    'Forms: exact-source, lexical-source (also requires exact), current-evidence, prior-context. '
+                    'The result replaces compiled-context with a fresh bounded input. Do not recreate packets '
+                    'or select scopes. Historical artifact references do not authorize fresh context reads.'})
+                if len(encode(packet)) > MAX_PACKET:
+                    from runtime.kernel.context_plane import ContextError
+                    raise ContextError('INSUFFICIENT_CONTEXT')
+            return packet
+        tool_invocations, last_tool_outcome = 0, None
+        def wait_still_bound(wait_id: str) -> bool:
+            binding = completion.human_bindings(contract['criteria']).get(wait_id)
+            criterion = next((c for c in contract['criteria'] if binding and c['id'] == binding['criterion']), None)
+            return criterion is not None and completion.gating(criterion) and 'waiver' not in criterion
+
         async def await_input(action):
             state["wait"] = {"wait_id": action["wait_id"], "input_type": action["input_type"],
                              "task_revision": state["revision"], "promise": f"input/{state['iteration']}/{action['wait_id']}"}
             if action['input_type'] == 'human_response':
-                requirement = human_requirement(spec, action['wait_id'])
+                requirement = completion.human_binding(contract, action['wait_id'])
                 state['wait']['request_ref'] = await retain(f"human-request/{state['iteration']}", requirement['request'])
             state["lifecycle"] = "WAITING"
             ctx.set("task", message("TaskState", state))
             if checkpoint:
                 await checkpoint(ctx, 'suspended', deepcopy(state))
-            received = await ctx.promise(state["wait"]["promise"], type_hint=dict).value()
+            while True:
+                received = ctx.promise(state["wait"]["promise"], type_hint=dict).value()
+                if action['input_type'] != 'human_response' or amendment_rejected == contract['revision'] + 1:
+                    received = await received
+                    break
+                # A human WAITING Task stays amendable: the user may waive or change
+                # the very criterion it waits for. Restate journals which one won.
+                source, value = await restate.select(input=received,
+                    amendment=ctx.promise(f"contract/{contract['revision'] + 1}", type_hint=dict).value())
+                if source == 'input':
+                    received = value
+                    break
+                await apply_amendment(value)
+                if amendment_rejected == contract['revision'] + 1:
+                    continue
+                if not wait_still_bound(action['wait_id']):
+                    withdrawn = message('HumanWaitWithdrawn', {'request_id': action['wait_id'],
+                        'contract_revision': state['contract_revision'], 'contract_ref': state['contract_ref']})
+                    state['wait'] = None
+                    state['lifecycle'] = 'RUNNING'
+                    state['observation_ref'] = await retain(f"withdrawn-input/{state['iteration']}", withdrawn)
+                    ctx.set('task', message('TaskState', state))
+                    await settle(f"amended-r{state['contract_revision']}")
+                    return withdrawn
+                await settle(f"amended-r{state['contract_revision']}")
             if action['input_type'] == 'human_response':
                 validate_response(received, requirement['request'], task_id)
                 response_ref = await retain(f"human-response/{state['iteration']}", received)
@@ -115,41 +254,417 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                 await checkpoint(ctx, 'resumed', deepcopy(state))
             return observation
 
-        async def progress(phase: str):
-            # Completion is a verifier-authorized lifecycle transition. A model
-            # proposal is neither necessary nor sufficient to authorize it.
+        async def apply_amendment(submitted: dict) -> None:
+            """Apply one submitted amendment in a journaled step: amendment, then revision."""
+            nonlocal contract, amendment_rejected, prepared_packet
+            to_revision = contract['revision'] + 1
+            def admit(submitted, contract, contract_ref, state):
+                try:
+                    actor, amendment_request = completion.validate_amendment_submission(submitted['submission'], task_id)
+                    if store.read_json(task_id, submitted['action_ref']) != submitted['submission']:
+                        raise ValueError('Retained human action differs from the submitted amendment')
+                    amendment, updated = completion.apply_amendment(contract, contract_ref, actor, amendment_request,
+                                                                    submitted['action_ref'], state, mutating)
+                except (ValueError, TypeError, KeyError) as error:
+                    # The handler validates against this same immutable revision, so
+                    # this is a defect path: record it and keep the revision closed.
+                    return {'outcome': 'rejected', 'ref': store.put_json(task_id, message(
+                        'CompletionContractAmendmentRejection', {'task_id': task_id, 'to_revision': to_revision,
+                            'submitted': submitted, 'reason': str(error)[:512]}))}
+                amendment_ref = store.put_json(task_id, message('CompletionContractAmendment', amendment))
+                sealed = completion.seal(updated, amendment_ref, task_id, mutating)
+                return {'outcome': 'applied', 'amendment_ref': amendment_ref, 'contract': sealed,
+                        'contract_ref': store.put_json(task_id, message('CompletionContract', sealed))}
+            result = await step(f'amend/{to_revision}', admit, submitted=submitted, contract=deepcopy(contract),
+                                contract_ref=state['contract_ref'], state=deepcopy(state))
+            if result['outcome'] == 'applied':
+                contract = result['contract']
+                # A handoff may have prepared the next turn before this amendment.
+                # Reconstruct from the newly authoritative contract at delivery.
+                prepared_packet = None
+                state['contract_ref'], state['contract_revision'] = result['contract_ref'], contract['revision']
+                ctx.set('task', message('TaskState', state))
+                await emit(f'contract/{to_revision}', 'contract.amended', 'applied', 'blaine.kernel.completion',
+                           payload_refs=(result['amendment_ref'], result['contract_ref']))
+                if checkpoint:
+                    await checkpoint(ctx, 'amended', deepcopy(state))
+            else:
+                amendment_rejected = to_revision
+                await emit(f'contract/{to_revision}', 'contract.amended', 'rejected', 'blaine.kernel.completion',
+                           payload_refs=(result['ref'],))
+
+        async def admit_amendments() -> None:
+            # Checked at every iteration boundary; revision-named one-shot promises
+            # give compare-and-set, and ``peek`` is journaled, so replay agrees.
+            while state['lifecycle'] == 'RUNNING' and amendment_rejected != contract['revision'] + 1:
+                submitted = await ctx.promise(f"contract/{contract['revision'] + 1}", type_hint=dict).peek()
+                if submitted is None:
+                    return
+                await apply_amendment(submitted)
+                if amendment_rejected != contract['revision'] + 1:
+                    await settle(f"amended-r{state['contract_revision']}")
+
+        async def settle(phase: str) -> dict:
+            """The only path to COMPLETED: evaluate the current revision, then legality.
+
+            A model proposal, worker exit or capability success is neither necessary
+            nor sufficient. Semantic reviews run first, as journaled steps, only for
+            criteria whose deterministic dependencies already have verdicts.
+            """
+            nonlocal last_evaluation
             label = f"{phase}/{state['iteration']}"
-            evaluation = await step(f"progress/{label}", evaluate,
-                spec=spec, state=deepcopy(state), store=store)
+            def verify(state, contract):
+                with instruments.recorder.span('blaine.verifier', kind='verifier', attributes={
+                        **ExecutionIdentity(task_id=task_id, run_id='run:' + ctx.request().id).attributes(),
+                        'blaine.verifier.phase': phase}) as span:
+                    result = completion.evaluate_contract(contract, state['contract_ref'], state, store)
+                    span.set(**{'blaine.verifier.outcome': result['payload']['outcome']})
+                    return result
+            if any(c['verifier']['kind'] == 'semantic_review' for c in contract['criteria']):
+                pre = await step(f"pre-evaluation/{label}", lambda state, contract: completion.assess(contract, state, store),
+                                 state=deepcopy(state), contract=deepcopy(contract))
+                for criterion in completion.semantic_due(contract, pre, state):
+                    name = f"{label}/{criterion['id']}"
+                    packet = await step(f'semantic-request/{name}', review.request, task_id=task_id,
+                        criterion=criterion, contract_revision=contract['revision'],
+                        evidence_digest=completion.evidence_digest(state),
+                        dependencies=completion.dependency_view(criterion, pre), state=deepcopy(state), store=store)
+                    result = await step(f'semantic/{name}', review.call, reviewer=semantic_reviewer, packet=packet)
+                    state['semantic_reviews'] = {**state['semantic_reviews'], criterion['id']: {
+                        'ref': await retain(f'semantic-result/{name}', result),
+                        'request_ref': await retain(f'semantic-packet/{name}', packet),
+                        'contract_revision': contract['revision'],
+                        'evidence_digest': completion.evidence_digest(state)}}
+            evaluation = await step(f"progress/{label}", verify, state=deepcopy(state), contract=deepcopy(contract))
+            last_evaluation = evaluation['payload']
             state['completion_ref'] = await retain(f"progress-evidence/{label}", evaluation)
-            if evaluation['payload']['outcome'] == 'satisfied':
+            if evaluation['payload']['outcome'] != 'satisfied':
+                # Bounded repetition memory; a deterministic escalation signal,
+                # not a judgement about why the verifier keeps refusing.
+                state['verifier_history'] = (state['verifier_history'] +
+                                             [verifier_signature(evaluation, state['artifacts'])])[-4:]
+            if evaluation['payload']['legality']['legal']:
                 state['lifecycle'] = 'COMPLETED'
             ctx.set('task', message('TaskState', state))
             await emit('verification/' + label, 'verifier.evaluated', evaluation['payload']['outcome'],
-                'blaine.kernel.execution.evaluate', payload_refs=(state['completion_ref'],))
+                'blaine.kernel.completion.evaluate_contract', payload_refs=(state['completion_ref'],))
             if checkpoint:
                 await checkpoint(ctx, 'verification-' + phase, deepcopy(state))
+            if evaluation['payload']['irrecoverable']:
+                # The journal is append-only and invariants are unwaivable: no later
+                # evidence or amendment can make this contract satisfiable.
+                raise restate.TerminalError('Invariant criteria failed: ' + ', '.join(
+                    evaluation['payload']['irrecoverable']), status_code=422)
+            return evaluation
+
+        # ------------------------------------------------------------ E2.0 effects
+        def target_operation(action: dict) -> bool:
+            return action['capability'] in effects.OPERATIONS or (
+                action['capability'] == 'workspace.read' and isinstance(action['input'], dict) and 'form' in action['input'])
+
+        def effect_observation(operation: str, **extra) -> dict:
+            record = state['effects'][operation]
+            outcome = {'applied': 'success', 'completed': 'success', 'uncertain': 'uncertain'}.get(record['status'], 'failure')
+            return message('EffectObservation', {'operation_id': operation, 'status': record['status'],
+                'outcome': outcome, 'request_ref': record.get('request_ref'), 'receipt_ref': record.get('receipt_ref'),
+                **extra})
+
+        async def perform_target(action: dict, iteration: int) -> dict:
+            operation = state['decision_id']
+            if action['capability'] == 'workspace.read':
+                def read_target(value):
+                    try:
+                        return {'ok': True, **effects.read(target_provider, task_id, operation, value, store)}
+                    except ValueError as error:
+                        return {'ok': False, 'error': str(error)[:512]}
+                answer = await step(f'target-read/{iteration}', read_target, value=action['input'])
+                if not answer['ok']:
+                    failure = message('CapabilityResult', {'operation_id': operation, 'outcome': 'failure',
+                        'output': {}, 'artifacts': {}, 'error': answer['error']})
+                    await record(f'{iteration}/observed', {'phase': 'observed', 'operation_id': operation,
+                        'outcome': 'failure', 'receipt_ref': await retain(f'target-read-failure/{iteration}', failure)})
+                    return failure
+                state['artifacts'] = {**state['artifacts'], action['input']['artifact']: answer['content_ref']}
+                await record(f'{iteration}/observed', {'phase': 'observed', 'operation_id': operation,
+                    'outcome': 'success', 'receipt_ref': answer['receipt_ref']})
+                return message('WorkspaceReadObservation', {'operation_id': operation, 'receipt_ref': answer['receipt_ref'],
+                    'artifact': action['input']['artifact'], 'artifact_ref': answer['content_ref'],
+                    'content': answer['content'], 'outcome': 'success'})
+
+            def lower(value, state):
+                facts = completion.load_journal(state, store)
+                try:
+                    return effects.lower(task_id, operation, action['capability'], value, state, store,
+                                         state['authority_ref'], authority, facts.get('receipts', set()))
+                except (ValueError, TypeError, KeyError, UnicodeError) as error:
+                    return message('EffectOutcome', {'kind': 'rejected', 'reason': str(error)[:512]})
+            request = await step(f'effect-request/{iteration}', lower, value=action['input'], state=deepcopy(state))
+            if request['kind'] != 'EffectRequest':
+                # Lowering refused before anything left the Task: definitively not dispatched.
+                state['effects'] = {**state['effects'], operation: {'status': 'not_dispatched',
+                    'class': action['capability'], 'receipt_ref': await retain(f'effect-rejected/{iteration}', request)}}
+                await record(f'{iteration}/observed', {'phase': 'observed', 'operation_id': operation,
+                    'outcome': 'not_dispatched', 'receipt_ref': state['effects'][operation]['receipt_ref']})
+                return effect_observation(operation, reason=request['payload']['reason'])
+            request_ref = await retain(f'effect-request-artifact/{iteration}', request)
+            digest = effects.request_digest(request)
+            state['effects'] = {**state['effects'], operation: {'status': 'admitted', 'class': action['capability'],
+                                                                'request_ref': request_ref, 'reconcile_attempts': 0}}
+            ctx.set('task', message('TaskState', state))
+            approval_ref = None
+            if action['capability'] in authority.get('ask_before', []):
+                verdict, approval_ref = await await_approval(request, operation, iteration)
+                if verdict != 'APPROVE':
+                    # Denied or canceled before dispatch: proven not to have happened.
+                    closed = message('EffectOutcome', {'kind': 'not_dispatched', 'reason':
+                        'Canceled before dispatch' if verdict == 'CANCELED' else 'Human approval denied',
+                        'approval_ref': approval_ref})
+                    state['effects'][operation].update(status='not_dispatched',
+                        receipt_ref=await retain(f'effect-closed/{iteration}', closed))
+                    await record(f'{iteration}/observed', {'phase': 'observed', 'operation_id': operation,
+                        'outcome': 'not_dispatched', 'receipt_ref': state['effects'][operation]['receipt_ref']})
+                    return effect_observation(operation, reason=closed['payload']['reason'])
+            await record(f'{iteration}/dispatched', {'phase': 'dispatched', 'operation_id': operation,
+                'request_ref': request_ref, 'request_digest': digest,
+                **({'approval_ref': approval_ref} if approval_ref else {})})
+            state['effects'][operation]['status'] = 'dispatched'
+            ctx.set('task', message('TaskState', state))
+            if checkpoint:
+                await checkpoint(ctx, 'dispatched', deepcopy(state))
+
+            def dispatch(request):
+                payload = ({'content': store.read(task_id, request['payload']['content_ref']).decode('utf-8')}
+                           if request['payload']['operation_class'] == effects.WRITE else {})
+                return effects.attempt(target_provider, request, payload, store)
+            result = await step(f'effect/{iteration}', dispatch, request=request)
+            if (result['payload']['kind'] == 'receipt'
+                    and result['payload']['receipt']['payload']['state'] == 'running'):
+                result = await supervise(request, operation, iteration)
+            await settle_effect(operation, iteration, result)
+            if state['effects'][operation]['status'] == 'uncertain':
+                await reconcile_effects(f'{iteration}/immediate')
+            return effect_observation(operation)
+
+        async def settle_effect(operation: str, iteration: int, result: dict) -> None:
+            kind = result['payload']['kind']
+            record_ = state['effects'][operation]
+            if kind == 'receipt':
+                receipt = result['payload']['receipt']
+                record_.update(status=receipt['payload']['state'],
+                               receipt_ref=await retain(f'effect-receipt/{iteration}', receipt))
+                outcome = 'success' if receipt['payload']['state'] in ('applied', 'completed') else 'failure'
+            else:
+                record_.update(status='uncertain' if kind == 'uncertain' else 'not_dispatched',
+                               receipt_ref=await retain(f'effect-outcome/{iteration}', result))
+                outcome = 'uncertain' if kind == 'uncertain' else 'failure'
+            await record(f'{iteration}/observed', {'phase': 'observed', 'operation_id': operation,
+                'outcome': outcome, 'receipt_ref': record_['receipt_ref']})
+            if checkpoint:
+                await checkpoint(ctx, 'effect_observed', deepcopy(state))
+
+        async def supervise(request: dict, operation: str, iteration: int) -> dict:
+            """A running process: poll its receipt, honour cancellation and the deadline."""
+            state['effects'][operation]['status'] = 'running'
+            ctx.set('task', message('TaskState', state))
+            interval = timedelta(seconds=request['payload']['poll_seconds'])
+            for tick in range(max(1, math.ceil(request['payload']['timeout_seconds'] / request['payload']['poll_seconds']))):
+                source, _ = await restate.select(
+                    cancel=ctx.promise(f'effect-cancel/{operation}', type_hint=dict).value(),
+                    tick=ctx.sleep(interval))
+                if source == 'cancel':
+                    return await step(f'effect-cancel/{iteration}', effects.cancel, provider=target_provider,
+                                      request=request, store=store, reason='requested')
+                polled = await step(f'effect-poll/{iteration}/{tick}', effects.poll, provider=target_provider,
+                                    request=request, store=store)
+                if polled['payload']['kind'] != 'receipt' or polled['payload']['receipt']['payload']['state'] != 'running':
+                    return polled
+            # Deadline: a recorded non-success, never permission to wait longer.
+            return await step(f'effect-deadline/{iteration}', effects.cancel, provider=target_provider,
+                              request=request, store=store, reason='timeout')
+
+        async def await_approval(request: dict, operation: str, iteration: int) -> tuple[str, str | None]:
+            """The existing human boundary, for one concrete effect. No second approval queue."""
+            request_id = f'approve-{iteration}'
+            human = effects.approval_request(task_id, request_id, request)
+            state['wait'] = {'wait_id': request_id, 'input_type': 'human_response', 'task_revision': state['revision'],
+                             'promise': f'input/{iteration}/{request_id}',
+                             'request_ref': await retain(f'approval-request/{iteration}', human)}
+            state['effects'][operation]['status'] = 'awaiting_approval'
+            state['lifecycle'] = 'WAITING'
+            ctx.set('task', message('TaskState', state))
+            if checkpoint:
+                await checkpoint(ctx, 'suspended', deepcopy(state))
+            source, received = await restate.select(
+                input=ctx.promise(state['wait']['promise'], type_hint=dict).value(),
+                cancel=ctx.promise(f'effect-cancel/{operation}', type_hint=dict).value())
+            state['wait'] = None
+            state['lifecycle'] = 'RUNNING'
+            if source == 'cancel':
+                ctx.set('task', message('TaskState', state))
+                return 'CANCELED', None
+            validate_response(received, human, task_id)
+            response_ref = await retain(f'approval-response/{iteration}', received)
+            state['human_responses'] = {**state.get('human_responses', {}), request_id: response_ref}
+            ctx.set('task', message('TaskState', state))
+            return received['payload']['value'], response_ref
+
+        async def close_effects(reason: str) -> list[str]:
+            """Task stop (cancellation or failure) through the effect machinery. Not rollback.
+
+            Never-dispatched effects close as not_dispatched (proven); dispatched or
+            running effects get the ordinary stop or their finished receipt; anything
+            uncertain gets one bounded reconciliation. Each actual outcome is journaled
+            and whatever stays unknown is reported, never hidden or presumed undone.
+            """
+            nonlocal last_evaluation
+            if not state['effects']:
+                return []
+            for operation in sorted(state['effects']):
+                record_ = state['effects'][operation]
+                if record_['status'] in ('admitted', 'awaiting_approval'):
+                    closed = message('EffectOutcome', {'kind': 'not_dispatched',
+                                                       'reason': f'Task {reason} before dispatch'})
+                    record_.update(status='not_dispatched', receipt_ref=await retain(f'task-stop-closed/{operation}', closed))
+                    await record(f'task-stop/{operation}/observed', {'phase': 'observed', 'operation_id': operation,
+                        'outcome': 'not_dispatched', 'receipt_ref': record_['receipt_ref']})
+                elif record_['status'] in ('dispatched', 'running'):
+                    request = await step(f'task-stop-request/{operation}', store.read_json,
+                                         task_id=task_id, ref=record_['request_ref'])
+                    result = await step(f'task-stop/{operation}', effects.stop_for_task, provider=target_provider,
+                                        request=request, store=store)
+                    await settle_effect(operation, f'task-stop/{operation}', result)
+                if checkpoint:
+                    await checkpoint(ctx, 'task_stop_effect', deepcopy(state))
+            await reconcile_effects('task-stop')
+            # Evidence only: the final evaluation is retained, the lifecycle stays as is.
+            evaluation = await step('task-stop-evaluation', lambda state, contract: completion.evaluate_contract(
+                contract, state['contract_ref'], state, store), state=deepcopy(state), contract=deepcopy(contract))
+            last_evaluation = evaluation['payload']
+            state['completion_ref'] = await retain('task-stop-evaluation-artifact', evaluation)
+            ctx.set('task', message('TaskState', state))
+            notes = {'uncertain': 'outcome STILL_UNKNOWN after bounded reconciliation',
+                     'different_state': 'target changed by someone else; own outcome unknown',
+                     'canceled': 'process stop confirmed; partial effects possible',
+                     'completed': 'completed before the stop', 'applied': 'applied before the stop',
+                     'not_dispatched': 'never dispatched', 'not_applied': 'provider confirms it never ran'}
+            return [f"Effect {op} after Task {reason}: {record_['status']} ({notes.get(record_['status'], 'see receipt')})"[:512]
+                    for op, record_ in sorted(state['effects'].items())
+                    if record_['status'] not in ('conflict', 'rejected')][:4]
+
+        async def reconcile_effects(label: str) -> bool:
+            """One reconciliation attempt per uncertain effect. Never redispatches."""
+            concluded = False
+            for operation in sorted(op for op, e in state['effects'].items() if e['status'] == 'uncertain'):
+                record_ = state['effects'][operation]
+                attempt = record_['reconcile_attempts'] = record_.get('reconcile_attempts', 0) + 1
+                request = await step(f'reconcile-request/{operation}/{attempt}', store.read_json,
+                                     task_id=task_id, ref=record_['request_ref'])
+                result = await step(f'reconcile/{operation}/{attempt}', effects.reconcile,
+                                    provider=target_provider, request=request, store=store)
+                entry = {'phase': 'reconciled', 'operation_id': operation, 'state': result['payload']['state'],
+                         'evidence_ref': await retain(f'reconcile-evidence/{operation}/{attempt}', result)}
+                if result['payload']['state'] == effects.APPLIED:
+                    receipt = result['payload']['receipt']
+                    entry['receipt_ref'] = await retain(f'reconcile-receipt/{operation}/{attempt}', receipt)
+                    record_.update(status=receipt['payload']['state'], receipt_ref=entry['receipt_ref'])
+                elif result['payload']['state'] == effects.NOT_APPLIED:
+                    record_['status'] = 'not_applied'
+                elif result['payload']['state'] == effects.DIFFERENT_STATE:
+                    record_['status'] = 'different_state'
+                await record(f'reconcile/{operation}/{attempt}', entry)
+                concluded = concluded or result['payload']['state'] != effects.STILL_UNKNOWN
+            if concluded and checkpoint:
+                await checkpoint(ctx, 'reconciled', deepcopy(state))
+            return concluded
 
         try:
-            await progress('accepted')
+            await settle('accepted')
+            if context_plane is not None and state['lifecycle'] != 'COMPLETED':
+                if not {'worker.run', 'context.request'} <= effective_capabilities(spec, grant):
+                    raise restate.TerminalError('Context Plane: DENIED')
+                compiled = await step('context-plane/initial', context_plane.compile,
+                    state=deepcopy(state), spec=spec, operation=task_id + '/context-initial')
+                context_admission = compiled['admission']
+                state['artifacts'].update(compiled['result']['payload']['artifacts'])
+                ctx.set('task', message('TaskState', state))
             for iteration in range(1, MAX_TURNS + 1):
                 if state['lifecycle'] == 'COMPLETED':
                     break
                 state = {**state, "iteration": iteration}
-                packet = prepared_packet or await step(f"context/{iteration}", reconstruct,
-                                                       state=deepcopy(state), spec=spec, store=store, providers=providers)
+                await admit_amendments()
+                if state['lifecycle'] == 'COMPLETED':
+                    break
+                if await reconcile_effects(f'boundary/{iteration}'):
+                    await settle('reconciled')
+                    if state['lifecycle'] == 'COMPLETED':
+                        break
+                if state['escalation'] is None:
+                    state['local_turns'] = iteration
+                    reason = escalation_condition(iteration, state['verifier_history'])
+                    if reason is not None:
+                        # A deterministic recommendation. Only the trusted boundary
+                        # admits it, and only a deployment supplies the binding.
+                        admission = admit_escalation(state['grant'],
+                                                     escalation_binding if escalation_cognitive else None)
+                        state['escalation'] = {'iteration': iteration, 'reason': reason,
+                                               'admission': admission['outcome'],
+                                               'binding': admission['binding']}
+                        if admission['outcome'] == 'admitted':
+                            state['binding'] = admission['binding']
+                        ctx.set('task', message('TaskState', state))
+                        await emit(f'escalation/{iteration}', 'policy.evaluated',
+                                   'allow' if admission['outcome'] == 'admitted' else 'deny',
+                                   'blaine.kernel.routing')
+                # A continuation boundary: prior model/tool activity is incorporated
+                # and the next model continuation has not started. Blaine owns this
+                # loop, so the admission runs synchronously here, before cognition.
+                if instruments.enabled:
+                    await step(f'continuation/{iteration}', instruments.admit, payload={
+                        'identity': {'task_id': task_id, 'run_id': 'run:' + ctx.request().id,
+                                     'model_invocation_id': f'{task_id}/{iteration}'},
+                        'index': iteration - 1, 'reason': 'session_start' if iteration == 1 else 'tool_results',
+                        'model_invocations': iteration - 1, 'tool_invocations': tool_invocations,
+                        'last_tool_outcome': last_tool_outcome,
+                        'evidence_digest': evidence_digest(state['artifacts'])})
+                if context_plane is not None:
+                    # Journal the observed binding, then compare current authority
+                    # inside every *physical* delivery, including a retried step.
+                    context_fingerprint = await step(f'context-plane/binding/{iteration}',
+                        lambda: context_plane.authority.resolve(state, spec).fingerprint)
+                    if context_fingerprint != context_admission['binding']:
+                        raise restate.TerminalError('Context Plane: STALE')
+                packet = prepared_packet or await step(f"context/{iteration}", reconstruct_owned,
+                                                       state=deepcopy(state), spec=spec, store=store, providers=providers,
+                                                       contract=contract)
                 prepared_packet = None
                 state["context_ref"] = await retain(f"context-artifact/{iteration}", packet)
+                state['context_refs'] = (state['context_refs'] + [state['context_ref']])[-8:]
                 ctx.set("task", message("TaskState", state))
 
                 if checkpoint:
                     await checkpoint(ctx, "before_cognition", deepcopy(state))
 
                 def decide() -> dict:
-                    raw = cognitive(deepcopy(packet))
-                    if len(encode(raw)) > MAX_PACKET:
-                        raise restate.TerminalError("Decision exceeds size limit", status_code=400)
-                    return raw
+                    if context_plane is not None:
+                        context_plane.guard_binding(state, spec, context_fingerprint)
+                    # Spans wrap the physical call inside the journaled step, so a
+                    # replay that consumes the journal never fabricates inference.
+                    with instruments.recorder.span(None, kind='model_invocation', attributes={
+                            **ExecutionIdentity(task_id=task_id, run_id='run:' + ctx.request().id,
+                                model_invocation_id=f'{task_id}/{iteration}').attributes(),
+                            'blaine.continuation.index': iteration - 1,
+                            **model_attributes(provider=getattr(cognitive, 'provider', 'blaine.cognition'),
+                                               request_model=getattr(cognitive, 'model', 'scripted'))}) as span:
+                        # An admitted escalation rebinds cognition inside the same
+                        # Task. No second Task, no new lifecycle owner.
+                        adapter = (escalation_cognitive if state['escalation']
+                                   and state['escalation']['admission'] == 'admitted' else cognitive)
+                        raw = (adapter(deepcopy(packet), observe=span.set)
+                               if getattr(adapter, 'accepts_observation', False) else adapter(deepcopy(packet)))
+                        if len(encode(raw)) > MAX_PACKET:
+                            span.fail('decision_size_limit')
+                            raise restate.TerminalError("Decision exceeds size limit", status_code=400)
+                        return raw
 
                 # The semantic output is journaled before validation, effect
                 # admission or handoff. Replay consumes it without calling cognition.
@@ -168,11 +683,14 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
 
                 await emit(f'cognition/{iteration}', 'operation.prepared' if deterministic else 'cognition.decided', 'recorded', 'blaine.kernel.workflow',
                     refs={'decision_id': state['decision_id']}, payload_refs=(state['context_ref'], state['decision_ref']))
-                gate = policy_gate(decision, state, spec)
+                gate = policy_gate(decision, state, spec, state['grant'], contract, authority)
                 await emit(f'policy/{iteration}', 'policy.evaluated', gate['outcome'], 'blaine.kernel.execution.policy_gate',
                     refs={'decision_id': state['decision_id']})
                 if gate["outcome"] == "deny":
                     observation = message("PolicyDecision", {**gate, "decision_id": state["decision_id"]})
+                    if (denied := denied_action(decision)) is not None:
+                        reason = (gate['reason'] or 'denied').encode()[:512].decode(errors='ignore') or 'denied'
+                        await record(f'{iteration}/denied', capability_entry(denied, 'denied', reason=reason))
                 else:
                     action = decision["payload"]["next_action"]
                     match action["type"]:
@@ -181,56 +699,138 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                                 "task_id": task_id, "operation_id": state["decision_id"],
                                 "capability": action["capability"], "input": action["input"],
                             }
-                            observation = await step(f"capability/{iteration}", capabilities.execute,
-                                                     request=message("CapabilityRequest", capability_request))
-                            state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
-                            state['observation_ref'] = await retain(f'effect-observation/{iteration}', observation)
-                            ctx.set('task', message('TaskState', state))
-                            if action['capability'] != 'workspace.read':
-                                await emit(f'capability/{iteration}', 'capability.finished', observation['payload']['outcome'],
-                                    'blaine.kernel.execution.Capabilities', refs={'capability_call_id': state['decision_id'],
-                                        **({'worker_session_id': observation['payload']['output']['attempt_id']}
-                                           if action['capability'] == 'worker.run' and 'attempt_id' in observation['payload']['output'] else {})},
-                                    payload={'capability': action['capability']}, payload_refs=(state['observation_ref'],))
-                            if observation['payload']['artifacts']:
-                                await emit(f'artifacts/{iteration}', 'artifact.produced', 'recorded', 'blaine.kernel.artifacts.ArtifactStore',
-                                    refs={'capability_call_id': state['decision_id'],
-                                          'artifact_ids': list(observation['payload']['artifacts'].values())})
+                            # Structural invariant: nothing is dispatched without a
+                            # preceding admission in the capability journal.
+                            await record(f'{iteration}/admitted', capability_entry(action, 'admitted',
+                                operation_id=state['decision_id'],
+                                request_digest=capability_journal.digest(message("CapabilityRequest", capability_request))))
                             if checkpoint:
-                                await checkpoint(ctx, 'effect_persisted', deepcopy(state))
-                            await progress('effect')
-                            if (state['lifecycle'] != 'COMPLETED' and action['capability'] == 'workspace.read'
-                                    and observation['payload']['outcome'] == 'success'):
-                                state['wait'] = {'input_type': 'workspace_result',
-                                    'task_revision': state['revision'],
-                                    'promise': f"workspace/{iteration}",
-                                    'request_ref': observation['payload']['output']['request_ref']}
-                                state['lifecycle'] = 'WAITING'
+                                await checkpoint(ctx, 'admitted', deepcopy(state))
+                            if target_operation(action):
+                                observation = await perform_target(action, iteration)
+                                tool_invocations += 1
+                                last_tool_outcome = observation['payload']['outcome']
+                                state['observation_ref'] = await retain(f'effect-observation/{iteration}', observation)
                                 ctx.set('task', message('TaskState', state))
-                                received = await ctx.promise(state['wait']['promise'], type_hint=dict).value()
-                                from runtime.kernel.workspace import validate_read_result
-                                accepted = await step(f'workspace-request/{iteration}', store.read_json,
-                                    task_id=task_id, ref=state['wait']['request_ref'])
-                                content = validate_read_result(received, accepted['payload'])
-                                ref = await step(f'workspace-artifact/{iteration}', store.put,
-                                    task_id=task_id, content=content.encode())
-                                state['artifacts'] = {**state['artifacts'], action['input']['artifact']: ref}
-                                state['wait'] = None
-                                state['lifecycle'] = 'RUNNING'
-                                observation = received
-                                await emit(f'capability/{iteration}', 'capability.finished', 'success',
-                                    'blaine.kernel.workspace', refs={'capability_call_id': state['decision_id']},
-                                    payload={'capability': 'workspace.read'})
-                                await emit(f'artifacts/{iteration}', 'artifact.produced', 'recorded',
-                                    'blaine.kernel.artifacts.ArtifactStore',
-                                    refs={'capability_call_id': state['decision_id'], 'artifact_ids': [ref]})
-                            # This accepted, scoped capability is a blocking human
-                            # interaction. Its admitted effect supplies the event identity.
-                            if (state['lifecycle'] != 'COMPLETED' and action['capability'] == 'human.request'
-                                    and observation['payload']['outcome'] == 'success'):
-                                observation = await await_input({
-                                    'wait_id': action['input']['request']['payload']['request_id'],
-                                    'input_type': 'human_response'})
+                                if checkpoint:
+                                    await checkpoint(ctx, 'effect_persisted', deepcopy(state))
+                                await settle('effect')
+                            else:
+                                def execute_capability(request):
+                                    with instruments.recorder.span(None, kind='tool_execution', attributes={
+                                            **ExecutionIdentity(task_id=task_id, run_id='run:' + ctx.request().id,
+                                                capability_call_id=state['decision_id']).attributes(),
+                                            'blaine.continuation.index': iteration - 1,
+                                            **tool_attributes(name=action['capability'],
+                                                              call_id=state['decision_id'],
+                                                              tool_type='blaine.capability')}) as span:
+                                        if context_plane is not None:
+                                            from runtime.kernel.context_plane import ContextError, failure
+                                            try:
+                                                if action['capability'] == 'context.request':
+                                                    if context_delta_used or not context_worker_observed:
+                                                        raise ContextError('DENIED')
+                                                    # A new admitted resolution reads current
+                                                    # trusted state, not the old packet's grant.
+                                                    return context_plane.compile(deepcopy(state), spec,
+                                                        state['decision_id'], request=action['input'],
+                                                        previous=context_admission)
+                                                context_plane.guard_binding(state, spec, context_fingerprint)
+                                                if (action['capability'] == 'worker.run'
+                                                        and context_delivered_ref == context_admission['packet_ref']):
+                                                    raise ContextError('DENIED')
+                                                # CP.1 context access uses the governed request.
+                                                # Reading historical packets as raw artifacts
+                                                # would bypass current source validation.
+                                                if action['capability'] == 'artifact.read':
+                                                    raise ContextError('DENIED')
+                                                result = capabilities.execute(request,
+                                                    context_runtime=(deepcopy(state), spec, context_admission))
+                                            except ContextError as error:
+                                                result = failure(state['decision_id'], error)
+                                        else:
+                                            result = capabilities.execute(request)
+                                        outcome = result['payload']['outcome']
+                                        span.set(**{'blaine.tool.outcome': outcome})
+                                        if outcome != 'success':
+                                            span.fail('capability_failure')
+                                        return ({'result': result, 'admission': None}
+                                                if context_plane is not None else result)
+                                observation = await step(f"capability/{iteration}", execute_capability,
+                                                         request=message("CapabilityRequest", capability_request))
+                                if context_plane is not None:
+                                    admitted = observation['admission']
+                                    observation = observation['result']
+                                    if admitted is not None:
+                                        context_admission = admitted
+                                        context_delta_used = True
+                                    if action['capability'] == 'worker.run' and observation['payload']['outcome'] == 'success':
+                                        context_worker_observed = True
+                                        context_delivered_ref = context_admission['packet_ref']
+                                tool_invocations += 1
+                                last_tool_outcome = observation['payload']['outcome']
+                                state["artifacts"] = {**state["artifacts"], **observation["payload"]["artifacts"]}
+                                state['observation_ref'] = await retain(f'effect-observation/{iteration}', observation)
+                                ctx.set('task', message('TaskState', state))
+                                if action['capability'] != 'workspace.read' or observation['payload']['outcome'] != 'success':
+                                    await record(f'{iteration}/observed', {'phase': 'observed',
+                                        'operation_id': state['decision_id'], 'outcome': observation['payload']['outcome'],
+                                        'receipt_ref': state['observation_ref']})
+                                if action['capability'] != 'workspace.read':
+                                    await emit(f'capability/{iteration}', 'capability.finished', observation['payload']['outcome'],
+                                        'blaine.kernel.execution.Capabilities', refs={'capability_call_id': state['decision_id'],
+                                            **({'worker_session_id': observation['payload']['output']['attempt_id']}
+                                               if action['capability'] == 'worker.run' and 'attempt_id' in observation['payload']['output'] else {})},
+                                        payload={'capability': action['capability']}, payload_refs=(state['observation_ref'],))
+                                if observation['payload']['artifacts']:
+                                    await emit(f'artifacts/{iteration}', 'artifact.produced', 'recorded', 'blaine.kernel.artifacts.ArtifactStore',
+                                        refs={'capability_call_id': state['decision_id'],
+                                              'artifact_ids': list(observation['payload']['artifacts'].values())})
+                                if checkpoint:
+                                    await checkpoint(ctx, 'effect_persisted', deepcopy(state))
+                                await settle('effect')
+                                if (state['lifecycle'] != 'COMPLETED' and action['capability'] == 'workspace.read'
+                                        and observation['payload']['outcome'] == 'success'):
+                                    state['wait'] = {'input_type': 'workspace_result',
+                                        'task_revision': state['revision'],
+                                        'promise': f"workspace/{iteration}",
+                                        'request_ref': observation['payload']['output']['request_ref']}
+                                    state['lifecycle'] = 'WAITING'
+                                    ctx.set('task', message('TaskState', state))
+                                    received = await ctx.promise(state['wait']['promise'], type_hint=dict).value()
+                                    from runtime.kernel.workspace import validate_read_result
+                                    accepted = await step(f'workspace-request/{iteration}', store.read_json,
+                                        task_id=task_id, ref=state['wait']['request_ref'])
+                                    content = validate_read_result(received, accepted['payload'])
+                                    ref = await step(f'workspace-artifact/{iteration}', store.put,
+                                        task_id=task_id, content=content.encode())
+                                    state['artifacts'] = {**state['artifacts'], action['input']['artifact']: ref}
+                                    from runtime.kernel.workspace import legacy_receipt
+                                    receipt_ref = await retain(f'workspace-receipt/{iteration}', legacy_receipt(
+                                        task_id, state['wait']['request_ref'], accepted['payload'], ref, content))
+                                    await record(f'{iteration}/observed', {'phase': 'observed',
+                                        'operation_id': state['decision_id'], 'outcome': 'success', 'receipt_ref': receipt_ref})
+                                    if checkpoint:
+                                        await checkpoint(ctx, 'receipt_admitted', deepcopy(state))
+                                    state['wait'] = None
+                                    state['lifecycle'] = 'RUNNING'
+                                    # Cognition cites the receipt the Task admitted, not the raw result.
+                                    observation = message('WorkspaceReadObservation', {
+                                        'operation_id': state['decision_id'], 'receipt_ref': receipt_ref,
+                                        'artifact': action['input']['artifact'], 'artifact_ref': ref, 'content': content})
+                                    await emit(f'capability/{iteration}', 'capability.finished', 'success',
+                                        'blaine.kernel.workspace', refs={'capability_call_id': state['decision_id']},
+                                        payload={'capability': 'workspace.read'})
+                                    await emit(f'artifacts/{iteration}', 'artifact.produced', 'recorded',
+                                        'blaine.kernel.artifacts.ArtifactStore',
+                                        refs={'capability_call_id': state['decision_id'], 'artifact_ids': [ref]})
+                                # This accepted, scoped capability is a blocking human
+                                # interaction. Its admitted effect supplies the event identity.
+                                if (state['lifecycle'] != 'COMPLETED' and action['capability'] == 'human.request'
+                                        and observation['payload']['outcome'] == 'success'):
+                                    observation = await await_input({
+                                        'wait_id': action['input']['request']['payload']['request_id'],
+                                        'input_type': 'human_response'})
                         case "HANDOFF":
                             previous = state["active_specialist"]
                             state["active_specialist"] = action["specialist"]
@@ -260,7 +860,8 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                             # Creating all native durable futures issues all calls before
                             # any await. Restate owns execution/recovery; no asyncio task pool.
                             calls = [ctx.workflow_call(run, key=child_id,
-                                arg=child_request(task_id, state['decision_id'], slot, child_spec))
+                                arg=child_request(task_id, state['decision_id'], slot, child_spec,
+                                                  narrow_grant(state['grant'], None)))
                                 for child_id, slot, child_spec, _ in pending]
                             for child_id, _, _, label in pending:
                                 await emit('child-created/' + label, 'task.child_created', 'recorded',
@@ -311,24 +912,20 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                             if checkpoint:
                                 await checkpoint(ctx, 'children_joined', deepcopy(state))
                         case "COMPLETE":
-                            observation = await step(f"verify/{iteration}", evaluate,
-                                                     spec=spec, state=deepcopy(state), store=store)
-                            state["completion_ref"] = await retain(f"completion/{iteration}", observation)
-                            if observation["payload"]["outcome"] == "satisfied":
-                                state["lifecycle"] = "COMPLETED"
-                            await emit(f"verification/request/{iteration}", "verifier.evaluated", observation["payload"]["outcome"],
-                                "blaine.kernel.execution.evaluate", payload_refs=(state["completion_ref"],))
+                            # Only a request for the same legality decision as every other path.
+                            observation = await settle('request')
                 state["observation_ref"] = await retain(f"observation/{iteration}", observation)
                 state["revision"] += 1
                 ctx.set("task", message("TaskState", state))
                 if state['lifecycle'] != 'COMPLETED':
-                    await progress('outcome')
+                    await settle('outcome')
                 # Commit owner and originating decision together, then create a
                 # fresh specialist packet before its next cognitive execution.
                 if state["lifecycle"] != "COMPLETED" and gate["outcome"] == "allow" and action["type"] == "HANDOFF":
                     next_state = {**state, "iteration": iteration + 1}
-                    next_packet = await step(f"handoff-context/{iteration}", reconstruct,
-                                             state=next_state, spec=spec, store=store, providers=providers)
+                    next_packet = await step(f"handoff-context/{iteration}", reconstruct_owned,
+                                             state=next_state, spec=spec, store=store, providers=providers,
+                                             contract=contract)
                     state["context_ref"] = await retain(f"handoff-packet/{iteration}", next_packet)
                     prepared_packet = next_packet
                 ctx.set("task", message("TaskState", state))
@@ -339,10 +936,22 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             else:
                 concerns.append("Turn limit exhausted without verified completion")
                 state["lifecycle"] = "FAILED"
+        except ValueError as error:
+            from runtime.kernel.context_plane import ContextError
+            if not isinstance(error, ContextError):
+                raise
+            concerns.append(str(error))
+            state['lifecycle'] = 'FAILED'
+            state['wait'] = None
         except restate.TerminalError as error:
             concerns.append(f"Execution stopped: {error.message}".encode()[:512].decode(errors="ignore"))
             state["lifecycle"] = "CANCELLED" if error.status_code == 409 and error.message.lower() == 'cancelled' else "FAILED"
             state["wait"] = None
+            # No cognition runs from here, so no new target effect can be admitted.
+            concerns.extend(await close_effects(state['lifecycle'].lower()))
+        # Waivers, PolicyGate denials and unmet ADVISORY criteria stay visible.
+        if last_evaluation is not None:
+            concerns = (concerns + [c for c in last_evaluation['concerns'] if c not in concerns])[:8]
         result: TaskResult = {
             "task_id": task_id, "outcome": state["lifecycle"],
             "artifacts": state["artifacts"], "completion_ref": state["completion_ref"], "concerns": concerns,
@@ -350,7 +959,27 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
         output = message("TaskResult", result)
         validate_result(output, task_id)
         state["result_ref"] = await retain("task-result", output)
+        # Authoritative routing evidence. Telemetry may be lost and durable
+        # runtime state expires, so what a later routing experiment needs is an
+        # artifact, discoverable through the append-only event record.
+        escalation = state['escalation']
+        record = RoutingRecord(
+            task_id=task_id, outcome=state['lifecycle'],
+            externally_bounded=state['grant'] is not None,
+            effective_capabilities=tuple(sorted(effective_capabilities(spec, state['grant']))),
+            initial_binding=LOCAL_BINDING, final_binding=state['binding'],
+            local_turns=state['local_turns'], total_turns=state['iteration'],
+            escalated=bool(escalation and escalation['admission'] == 'admitted'),
+            escalation_iteration=escalation['iteration'] if escalation else None,
+            escalation_reason=escalation['reason'] if escalation else None,
+            escalation_admission=escalation['admission'] if escalation else None,
+            completion_ref=state['completion_ref'], result_ref=state['result_ref'],
+            context_refs=tuple(state['context_refs']), concerns=tuple(concerns), usage=None)
+        routing_ref = await retain('routing-record', message('RoutingRecord', record.payload()))
+        state['routing_ref'] = routing_ref
         ctx.set("task", message("TaskState", state))
+        await emit('routing', 'artifact.produced', 'recorded', 'blaine.kernel.routing',
+                   refs={'artifact_ids': [routing_ref]})
         await emit('completion', 'completion.finished', state['lifecycle'], 'blaine.kernel.workflow',
             payload_refs=(state['completion_ref'], state['result_ref']))
         return output
@@ -401,6 +1030,98 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
         # Native one-shot resolution deduplicates the wait; only the consumed value is evidence.
         await ctx.promise(wait['promise'], type_hint=dict).resolve(request)
         return message('InputReceipt', {'request_id': response['request_id'], 'outcome': 'ACCEPTED'})
+
+    @workflow.handler()
+    async def amend_contract(ctx: restate.WorkflowSharedContext, request: dict) -> dict:
+        """Explicit, typed human change of the Completion Contract.
+
+        The request is a CompletionContractAmendmentSubmission: the actor context is
+        established by the authenticated binding that calls this handler (the same
+        trust as submit_human_response and a TaskRequest grant); the amendment content
+        it wraps carries no authority field, so content a user, model or file supplied
+        cannot claim or upgrade an actor.
+
+        Compare-and-set by revision: the amendment resolves the one-shot promise
+        ``contract/{from_revision + 1}``, so of two amendments to one revision only
+        the first is taken, and an identical retry is recognised. The receipt means
+        submitted, not applied; the Task's contract_revision shows application.
+        """
+        task_id = ctx.key()
+        current = await ctx.get('task')
+        if not current:
+            raise restate.TerminalError('Task unavailable', status_code=404)
+        state = current['payload']
+        try:
+            actor, submitted = completion.validate_amendment_submission(request, task_id)
+        except (ValueError, TypeError) as error:
+            raise restate.TerminalError(str(error), status_code=400) from error
+        to_revision = submitted['from_revision'] + 1
+        promise = ctx.promise(f'contract/{to_revision}', type_hint=dict)
+        value = {'submission': request,
+                 'action_ref': f'artifact://{task_id}/sha256:' + hashlib.sha256(encode(request)).hexdigest()}
+        receipt = {'task_id': task_id, 'request_id': submitted['request_id'],
+                   'from_revision': submitted['from_revision'], 'to_revision': to_revision}
+        existing = await promise.peek()
+        if existing is not None:
+            if existing == value:
+                return message('AmendmentReceipt', {**receipt, 'outcome': 'ALREADY_SUBMITTED'})
+            raise restate.TerminalError(f'Contract revision {to_revision} was already amended by another request', status_code=409)
+        if state['lifecycle'] in ('COMPLETED', 'FAILED', 'CANCELLED'):
+            raise restate.TerminalError('Task is terminal; its contract is closed', status_code=409)
+        if submitted['from_revision'] != state.get('contract_revision'):
+            raise restate.TerminalError('Stale contract revision', status_code=409)
+        def check() -> dict:
+            authority = capability_journal.validate_authority(
+                store.read_json(task_id, state['authority_ref']), task_id)
+            mutating = capability_journal.mutating(authority['capabilities'])
+            contract = completion.validate_contract(store.read_json(task_id, state['contract_ref']), task_id, mutating)
+            try:
+                completion.apply_amendment(contract, state['contract_ref'], actor, submitted, value['action_ref'],
+                                           state, mutating)
+            except completion.AmendmentDenied as error:
+                return {'status': 403, 'reason': str(error)}
+            except completion.AmendmentConflict as error:
+                return {'status': 409, 'reason': str(error)}
+            except (ValueError, TypeError) as error:
+                return {'status': 400, 'reason': str(error)}
+            return {'status': 200, 'reason': None}
+        verdict = await ctx.run_typed('check-amendment', check, restate.RunOptions(max_attempts=3))
+        if verdict['status'] != 200:
+            raise restate.TerminalError(verdict['reason'], status_code=verdict['status'])
+        # The whole submission (binding-established actor and requested change) is
+        # the retained human action a waiver will cite.
+        action_ref = await ctx.run_typed('retain-amendment-request', store.put_json,
+            restate.RunOptions(max_attempts=3), task_id=task_id, value=request)
+        if action_ref != value['action_ref']:
+            raise restate.TerminalError('Amendment action reference mismatch', status_code=500)
+        try:
+            await promise.resolve(value)
+        except restate.TerminalError:
+            if await promise.peek() == value:
+                return message('AmendmentReceipt', {**receipt, 'outcome': 'ALREADY_SUBMITTED'})
+            raise restate.TerminalError(f'Contract revision {to_revision} was already amended by another request', status_code=409)
+        return message('AmendmentReceipt', {**receipt, 'outcome': 'SUBMITTED'})
+
+    @workflow.handler()
+    async def cancel_effect(ctx: restate.WorkflowSharedContext, request: dict) -> dict:
+        """Ask to stop one target effect that is awaiting approval or running.
+
+        A receipt means the request was recorded (one-shot per operation), never
+        that the effect stopped: the effect's journal outcome says what happened.
+        """
+        try:
+            operation = text(fields(unpack(request, 'EffectCancelRequest'), {'operation_id'})['operation_id'], 100)
+        except (ValueError, TypeError) as error:
+            raise restate.TerminalError(str(error), status_code=400) from error
+        current = await ctx.get('task')
+        effect = ((current or {}).get('payload', {}).get('effects') or {}).get(operation)
+        if not effect or effect['status'] not in ('admitted', 'awaiting_approval', 'dispatched', 'running'):
+            raise restate.TerminalError('No cancellable effect with this operation', status_code=409)
+        try:
+            await ctx.promise(f'effect-cancel/{operation}', type_hint=dict).resolve({'operation_id': operation})
+        except restate.TerminalError:
+            return message('EffectCancelReceipt', {'operation_id': operation, 'outcome': 'ALREADY_REQUESTED'})
+        return message('EffectCancelReceipt', {'operation_id': operation, 'outcome': 'REQUESTED'})
 
     from runtime.kernel.control import add_control_handlers
     add_control_handlers(workflow, store)

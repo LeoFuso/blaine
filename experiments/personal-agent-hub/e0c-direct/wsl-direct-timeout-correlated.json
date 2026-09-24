@@ -1,0 +1,113 @@
+{
+  "status": "PARTIAL",
+  "source": "Operator transcript reports-e0c-direct-dCzIgn plus bounded host journal correlation",
+  "observed_at": "2026-09-23T17:36:12Z",
+  "client_commit": "77a974c31b622983bc24c7316e690d4caeafca3c",
+  "host_commit": "8d3889df966296466a979925071d595c92397883",
+  "peer_node": "nPvKcFBuW821CNTRL",
+  "workstation_id": "ws-c5c659bfb5a2364ba3c33f0b86054732",
+  "node_reused": true,
+  "client_exit": 3,
+  "client_error": "failed to write msg: failed to write frame: context deadline exceeded",
+  "host_events": [
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "handshake",
+      "session_id": "9a66c30704e352b1f06c9505a6630758",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 68,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "handshake",
+      "session_id": "9a66c30704e352b1f06c9505a6630758",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 68,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 0,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "9d3bc87ae3d95fca046525a1751c3cb9",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_start",
+      "mode": "probe",
+      "session_id": "9d3bc87ae3d95fca046525a1751c3cb9",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_greeting_complete",
+      "mode": "probe",
+      "session_id": "9d3bc87ae3d95fca046525a1751c3cb9",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 7,
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_start",
+      "mode": "probe",
+      "session_id": "9d3bc87ae3d95fca046525a1751c3cb9",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 61,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_receive_complete",
+      "mode": "probe",
+      "session_id": "9d3bc87ae3d95fca046525a1751c3cb9",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 15066,
+      "outcome": "DEADLINE"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "9d3bc87ae3d95fca046525a1751c3cb9",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 15066,
+      "outcome": "DEADLINE"
+    }
+  ],
+  "conclusions": {
+    "initial_signed_handshake": "PASS measured at host: 68 ms",
+    "probe_signed_handshake": "PASS measured at host: 61 ms",
+    "host_binary_greeting": "7-byte send completed; exact client code advances to the 1 MiB write only after validating this greeting",
+    "first_binary_request": "Host never received a complete application frame before its 15-second probe deadline; client write timed out",
+    "bytes_received_partial": "UNKNOWN: application Receive returns no partial frame on error",
+    "binary_echo": "NOT_REACHED",
+    "acp": "NOT_REACHED",
+    "os_signals": "NOT_REACHED",
+    "root_cause": "UNRESOLVED; inspect workstation interface MTU before changing packet handling, timeouts, policy or topology"
+  }
+}

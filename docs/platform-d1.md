@@ -1,10 +1,36 @@
 # D1 — Long-lived platform foundation
 
-**Current: D1 IN PROGRESS — infrastructure foundation PASS; backup PAUSED.**
-See [infrastructure acceptance](platform-infrastructure.md), [Grafana Cloud activation](platform-grafana-cloud.md)
-and [remaining D1 service/recovery work](roadmap/001-blaine-development-roadmap.md#d1).
-SeaweedFS Object Storage is now deployed. Blaine/Restate/vLLM/MIRIX service
-adoption and full reboot acceptance remain incomplete. No backup acceptance is implied.
+> Legacy D1 checkpoint and paused backup history. Current program status belongs
+> to the [roadmap](roadmap/001-blaine-development-roadmap.md#d1); current application
+> topology, versions, state paths and D1.G procedure belong to
+> [platform services](platform-services.md). Use [rootless operations](platform-rootless-docker.md)
+> for active infrastructure ownership, [observability inventory](platform-observability-inventory.md)
+> for coverage and [Grafana Cloud](platform-grafana-cloud.md) for Fleet/data-plane
+> operation. The dated observations below are preserved evidence, not fresh health
+> or authorization. Historical inventories and “next” instructions may be superseded.
+
+## Ready at login — configured and live-tested; host reboot pending
+
+Historical service-adoption checkpoint; consult [platform services](platform-services.md)
+for the current procedure and the roadmap for acceptance status.
+
+The linger-enabled user manager owns rootless Docker, infrastructure, generation,
+embeddings, MIRIX, Restate and the actual Blaine runtime. All seven user units are
+enabled. Native PostgreSQL, Redis and Alloy retain automatic startup. Readiness,
+controlled restarts, the same semantic memory and durable Tasks, explicit Task
+resume and a preserved human WAITING state passed. A real cognitive Task recalled
+MIRIX content and produced independently verified evidence.
+
+This is the configured ready-at-login topology. Automatic recovery across a host
+reboot remains unproven until the separately authorized D1.G procedure runs.
+Hypercorn needed systemd's bounded termination during the controlled stop; state
+recovery passed, but graceful shutdown is not claimed. Current ArtifactStore
+remains the actual local immutable store, alongside independently verified object
+storage; no nonexistent S3 runtime adapter is implied.
+
+[Persistent synthetic identities and read-only post-reboot verifier](platform-services.md#d1g--later-human-authorized-reboot-procedure)
+are ready. No reboot, push, backup unpause or timer enable occurred in this pass.
+The following backup material is historical and does not override this status.
 
 ## Historical backup checkpoint (pause still active)
 

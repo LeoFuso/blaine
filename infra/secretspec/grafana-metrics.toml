@@ -1,0 +1,8 @@
+# Declaration only; never a value. See infra/secretspec/jev.toml for why each
+# consumer owns its own manifest.
+[project]
+name = "blaine-grafana-metrics"
+revision = "1.0"
+
+[profiles.default]
+GRAFANA_CLOUD_METRICS_API_KEY = { description = "Grafana Cloud Hosted Metrics API key", required = true }

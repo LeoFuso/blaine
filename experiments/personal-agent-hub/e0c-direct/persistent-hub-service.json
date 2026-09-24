@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "observed_at": "2026-09-23T20:33:57.147135+00:00",
+  "source_commit": "c0e323b39e5287eab4f28898c0da9b14848090b3",
+  "binary_sha256": "e66204663cf12e8f67a9bebebd889182bdbc44303b06fb1dcce3bbb52108e2d0",
+  "toolchain": "go1.27.1 linux/amd64",
+  "key_adopted_without_rotation": true,
+  "staging_idempotence": "PASS two invocations",
+  "unit_validation": "PASS; unrelated existing spice-vdagent unit emitted an Install-section warning",
+  "units": {
+    "blaine-hub-transport.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "FragmentPath": "/home/leofuso/.config/systemd/user/blaine-hub-transport.service",
+      "UnitFileState": "enabled",
+      "Transient": "no",
+      "RuntimeMaxUSec": "infinity",
+      "MainPID": "2506022",
+      "NRestarts": "0"
+    },
+    "blaine-runtime.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "FragmentPath": "/home/leofuso/.config/systemd/user/blaine-runtime.service",
+      "UnitFileState": "enabled",
+      "Transient": "no",
+      "RuntimeMaxUSec": "infinity",
+      "MainPID": "2276403",
+      "NRestarts": "0"
+    },
+    "blaine-restate.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "FragmentPath": "/home/leofuso/.config/systemd/user/blaine-restate.service",
+      "UnitFileState": "enabled",
+      "Transient": "no",
+      "RuntimeMaxUSec": "infinity",
+      "MainPID": "358882",
+      "NRestarts": "0"
+    },
+    "blaine-e0c-direct-candidate.service": {
+      "ActiveState": "inactive",
+      "SubState": "dead",
+      "FragmentPath": "",
+      "UnitFileState": "",
+      "Transient": "no",
+      "RuntimeMaxUSec": "infinity",
+      "MainPID": "0",
+      "NRestarts": "0"
+    }
+  },
+  "linger": true,
+  "restart_test": "PASS explicit edge restart, runtime/Restate PIDs unchanged",
+  "task_lifecycle": "WAITING",
+  "task_state_unchanged": true,
+  "task_state_sha256": "2493b7c5c18ec6c7c3ee4ea12fb91d26081a0e91e76c088869a2cf042bc88245",
+  "readiness": {
+    "embeddings": "PASS",
+    "generation": "PASS",
+    "mirix": "PASS",
+    "restate": "PASS",
+    "runtime": "PASS"
+  },
+  "actual_host_reboot_tested": false,
+  "limits": "Enabled unit and existing linger prove persistent deployment configuration and edge restart recovery, not an observed host reboot.",
+  "final_primary_mac": "PASS real alpha.3 IntelliJ session on canonical service and final narrow policy; see closure.json"
+}

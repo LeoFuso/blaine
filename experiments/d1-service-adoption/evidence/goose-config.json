@@ -1,0 +1,12 @@
+{
+  "previous_active_provider": "ollama",
+  "active_provider": "openai",
+  "model": "nvidia/Qwen3.8-27B-NVFP4",
+  "endpoint": "http://127.0.0.1:8000",
+  "context_limit": 131072,
+  "preserved_providers": [
+    "ollama"
+  ],
+  "private_backup": "/home/leofuso/.config/goose/config.yaml.pre-d1-service-adoption",
+  "credential": "local endpoint uses non-secret placeholder"
+}

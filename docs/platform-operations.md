@@ -1,5 +1,29 @@
 # D1 platform operations and recovery gates
 
+**Metrics slice CONCLUDED / ACCEPTED as best-effort asynchronous Cloud transport.**
+Live delivery, temporary network buffering/retry, same-process reconnect/drain and
+Cloud-independent Alloy startup passed. Restart replay remains NOT GUARANTEED /
+FAIL; lossless durability is NOT CLAIMED. This does not block D1.G.
+Follow-up [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3) is Upstream /
+Backlog. See the [live inventory and validated PromQL](platform-observability-inventory.md).
+
+**Fleet slice, 2026-09-21: activation STOPPED.** Native Alloy 1.19.2 registration
+failure prevents offline initial startup. Local Alloy was restored and verified;
+D1.A/B/C/D and all prepared D1.G identities remain accepted/unchanged. See the
+[Fleet findings and BWS runbook](platform-grafana-cloud.md). No reboot occurred.
+
+**2026-09-21:** infrastructure-only full-host reboot recovery is **PASS** for the
+rootful foundation. [Rootless migration](platform-rootless-docker.md) is **PASS**;
+user systemd + linger owns the stack and the legacy system owner is disabled. That runbook contains the
+current operator topology, namespace storage rules, normal operations and rollback limits.
+The historical backup instructions below remain paused. Rootless reboot and
+full D1.G remain pending; no reboot is authorized by documenting these gates.
+
+For current inference/MIRIX/Restate/Blaine operations, retained-state evidence,
+known shutdown limits and the exact later reboot procedure, use the
+[service operations runbook](platform-services.md). All five adopted units are
+enabled; no manual terminal or root is needed for normal runtime operation.
+
 Read the [current infrastructure foundation](platform-infrastructure.md),
 [roadmap D1 gates](roadmap/001-blaine-development-roadmap.md#d1), and
 [historical backup checkpoint](platform-d1.md) first. Commands below
@@ -302,7 +326,7 @@ cluster. Global SQL and dumps are trusted sensitive backup inputs, never fetched
 from an untrusted source. Complete Object Storage restore remains unproven until the deployed storage
 implementation and its metadata/version semantics are covered and verified.
 
-## Future reboot acceptance — not authorized or executed
+## Future full D1.G / rootless reboot acceptance — separate authorization required
 
 The pre-infrastructure reboot sketch is superseded by the [D1.G gate](roadmap/001-blaine-development-roadmap.md#d1).
 Prepare a reviewed acceptance profile after actual service adoption, using current

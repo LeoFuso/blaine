@@ -1,0 +1,138 @@
+{
+  "observed_at": "2026-09-21T13:15:01.793245+00:00",
+  "branch": "d1-local-inference-adoption",
+  "head": "74b29938e14ce46ac550bd4f4badf596015e3c3e",
+  "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+  "sudo_noninteractive": "unavailable; authentication required; no interactive attempt",
+  "groups": "uid=1000(leofuso) gid=1000(leofuso) groups=1000(leofuso),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),111(lpadmin),114(lxd),971(docker),973(ollama)",
+  "contexts": {
+    "default": {
+      "endpoint": "unix:///var/run/docker.sock",
+      "security_options": [
+        "name=apparmor,profile=default",
+        "name=seccomp,profile=builtin",
+        "name=cgroupns"
+      ],
+      "containers": [
+        {
+          "name": "/hungry_hopper",
+          "image": "hello-world",
+          "user": "",
+          "status": "exited",
+          "health": null,
+          "network": "bridge",
+          "mounts": []
+        },
+        {
+          "name": "/blaine-infra-langfuse-worker-1",
+          "image": "docker.langfuse.com/langfuse/langfuse-worker:4.38.0",
+          "user": "expressjs",
+          "status": "running",
+          "health": "healthy",
+          "network": "host",
+          "mounts": []
+        },
+        {
+          "name": "/blaine-infra-langfuse-web-1",
+          "image": "docker.langfuse.com/langfuse/langfuse:4.38.0",
+          "user": "nextjs",
+          "status": "running",
+          "health": "healthy",
+          "network": "host",
+          "mounts": []
+        },
+        {
+          "name": "/blaine-infra-object-storage-1",
+          "image": "chrislusf/seaweedfs:4.47",
+          "user": "1000:1000",
+          "status": "running",
+          "health": "healthy",
+          "network": "blaine-infra_default",
+          "mounts": [
+            {
+              "Type": "bind",
+              "Source": "/srv/blaine/infra/objects",
+              "Destination": "/data",
+              "Mode": "rw",
+              "RW": true,
+              "Propagation": "rprivate"
+            },
+            {
+              "Type": "bind",
+              "Source": "/etc/blaine/secrets/object-storage.json",
+              "Destination": "/run/secrets/s3.json",
+              "Mode": "ro",
+              "RW": false,
+              "Propagation": "rprivate"
+            }
+          ]
+        },
+        {
+          "name": "/blaine-infra-clickhouse-1",
+          "image": "clickhouse/clickhouse-server:26.4.5.143",
+          "user": "101:101",
+          "status": "running",
+          "health": "healthy",
+          "network": "blaine-infra_default",
+          "mounts": [
+            {
+              "Type": "bind",
+              "Source": "/srv/blaine/infra/clickhouse/data",
+              "Destination": "/var/lib/clickhouse",
+              "Mode": "rw",
+              "RW": true,
+              "Propagation": "rprivate"
+            },
+            {
+              "Type": "bind",
+              "Source": "/srv/blaine/infra/clickhouse/logs",
+              "Destination": "/var/log/clickhouse-server",
+              "Mode": "rw",
+              "RW": true,
+              "Propagation": "rprivate"
+            }
+          ]
+        }
+      ]
+    },
+    "rootless": {
+      "endpoint": "unix:///run/user/1000/docker.sock",
+      "security_options": [
+        "name=seccomp,profile=builtin",
+        "name=rootless",
+        "name=cgroupns"
+      ],
+      "containers": []
+    }
+  },
+  "rootless_mapping": "         0       1000          1\n         1     100000      65536\n",
+  "linger": "Linger=no",
+  "metadata": {
+    "/etc/blaine": {
+      "uid": 0,
+      "gid": 971,
+      "mode": "0o750"
+    },
+    "/etc/blaine/infra": {
+      "uid": 0,
+      "gid": 971,
+      "mode": "0o750"
+    },
+    "/etc/blaine/secrets": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o700"
+    },
+    "/etc/blaine/secrets/infrastructure.json": {
+      "state": "unavailable: protected ancestor"
+    },
+    "/srv/blaine": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o700"
+    },
+    "/srv/blaine/infra": {
+      "state": "unavailable: protected ancestor"
+    }
+  }
+}

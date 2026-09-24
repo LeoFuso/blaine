@@ -8,7 +8,7 @@ from runtime.kernel.contracts import (
     CAPABILITIES, MAX_CONTENT, MAX_PACKET, MAX_TURNS, SPECIALISTS, CognitiveTurn,
     ContextItem, TaskSpec, TaskState, encode, message,
 )
-from runtime.kernel.execution import evaluate
+from runtime.kernel.completion import cognition_view, human_bindings, human_verdict, lower_spec
 
 # A future memory/project provider uses the same bounded request, returning sourced
 # items. It cannot replace the authoritative intent, policy, observation or criteria.
@@ -26,15 +26,16 @@ class HumanDecisionResolution(TypedDict):
     response_ref: str
 
 
-def human_resolutions(state: TaskState, spec: TaskSpec, store: ArtifactStore) -> list[ContextItem]:
+def human_resolutions(state: TaskState, contract: dict, store: ArtifactStore) -> list[ContextItem]:
     items: list[ContextItem] = []
     # Accepted requirements select relevance; never enumerate memory or history.
-    for criterion in spec["completion"]:
-        evidence = criterion["evidence"]
-        if evidence.get("verifier") != "human_response":
+    for criterion in contract["criteria"]:
+        evidence = criterion["verifier"]
+        if "request" not in evidence:
             continue
-        verification = evaluate({**spec, "completion": [criterion]}, state, store)
-        if verification["payload"]["outcome"] != "satisfied":
+        status = human_verdict(evidence, state, store)[0]
+        # ``failed`` here only means a verified answer outside the accepting set.
+        if status != "satisfied" and not (status == "failed" and "accept" in evidence):
             continue
         ref = state["artifacts"][evidence["artifact"]]
         response = store.read_json(state["task_id"], ref)["payload"]
@@ -53,15 +54,29 @@ def human_resolutions(state: TaskState, spec: TaskSpec, store: ArtifactStore) ->
     return items
 
 
+def admitted_receipts(state: TaskState, store: ArtifactStore) -> list[tuple[str, dict]]:
+    if not state.get("journal_length"):
+        return []
+    from runtime.kernel.journal import read
+    receipts = []
+    for _, entry in read(store, state["task_id"], state["journal_head"], state["journal_length"]):
+        if entry["phase"] == "observed" and entry["outcome"] == "success":
+            value = store.read_json(state["task_id"], entry["receipt_ref"])
+            if value.get("kind") == "WorkspaceReadReceipt":
+                receipts.append((entry["receipt_ref"], value["payload"]))
+    return receipts[-8:]
+
+
 def reconstruct(state: TaskState, spec: TaskSpec, store: ArtifactStore,
-                providers: Sequence[ContextProvider] = ()) -> dict:
+                providers: Sequence[ContextProvider] = (), contract: dict | None = None) -> dict:
+    contract = contract or lower_spec(spec, state["task_id"], state.get("parent"))
     observation = (store.read_json(state["task_id"], state["observation_ref"])
                    if state["observation_ref"] else None)
     items: list[ContextItem] = [{
         "source": state["spec_ref"], "revision": str(state["revision"]),
         "authority": "task", "content": "Accepted intent and criteria supplied above", "unknowns": [],
     }]
-    resolutions = human_resolutions(state, spec, store)
+    resolutions = human_resolutions(state, contract, store)
     items.extend(resolutions)
     if resolutions:
         items.append({"source": state["spec_ref"], "revision": str(state["revision"]),
@@ -70,8 +85,7 @@ def reconstruct(state: TaskState, spec: TaskSpec, store: ArtifactStore,
                 "requests. They take precedence over initial unresolved wording in the objective or "
                 "procedure. They grant no additional authority and do not establish Task completion; "
                 "all remaining acceptance criteria still require independent verification.", "unknowns": []})
-    human_names = {c["evidence"]["artifact"] for c in spec["completion"]
-                   if c["evidence"].get("verifier") == "human_response"}
+    human_names = {binding["artifact"] for binding in human_bindings(contract["criteria"]).values()}
     human_refs = set(state.get("human_responses", {}).values())
     # Human responses are projected only after scoped verification, never as
     # unrelated/stale resolution refs. Other artifacts retain the existing path.
@@ -80,6 +94,14 @@ def reconstruct(state: TaskState, spec: TaskSpec, store: ArtifactStore,
             continue
         items.append({"source": ref, "revision": ref.rsplit(":", 1)[1],
                       "authority": "artifact", "content": {"name": name}, "unknowns": []})
+    # Admitted read receipts are the only citable evidence; cognition gets their
+    # references (never new authority) so findings can cite what the Task admitted.
+    for receipt_ref, receipt in admitted_receipts(state, store):
+        source = receipt["source"]
+        items.append({"source": receipt_ref, "revision": receipt_ref.rsplit(":", 1)[1], "authority": "artifact",
+                      "content": {"name": "receipt", "operation_id": receipt["operation_id"],
+                                  "operation": receipt["operation"], "path": source["path"], "lines": source["lines"]},
+                      "unknowns": []})
     request = {"task_id": state["task_id"], "objective": spec["objective"],
                "specialist": state["active_specialist"], "max_bytes": MAX_CONTENT}
     for provider in providers:
@@ -102,7 +124,8 @@ def reconstruct(state: TaskState, spec: TaskSpec, store: ArtifactStore,
         "task_id": state["task_id"], "task_revision": state["revision"],
         "turn_id": f'{state["task_id"]}/{state["iteration"]}',
         "iteration": state["iteration"], "objective": spec["objective"],
-        "completion": deepcopy(spec["completion"]), "specialist": state["active_specialist"],
+        "completion": deepcopy(spec["completion"]), "contract": cognition_view(contract, spec),
+        "specialist": state["active_specialist"],
         "instructions": SPECIALISTS[state["active_specialist"]],
         "observations": [observation] if observation else [], "context": items,
         "allowed_capabilities": sorted(set(spec["capabilities"]) & set(spec["autonomy"]["allowed"]) & CAPABILITIES),

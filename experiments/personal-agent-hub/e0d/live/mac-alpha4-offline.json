@@ -1,0 +1,97 @@
+{
+  "observed_at": "2026-09-24T02:47:17.000712+00:00",
+  "inventory": [
+    {
+      "workstation_id": "ws-4f6ac6af05280a601acfd0d5eb3bce59",
+      "tailnet": "tail0f2ece.ts.net",
+      "transport_node_id": "nEEbpyYWN921CNTRL",
+      "principal_id": "4301359180507170",
+      "installation_id": "ws-9f5788915e97f2dfb2fbcd1b4dbafd23",
+      "display_name": "blaine-9f5788915e97",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "client_version": "0.1.0-alpha.4",
+      "first_seen_at": "2026-09-23T23:08:32.818479-03:00",
+      "last_seen_at": "2026-09-23T23:45:50.903408-03:00",
+      "presence": "OFFLINE"
+    }
+  ],
+  "events": [
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "07932ea4f92bc7c8ddee38211abaaa85",
+      "outcome": "CANCELED",
+      "mode": "acp",
+      "journal_timestamp_us": "1790217503248586"
+    },
+    {
+      "event": "workstation",
+      "stage": "disconnected",
+      "session_id": "07932ea4f92bc7c8ddee38211abaaa85",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790217503261990"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_start",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790217615738848"
+    },
+    {
+      "event": "workstation",
+      "stage": "reconnected",
+      "workstation_id": "ws-4f6ac6af05280a601acfd0d5eb3bce59",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "25c3526c76348e7875b64d14932737a4",
+      "outcome": "OK",
+      "protocol": 2,
+      "journal_timestamp_us": "1790217615885756"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "25c3526c76348e7875b64d14932737a4",
+      "outcome": "OK",
+      "mode": "acp",
+      "journal_timestamp_us": "1790217615885836"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "peer_node": "nEEbpyYWN921CNTRL",
+      "session_id": "25c3526c76348e7875b64d14932737a4",
+      "outcome": "CANCELED",
+      "mode": "acp",
+      "journal_timestamp_us": "1790217950903164"
+    },
+    {
+      "event": "workstation",
+      "stage": "disconnected",
+      "session_id": "25c3526c76348e7875b64d14932737a4",
+      "outcome": "OK",
+      "journal_timestamp_us": "1790217950916974"
+    }
+  ],
+  "services": {
+    "blaine-hub-transport.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "2727447"
+    },
+    "blaine-runtime.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "2276403"
+    },
+    "blaine-restate.service": {
+      "ActiveState": "active",
+      "SubState": "running",
+      "MainPID": "358882"
+    }
+  },
+  "scope": "Hub observation after operator reported WSL installer completion; no WSL connection had reached the Hub yet. The Mac alpha.4 session had ended and its record remained OFFLINE."
+}

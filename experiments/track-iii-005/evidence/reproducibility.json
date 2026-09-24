@@ -1,0 +1,42 @@
+{
+  "retained_sha256": {
+    "destination-exports.json": "f18dfa41dd1b8452d4cfb0e82b9a05db930ec6d76f825172109d9d801342c5ab",
+    "fail-open.json": "b2298ddc1ecb67317b6f473709de26049498052ab3cf4d7a6ec12eb4c4c208d8",
+    "leakage.json": "6eb8277940a3aa8d9b0353467b4e4070388b44147d77d60a7b608cc56760ff9a",
+    "restored.json": "439a25513d2626141e4695f7ba63b705c99285a97b113dceb667304ee2499458",
+    "results.json": "439a25513d2626141e4695f7ba63b705c99285a97b113dceb667304ee2499458",
+    "summary.json": "7bc051f44a0a617e9ff75a6a801fd1e422bea1b03155a1a194138b1971352bad",
+    "verification.json": "a6919f963e1b0f2ee27965ffb9d6f5bd53b62983c9672ebcbfb6bcf5bfecf8c5"
+  },
+  "runs": [
+    {
+      "byte_equal": {
+        "destination-exports.json": true,
+        "fail-open.json": true,
+        "leakage.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "summary.json": true,
+        "verification.json": true
+      },
+      "hash_seed": "1",
+      "probe_exit": 0,
+      "verify_exit": 0
+    },
+    {
+      "byte_equal": {
+        "destination-exports.json": true,
+        "fail-open.json": true,
+        "leakage.json": true,
+        "restored.json": true,
+        "results.json": true,
+        "summary.json": true,
+        "verification.json": true
+      },
+      "hash_seed": "97",
+      "probe_exit": 0,
+      "verify_exit": 0
+    }
+  ],
+  "status": "PASS"
+}

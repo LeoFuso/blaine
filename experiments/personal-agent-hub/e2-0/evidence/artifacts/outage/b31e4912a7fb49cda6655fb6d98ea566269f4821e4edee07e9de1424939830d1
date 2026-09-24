@@ -1,0 +1,1 @@
+{"kind":"EffectObservation","payload":{"operation_id":"outage/3","outcome":"uncertain","receipt_ref":"artifact://outage/sha256:f2e6bebb9c0f815fcc2f21bef2f757a53a9848da3750bba96fc7f05510cad0d2","request_ref":"artifact://outage/sha256:069a9d73486dc183cf066154c8ae2ca3a846667fd592c764a58b863b20060186","status":"uncertain"},"version":1}

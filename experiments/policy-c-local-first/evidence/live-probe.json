@@ -1,0 +1,51 @@
+{
+ "status": "EXECUTED",
+ "task_id": "policy-c-local-001",
+ "model": "nvidia/Qwen3.8-27B-NVFP4",
+ "runtime_s": 0.9,
+ "lifecycle": "COMPLETED",
+ "routing_record": {
+  "completion_ref": "artifact://policy-c-local-001/sha256:4a105d801de820bb81fea6c8763b5317ff2cb620997a8387bb28afaf36e7461c",
+  "concerns": [],
+  "context_refs": [
+   "artifact://policy-c-local-001/sha256:1bf97dacc1c8543cb2129581e13e329d6ad9491d92c9bbfc61a7ad4edd090589"
+  ],
+  "effective_capabilities": [
+   "artifact.write"
+  ],
+  "escalated": false,
+  "escalation_admission": null,
+  "escalation_interpretation": "local execution required another tier; cause unclassified",
+  "escalation_iteration": null,
+  "escalation_reason": null,
+  "externally_bounded": true,
+  "final_binding": "local",
+  "initial_binding": "local",
+  "local_turn_budget": 8,
+  "local_turns": 1,
+  "max_turns": 16,
+  "outcome": "COMPLETED",
+  "policy": "local-first-bounded-escalation",
+  "policy_version": 1,
+  "result_ref": "artifact://policy-c-local-001/sha256:832f104736db305de326189298dd33ae2920e7a97c8f2c49542532959f06365c",
+  "started_local": true,
+  "task_id": "policy-c-local-001",
+  "total_turns": 1,
+  "usage": null,
+  "version": 1
+ },
+ "routing_events": [
+  "artifact.produced"
+ ],
+ "paid_provider_calls": 0,
+ "checks": {
+  "policy_recorded": true,
+  "started_local": true,
+  "externally_bounded": true,
+  "effective_capabilities": true,
+  "never_escalated": true,
+  "final_binding_local": true,
+  "evidence_discoverable_from_events": true
+ },
+ "outcome": "PASS"
+}

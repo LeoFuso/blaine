@@ -1,0 +1,1 @@
+{"kind":"CapabilityJournalEntry","payload":{"operation_id":"approval/1","outcome":"success","phase":"observed","previous_ref":"artifact://approval/sha256:00d3be0f171a4638fb11f0764ced0e597c535ef3bbc2ddcc489cce788be1e271","receipt_ref":"artifact://approval/sha256:b07421a4da36d70ccd258d1008f988bc7f8bb72cccaab61a029da874f9803319","seq":1,"task_id":"approval"},"version":1}

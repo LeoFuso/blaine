@@ -1,0 +1,289 @@
+{
+  "status": "PARTIAL: live outage recovery PASS; pending pre-restart samples NOT replayed",
+  "started": 1790035424.9828238,
+  "run_id": "transport-1750fafc536e4e8bbd90a2c9f059917c",
+  "fixed_remote_config_through_outage": true,
+  "failure_fixture": "temporary loopback CONNECT proxy; pinned single destination; no TLS decryption, data recording or queue",
+  "proxy_port": 43883,
+  "initial_samples": [
+    {
+      "metric": {
+        "__name__": "blaine_d1_cloud_delivery_test",
+        "branch": "HEAD",
+        "environment": "blaine-dev",
+        "goarch": "amd64",
+        "goos": "linux",
+        "goversion": "go1.26.7",
+        "host": "blaine",
+        "instance": "blaine",
+        "job": "integrations/self",
+        "revision": "becfd48",
+        "run_id": "transport-1750fafc536e4e8bbd90a2c9f059917c",
+        "tags": "gore2regex,netgo,embedalloyui,promtail_journal_enabled",
+        "version": "v1.19.2"
+      },
+      "values": [
+        [
+          1790035436.911,
+          "1"
+        ]
+      ]
+    }
+  ],
+  "outage_start": 1790035445.7663424,
+  "before_restart": {
+    "time": 1790035500.7680357,
+    "ready": true,
+    "wal_bytes": 460427,
+    "wal_synthetic": "{__name__=\"blaine_d1_cloud_delivery_test\", branch=\"HEAD\", goarch=\"amd64\", goos=\"linux\", goversion=\"go1.26.7\", instance=\"blaine\", job=\"integrations/self\", revision=\"becfd48\", run_id=\"transport-1750fafc536e4e8bbd90a2c9f059917c\", tags=\"gore2regex,netgo,embedalloyui,promtail_journal_enabled\", version=\"v1.19.2\"}\n  Oldest Sample:      2026-09-22 00:03:56.911 +0000 UTC\n  Newest Sample:      2026-09-22 00:04:56.911 +0000 UTC\n  Total Samples:      3",
+    "counters": [
+      "otelcol_exporter_sent_metric_points_total{component_id=\"otelcol.exporter.file.local\",component_path=\"/\",exporter=\"file/otelcol.exporter.file.local\",otel_scope_name=\"go.opentelemetry.io/collector/exporter/exporterhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\"} 6970",
+      "prometheus_remote_storage_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 16619",
+      "prometheus_remote_storage_enqueue_retries_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 12",
+      "prometheus_remote_storage_exemplars_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_highest_timestamp_in_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\"} 1.790035496e+09",
+      "prometheus_remote_storage_histograms_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_max_samples_per_send{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 500",
+      "prometheus_remote_storage_metadata_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_queue_highest_sent_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.790035436e+09",
+      "prometheus_remote_storage_queue_highest_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.790035487e+09",
+      "prometheus_remote_storage_samples_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_samples_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 3499",
+      "prometheus_remote_storage_samples_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2500",
+      "prometheus_remote_storage_samples_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 3553",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.005\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.01\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.025\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.05\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.1\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.25\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.5\"} 7",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"1\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"2.5\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"5\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"10\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"25\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"60\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"120\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"300\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"+Inf\"} 8",
+      "prometheus_remote_storage_sent_batch_duration_seconds_sum{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.0746590870000001",
+      "prometheus_remote_storage_sent_batch_duration_seconds_count{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 8",
+      "prometheus_remote_storage_shard_capacity{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2500",
+      "prometheus_remote_storage_shards{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1",
+      "prometheus_remote_storage_shards_desired{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0.7142523750726775",
+      "prometheus_remote_storage_shards_max{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2",
+      "prometheus_remote_storage_shards_min{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1"
+    ]
+  },
+  "restart_started": 1790035500.8215435,
+  "restart_completed": 1790035526.005852,
+  "offline_restart_ready": true,
+  "after_restart": {
+    "time": 1790035566.0079534,
+    "ready": true,
+    "wal_bytes": 510085,
+    "wal_synthetic": "{__name__=\"blaine_d1_cloud_delivery_test\", branch=\"HEAD\", goarch=\"amd64\", goos=\"linux\", goversion=\"go1.26.7\", instance=\"blaine\", job=\"integrations/self\", revision=\"becfd48\", run_id=\"transport-1750fafc536e4e8bbd90a2c9f059917c\", tags=\"gore2regex,netgo,embedalloyui,promtail_journal_enabled\", version=\"v1.19.2\"}\n  Oldest Sample:      2026-09-22 00:03:56.911 +0000 UTC\n  Newest Sample:      2026-09-22 00:05:56.91 +0000 UTC\n  Total Samples:      5",
+    "counters": [
+      "otelcol_exporter_sent_metric_points_total{component_id=\"otelcol.exporter.file.local\",component_path=\"/\",exporter=\"file/otelcol.exporter.file.local\",otel_scope_name=\"go.opentelemetry.io/collector/exporter/exporterhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\"} 3817",
+      "prometheus_remote_storage_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_enqueue_retries_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 11",
+      "prometheus_remote_storage_exemplars_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_highest_timestamp_in_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\"} 1.790035556e+09",
+      "prometheus_remote_storage_histograms_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_max_samples_per_send{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 500",
+      "prometheus_remote_storage_metadata_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_queue_highest_sent_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_queue_highest_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.790035556e+09",
+      "prometheus_remote_storage_samples_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_samples_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 3499",
+      "prometheus_remote_storage_samples_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2500",
+      "prometheus_remote_storage_samples_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 3000",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.005\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.01\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.025\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.05\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.1\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.25\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.5\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"1\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"2.5\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"5\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"10\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"25\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"60\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"120\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"300\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"+Inf\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_sum{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0.0033061300000000004",
+      "prometheus_remote_storage_sent_batch_duration_seconds_count{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 6",
+      "prometheus_remote_storage_shard_capacity{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2500",
+      "prometheus_remote_storage_shards{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1",
+      "prometheus_remote_storage_shards_desired{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1",
+      "prometheus_remote_storage_shards_max{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2",
+      "prometheus_remote_storage_shards_min{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1"
+    ]
+  },
+  "cloud_before_recovery": [
+    {
+      "metric": {
+        "__name__": "blaine_d1_cloud_delivery_test",
+        "branch": "HEAD",
+        "environment": "blaine-dev",
+        "goarch": "amd64",
+        "goos": "linux",
+        "goversion": "go1.26.7",
+        "host": "blaine",
+        "instance": "blaine",
+        "job": "integrations/self",
+        "revision": "becfd48",
+        "run_id": "transport-1750fafc536e4e8bbd90a2c9f059917c",
+        "tags": "gore2regex,netgo,embedalloyui,promtail_journal_enabled",
+        "version": "v1.19.2"
+      },
+      "values": [
+        [
+          1790035436.911,
+          "1"
+        ]
+      ]
+    }
+  ],
+  "recovery_start": 1790035566.104439,
+  "cloud_after_recovery": [
+    {
+      "metric": {
+        "__name__": "blaine_d1_cloud_delivery_test",
+        "branch": "HEAD",
+        "environment": "blaine-dev",
+        "goarch": "amd64",
+        "goos": "linux",
+        "goversion": "go1.26.7",
+        "host": "blaine",
+        "instance": "blaine",
+        "job": "integrations/self",
+        "revision": "becfd48",
+        "run_id": "transport-1750fafc536e4e8bbd90a2c9f059917c",
+        "tags": "gore2regex,netgo,embedalloyui,promtail_journal_enabled",
+        "version": "v1.19.2"
+      },
+      "values": [
+        [
+          1790035436.911,
+          "1"
+        ],
+        [
+          1790035526.91,
+          "1"
+        ]
+      ]
+    }
+  ],
+  "post_restart_outage_samples_replayed": true,
+  "pre_restart_outage_samples_replayed": false,
+  "recovered_state": {
+    "time": 1790035597.3346727,
+    "ready": true,
+    "wal_bytes": 525732,
+    "wal_synthetic": "{__name__=\"blaine_d1_cloud_delivery_test\", branch=\"HEAD\", goarch=\"amd64\", goos=\"linux\", goversion=\"go1.26.7\", instance=\"blaine\", job=\"integrations/self\", revision=\"becfd48\", run_id=\"transport-1750fafc536e4e8bbd90a2c9f059917c\", tags=\"gore2regex,netgo,embedalloyui,promtail_journal_enabled\", version=\"v1.19.2\"}\n  Oldest Sample:      2026-09-22 00:03:56.911 +0000 UTC\n  Newest Sample:      2026-09-22 00:06:26.91 +0000 UTC\n  Total Samples:      6",
+    "counters": [
+      "otelcol_exporter_sent_metric_points_total{component_id=\"otelcol.exporter.file.local\",component_path=\"/\",exporter=\"file/otelcol.exporter.file.local\",otel_scope_name=\"go.opentelemetry.io/collector/exporter/exporterhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\"} 7038",
+      "prometheus_remote_storage_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 80487",
+      "prometheus_remote_storage_enqueue_retries_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 13",
+      "prometheus_remote_storage_exemplars_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_exemplars_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_highest_timestamp_in_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\"} 1.790035586e+09",
+      "prometheus_remote_storage_histograms_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_histograms_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_max_samples_per_send{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 500",
+      "prometheus_remote_storage_metadata_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_metadata_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_queue_highest_sent_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.790035556e+09",
+      "prometheus_remote_storage_queue_highest_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.790035556e+09",
+      "prometheus_remote_storage_samples_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_samples_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+      "prometheus_remote_storage_samples_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 3000",
+      "prometheus_remote_storage_samples_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 6499",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.005\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.01\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.025\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.05\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.1\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.25\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.5\"} 6",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"1\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"2.5\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"5\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"10\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"25\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"60\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"120\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"300\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"+Inf\"} 13",
+      "prometheus_remote_storage_sent_batch_duration_seconds_sum{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 3.6340221890000004",
+      "prometheus_remote_storage_sent_batch_duration_seconds_count{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 13",
+      "prometheus_remote_storage_shard_capacity{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2500",
+      "prometheus_remote_storage_shards{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1",
+      "prometheus_remote_storage_shards_desired{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 6.670630600319666",
+      "prometheus_remote_storage_shards_max{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2",
+      "prometheus_remote_storage_shards_min{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1"
+    ]
+  },
+  "cloud_scrape_health": [
+    {
+      "metric": {
+        "__name__": "up",
+        "asserts_env": "blaine-dev",
+        "environment": "blaine-dev",
+        "host": "blaine",
+        "instance": "blaine",
+        "job": "integrations/self"
+      },
+      "value": [
+        1790035597.402,
+        "1"
+      ]
+    },
+    {
+      "metric": {
+        "__name__": "up",
+        "asserts_env": "blaine-dev",
+        "environment": "blaine-dev",
+        "host": "blaine",
+        "instance": "blaine",
+        "job": "integrations/unix"
+      },
+      "value": [
+        1790035597.402,
+        "1"
+      ]
+    }
+  ],
+  "final_ready": true,
+  "final_exact_metrics_config": true,
+  "ended": 1790035606.9425323
+}

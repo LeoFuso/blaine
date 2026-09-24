@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-23",
+  "evidence_origin": "Two complete terminal JSON reports supplied by designated Mac operator",
+  "system_tailscale_condition": "Operator previously reported disconnecting and quitting the GUI; residual extension/service absence not independently measured",
+  "reports_in_order": [
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-89173fd71cc55e71852869925ed6166d41f16d8d2631c3d48a820d024c6b67c3",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "hub_in_embedded_peer_map": false,
+      "magicdns": {
+        "elapsed_ms": 174,
+        "error": {
+          "kind": "dns",
+          "not_found": true,
+          "temporary": false,
+          "timeout": false
+        },
+        "tcp": "FAIL"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 12001,
+        "error": {
+          "kind": "deadline"
+        },
+        "tcp": "FAIL"
+      }
+    },
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-89173fd71cc55e71852869925ed6166d41f16d8d2631c3d48a820d024c6b67c3",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "magicdns": {
+        "elapsed_ms": 29,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 9,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      }
+    }
+  ]
+}

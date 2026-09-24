@@ -1,0 +1,9 @@
+{
+  "scope": "Official registry JSON Schema validation only; no download, IDE provisioning or public submission",
+  "registry_commit": "6e560740b8dd4eae6ae420092e02d5dbd081ab10",
+  "schema_sha256": "5f90b4485f14bc564301c3a51885eaa4d16095b3e2c5154c72b85157199c3fab",
+  "four_target_binary_fixture": "PASS",
+  "alpha_root_version": "REJECTED as expected",
+  "binary_preview_distribution": "REJECTED as expected",
+  "live_jetbrains_provisioning": "PENDING; no verified private registry override"
+}

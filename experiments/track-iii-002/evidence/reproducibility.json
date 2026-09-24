@@ -1,0 +1,58 @@
+{
+  "method": "Fresh subprocesses, separate temporary outputs, distinct Python hash seeds; retained evidence byte comparison",
+  "python_version": "3.14.4",
+  "retained_sha256": {
+    "mutation-control.json": "8ea73b58c578865cd16cccb65e8eab178d01992100891bcefabe5baf65585a2e",
+    "mutation-results.json": "b61c7c2394c5c06d31084f8b2d1a375a176d122db9850d6f5e6d6cf76ebd8ebc",
+    "restored-results.json": "09caf16df7f26876cfe2250246ae27b83c16e0dc7cfeabe52a083a1925efdc2b",
+    "results.json": "09caf16df7f26876cfe2250246ae27b83c16e0dc7cfeabe52a083a1925efdc2b",
+    "summary.json": "91bfb01e9878bf06b049ebf0326451c3e3118df41b7ee6133abccf9f8dd41a7b"
+  },
+  "runs": [
+    {
+      "byte_identical_to_retained": {
+        "mutation-control.json": true,
+        "mutation-results.json": true,
+        "restored-results.json": true,
+        "results.json": true,
+        "summary.json": true
+      },
+      "probe_exit": 0,
+      "python_hash_seed": "1",
+      "verification": {
+        "correct_after_control": true,
+        "correct_cases": 221,
+        "direct_id_pairs": 121,
+        "malformed_trees_rejected": 11,
+        "mutation_failures": 37,
+        "same_oracle_for_mutant": true,
+        "source_hashes_verified": 4,
+        "status": "PASS"
+      },
+      "verification_exit": 0
+    },
+    {
+      "byte_identical_to_retained": {
+        "mutation-control.json": true,
+        "mutation-results.json": true,
+        "restored-results.json": true,
+        "results.json": true,
+        "summary.json": true
+      },
+      "probe_exit": 0,
+      "python_hash_seed": "987",
+      "verification": {
+        "correct_after_control": true,
+        "correct_cases": 221,
+        "direct_id_pairs": 121,
+        "malformed_trees_rejected": 11,
+        "mutation_failures": 37,
+        "same_oracle_for_mutant": true,
+        "source_hashes_verified": 4,
+        "status": "PASS"
+      },
+      "verification_exit": 0
+    }
+  ],
+  "status": "PASS"
+}

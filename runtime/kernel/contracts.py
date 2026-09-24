@@ -13,15 +13,8 @@ SPECIALISTS = {
     "coordinator": "Coordinate the accepted objective using permitted actions.",
     "specialist": "Produce the required exact artifact and request verification.",
 }
-CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run", "workspace.read", "text.stats"}
-
-# Bounded PoC completion verifier for real local-model summary work. The existing
-# contract only supports exact-digest and human-response evidence; a local model's
-# free-text summary is non-deterministic and cannot match a pre-known digest. This
-# verifier checks the exact deliverable the Task specified: the objective (the
-# real material the model summarized) plus a marker the objective required, with a
-# bounded summary. It is not a general verifier and does not grant authority.
-LOCAL_SUMMARY_MARKER = "local_model_summary"
+CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run",
+                "workspace.read", "text.stats", "context.request", "workspace.write", "workspace.exec"}
 
 
 class EvidenceRequirement(TypedDict):
@@ -110,6 +103,7 @@ class CognitiveTurn(TypedDict):
     iteration: int
     objective: str
     completion: list[CompletionCriterion]
+    contract: NotRequired[dict]
     specialist: str
     instructions: str
     observations: list[dict]
@@ -174,6 +168,16 @@ class TaskState(TypedDict):
     invocation_id: NotRequired[str]
     request_digest: NotRequired[str]
     initial_action: NotRequired[Invoke]
+    # Completion Contract v1: references and counters only; the contract,
+    # amendments, journal entries and evaluations are retained artifacts.
+    contract_ref: NotRequired[str]
+    contract_revision: NotRequired[int]
+    authority_ref: NotRequired[str]
+    journal_head: NotRequired[str | None]
+    journal_length: NotRequired[int]
+    semantic_reviews: NotRequired[dict[str, dict]]
+    # E2.0: compact status per target effect (refs only); the journal stays authoritative.
+    effects: NotRequired[dict[str, dict]]
 
 
 class CapabilityRequest(TypedDict):
@@ -251,28 +255,48 @@ def spawn_specs(action: dict) -> list[tuple[int | None, dict]]:
     return [(slot, validate_spec(spec)) for slot, spec in enumerate(action['task_specs'])]
 
 
-def child_request(parent_id: str, decision_id: str, slot: int | None, spec: dict) -> dict:
-    return message('ChildTaskRequest', {'parent': {'task_id': parent_id, 'decision_id': decision_id, 'slot': slot},
-                                       'task_spec': message('TaskSpec', spec)})
+def child_request(parent_id: str, decision_id: str, slot: int | None, spec: dict,
+                  grant: dict | None = None) -> dict:
+    """Trusted envelope. The grant is derived by narrowing, never by the child."""
+    payload = {'parent': {'task_id': parent_id, 'decision_id': decision_id, 'slot': slot},
+               'task_spec': message('TaskSpec', spec)}
+    if grant is not None:
+        payload['grant'] = grant
+    return message('ChildTaskRequest', payload)
 
 
-def accept_task_request(value: dict, task_id: str) -> tuple[dict, dict | None]:
+def accept_task_request(value: dict, task_id: str) -> tuple[dict, dict | None, dict | None]:
+    """Split the trusted envelope from the model-writable specification.
+
+    An execution grant is envelope data: it bounds capability authority and names
+    the binding an escalation may use. A TaskSpec can never carry it, so no
+    cognition-written specification can widen its own authority or select a
+    worker. An absent grant keeps existing behaviour and is recorded as such.
+    """
+    from runtime.kernel.routing import validate_grant
     if not isinstance(value, dict):
         raise ValueError('Task request must be an object')
     if value.get('kind') == 'TaskRequest':
-        request = fields(unpack(value, 'TaskRequest'), {'task_spec', 'initial_action'})
-        decision = validate_decision(message('CognitiveDecision', {'task_id': task_id,
-            'task_revision': 0, 'turn_id': task_id + '/1', 'next_action': request['initial_action']}))
-        if decision['next_action']['type'] != 'INVOKE_CAPABILITY':
-            raise ValueError('Task intake accepts one bounded capability action')
-        return validate_spec(request['task_spec']), None
+        # A trusted CompletionContract (validated by the workflow) may accompany the
+        # grant; such a cognition-driven Task needs no deterministic first action.
+        request = fields(unpack(value, 'TaskRequest'), {'task_spec'}, {'initial_action', 'grant', 'contract'})
+        if 'initial_action' in request:
+            decision = validate_decision(message('CognitiveDecision', {'task_id': task_id,
+                'task_revision': 0, 'turn_id': task_id + '/1', 'next_action': request['initial_action']}))
+            if decision['next_action']['type'] != 'INVOKE_CAPABILITY':
+                raise ValueError('Task intake accepts one bounded capability action')
+        elif not {'contract', 'grant'} <= request.keys():
+            raise ValueError('Task intake without an initial action requires a contract and a grant')
+        grant = validate_grant(request['grant']) if 'grant' in request else None
+        return validate_spec(request['task_spec']), None, grant
     if value.get('kind') != 'ChildTaskRequest':
-        return validate_spec(value), None
-    request = fields(unpack(value, 'ChildTaskRequest'), {'parent', 'task_spec'})
+        return validate_spec(value), None, None
+    request = fields(unpack(value, 'ChildTaskRequest'), {'parent', 'task_spec'}, {'grant'})
     parent = fields(request['parent'], {'task_id', 'decision_id', 'slot'})
     if task_id != child_task_id(parent['task_id'], parent['decision_id'], parent['slot']):
         raise ValueError('Child identity does not match its explicit relationship')
-    return validate_spec(request['task_spec']), parent
+    grant = validate_grant(request['grant']) if 'grant' in request else None
+    return validate_spec(request['task_spec']), parent, grant
 
 
 def unpack(value: object, kind: str) -> dict:
@@ -300,14 +324,6 @@ def validate_spec(value: object) -> TaskSpec:
             from runtime.kernel.human import validate_request
             fields(evidence, {'artifact', 'verifier', 'request'})
             validate_request(evidence['request'])
-        elif isinstance(evidence, dict) and evidence.get('verifier') == LOCAL_SUMMARY_MARKER:
-            # Bounded PoC: the model's summary must embed the objective material
-            # and a marker the objective specified, within a bounded word count.
-            fields(evidence, {'artifact', 'verifier', 'objective', 'marker', 'max_words'})
-            text(evidence['objective'], 1024)
-            identifier(evidence['marker'])
-            if type(evidence['max_words']) is not int or evidence['max_words'] < 1 or evidence['max_words'] > 60:
-                raise ValueError('Expected bounded summary word cap')
         else:
             fields(evidence, {'artifact', 'sha256'})
             if not isinstance(evidence['sha256'], str) or not re.fullmatch(r'[0-9a-f]{64}', evidence['sha256']):

@@ -1,0 +1,162 @@
+{
+  "date": "2026-09-23",
+  "peer": "ST00251 Ubuntu WSL2, linux/amd64",
+  "evidence_origin": "Operator terminal reports plus matching cat output; three runs, not six",
+  "system_tailscale_condition": "Requested Windows GUI disconnected and quit; subsequent run follows that instruction, but Windows service state is unmeasured",
+  "authentication": "First run emitted browser-authentication-required message; later runs did not; no auth URL retained",
+  "reports_in_order": [
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nPsdWribvG11CNTRL",
+      "node_reused": false,
+      "platform": "linux/amd64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 16,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 1,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 0,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19000,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20000
+      }
+    },
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nPsdWribvG11CNTRL",
+      "node_reused": false,
+      "platform": "linux/amd64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 4,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 1,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 0,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": false
+            }
+          },
+          {
+            "elapsed_ms": 2001,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19000,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20000
+      }
+    },
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nPsdWribvG11CNTRL",
+      "node_reused": false,
+      "platform": "linux/amd64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 1,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 0,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 0,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19000,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20000
+      }
+    }
+  ],
+  "reporting_limitation": "Diagnostic revisions 2/3 read observed-node-id but never create it. All false flags here represent absent baseline, not differing node identities. All three emitted the same stable ID."
+}

@@ -1,0 +1,306 @@
+{
+  "status": "PASS_TRANSPORT_BATCH_WITH_DIAGNOSTIC_MTU",
+  "source": "Operator transcript and report files from native Linux home Blaine candidate directory, correlated with host-stage observations",
+  "candidate": {
+    "version": "0.1.0-e0c-direct",
+    "commit": "77a974c31b622983bc24c7316e690d4caeafca3c",
+    "platform": "linux/amd64",
+    "go": "go1.27.1",
+    "package_checksums": "all three entries reported OK"
+  },
+  "host_commit": "8d3889df966296466a979925071d595c92397883",
+  "designated_peer": "ST00251 / Ubuntu WSL2",
+  "experiment": {
+    "command": "TS_DEBUG_MTU=1200 bash accept.sh",
+    "native_interface": "eth0",
+    "observed_native_mtu": 1280,
+    "embedded_mtu_override": 1200,
+    "interface_or_system_configuration_changed": false,
+    "wire_payload_limit_changed": false,
+    "override_is_product_default": false
+  },
+  "runs": [
+    {
+      "identity": {
+        "node_id": "nPvKcFBuW821CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-c5c659bfb5a2364ba3c33f0b86054732"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "status": "CONNECTED",
+        "e0": "NOT_READY",
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "4be337815a77a856cde521383f97056f",
+        "peer": {
+          "node_id": "nPvKcFBuW821CNTRL",
+          "principal_id": "4301359180507170"
+        }
+      }
+    },
+    {
+      "identity": {
+        "node_id": "nPvKcFBuW821CNTRL",
+        "node_reused": true,
+        "workstation_id": "ws-c5c659bfb5a2364ba3c33f0b86054732"
+      },
+      "transport": {
+        "acp_clean_exit": true,
+        "bidirectional": true,
+        "binary_bytes": 1048576,
+        "binary_sha256": "fbbab289f7f94b25736c58be46a994c441fd02552cc6022352e3d86d2fab7c83",
+        "cancellation": true,
+        "deadline": true,
+        "reconnect": true,
+        "remote_acp_session": true,
+        "remote_disconnect": true,
+        "scope": "E0.C private transport; no registration or workspace effects",
+        "status": "PASS"
+      },
+      "connection": {
+        "status": "CONNECTED",
+        "e0": "NOT_READY",
+        "registration": "NOT_IMPLEMENTED",
+        "server_id": "hub-4466c9d4b0ba4d4f2153202596283f45",
+        "session_id": "7c7d06788e291b32b9b63a4231b94e39",
+        "peer": {
+          "node_id": "nPvKcFBuW821CNTRL",
+          "principal_id": "4301359180507170"
+        }
+      }
+    }
+  ],
+  "signal_test": {
+    "SIGINT": {
+      "exit": 130,
+      "acp_session_id": "b3373ce8f8134edfb9f6a6862baa391b",
+      "stderr": "blaine: context canceled"
+    },
+    "SIGTERM": {
+      "exit": 130,
+      "acp_session_id": "16bf206333324ab8957d3d3023566b4c",
+      "stderr": "blaine: context canceled"
+    },
+    "result": "PASS: real remote ACP session opened before each signal; both local processes exited within script timeout",
+    "package_relocation": "Same four checksum-verified files copied from /mnt/c to a fresh native-home directory; no binary or identity change"
+  },
+  "interpretation": "Live designated WSL transport/ACP/signal batch PASS with diagnostic MTU override and native-home FIFO files. Automatic MTU handling without an environment override, real JetBrains launch/auth, and remaining canonical E0.C gates are not proved by this run.",
+  "host_events": [
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "handshake",
+      "session_id": "4be337815a77a856cde521383f97056f",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 70,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "handshake",
+      "session_id": "4be337815a77a856cde521383f97056f",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 70,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "731c40fbb2101fc85ef6ea2c9d58656d",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 65,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_echo_complete",
+      "mode": "probe",
+      "session_id": "731c40fbb2101fc85ef6ea2c9d58656d",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 91,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "731c40fbb2101fc85ef6ea2c9d58656d",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 100,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "39a1318f97d1fc57c88d7cd2409a8977",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 62,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "39a1318f97d1fc57c88d7cd2409a8977",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 118,
+      "outcome": "EOF"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "acp",
+      "session_id": "d810fb1c8d08e31541a9a8a761c91965",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 64,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "acp",
+      "session_id": "d810fb1c8d08e31541a9a8a761c91965",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 293,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "handshake",
+      "session_id": "7c7d06788e291b32b9b63a4231b94e39",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 65,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "handshake",
+      "session_id": "7c7d06788e291b32b9b63a4231b94e39",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 65,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "fef40a20d92221f409fa5f3977939bdf",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 67,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "probe_echo_complete",
+      "mode": "probe",
+      "session_id": "fef40a20d92221f409fa5f3977939bdf",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "payload_bytes": 1048576,
+      "elapsed_ms": 92,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "fef40a20d92221f409fa5f3977939bdf",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 101,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "probe",
+      "session_id": "e2879ccb4bd6062727caf042e4f5de7e",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 62,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "probe",
+      "session_id": "e2879ccb4bd6062727caf042e4f5de7e",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 118,
+      "outcome": "EOF"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "acp",
+      "session_id": "083fe1cc217b1362de4fb1bd656463d2",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 62,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "acp",
+      "session_id": "083fe1cc217b1362de4fb1bd656463d2",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 298,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "acp",
+      "session_id": "1d9706b71b7994572c352169767a2111",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 64,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "acp",
+      "session_id": "1d9706b71b7994572c352169767a2111",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 676,
+      "outcome": "TRANSPORT_ERROR"
+    },
+    {
+      "event": "private_session",
+      "stage": "handshake_complete",
+      "mode": "acp",
+      "session_id": "77b8470213123b7a5163d3c5648a32ac",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 65,
+      "outcome": "OK"
+    },
+    {
+      "event": "private_session",
+      "stage": "session_finished",
+      "mode": "acp",
+      "session_id": "77b8470213123b7a5163d3c5648a32ac",
+      "peer_node": "nPvKcFBuW821CNTRL",
+      "elapsed_ms": 978,
+      "outcome": "TRANSPORT_ERROR"
+    }
+  ],
+  "task_independence": "PASS bounded: exact authoritative WAITING state preserved after both probe ACP sessions and both real local ACP signal terminations",
+  "observed_at": "2026-09-23T17:46:55Z",
+  "report_path": "~/blaine-e0c-5VN9Hx/reports-e0c-direct-y7Tvw2"
+}

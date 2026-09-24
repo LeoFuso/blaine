@@ -1,0 +1,96 @@
+{
+  "observed_at": "2026-09-21T13:27:37.710085+00:00",
+  "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+  "rootful_healthy": {
+    "rc": 0,
+    "stdout": "hungry_hopper | Exited (0) 43 minutes ago\nblaine-infra-langfuse-worker-1 | Up 43 minutes (healthy)\nblaine-infra-langfuse-web-1 | Up 43 minutes (healthy)\nblaine-infra-object-storage-1 | Up 43 minutes (healthy)\nblaine-infra-clickhouse-1 | Up 43 minutes (healthy)"
+  },
+  "rootless_containers": {
+    "rc": 0,
+    "stdout": "blaine-rootless-storage-candidate-clickhouse-1 | Exited (0) 3 minutes ago\nblaine-rootless-storage-candidate-object-storage-1 | Exited (0) 3 minutes ago"
+  },
+  "native_health": {
+    "clickhouse": {
+      "http_status": 200
+    },
+    "langfuse_web": {
+      "http_status": 200
+    },
+    "langfuse_worker": {
+      "http_status": 200
+    },
+    "alloy": {
+      "http_status": 200
+    },
+    "postgresql": {
+      "rc": 0,
+      "stdout": "127.0.0.1:5432 - accepting connections"
+    },
+    "redis": {
+      "rc": 0,
+      "stdout": "PONG"
+    }
+  },
+  "system_units": {
+    "docker": {
+      "rc": 0,
+      "stdout": "ActiveState=active\nSubState=running\nUnitFileState=enabled"
+    },
+    "blaine-infra": {
+      "rc": 0,
+      "stdout": "ActiveState=active\nSubState=exited\nUnitFileState=enabled"
+    },
+    "alloy": {
+      "rc": 0,
+      "stdout": "ActiveState=active\nSubState=running\nUnitFileState=enabled"
+    },
+    "postgresql@18-main": {
+      "rc": 0,
+      "stdout": "ActiveState=active\nSubState=running\nUnitFileState=enabled-runtime"
+    },
+    "redis-server": {
+      "rc": 0,
+      "stdout": "ActiveState=active\nSubState=running\nUnitFileState=enabled"
+    },
+    "blaine-partial-backup.timer": {
+      "rc": 0,
+      "stdout": "ActiveState=inactive\nSubState=dead\nUnitFileState=disabled"
+    }
+  },
+  "user_units": {
+    "docker": {
+      "rc": 0,
+      "stdout": "ActiveState=active\nSubState=running\nUnitFileState=enabled"
+    },
+    "blaine-infra": {
+      "rc": 0,
+      "stdout": "ActiveState=inactive\nSubState=dead\nUnitFileState=disabled"
+    }
+  },
+  "rootless_security": {
+    "rc": 0,
+    "stdout": "[\"name=seccomp,profile=builtin\",\"name=rootless\",\"name=cgroupns\"]"
+  },
+  "rootless_compose_version": {
+    "rc": 0,
+    "stdout": "5.5.1"
+  },
+  "linger": {
+    "rc": 0,
+    "stdout": "Linger=no"
+  },
+  "groups_current_process": {
+    "rc": 0,
+    "stdout": "uid=1000(leofuso) gid=1000(leofuso) groups=1000(leofuso),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),111(lpadmin),114(lxd),971(docker),973(ollama)"
+  },
+  "groups_account": {
+    "rc": 0,
+    "stdout": "uid=1000(leofuso) gid=1000(leofuso) groups=1000(leofuso),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),111(lpadmin),114(lxd),973(ollama),971(docker)"
+  },
+  "failed_system_units": {
+    "rc": 0,
+    "stdout": ""
+  },
+  "live_secret_inventory": "unavailable: root-only ancestor; no permission workaround attempted",
+  "reboot": "NOT PERFORMED"
+}

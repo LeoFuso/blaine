@@ -1,0 +1,20 @@
+{
+  "status": "ACCEPTED_BEST_EFFORT",
+  "scope": "Native Alloy asynchronous metrics data plane",
+  "evidence": "experiments/d1-grafana-cloud-data-plane/evidence/summary.json",
+  "network_recovery": "experiments/d1-grafana-cloud-data-plane/evidence/transport.json",
+  "restart_replay_failure": "experiments/d1-grafana-cloud-data-plane/evidence/cloud.json",
+  "implementation": "experiments/d1-grafana-cloud-data-plane/evidence/replay-source.json",
+  "metrics_delivery": "ACTIVE / VERIFIED",
+  "restart_durable_replay": "NOT ACCEPTED",
+  "logs_delivery": "INACTIVE",
+  "traces_delivery": "INACTIVE",
+  "Fleet": "DEFERRED / STOP",
+  "D1.A/B/C/D": "ACCEPTED",
+  "D1.G": "NOT EXECUTED; Cloud is optional",
+  "backup": "PAUSED",
+  "work_status": "CONCLUDED",
+  "technical_experiment_result": "PARTIAL",
+  "closure_evidence": "experiments/d1-observability-closure/evidence/closure.json",
+  "follow_up": "https://leofuso.youtrack.cloud/issue/NCP-3"
+}

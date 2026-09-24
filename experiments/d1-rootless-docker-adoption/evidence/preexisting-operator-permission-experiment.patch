@@ -1,0 +1,76 @@
+diff --git a/infra/ansible/host.yml b/infra/ansible/host.yml
+index 8159c5a..faacfeb 100644
+--- a/infra/ansible/host.yml
++++ b/infra/ansible/host.yml
+@@ -32,9 +32,9 @@
+         state: directory
+         mode: "{{ item.mode }}"
+         owner: "{{ 'root' if blaine_prefix == '' else omit }}"
+-        group: "{{ 'root' if blaine_prefix == '' else omit }}"
++        group: "{{ item.group | default('root') if blaine_prefix == '' else omit }}"
+       loop:
+-        - {path: /etc/blaine, mode: '0700'}
++        - {path: /etc/blaine, mode: '0750', group: docker}
+         - {path: /usr/local/lib/blaine, mode: '0755'}
+         - {path: /var/lib/blaine-backup, mode: '0700'}
+         - {path: /etc/systemd/system, mode: '0755'}
+diff --git a/infra/ansible/infrastructure.yml b/infra/ansible/infrastructure.yml
+index b3ec812..49656ae 100644
+--- a/infra/ansible/infrastructure.yml
++++ b/infra/ansible/infrastructure.yml
+@@ -5,6 +5,7 @@
+   vars:
+     blaine_prefix: ""
+     blaine_activate: false
++    blaine_operator_user: leofuso
+     # Live execution follows reviewed bootstrap-packages.py. No full-host upgrade.
+     blaine_packages:
+       docker-ce: 5:29.8.1-1~ubuntu.26.04~resolute
+@@ -14,12 +15,12 @@
+       docker-compose-plugin: 5.5.1-1~ubuntu.26.04~resolute
+       alloy: 1.19.2-1
+     blaine_files:
+-      - {src: ../compose/compose.yaml, dest: /etc/blaine/infra/compose.yaml, mode: '0644'}
++      - {src: ../compose/compose.yaml, dest: /etc/blaine/infra/compose.yaml, mode: '0640', group: docker}
+       - {src: ../systemd/blaine-infra.service, dest: /etc/systemd/system/blaine-infra.service, mode: '0644'}
+       - {src: ../alloy/blaine.conf, dest: /etc/systemd/system/alloy.service.d/blaine.conf, mode: '0644'}
+       - {src: ../alloy/default, dest: /etc/default/alloy, mode: '0644'}
+-      - {src: ../alloy/config.alloy, dest: /etc/blaine/infra/alloy-local.alloy, mode: '0644'}
+-      - {src: ../alloy/cloud.alloy.inactive, dest: /etc/blaine/infra/cloud.alloy.inactive, mode: '0644'}
++      - {src: ../alloy/config.alloy, dest: /etc/blaine/infra/alloy-local.alloy, mode: '0640', group: docker}
++      - {src: ../alloy/cloud.alloy.inactive, dest: /etc/blaine/infra/cloud.alloy.inactive, mode: '0640', group: docker}
+       - {src: ../infrastructure-secrets.py, dest: /usr/local/lib/blaine/infrastructure-secrets.py, mode: '0755'}
+       - {src: ../grafana-cloud.py, dest: /usr/local/lib/blaine/grafana-cloud.py, mode: '0755'}
+       - {src: ../bootstrap-packages.py, dest: /usr/local/lib/blaine/bootstrap-packages.py, mode: '0755'}
+@@ -68,6 +69,13 @@
+       loop: '{{ package_versions.results | default([]) }}'
+       when: blaine_prefix == ''
+ 
++    - name: Keep the primary operator in the Docker administration group
++      ansible.builtin.user:
++        name: '{{ blaine_operator_user }}'
++        groups: docker
++        append: true
++      when: blaine_prefix == ''
++
+     - name: Create managed configuration and state directories
+       ansible.builtin.file:
+         path: '{{ blaine_prefix }}{{ item.path }}'
+@@ -76,7 +84,7 @@
+         owner: "{{ item.owner | default('root') if blaine_prefix == '' else omit }}"
+         group: "{{ item.group | default('root') if blaine_prefix == '' else omit }}"
+       loop:
+-        - {path: /etc/blaine/infra, mode: '0700'}
++        - {path: /etc/blaine/infra, mode: '0750', group: docker}
+         - {path: /etc/blaine/secrets, mode: '0700'}
+         - {path: /etc/alloy, mode: '0755'}
+         - {path: /etc/default, mode: '0755'}
+@@ -95,7 +103,7 @@
+         dest: '{{ blaine_prefix }}{{ item.dest }}'
+         mode: '{{ item.mode }}'
+         owner: "{{ 'root' if blaine_prefix == '' else omit }}"
+-        group: "{{ 'root' if blaine_prefix == '' else omit }}"
++        group: "{{ item.group | default('root') if blaine_prefix == '' else omit }}"
+       loop: '{{ blaine_files }}'
+       register: staged_files
+ 

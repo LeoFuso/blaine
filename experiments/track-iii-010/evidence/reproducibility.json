@@ -1,0 +1,35 @@
+{
+  "restored_default_after_mutations": true,
+  "runs": [
+    {
+      "byte_identical": {
+        "exports.json": true,
+        "results.json": true
+      },
+      "checker_exit": 0,
+      "checks": 1460,
+      "hash_seed": "7",
+      "process_attestations": "Actual PID/PPID differ by design; independently verified in each run",
+      "runner_exit": 0,
+      "sha256": {
+        "exports.json": "5f2af1d97f09598848f3b6df45160f5e7c47116898106f8bef89c23bcbdb8482",
+        "results.json": "00600c46a42e4db25b66e33efc15b4ce88c2c318540ffa09e13ef9e830825dc9"
+      }
+    },
+    {
+      "byte_identical": {
+        "exports.json": true,
+        "results.json": true
+      },
+      "checker_exit": 0,
+      "checks": 1460,
+      "hash_seed": "83",
+      "process_attestations": "Actual PID/PPID differ by design; independently verified in each run",
+      "runner_exit": 0,
+      "sha256": {
+        "exports.json": "5f2af1d97f09598848f3b6df45160f5e7c47116898106f8bef89c23bcbdb8482",
+        "results.json": "00600c46a42e4db25b66e33efc15b4ce88c2c318540ffa09e13ef9e830825dc9"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"kind":"TaskResult","payload":{"artifacts":{},"completion_ref":"artifact://task-cancel-race/sha256:19bd9241bf661203f1bed5957bdc437bd47cb97cf99da498d07362c496dab9d6","concerns":["Execution stopped: cancelled","Effect task-cancel-race/1 after Task cancelled: completed (completed before the stop)"],"outcome":"CANCELLED","task_id":"task-cancel-race"},"version":1}

@@ -1,0 +1,27 @@
+{
+  "initial_source": "86d37cb9984969a82becb6a26a1125e1b93b0c31",
+  "initial_run": "https://github.com/LeoFuso/blaine/actions/runs/35946083131",
+  "attempt_1": {
+    "result": "FAIL",
+    "check": "TestCancellationAndDescendantCleanup/tree under race",
+    "observation": "Reported surviving descendant after 0.01s; cause not established. No product change or weakened assertion.",
+    "targeted_local_repetitions": 30,
+    "targeted_result": "PASS"
+  },
+  "attempt_2": {
+    "result": "FAIL",
+    "process_cleanup_regression": "PASS",
+    "check": "TestOperatorInventoryIsReadOnlyAndSanitized",
+    "cause": "time.Time struct comparison observes different Location representations after JSON decoding in UTC",
+    "reproduced_locally_in_UTC": true
+  },
+  "correction_commit": "1c76a23a1640a5d69a0862ea8f39a32cd12a5ee1",
+  "correction": "Use time.Time.Equal to verify unchanged instants; no client/Hub production code change",
+  "local_fixture_checks": {
+    "UTC": "PASS",
+    "America/Sao_Paulo": "PASS"
+  },
+  "corrected_run": "https://github.com/LeoFuso/blaine/actions/runs/35947021751",
+  "corrected_run_result": "PASS",
+  "tag_created": true
+}

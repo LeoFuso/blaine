@@ -1,0 +1,2054 @@
+{
+  "check_count": 512,
+  "checks": [
+    {
+      "check": "all-literal-expectations",
+      "status": "PASS"
+    },
+    {
+      "check": "source-hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "accepted-prior-sources",
+      "status": "PASS"
+    },
+    {
+      "check": "restored",
+      "status": "PASS"
+    },
+    {
+      "check": "required/same",
+      "status": "PASS"
+    },
+    {
+      "check": "required/same-human",
+      "status": "PASS"
+    },
+    {
+      "check": "required/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "required/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "required/cross-human-raw",
+      "status": "PASS"
+    },
+    {
+      "check": "required/authority/agent",
+      "status": "PASS"
+    },
+    {
+      "check": "required/authority/human",
+      "status": "PASS"
+    },
+    {
+      "check": "required/approval/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "required/approval/uncertain",
+      "status": "PASS"
+    },
+    {
+      "check": "required/approval/source-changed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/policy/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "required/policy/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/source/invalid-verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/raw",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/secret",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/organization",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/project_repository",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/hostname_url",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/ticket",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/source_identifier",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/database",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/exact_literal",
+      "status": "PASS"
+    },
+    {
+      "check": "required/unsafe/source_fragment",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/secret/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/secret/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/secret/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/secret/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/secret/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/secret/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/organization/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/organization/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/organization/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/organization/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/organization/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/organization/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/project_repository/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/project_repository/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/project_repository/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/project_repository/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/project_repository/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/project_repository/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/hostname_url/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/hostname_url/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/hostname_url/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/hostname_url/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/hostname_url/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/hostname_url/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/ticket/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/ticket/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/ticket/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/ticket/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/ticket/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/ticket/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_identifier/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_identifier/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_identifier/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_identifier/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_identifier/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_identifier/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/database/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/database/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/database/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/database/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/database/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/database/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/exact_literal/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/exact_literal/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/exact_literal/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/exact_literal/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/exact_literal/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/exact_literal/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_fragment/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_fragment/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_fragment/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_fragment/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_fragment/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "required/scanner/source_fragment/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/same",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/same",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/same",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-whitelist/same",
+      "status": "PASS"
+    },
+    {
+      "check": "separation/same",
+      "status": "PASS"
+    },
+    {
+      "check": "state/same-human",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/same-human",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/same-human",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-whitelist/same-human",
+      "status": "PASS"
+    },
+    {
+      "check": "separation/same-human",
+      "status": "PASS"
+    },
+    {
+      "check": "state/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-whitelist/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "separation/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "cross-gates/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "state/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "origin/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "metadata-whitelist/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "separation/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "cross-gates/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "state/cross-human-raw",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/cross-human-raw",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/cross-human-raw",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/raw",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/raw",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/raw",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/secret",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/secret",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/secret",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/organization",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/organization",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/organization",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/project_repository",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/project_repository",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/project_repository",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/hostname_url",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/hostname_url",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/hostname_url",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/ticket",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/ticket",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/ticket",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/source_identifier",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/source_identifier",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/source_identifier",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/database",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/database",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/database",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/exact_literal",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/exact_literal",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/exact_literal",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe/source_fragment",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe/source_fragment",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe/source_fragment",
+      "status": "PASS"
+    },
+    {
+      "check": "state/authority/agent",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/authority/agent",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/authority/agent",
+      "status": "PASS"
+    },
+    {
+      "check": "state/authority/human",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/authority/human",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/authority/human",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/sibling-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/attempt-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/child-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/project-personal",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/parent-not-authorized",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/parent-not-authorized",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/parent-not-authorized",
+      "status": "PASS"
+    },
+    {
+      "check": "state/same/secret-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/same/secret-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/same/secret-denied",
+      "status": "PASS"
+    },
+    {
+      "check": "state/destination/skip-parent",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/destination/skip-parent",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/destination/skip-parent",
+      "status": "PASS"
+    },
+    {
+      "check": "state/source/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/source/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/source/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "state/source/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/source/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/source/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "state/approval/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/approval/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/approval/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "state/approval/uncertain",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/approval/uncertain",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/approval/uncertain",
+      "status": "PASS"
+    },
+    {
+      "check": "state/approval/source-changed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/approval/source-changed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/approval/source-changed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/policy/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/policy/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/policy/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "state/policy/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/policy/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/policy/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/security-policy/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/security-policy/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/security-policy/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/source/invalid-verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/source/invalid-verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/source/invalid-verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/secret/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/secret/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/secret/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/secret/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/secret/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/secret/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/secret/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/secret/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/secret/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/secret/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/secret/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/secret/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/secret/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/secret/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/secret/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/secret/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/secret/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/secret/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/organization/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/organization/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/organization/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/organization/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/organization/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/organization/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/organization/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/organization/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/organization/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/organization/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/organization/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/organization/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/organization/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/organization/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/organization/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/organization/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/organization/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/organization/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/project_repository/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/project_repository/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/project_repository/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/project_repository/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/project_repository/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/project_repository/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/project_repository/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/project_repository/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/project_repository/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/project_repository/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/project_repository/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/project_repository/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/project_repository/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/project_repository/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/project_repository/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/project_repository/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/project_repository/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/project_repository/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/hostname_url/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/hostname_url/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/hostname_url/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/hostname_url/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/hostname_url/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/hostname_url/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/hostname_url/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/hostname_url/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/hostname_url/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/hostname_url/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/hostname_url/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/hostname_url/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/hostname_url/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/hostname_url/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/hostname_url/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/hostname_url/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/hostname_url/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/hostname_url/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/ticket/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/ticket/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/ticket/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/ticket/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/ticket/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/ticket/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/ticket/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/ticket/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/ticket/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/ticket/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/ticket/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/ticket/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/ticket/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/ticket/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/ticket/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/ticket/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/ticket/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/ticket/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_identifier/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_identifier/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_identifier/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_identifier/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_identifier/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_identifier/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_identifier/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_identifier/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_identifier/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_identifier/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_identifier/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_identifier/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_identifier/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_identifier/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_identifier/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_identifier/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_identifier/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_identifier/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/database/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/database/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/database/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/database/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/database/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/database/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/database/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/database/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/database/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/database/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/database/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/database/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/database/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/database/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/database/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/database/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/database/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/database/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/exact_literal/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/exact_literal/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/exact_literal/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/exact_literal/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/exact_literal/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/exact_literal/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/exact_literal/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/exact_literal/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/exact_literal/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/exact_literal/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/exact_literal/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/exact_literal/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/exact_literal/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/exact_literal/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/exact_literal/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/exact_literal/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/exact_literal/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/exact_literal/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_fragment/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_fragment/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_fragment/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_fragment/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_fragment/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_fragment/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_fragment/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_fragment/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_fragment/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_fragment/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_fragment/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_fragment/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_fragment/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_fragment/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_fragment/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "state/scanner/source_fragment/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/scanner/source_fragment/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/scanner/source_fragment/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe-fault/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe-fault/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe-fault/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unsafe-fault/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/unsafe-fault/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/unsafe-fault/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/caller_role",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/caller_role",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/caller_role",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/promotion_authority",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/promotion_authority",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/promotion_authority",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/declassified",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/declassified",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/declassified",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/scanner_result",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/scanner_result",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/scanner_result",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/policy_result",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/policy_result",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/policy_result",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/public",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/public",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/public",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/destination_context",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/destination_context",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/destination_context",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/candidate-metadata",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/candidate-metadata",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/candidate-metadata",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/agent-role",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/agent-role",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/agent-role",
+      "status": "PASS"
+    },
+    {
+      "check": "state/forgery/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "receipt-bound/forgery/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "denial/forgery/destination",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/secret",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/organization",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/project_repository",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/hostname_url",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/ticket",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/source_identifier",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/database",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/exact_literal",
+      "status": "PASS"
+    },
+    {
+      "check": "scanner-category/source_fragment",
+      "status": "PASS"
+    },
+    {
+      "check": "export-exact",
+      "status": "PASS"
+    },
+    {
+      "check": "independent-destination-leak-scan",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/safe",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/cross-human-safe",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/cross-human-raw",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/raw",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/secret",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/organization",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/project_repository",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/hostname_url",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/ticket",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/source_identifier",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/database",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/exact_literal",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe/source_fragment",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/destination/skip-parent",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/source/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/source/foreign",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/approval/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/approval/uncertain",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/approval/source-changed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/policy/missing",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/policy/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/capability/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/security-policy/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/source/invalid-verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/secret/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/secret/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/secret/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/secret/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/secret/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/secret/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/organization/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/organization/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/organization/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/organization/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/organization/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/organization/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/project_repository/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/project_repository/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/project_repository/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/project_repository/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/project_repository/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/project_repository/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/hostname_url/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/hostname_url/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/hostname_url/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/hostname_url/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/hostname_url/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/hostname_url/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/ticket/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/ticket/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/ticket/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/ticket/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/ticket/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/ticket/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_identifier/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_identifier/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_identifier/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_identifier/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_identifier/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_identifier/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/database/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/database/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/database/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/database/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/database/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/database/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/exact_literal/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/exact_literal/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/exact_literal/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/exact_literal/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/exact_literal/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/exact_literal/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_fragment/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_fragment/crash",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_fragment/malformed",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_fragment/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_fragment/timeout",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/scanner/source_fragment/cannot_evaluate",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe-fault/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/unsafe-fault/unknown",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/caller_role",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/promotion_authority",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/declassified",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/scanner_result",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/policy_result",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/public",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/destination_context",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/candidate-metadata",
+      "status": "PASS"
+    },
+    {
+      "check": "destination-all-representations/forgery/verified-status",
+      "status": "PASS"
+    },
+    {
+      "check": "rejected-replay",
+      "status": "PASS"
+    },
+    {
+      "check": "replay",
+      "status": "PASS"
+    },
+    {
+      "check": "activity-and-ids",
+      "status": "PASS"
+    },
+    {
+      "check": "mutation-oracles",
+      "status": "PASS"
+    },
+    {
+      "check": "mutation-failure",
+      "status": "PASS"
+    },
+    {
+      "check": "mutation-real-leak",
+      "status": "PASS"
+    },
+    {
+      "check": "mutation-real-admission",
+      "status": "PASS"
+    },
+    {
+      "check": "summary",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

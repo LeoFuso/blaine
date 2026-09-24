@@ -1,0 +1,136 @@
+{
+  "observed_at": 1790036643.5410693,
+  "retained_local_spans": 55649,
+  "retained_distinct_trace_ids": 929,
+  "span_service_counts": {
+    "worker": 55649
+  },
+  "span_attribute_key_counts": {
+    "db.system": 53565,
+    "db.statement": 53548,
+    "db.connection_string": 53548,
+    "net.peer.name": 53565,
+    "net.peer.port": 53565,
+    "redis.full_command": 53548,
+    "runner.name": 900,
+    "runner.interval_ms": 900,
+    "langfuse.header.x-langfuse-ingestion-version": 797,
+    "langfuse.clickhouse.surface": 827,
+    "langfuse.clickhouse.route": 827,
+    "langfuse.clickhouse.user_agent": 797,
+    "langfuse.project.id": 797,
+    "langfuse.api_key.id": 797,
+    "ch.query.text": 17,
+    "ch.query.shape": 17,
+    "db.query.text": 17,
+    "db.operation.name": 17,
+    "ch.queryId": 17,
+    "ch.tag.tag_schema_version": 17,
+    "ch.tag.surface": 17,
+    "ch.tag.route": 17,
+    "ch.read_rows": 17,
+    "ch.read_bytes": 17,
+    "ch.written_rows": 17,
+    "ch.written_bytes": 17,
+    "ch.total_rows_to_read": 17,
+    "ch.result_rows": 17,
+    "ch.result_bytes": 17,
+    "ch.elapsed_ns": 17,
+    "ch.memory_usage": 17,
+    "lock.acquired": 105,
+    "lock.key": 105,
+    "http.url": 17,
+    "http.method": 17,
+    "http.target": 17,
+    "http.host": 17,
+    "net.peer.ip": 17,
+    "http.status_code": 17,
+    "http.status_text": 17,
+    "http.flavor": 17,
+    "net.transport": 17,
+    "messaging.system": 15,
+    "messaging.client.id": 15,
+    "messaging.message.id": 15,
+    "messaging.operation.name": 15,
+    "messaging.operation.type": 15,
+    "messaging.bullmq.job.name": 15,
+    "messaging.bullmq.job.attempts": 15,
+    "messaging.bullmq.job.timestamp": 15,
+    "messaging.bullmq.job.delay": 15,
+    "messaging.bullmq.job.repeatJobKey": 15,
+    "messaging.bullmq.job.opts.attempts": 15,
+    "messaging.bullmq.job.opts.prevMillis": 15,
+    "messaging.bullmq.job.opts.backoff.delay": 15,
+    "messaging.bullmq.job.opts.backoff.type": 15,
+    "messaging.bullmq.job.opts.removeOnComplete": 15,
+    "messaging.bullmq.job.opts.repeat.pattern": 15,
+    "messaging.bullmq.job.opts.repeat.count": 15,
+    "messaging.bullmq.job.opts.removeOnFail": 15,
+    "messaging.bullmq.job.opts.jobId": 15,
+    "messaging.bullmq.job.opts.timestamp": 15,
+    "messaging.bullmq.job.opts.delay": 15,
+    "messaging.destination.name": 15,
+    "messaging.bullmq.worker.concurrency": 15,
+    "messaging.bullmq.worker.lockDuration": 15,
+    "messaging.bullmq.worker.lockRenewTime": 15,
+    "messaging.bullmq.job.processedOn": 15,
+    "method": 342,
+    "model": 159,
+    "name": 237,
+    "monitor.published_count": 26,
+    "messaging.bullmq.worker.rateLimiter.max": 1,
+    "messaging.bullmq.worker.rateLimiter.duration": 1
+  },
+  "cognitive_task_id": "task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708",
+  "cognitive_task_matches_in_retained_spans": 0,
+  "cognitive_task_events": [
+    {
+      "event_type": "task.started",
+      "has_trace_id": false,
+      "has_span_id": false
+    },
+    {
+      "event_type": "verifier.evaluated",
+      "has_trace_id": false,
+      "has_span_id": false
+    },
+    {
+      "event_type": "cognition.decided",
+      "has_trace_id": false,
+      "has_span_id": false
+    },
+    {
+      "event_type": "policy.evaluated",
+      "has_trace_id": false,
+      "has_span_id": false
+    },
+    {
+      "event_type": "capability.finished",
+      "has_trace_id": false,
+      "has_span_id": false
+    },
+    {
+      "event_type": "artifact.produced",
+      "has_trace_id": false,
+      "has_span_id": false
+    },
+    {
+      "event_type": "verifier.evaluated",
+      "has_trace_id": false,
+      "has_span_id": false
+    },
+    {
+      "event_type": "completion.finished",
+      "has_trace_id": false,
+      "has_span_id": false
+    }
+  ],
+  "log_label_counts": {
+    "loki.source.journal.blaine_generation": 1,
+    "blaine-generation.service": 1,
+    "loki.source.journal.blaine_embedding": 1,
+    "blaine-embedding.service": 1,
+    "loki.source.journal.platform": 7
+  },
+  "historical_retention_caveat": "Rotated local files cannot prove absence of expired historical spans; no end-to-end Task trace is established."
+}

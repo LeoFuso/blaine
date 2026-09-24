@@ -1,0 +1,1 @@
+{"kind":"CapabilityJournalEntry","payload":{"operation_id":"lost-reply/3","outcome":"uncertain","phase":"observed","previous_ref":"artifact://lost-reply/sha256:6558bec19396a32914e3b1d35c0a2634053f89881cb7b6bf4e1d413d823eb57e","receipt_ref":"artifact://lost-reply/sha256:57722f4eb3f3547ee559d44de235fec904e79232c85c7c721ed590d24479661c","seq":6,"task_id":"lost-reply"},"version":1}

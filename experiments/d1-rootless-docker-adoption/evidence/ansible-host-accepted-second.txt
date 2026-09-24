@@ -1,0 +1,56 @@
+
+PLAY [Verify rootless host prerequisites and enable user-manager boot persistence] ***
+
+TASK [Verify installed rootless prerequisite packages] *************************
+ok: [localhost] => (item=docker-ce-rootless-extras)
+ok: [localhost] => (item=uidmap)
+
+TASK [Verify subordinate identity allocation exists] ***************************
+ok: [localhost] => (item=/etc/subuid)
+ok: [localhost] => (item=/etc/subgid)
+
+TASK [Inspect linger] **********************************************************
+ok: [localhost]
+
+TASK [Enable linger for the normal operator] ***********************************
+skipping: [localhost]
+
+TASK [Require a healthy accepted rootless stack before legacy cleanup] *********
+ok: [localhost]
+
+TASK [Disable and stop the superseded system stack owner after acceptance] *****
+ok: [localhost]
+
+TASK [Pin the retained rollback unit to the legacy daemon explicitly] **********
+ok: [localhost]
+
+TASK [Reload the changed inactive rollback unit] *******************************
+skipping: [localhost]
+
+TASK [Restore private root-owned host configuration parents] *******************
+ok: [localhost] => (item=/etc/blaine)
+ok: [localhost] => (item=/etc/blaine/infra)
+
+TASK [Restore root-owned legacy non-secret configuration files] ****************
+ok: [localhost] => (item=/etc/blaine/infra/compose.yaml)
+ok: [localhost] => (item=/etc/blaine/infra/alloy-local.alloy)
+ok: [localhost] => (item=/etc/blaine/infra/cloud.alloy.inactive)
+
+TASK [Inspect docker-group account membership] *********************************
+ok: [localhost]
+
+TASK [Remove only the rootful Docker administration membership] ****************
+skipping: [localhost]
+
+TASK [Refuse to overwrite unknown or cloud-activated Alloy configuration] ******
+ok: [localhost]
+
+TASK [Materialize allowlisted rootless journal collection] *********************
+ok: [localhost] => (item={'path': '/etc/alloy/config.alloy', 'mode': '0644'})
+ok: [localhost] => (item={'path': '/etc/blaine/infra/alloy-local.alloy', 'mode': '0640'})
+
+TASK [Keep native Alloy healthy with the accepted journal configuration] *******
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=12   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0

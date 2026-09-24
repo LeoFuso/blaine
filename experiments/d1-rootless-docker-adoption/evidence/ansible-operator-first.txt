@@ -1,0 +1,41 @@
+
+PLAY [Stage the D1 rootless operator runtime (activation is a separate cutover)] ***
+
+TASK [Require operator staging with explicit safe scope] ***********************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Observe executing identity] **********************************************
+ok: [localhost]
+
+TASK [Refuse root or a different operator identity] ****************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Refuse symlinks before touching runtime paths] ***************************
+ok: [localhost]
+
+TASK [Create private operator configuration and state parents] *****************
+changed: [localhost] => (item=/home/leofuso/.config/blaine)
+changed: [localhost] => (item=/home/leofuso/.config/blaine/infra)
+changed: [localhost] => (item=/home/leofuso/.config/blaine/secrets)
+changed: [localhost] => (item=/home/leofuso/.local/share/blaine)
+changed: [localhost] => (item=/home/leofuso/.local/share/blaine/infra)
+changed: [localhost] => (item=/home/leofuso/.config/systemd/user)
+
+TASK [Stage versioned rootless configuration without secrets or activation marker] ***
+changed: [localhost] => (item={'src': '../compose/rootless.yaml', 'dest': '/home/leofuso/.config/blaine/infra/compose.yaml'})
+changed: [localhost] => (item={'src': '../rootless/preflight.py', 'dest': '/home/leofuso/.config/blaine/infra/preflight.py'})
+changed: [localhost] => (item={'src': '../systemd/user/blaine-infra.service', 'dest': '/home/leofuso/.config/systemd/user/blaine-infra.service'})
+
+TASK [Explain the unaccepted migration boundary] *******************************
+ok: [localhost] => {
+    "msg": "No service start, enablement, secret copy, data change, or rootful action. Native Alloy/PostgreSQL/Redis remain system services. Use rootless-host.yml for bounded host prerequisites."
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

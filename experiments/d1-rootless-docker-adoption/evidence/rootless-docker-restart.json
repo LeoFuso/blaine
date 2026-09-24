@@ -1,0 +1,98 @@
+{
+  "status": "PASS",
+  "scope": "migrated rootless stack",
+  "checks": {
+    "four_rootless_containers_healthy": "PASS",
+    "http_health": "PASS",
+    "retained_original_state": {
+      "status": "PASS",
+      "objects_preserved": 7,
+      "clickhouse_rows_preserved": 2,
+      "langfuse_traces_preserved": 1
+    },
+    "langfuse_roundtrip": {
+      "trace_id": "d2a11f614d61062348a0bd19bf243caa",
+      "since": "2026-09-21T17:15:35.314110+00:00",
+      "status": "PASS"
+    },
+    "private_loopback_listeners": "PASS"
+  },
+  "snapshot": {
+    "objects": [
+      {
+        "bucket": "blaine-artifacts",
+        "identity_sha256": "09df13dc61d442c67085a08c73d27e93a55f4141e6e6a168d0165ce066460cf5",
+        "content_sha256": "903762bfec5d32626756ccd83cce6354100f31a39f49b5edd5be88a7370ab880",
+        "bytes": 67
+      },
+      {
+        "bucket": "blaine-artifacts",
+        "identity_sha256": "4b373d4dfea6c25eaf5ea5bd6c796bb7ee66b7ceecf445240e40a9f1ed0ba429",
+        "content_sha256": "205647fce3264e7b94001f9dc458c103024383cf45fbb22f2c330579759cd587",
+        "bytes": 67
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "159f9eb4bb89f7cb274e069edf6840c1ddbc6b44264cdd0dddf4773b97372cc1",
+        "content_sha256": "47eb31563f3200656c8540619b36a537fb2544a3b3571bfa6aeda6381819e741",
+        "bytes": 66
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "1708f60ebacced56f321b7bcb6042ad50e155050e695c828488f6ccf461ac932",
+        "content_sha256": "77d83b8bcd068e7f2fdd68f9245bb746d7f8f3316829d8d3a11c54b436f81662",
+        "bytes": 526
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "298d2d17c4f3347e66eae304b617ac8d647a58c819615153e1e2d139125ec27f",
+        "content_sha256": "187b0230521902cb81481f3945acdded05892e0e9ab2a5c8c4e46f6d2e9fafbb",
+        "bytes": 1039
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "36b91b61ada6a5a087127f440a084fd0ab3fd8218fc067f4a6c4489c10376c7f",
+        "content_sha256": "8ec77dbe5eccd59f04daabd58b22a2c4c2091a4712c52f016338a0e0f729b47e",
+        "bytes": 526
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "56f589e0ce5389c52b30b06a96028a5feda4ac9ffef53c47cc8a7e72bfb9922a",
+        "content_sha256": "d147db1bc7def1e954c1f4d5a2a563cb01ca41a87845c22dfd766ab416fd0073",
+        "bytes": 526
+      },
+      {
+        "bucket": "langfuse-events",
+        "identity_sha256": "5a1e65f89ba795ff4b61de101b03cf12f0352f3c5e727bc766db29a8768d59ec",
+        "content_sha256": "beab0bdd6266dc0273e4c9a5786b0f1ea10df4768d2bb9a91ca83dc465dd27aa",
+        "bytes": 66
+      },
+      {
+        "bucket": "langfuse-media",
+        "identity_sha256": "1daef1fc76f94099defa5d56d28e991561b4843f2359e610132ec4ea386cb104",
+        "content_sha256": "3b00ca63aeaef3bcbda737173af54e66513053144ce8f7037f29f20f0c4b2e99",
+        "bytes": 65
+      },
+      {
+        "bucket": "langfuse-media",
+        "identity_sha256": "45bab8b3d9cae346094c734d787d7e5056a28f2725fcc62e5b10da6ddfe65ee4",
+        "content_sha256": "0e7849589e33fd9d846077aed845f85ecd8a5ff7bf7472691d6dbb1266d57723",
+        "bytes": 65
+      }
+    ],
+    "clickhouse_rows": [
+      "27dbf6ba93844f016f45b2aa",
+      "79372b4e638c95f5a1af498a"
+    ],
+    "langfuse_tables": 14,
+    "clickhouse_version": "26.4.5.143",
+    "retained_traces": [
+      {
+        "trace_id": "d2a11f614d61062348a0bd19bf243caa",
+        "since": "2026-09-21T17:15:35.314110+00:00",
+        "count": 1
+      }
+    ]
+  },
+  "observed_at": "2026-09-21T17:16:37.441227+00:00"
+}

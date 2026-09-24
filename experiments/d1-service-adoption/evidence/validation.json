@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "repository_tests": {
+    "count": 146,
+    "result": "PASS",
+    "evidence": "repository-tests-final.txt"
+  },
+  "platform_tests": {
+    "count": 28,
+    "result": "PASS",
+    "evidence": "platform-tests-final.txt"
+  },
+  "ansible": {
+    "syntax": "services.yml and rootless-host.yml PASS",
+    "scratch_first": "ok=13 changed=8 failed=0",
+    "scratch_second": "ok=13 changed=0 failed=0",
+    "live_first": "ok=15 changed=1 failed=0 (final helper reconciliation; prior activation ok=15 changed=3)",
+    "live_second": "ok=15 changed=0 failed=0"
+  },
+  "systemd_analyze_verify": "PASS for all five adopted units; unrelated preexisting spice-vdagent StandardError-in-Install warning retained",
+  "git_diff_check": "PASS",
+  "known_live_credential_scan": "PASS; 84 staged files checked against current private credential bytes without emitting values",
+  "documentation_local_links": "PASS",
+  "live_acceptance": [
+    "inference-summary.json",
+    "mirix-summary.json",
+    "durable-summary.json",
+    "cognition-summary.json",
+    "acp-interaction.json",
+    "pre-reboot.json"
+  ],
+  "alloy": "Existing local-only pipeline; all five new journal sources show nonzero collection counters",
+  "negative_reboot_check": "Unchanged boot identity correctly rejected; no-reboot-negative.json",
+  "limits": [
+    "No host reboot executed",
+    "No physical backup/restore; backup PAUSED",
+    "Hypercorn stop required bounded systemd termination; graceful stop not claimed"
+  ],
+  "evidence_text_format": "Command logs retain content with trailing whitespace normalized for git diff --check"
+}

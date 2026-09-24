@@ -1,0 +1,10 @@
+{
+  "observed_at": 1790035046.6788688,
+  "local_file_age_seconds": 0.09891867637634277,
+  "local_file_bytes": 20727731,
+  "local_metrics_counters": [
+    "otelcol_exporter_sent_metric_points_total{component_id=\"otelcol.exporter.file.local\",component_path=\"/\",exporter=\"file/otelcol.exporter.file.local\",otel_scope_name=\"go.opentelemetry.io/collector/exporter/exporterhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\"} 2570",
+    "prometheus_remote_storage_samples_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2570",
+    "prometheus_remote_storage_samples_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1500"
+  ]
+}

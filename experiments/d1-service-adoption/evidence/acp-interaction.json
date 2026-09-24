@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "entrypoint": "/home/leofuso/.local/bin/blaine-agent",
+  "task_id": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92",
+  "lifecycle": "WAITING",
+  "state_matches": true
+}

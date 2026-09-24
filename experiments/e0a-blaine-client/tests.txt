@@ -1,0 +1,66 @@
+?   	blaine.local/client/cmd/blaine	[no test files]
+=== RUN   TestStableVersion
+--- PASS: TestStableVersion (0.00s)
+PASS
+ok  	blaine.local/client/internal/buildinfo	0.001s
+=== RUN   TestCommandsAndVersion
+--- PASS: TestCommandsAndVersion (0.00s)
+=== RUN   TestAllMalformedACPKeepsStdoutEmpty
+--- PASS: TestAllMalformedACPKeepsStdoutEmpty (0.00s)
+=== RUN   TestDoctorJSON
+--- PASS: TestDoctorJSON (0.00s)
+PASS
+ok  	blaine.local/client/internal/cli	0.002s
+=== RUN   TestExitPriority
+--- PASS: TestExitPriority (0.00s)
+=== RUN   TestFoundationNeverReadyOrMutating
+--- PASS: TestFoundationNeverReadyOrMutating (0.00s)
+=== RUN   TestInvalidDirectory
+--- PASS: TestInvalidDirectory (0.00s)
+PASS
+ok  	blaine.local/client/internal/doctor	0.001s
+?   	blaine.local/client/internal/fixture	[no test files]
+=== RUN   TestDetectionAndPaths
+=== RUN   TestDetectionAndPaths/linux
+=== RUN   TestDetectionAndPaths/xdg
+=== RUN   TestDetectionAndPaths/mac
+=== RUN   TestDetectionAndPaths/wsl-kernel
+=== RUN   TestDetectionAndPaths/wsl-env-only-unverified
+--- PASS: TestDetectionAndPaths (0.00s)
+    --- PASS: TestDetectionAndPaths/linux (0.00s)
+    --- PASS: TestDetectionAndPaths/xdg (0.00s)
+    --- PASS: TestDetectionAndPaths/mac (0.00s)
+    --- PASS: TestDetectionAndPaths/wsl-kernel (0.00s)
+    --- PASS: TestDetectionAndPaths/wsl-env-only-unverified (0.00s)
+=== RUN   TestInvalidPlatformPaths
+--- PASS: TestInvalidPlatformPaths (0.00s)
+=== RUN   TestDirectoryInspectionReadOnly
+--- PASS: TestDirectoryInspectionReadOnly (0.00s)
+=== RUN   TestExecutableDiscovery
+--- PASS: TestExecutableDiscovery (0.00s)
+PASS
+ok  	blaine.local/client/internal/platform	0.001s
+=== RUN   TestHelperProcess
+--- PASS: TestHelperProcess (0.00s)
+=== RUN   TestBytePurityAndStderr
+--- PASS: TestBytePurityAndStderr (0.00s)
+=== RUN   TestStatusAndArgv
+--- PASS: TestStatusAndArgv (0.00s)
+=== RUN   TestEarlyExitWithOpenStdin
+--- PASS: TestEarlyExitWithOpenStdin (0.00s)
+=== RUN   TestStartFailureAndPreCancelled
+--- PASS: TestStartFailureAndPreCancelled (0.00s)
+=== RUN   TestCancellationAndDescendantCleanup
+=== RUN   TestCancellationAndDescendantCleanup/tree
+=== RUN   TestCancellationAndDescendantCleanup/tree-exit
+--- PASS: TestCancellationAndDescendantCleanup (0.01s)
+    --- PASS: TestCancellationAndDescendantCleanup/tree (0.01s)
+    --- PASS: TestCancellationAndDescendantCleanup/tree-exit (0.01s)
+=== RUN   TestCancellationWithBlockedStreams
+=== RUN   TestCancellationWithBlockedStreams/input
+=== RUN   TestCancellationWithBlockedStreams/output
+--- PASS: TestCancellationWithBlockedStreams (0.01s)
+    --- PASS: TestCancellationWithBlockedStreams/input (0.01s)
+    --- PASS: TestCancellationWithBlockedStreams/output (0.01s)
+PASS
+ok  	blaine.local/client/internal/process	0.028s

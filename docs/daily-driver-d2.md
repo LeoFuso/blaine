@@ -1,5 +1,13 @@
 # Daily Driver D2 — Personal Agent / Remote Task Intake
 
+This is the implemented D2 binding/usage guide and its bounded evidence record.
+[Personal Agent Hub E0–E3](personal-agent-hub.md) owns the next workstation/client
+product design; the [roadmap](roadmap/001-blaine-development-roadmap.md) owns current
+sequencing. Historical SSH/worktree launch examples here remain reproduction
+instructions, not the future client onboarding contract. Existing Task contracts
+remain normative within their documented implementation limits.
+
+
 D2 exposes the current `CognitiveTaskV1` kernel through a stateless Personal
 Agent binding and ACP stdio adapter. It supports small deterministic work,
 authoritative inspection, typed human responses, explicit cancellation, and
@@ -219,14 +227,11 @@ Remaining Daily Driver work: live IntelliJ filesystem-capability validation,
 normal natural-language investigation/refactor normalization and suitable
 completion criteria, broader bounded capability adapters, and host service
 deployment when separately authorized. Generic semantic Tasks are not claimed
-to execute in this deterministic D2 deployment. The Personal Agent now has one
-**bounded PoC local-cognition entry path** (`local_summary_request` →
-`LocalModelCognition`): a bare `TaskSpec` with no deterministic action lets the
-kernel invoke the deployment's configured local model, and the `local_model_summary`
-verifier (marker present + bounded word count) completes it through the existing
-artifact-evidence path. It is a PoC fixture, not a general open-ended contract,
-and grants no authority. Beyond it, completion contracts remain the existing
-exact-artifact/human-response subset. The control surface does not yet implement
+to execute in this deterministic D2 deployment. The UI-2.5 PoC local-cognition entry
+path (`local_summary_request` with a `local_model_summary` verifier) was **retired in
+PA-3**: Completion Contract v1 has a closed verifier set, and conversational replies
+now go through the Personal Agent's conversation service without creating a Task.
+Completion contracts remain the Completion Contract v1 verifier set. The control surface does not yet implement
 constraint modification, scheduling, or Task listing.
 
 The development [TaskSpec draft](daily-driver-d2-request.json) was not submitted:

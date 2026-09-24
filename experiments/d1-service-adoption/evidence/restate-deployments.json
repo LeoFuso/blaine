@@ -1,0 +1,20 @@
+{
+  "deployments": [
+    {
+      "id": "dp_14peR41suUIf4mt0pR1oRy1",
+      "uri": "http://127.0.0.1:49080/",
+      "protocol_type": "BidiStream",
+      "http_version": "HTTP/2.0",
+      "created_at": "2026-09-20T18:16:43.774000000Z",
+      "min_protocol_version": 5,
+      "max_protocol_version": 7,
+      "sdk_version": "restate-sdk-python/1.0.5",
+      "services": [
+        {
+          "name": "CognitiveTaskV1",
+          "revision": 1
+        }
+      ]
+    }
+  ]
+}

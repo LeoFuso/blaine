@@ -1,0 +1,4834 @@
+[
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 1
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "ObjectArraySerializer",
+          23,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/ArraySerializerBase.java",
+          "ArraySerializerBase",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-D1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 1
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "ObjectArraySerializer",
+          23,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/ArraySerializerBase.java",
+          "ArraySerializerBase",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-D1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 1
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "ObjectArraySerializer",
+          23,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/ArraySerializerBase.java",
+          "ArraySerializerBase",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-D1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "imports",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "imports",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 2
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "",
+          1,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/JavaType.java",
+          "JavaType",
+          19,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/util/ClassUtil.java",
+          "ClassUtil",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-D2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "imports",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "imports",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 2
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "",
+          1,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/JavaType.java",
+          "JavaType",
+          19,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/util/ClassUtil.java",
+          "ClassUtil",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-D2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "imports",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "imports",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 2
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "",
+          1,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/JavaType.java",
+          "JavaType",
+          19,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/util/ClassUtil.java",
+          "ClassUtil",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-D2"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              1,
+              "inherits",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              2,
+              "inherits",
+              3,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "inherits",
+              4,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "ObjectArraySerializer",
+          23,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/ArraySerializerBase.java",
+          "ArraySerializerBase",
+          20,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/StdContainerSerializer.java",
+          "StdContainerSerializer",
+          19,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/StdSerializer.java",
+          "StdSerializer",
+          31,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ValueSerializer.java",
+          "ValueSerializer",
+          56,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-M1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              1,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              4,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "ObjectArraySerializer",
+          23,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/ArraySerializerBase.java",
+          "ArraySerializerBase",
+          20,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/StdContainerSerializer.java",
+          "StdContainerSerializer",
+          19,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/StdSerializer.java",
+          "StdSerializer",
+          31,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ValueSerializer.java",
+          "ValueSerializer",
+          56,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-M1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              1,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "inherits",
+              3,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              4,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/ser/jdk/ObjectArraySerializer.java",
+          "ObjectArraySerializer",
+          23,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/ArraySerializerBase.java",
+          "ArraySerializerBase",
+          20,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/StdContainerSerializer.java",
+          "StdContainerSerializer",
+          19,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ser/std/StdSerializer.java",
+          "StdSerializer",
+          31,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ValueSerializer.java",
+          "ValueSerializer",
+          56,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-M1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-M2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-M2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              1,
+              "calls",
+              2,
+              [
+                "INFERRED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "calls",
+              3,
+              [
+                "INFERRED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "calls",
+              4,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              4,
+              "calls",
+              5,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "calls",
+              6,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              6,
+              "calls",
+              7,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 7
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/ObjectMapper.java",
+          "ObjectMapper#_readMapAndClose/3",
+          2679,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ObjectMapper.java",
+          "ObjectMapper#_findRootDeserializer/2",
+          2871,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/DeserializationContext.java",
+          "DeserializationContext#findRootValueDeserializer/1",
+          749,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/DeserializerCache.java",
+          "DeserializerCache#findValueDeserializer/3",
+          156,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/DeserializerCache.java",
+          "DeserializerCache#_createAndCacheValueDeserializer/3",
+          217,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/DeserializerCache.java",
+          "DeserializerCache#_createAndCache2/4",
+          265,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/DeserializerCache.java",
+          "DeserializerCache#_createDeserializer/3",
+          320,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/DatabindContext.java",
+          "DatabindContext#lazyIntrospectBeanDescription/1",
+          383,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-M2"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              1,
+              "calls",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              2,
+              "calls",
+              3,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "calls",
+              4,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#createReferenceDeserializer/3",
+          1122,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#findValueInstantiator/2",
+          141,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#_constructDefaultValueInstantiator/2",
+          200,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/bean/CreatorCollector.java",
+          "CreatorCollector#setDefaultCreator/1",
+          118,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/bean/CreatorCollector.java",
+          "CreatorCollector#_fixAccess/1",
+          255,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-M3"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              1,
+              "calls",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "calls",
+              3,
+              [
+                "INFERRED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "calls",
+              4,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#createReferenceDeserializer/3",
+          1122,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#findValueInstantiator/2",
+          141,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#_constructDefaultValueInstantiator/2",
+          200,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/bean/CreatorCollector.java",
+          "CreatorCollector#setDefaultCreator/1",
+          118,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/bean/CreatorCollector.java",
+          "CreatorCollector#_fixAccess/1",
+          255,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-M3"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              1,
+              "calls",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "calls",
+              3,
+              [
+                "INFERRED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "calls",
+              4,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#createReferenceDeserializer/3",
+          1122,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#findValueInstantiator/2",
+          141,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/BasicDeserializerFactory.java",
+          "BasicDeserializerFactory#_constructDefaultValueInstantiator/2",
+          200,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/bean/CreatorCollector.java",
+          "CreatorCollector#setDefaultCreator/1",
+          118,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/bean/CreatorCollector.java",
+          "CreatorCollector#_fixAccess/1",
+          255,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-M3"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-I1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              4,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              6,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 6
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              7,
+              "inherits",
+              5,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 7
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/deser/std/StdDeserializer.java",
+          "StdDeserializer",
+          38,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ValueDeserializer.java",
+          "ValueDeserializer",
+          48,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "StdScalarDeserializer",
+          13,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "JSR310DeserializerBase",
+          41,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/DurationDeserializer.java",
+          "DurationDeserializer",
+          41,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "JSR310DateTimeDeserializerBase",
+          17,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/JSR310StringParsableDeserializer.java",
+          "JSR310StringParsableDeserializer",
+          47,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/InstantDeserializer.java",
+          "InstantDeserializer",
+          48,
+          "B"
+        ]
+      ],
+      "partial": true,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-I1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              4,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              6,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 6
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              7,
+              "inherits",
+              5,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 7
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/deser/std/StdDeserializer.java",
+          "StdDeserializer",
+          38,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ValueDeserializer.java",
+          "ValueDeserializer",
+          48,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/deser/std/StdScalarDeserializer.java",
+          "StdScalarDeserializer",
+          13,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/JSR310DeserializerBase.java",
+          "JSR310DeserializerBase",
+          41,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/DurationDeserializer.java",
+          "DurationDeserializer",
+          41,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/JSR310DateTimeDeserializerBase.java",
+          "JSR310DateTimeDeserializerBase",
+          17,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/JSR310StringParsableDeserializer.java",
+          "JSR310StringParsableDeserializer",
+          47,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/ext/javatime/deser/InstantDeserializer.java",
+          "InstantDeserializer",
+          48,
+          "B"
+        ]
+      ],
+      "partial": true,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-I1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              4,
+              "inherits",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              5,
+              "inherits",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              6,
+              "inherits",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 6
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/introspect/AnnotatedClass.java",
+          "AnnotatedClass",
+          14,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/Annotated.java",
+          "Annotated",
+          14,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedMember.java",
+          "AnnotatedMember",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedField.java",
+          "AnnotatedField",
+          13,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedParameter.java",
+          "AnnotatedParameter",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedWithParams.java",
+          "AnnotatedWithParams",
+          11,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/VirtualAnnotatedMember.java",
+          "VirtualAnnotatedMember",
+          15,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-I2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              4,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              6,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 6
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              7,
+              "inherits",
+              5,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 7
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              8,
+              "inherits",
+              5,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 8
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/introspect/AnnotatedClass.java",
+          "AnnotatedClass",
+          14,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/Annotated.java",
+          "Annotated",
+          14,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedMember.java",
+          "AnnotatedMember",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedField.java",
+          "AnnotatedField",
+          13,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedParameter.java",
+          "AnnotatedParameter",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedWithParams.java",
+          "AnnotatedWithParams",
+          11,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/VirtualAnnotatedMember.java",
+          "VirtualAnnotatedMember",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedConstructor.java",
+          "AnnotatedConstructor",
+          17,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "AnnotatedMethod",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-I2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              4,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              5,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              6,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 6
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              5,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              7,
+              "inherits",
+              5,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 7
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              5,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              8,
+              "inherits",
+              5,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 8
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "tools/jackson/databind/introspect/AnnotatedClass.java",
+          "AnnotatedClass",
+          14,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/Annotated.java",
+          "Annotated",
+          14,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedMember.java",
+          "AnnotatedMember",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedField.java",
+          "AnnotatedField",
+          13,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedParameter.java",
+          "AnnotatedParameter",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedWithParams.java",
+          "AnnotatedWithParams",
+          11,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/VirtualAnnotatedMember.java",
+          "VirtualAnnotatedMember",
+          15,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedConstructor.java",
+          "AnnotatedConstructor",
+          17,
+          "B"
+        ],
+        [
+          "tools/jackson/databind/introspect/AnnotatedMethod.java",
+          "AnnotatedMethod",
+          20,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "RESULTS"
+    },
+    "query": "J-I2"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T2"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T3"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T3"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "jackson-databind",
+      "revision": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "J-T3"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 2
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java",
+          "FilteringBatchMessageListenerAdapter",
+          42,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/BatchAcknowledgingConsumerAwareMessageListener.java",
+          "BatchAcknowledgingConsumerAwareMessageListener",
+          40,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "AbstractFilteringMessageListener",
+          34,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 2
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java",
+          "FilteringBatchMessageListenerAdapter",
+          42,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/BatchAcknowledgingConsumerAwareMessageListener.java",
+          "BatchAcknowledgingConsumerAwareMessageListener",
+          40,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "AbstractFilteringMessageListener",
+          34,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 2
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/FilteringBatchMessageListenerAdapter.java",
+          "FilteringBatchMessageListenerAdapter",
+          42,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/BatchAcknowledgingConsumerAwareMessageListener.java",
+          "BatchAcknowledgingConsumerAwareMessageListener",
+          40,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "AbstractFilteringMessageListener",
+          34,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 0
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/DefaultBatchToRecordAdapter.java",
+          "DefaultBatchToRecordAdapter",
+          42,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/BatchToRecordAdapter.java",
+          "BatchToRecordAdapter",
+          40,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 0
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/DefaultBatchToRecordAdapter.java",
+          "DefaultBatchToRecordAdapter",
+          42,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/BatchToRecordAdapter.java",
+          "BatchToRecordAdapter",
+          40,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 0
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/DefaultBatchToRecordAdapter.java",
+          "DefaultBatchToRecordAdapter",
+          42,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/BatchToRecordAdapter.java",
+          "BatchToRecordAdapter",
+          40,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D2"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              3,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              4,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+          386,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#configureEndpoint/1",
+          408,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#createContainerInstance/1",
+          431,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#customizeContainer/2",
+          523,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#initializeContainer/2",
+          440,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D3"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              4,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+          386,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#configureEndpoint/1",
+          408,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#createContainerInstance/1",
+          431,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#customizeContainer/2",
+          523,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#initializeContainer/2",
+          440,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D3"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 1
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              3,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              4,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+          386,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#configureEndpoint/1",
+          408,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#createContainerInstance/1",
+          431,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#customizeContainer/2",
+          523,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerContainerFactory.java",
+          "AbstractKafkaListenerContainerFactory#initializeContainer/2",
+          440,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-D3"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              1,
+              "inherits",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              2,
+              "implements",
+              3,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "inherits",
+              4,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "FilteringMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "AbstractFilteringMessageListener",
+          34,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "AbstractDelegatingMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "DelegatingMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+          "AsyncRepliesAware",
+          26,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-M1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              1,
+              "inherits",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "implements",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              4,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "FilteringMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "AbstractFilteringMessageListener",
+          34,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "AbstractDelegatingMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "DelegatingMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+          "AsyncRepliesAware",
+          26,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-M1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              1,
+              "inherits",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "implements",
+              3,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              4,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "FilteringMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "AbstractFilteringMessageListener",
+          34,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "AbstractDelegatingMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "DelegatingMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+          "AsyncRepliesAware",
+          26,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-M1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              1,
+              "calls",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              2,
+              "calls",
+              3,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "calls",
+              4,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistrar.java",
+          "KafkaListenerEndpointRegistrar#registerAllEndpoints/0",
+          193,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "KafkaListenerEndpointRegistry#registerListenerContainer/2",
+          248,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "KafkaListenerEndpointRegistry#registerListenerContainer/3",
+          264,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "KafkaListenerEndpointRegistry#createListenerContainer/2",
+          328,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerContainerFactory.java",
+          "KafkaListenerContainerFactory#createListenerContainer/1",
+          42,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-M2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "S-M2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "calls",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              1,
+              "calls",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              2,
+              "calls",
+              3,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "calls",
+              4,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistrar.java",
+          "KafkaListenerEndpointRegistrar#registerAllEndpoints/0",
+          193,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "KafkaListenerEndpointRegistry#registerListenerContainer/2",
+          248,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "KafkaListenerEndpointRegistry#registerListenerContainer/3",
+          264,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointRegistry.java",
+          "KafkaListenerEndpointRegistry#createListenerContainer/2",
+          328,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerContainerFactory.java",
+          "KafkaListenerContainerFactory#createListenerContainer/1",
+          42,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-M2"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "implements",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              4,
+              "inherits",
+              0,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              5,
+              "implements",
+              2,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              6,
+              "inherits",
+              0,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 6
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              7,
+              "inherits",
+              0,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 7
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+          "MessagingMessageListenerAdapter",
+          107,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+          "AsyncRepliesAware",
+          26,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "DelegatingMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "AbstractDelegatingMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/BatchMessagingMessageListenerAdapter.java",
+          "BatchMessagingMessageListenerAdapter",
+          62,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "ConvertingMessageListener",
+          55,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "RecordMessagingMessageListenerAdapter",
+          52,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ShareRecordMessagingMessageListenerAdapter.java",
+          "ShareRecordMessagingMessageListenerAdapter",
+          49,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "implements",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              4,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              5,
+              "implements",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              6,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 6
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              7,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 7
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "implements",
+              2,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              8,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 8
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+          "MessagingMessageListenerAdapter",
+          107,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+          "AsyncRepliesAware",
+          26,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "DelegatingMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "AbstractDelegatingMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/BatchMessagingMessageListenerAdapter.java",
+          "BatchMessagingMessageListenerAdapter",
+          62,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "ConvertingMessageListener",
+          55,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "RecordMessagingMessageListenerAdapter",
+          52,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ShareRecordMessagingMessageListenerAdapter.java",
+          "ShareRecordMessagingMessageListenerAdapter",
+          49,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractFilteringMessageListener.java",
+          "AbstractFilteringMessageListener",
+          34,
+          "B"
+        ]
+      ],
+      "partial": true,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "implements",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              4,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 4
+        },
+        {
+          "steps": [
+            [
+              2,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              5,
+              "implements",
+              2,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 5
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              6,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 6
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              7,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 7
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/adapter/MessagingMessageListenerAdapter.java",
+          "MessagingMessageListenerAdapter",
+          107,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AsyncRepliesAware.java",
+          "AsyncRepliesAware",
+          26,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/DelegatingMessageListener.java",
+          "DelegatingMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/AbstractDelegatingMessageListenerAdapter.java",
+          "AbstractDelegatingMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/BatchMessagingMessageListenerAdapter.java",
+          "BatchMessagingMessageListenerAdapter",
+          62,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "ConvertingMessageListener",
+          55,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "RecordMessagingMessageListenerAdapter",
+          52,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ShareRecordMessagingMessageListenerAdapter.java",
+          "ShareRecordMessagingMessageListenerAdapter",
+          49,
+          "B"
+        ]
+      ],
+      "partial": true,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "inherits",
+              0,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 3
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerEndpoint.java",
+          "AbstractKafkaListenerEndpoint",
+          71,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpoint.java",
+          "KafkaListenerEndpoint",
+          38,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointAdapter.java",
+          "KafkaListenerEndpointAdapter",
+          38,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/MethodKafkaListenerEndpoint.java",
+          "MethodKafkaListenerEndpoint",
+          62,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "inherits",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              4,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerEndpoint.java",
+          "AbstractKafkaListenerEndpoint",
+          71,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpoint.java",
+          "KafkaListenerEndpoint",
+          38,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointAdapter.java",
+          "KafkaListenerEndpointAdapter",
+          38,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/MethodKafkaListenerEndpoint.java",
+          "MethodKafkaListenerEndpoint",
+          62,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/MultiMethodKafkaListenerEndpoint.java",
+          "MultiMethodKafkaListenerEndpoint",
+          45,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 0
+        },
+        {
+          "steps": [
+            [
+              2,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "implements",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "inherits",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              4,
+              "inherits",
+              3,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/config/AbstractKafkaListenerEndpoint.java",
+          "AbstractKafkaListenerEndpoint",
+          71,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpoint.java",
+          "KafkaListenerEndpoint",
+          38,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/KafkaListenerEndpointAdapter.java",
+          "KafkaListenerEndpointAdapter",
+          38,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/MethodKafkaListenerEndpoint.java",
+          "MethodKafkaListenerEndpoint",
+          62,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/config/MultiMethodKafkaListenerEndpoint.java",
+          "MultiMethodKafkaListenerEndpoint",
+          45,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I2"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              2,
+              "implements",
+              0,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              3,
+              "implements",
+              0,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ],
+            [
+              4,
+              "implements",
+              0,
+              [
+                "SOURCE"
+              ],
+              "L"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/AcknowledgingConsumerAwareMessageListener.java",
+          "AcknowledgingConsumerAwareMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/MessageListener.java",
+          "MessageListener",
+          30,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "ConvertingMessageListener",
+          55,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "FilteringMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "RecordMessagingMessageListenerAdapter",
+          52,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I3"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              2,
+              "implements",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              3,
+              "implements",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ],
+            [
+              4,
+              "implements",
+              0,
+              [
+                "EXTRACTED"
+              ],
+              "G"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/AcknowledgingConsumerAwareMessageListener.java",
+          "AcknowledgingConsumerAwareMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/MessageListener.java",
+          "MessageListener",
+          30,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "ConvertingMessageListener",
+          55,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "FilteringMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "RecordMessagingMessageListenerAdapter",
+          52,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I3"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              2,
+              "implements",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 2
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              3,
+              "implements",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 3
+        },
+        {
+          "steps": [
+            [
+              0,
+              "inherits",
+              1,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ],
+            [
+              4,
+              "implements",
+              0,
+              [
+                "EXTRACTED",
+                "SOURCE"
+              ],
+              "GL"
+            ]
+          ],
+          "target": 4
+        }
+      ],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [
+        [
+          "org/springframework/kafka/listener/AcknowledgingConsumerAwareMessageListener.java",
+          "AcknowledgingConsumerAwareMessageListener",
+          36,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/MessageListener.java",
+          "MessageListener",
+          30,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/ConvertingMessageListener.java",
+          "ConvertingMessageListener",
+          55,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/FilteringMessageListenerAdapter.java",
+          "FilteringMessageListenerAdapter",
+          41,
+          "B"
+        ],
+        [
+          "org/springframework/kafka/listener/adapter/RecordMessagingMessageListenerAdapter.java",
+          "RecordMessagingMessageListenerAdapter",
+          52,
+          "B"
+        ]
+      ],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "RESULTS"
+    },
+    "query": "S-I3"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "S-T1"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "S-T1"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "S-T1"
+  },
+  {
+    "condition": "A",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "S-T2"
+  },
+  {
+    "condition": "B",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "S-T2"
+  },
+  {
+    "condition": "C",
+    "packet": {
+      "answers": [],
+      "diagnostic": "structural evidence; runtime effect not established",
+      "nodes": [],
+      "partial": false,
+      "repo": "spring-kafka",
+      "revision": "fff33914d4e450a33e17195e11a79937c3505605",
+      "status": "NO_SUPPORTED_RESULT"
+    },
+    "query": "S-T2"
+  }
+]

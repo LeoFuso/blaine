@@ -1,0 +1,72 @@
+{
+  "status": "PARTIAL",
+  "alloy_version": "1.19.2",
+  "alloy_revision": "becfd48",
+  "mechanism": "prometheus.remote_write.grafana_metrics",
+  "destination": "https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push",
+  "metrics_instance_id": "3602220",
+  "wal_path": "/var/lib/alloy/data/prometheus.remote_write.grafana_metrics/wal",
+  "retention": {
+    "truncate_frequency": "5m",
+    "min_keepalive_time": "5m",
+    "max_keepalive_time": "1h",
+    "sample_age_limit": "1h",
+    "hard_byte_quota": false
+  },
+  "queue": {
+    "capacity_per_shard": 2500,
+    "min_shards": 1,
+    "max_shards": 2,
+    "batch_size": 500,
+    "deadline": "5s",
+    "backoff": "1s..30s"
+  },
+  "scrape_bounds": {
+    "fixed_targets": 2,
+    "interval": "30s",
+    "max_body_per_target": "2MiB",
+    "max_samples_per_target": 5000,
+    "target_limit_per_job": 1
+  },
+  "local_offline_test": "LOCAL OFFLINE CHECK PASS; CLOUD ACCEPTANCE BLOCKED",
+  "cloud_acceptance": "Live ingestion/readback and network recovery PASS; restart-durable replay FAIL",
+  "secret_source": "BWS blaine-dev",
+  "secret_keys": [
+    "GRAFANA_CLOUD_METRICS_API_KEY"
+  ],
+  "nonsecret_config": "infra/alloy/metrics.alloy.inactive",
+  "fleet": "DEFERRED / STOP",
+  "logs_delivery": "INACTIVE",
+  "logs_remote_durability": "NOT ADOPTED; Loki WAL experimental",
+  "traces_delivery": "INACTIVE",
+  "traces_remote_durability": "NOT ADOPTED; historical inactive OTLP fragment uses in-memory queue 1000, retry window 60s",
+  "D1_G": "NOT EXECUTED; independent of Cloud availability",
+  "backup": "PAUSED",
+  "reboot_occurred": false,
+  "push_occurred": false,
+  "metrics_delivery": "ACTIVE",
+  "restart_durability": "NOT ACCEPTED: pre-watcher-start samples retained on disk but not sent",
+  "synthetic_run_id": "transport-1750fafc536e4e8bbd90a2c9f059917c",
+  "network_recovery": true,
+  "pre_restart_sample_replay": false,
+  "offline_restart_ready": true,
+  "final_ready": true,
+  "final_exact_metrics_config": true,
+  "remaining_human_grafana_action": null,
+  "remaining_gate": "Supported native restart replay implementation and repeated upstream acceptance; no runtime replacement in this slice",
+  "local_signals": "Metric/log/trace persisted after final config restoration",
+  "isolation": {
+    "blaine_pids_unchanged_across_entire_slice": true,
+    "unit_pids": {
+      "blaine-generation": "346389",
+      "blaine-embedding": "346052",
+      "blaine-mirix": "356517",
+      "blaine-restate": "358882",
+      "blaine-runtime": "360671"
+    },
+    "temporary_proxy_listener_closed": true
+  },
+  "platform_tests": 39,
+  "docs_local_links": 156,
+  "ansible_second_run_changes": 0
+}

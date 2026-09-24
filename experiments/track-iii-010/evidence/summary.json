@@ -1,0 +1,51 @@
+{
+  "corpus_sha256": "147f4dc5a520d18e1bb111e97704d841748f5d0ee12296172b2fd93a43c21239",
+  "failures": [],
+  "history_unchanged": true,
+  "mutation_controls": [
+    {
+      "actual_violation": true,
+      "checker_exit": 1,
+      "content_leaks": 16,
+      "failed_checks": 6,
+      "metadata_leaks": 24,
+      "mutation": "serialized-scope"
+    },
+    {
+      "actual_violation": true,
+      "checker_exit": 1,
+      "content_leaks": 4,
+      "failed_checks": 8,
+      "metadata_leaks": 4,
+      "mutation": "stale-policy"
+    },
+    {
+      "actual_violation": true,
+      "checker_exit": 1,
+      "content_leaks": 0,
+      "failed_checks": 4,
+      "metadata_leaks": 0,
+      "mutation": "serialized-provenance"
+    }
+  ],
+  "primary": {
+    "checks": 1460,
+    "exports_scanned": 60,
+    "failures": [],
+    "forbidden_content_hits": [],
+    "forbidden_metadata_hits": [],
+    "groups": {
+      "CHECKPOINT_RESUME": 4,
+      "LOCAL_HANDOFF": 4,
+      "SECOND_PROCESS": 4
+    },
+    "max_response_bytes": 1696,
+    "mutation": null,
+    "primary_cases": 12,
+    "process_operations": 26,
+    "status": "PASS"
+  },
+  "production_integration": false,
+  "status": "PASS",
+  "subsequent_increment_started": false
+}

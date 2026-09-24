@@ -1,0 +1,1759 @@
+{
+  "aggregate": [
+    {
+      "gained_targets": [
+        "personal/book.py::StampBook",
+        "personal/gate.py::WindowGate",
+        "personal/identity.py::HandleFold"
+      ],
+      "groups": {
+        "LEXICAL": {
+          "baseline": 4,
+          "recovery": 4,
+          "required": 4,
+          "unique_gains": []
+        },
+        "SEMANTIC": {
+          "baseline": 1,
+          "recovery": 4,
+          "required": 4,
+          "unique_gains": [
+            "personal/book.py::StampBook",
+            "personal/gate.py::WindowGate",
+            "personal/identity.py::HandleFold"
+          ]
+        },
+        "STRUCTURAL": {
+          "baseline": 8,
+          "recovery": 8,
+          "required": 8,
+          "unique_gains": []
+        }
+      },
+      "revision": "A",
+      "unique_nonlexical_gain": 3
+    },
+    {
+      "gained_targets": [
+        "personal/gate.py::AttemptFence",
+        "personal/identity.py::IdentityFold"
+      ],
+      "groups": {
+        "LEXICAL": {
+          "baseline": 4,
+          "recovery": 0,
+          "required": 4,
+          "unique_gains": []
+        },
+        "SEMANTIC": {
+          "baseline": 1,
+          "recovery": 2,
+          "required": 4,
+          "unique_gains": [
+            "personal/gate.py::AttemptFence",
+            "personal/identity.py::IdentityFold"
+          ]
+        },
+        "STRUCTURAL": {
+          "baseline": 8,
+          "recovery": 2,
+          "required": 8,
+          "unique_gains": []
+        }
+      },
+      "revision": "B",
+      "unique_nonlexical_gain": 2
+    }
+  ],
+  "canonical": [
+    {
+      "canonical_identity": [
+        "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+        "personal/identity.py",
+        "HandleFold",
+        1
+      ],
+      "entry_bytes": 162,
+      "fused_rank": 15,
+      "included": true,
+      "original_broad_rank": 16,
+      "original_mechanism_ranks": {
+        "LEXICAL": 15,
+        "SEMANTIC": 16,
+        "STRUCTURAL": null
+      },
+      "revision": "A",
+      "selection_rank": 4,
+      "target": "personal/identity.py::HandleFold",
+      "validation": [
+        {
+          "mechanism": "LEXICAL",
+          "reasons": []
+        },
+        {
+          "mechanism": "SEMANTIC",
+          "reasons": []
+        }
+      ]
+    },
+    {
+      "canonical_identity": [
+        "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+        "personal/identity.py",
+        "IdentityFold",
+        1
+      ],
+      "entry_bytes": 163,
+      "fused_rank": 16,
+      "included": true,
+      "original_broad_rank": 16,
+      "original_mechanism_ranks": {
+        "LEXICAL": 15,
+        "SEMANTIC": 18,
+        "STRUCTURAL": null
+      },
+      "revision": "B",
+      "selection_rank": 5,
+      "target": "personal/identity.py::IdentityFold",
+      "validation": [
+        {
+          "mechanism": "LEXICAL",
+          "reasons": []
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "check": "all-iii8-assets-unchanged",
+      "pass": true
+    },
+    {
+      "check": "policy-frozen",
+      "pass": true
+    },
+    {
+      "check": "implementation-frozen",
+      "pass": true
+    },
+    {
+      "check": "original-thresholds",
+      "pass": true
+    },
+    {
+      "check": "original-query-taxonomy",
+      "pass": true
+    },
+    {
+      "check": "both-revisions-exactly",
+      "pass": true
+    },
+    {
+      "check": "budget/A/L1",
+      "pass": true
+    },
+    {
+      "check": "revision/A/L1",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/L1",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/L1",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L1/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/A/L1",
+      "pass": true
+    },
+    {
+      "check": "budget/A/L2",
+      "pass": true
+    },
+    {
+      "check": "revision/A/L2",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/L2",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/L2",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L2/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/A/L2",
+      "pass": true
+    },
+    {
+      "check": "budget/A/L3",
+      "pass": true
+    },
+    {
+      "check": "revision/A/L3",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/L3",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/L3",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L3/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/A/L3",
+      "pass": true
+    },
+    {
+      "check": "budget/A/L4",
+      "pass": true
+    },
+    {
+      "check": "revision/A/L4",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/L4",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/L4",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/L4/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/A/L4",
+      "pass": true
+    },
+    {
+      "check": "budget/A/S1",
+      "pass": true
+    },
+    {
+      "check": "revision/A/S1",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/S1",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/S1",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S1/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "budget/A/S2",
+      "pass": true
+    },
+    {
+      "check": "revision/A/S2",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/S2",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/S2",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S2/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "budget/A/S3",
+      "pass": true
+    },
+    {
+      "check": "revision/A/S3",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/S3",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/S3",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S3/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "budget/A/S4",
+      "pass": true
+    },
+    {
+      "check": "revision/A/S4",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/S4",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/S4",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/S4/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "budget/A/T1",
+      "pass": true
+    },
+    {
+      "check": "revision/A/T1",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/T1",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/T1",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T1/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "budget/A/T2",
+      "pass": true
+    },
+    {
+      "check": "revision/A/T2",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/T2",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/T2",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/helpers.py::quick_handle",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T2/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "budget/A/T3",
+      "pass": true
+    },
+    {
+      "check": "revision/A/T3",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/T3",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/T3",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/identity.py::HandleFold",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T3/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "budget/A/T4",
+      "pass": true
+    },
+    {
+      "check": "revision/A/T4",
+      "pass": true
+    },
+    {
+      "check": "dedup/A/T4",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/A/T4",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/workflow.py::dispatch",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/legacy.py::persist",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/publish.py::seal",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/audit.py::AuditSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/contracts.py::DeliveryPort",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/transport.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/book.py::StampBook",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/settings.py::READY_MARKER",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/settings.py::retry_ceiling",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/notes/note_00.py::note_00",
+      "pass": true
+    },
+    {
+      "check": "provenance/A/T4/personal/gate.py::WindowGate",
+      "pass": true
+    },
+    {
+      "check": "budget/B/L1",
+      "pass": true
+    },
+    {
+      "check": "revision/B/L1",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/L1",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/L1",
+      "pass": true
+    },
+    {
+      "check": "provenance/B/L1/personal/adapters/parcel.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/B/L1",
+      "pass": false
+    },
+    {
+      "check": "budget/B/L2",
+      "pass": true
+    },
+    {
+      "check": "revision/B/L2",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/L2",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/L2",
+      "pass": true
+    },
+    {
+      "check": "provenance/B/L2/personal/gate.py::AttemptFence",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/B/L2",
+      "pass": false
+    },
+    {
+      "check": "budget/B/L3",
+      "pass": true
+    },
+    {
+      "check": "revision/B/L3",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/L3",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/L3",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/B/L3",
+      "pass": false
+    },
+    {
+      "check": "budget/B/L4",
+      "pass": true
+    },
+    {
+      "check": "revision/B/L4",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/L4",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/L4",
+      "pass": true
+    },
+    {
+      "check": "exact-retention/B/L4",
+      "pass": false
+    },
+    {
+      "check": "budget/B/S1",
+      "pass": true
+    },
+    {
+      "check": "revision/B/S1",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/S1",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/S1",
+      "pass": true
+    },
+    {
+      "check": "provenance/B/S1/personal/identity.py::IdentityFold",
+      "pass": true
+    },
+    {
+      "check": "budget/B/S2",
+      "pass": true
+    },
+    {
+      "check": "revision/B/S2",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/S2",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/S2",
+      "pass": true
+    },
+    {
+      "check": "provenance/B/S2/personal/gate.py::AttemptFence",
+      "pass": true
+    },
+    {
+      "check": "provenance/B/S2/personal/adapters/parcel.py::ParcelSender",
+      "pass": true
+    },
+    {
+      "check": "budget/B/S3",
+      "pass": true
+    },
+    {
+      "check": "revision/B/S3",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/S3",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/S3",
+      "pass": true
+    },
+    {
+      "check": "budget/B/S4",
+      "pass": true
+    },
+    {
+      "check": "revision/B/S4",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/S4",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/S4",
+      "pass": true
+    },
+    {
+      "check": "budget/B/T1",
+      "pass": true
+    },
+    {
+      "check": "revision/B/T1",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/T1",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/T1",
+      "pass": true
+    },
+    {
+      "check": "budget/B/T2",
+      "pass": true
+    },
+    {
+      "check": "revision/B/T2",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/T2",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/T2",
+      "pass": true
+    },
+    {
+      "check": "provenance/B/T2/personal/store.py::checkpoint",
+      "pass": true
+    },
+    {
+      "check": "budget/B/T3",
+      "pass": true
+    },
+    {
+      "check": "revision/B/T3",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/T3",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/T3",
+      "pass": true
+    },
+    {
+      "check": "budget/B/T4",
+      "pass": true
+    },
+    {
+      "check": "revision/B/T4",
+      "pass": true
+    },
+    {
+      "check": "dedup/B/T4",
+      "pass": true
+    },
+    {
+      "check": "raw-lists-unchanged/B/T4",
+      "pass": true
+    },
+    {
+      "check": "provenance/B/T4/personal/store.py::checkpoint",
+      "pass": true
+    },
+    {
+      "check": "no-stale-emission",
+      "pass": true
+    },
+    {
+      "check": "no-forbidden-emission",
+      "pass": true
+    }
+  ],
+  "failed": [
+    "exact-retention/B/L1",
+    "exact-retention/B/L2",
+    "exact-retention/B/L3",
+    "exact-retention/B/L4"
+  ],
+  "fallback": [
+    {
+      "emitted": [],
+      "late_dropped": [
+        "personal/contracts.py::DeliveryPort",
+        "personal/audit.py::AuditSender",
+        "personal/notes/note_00.py::note_00",
+        "personal/workflow.py::dispatch",
+        "personal/legacy.py::persist",
+        "personal/settings.py::READY_MARKER",
+        "personal/book.py::StampBook",
+        "personal/gate.py::WindowGate",
+        "personal/identity.py::HandleFold",
+        "personal/publish.py::seal",
+        "personal/settings.py::retry_ceiling"
+      ],
+      "query": "L1",
+      "required_fresh": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "stale_contributions_removed": 24
+    },
+    {
+      "emitted": [],
+      "late_dropped": [
+        "personal/settings.py::retry_ceiling",
+        "personal/notes/note_00.py::note_00",
+        "personal/gate.py::WindowGate",
+        "personal/settings.py::READY_MARKER",
+        "personal/book.py::StampBook",
+        "personal/helpers.py::quick_handle",
+        "personal/contracts.py::DeliveryPort",
+        "personal/identity.py::HandleFold",
+        "personal/audit.py::AuditSender",
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal"
+      ],
+      "query": "L2",
+      "required_fresh": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "stale_contributions_removed": 24
+    },
+    {
+      "emitted": [],
+      "late_dropped": [
+        "personal/workflow.py::dispatch",
+        "personal/contracts.py::DeliveryPort",
+        "personal/transport.py::ParcelSender",
+        "personal/audit.py::AuditSender",
+        "personal/book.py::StampBook",
+        "personal/legacy.py::persist",
+        "personal/notes/note_00.py::note_00",
+        "personal/settings.py::READY_MARKER",
+        "personal/settings.py::retry_ceiling",
+        "personal/gate.py::WindowGate",
+        "personal/publish.py::seal",
+        "personal/helpers.py::quick_handle"
+      ],
+      "query": "L3",
+      "required_fresh": [
+        "personal/workflow.py::dispatch"
+      ],
+      "stale_contributions_removed": 24
+    },
+    {
+      "emitted": [],
+      "late_dropped": [
+        "personal/settings.py::READY_MARKER",
+        "personal/book.py::StampBook",
+        "personal/settings.py::retry_ceiling",
+        "personal/workflow.py::dispatch",
+        "personal/legacy.py::persist",
+        "personal/notes/note_00.py::note_00",
+        "personal/publish.py::seal",
+        "personal/gate.py::WindowGate",
+        "personal/helpers.py::quick_handle",
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender",
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "query": "L4",
+      "required_fresh": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "stale_contributions_removed": 24
+    }
+  ],
+  "forbidden": [],
+  "max_complete_bytes": 2046,
+  "metrics": [
+    {
+      "acceptable_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "baseline_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "bytes": 2029,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [],
+      "query": "L1",
+      "recovery_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "required": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "baseline_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "bytes": 2031,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [],
+      "query": "L2",
+      "recovery_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "required": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "baseline_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "bytes": 2027,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [],
+      "query": "L3",
+      "recovery_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "required": [
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "baseline_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "bytes": 2027,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [],
+      "query": "L4",
+      "recovery_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "required": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/identity.py::HandleFold"
+      ],
+      "baseline_hits": [],
+      "bytes": 2027,
+      "gains": [
+        "personal/identity.py::HandleFold"
+      ],
+      "group": "SEMANTIC",
+      "misses": [],
+      "query": "S1",
+      "recovery_hits": [
+        "personal/identity.py::HandleFold"
+      ],
+      "required": [
+        "personal/identity.py::HandleFold"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/gate.py::WindowGate"
+      ],
+      "baseline_hits": [],
+      "bytes": 2031,
+      "gains": [
+        "personal/gate.py::WindowGate"
+      ],
+      "group": "SEMANTIC",
+      "misses": [],
+      "query": "S2",
+      "recovery_hits": [
+        "personal/gate.py::WindowGate"
+      ],
+      "required": [
+        "personal/gate.py::WindowGate"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "baseline_hits": [],
+      "bytes": 2026,
+      "gains": [
+        "personal/book.py::StampBook"
+      ],
+      "group": "SEMANTIC",
+      "misses": [],
+      "query": "S3",
+      "recovery_hits": [
+        "personal/book.py::StampBook"
+      ],
+      "required": [
+        "personal/book.py::StampBook"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/publish.py::seal"
+      ],
+      "baseline_hits": [
+        "personal/publish.py::seal"
+      ],
+      "bytes": 2026,
+      "gains": [],
+      "group": "SEMANTIC",
+      "misses": [],
+      "query": "S4",
+      "recovery_hits": [
+        "personal/publish.py::seal"
+      ],
+      "required": [
+        "personal/publish.py::seal"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "baseline_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "bytes": 1966,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [],
+      "query": "T1",
+      "recovery_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "required": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "baseline_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "bytes": 2046,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [],
+      "query": "T2",
+      "recovery_hits": [
+        "personal/legacy.py::persist"
+      ],
+      "required": [
+        "personal/legacy.py::persist"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "baseline_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "bytes": 1964,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [],
+      "query": "T3",
+      "recovery_hits": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "required": [
+        "personal/audit.py::AuditSender",
+        "personal/transport.py::ParcelSender"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "baseline_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "bytes": 1896,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [],
+      "query": "T4",
+      "recovery_hits": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "required": [
+        "personal/legacy.py::persist",
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "A"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "bytes": 379,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "query": "L1",
+      "recovery_hits": [],
+      "required": [
+        "personal/contracts.py::DeliveryPort"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "bytes": 368,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "query": "L2",
+      "recovery_hits": [],
+      "required": [
+        "personal/settings.py::retry_ceiling"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [
+        "personal/workflow.py::dispatch"
+      ],
+      "bytes": 207,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [
+        "personal/workflow.py::dispatch"
+      ],
+      "query": "L3",
+      "recovery_hits": [],
+      "required": [
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "bytes": 207,
+      "gains": [],
+      "group": "LEXICAL",
+      "misses": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "query": "L4",
+      "recovery_hits": [],
+      "required": [
+        "personal/settings.py::READY_MARKER"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "baseline_hits": [],
+      "bytes": 372,
+      "gains": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "group": "SEMANTIC",
+      "misses": [],
+      "query": "S1",
+      "recovery_hits": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "required": [
+        "personal/identity.py::IdentityFold"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "baseline_hits": [],
+      "bytes": 539,
+      "gains": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "group": "SEMANTIC",
+      "misses": [],
+      "query": "S2",
+      "recovery_hits": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "required": [
+        "personal/gate.py::AttemptFence"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [],
+      "bytes": 207,
+      "gains": [],
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/book.py::StampBook"
+      ],
+      "query": "S3",
+      "recovery_hits": [],
+      "required": [
+        "personal/book.py::StampBook"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [
+        "personal/publish.py::seal"
+      ],
+      "bytes": 207,
+      "gains": [],
+      "group": "SEMANTIC",
+      "misses": [
+        "personal/publish.py::seal"
+      ],
+      "query": "S4",
+      "recovery_hits": [],
+      "required": [
+        "personal/publish.py::seal"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "bytes": 207,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "query": "T1",
+      "recovery_hits": [],
+      "required": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "baseline_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "bytes": 371,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [],
+      "query": "T2",
+      "recovery_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "required": [
+        "personal/store.py::checkpoint"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [],
+      "baseline_hits": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "bytes": 207,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "query": "T3",
+      "recovery_hits": [],
+      "required": [
+        "personal/adapters/parcel.py::ParcelSender",
+        "personal/audit.py::AuditSender"
+      ],
+      "revision": "B"
+    },
+    {
+      "acceptable_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "baseline_hits": [
+        "personal/publish.py::seal",
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch"
+      ],
+      "bytes": 371,
+      "gains": [],
+      "group": "STRUCTURAL",
+      "misses": [
+        "personal/publish.py::seal",
+        "personal/workflow.py::dispatch"
+      ],
+      "query": "T4",
+      "recovery_hits": [
+        "personal/store.py::checkpoint"
+      ],
+      "required": [
+        "personal/publish.py::seal",
+        "personal/store.py::checkpoint",
+        "personal/workflow.py::dispatch"
+      ],
+      "revision": "B"
+    }
+  ],
+  "stale": [],
+  "status": "FAIL"
+}

@@ -1,0 +1,85 @@
+[
+  {
+    "domain": "personal",
+    "input_ids": [
+      "A|personal/app/entry.py::show_label",
+      "A|personal/helpers.py::edge_trim",
+      "A|personal/io/client.py::deliver",
+      "A|personal/io/writer.py::SwapWriter",
+      "A|personal/lib/fence.py::Fence",
+      "A|personal/lib/ledger.py::Ledger",
+      "A|personal/old/fold.py::ArchivedFold",
+      "A|personal/ports.py::CommitPort",
+      "A|personal/route.py::RoutePick",
+      "A|personal/telemetry/note_0.py::note_0",
+      "A|personal/telemetry/note_1.py::note_1",
+      "A|personal/telemetry/note_2.py::note_2",
+      "A|personal/telemetry/note_3.py::note_3",
+      "A|personal/telemetry/note_4.py::note_4",
+      "A|personal/telemetry/note_5.py::note_5",
+      "A|personal/telemetry/note_6.py::note_6",
+      "A|personal/telemetry/note_7.py::note_7"
+    ],
+    "key": "A-personal",
+    "request_sha256": "69a8ca89822ab7884694089218fbaf98d51aafc4a494ad9953b330a6a20dde6b"
+  },
+  {
+    "domain": "employer-x",
+    "input_ids": [
+      "A|employer-x/vault.py::VaultFold"
+    ],
+    "key": "A-employer-x",
+    "request_sha256": "074e3c43560f99787048d25f287d3a44f820759cb45642b84ea6dd45c0d2d182"
+  },
+  {
+    "domain": "personal",
+    "input_ids": [
+      "B|personal/app/entry.py::show_label",
+      "B|personal/helpers.py::edge_trim",
+      "B|personal/io/client.py::deliver",
+      "B|personal/io/writer.py::SwapWriter",
+      "B|personal/lib/fence.py::Fence",
+      "B|personal/lib/fold.py::RuneFold",
+      "B|personal/lib/ledger.py::Ledger",
+      "B|personal/ports.py::CommitPort",
+      "B|personal/route.py::RoutePick",
+      "B|personal/telemetry/note_0.py::note_0",
+      "B|personal/telemetry/note_1.py::note_1",
+      "B|personal/telemetry/note_2.py::note_2",
+      "B|personal/telemetry/note_3.py::note_3",
+      "B|personal/telemetry/note_4.py::note_4",
+      "B|personal/telemetry/note_5.py::note_5",
+      "B|personal/telemetry/note_6.py::note_6",
+      "B|personal/telemetry/note_7.py::note_7"
+    ],
+    "key": "B-personal",
+    "request_sha256": "1ff63d8292630768cbcc4839d04370e35b9170b40232fe1cece6b2ff49778b73"
+  },
+  {
+    "domain": "employer-x",
+    "input_ids": [
+      "B|employer-x/vault.py::VaultFold"
+    ],
+    "key": "B-employer-x",
+    "request_sha256": "074e3c43560f99787048d25f287d3a44f820759cb45642b84ea6dd45c0d2d182"
+  },
+  {
+    "domain": "personal",
+    "input_ids": [
+      "query|D1",
+      "query|D2",
+      "query|D3",
+      "query|D4",
+      "query|L1",
+      "query|L2",
+      "query|L3",
+      "query|L4",
+      "query|N1",
+      "query|N2",
+      "query|N3",
+      "query|N4"
+    ],
+    "key": "queries",
+    "request_sha256": "7d3f83b75c94c66122d51c41548c2f4bf6f5d7bc77f84f119c433a5a3ef86147"
+  }
+]

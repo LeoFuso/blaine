@@ -1,6 +1,9 @@
 # Architecture Decision Records
 
-This directory records architectural decisions for Blaine.
+This directory records architectural decisions and rationale for Blaine, including
+superseded choices. It does not own current operational status. Follow the
+[documentation map](../README.md), [architecture](../architecture.md) and
+[roadmap](../roadmap/001-blaine-development-roadmap.md) for their respective roles.
 
 ADRs capture decisions that materially constrain the architecture, including:
 
@@ -106,3 +109,32 @@ ADR’s own status before treating it as an accepted constraint.
 - [ADR 0016 — Agent harnesses are replaceable execution capabilities](0016-agent-harnesses-are-replaceable-execution-capabilities.md)
 - [ADR 0017 — Human–Agent Work Coordination Plane](0017-human-agent-work-coordination-plane.md)
 - [ADR 0018 — Blaine Local Platform, Durability and Observability Architecture](0018-local-platform-durability-and-observability.md)
+- [ADR 0019 — Local inference serving baseline](0019-local-inference-serving-baseline.md)
+- [ADR 0020 — Rootless Docker operator runtime](0020-rootless-docker-operator-runtime.md)
+- [ADR 0021 — Fleet Observability Control Plane](0021-fleet-observability-control-plane.md)
+  records Fleet direction and its validation checkpoint; current operations are in
+  the [Cloud runbook](../platform-grafana-cloud.md).
+- [ADR 0022 — Workstation Connection and Personal Agent Client Architecture](0022-workstation-personal-agent-client.md)
+  records the accepted Hub boundary; validation remains pending E0–E3.
+- [ADR 0023 — Runtime Secret Delivery and Materialization](0023-runtime-secret-delivery-and-materialization.md)
+  fixes Bitwarden as source of truth and removes the secret manager from the
+  runtime path; operations live in the [secrets runbook](../platform-secrets.md).
+- [ADR 0024 — Local-first execution with bounded authorized escalation](0024-local-first-execution-with-bounded-escalation.md)
+  is **Accepted** for its mechanism: local-first execution with trusted
+  escalation is the active policy and the capability/binding authority
+  distinction is enforced. No production remote binding is provisioned, so
+  escalation currently denies as unavailable; classifier and heuristic
+  pre-routing remain future work.
+
+- [ADR 0025 — Blaine Context Plane and compiled agent context](0025-context-plane-and-compiled-agent-context.md)
+  is **Accepted / Partially Validated**: consolidates completed Track III research into
+  Blaine-owned semantics; [production plan](../roadmap/002-context-plane-implementation.md)
+  remains proposed and NOT STARTED. No existing accepted ADR is superseded.
+
+- [ADR 0026 — Completion Contract is a durable, revisioned Task primitive](0026-completion-contract-is-a-durable-task-primitive.md)
+  is **Accepted / Partially Validated**: the E1.0 kernel slice passed its Integration
+  minimal validation ([evidence](../../experiments/personal-agent-hub/e1-0/README.md));
+  end-to-end validation inside E1 acceptance remains.
+- [ADR 0027 — IDE delegation is workspace authority; PolicyGate is the single enforcer](0027-ide-delegation-is-workspace-authority.md)
+  is **Accepted / Unvalidated**; it revises the Hub E1 provider, local-guard and
+  JetBrains onboarding statements. Live validation is E1 acceptance.

@@ -1,0 +1,138 @@
+[
+  {
+    "domain": "personal",
+    "input_ids": [
+      "personal/audit.py::AuditSender",
+      "personal/book.py::StampBook",
+      "personal/contracts.py::DeliveryPort",
+      "personal/gate.py::WindowGate",
+      "personal/helpers.py::quick_handle",
+      "personal/identity.py::HandleFold",
+      "personal/legacy.py::persist",
+      "personal/notes/note_00.py::note_00",
+      "personal/notes/note_01.py::note_01",
+      "personal/notes/note_02.py::note_02",
+      "personal/notes/note_03.py::note_03",
+      "personal/notes/note_04.py::note_04",
+      "personal/notes/note_05.py::note_05",
+      "personal/notes/note_06.py::note_06",
+      "personal/notes/note_07.py::note_07",
+      "personal/notes/note_08.py::note_08",
+      "personal/notes/note_09.py::note_09",
+      "personal/notes/note_10.py::note_10",
+      "personal/notes/note_11.py::note_11",
+      "personal/publish.py::seal",
+      "personal/settings.py::retry_ceiling",
+      "personal/settings.py::READY_MARKER",
+      "personal/transport.py::ParcelSender",
+      "personal/workflow.py::dispatch"
+    ],
+    "input_sha256": "d47225f6888b5e4c7a5f52db70d8a8a087aebc828640b7924e79cefc38175615",
+    "model": "BAAI/bge-m3",
+    "revision": "A",
+    "usage": {
+      "completion_tokens": 0,
+      "completion_tokens_details": null,
+      "prompt_tokens": 2100,
+      "prompt_tokens_details": null,
+      "total_tokens": 2100
+    }
+  },
+  {
+    "domain": "employer-x",
+    "input_ids": [
+      "employer-x/hidden.py::HiddenSender"
+    ],
+    "input_sha256": "cb72792fecbb1951cda32acbe483409821ba44234e702b236a1a2d421d187899",
+    "model": "BAAI/bge-m3",
+    "revision": "A",
+    "usage": {
+      "completion_tokens": 0,
+      "completion_tokens_details": null,
+      "prompt_tokens": 67,
+      "prompt_tokens_details": null,
+      "total_tokens": 67
+    }
+  },
+  {
+    "domain": "personal",
+    "input_ids": [
+      "personal/adapters/parcel.py::ParcelSender",
+      "personal/audit.py::AuditSender",
+      "personal/book.py::StampBook",
+      "personal/contracts.py::DeliveryPort",
+      "personal/gate.py::AttemptFence",
+      "personal/helpers.py::quick_handle",
+      "personal/identity.py::IdentityFold",
+      "personal/notes/note_00.py::note_00",
+      "personal/notes/note_01.py::note_01",
+      "personal/notes/note_02.py::note_02",
+      "personal/notes/note_03.py::note_03",
+      "personal/notes/note_04.py::note_04",
+      "personal/notes/note_05.py::note_05",
+      "personal/notes/note_06.py::note_06",
+      "personal/notes/note_07.py::note_07",
+      "personal/notes/note_08.py::note_08",
+      "personal/notes/note_09.py::note_09",
+      "personal/notes/note_10.py::note_10",
+      "personal/notes/note_11.py::note_11",
+      "personal/publish.py::seal",
+      "personal/settings.py::retry_ceiling",
+      "personal/settings.py::READY_MARKER",
+      "personal/store.py::checkpoint",
+      "personal/workflow.py::dispatch"
+    ],
+    "input_sha256": "c404f9aa8b0c369cb139d72cf2248f85b7adbfc277e940e905e58e7ccfa85a45",
+    "model": "BAAI/bge-m3",
+    "revision": "B",
+    "usage": {
+      "completion_tokens": 0,
+      "completion_tokens_details": null,
+      "prompt_tokens": 2104,
+      "prompt_tokens_details": null,
+      "total_tokens": 2104
+    }
+  },
+  {
+    "domain": "employer-x",
+    "input_ids": [
+      "employer-x/hidden.py::HiddenSender"
+    ],
+    "input_sha256": "cb72792fecbb1951cda32acbe483409821ba44234e702b236a1a2d421d187899",
+    "model": "BAAI/bge-m3",
+    "revision": "B",
+    "usage": {
+      "completion_tokens": 0,
+      "completion_tokens_details": null,
+      "prompt_tokens": 67,
+      "prompt_tokens_details": null,
+      "total_tokens": 67
+    }
+  },
+  {
+    "domain": "personal",
+    "input_ids": [
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "S1",
+      "S2",
+      "S3",
+      "S4",
+      "T1",
+      "T2",
+      "T3",
+      "T4"
+    ],
+    "input_sha256": "ba3ded659366e104431dc0e873b49ce5f813032e4d63a2dd0eb032694ca7c0a0",
+    "model": "BAAI/bge-m3",
+    "usage": {
+      "completion_tokens": 0,
+      "completion_tokens_details": null,
+      "prompt_tokens": 159,
+      "prompt_tokens_details": null,
+      "total_tokens": 159
+    }
+  }
+]

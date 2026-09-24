@@ -1,0 +1,151 @@
+{
+  "observed_at": "2026-09-21T17:33:20.139536+00:00",
+  "status": "PASS",
+  "initial_checkpoint_commit": "15c6551",
+  "checks": {
+    "syntax-accepted-infrastructure": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "syntax-accepted-rootless-host": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "syntax-accepted-infrastructure-rootful": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "syntax-accepted-host": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "systemd-accepted-user": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "systemd-accepted-legacy": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "alloy-accepted-config": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "git-diff-check": {
+      "status": "PASS",
+      "exit_code": 0
+    },
+    "platform-tests": {
+      "status": "PASS",
+      "count": 28,
+      "evidence": "platform-tests-resumed.txt",
+      "scope": "platform fixtures and migration security boundaries; no live backup or inference work"
+    },
+    "full-candidate": {
+      "status": "PASS",
+      "evidence": "full-candidate.json"
+    },
+    "candidate-docker-restart": {
+      "status": "PASS",
+      "evidence": "candidate-docker-restart.json"
+    },
+    "offline-copy": {
+      "status": "PASS",
+      "evidence": "offline-copy.json"
+    },
+    "cutover-acceptance": {
+      "status": "PASS",
+      "evidence": "cutover-acceptance.json"
+    },
+    "rootless-stack-restart": {
+      "status": "PASS",
+      "evidence": "rootless-stack-restart.json"
+    },
+    "systemd-docker-recovery": {
+      "status": "PASS",
+      "evidence": "systemd-docker-recovery.json"
+    },
+    "rootless-docker-restart": {
+      "status": "PASS",
+      "evidence": "rootless-docker-restart.json"
+    },
+    "operator-without-docker-group": {
+      "status": "PASS",
+      "evidence": "operator-without-docker-group.json"
+    },
+    "alloy-rootless-journal": {
+      "status": "PASS",
+      "evidence": "alloy-rootless-journal.json"
+    },
+    "accepted-host": {
+      "status": "PASS",
+      "evidence": "accepted-host.json"
+    },
+    "ansible-scratch-resumed-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0"
+    },
+    "ansible-scratch-resumed-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0"
+    },
+    "ansible-operator-accepted-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=12   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-operator-accepted-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=12   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0"
+    },
+    "ansible-host-accepted-first": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=14   changed=7    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0"
+    },
+    "ansible-host-accepted-second": {
+      "status": "PASS",
+      "recap": "localhost                  : ok=12   changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0"
+    },
+    "guard-unaccepted-activation-resumed": {
+      "status": "PASS",
+      "result": "refused before mutation"
+    },
+    "guard-scratch-activation-resumed": {
+      "status": "PASS",
+      "result": "refused before mutation"
+    },
+    "compose-accepted-config": {
+      "status": "PASS",
+      "scope": "quiet validation using actual private runtime secrets"
+    },
+    "runtime-matches-desired-state": {
+      "status": "PASS"
+    },
+    "adr0019-preserved": {
+      "status": "PASS",
+      "original_commit": "74b2993"
+    },
+    "secret-scan": {
+      "status": "PASS",
+      "files_scanned": 55,
+      "scope": "modified and untracked nonignored review files; actual private runtime values, encoded Basic auth and synthetic candidate credentials absent; values never emitted"
+    },
+    "documentation-links": {
+      "status": "PASS",
+      "scope": "relative file targets in changed Markdown; external URLs/anchor semantics excluded"
+    },
+    "reboot-validation-tooling": {
+      "status": "PASS",
+      "command": "uv run --no-project --python 3.13 --with boto3==1.42.70 python",
+      "note": "Does not depend on a /tmp virtualenv surviving reboot"
+    }
+  },
+  "systemd_warning": "Existing spice-vdagent user package unit has an unrelated StandardError directive in Install; no Blaine unit diagnostic.",
+  "not_performed": [
+    "rootless real host reboot",
+    "full D1.G service adoption",
+    "backup resume or historical disk changes",
+    "inference adoption or benchmarking",
+    "sudoers changes",
+    "push"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+ "version": 1,
+ "adapter_id": "codex-app-server",
+ "worker_family": "codex-cli-0.155.1",
+ "capabilities": {
+  "continuation.admit": {
+   "capability": "continuation.admit",
+   "support": "UNSUPPORTED",
+   "granularity": null,
+   "evidence": "none",
+   "note": "Codex never waits for the client at a continuation boundary."
+  },
+  "continuation.observe": {
+   "capability": "continuation.observe",
+   "support": "OBSERVED",
+   "granularity": "continuation",
+   "evidence": "live",
+   "note": "thread/tokenUsage/updated marks one boundary per model invocation."
+  },
+  "continuation.steer": {
+   "capability": "continuation.steer",
+   "support": "OBSERVED",
+   "granularity": "continuation",
+   "evidence": "live",
+   "note": "turn/steer is accepted mid-tool and consumed at the next boundary."
+  },
+  "effort.rebind": {
+   "capability": "effort.rebind",
+   "support": "OBSERVED",
+   "granularity": "agent_turn",
+   "evidence": "protocol",
+   "note": "turn/start accepts an effort override; no mid-turn rebinding exists."
+  },
+  "execution.interrupt": {
+   "capability": "execution.interrupt",
+   "support": "OBSERVED",
+   "granularity": "agent_turn",
+   "evidence": "live",
+   "note": "turn/interrupt ends the active turn as interrupted."
+  },
+  "model.observe": {
+   "capability": "model.observe",
+   "support": "OBSERVED",
+   "granularity": "continuation",
+   "evidence": "live",
+   "note": "Per-invocation input/cached/output/reasoning tokens are reported."
+  },
+  "model.rebind": {
+   "capability": "model.rebind",
+   "support": "OBSERVED",
+   "granularity": "agent_turn",
+   "evidence": "protocol",
+   "note": "turn/start accepts a model override; no mid-turn rebinding exists."
+  },
+  "tool.observe": {
+   "capability": "tool.observe",
+   "support": "OBSERVED",
+   "granularity": "continuation",
+   "evidence": "live",
+   "note": "Item lifecycle exposes tool status, exit code and duration."
+  }
+ },
+ "undeclared": []
+}

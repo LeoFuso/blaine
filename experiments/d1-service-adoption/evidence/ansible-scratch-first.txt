@@ -1,0 +1,115 @@
+PLAY [Stage accepted non-root Blaine services without starting candidates] *****
+
+TASK [Require bounded scratch or real operator paths] **************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Observe operator identity] ***********************************************
+ok: [localhost]
+
+TASK [Refuse root service staging] *********************************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Reject redirected installation paths] ************************************
+ok: [localhost]
+
+TASK [Create private deployment directories] ***********************************
+changed: [localhost] => (item=/tmp/blaine-d1-services-final/home/leofuso/.config/blaine/services)
+changed: [localhost] => (item=/tmp/blaine-d1-services-final/home/leofuso/.config/blaine/inference)
+changed: [localhost] => (item=/tmp/blaine-d1-services-final/home/leofuso/.local/share/blaine/runtime/bin)
+changed: [localhost] => (item=/tmp/blaine-d1-services-final/home/leofuso/.local/share/blaine/runtime/app/runtime/kernel)
+changed: [localhost] => (item=/tmp/blaine-d1-services-final/home/leofuso/.config/systemd/user)
+changed: [localhost] => (item=/tmp/blaine-d1-services-final/home/leofuso/.local/bin)
+
+TASK [Stage inference configuration and launcher] ******************************
+changed: [localhost] => (item=../inference/candidate.json)
+changed: [localhost] => (item=../inference/serve.py)
+
+TASK [Stage operational service configuration] *********************************
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/durable-check.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/register-runtime.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/observe.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/wait-ready.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/cognition-check.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-launch.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-model.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-state.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/mirix-check.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/object-check.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/reboot-check.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/process-ownership.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/runtime.json)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../services/restate.toml)
+
+TASK [Stage persistent user units without enabling them] ***********************
+changed: [localhost] => (item=generation)
+changed: [localhost] => (item=embedding)
+changed: [localhost] => (item=mirix)
+changed: [localhost] => (item=restate)
+changed: [localhost] => (item=runtime)
+
+TASK [Stage the actual accepted application modules] ***************************
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/personal_runtime.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/interactive.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/personal_agent.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/task.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/personal_acp.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/app.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/acp_agent.py)
+
+TASK [Stage existing kernel modules and schemas] *******************************
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/frontier.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/project_knowledge.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic_bridge.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/workspace.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic_provider.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/contracts.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/cognition.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/human.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/execution.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/context.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/artifacts.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/events.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic_human.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/model.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/memory.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/frontier_context.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/worker_routing.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/procedure.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/__init__.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/workflow.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/control.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/youtrack.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/worker.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/event_sinks.py)
+changed: [localhost] => (item=/home/leofuso/workspace/blaine/infra/ansible/../../runtime/kernel/semantic-human-request-v1.json)
+
+TASK [Stage the pinned Restate binary] *****************************************
+changed: [localhost]
+
+TASK [Explain activation and state boundaries] *********************************
+ok: [localhost] => {
+    "msg": "Staging only. No state copy, dependency installation or secret change. Activation requires blaine_activate=true and accepted live evidence; preserved Restate state is handled explicitly by the adoption runbook."
+}
+
+TASK [Install the actual Personal Agent ACP entrypoint] ************************
+changed: [localhost]
+
+TASK [Require accepted live evidence before enabling runtime ownership] ********
+skipping: [localhost]
+
+TASK [Adopt accepted services under the user manager] **************************
+skipping: [localhost] => (item=generation)
+skipping: [localhost] => (item=embedding)
+skipping: [localhost] => (item=mirix)
+skipping: [localhost] => (item=restate)
+skipping: [localhost] => (item=runtime)
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=13   changed=8    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0

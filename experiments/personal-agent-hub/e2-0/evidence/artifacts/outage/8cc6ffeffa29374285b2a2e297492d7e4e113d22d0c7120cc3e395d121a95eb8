@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"capability":"workspace.read","input":{"artifact":"current","form":"file","path":"service/config/limits.properties","workspace_id":"wsp-e2-fixture"},"type":"INVOKE_CAPABILITY"},"task_id":"outage","task_revision":0,"turn_id":"outage/1"},"version":1}

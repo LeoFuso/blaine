@@ -1,0 +1,14 @@
+?   	blaine.local/client/cmd/blaine	[no test files]
+ok  	blaine.local/client/cmd/blaine-hub-transport	1.015s
+ok  	blaine.local/client/internal/buildinfo	1.007s
+ok  	blaine.local/client/internal/cli	1.023s
+ok  	blaine.local/client/internal/connect	1.007s
+ok  	blaine.local/client/internal/connection	3.209s
+ok  	blaine.local/client/internal/direct	3.429s
+ok  	blaine.local/client/internal/doctor	1.011s
+?   	blaine.local/client/internal/fixture	[no test files]
+ok  	blaine.local/client/internal/jetbrains	1.019s
+ok  	blaine.local/client/internal/platform	1.014s
+ok  	blaine.local/client/internal/process	10.252s
+ok  	blaine.local/client/internal/wire	1.015s
+ok  	blaine.local/client/internal/workstation	1.006s

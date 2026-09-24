@@ -26,3 +26,26 @@ def validate_read_result(raw, request):
     output = fields(result['output'], {'content'})
     text(output['content'])
     return output['content']
+
+
+def legacy_receipt(task_id, request_ref, request, content_ref, content):
+    """Receipt for the D2 exact-path form, admitted as capability-journal evidence.
+
+    The returned text is the whole file as delivered by the authorized ACP client
+    read (editor content may include unsaved edits), so the line range is the full
+    returned text. E1.C replaces this with provider receipts of the same kind.
+    """
+    import hashlib
+    from runtime.kernel.contracts import message
+    lines = content.split('\n')
+    if lines and lines[-1] == '':
+        lines.pop()
+    data = content.encode('utf-8')
+    return message('WorkspaceReadReceipt', {
+        'task_id': task_id, 'operation_id': request['operation_id'],
+        'request_sha256': request_ref.rsplit(':', 1)[1], 'workspace_id': request['workspace'],
+        'provider': {'kind': 'acp-client'}, 'operation': 'read_file', 'state': 'SUCCESS',
+        'source': {'view': 'acp_text_file', 'class': 'project', 'path': request['path'],
+                   'lines': [1, max(len(lines), 1)]},
+        'response_ref': content_ref, 'response_sha256': hashlib.sha256(data).hexdigest(),
+        'response_bytes': len(data), 'truncated': False})

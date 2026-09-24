@@ -1,0 +1,816 @@
+{
+  "checks": [
+    {
+      "check": "stale actual leak and nonzero exit",
+      "ok": true
+    },
+    {
+      "check": "inferred actual leak and nonzero exit",
+      "ok": true
+    },
+    {
+      "check": "source facts reproducible jackson-databindA",
+      "ok": true
+    },
+    {
+      "check": "source facts reproducible jackson-databindB",
+      "ok": true
+    },
+    {
+      "check": "source facts reproducible spring-kafkaA",
+      "ok": true
+    },
+    {
+      "check": "source facts reproducible spring-kafkaB",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-D1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-D1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-D1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-D1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-D1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-D1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-D2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-D2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-D2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-D2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-D2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-D2C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M2C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M3A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M3A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M3B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M3B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-M3C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-M3C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-I1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-I1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-I1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-I1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-I1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-I1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-I2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-I2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-I2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-I2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-I2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-I2C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T2C",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T3A",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T3A",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T3B",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T3B",
+      "ok": true
+    },
+    {
+      "check": "identical packet J-T3C",
+      "ok": true
+    },
+    {
+      "check": "identical answers J-T3C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D2C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D3A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D3A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D3B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D3B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-D3C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-D3C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-M1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-M1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-M1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-M1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-M1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-M1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-M2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-M2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-M2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-M2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-M2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-M2C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I2C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I3A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I3A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I3B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I3B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-I3C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-I3C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-T1A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-T1A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-T1B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-T1B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-T1C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-T1C",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-T2A",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-T2A",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-T2B",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-T2B",
+      "ok": true
+    },
+    {
+      "check": "identical packet S-T2C",
+      "ok": true
+    },
+    {
+      "check": "identical answers S-T2C",
+      "ok": true
+    },
+    {
+      "check": "primary result never overwritten",
+      "ok": true
+    }
+  ],
+  "notes": "One deterministic verification replay; original primary evidence retained. Latencies are measured, not asserted byte-identical. Source facts independently re-derived from retained unmodified archives.",
+  "packets": [
+    {
+      "condition": "A",
+      "packet_sha256": "ab816590fcf72da46a9556996a2fe3c525556de1cf7cb68ea2356c1d104a1d0a",
+      "query": "J-D1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "1340229f4ac06bb509c5004b526936d51cbc167e0d15a83dd0b1896a545ebf64",
+      "query": "J-D1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "758c07d44d96e7bcef5208a254d23d3870a2970b03541f3d84bb5e1ccacf838d",
+      "query": "J-D1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "3ab84955485a10fe34dc32b2155b2fd73725938ab28d5700d4c893a14c7c5963",
+      "query": "J-D2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "6a4892d55b14f6eb29a4a9c05bdff5f24f963b0a1adbfa00b6c88101695dda42",
+      "query": "J-D2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "680b7406f89dcd842d51a0e5709af6d435f1a803cb85ae366d91017ea8cca259",
+      "query": "J-D2"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "15c7e20f8bfdcecddb175eabfb3a541485df4db43d1302e89a8edf0e73fa1f9e",
+      "query": "J-M1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "b1cdaf720d32d58302be3e339cdb8c6fa15303f527f393c4f14436314abb6103",
+      "query": "J-M1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "d0edaf271f15530b20822748d22685b13ee0e29891d3beb9f0347d85ad4a0aa8",
+      "query": "J-M1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-M2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-M2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "8b16c491264e9b5e84ede5c4133c22f81175f9cfca33aa8c8dd16ab6ac8040bf",
+      "query": "J-M2"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "246edccc16a0d080d1299967c6c68a8e21b69b929e906ba228f7908b3dd90905",
+      "query": "J-M3"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "3804dc03fa937116d97a6a6b90433e35cd6cccc5b3977a5067495590e650c080",
+      "query": "J-M3"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "63284e4a72ff331c89a246db424490409867c438fea0b79434261417026a43a2",
+      "query": "J-M3"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-I1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "6c9688d16a68c0aab5c2dae6d28503216ea7ca9c7b6d67647137ead02301bb68",
+      "query": "J-I1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "abe88ae133c30134c9eaccc79684e96d0d47d37f1d13813c02e38b1b336c81e3",
+      "query": "J-I1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "bbc6f65ae5236e168c9b30115ae3bf34c3997e90b21827a864c5724ffb8c6e71",
+      "query": "J-I2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "caa5cb612e3940b0679accccae3bce820f9fc70d13c516b311359afb10cd2e8d",
+      "query": "J-I2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "31b60172e8e2c9c58a4b14fb2947d699625a596dda729a0a56ee78efee9060ac",
+      "query": "J-I2"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T2"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T3"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T3"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "3071307a01c06de3f2d4fa4c6e524ca359839a9837c46450844bb9c472ec8514",
+      "query": "J-T3"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "177a923d2b0802a87ce150d4837247a1e708d4828426ba67234de83a7514229d",
+      "query": "S-D1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "c965abdc43540a427c19725e21d903ab5d14f7b4b3a34360f3cd2fc6b6264a7c",
+      "query": "S-D1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "df2a2bc38ca015c614441dab59c17f7695d76e2534c4e7aa3b686568a44d4fa5",
+      "query": "S-D1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "56715045fdab09baec1a24cdfb8d6d53424b242fc20af99606e7cc1b0bec32c4",
+      "query": "S-D2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "bb5a2c021e6c665adb0678a646e25c3b7134ce1ecadfdbc53abf4b081e5e89be",
+      "query": "S-D2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "7eadc9a0a28a6e774164bf48fe45d7e051297586b85314ea6da8e9cfd0e197f2",
+      "query": "S-D2"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "e43e490e92ff0147e8ceb632d9e016cb3ee3b7c0ec1cdfd236a1de8a7bc9d34f",
+      "query": "S-D3"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "1a814304e77342a6c55358ce7bf5fe2ba4ee2f265e9cb5c54aa504cb269c162f",
+      "query": "S-D3"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "921cba99d7051d00ce22d472ffa5f7f627223689a8cf372fb386e3396b7a242a",
+      "query": "S-D3"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "58dc053e25eac7bade8d35515020b2e18bb0464a0fbfe97d08a95fae76b554ed",
+      "query": "S-M1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "ca2c6102a19a94c0b7a9983fa6deae77e8cecc50ec0778505155a65d7db33917",
+      "query": "S-M1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "c9502ed42e3b26f4717fd0024fb83ddbc54512ea0c7c2127ce20ec8359560141",
+      "query": "S-M1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "552bd926b0489455401bd1d158d40235e0256c6560df69ea39baf04908c4f821",
+      "query": "S-M2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "fdb293035a904887debe91ff5a219b2357442881704547b2c234662f900ae0ab",
+      "query": "S-M2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "552bd926b0489455401bd1d158d40235e0256c6560df69ea39baf04908c4f821",
+      "query": "S-M2"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "d7e7cc0920edd69388f214dbbe62c3d593550a13dcc49e8a0bb067eac9b87aab",
+      "query": "S-I1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "746c6566f1b85eb9cfb7c1f131cb07433bc3c5da96200dedcbdd01e2dc2ff93c",
+      "query": "S-I1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "fb5e34b4815ed86716be511e2fbdfaf5ddcd3750c589a167036d16dedfd5bd6b",
+      "query": "S-I1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "def9bf95266ebac96555dee98ae4564627714233bf5e2d61f4368a101bd1b72a",
+      "query": "S-I2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "7725cd7ac175ea8e12b77bc26a7b21d6b8bc4ec290f0dd415f4793a5602bf578",
+      "query": "S-I2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "429f94be01b65da7e97d4b29b830ce7f0510476d6ce6914479a5bcfcf7b47f4f",
+      "query": "S-I2"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "193f4adc8e64fc246f82602f76cd8bf0e3f32460771a4fc10ce5a7e1fe21b911",
+      "query": "S-I3"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "22aef995f1a6f90b9e3be0a3c9df199a95c4307cab251838820238876587c3bf",
+      "query": "S-I3"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "745db832e27cf90c6f6790fc5754c30400aaacbda4ab64030eb7513e09df6456",
+      "query": "S-I3"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "fdb293035a904887debe91ff5a219b2357442881704547b2c234662f900ae0ab",
+      "query": "S-T1"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "fdb293035a904887debe91ff5a219b2357442881704547b2c234662f900ae0ab",
+      "query": "S-T1"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "fdb293035a904887debe91ff5a219b2357442881704547b2c234662f900ae0ab",
+      "query": "S-T1"
+    },
+    {
+      "condition": "A",
+      "packet_sha256": "fdb293035a904887debe91ff5a219b2357442881704547b2c234662f900ae0ab",
+      "query": "S-T2"
+    },
+    {
+      "condition": "B",
+      "packet_sha256": "fdb293035a904887debe91ff5a219b2357442881704547b2c234662f900ae0ab",
+      "query": "S-T2"
+    },
+    {
+      "condition": "C",
+      "packet_sha256": "fdb293035a904887debe91ff5a219b2357442881704547b2c234662f900ae0ab",
+      "query": "S-T2"
+    }
+  ],
+  "status": "PASS"
+}

@@ -1,0 +1,1 @@
+{"kind":"HumanDecisionRequest","payload":{"allowed_responses":["APPROVE","DENY"],"origin_task_id":"approval","question":"Approve workspace.write service/config/limits.properties in wsp-e2-fixture (operation approval/3, request d6c34c0570af47e6)?","request_id":"approve-3","revision":0,"task_id":"approval"},"version":1}

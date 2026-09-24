@@ -1,5 +1,16 @@
 # ADR 0018 — Blaine Local Platform, Durability and Observability Architecture
 
+> Packaging update, 2026-09-21: [ADR 0020](0020-rootless-docker-operator-runtime.md)
+> selects rootless Docker under user systemd + linger for the four-container D1
+> infrastructure. It supersedes rootful/docker-group operating assumptions and
+> narrows container packaging preferences below. Durability, Task ownership and
+> observability boundaries remain unchanged; migration acceptance is separate.
+
+> Observability extension, 2026-09-21: [ADR 0021](0021-fleet-observability-control-plane.md)
+> accepts Fleet Management as the remote control-plane direction with local bootstrap
+> authority. Deployment is STOPPED on Alloy 1.19.2 offline-start behavior; no remote
+> activation is implied. Other architectural boundaries below remain unchanged.
+
 **Status:** Proposed for acceptance
 **Date:** 2026-09-20
 **Scope:** Blaine runtime, local infrastructure, durability, backup, host configuration, ingress and observability

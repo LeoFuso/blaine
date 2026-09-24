@@ -1,0 +1,77 @@
+{
+  "edges": [
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "contains",
+      "source": "employer_x_vault",
+      "source_file": "employer-x/vault.py",
+      "source_location": "L1",
+      "target": "employer_x_vault_vaultfold",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "method",
+      "source": "employer_x_vault_vaultfold",
+      "source_file": "employer-x/vault.py",
+      "source_location": "L3",
+      "target": "employer_x_vault_vaultfold_apply",
+      "weight": 1.0
+    },
+    {
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "source": "employer_x_vault_rationale_2",
+      "source_file": "employer-x/vault.py",
+      "source_location": "L2",
+      "target": "employer_x_vault_vaultfold",
+      "weight": 1.0
+    }
+  ],
+  "extracted_sources": [
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-009/workspace/A/employer-x/vault.py"
+  ],
+  "failed_sources": [],
+  "input_tokens": 0,
+  "nodes": [
+    {
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "employer_x_vault",
+      "label": "vault.py",
+      "source_file": "employer-x/vault.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "employer_x_vault_vaultfold",
+      "label": "VaultFold",
+      "source_file": "employer-x/vault.py",
+      "source_location": "L1"
+    },
+    {
+      "_callable": true,
+      "_origin": "ast",
+      "file_type": "code",
+      "id": "employer_x_vault_vaultfold_apply",
+      "label": ".apply()",
+      "source_file": "employer-x/vault.py",
+      "source_location": "L3"
+    },
+    {
+      "_origin": "ast",
+      "file_type": "rationale",
+      "id": "employer_x_vault_rationale_2",
+      "label": "PRIVATE_FOLD_CANARY: remove surrounding blanks and fold case.",
+      "source_file": "employer-x/vault.py",
+      "source_location": "L2"
+    }
+  ],
+  "output_tokens": 0
+}

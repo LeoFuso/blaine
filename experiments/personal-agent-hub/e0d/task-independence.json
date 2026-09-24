@@ -1,0 +1,14 @@
+{
+  "scope": "Edge deployment/restart, primary Mac IDE quit/reconnect/alpha.4 upgrade and designated WSL connection",
+  "task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844",
+  "state": "WAITING",
+  "unchanged": true,
+  "authoritative_state_sha256": "2493b7c5c18ec6c7c3ee4ea12fb91d26081a0e91e76c088869a2cf042bc88245",
+  "runtime_pid": 2276403,
+  "restate_pid": 358882,
+  "ide_quit_state_unchanged": true,
+  "edge_restart_state_unchanged": true,
+  "alpha4_upgrade_state_unchanged": true,
+  "alpha4_session_end_state_unchanged": true,
+  "distinct_peer_connection_state_unchanged": true
+}

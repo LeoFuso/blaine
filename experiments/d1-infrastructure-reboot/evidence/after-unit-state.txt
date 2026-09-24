@@ -1,0 +1,25 @@
+===== docker.service =====
+ActiveState=active
+SubState=running
+UnitFileState=enabled
+MainPID=8847
+===== blaine-infra.service =====
+ActiveState=active
+SubState=exited
+UnitFileState=enabled
+MainPID=0
+===== alloy.service =====
+ActiveState=active
+SubState=running
+UnitFileState=enabled
+MainPID=8845
+===== postgresql@18-main.service =====
+ActiveState=active
+SubState=running
+UnitFileState=enabled-runtime
+MainPID=2795
+===== redis-server.service =====
+ActiveState=active
+SubState=running
+UnitFileState=enabled
+MainPID=2741

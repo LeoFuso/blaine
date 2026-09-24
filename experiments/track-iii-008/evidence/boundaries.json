@@ -1,0 +1,3521 @@
+{
+  "checks": [
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/L1",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class WindowGate:\n    \"\"\"Admission of transient retries within capped expenditure.\"\"\"\n    def permits(self, status, attempts, ceiling):\n    ",
+              "line": 1,
+              "source_hash": "327402a6817eaeb28f7dd2911ab13256bbeff6b1908e9c64ad235bc821d01f50",
+              "target": "personal/gate.py::WindowGate",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_03(handle, attempts, output):\n    \"\"\"Diagnostic note 3: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+              "target": "personal/notes/note_03.py::note_03",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/L2",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class WindowGate:\n    \"\"\"Admission of transient retries within capped expenditure.\"\"\"\n    def permits(self, status, attempts, ceiling):\n    ",
+              "line": 1,
+              "source_hash": "327402a6817eaeb28f7dd2911ab13256bbeff6b1908e9c64ad235bc821d01f50",
+              "target": "personal/gate.py::WindowGate",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_03(handle, attempts, output):\n    \"\"\"Diagnostic note 3: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+              "target": "personal/notes/note_03.py::note_03",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/L3",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def persist(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+              "target": "personal/legacy.py::persist",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/L4",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def persist(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+              "target": "personal/legacy.py::persist",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def quick_handle(value):\n    \"\"\"Tempting one-off helper: trim only; does not merge letter-case variants.\"\"\"\n    return value.strip()",
+              "line": 1,
+              "source_hash": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+              "target": "personal/helpers.py::quick_handle",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/S1",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def quick_handle(value):\n    \"\"\"Tempting one-off helper: trim only; does not merge letter-case variants.\"\"\"\n    return value.strip()",
+              "line": 1,
+              "source_hash": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+              "target": "personal/helpers.py::quick_handle",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_02(handle, attempts, output):\n    \"\"\"Diagnostic note 2: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+              "target": "personal/notes/note_02.py::note_02",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/S2",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_02(handle, attempts, output):\n    \"\"\"Diagnostic note 2: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+              "target": "personal/notes/note_02.py::note_02",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_10(handle, attempts, output):\n    \"\"\"Diagnostic note 10: record account identifiers and delivery attempt observations.\n    Reports ",
+              "line": 1,
+              "source_hash": "0531f5bb083e04bcbcbee04fd9c9478a94e041c1171779c28e92a0fc3475e27c",
+              "target": "personal/notes/note_10.py::note_10",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/S3",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_10(handle, attempts, output):\n    \"\"\"Diagnostic note 10: record account identifiers and delivery attempt observations.\n    Reports ",
+              "line": 1,
+              "source_hash": "0531f5bb083e04bcbcbee04fd9c9478a94e041c1171779c28e92a0fc3475e27c",
+              "target": "personal/notes/note_10.py::note_10",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_09(handle, attempts, output):\n    \"\"\"Diagnostic note 9: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+              "target": "personal/notes/note_09.py::note_09",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/S4",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_09(handle, attempts, output):\n    \"\"\"Diagnostic note 9: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+              "target": "personal/notes/note_09.py::note_09",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 4,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "inherits",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            },
+            {
+              "relation": "inherits",
+              "source": "personal/transport.py::ParcelSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/T1",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 4,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "inherits",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            },
+            {
+              "relation": "inherits",
+              "source": "personal/transport.py::ParcelSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def persist(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+              "target": "personal/legacy.py::persist",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/legacy.py::persist",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/T2",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def persist(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+              "target": "personal/legacy.py::persist",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/legacy.py::persist",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 4,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "imports",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            },
+            {
+              "relation": "imports",
+              "source": "personal/transport.py::ParcelSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/T3",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 4,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/transport.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "imports",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            },
+            {
+              "relation": "imports",
+              "source": "personal/transport.py::ParcelSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def persist(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+              "target": "personal/legacy.py::persist",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/workflow.py::dispatch",
+              "target": "personal/legacy.py::persist"
+            },
+            {
+              "relation": "calls",
+              "source": "personal/legacy.py::persist",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/A/T4",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def persist(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "7026419710a0f79880a12f477dcc31b753a9cce803d9e03774bbb7efa3da9acf",
+              "target": "personal/legacy.py::persist",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = HandleFold().apply(handle)\n    return",
+              "line": 4,
+              "source_hash": "3f587bb83faa7c83a57a376551693d343d9b3442c7533a6234332bfe55c9d02e",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/workflow.py::dispatch",
+              "target": "personal/legacy.py::persist"
+            },
+            {
+              "relation": "calls",
+              "source": "personal/legacy.py::persist",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:b0e1f8994af0377fd481d74c6de8b99b55d7a887fe42d672f935802e39cdb94d",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/L1",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AttemptFence:\n    \"\"\"Admission of transient retries within capped expenditure.\"\"\"\n    def permits(self, status, attempts, ceiling):\n  ",
+              "line": 1,
+              "source_hash": "067a4f3d457fa539721f31651849469c053ff285668f34babb3731ac5057484a",
+              "target": "personal/gate.py::AttemptFence",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_03(handle, attempts, output):\n    \"\"\"Diagnostic note 3: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+              "target": "personal/notes/note_03.py::note_03",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/L2",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AttemptFence:\n    \"\"\"Admission of transient retries within capped expenditure.\"\"\"\n    def permits(self, status, attempts, ceiling):\n  ",
+              "line": 1,
+              "source_hash": "067a4f3d457fa539721f31651849469c053ff285668f34babb3731ac5057484a",
+              "target": "personal/gate.py::AttemptFence",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_03(handle, attempts, output):\n    \"\"\"Diagnostic note 3: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "31e2ddfcb9254dd013a129da4d1cb0af835ee4abf72ae57dd357b4828ab06093",
+              "target": "personal/notes/note_03.py::note_03",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/L3",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/L4",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 6,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_04(handle, attempts, output):\n    \"\"\"Diagnostic note 4: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "295a4683a4bdf2f3a78020ec6a132bc5e8b61de2da13e623b84236ab02d4a55d",
+              "target": "personal/notes/note_04.py::note_04",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def quick_handle(value):\n    \"\"\"Tempting one-off helper: trim only; does not merge letter-case variants.\"\"\"\n    return value.strip()",
+              "line": 1,
+              "source_hash": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+              "target": "personal/helpers.py::quick_handle",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/S1",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def quick_handle(value):\n    \"\"\"Tempting one-off helper: trim only; does not merge letter-case variants.\"\"\"\n    return value.strip()",
+              "line": 1,
+              "source_hash": "210074e154884dc0e00f55881186b50d1ca881f9cbae4bf7bb6d986e5c53f457",
+              "target": "personal/helpers.py::quick_handle",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_02(handle, attempts, output):\n    \"\"\"Diagnostic note 2: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+              "target": "personal/notes/note_02.py::note_02",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/S2",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_02(handle, attempts, output):\n    \"\"\"Diagnostic note 2: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "89e26fbb091640777af944e5c9ead91f184723c707067c75035ef815d0823185",
+              "target": "personal/notes/note_02.py::note_02",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class IdentityFold:\n    \"\"\"Collapse user handle variants to one stable representation.\"\"\"\n    def apply(self, value):\n        return value.s",
+              "line": 1,
+              "source_hash": "65d1b43e370771997abad2cc30bb386cd44eef19b010a0a408669b4c41052bfd",
+              "target": "personal/identity.py::IdentityFold",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/S3",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class StampBook:\n    \"\"\"Memoize successful send receipts under a stable digest.\"\"\"\n    def __init__(self):\n        self.receipts = {}\n    de",
+              "line": 3,
+              "source_hash": "83b0943099d7f6cd03b443f49df21335086243cfe87004014366da7aa9684793",
+              "target": "personal/book.py::StampBook",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class IdentityFold:\n    \"\"\"Collapse user handle variants to one stable representation.\"\"\"\n    def apply(self, value):\n        return value.s",
+              "line": 1,
+              "source_hash": "65d1b43e370771997abad2cc30bb386cd44eef19b010a0a408669b4c41052bfd",
+              "target": "personal/identity.py::IdentityFold",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_09(handle, attempts, output):\n    \"\"\"Diagnostic note 9: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+              "target": "personal/notes/note_09.py::note_09",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/S4",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_09(handle, attempts, output):\n    \"\"\"Diagnostic note 9: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "7c59afdd112a5683e5cdb8dee3c47e7d56e7666b4b8fe26bcc23d1faeed31dc0",
+              "target": "personal/notes/note_09.py::note_09",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_00(handle, attempts, output):\n    \"\"\"Diagnostic note 0: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "ab78fc026024d8f167c001374bb0307809d8253a796d6e3f49b013622a177bae",
+              "target": "personal/notes/note_00.py::note_00",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_01(handle, attempts, output):\n    \"\"\"Diagnostic note 1: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "76670ccf52bacedcda19af5b40b6152577747dc734922b198d5e5986acc47ed3",
+              "target": "personal/notes/note_01.py::note_01",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def note_07(handle, attempts, output):\n    \"\"\"Diagnostic note 7: record account identifiers and delivery attempt observations.\n    Reports s",
+              "line": 1,
+              "source_hash": "f3396e15ff37afd03d51b966374f5c3dfa5ac88b481a4628307afab96d9be1e2",
+              "target": "personal/notes/note_07.py::note_07",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 4,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "inherits",
+              "source": "personal/adapters/parcel.py::ParcelSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            },
+            {
+              "relation": "inherits",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/T1",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 4,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "inherits",
+              "source": "personal/adapters/parcel.py::ParcelSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            },
+            {
+              "relation": "inherits",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/store.py::checkpoint",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/T2",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "retry_ceiling = 4",
+              "line": 1,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::retry_ceiling",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/store.py::checkpoint",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "imports",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/T3",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class DeliveryPort:\n    \"\"\"Contract for outbound parcel transport.\"\"\"\n    def send(self, parcel):\n        raise NotImplementedError",
+              "line": 1,
+              "source_hash": "f08c0883a1c45b2ad18efe3b199da4dd190e0dd767f96347bc2d787b27e3b9a0",
+              "target": "personal/contracts.py::DeliveryPort",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "class ParcelSender(DeliveryPort):\n    \"\"\"Transport implementation for outbound parcels.\"\"\"\n    def send(self, parcel):\n        return {\"sent",
+              "line": 3,
+              "source_hash": "79a85c449ee9a777caa8bbd31797a45f42c3e94830d6b0f0491ebdd7315d7ba6",
+              "target": "personal/adapters/parcel.py::ParcelSender",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "imports",
+              "source": "personal/audit.py::AuditSender",
+              "target": "personal/contracts.py::DeliveryPort"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/workflow.py::dispatch",
+              "target": "personal/store.py::checkpoint"
+            },
+            {
+              "relation": "calls",
+              "source": "personal/store.py::checkpoint",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "case": "foreign-existence-not-observable/B/T4",
+      "expected": {
+        "diagnostic": {
+          "partial": true,
+          "selected": 5,
+          "status": "SUCCESS"
+        },
+        "packet": {
+          "derived_revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "derived_state": "CURRENT",
+          "entries": [
+            {
+              "excerpt": "def seal(path, data):\n    \"\"\"Publish staged bytes in a single filesystem swap.\"\"\"\n    temporary = path.with_suffix(\".pending\")\n    temporary",
+              "line": 3,
+              "source_hash": "d14b002274e80c3e2a6fce1b439ba9e4c45f9ba4efed0a1151e6bfe7501b35ac",
+              "target": "personal/publish.py::seal",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def checkpoint(path, payload):\n    \"\"\"Store a completed parcel snapshot.\"\"\"\n    return seal(path, payload)",
+              "line": 3,
+              "source_hash": "bd7a53d99589c87d53e59a1131753c6800c4bc6fdd95eb12419db9d2fc1d2bcf",
+              "target": "personal/store.py::checkpoint",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "def dispatch(handle, path):\n    \"\"\"Coordinate parcel preparation and durable output.\"\"\"\n    prepared = IdentityFold().apply(handle)\n    retu",
+              "line": 4,
+              "source_hash": "444282cf6bd514fd87bed4dce70fd4172390865b3e7b9c793e1b43664ebc576b",
+              "target": "personal/workflow.py::dispatch",
+              "via": [
+                "LEXICAL",
+                "SEMANTIC",
+                "STRUCTURAL"
+              ]
+            },
+            {
+              "excerpt": "class AuditSender(DeliveryPort):\n    \"\"\"Transport implementation retaining a local acknowledgement.\"\"\"\n    def send(self, parcel):\n        r",
+              "line": 3,
+              "source_hash": "36c5a5963b1df4c83341071dff6f6331f565e317888bb862a8fb9b98c00014f7",
+              "target": "personal/audit.py::AuditSender",
+              "via": [
+                "SEMANTIC"
+              ]
+            },
+            {
+              "excerpt": "READY_MARKER = \"parcel-ready\"",
+              "line": 2,
+              "source_hash": "d3cb4c162924df9c04bcc15c179bdcfa0bc16d1b86cc452b05a11a1781d41b94",
+              "target": "personal/settings.py::READY_MARKER",
+              "via": [
+                "SEMANTIC"
+              ]
+            }
+          ],
+          "partial": true,
+          "relations": [
+            {
+              "relation": "calls",
+              "source": "personal/workflow.py::dispatch",
+              "target": "personal/store.py::checkpoint"
+            },
+            {
+              "relation": "calls",
+              "source": "personal/store.py::checkpoint",
+              "target": "personal/publish.py::seal"
+            }
+          ],
+          "revision": "sha256:a8f5f89efdb9c2e75133c330d44f04236e368bf52c5f7414578f0b5037a1c1ac",
+          "status": "SUCCESS"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "status": "DENIED"
+        },
+        "packet": {
+          "entries": [],
+          "status": "DENIED"
+        }
+      },
+      "case": "forged-binding",
+      "expected": {
+        "diagnostic": {
+          "status": "DENIED"
+        },
+        "packet": {
+          "entries": [],
+          "status": "DENIED"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "status": "DENIED"
+        },
+        "packet": {
+          "entries": [],
+          "status": "DENIED"
+        }
+      },
+      "case": "foreign-context-binding",
+      "expected": {
+        "diagnostic": {
+          "status": "DENIED"
+        },
+        "packet": {
+          "entries": [],
+          "status": "DENIED"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "status": "UNAVAILABLE"
+        },
+        "packet": {
+          "entries": [],
+          "status": "UNAVAILABLE"
+        }
+      },
+      "case": "policy-unavailable",
+      "expected": {
+        "diagnostic": {
+          "status": "UNAVAILABLE"
+        },
+        "packet": {
+          "entries": [],
+          "status": "UNAVAILABLE"
+        }
+      },
+      "status": "PASS"
+    },
+    {
+      "actual": {
+        "diagnostic": {
+          "status": "DENIED"
+        },
+        "packet": {
+          "entries": [],
+          "status": "DENIED"
+        }
+      },
+      "case": "policy-malformed",
+      "expected": {
+        "diagnostic": {
+          "status": "DENIED"
+        },
+        "packet": {
+          "entries": [],
+          "status": "DENIED"
+        }
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

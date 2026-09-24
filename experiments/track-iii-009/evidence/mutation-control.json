@@ -1,0 +1,9 @@
+{
+  "default_source_and_packets_unchanged": true,
+  "exit_code": 1,
+  "failed_checks": [
+    "contract-oracle/0/N1/FALSE_EQUIVALENCE",
+    "contract-oracle/1/N1/FALSE_EQUIVALENCE"
+  ],
+  "incorrect_reuses": 2
+}

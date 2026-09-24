@@ -1,0 +1,39 @@
+{
+  "id": "blaine-architecture-fixture",
+  "name": "Blaine architecture fixture \u2014 not production",
+  "version": "0.0.0",
+  "description": "Private schema fixture; not published and no real identity provider",
+  "license_url": "https://github.com/LeoFuso/blaine",
+  "distribution": {
+    "binary": {
+      "darwin-aarch64": {
+        "archive": "https://example.invalid/blaine-spike-darwin-arm64",
+        "cmd": "./blaine-spike-darwin-arm64",
+        "args": [
+          "acp-mock"
+        ]
+      },
+      "darwin-x86_64": {
+        "archive": "https://example.invalid/blaine-spike-darwin-amd64",
+        "cmd": "./blaine-spike-darwin-amd64",
+        "args": [
+          "acp-mock"
+        ]
+      },
+      "linux-x86_64": {
+        "archive": "https://example.invalid/blaine-spike-linux-amd64",
+        "cmd": "./blaine-spike-linux-amd64",
+        "args": [
+          "acp-mock"
+        ]
+      },
+      "linux-aarch64": {
+        "archive": "https://example.invalid/blaine-spike-linux-arm64",
+        "cmd": "./blaine-spike-linux-arm64",
+        "args": [
+          "acp-mock"
+        ]
+      }
+    }
+  }
+}

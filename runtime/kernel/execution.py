@@ -4,16 +4,35 @@ import json
 from pathlib import Path
 import sqlite3
 
-from runtime.kernel.human import human_requirement, validate_request, validate_response
+from runtime.kernel.human import validate_request
 from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.contracts import (
-    CAPABILITIES, LOCAL_SUMMARY_MARKER, MAX_CONTENT, SPECIALISTS, CapabilityRequest, CompletionEvaluation,
+    CAPABILITIES, MAX_CONTENT, SPECIALISTS, CapabilityRequest,
     TaskSpec, TaskState, encode, fields, identifier, message, text, unpack, validate_decision, validate_spec,
     child_task_id, spawn_specs,
 )
 
 
-def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
+def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None = None,
+                contract: dict | None = None, authority: dict | None = None) -> dict:
+    """Admissibility under effective authority.
+
+    Effective capability authority is the TaskSpec's request intersected with an
+    externally supplied grant. An absent grant preserves existing behaviour, and
+    the routing evidence records that the Task was not externally bounded.
+    Human requests are admissible only as fixed by the current Completion
+    Contract revision; the contract never grants capability authority.
+    """
+    from runtime.kernel.completion import human_binding, lower_spec
+    from runtime.kernel.routing import effective_capabilities
+    admissible = effective_capabilities(spec, grant)
+
+    def target_scope(value):
+        if authority is None or value['workspace_id'] not in authority['workspaces']:
+            raise ValueError('Target workspace is not in effective authority')
+
+    def human(request_id):
+        return human_binding(contract or lower_spec(spec, state['task_id'], state.get('parent')), request_id)
     try:
         decision = validate_decision(raw)
         if (decision["task_id"] != state["task_id"] or
@@ -25,7 +44,7 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
         action = decision["next_action"]
         if action["type"] == "INVOKE_CAPABILITY":
             capability = action["capability"]
-            if capability not in CAPABILITIES or capability not in spec["capabilities"] or capability not in spec["autonomy"]["allowed"]:
+            if capability not in CAPABILITIES or capability not in admissible:
                 raise ValueError("Capability denied")
             value = action["input"]
             if capability == "artifact.write":
@@ -41,7 +60,7 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
             elif capability == 'human.request':
                 fields(value, {'request'})
                 request = validate_request(value['request'])
-                requirement = human_requirement(spec, request['request_id'])
+                requirement = human(request['request_id'])
                 if request['task_id'] != state['task_id'] or value['request'] != requirement['request']:
                     raise ValueError('Human interaction outside accepted scope')
             elif capability == 'youtrack.read':
@@ -54,22 +73,50 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
                     raise ValueError('Worker packet outside admitted artifacts')
                 if value['artifact'] not in state['artifacts'] and len(state['artifacts']) >= 16:
                     raise ValueError('Artifact limit reached')
+            elif capability == 'context.request':
+                from runtime.kernel.context_plane import validate_need
+                validate_need(value)
+                if 'compiled-context' not in state['artifacts']:
+                    raise ValueError('Context Plane is not active')
             elif capability == 'text.stats':
                 fields(value, {'text'})
                 text(value['text'], 1024)
+            elif capability == 'workspace.read' and isinstance(value, dict) and 'form' in value:
+                from runtime.kernel.effects import validate_read_input
+                validate_read_input(value)
+                target_scope(value)
+                if value['artifact'] not in state['artifacts'] and len(state['artifacts']) >= 16:
+                    raise ValueError('Artifact limit reached')
             elif capability == 'workspace.read':
                 from runtime.kernel.workspace import validate_read
                 validate_read(value)
                 # Scope is the exact persisted intake action, not all project access.
                 if action != state.get('initial_action'):
                     raise ValueError('Workspace read outside accepted operation scope')
+            elif capability in ('workspace.write', 'workspace.exec'):
+                # A proposal is not authority: the pinned effective authority decides,
+                # and no new target effect starts while an earlier one is unknown.
+                from runtime.kernel.effects import admit_exec, validate_exec_input, validate_write_input
+                open_effects = sorted(op for op, effect in (state.get('effects') or {}).items()
+                                      if effect['status'] == 'uncertain')
+                if open_effects:
+                    raise ValueError(f'Uncertain target effects must be reconciled first: {open_effects}')
+                if capability == 'workspace.write':
+                    validate_write_input(value)
+                    target_scope(value)
+                    if value['content_ref'] not in state['artifacts'].values():
+                        raise ValueError('Write content must be an admitted Task artifact')
+                else:
+                    validate_exec_input(value)
+                    target_scope(value)
+                    admit_exec(value, authority)
             else:
                 fields(value, {"value"})
                 text(value["value"], 256)
         elif action['type'] == 'WAIT' and action['input_type'] == 'human_response':
-            if 'human.request' not in set(spec['capabilities']) & set(spec['autonomy']['allowed']):
+            if 'human.request' not in admissible:
                 raise ValueError('Human interaction denied')
-            requirement = human_requirement(spec, action['wait_id'])
+            requirement = human(action['wait_id'])
             request = requirement['request']
             if request['payload']['task_id'] != state['task_id']:
                 raise ValueError('Human wait Task mismatch')
@@ -84,9 +131,10 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
             cost = sum(1 + child['autonomy'].get('child_tasks', 0) for _, child in children)
             if cost > state.get('remaining_children', 0):
                 raise ValueError('Child Task allocation exhausted')
-            authority = set(spec['capabilities']) & set(spec['autonomy']['allowed'])
+            # A child may only narrow effective authority, so the parent's own
+            # external bound propagates rather than being reset by the request.
             for slot, child in children:
-                if not set(child['autonomy']['allowed']) <= authority:
+                if not set(child['autonomy']['allowed']) <= admissible:
                     raise ValueError('Child Task cannot expand parent authority')
                 for criterion in child['completion']:
                     evidence = criterion['evidence']
@@ -101,16 +149,41 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec) -> dict:
 
 
 class Capabilities:
-    def __init__(self, store: ArtifactStore, fixture_database: Path, card_reader=None, worker=None):
+    def __init__(self, store: ArtifactStore, fixture_database: Path, card_reader=None, worker=None,
+                 recorder=None, context_plane=None):
         self.store = store
         self.card_reader = card_reader
         self.worker = worker
+        self.context_plane = context_plane
+        # Optional diagnostics only. No capability outcome depends on it.
+        from runtime.kernel.instrument import safe
+        self.recorder = safe(recorder)
         self.fixture_database = fixture_database
         fixture_database.parent.mkdir(parents=True, exist_ok=True)
         with sqlite3.connect(fixture_database) as db:
             db.execute("CREATE TABLE IF NOT EXISTS effects (operation_id TEXT PRIMARY KEY, request BLOB NOT NULL, receipt TEXT NOT NULL)")
 
-    def execute(self, request: dict) -> dict:
+    def dispatch_worker(self, packet: dict, operation: str, task_id: str) -> dict:
+        """One external Worker execution. A worker session is not a Task.
+
+        The session span measures the dispatch Blaine actually owns. Boundaries
+        internal to the Worker are only observable when its adapter exposes them.
+        """
+        from runtime.kernel.instrument import ExecutionIdentity
+        with self.recorder.span('invoke_agent worker', kind='worker_session', attributes={
+                **ExecutionIdentity(task_id=task_id, run_id=None,
+                                    worker_dispatch_id='dispatch:' + operation).attributes(),
+                'gen_ai.operation.name': 'invoke_agent',
+                'gen_ai.agent.id': getattr(self.worker, 'adapter_id', 'worker')}) as span:
+            result = self.worker(packet, operation)
+            if isinstance(result, dict):
+                span.set(**{'blaine.worker.outcome': str(result.get('outcome')),
+                            'blaine.worker_session_id': str(result.get('attempt_id'))})
+                if result.get('outcome') != 'success':
+                    span.fail('worker_outcome_' + str(result.get('outcome')))
+            return result
+
+    def execute(self, request: dict, *, context_runtime=None) -> dict:
         """Called only after admission; fixture row is the effect, not a Task ledger."""
         request: CapabilityRequest = unpack(request, "CapabilityRequest")
         operation = request["operation_id"]
@@ -138,7 +211,15 @@ class Capabilities:
                         raise ValueError('Worker input artifact exceeds budget')
                     packet = json.loads(raw)
                     validate_packet(packet, task_id)
-                    result = self.worker(packet, operation)
+                    if self.context_plane is not None:
+                        from runtime.kernel.context_plane import ContextError
+                        if context_runtime is None:
+                            raise ContextError('DENIED')
+                        state, spec, admission = context_runtime
+                        if state['task_id'] != task_id:
+                            raise ContextError('DENIED')
+                        self.context_plane.guard_worker(state, spec, admission, value['packet_ref'], operation)
+                    result = self.dispatch_worker(packet, operation, task_id)
                     ref = self.store.put_json(task_id, result)
                     output = {'worker_outcome':result['outcome'], 'attempt_id':result['attempt_id'],
                               'evidence_ref':ref}
@@ -185,59 +266,20 @@ class Capabilities:
             return message("CapabilityResult", {"operation_id": operation, "outcome": "success",
                            "output": output, "artifacts": artifacts, "error": None})
         except (ValueError, FileNotFoundError, UnicodeError) as error:
+            if self.context_plane is not None:
+                from runtime.kernel.context_plane import ContextError, failure
+                return failure(operation, error if isinstance(error, ContextError) else ContextError('UNAVAILABLE'))
             return message("CapabilityResult", {"operation_id": operation, "outcome": "failure",
                            "output": {}, "artifacts": {}, "error": str(error)})
 
 
 def evaluate(spec: TaskSpec, state: TaskState, store: ArtifactStore) -> dict:
-    findings = []
-    for criterion in spec["completion"]:
-        expected = criterion["evidence"]
-        ref = state["artifacts"].get(expected["artifact"])
-        outcome, detail = "unsatisfied", "Required artifact is missing"
-        if ref:
-            try:
-                content = store.read(state["task_id"], ref)
-                if expected.get('verifier') == 'human_response':
-                    request = expected['request']
-                    accepted = state.get('human_responses', {}).get(request['payload']['request_id'])
-                    if ref != accepted:
-                        raise ValueError('Artifact was not accepted through the human input boundary')
-                    validate_response(json.loads(content), request, state['task_id'])
-                    outcome, detail = 'satisfied', 'Scoped response accepted and allowed value independently verified'
-                elif expected.get('verifier') == LOCAL_SUMMARY_MARKER:
-                    # Bounded PoC verifier. A local model summarises the objective's
-                    # material by paraphrase, so a pre-known digest is impossible. The
-                    # objective instructed the model to END the summary with an exact
-                    # marker and to stay within a word budget, so those two properties
-                    # are the verifiable contract: the marker the model was told to
-                    # emit, and the bounded length. Both are checked independently of
-                    # the model's paraphrasing; objective is kept for audit/reporting.
-                    value = content.decode('utf-8', errors='replace')
-                    marker = expected['marker']
-                    has_marker = marker in value
-                    words = len(value.split())
-                    within = words <= expected['max_words']
-                    if has_marker and within:
-                        outcome, detail = 'satisfied', (
-                            f'Local-model summary verified: marker present, {words} words <= {expected["max_words"]}')
-                    else:
-                        parts = []
-                        if not has_marker:
-                            parts.append('marker absent')
-                        if not within:
-                            parts.append(f'{words} words > {expected["max_words"]}')
-                        outcome, detail = 'unsatisfied', 'Local-model summary failed: ' + '; '.join(parts)
-                else:
-                    outcome = "satisfied" if hashlib.sha256(content).hexdigest() == expected["sha256"] else "unsatisfied"
-                    detail = "Exact artifact digest verified" if outcome == "satisfied" else "Artifact does not match accepted digest"
-            except (OSError, ValueError) as error:
-                outcome, detail = "unknown", str(error)
-        findings.append({"criterion": criterion["criterion"], "outcome": outcome,
-                         "evidence_ref": ref, "detail": detail})
-    outcomes = {item["outcome"] for item in findings}
-    result: CompletionEvaluation = {
-        "outcome": "unsatisfied" if "unsatisfied" in outcomes else "unknown" if "unknown" in outcomes else "satisfied",
-        "criteria": findings,
-    }
-    return message("CompletionEvaluation", result)
+    """v1 CompletionEvaluation over the lowered revision 0, for existing readers.
+
+    Verdicts come from the same Completion Contract verifiers; the workflow itself
+    decides completion only through ``completion.evaluate_contract``/``legality``.
+    """
+    from runtime.kernel.completion import assess, lower_spec, project_v1
+    contract = lower_spec(spec, state['task_id'], state.get('parent'))
+    facts = {'error': None, 'analysis': None, 'authorities': {}, 'receipts': set()}
+    return project_v1(contract, assess(contract, state, store, facts))

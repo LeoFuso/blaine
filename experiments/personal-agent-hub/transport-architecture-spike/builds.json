@@ -1,0 +1,43 @@
+{
+  "scope": "Local experimental builds only; no Actions/public release proof",
+  "go_version": "go1.27.1",
+  "tsnet": "v1.102.4",
+  "websocket": "v1.8.15",
+  "sources": {
+    "auth.go": "e5a1f7be0cf689f66b5360473e9febe6e5ed14dcf8c193efd4399a10002af594",
+    "go.mod": "412a2f718fb73eae32d60a96e0e50ce5be3ba00bcba22a155a4bd9066212d565",
+    "go.sum": "b3a6023b18f99482027c7710d857afabc1b7e28c2fa4d520c1c9c5bf195b22e4",
+    "main.go": "4c58b95f2b7328b7516507e27e434e6849f59cd22d6f0a6724249d4bc40a4c96",
+    "main_test.go": "d0007fde5d2078c33ef3ac23a5ac351736cb528e969b76d5f25c3306bf8f9bc7"
+  },
+  "builds": [
+    {
+      "target": "darwin-arm64",
+      "binary_bytes": 20340450,
+      "sha256": "aaca8980bfbf6aeddecc61a162678e1c37af1b8d68306be2bb81a7c262fb0ece",
+      "format": "Mach-O 64-bit arm64 executable, flags:<|DYLDLINK|PIE>",
+      "runtime_verified": false
+    },
+    {
+      "target": "darwin-amd64",
+      "binary_bytes": 21763456,
+      "sha256": "5f877fd22c189c7a12b2f723423b7d8ff12c08b852f37d9767b64a817b564801",
+      "format": "Mach-O 64-bit x86_64 executable, flags:<|DYLDLINK|PIE>",
+      "runtime_verified": false
+    },
+    {
+      "target": "linux-amd64",
+      "binary_bytes": 21934240,
+      "sha256": "2eea76c617e9b0578059b0321a6ff181d485ba0c19aa2ad897b65f9eb9d76d77",
+      "format": "ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=IyNFkp_3RjzfPWvKd2or/uAGDoFFhZGaGtOzcPFzC/kMxD14R6YktQt_KA8uCk/jjtiSmZjgquxyt44UeJZ, BuildID[sha1]=61d9bf6697d45c366a2864991c3ef6cfc3f5434f, stripped",
+      "runtime_verified": false
+    },
+    {
+      "target": "linux-arm64",
+      "binary_bytes": 20316320,
+      "sha256": "01300da44a3137e547161080b4a1258e3d057c8c6cdd41590c91eb566952da90",
+      "format": "ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, Go BuildID=pIYwYhhUXS2rlCBvQAEb/2_k_GkD0wo89lQHCmTqv/7_GjTcOUPCstXlB4XuNr/BQN4_sXhge7Yx4dzvLku, BuildID[sha1]=082fcaea0e83ba4828726cc184cd789e4534f487, stripped",
+      "runtime_verified": false
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+[Unit]
+Description=Blaine Personal Agent CognitiveTaskV1 runtime
+Wants=blaine-infra.service blaine-generation.service blaine-embedding.service blaine-mirix.service blaine-restate.service
+StartLimitIntervalSec=1800
+StartLimitBurst=5
+
+[Service]
+Type=exec
+WorkingDirectory=%h/.local/share/blaine/runtime/app
+Environment=BLAINE_D2_DATA=%h/.local/share/blaine/runtime/data
+Environment=BLAINE_DEPLOYMENT_CONFIG=%h/.config/blaine/services/runtime.json
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStartPre=/usr/bin/python3 %h/.config/blaine/services/wait-ready.py --timeout 1500 http://127.0.0.1:49070/deployments http://127.0.0.1:8000/health http://127.0.0.1:8001/health http://127.0.0.1:8531/health
+ExecStart=%h/.local/share/blaine/runtime/env/bin/python -m runtime.personal_runtime
+ExecStartPost=/usr/bin/python3 %h/.config/blaine/services/register-runtime.py
+Restart=on-failure
+RestartSec=15
+TimeoutStartSec=1650
+TimeoutStopSec=60
+MemoryHigh=1G
+MemoryMax=2G
+UMask=0077
+
+[Install]
+WantedBy=default.target

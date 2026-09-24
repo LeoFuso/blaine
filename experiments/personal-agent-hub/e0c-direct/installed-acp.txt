@@ -1,0 +1,4 @@
+=== RUN   TestInstalledPersonalACP
+--- PASS: TestInstalledPersonalACP (0.47s)
+PASS
+ok  	blaine.local/client/internal/direct	1.482s

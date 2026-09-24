@@ -1,0 +1,28 @@
+{
+  "request_id": "d1-cognition-86abf6b59ae5",
+  "task_request": {
+    "version": 1,
+    "kind": "TaskSpec",
+    "payload": {
+      "objective": "For project D1Persistence_61e17b6f3500, retrieve its release marker from semantic memory and write only that exact marker into artifact answer, with no newline.",
+      "completion": [
+        {
+          "criterion": "Exact known semantic fact recalled",
+          "evidence": {
+            "artifact": "answer",
+            "sha256": "a89ecf49c79bcb45b4187cf1fdb195a74620d593216c3a83373c648c0b06b7d6"
+          }
+        }
+      ],
+      "capabilities": [
+        "artifact.write"
+      ],
+      "autonomy": {
+        "allowed": [
+          "artifact.write"
+        ]
+      }
+    }
+  },
+  "task_id": "task-c07a288d19a208d0e791c192c26d60cd3e0ad520e2a2bedbdd53810a365a8708"
+}

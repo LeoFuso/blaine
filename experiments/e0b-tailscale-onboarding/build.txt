@@ -1,0 +1,8 @@
+BUILD linux/amd64
+BUILD darwin/amd64
+BUILD darwin/arm64
+BUILD linux/arm64
+BUILD linux/amd64
+BUILD darwin/amd64
+BUILD darwin/arm64
+BUILD linux/arm64

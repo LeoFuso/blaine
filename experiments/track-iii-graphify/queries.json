@@ -1,0 +1,329 @@
+[
+  {
+    "depth": 1,
+    "direction": "out",
+    "end": null,
+    "group": "DIRECT",
+    "id": "S-D1",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "inherits",
+      "implements"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.listener.adapter.FilteringBatchMessageListenerAdapter",
+    "text": "Which immediate superclass and directly declared interface does FilteringBatchMessageListenerAdapter have?"
+  },
+  {
+    "depth": 1,
+    "direction": "in",
+    "end": null,
+    "group": "DIRECT",
+    "id": "S-D2",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "implements"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.listener.adapter.BatchToRecordAdapter",
+    "text": "Which production classes directly implement BatchToRecordAdapter?"
+  },
+  {
+    "depth": 1,
+    "direction": "out",
+    "end": null,
+    "group": "DIRECT",
+    "id": "S-D3",
+    "kind": "neighbors",
+    "local": true,
+    "relations": [
+      "calls"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory#createListenerContainer/1",
+    "text": "Which helpers declared in AbstractKafkaListenerContainerFactory are directly invoked by its createListenerContainer method?"
+  },
+  {
+    "depth": 1,
+    "direction": "out",
+    "end": null,
+    "group": "DIRECT",
+    "id": "J-D1",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "inherits"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "tools.jackson.databind.ser.jdk.ObjectArraySerializer",
+    "text": "What superclass is directly extended by ObjectArraySerializer?"
+  },
+  {
+    "depth": 1,
+    "direction": "out",
+    "end": null,
+    "group": "DIRECT",
+    "id": "J-D2",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "imports"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "file:src/main/java/tools/jackson/databind/introspect/AnnotatedMethod.java",
+    "text": "Which internal databind types does the AnnotatedMethod source explicitly import?"
+  },
+  {
+    "depth": 6,
+    "direction": "out",
+    "end": "org.springframework.kafka.listener.adapter.AsyncRepliesAware",
+    "group": "MULTI_HOP",
+    "id": "S-M1",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "inherits",
+      "implements"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+    "text": "Show a typed inheritance/implementation path from FilteringMessageListenerAdapter to AsyncRepliesAware."
+  },
+  {
+    "depth": 8,
+    "direction": "out",
+    "end": "org.springframework.kafka.config.KafkaListenerContainerFactory#createListenerContainer/1",
+    "group": "MULTI_HOP",
+    "id": "S-M2",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "calls"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.config.KafkaListenerEndpointRegistrar#registerAllEndpoints/0",
+    "text": "Show a statically supported call chain from registerAllEndpoints to the KafkaListenerContainerFactory creation contract; do not infer concrete runtime dispatch."
+  },
+  {
+    "depth": 6,
+    "direction": "out",
+    "end": "tools.jackson.databind.ValueSerializer",
+    "group": "MULTI_HOP",
+    "id": "J-M1",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "inherits"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "tools.jackson.databind.ser.jdk.ObjectArraySerializer",
+    "text": "Trace ObjectArraySerializer through its superclass chain to ValueSerializer."
+  },
+  {
+    "depth": 8,
+    "direction": "out",
+    "end": "tools.jackson.databind.DatabindContext#lazyIntrospectBeanDescription/1",
+    "group": "MULTI_HOP",
+    "id": "J-M2",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "calls"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "tools.jackson.databind.ObjectMapper#_readMapAndClose/3",
+    "text": "Trace a source-supported call chain from ObjectMapper _readMapAndClose to DatabindContext lazyIntrospectBeanDescription through root deserializer creation."
+  },
+  {
+    "depth": 8,
+    "direction": "out",
+    "end": "tools.jackson.databind.deser.bean.CreatorCollector#_fixAccess/1",
+    "group": "MULTI_HOP",
+    "id": "J-M3",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "calls"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "tools.jackson.databind.deser.BasicDeserializerFactory#createReferenceDeserializer/3",
+    "text": "Trace a source-supported call chain from reference deserializer creation to CreatorCollector _fixAccess; distinguish declared call connectivity from runtime execution."
+  },
+  {
+    "depth": 4,
+    "direction": "in",
+    "end": null,
+    "group": "IMPACT",
+    "id": "S-I1",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "inherits",
+      "implements"
+    ],
+    "repo": "spring-kafka",
+    "scope": "org.springframework.kafka.listener.adapter.",
+    "start": "org.springframework.kafka.listener.adapter.AsyncRepliesAware",
+    "text": "Which adapter types are transitively structurally downstream of AsyncRepliesAware through heritage within four edges? These are candidates, not proven runtime effects."
+  },
+  {
+    "depth": 3,
+    "direction": "in",
+    "end": null,
+    "group": "IMPACT",
+    "id": "S-I2",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "inherits",
+      "implements"
+    ],
+    "repo": "spring-kafka",
+    "scope": "org.springframework.kafka.config.",
+    "start": "org.springframework.kafka.config.KafkaListenerEndpoint",
+    "text": "Which endpoint classes are within three heritage edges downstream of KafkaListenerEndpoint?"
+  },
+  {
+    "depth": 3,
+    "direction": "in",
+    "end": null,
+    "group": "IMPACT",
+    "id": "S-I3",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "inherits",
+      "implements"
+    ],
+    "repo": "spring-kafka",
+    "scope": "org.springframework.kafka.listener.adapter.",
+    "start": "org.springframework.kafka.listener.MessageListener",
+    "text": "Which production listener adapters are within three heritage edges downstream of MessageListener?"
+  },
+  {
+    "depth": 5,
+    "direction": "in",
+    "end": null,
+    "group": "IMPACT",
+    "id": "J-I1",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "inherits",
+      "implements"
+    ],
+    "repo": "jackson-databind",
+    "scope": "tools.jackson.databind.ext.javatime.deser.",
+    "start": "tools.jackson.databind.ValueDeserializer",
+    "text": "Which java-time deserializer types are within five heritage edges downstream of ValueDeserializer? Report structural candidates only."
+  },
+  {
+    "depth": 3,
+    "direction": "in",
+    "end": null,
+    "group": "IMPACT",
+    "id": "J-I2",
+    "kind": "neighbors",
+    "local": false,
+    "relations": [
+      "inherits",
+      "implements"
+    ],
+    "repo": "jackson-databind",
+    "scope": "tools.jackson.databind.introspect.",
+    "start": "tools.jackson.databind.introspect.Annotated",
+    "text": "Which introspection types are within three heritage edges downstream of Annotated?"
+  },
+  {
+    "depth": 1,
+    "direction": "out",
+    "end": "org.springframework.kafka.listener.ConsumerSeekAware",
+    "group": "TRAP",
+    "id": "S-T1",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "implements"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.listener.adapter.FilteringMessageListenerAdapter",
+    "text": "Does FilteringMessageListenerAdapter DIRECTLY declare implementation of ConsumerSeekAware, rather than inherit it through a base?"
+  },
+  {
+    "depth": 1,
+    "direction": "out",
+    "end": "org.springframework.kafka.core.KafkaAdmin",
+    "group": "TRAP",
+    "id": "S-T2",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "calls"
+    ],
+    "repo": "spring-kafka",
+    "scope": null,
+    "start": "org.springframework.kafka.config.AbstractKafkaListenerContainerFactory",
+    "text": "Does the factory class have a calls edge to KafkaAdmin, rather than merely import/type-use connectivity? Do not convert uses/imports into calls."
+  },
+  {
+    "depth": 5,
+    "direction": "out",
+    "end": "tools.jackson.databind.deser.impl.PropertyBasedObjectIdGenerator",
+    "group": "TRAP",
+    "id": "J-T1",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "inherits"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "tools.jackson.databind.ser.impl.PropertyBasedObjectIdGenerator",
+    "text": "Is ser.impl.PropertyBasedObjectIdGenerator a subclass of the distinct deser.impl.PropertyBasedObjectIdGenerator? Same simple names are not identity."
+  },
+  {
+    "depth": 6,
+    "direction": "out",
+    "end": "tools.jackson.databind.ValueSerializer",
+    "group": "TRAP",
+    "id": "J-T2",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "implements"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "tools.jackson.databind.ser.jdk.ObjectArraySerializer",
+    "text": "Does ObjectArraySerializer implement ValueSerializer as an interface, as opposed to extending a class hierarchy?"
+  },
+  {
+    "depth": 1,
+    "direction": "out",
+    "end": "tools.jackson.databind.JavaType",
+    "group": "TRAP",
+    "id": "J-T3",
+    "kind": "path",
+    "local": false,
+    "relations": [
+      "calls"
+    ],
+    "repo": "jackson-databind",
+    "scope": null,
+    "start": "tools.jackson.databind.introspect.AnnotatedMethod",
+    "text": "Is AnnotatedMethod calling JavaType established by a class-level calls edge? Imports or inferred uses alone do not establish a call."
+  }
+]

@@ -1,0 +1,200 @@
+{
+  "bindings": {
+    "execution-main": {
+      "binding_ref": "binding-main",
+      "context_id": "task-main",
+      "domain": "personal",
+      "participants": [
+        "cognition",
+        "worker",
+        "verifier"
+      ],
+      "required_evidence": "binding-evidence"
+    }
+  },
+  "context_domains": {
+    "attempt": "personal",
+    "employer-x": "employer-x",
+    "personal": "personal",
+    "project-new": "personal",
+    "project-old": "personal",
+    "root": "public",
+    "task-main": "personal",
+    "task-sibling": "personal",
+    "task-x": "employer-x"
+  },
+  "current_evidence": {
+    "binding-evidence": {
+      "binding_ref": "binding-main",
+      "status": "VALID"
+    }
+  },
+  "entries": [
+    {
+      "content": "General shared engineering rule.",
+      "context_id": "root",
+      "domain": "public",
+      "id": "public-rule",
+      "provenance": "USER_DECLARATION",
+      "semantic_status": "DECLARED"
+    },
+    {
+      "content": "Checkpoint-era project guidance.",
+      "context_id": "project-old",
+      "domain": "personal",
+      "id": "old-rule",
+      "provenance": "USER_DECLARATION",
+      "semantic_status": "DECLARED"
+    },
+    {
+      "content": "Current replacement project guidance.",
+      "context_id": "project-new",
+      "domain": "personal",
+      "id": "new-rule",
+      "provenance": "USER_DECLARATION",
+      "semantic_status": "DECLARED"
+    },
+    {
+      "content": "Hypothesis remains untested.",
+      "context_id": "task-main",
+      "domain": "personal",
+      "id": "observation",
+      "provenance": "AGENT_OBSERVATION",
+      "semantic_status": "UNVERIFIED"
+    },
+    {
+      "content": "Approach S succeeded under condition P.",
+      "context_id": "task-main",
+      "domain": "personal",
+      "id": "success",
+      "provenance": "VERIFIED_OUTCOME",
+      "semantic_status": "VERIFIED_SUCCESS"
+    },
+    {
+      "content": "Approach F failed under condition Q.",
+      "context_id": "task-main",
+      "domain": "personal",
+      "id": "failure",
+      "provenance": "VERIFIED_OUTCOME",
+      "semantic_status": "VERIFIED_FAILURE"
+    },
+    {
+      "content": "SIBLING_CONTENT_CANARY",
+      "context_id": "task-sibling",
+      "domain": "personal",
+      "id": "sibling-private",
+      "provenance": "AGENT_OBSERVATION",
+      "semantic_status": "UNVERIFIED"
+    },
+    {
+      "content": "DESCENDANT_CONTENT_CANARY",
+      "context_id": "attempt",
+      "domain": "personal",
+      "id": "descendant-private",
+      "provenance": "AGENT_OBSERVATION",
+      "semantic_status": "UNVERIFIED"
+    },
+    {
+      "content": "ROOT_PROTECTED_CONTENT_CANARY",
+      "context_id": "root",
+      "domain": "employer-x",
+      "id": "protected-root",
+      "provenance": "USER_DECLARATION",
+      "semantic_status": "DECLARED"
+    },
+    {
+      "content": "EMPLOYER_CONTENT_CANARY",
+      "context_id": "task-x",
+      "domain": "employer-x",
+      "id": "protected-x",
+      "provenance": "VERIFIED_OUTCOME",
+      "semantic_status": "VERIFIED_FAILURE"
+    }
+  ],
+  "known_policy_refs": [
+    "P1",
+    "P2"
+  ],
+  "known_topology_refs": [
+    "T1",
+    "T2"
+  ],
+  "nodes": [
+    {
+      "id": "root",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": null
+    },
+    {
+      "id": "personal",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "root"
+    },
+    {
+      "id": "project-old",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "personal"
+    },
+    {
+      "id": "project-new",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "personal"
+    },
+    {
+      "id": "task-main",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "project-old"
+    },
+    {
+      "id": "task-sibling",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "project-old"
+    },
+    {
+      "id": "attempt",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "task-main"
+    },
+    {
+      "id": "employer-x",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "root"
+    },
+    {
+      "id": "task-x",
+      "inherit_parent": true,
+      "kind": "context",
+      "parent_id": "employer-x"
+    }
+  ],
+  "policy": {
+    "deny_ids": [],
+    "grants": {
+      "employer-x": [
+        "public",
+        "employer-x"
+      ],
+      "personal": [
+        "public",
+        "personal"
+      ],
+      "public": [
+        "public"
+      ]
+    }
+  },
+  "policy_revision": "P1",
+  "private_audit": {
+    "failure": "RAW_FAILURE_LOG_CANARY",
+    "success": "RAW_SUCCESS_LOG_CANARY"
+  },
+  "topology_revision": "T1"
+}

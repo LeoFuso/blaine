@@ -1,0 +1,97 @@
+{
+ "status": "EXECUTED",
+ "task_id": "boundary-live-001",
+ "model": "nvidia/Qwen3.8-27B-NVFP4",
+ "collector": "http://127.0.0.1:4318",
+ "lifecycle": "COMPLETED",
+ "iterations": 2,
+ "artifacts": [
+  "first",
+  "second"
+ ],
+ "boundaries_admitted": [
+  0,
+  1
+ ],
+ "observer_consultations": 2,
+ "observer_consultations_before_kill": 2,
+ "distinct_pids_consulting": [
+  680736
+ ],
+ "historical_boundaries_not_recomputed": [
+  0,
+  1
+ ],
+ "recomputed_boundaries": [],
+ "journal_continuation_steps": [
+  "continuation/1",
+  "continuation/2"
+ ],
+ "recovery_point": "SIGKILL after the second boundary admission was journaled",
+ "capability_profile": {
+  "version": 1,
+  "adapter_id": "blaine-kernel-loop",
+  "worker_family": "blaine.kernel.workflow",
+  "capabilities": {
+   "continuation.admit": {
+    "capability": "continuation.admit",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "Admission runs in a journaled step before cognition; replay reuses it."
+   },
+   "continuation.observe": {
+    "capability": "continuation.observe",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "Each workflow iteration begins at a continuation boundary."
+   },
+   "continuation.steer": {
+    "capability": "continuation.steer",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "Durable external input resolves a promise consumed at the next boundary."
+   },
+   "effort.rebind": {
+    "capability": "effort.rebind",
+    "support": "UNSUPPORTED",
+    "granularity": null,
+    "evidence": "none",
+    "note": "No reasoning-effort control is exposed by the local chat binding."
+   },
+   "execution.interrupt": {
+    "capability": "execution.interrupt",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "Restate invocation cancellation is delivered at a durable await."
+   },
+   "model.observe": {
+    "capability": "model.observe",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "One cognition call per iteration, with adapter-supplied token usage."
+   },
+   "model.rebind": {
+    "capability": "model.rebind",
+    "support": "UNSUPPORTED",
+    "granularity": null,
+    "evidence": "none",
+    "note": "Cognition binding is deployment configuration, not a runtime control."
+   },
+   "tool.observe": {
+    "capability": "tool.observe",
+    "support": "OBSERVED",
+    "granularity": "continuation",
+    "evidence": "live",
+    "note": "One admitted capability execution per iteration."
+   }
+  },
+  "undeclared": []
+ },
+ "result_outcome": "COMPLETED",
+ "concerns": []
+}

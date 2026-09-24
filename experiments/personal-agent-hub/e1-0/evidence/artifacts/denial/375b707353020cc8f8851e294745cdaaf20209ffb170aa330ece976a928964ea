@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"specialist":"specialist","type":"HANDOFF"},"task_id":"denial","task_revision":3,"turn_id":"denial/4"},"version":1}

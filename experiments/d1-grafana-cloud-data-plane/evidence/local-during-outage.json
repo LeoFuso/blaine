@@ -1,0 +1,10 @@
+{
+  "local_file_age_seconds": 0.20113539695739746,
+  "local_file_bytes": 3224876,
+  "local_metrics_counters": [
+    "otelcol_exporter_sent_metric_points_total{component_id=\"otelcol.exporter.file.local\",component_path=\"/\",exporter=\"file/otelcol.exporter.file.local\",otel_scope_name=\"go.opentelemetry.io/collector/exporter/exporterhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\"} 6348",
+    "otelcol_receiver_accepted_metric_points_total{component_id=\"otelcol.receiver.otlp.local\",component_path=\"/\",otel_scope_name=\"go.opentelemetry.io/collector/receiver/receiverhelper\",otel_scope_schema_url=\"\",otel_scope_version=\"\",receiver=\"otlp/otelcol.receiver.otlp.local\",transport=\"http\"} 10",
+    "prometheus_remote_storage_samples_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"http://127.0.0.1:1/api/prom/push\"} 3499",
+    "prometheus_remote_storage_samples_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"http://127.0.0.1:1/api/prom/push\"} 2500"
+  ]
+}

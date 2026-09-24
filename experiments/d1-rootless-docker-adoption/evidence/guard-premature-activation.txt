@@ -1,0 +1,21 @@
+
+PLAY [Stage the D1 rootless operator runtime (activation is a separate cutover)] ***
+
+TASK [Require operator staging with explicit safe scope] ***********************
+[ERROR]: Task failed: Action failed: Staging only; follow docs/platform-rootless-docker.md for candidate and cutover acceptance
+Origin: /home/leofuso/workspace/blaine/infra/ansible/infrastructure.yml:13:7
+
+11     blaine_state: '{{ blaine_prefix }}{{ blaine_operator_home }}/.local/share/blaine/infra'
+12   tasks:
+13     - name: Require operator staging with explicit safe scope
+         ^ column 7
+
+fatal: [localhost]: FAILED! => {
+    "assertion": "not (blaine_activate | bool)",
+    "changed": false,
+    "evaluated_to": false,
+    "msg": "Staging only; follow docs/platform-rootless-docker.md for candidate and cutover acceptance"
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0

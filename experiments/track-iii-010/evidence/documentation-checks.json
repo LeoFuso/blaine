@@ -1,0 +1,3866 @@
+{
+  "checks": [
+    {
+      "check": "changed-file-boundary",
+      "detail": [
+        "README.md",
+        "docs/README.md",
+        "docs/milestones/052-track-iii-10-context-propagation.md",
+        "docs/milestones/README.md",
+        "docs/research/track-iii/001-reference-systems.md",
+        "docs/roadmap/001-blaine-development-roadmap.md",
+        "experiments/track-iii-010/PROTOCOL.md",
+        "experiments/track-iii-010/README.md",
+        "experiments/track-iii-010/cases.json",
+        "experiments/track-iii-010/check.py",
+        "experiments/track-iii-010/evidence/documentation-checks.json",
+        "experiments/track-iii-010/evidence/fixture-freeze.json",
+        "experiments/track-iii-010/evidence/initial-verification.json",
+        "experiments/track-iii-010/evidence/mutation-controls.json",
+        "experiments/track-iii-010/evidence/preregistration.json",
+        "experiments/track-iii-010/evidence/primary/exports.json",
+        "experiments/track-iii-010/evidence/primary/process-attestations.json",
+        "experiments/track-iii-010/evidence/primary/results.json",
+        "experiments/track-iii-010/evidence/reproducibility.json",
+        "experiments/track-iii-010/evidence/serialized-provenance/exports.json",
+        "experiments/track-iii-010/evidence/serialized-provenance/process-attestations.json",
+        "experiments/track-iii-010/evidence/serialized-provenance/results.json",
+        "experiments/track-iii-010/evidence/serialized-provenance/verification.json",
+        "experiments/track-iii-010/evidence/serialized-scope/exports.json",
+        "experiments/track-iii-010/evidence/serialized-scope/process-attestations.json",
+        "experiments/track-iii-010/evidence/serialized-scope/results.json",
+        "experiments/track-iii-010/evidence/serialized-scope/verification.json",
+        "experiments/track-iii-010/evidence/stale-policy/exports.json",
+        "experiments/track-iii-010/evidence/stale-policy/process-attestations.json",
+        "experiments/track-iii-010/evidence/stale-policy/results.json",
+        "experiments/track-iii-010/evidence/stale-policy/verification.json",
+        "experiments/track-iii-010/evidence/summary.json",
+        "experiments/track-iii-010/evidence/verification.json",
+        "experiments/track-iii-010/protocol.json",
+        "experiments/track-iii-010/receiver.py",
+        "experiments/track-iii-010/request.json",
+        "experiments/track-iii-010/run.py",
+        "experiments/track-iii-010/security.json",
+        "experiments/track-iii-010/state.json",
+        "experiments/track-iii-010/verify.py"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "text/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/roadmap/001-blaine-development-roadmap.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/personal-agent-hub.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/roadmap/001-blaine-development-roadmap.md#current-next",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/roadmap/001-blaine-development-roadmap.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/experiments/track-iii-010/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/personal-agent-hub.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/architecture.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/decisions/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/milestones/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/contracts/task-spec.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/contracts/task-operations.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/contracts/frontier-dispatch.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/contracts/execution-event.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/platform-infrastructure.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/platform-rootless-docker.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/platform-observability-inventory.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/experiments/d1-grafana-cloud-data-plane/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/platform-grafana-cloud.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/platform-operations.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/platform-grafana-cloud.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/docs/daily-driver-d2.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/BLAINE.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/skills/SKILL.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/README.md/LICENSE",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/docs/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/docs/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/architecture.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/roadmap/001-blaine-development-roadmap.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/personal-agent-hub.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../client/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/e0a-blaine-client/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-secrets.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/jev-provider-carveout/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/contracts/worker-execution-boundary.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/worker-execution-instrumentation/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/contracts/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/policies/task-completion-and-lifecycle.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/decisions/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/daily-driver-d2.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/milestones/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/research/track-iii/001-reference-systems.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-002/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-003/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-004/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-005/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-006/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-007/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-008/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-008r/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-009/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/track-iii-010/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../experiments/",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../infra/",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../BLAINE.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/../skills/SKILL.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-infrastructure.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-rootless-docker.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-observability-inventory.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-secrets.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-gpu-vllm-telemetry.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-grafana-cloud.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-operations.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/platform-d1.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/agentic-development-kit.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/blaine-refactor-plan.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/research/cognitive-loop-checkpoint.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/research/multica-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/README.md/research/graphify-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/docs/milestones/052-track-iii-10-context-propagation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/docs/milestones/052-track-iii-10-context-propagation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/PROTOCOL.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/fixture-freeze.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/primary/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/primary/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/mutation-controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/052-track-iii-10-context-propagation.md/../../experiments/track-iii-010/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/docs/milestones/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/docs/milestones/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../roadmap/001-blaine-development-roadmap.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/052-track-iii-10-context-propagation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/track-iii-010/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/cognitive-kernel-progress.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/037-cognitive-kernel-increment-12-parallel-children.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/kernel-increment-12/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/036-cognitive-kernel-increment-11-live-pass.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/kernel-increment-11/evidence/live-authorized-002/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/038-d1-local-inference.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/d1-service-adoption/evidence/inference-summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/039-d1-service-adoption.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../infra/validation-d1-infrastructure.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../platform-d1.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../infra/volume-preparation-d1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/040-worker-execution-instrumentation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/worker-execution-instrumentation/evidence/evidence-summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../decisions/0023-runtime-secret-delivery-and-materialization.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../infra/validation-secret-delivery.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/secret-delivery-spike/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../platform-secrets.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/041-jev-provider-candidate.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/jev-provider-carveout/evidence/live/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../daily-driver-d2.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/daily-driver-d2/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/daily-driver-d2/evidence/validation.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../../experiments/daily-driver-d2/evidence/post-sync-native-summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/milestones/README.md/../personal-agent-hub.md#milestone-acceptance",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/docs/research/track-iii/001-reference-systems.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/docs/research/track-iii/001-reference-systems.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/044-track-iii-3-continuous-memory-capability.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../roadmap/001-blaine-development-roadmap.md#track-iii--hierarchical-context-memory--verified-learning",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/045-track-iii-4-bounded-security-context-isolation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/046-track-iii-5-promotion-declassification-admission.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/047-track-iii-6-verified-outcome-admission.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/048-track-iii-7-learned-memory-utility.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/049-track-iii-8-workspace-discovery.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/050-track-iii-8r-narrow-consumption-recovery.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/051-track-iii-9-novelty-simplicity-advisory.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/052-track-iii-10-context-propagation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../experiments/track-iii-001/evidence/source-manifest.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../experiments/track-iii-001/evidence/review.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../experiments/track-iii-001/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../architecture.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../roadmap/001-blaine-development-roadmap.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0001-task-is-the-unit-of-work.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0003-evaluate-restate-as-durable-runtime.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0015-durable-task-execution-and-verification.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/cognitive-kernel-progress.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../cognitive-loop-checkpoint.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0007-tools-before-model-inference.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0008-paid-cloud-crosses-single-dispatch-boundary.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0009-cloud-context-packet.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0010-worker-selection-is-capability-and-quality-driven.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0011-local-inference-is-a-scheduled-shared-resource.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0013-protected-context-transformations.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0014-project-knowledge-is-retrieval-first.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../contracts/frontier-dispatch.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../contracts/worker-execution-boundary.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../contracts/execution-event.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../policies/task-completion-and-lifecycle.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../mirix-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/009-cognitive-kernel-increment-4-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../runtime/kernel/memory.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../runtime/kernel/context.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../runtime/kernel/workflow.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../graphify-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../milestones/025-cognitive-kernel-increment-9-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../runtime/kernel/project_knowledge.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../daily-driver-d2.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../personal-agent-hub.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../decisions/0024-routing-ground-truth-from-restricted-replay.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../mirix-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../mirix-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../graphify-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../../runtime/kernel/project_knowledge.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/research/track-iii/001-reference-systems.md/../../contracts/frontier-dispatch.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/docs/roadmap/001-blaine-development-roadmap.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/docs/roadmap/001-blaine-development-roadmap.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/e0b-tailscale-onboarding/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../policies/local-first-and-context.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0001-task-is-the-unit-of-work.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0003-evaluate-restate-as-durable-runtime.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/cognitive-kernel-progress.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/024-cognitive-kernel-increment-8-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../research/cognitive-loop-checkpoint.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/011-cognitive-kernel-increment-5-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/037-cognitive-kernel-increment-12-parallel-children.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../policies/task-completion-and-lifecycle.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/024-cognitive-kernel-increment-8-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/037-cognitive-kernel-increment-12-parallel-children.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../contracts/frontier-dispatch.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/012-cognitive-kernel-increment-6-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../daily-driver-d2.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/009-cognitive-kernel-increment-4-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/025-cognitive-kernel-increment-9-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../contracts/frontier-dispatch.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/015-cognitive-kernel-increment-7-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/036-cognitive-kernel-increment-11-live-pass.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../contracts/execution-event.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/027-cognitive-kernel-increment-10.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/cognitive-kernel-progress.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/036-cognitive-kernel-increment-11-live-pass.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/037-cognitive-kernel-increment-12-parallel-children.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../personal-agent-hub.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0022-workstation-personal-agent-client.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../client/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/e0a-blaine-client/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-rootless-docker.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0020-rootless-docker-operator-runtime.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0019-local-inference-serving-baseline.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-d1.md#ready-at-login--configured-and-live-tested-host-reboot-pending",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-infrastructure.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../infra/validation-d1-infrastructure.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-operations.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0018-local-platform-durability-and-observability.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-grafana-cloud.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0021-fleet-observability-control-plane.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-d1.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-services.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../daily-driver-d2.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/daily-driver-d2/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/daily-driver-d2/evidence/validation.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../personal-agent-hub.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-grafana-cloud.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../research/multica-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0016-agent-harnesses-are-replaceable-execution-capabilities.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../contracts/frontier-dispatch.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0013-protected-context-transformations.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../policies/local-first-and-context.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/041-jev-provider-candidate.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../contracts/frontier-dispatch.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/0010-worker-selection-is-capability-and-quality-driven.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/025-cognitive-kernel-increment-9-passed.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../research/graphify-carveout.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/052-track-iii-10-context-propagation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/051-track-iii-9-novelty-simplicity-advisory.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/050-track-iii-8r-narrow-consumption-recovery.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/049-track-iii-8-workspace-discovery.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/048-track-iii-7-learned-memory-utility.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../research/track-iii/001-reference-systems.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/042-track-iii-1-reference-systems.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../research/track-iii/001-reference-systems.md#9-track-iii-sequence-and-open-risks",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/track-iii-002/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/track-iii-008/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../decisions/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../personal-agent-hub.md#open-questions",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/track-iii-010/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/e0a-blaine-client/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../../experiments/e0b-tailscale-onboarding/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../personal-agent-hub.md#implementation-decomposition",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-observability-inventory.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-observability-inventory.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-gpu-vllm-telemetry.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../platform-secrets.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/041-jev-provider-candidate.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../milestones/040-worker-execution-instrumentation.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/docs/roadmap/001-blaine-development-roadmap.md/../contracts/worker-execution-boundary.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/PROTOCOL.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/PROTOCOL.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/PROTOCOL.md/cases.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/PROTOCOL.md/state.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/PROTOCOL.md/security.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/PROTOCOL.md/protocol.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/PROTOCOL.md/evidence/fixture-freeze.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/PROTOCOL.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/cases.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/state.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/security.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/fixture-freeze.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/receiver.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/initial-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/primary/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/primary/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/primary/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/mutation-controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "link/experiments/track-iii-010/README.md/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/cases.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/cases.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/check.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/check.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "imports/experiments/track-iii-010/check.py",
+      "detail": [
+        "collections",
+        "pathlib",
+        "argparse",
+        "hashlib",
+        "json",
+        "sys"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/fixture-freeze.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/fixture-freeze.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/initial-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/initial-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/mutation-controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/mutation-controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/primary/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/primary/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/primary/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/primary/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/primary/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/primary/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-provenance/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-provenance/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-provenance/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-provenance/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-provenance/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-provenance/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-provenance/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-provenance/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-scope/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-scope/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-scope/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-scope/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-scope/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-scope/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/serialized-scope/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/serialized-scope/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/stale-policy/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/stale-policy/exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/stale-policy/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/stale-policy/process-attestations.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/stale-policy/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/stale-policy/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/stale-policy/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/stale-policy/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/protocol.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/protocol.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/receiver.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/receiver.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "imports/experiments/track-iii-010/receiver.py",
+      "detail": [
+        "pathlib",
+        "evaluator",
+        "argparse",
+        "copy",
+        "json",
+        "os",
+        "re",
+        "sys"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/run.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/run.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "imports/experiments/track-iii-010/run.py",
+      "detail": [
+        "pathlib",
+        "receiver",
+        "argparse",
+        "copy",
+        "hashlib",
+        "json",
+        "os",
+        "subprocess",
+        "sys",
+        "tempfile"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/security.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/security.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/state.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/state.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "text/experiments/track-iii-010/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "whitespace/experiments/track-iii-010/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "imports/experiments/track-iii-010/verify.py",
+      "detail": [
+        "pathlib",
+        "check",
+        "argparse",
+        "json",
+        "subprocess",
+        "sys"
+      ],
+      "status": "PASS"
+    },
+    {
+      "check": "git-diff-check",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-001/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-001/evidence/review.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-001/evidence/source-manifest.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-001/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evaluator.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/mutation-control.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/mutation-results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/restored-results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/fixtures.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/probe.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-002/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/capability.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/forged-provenance.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/initial-only.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/restored.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/fixtures.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/probe.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-003/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/literal-leakage.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/observables.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/query-only-cache.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/restored.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/structural-only.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/fixtures.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/leak_scan.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/probe.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/security.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-004/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/destination-exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/fail-open.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/leakage.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/restored.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/fixtures.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/gate.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/probe.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-005/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/admission.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/leakage.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/missing-as-pass.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/restored.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/retrieval-exports.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/evidence/worker-claim.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/fixtures.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/probe.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-006/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/composition.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/behavior.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/compatibility.patch",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/composition.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/model-availability.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/mutation-control.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/mutation.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/restored.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/fixtures.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/gate-fixture.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/promotion_v2.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/protocol.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/run.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-007/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/build_index.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/check_boundaries.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/discover.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/boundaries.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/budget-correction.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/budget-correction.patch",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/embedding-model.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/embedding-requests.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/freshness-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/freshness.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/graphify-raw.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/index-build-attempt-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/indexes.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/discover.py.txt",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/freshness-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/freshness.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/isolation-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/isolation.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/stale-safe-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/stale-safe.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/initial-payload-only/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/isolation-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/isolation.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/restored.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/stale-safe-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/stale-safe.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/tooling.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/vectors.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/oracles.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/protocol.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/queries.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/revision-diff.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/revisions.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/security.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/source.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/verify.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/employer-x/hidden.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/audit.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/book.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/contracts.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/gate.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/helpers.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/identity.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/legacy.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_00.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_01.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_02.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_03.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_04.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_05.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_06.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_07.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_08.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_09.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_10.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/notes/note_11.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/publish.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/settings.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/transport.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/A/personal/workflow.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/employer-x/hidden.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/adapters/parcel.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/audit.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/book.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/contracts.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/gate.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/helpers.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/identity.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_00.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_01.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_02.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_03.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_04.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_05.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_06.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_07.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_08.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_09.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_10.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/notes/note_11.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/publish.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/settings.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/store.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008/workspace/B/personal/workflow.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/POLICY.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/check.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/fallback-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/fallback.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/freshness-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/freshness.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/isolation-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/isolation.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/restored.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/results-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/stale-safe-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/stale-safe.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/frozen-assets.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/policy.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/recover.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-008r/run.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/README.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/bind.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/check.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/collect.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/action-metrics.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/advisory-results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/advisory-stale-safe.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/behavior.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D1-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D1-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D1-ON-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D2-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D2-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D3-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D3-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D4-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D4-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-D4-ON-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L1-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L1-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L1-ON-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L2-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L2-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L3-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L3-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L4-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-L4-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N1-FALSE_EQUIVALENCE-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N1-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N1-OFF-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N1-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N2-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N2-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N3-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N3-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N4-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/0-N4-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D1-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D1-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D1-ON-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D2-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D2-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D3-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D3-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D4-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D4-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-D4-ON-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L1-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L1-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L1-ON-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L2-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L2-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L3-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L3-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L4-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-L4-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N1-FALSE_EQUIVALENCE-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N1-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N1-OFF-1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N1-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N2-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N2-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N3-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N3-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N4-OFF-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/calls/1-N4-ON-0.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/A-employer-x-graph.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/A-employer-x.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/A-personal-graph.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/A-personal.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/B-employer-x-graph.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/B-employer-x.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/B-personal-graph.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/B-personal.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/collection/queries.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/documentation-checks.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/embedding-model.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/embedding-requests.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/fixture-freeze.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/graphify-raw.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/indexes.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/model-availability.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/mutation-control.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/mutation-verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/mutation.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/preregistration.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/protected-candidates.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/recovery.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/reproducibility.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/results.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/run-complete.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/safety-controls.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/stale-safe.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/summary.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/vectors.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/evidence/verification.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/guidance.txt",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/oracles.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/policy.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/proposals.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/protocol.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/queries.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/request.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/revisions.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/run.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/security.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/employer-x/vault.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/app/entry.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/helpers.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/io/client.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/io/writer.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/lib/fence.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/lib/ledger.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/old/fold.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/ports.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/route.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_0.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_1.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_2.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_3.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_4.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_5.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_6.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/A/personal/telemetry/note_7.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/employer-x/vault.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/app/entry.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/helpers.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/io/client.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/io/writer.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/lib/fence.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/lib/fold.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/lib/ledger.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/ports.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/route.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_0.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_1.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_2.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_3.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_4.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_5.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_6.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-009/workspace/B/personal/telemetry/note_7.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-010/PROTOCOL.md",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-010/check.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-010/receiver.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/experiments/track-iii-010/run.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/acp_agent.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/app.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/interactive-restate.toml",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/interactive.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/__init__.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/adapter_profiles.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/artifacts.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/cognition.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/context.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/contracts.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/control.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/event_sinks.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/events.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/execution.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/frontier.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/frontier_context.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/human.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/instrument.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/memory.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/model.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/procedure.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/project_knowledge.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/semantic-human-request-v1.json",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/semantic_bridge.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/semantic_human.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/semantic_provider.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/telemetry_otel.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/worker.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/worker_routing.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/workflow.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/workspace.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/kernel/youtrack.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/personal-restate.toml",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/personal_acp.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/personal_agent.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/personal_runtime.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/requirements.txt",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/restate.toml",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "source-pin/runtime/task.py",
+      "detail": null,
+      "status": "PASS"
+    },
+    {
+      "check": "unsubmitted-TaskSpec",
+      "detail": null,
+      "status": "PASS"
+    }
+  ],
+  "json_parsed": 28,
+  "status": "PASS"
+}

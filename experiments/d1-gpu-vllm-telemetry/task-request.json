@@ -1,0 +1,41 @@
+{
+  "objective": "Deliver bounded RTX 5090 and existing vLLM infrastructure metrics through accepted Alloy remote-write to Grafana Cloud; no Task instrumentation.",
+  "mode": "interactive",
+  "capabilities": [
+    "inspect host services and GPU",
+    "edit infrastructure desired state",
+    "install compatible official GPU telemetry package",
+    "query existing Grafana metrics"
+  ],
+  "autonomy": {
+    "allowed": [
+      "bounded inference validation",
+      "Alloy restart",
+      "supported GPU exporter install/start/enable/restart",
+      "local commit"
+    ],
+    "forbidden": [
+      "reboot",
+      "Fleet activation",
+      "logs/traces changes",
+      "application or Task instrumentation",
+      "inference restart or rebuild",
+      "push",
+      "merge"
+    ]
+  },
+  "completion": [
+    {
+      "criterion": "Both vLLM endpoints scraped, changing useful metrics delivered to Cloud",
+      "evidence": "Live inventory, bounded request deltas, Cloud PromQL results"
+    },
+    {
+      "criterion": "Supported GPU exporter delivers plausible idle/load hardware metrics to Cloud, or documented hardware STOP yields PARTIAL",
+      "evidence": "NVIDIA support and version pairing, native service, nvidia-smi comparison, Cloud queries"
+    },
+    {
+      "criterion": "Desired state converges and accepted services preserved",
+      "evidence": "Ansible repeat, config validation, restart checks, before/after service and boot evidence"
+    }
+  ]
+}

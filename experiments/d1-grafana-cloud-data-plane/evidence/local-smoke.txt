@@ -1,0 +1,5 @@
+traces: accepted locally
+metrics: accepted locally
+logs: accepted locally
+Synthetic trace ID: 0cb6216ba813964e85acaf39a0534f74
+Local acceptance alone does not prove Grafana Cloud delivery.

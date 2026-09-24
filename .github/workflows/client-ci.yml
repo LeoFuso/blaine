@@ -1,0 +1,38 @@
+name: Client CI
+on:
+  push:
+    branches: ['**']
+    paths:
+      - 'client/**'
+      - '.github/workflows/client-*.yml'
+      - 'experiments/e0a-blaine-client/**'
+      - 'experiments/e0b-tailscale-onboarding/**'
+      - 'experiments/personal-agent-hub/e0c/**'
+      - 'experiments/personal-agent-hub/e0c-direct/**'
+      - 'runtime/direct_readiness.py'
+      - 'tests/test_direct_readiness.py'
+      - 'runtime/host_connection.py'
+      - 'tests/test_host_connection.py'
+  pull_request:
+    paths:
+      - 'client/**'
+      - '.github/workflows/client-*.yml'
+      - 'experiments/e0a-blaine-client/**'
+      - 'experiments/e0b-tailscale-onboarding/**'
+      - 'experiments/personal-agent-hub/e0c/**'
+      - 'experiments/personal-agent-hub/e0c-direct/**'
+      - 'runtime/direct_readiness.py'
+      - 'tests/test_direct_readiness.py'
+      - 'runtime/host_connection.py'
+      - 'tests/test_host_connection.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: client-ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  client:
+    uses: ./.github/workflows/client-build.yml
+    permissions:
+      contents: read

@@ -1,0 +1,24 @@
+{
+  "observed_at": 1790035728.3788736,
+  "validation_exit": 0,
+  "service": [
+    "ActiveState=active",
+    "SubState=running",
+    "UnitFileState=enabled",
+    "NRestarts=0",
+    "EnvironmentFiles=/etc/default/alloy (ignore_errors=no)",
+    "EnvironmentFiles=/etc/blaine/secrets/grafana-metrics.env (ignore_errors=no)",
+    "EnvironmentFiles=/etc/blaine/secrets/grafana-cloud.env (ignore_errors=yes)",
+    "User=alloy"
+  ],
+  "matches_repository_composition": true,
+  "no_test_proxy": true,
+  "no_test_relabel": true,
+  "no_fleet": true,
+  "secret_mode": "0o600",
+  "secret_owner_uid": 0,
+  "secret_parent_mode": "0o700",
+  "api_key_only": true,
+  "runtime_interactive_login": false,
+  "filesystem_free_bytes": 1276082212864
+}

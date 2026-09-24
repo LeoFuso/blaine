@@ -1,0 +1,200 @@
+[
+  {
+    "contract": {
+      "case_loss_allowed": true,
+      "lifecycle": "synchronous",
+      "transformation": "strip both edges, then Unicode casefold"
+    },
+    "group": "DUPLICATE",
+    "id": "D1",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create an account-handle cleanup component for surrounding whitespace and case-insensitive identifiers.",
+    "proposed_name": "HandleCleanup",
+    "query": "D1"
+  },
+  {
+    "contract": {
+      "allow_iff": "status >= 500 and attempts < limit",
+      "responsibility": "decision only; execute no retry"
+    },
+    "group": "DUPLICATE",
+    "id": "D2",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create a helper that decides transient retry admission.",
+    "proposed_name": "RetryChoice",
+    "query": "D2"
+  },
+  {
+    "contract": {
+      "key": "SHA256(payload)",
+      "storage": "mutable process-local RAM; no persistence",
+      "value": "first acknowledgement"
+    },
+    "group": "DUPLICATE",
+    "id": "D3",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create a component to reuse the first acknowledgement for repeated message bytes.",
+    "proposed_name": "AckMemo",
+    "query": "D3"
+  },
+  {
+    "contract": {
+      "mode": "synchronous atomic same-filesystem rename",
+      "ownership": "one path; overwrite previous bytes"
+    },
+    "group": "DUPLICATE",
+    "id": "D4",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create a writer to publish a complete file without partial reads.",
+    "proposed_name": "BytePublisher",
+    "query": "D4"
+  },
+  {
+    "contract": {
+      "policy": "retry eligibility alone is insufficient",
+      "responsibility": "execute remote transfers, persist progress, cancel and resume"
+    },
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L1",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create a lifecycle owner for asynchronous transfers.",
+    "proposed_name": "TransferSession",
+    "query": "L1"
+  },
+  {
+    "contract": {
+      "key": "tenant identity",
+      "responsibility": "atomically decrement each tenant quota and reset at a deadline",
+      "storage": "persistent concurrent accounting"
+    },
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L2",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create tenant-owned capacity accounting.",
+    "proposed_name": "TenantAllowance",
+    "query": "L2"
+  },
+  {
+    "contract": {
+      "operations": "read historical versions; never replace a snapshot",
+      "ownership": "retain all versioned snapshots across many files"
+    },
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L3",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create an immutable multi-file archive.",
+    "proposed_name": "VersionArchive",
+    "query": "L3"
+  },
+  {
+    "contract": {
+      "input_output": "two original labels and locale -> relative ordering",
+      "mutation": "do not transform labels",
+      "responsibility": "comparison, not canonicalization"
+    },
+    "group": "LEGITIMATE_ADDITION",
+    "id": "L4",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create a locale-aware ordering contract for display labels.",
+    "proposed_name": "LocaleOrder",
+    "query": "L4"
+  },
+  {
+    "contract": {
+      "case_loss_allowed": false,
+      "transformation": "strip both edges only; preserve every internal character and case",
+      "why": "Ab and ab identify different owners"
+    },
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N1",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create handle cleanup for case-sensitive identifiers.",
+    "proposed_name": "SpellingGuard",
+    "query": "N1"
+  },
+  {
+    "contract": {
+      "allow_iff": "status == 429 and attempts < limit",
+      "must_reject": "all 5xx statuses; retries could duplicate a charge"
+    },
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N2",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create retry eligibility for a throttling protocol.",
+    "proposed_name": "QuotaRetry",
+    "query": "N2"
+  },
+  {
+    "contract": {
+      "key": "SHA256(payload)",
+      "storage": "persistent shared storage surviving restarts; RAM-only is invalid",
+      "value": "first acknowledgement"
+    },
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N3",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create durable deduplication of messages across processes.",
+    "proposed_name": "DurableAck",
+    "query": "N3"
+  },
+  {
+    "contract": {
+      "mode": "append a complete record; never overwrite existing content",
+      "ownership": "one file; retain all prior bytes"
+    },
+    "group": "NEAR_MATCH_MISMATCH",
+    "id": "N4",
+    "local_evidence": {
+      "path": "personal/app/entry.py",
+      "scope": "Current task entry module; broader modules require discovery.",
+      "source": "def show_label(value):\n    \"\"\"Display the received label unchanged.\"\"\"\n    return value\n"
+    },
+    "proposal": "Create an atomic append-only publication log.",
+    "proposed_name": "AppendTrail",
+    "query": "N4"
+  }
+]

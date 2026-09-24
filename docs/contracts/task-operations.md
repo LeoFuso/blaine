@@ -90,6 +90,31 @@ resulting state when available.
 
 Not every signal is valid in every runtime state.
 
+`modify-constraints` is also the route for user-originated Completion Contract
+amendments; waiving or rebinding a required criterion is only possible through an
+explicit human action ([Completion Contract amendments](completion-contract.md#amendments)).
+The kernel implements this as the `amend_contract` workflow handler (E1.0): the
+binding submits a `CompletionContractAmendmentSubmission` whose actor it
+established from its authenticated principal, wrapping the requested change (which
+names the expected `from_revision` and carries no authority field). It answers
+`SUBMITTED`/`ALREADY_SUBMITTED` or rejects (400 malformed or authority in content,
+403 authority, 409 stale or already amended). The Personal Agent binding exposes
+this as its `amend` operation and always establishes the user actor; it can never
+submit operator or policy authority. The ACP command grammar does not expose `amend`
+yet, so in chat the agent must still say such a change is not submitted.
+
+### Target-effect controls (E2.0)
+
+`cancel_effect {operation_id}` asks the kernel to stop one target effect that is
+awaiting approval or running. The receipt (`REQUESTED` / `ALREADY_REQUESTED`) is not
+proof that anything stopped; the effect's journal outcome says what happened, and
+only a cancellation before dispatch proves the effect did not happen. Effect
+approvals use the ordinary human-decision response. Task-level `cancel` runs the
+same effect stop and reconciliation before the Task ends CANCELLED; it is not
+rollback, and the result names every effect's actual outcome
+([Task cancellation](target-effects.md#task-cancellation)). No Personal Agent or ACP
+binding exposes `cancel_effect` or effect approvals yet ([target effects](target-effects.md)).
+
 ## Result
 
 Input:

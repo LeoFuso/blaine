@@ -8,10 +8,12 @@ operations share the same boundary: **Task > session**.
 It records what is proven, what remains incomplete, why the next workstreams
 exist, and how to resume without prior conversation history.
 
-The Cognitive Kernel program (Increments 1–12) is complete. Current development
-is Daily Driver Enablement: D1's infrastructure foundation passed with service
-adoption/recovery still pending; D2's Personal Agent control surface passed its
-bounded acceptance. Live IntelliJ/code work is D3, not yet proven.
+Current development is Daily Driver Enablement. The next bounded product sequence
+is [Personal Agent Hub E0–E3](docs/personal-agent-hub.md): connect a workstation,
+read its workspace, add bounded effects, and prove verified coding with a human
+response. This is an accepted design, not implemented product acceptance. See the
+[roadmap](docs/roadmap/001-blaine-development-roadmap.md#current-next) for current
+implementation status, evidence limits and dependencies.
 
 Restate owns Task lifecycle and recovery. Models propose bounded semantic work;
 PolicyGate authorizes effects and deterministic CompletionVerifier owns completion.
@@ -23,12 +25,18 @@ unnecessary paid frontier inference; cloud dispatch remains authority-controlled
 | Start here | Purpose |
 | --- | --- |
 | [Development roadmap](docs/roadmap/001-blaine-development-roadmap.md) | Current program, priorities, dependencies and handoff |
-| [Documentation index](docs/README.md) | Map of maintained documentation |
+| [Context Plane architecture](docs/context-plane.md) | Track III research COMPLETE and consolidated; broad governed context, compiled narrow packets. III.8 FAIL / III.8R PASS preserved; [CP.1 implementation proposed, NOT STARTED](docs/roadmap/002-context-plane-implementation.md). |
+| [Documentation map](docs/README.md) | Canonical sources: architecture, status, contracts, operations and historical evidence |
+| [Personal Agent Hub E0–E3](docs/personal-agent-hub.md) | Canonical workstation/client product design and implementation gates |
 | [Architecture](docs/architecture.md) and [ADR index](docs/decisions/README.md) | Ownership and architectural decisions; respect each ADR's status |
 | [Milestones and progress](docs/milestones/README.md) | Accepted evidence and historical STOPs |
 | [TaskSpec](docs/contracts/task-spec.md) and [Task operations](docs/contracts/task-operations.md) | Request and control contracts |
 | [Frontier dispatch](docs/contracts/frontier-dispatch.md) and [ExecutionEvent](docs/contracts/execution-event.md) | Authority/context boundary and forensic evidence |
-| [Platform foundation](docs/platform-infrastructure.md) | D1 installed stack, desired state and acceptance |
+| [Platform foundation](docs/platform-infrastructure.md) and [rootless operations](docs/platform-rootless-docker.md) | Infrastructure topology and operator ownership |
+| [Adopted runtime services](docs/platform-services.md) | Application services, readiness, state paths and recovery procedure |
+| [Live observability inventory](docs/platform-observability-inventory.md) | Actual host/GPU/vLLM/log/trace coverage and Cloud-validated PromQL |
+| [Metrics data plane](experiments/d1-grafana-cloud-data-plane/README.md) | Historical acceptance and transport durability limits |
+| [Fleet control plane](docs/platform-grafana-cloud.md) | Fleet setup, activation gates and recovery |
 | [Operations/recovery](docs/platform-operations.md) and [Grafana Cloud activation](docs/platform-grafana-cloud.md) | Operator procedures, paused backup and future activation |
 | [Personal Agent / D2](docs/daily-driver-d2.md) | Private ACP control surface, usage, acceptance and live-workspace limits |
 | [Agent instructions](BLAINE.md) and [skills](skills/SKILL.md) | Conversational triage and Task operation procedures |

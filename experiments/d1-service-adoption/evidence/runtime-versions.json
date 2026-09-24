@@ -1,0 +1,61 @@
+{
+  "observed_at": "2026-09-21T20:39:40.937682+00:00",
+  "python": "3.13.15",
+  "torch_cuda_build": "13.2",
+  "cuda_runtime_api_version": 13020,
+  "packages": {
+    "vllm": "0.29.1rc1.dev401+gc3b484463",
+    "torch": "2.13.0+cu132",
+    "transformers": "5.17.0",
+    "flashinfer-python": "0.6.18.post1",
+    "nvidia-cuda-runtime": "13.2.75",
+    "nvidia-cuda-nvcc": "13.2.78",
+    "nvidia-cublas": "13.4.0.1",
+    "nvidia-cudnn-cu13": "9.20.0.48"
+  },
+  "nvcc": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2026 NVIDIA Corporation\nBuilt on Thu_Mar_19_11:12:51_PM_PDT_2026\nCuda compilation tools, release 13.2, V13.2.78\nBuild cuda_13.2.r13.2/compiler.37668154_0\n",
+  "driver": "595.91.07",
+  "flashinfer_libraries": [
+    {
+      "path": "/home/leofuso/.cache/flashinfer/0.6.18.post1/120f/cached_ops/batch_prefill_with_kv_cache_dtype_q_bf16_dtype_kv_e4m3_dtype_o_bf16_dtype_idx_i32_head_dim_qk_256_head_dim_vo_256_posenc_0_use_swa_False_use_logits_cap_False_f16qk_False/batch_prefill_with_kv_cache_dtype_q_bf16_dtype_kv_e4m3_dtype_o_bf16_dtype_idx_i32_head_dim_qk_256_head_dim_vo_256_posenc_0_use_swa_False_use_logits_cap_False_f16qk_False.so",
+      "bytes": 2766184,
+      "sha256": "916b39e931cf9896ff9a3eb2b1410108ba1a1b29e84ff47ee4b352c9d4b85d57"
+    },
+    {
+      "path": "/home/leofuso/.cache/flashinfer/0.6.18.post1/120f/cached_ops/fp4_gemm_cutlass_sm120/fp4_gemm_cutlass_sm120.so",
+      "bytes": 5173328,
+      "sha256": "91b4450c2e24f27880dde0daa21081ff1bbd8f2a3ebb0ddaa2c29c8c221c8ebd"
+    },
+    {
+      "path": "/home/leofuso/.cache/flashinfer/0.6.18.post1/120f/cached_ops/gemm/gemm.so",
+      "bytes": 611864,
+      "sha256": "4261706b798e94a65fe271771d8979347f8fe57e6282f142cd48fd699715c654"
+    },
+    {
+      "path": "/home/leofuso/.cache/flashinfer/0.6.18.post1/120f/cached_ops/gemm_sm120/gemm_sm120.so",
+      "bytes": 7042912,
+      "sha256": "c004ce37a6ed1462f3609f9450b661bd2d102368c8ac67450d6c40c618c62f87"
+    },
+    {
+      "path": "/home/leofuso/.cache/flashinfer/0.6.18.post1/120f/cached_ops/sampling/sampling.so",
+      "bytes": 2509720,
+      "sha256": "1d23ad43b7d8e77f8b66d2681918863989bc4fceac7bae18e998d731273eb511"
+    },
+    {
+      "path": "/home/leofuso/.cache/flashinfer/0.6.18.post1/120f/cached_ops/trtllm_utils/trtllm_utils.so",
+      "bytes": 181672,
+      "sha256": "41e381f9c8bb917315420d2deb5d0bb4456b796fb7e70b117d576337b691542f"
+    },
+    {
+      "path": "/home/leofuso/.cache/flashinfer/0.6.18.post1/120f/cached_ops/xqa_input_bf16_kv_cache_e4m3_output_bf16_page_size_32_head_dim_256_head_group_ratio_6_use_sliding_window_False_use_spec_dec_False_spec_q_seq_len_1/xqa_input_bf16_kv_cache_e4m3_output_bf16_page_size_32_head_dim_256_head_group_ratio_6_use_sliding_window_False_use_spec_dec_False_spec_q_seq_len_1.so",
+      "bytes": 265992,
+      "sha256": "ba45bf7ba71163b33bdfc9f960b3000bdab6a1c80dcf4e95f276d2e3e2556f0f"
+    }
+  ],
+  "cuda_layout_links": {
+    "/home/leofuso/.local/share/blaine/inference/envs/vllm-c3b484463/lib/python3.13/site-packages/nvidia/cu13/lib64": "lib",
+    "/home/leofuso/.local/share/blaine/inference/envs/vllm-c3b484463/lib/python3.13/site-packages/nvidia/cu13/lib/libcudart.so": "libcudart.so.13",
+    "/home/leofuso/.local/share/blaine/inference/envs/vllm-c3b484463/lib/python3.13/site-packages/nvidia/cu13/lib/libcublas.so": "libcublas.so.13",
+    "/home/leofuso/.local/share/blaine/inference/envs/vllm-c3b484463/lib/python3.13/site-packages/nvidia/cu13/lib/libcublasLt.so": "libcublasLt.so.13"
+  }
+}

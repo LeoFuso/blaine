@@ -1,0 +1,17 @@
+{
+  "platform_tests": {
+    "passed": 39,
+    "failed": 0
+  },
+  "ansible_syntax": "PASS metrics and rootless-host playbooks",
+  "ansible_scratch_second_run": "changed=0 failed=0",
+  "ansible_live_second_run": "changed=0 failed=0",
+  "ansible_active_staging_run": "changed=0 failed=0",
+  "alloy_validate": "PASS prepared and final live composition",
+  "systemd_analyze_verify": "PASS",
+  "local_synthetic_signals": "Metric, log and trace persisted",
+  "docs_local_links": 156,
+  "git_diff_check": "PASS after whitespace-only normalization of new Ansible transcripts",
+  "historical_evidence": "UNCHANGED",
+  "cloud_restart_replay": "FAIL; explicitly PARTIAL, not masked by unit test PASS"
+}

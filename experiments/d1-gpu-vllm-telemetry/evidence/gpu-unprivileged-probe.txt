@@ -1,0 +1,31 @@
+time=2026-09-21T21:56:31.054-03:00 level=INFO msg="Starting dcgm-exporter" Version=4.8.4
+time=2026-09-21T21:56:31.054-03:00 level=INFO msg="Attempting to initialize DCGM."
+time=2026-09-21T21:56:31.086-03:00 level=INFO msg="Initialized DCGM Fields module."
+time=2026-09-21T21:56:31.086-03:00 level=INFO msg="DCGM successfully initialized!"
+time=2026-09-21T21:56:31.086-03:00 level=INFO msg="Attempting to initialize NVML library."
+time=2026-09-21T21:56:31.086-03:00 level=INFO msg="NVML provider successfully initialized"
+time=2026-09-21T21:56:32.019-03:00 level=INFO msg="Successfully queried DCGM profiling metric groups" reload_id=0 count=3 gpu_model="NVIDIA GeForce RTX 5090"
+time=2026-09-21T21:56:32.019-03:00 level=INFO msg="Building registry for current GPU topology"
+time=2026-09-21T21:56:32.019-03:00 level=INFO msg="Using metric file '/home/leofuso/workspace/blaine-gpu-vllm-telemetry/infra/telemetry/gpu-counters.csv'"
+time=2026-09-21T21:56:32.019-03:00 level=INFO msg="Initializing system entities of type 'GPU'"
+time=2026-09-21T21:56:32.023-03:00 level=INFO msg="Initializing system entities of type 'NvSwitch'"
+time=2026-09-21T21:56:32.023-03:00 level=INFO msg="Not collecting NvSwitch metrics; no switches to monitor"
+time=2026-09-21T21:56:32.023-03:00 level=INFO msg="Initializing system entities of type 'NvLink'"
+time=2026-09-21T21:56:32.023-03:00 level=WARN msg="Failed to initialize NvSwitch/NvLink info" error="no switches to monitor"
+time=2026-09-21T21:56:32.024-03:00 level=INFO msg="Initializing system entities of type 'CPU'"
+time=2026-09-21T21:56:32.030-03:00 level=INFO msg="Not collecting CPU metrics; error retrieving DCGM CPU hierarchy v2: This request is serviced by a module of DCGM that is not currently loaded"
+time=2026-09-21T21:56:32.030-03:00 level=INFO msg="Initializing system entities of type 'CPU Core'"
+time=2026-09-21T21:56:32.030-03:00 level=INFO msg="Not collecting CPU Core metrics; error retrieving DCGM CPU hierarchy v2: This request is serviced by a module of DCGM that is not currently loaded"
+time=2026-09-21T21:56:32.049-03:00 level=INFO msg="Registry built successfully" collector_count=1
+time=2026-09-21T21:56:32.049-03:00 level=INFO msg="HTTP server started - ready to serve metrics"
+time=2026-09-21T21:56:32.049-03:00 level=INFO msg="Watching for changes in file" file=/home/leofuso/workspace/blaine-gpu-vllm-telemetry/infra/telemetry/gpu-counters.csv debounce=200ms
+time=2026-09-21T21:56:32.049-03:00 level=INFO msg="Starting webserver"
+time=2026-09-21T21:56:32.050-03:00 level=INFO msg="Listening on" address=127.0.0.1:9400
+time=2026-09-21T21:56:32.050-03:00 level=INFO msg="TLS is disabled." http2=false address=127.0.0.1:9400
+time=2026-09-21T21:56:39.053-03:00 level=INFO msg="Received signal" signal=terminated
+time=2026-09-21T21:56:39.053-03:00 level=INFO msg="Shutdown requested" reason="context canceled"
+time=2026-09-21T21:56:39.053-03:00 level=INFO msg="Shutting down gracefully..."
+time=2026-09-21T21:56:39.053-03:00 level=INFO msg="Shutdown complete"
+time=2026-09-21T21:56:39.053-03:00 level=INFO msg="Attempting to shutdown NVML library"
+time=2026-09-21T21:56:39.053-03:00 level=INFO msg="Attempting to terminate DCGM Fields module."
+time=2026-09-21T21:56:39.053-03:00 level=INFO msg="Attempting to terminate DCGM."

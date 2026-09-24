@@ -1,0 +1,34 @@
+{
+  "status": "PASS_LOCAL_WITH_RECORDED_INITIAL_TEST_FAILURE",
+  "base_commit": "eb804e7",
+  "source": "Uncommitted automatic-MTU candidate validated by client/ci.sh",
+  "go": "1.27.1",
+  "tsnet": "1.102.4",
+  "scope": "WSL route/MTU fixtures and pinned-SDK subprocess check on Linux development host; live no-override WSL repeat pending",
+  "validation": {
+    "format": "PASS",
+    "go_tests": "PASS final complete run",
+    "race": "PASS final complete run",
+    "vet": "PASS",
+    "host_python_regressions": "PASS (6 tests)",
+    "offline_inherited_stdio_signals": "PASS",
+    "four_target_builds": "PASS",
+    "repeat_build_identical": "PASS",
+    "metadata_and_checksums": "PASS"
+  },
+  "initial_run": {
+    "failure": "TestCancellationAndDescendantCleanup/tree reported live descendant 2264873 remains",
+    "process_code_changed": false,
+    "followup": "PID absent when inspected after the failed test cleanup; process package passed five repetitions, then complete client CI passed",
+    "root_cause": "Unresolved initial process-test observation; retained as a validation limitation, not silently discarded"
+  },
+  "automatic_mtu": {
+    "applies_to": "WSL default-route interface MTU exactly 1280",
+    "embedded_mtu": 1200,
+    "sdk_consumes_setting": "PASS isolated subprocess; no network/node enrollment",
+    "native_linux_or_macos_change": false,
+    "os_network_changes": false
+  },
+  "new_release": "NOT_PUBLISHED",
+  "github_actions_run": "NOT_RUN"
+}

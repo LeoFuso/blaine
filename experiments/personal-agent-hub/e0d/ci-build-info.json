@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "client_version": "0.1.0-dev+1c76a23a1640",
+    "protocol_version": 2,
+    "build_commit": "1c76a23a1640a5d69a0862ea8f39a32cd12a5ee1",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "artifacts": [
+    {
+      "name": "blaine-darwin-amd64",
+      "sha256": "27f828cd5b16554dd06b84b1b0e575d0140554dcfc55225435cdf3f9f7f1cc03",
+      "bytes": 21922480,
+      "format": "Mach-O 64-bit x86_64 executable, flags:<|DYLDLINK|PIE>"
+    },
+    {
+      "name": "blaine-darwin-arm64",
+      "sha256": "4123cd20e96f260f19bc42ae84e5b569db1a29a07c53429a063ba43376ac99a3",
+      "bytes": 20475970,
+      "format": "Mach-O 64-bit arm64 executable, flags:<|DYLDLINK|PIE>"
+    },
+    {
+      "name": "blaine-linux-amd64",
+      "sha256": "bae56c03d6eb78609558ba2551b38524897ddbd438bfe866ee7969b606a844e0",
+      "bytes": 22089852,
+      "format": "ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped"
+    },
+    {
+      "name": "blaine-linux-arm64",
+      "sha256": "a3c116cee2db50a3afd058323b05a96aae8ca2be3229c5f6ad953407a85228af",
+      "bytes": 20512892,
+      "format": "ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, stripped"
+    }
+  ],
+  "repeat_build_identical": true,
+  "linux_amd64_dynamic_interpreter": false,
+  "runtime_scope": "Linux amd64 offline fixtures only; cross-platform builds do not establish live E0.D acceptance"
+}

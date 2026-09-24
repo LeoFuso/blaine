@@ -14,11 +14,9 @@ Current [ADRs](decisions/README.md) take precedence over this document's older
 exploratory topology, routing, contract, and build-sequence examples. Proposed
 ADRs remain proposals; examples do not establish acceptance or implementation.
 
-Current ownership: the Personal Agent owns semantic interpretation and triage;
-TaskSpec describes durable intent; Work Strategy is derived execution metadata
-recorded with durable Task state. The Durable Runtime owns lifecycle state, with
-Restate as its current implementation. Workers are replaceable; ACP is a client
-integration protocol. SpecKit-style workflows are optional semantic strategies.
+For current ownership, read [architecture](architecture.md). For workstation/client
+product design, read [Personal Agent Hub](personal-agent-hub.md). The exploration
+below remains historical; it is not a parallel current architecture document.
 
 ---
 

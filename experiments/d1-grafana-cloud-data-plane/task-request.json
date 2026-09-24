@@ -1,0 +1,27 @@
+{
+  "kind": "TaskSpec",
+  "version": 1,
+  "payload": {
+    "objective": "Validate an asynchronous native Alloy metrics data plane with bounded WAL and Cloud readback; preserve local startup and accepted D1.",
+    "completion": [
+      {
+        "criterion": "Offline startup, queued restart and later Cloud receipt of an outage sample proven",
+        "evidence": "Sanitized service/WAL observations and upstream query"
+      }
+    ],
+    "autonomy": {
+      "allowed": [
+        "bounded Alloy restart/outage",
+        "BWS materializer extension",
+        "local documentation commit"
+      ],
+      "forbidden": [
+        "Fleet activation",
+        "reboot",
+        "push",
+        "backup activation",
+        "accepted runtime redesign"
+      ]
+    }
+  }
+}

@@ -7,7 +7,7 @@ without an ACP client.
 
 Endpoints (Task — existing):
     POST /create    {"request_id": "...", "text": "objective",
-                    "mode": "deterministic" | "local-summary", ...}
+                    "mode": "deterministic"}
     POST /inspect   {"task_id": "..."}
     POST /artifact  {"task_id": "...", "name": "answer"}
     POST /respond   {"task_id": "...", "response": "YES"}
@@ -36,7 +36,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from runtime.personal_agent import (
-    PersonalAgent, RestateBinding, small_request, local_summary_request, task_identity,
+    PersonalAgent, RestateBinding, small_request, task_identity,
 )
 from runtime.kernel.contracts import identifier, text as bounded_text, MAX_PACKET
 from runtime.kernel.conversation import ConversationService
@@ -244,9 +244,6 @@ class BridgeHandler(BaseHTTPRequestHandler):
         mode = body.get('mode', 'deterministic')
         if mode == 'deterministic':
             task_request = small_request(objective)
-        elif mode == 'local-summary':
-            task_request = local_summary_request(objective, body.get('marker', 'BLAINE_OK'),
-                                                int(body.get('words', 40)))
         else:
             raise ValueError('Unknown create mode')
         return get_control().execute({

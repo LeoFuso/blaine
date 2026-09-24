@@ -1,0 +1,2756 @@
+[
+  {
+    "case": "A1",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A1",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "worker",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A1",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "verifier",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A1",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A2",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "DESCENDANT_CONTENT_CANARY",
+            "context_id": "attempt",
+            "domain": "personal",
+            "id": "descendant-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "ROOT_PROTECTED_CONTENT_CANARY",
+            "context_id": "root",
+            "domain": "employer-x",
+            "id": "protected-root",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "EMPLOYER_CONTENT_CANARY",
+            "context_id": "task-x",
+            "domain": "employer-x",
+            "id": "protected-x",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "SIBLING_CONTENT_CANARY",
+            "context_id": "task-sibling",
+            "domain": "personal",
+            "id": "sibling-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-forged"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1732,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"DESCENDANT_CONTENT_CANARY\",\"context_id\":\"attempt\",\"domain\":\"personal\",\"id\":\"descendant-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"ROOT_PROTECTED_CONTENT_CANARY\",\"context_id\":\"root\",\"domain\":\"employer-x\",\"id\":\"protected-root\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"EMPLOYER_CONTENT_CANARY\",\"context_id\":\"task-x\",\"domain\":\"employer-x\",\"id\":\"protected-x\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"SIBLING_CONTENT_CANARY\",\"context_id\":\"task-sibling\",\"domain\":\"personal\",\"id\":\"sibling-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-forged\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A2",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "DESCENDANT_CONTENT_CANARY",
+            "context_id": "attempt",
+            "domain": "personal",
+            "id": "descendant-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "ROOT_PROTECTED_CONTENT_CANARY",
+            "context_id": "root",
+            "domain": "employer-x",
+            "id": "protected-root",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "EMPLOYER_CONTENT_CANARY",
+            "context_id": "task-x",
+            "domain": "employer-x",
+            "id": "protected-x",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "SIBLING_CONTENT_CANARY",
+            "context_id": "task-sibling",
+            "domain": "personal",
+            "id": "sibling-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-forged"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1732,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"DESCENDANT_CONTENT_CANARY\",\"context_id\":\"attempt\",\"domain\":\"personal\",\"id\":\"descendant-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"ROOT_PROTECTED_CONTENT_CANARY\",\"context_id\":\"root\",\"domain\":\"employer-x\",\"id\":\"protected-root\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"EMPLOYER_CONTENT_CANARY\",\"context_id\":\"task-x\",\"domain\":\"employer-x\",\"id\":\"protected-x\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"SIBLING_CONTENT_CANARY\",\"context_id\":\"task-sibling\",\"domain\":\"personal\",\"id\":\"sibling-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-forged\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A3",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A3",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A4",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "A4",
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B1",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 1,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "before_checkpoint",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B1",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 2,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B1",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 3,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B2",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 4,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "before_checkpoint",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B2",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 5,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 875,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "NARROW_POLICY"
+  },
+  {
+    "case": "B2",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 6,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 875,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "NARROW_POLICY"
+  },
+  {
+    "case": "B3",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 7,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "before_checkpoint",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B3",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 8,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Current replacement project guidance.",
+            "context_id": "project-new",
+            "domain": "personal",
+            "id": "new-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1051,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Current replacement project guidance.\",\"context_id\":\"project-new\",\"domain\":\"personal\",\"id\":\"new-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "REPARENT"
+  },
+  {
+    "case": "B3",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 9,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Current replacement project guidance.",
+            "context_id": "project-new",
+            "domain": "personal",
+            "id": "new-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1051,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Current replacement project guidance.\",\"context_id\":\"project-new\",\"domain\":\"personal\",\"id\":\"new-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "REPARENT"
+  },
+  {
+    "case": "B4",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 10,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "before_checkpoint",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B4",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 11,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "B4",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 12,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "C1",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 13,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "C1",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 14,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "C2",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 15,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "DESCENDANT_CONTENT_CANARY",
+            "context_id": "attempt",
+            "domain": "personal",
+            "id": "descendant-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "ROOT_PROTECTED_CONTENT_CANARY",
+            "context_id": "root",
+            "domain": "employer-x",
+            "id": "protected-root",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "EMPLOYER_CONTENT_CANARY",
+            "context_id": "task-x",
+            "domain": "employer-x",
+            "id": "protected-x",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "SIBLING_CONTENT_CANARY",
+            "context_id": "task-sibling",
+            "domain": "personal",
+            "id": "sibling-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1730,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"DESCENDANT_CONTENT_CANARY\",\"context_id\":\"attempt\",\"domain\":\"personal\",\"id\":\"descendant-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"ROOT_PROTECTED_CONTENT_CANARY\",\"context_id\":\"root\",\"domain\":\"employer-x\",\"id\":\"protected-root\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"EMPLOYER_CONTENT_CANARY\",\"context_id\":\"task-x\",\"domain\":\"employer-x\",\"id\":\"protected-x\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"SIBLING_CONTENT_CANARY\",\"context_id\":\"task-sibling\",\"domain\":\"personal\",\"id\":\"sibling-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "C2",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 16,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "DESCENDANT_CONTENT_CANARY",
+            "context_id": "attempt",
+            "domain": "personal",
+            "id": "descendant-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "ROOT_PROTECTED_CONTENT_CANARY",
+            "context_id": "root",
+            "domain": "employer-x",
+            "id": "protected-root",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "EMPLOYER_CONTENT_CANARY",
+            "context_id": "task-x",
+            "domain": "employer-x",
+            "id": "protected-x",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "SIBLING_CONTENT_CANARY",
+            "context_id": "task-sibling",
+            "domain": "personal",
+            "id": "sibling-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1730,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"DESCENDANT_CONTENT_CANARY\",\"context_id\":\"attempt\",\"domain\":\"personal\",\"id\":\"descendant-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"ROOT_PROTECTED_CONTENT_CANARY\",\"context_id\":\"root\",\"domain\":\"employer-x\",\"id\":\"protected-root\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"EMPLOYER_CONTENT_CANARY\",\"context_id\":\"task-x\",\"domain\":\"employer-x\",\"id\":\"protected-x\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"SIBLING_CONTENT_CANARY\",\"context_id\":\"task-sibling\",\"domain\":\"personal\",\"id\":\"sibling-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "C3",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 17,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 875,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "received",
+    "state_change": "NARROW_POLICY"
+  },
+  {
+    "case": "C3",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 18,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 875,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "NARROW_POLICY"
+  },
+  {
+    "case": "C4",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 19,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1046,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "stage": "prior_success",
+    "state_change": "UNCHANGED"
+  },
+  {
+    "case": "C4",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 20,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "UNAVAILABLE"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "UNAVAILABLE"
+      },
+      "response_bytes": 105,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"UNAVAILABLE\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"UNAVAILABLE\"}\n"
+    },
+    "stage": "received",
+    "state_change": "MISSING_EVIDENCE"
+  },
+  {
+    "case": "C4",
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 21,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "UNAVAILABLE"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "UNAVAILABLE"
+      },
+      "response_bytes": 105,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"UNAVAILABLE\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"UNAVAILABLE\"}\n"
+    },
+    "stage": "same_state_replay",
+    "state_change": "MISSING_EVIDENCE"
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "EMPTY"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "EMPTY"
+      },
+      "response_bytes": 173,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"EMPTY\"},\"entries\":[],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"EMPTY\"}\n"
+    },
+    "probe_number": 0
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 1
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 2
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 3
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 4
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 5
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 6
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 7
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 8
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Post-start scoped observation.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "task-main::note-1",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 355,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Post-start scoped observation.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"task-main::note-1\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "probe_number": 9
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 22,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          },
+          {
+            "content": "Post-start scoped observation.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "task-main::note-1",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1225,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"},{\"content\":\"Post-start scoped observation.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"task-main::note-1\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"}],\"partial\":false,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "probe_number": 10
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "project-old",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 514,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"}],\"partial\":false,\"receipt\":{\"context_id\":\"project-old\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "probe_number": 11
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "DESCENDANT_CONTENT_CANARY",
+            "context_id": "attempt",
+            "domain": "personal",
+            "id": "descendant-private",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          },
+          {
+            "content": "Post-start scoped observation.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "task-main::note-1",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          }
+        ],
+        "partial": false,
+        "receipt": {
+          "context_id": "attempt",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1396,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"DESCENDANT_CONTENT_CANARY\",\"context_id\":\"attempt\",\"domain\":\"personal\",\"id\":\"descendant-private\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"},{\"content\":\"Post-start scoped observation.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"task-main::note-1\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"}],\"partial\":false,\"receipt\":{\"context_id\":\"attempt\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "probe_number": 12
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 23,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 13
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 24,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 14
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 25,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 15
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "process": {
+        "child_report_matches_popen": true,
+        "operation": 26,
+        "parent_pid_matches": true,
+        "separate_process": true,
+        "writer_exited_before_return": true
+      },
+      "response": {
+        "diagnostic": {
+          "code": "DENIED"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "DENIED"
+      },
+      "response_bytes": 95,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"DENIED\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"DENIED\"}\n"
+    },
+    "probe_number": 16
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 17
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 18
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 19
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 20
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 21
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 22
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "UNAVAILABLE"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "UNAVAILABLE"
+      },
+      "response_bytes": 105,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"UNAVAILABLE\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"UNAVAILABLE\"}\n"
+    },
+    "probe_number": 23
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 24
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 25
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "INVALID_CONTEXT"
+        },
+        "entries": [],
+        "partial": false,
+        "receipt": null,
+        "status": "INVALID_CONTEXT"
+      },
+      "response_bytes": 113,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"INVALID_CONTEXT\"},\"entries\":[],\"partial\":false,\"receipt\":null,\"status\":\"INVALID_CONTEXT\"}\n"
+    },
+    "probe_number": 26
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [
+          {
+            "content": "Approach F failed under condition Q.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "failure",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_FAILURE"
+          },
+          {
+            "content": "Hypothesis remains untested.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "observation",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          },
+          {
+            "content": "Checkpoint-era project guidance.",
+            "context_id": "project-old",
+            "domain": "personal",
+            "id": "old-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "General shared engineering rule.",
+            "context_id": "root",
+            "domain": "public",
+            "id": "public-rule",
+            "provenance": "USER_DECLARATION",
+            "semantic_status": "DECLARED"
+          },
+          {
+            "content": "Approach S succeeded under condition P.",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "success",
+            "provenance": "VERIFIED_OUTCOME",
+            "semantic_status": "VERIFIED_SUCCESS"
+          },
+          {
+            "content": "Bounded synthetic observation λλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλ",
+            "context_id": "task-main",
+            "domain": "personal",
+            "id": "zz-bulk-0",
+            "provenance": "AGENT_OBSERVATION",
+            "semantic_status": "UNVERIFIED"
+          }
+        ],
+        "partial": true,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 1696,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[{\"content\":\"Approach F failed under condition Q.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"failure\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_FAILURE\"},{\"content\":\"Hypothesis remains untested.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"observation\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"},{\"content\":\"Checkpoint-era project guidance.\",\"context_id\":\"project-old\",\"domain\":\"personal\",\"id\":\"old-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"General shared engineering rule.\",\"context_id\":\"root\",\"domain\":\"public\",\"id\":\"public-rule\",\"provenance\":\"USER_DECLARATION\",\"semantic_status\":\"DECLARED\"},{\"content\":\"Approach S succeeded under condition P.\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"success\",\"provenance\":\"VERIFIED_OUTCOME\",\"semantic_status\":\"VERIFIED_SUCCESS\"},{\"content\":\"Bounded synthetic observation λλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλλ\",\"context_id\":\"task-main\",\"domain\":\"personal\",\"id\":\"zz-bulk-0\",\"provenance\":\"AGENT_OBSERVATION\",\"semantic_status\":\"UNVERIFIED\"}],\"partial\":true,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "probe_number": 27
+  },
+  {
+    "export": {
+      "exit_code": 0,
+      "response": {
+        "diagnostic": {
+          "code": "SUCCESS"
+        },
+        "entries": [],
+        "partial": true,
+        "receipt": {
+          "context_id": "task-main",
+          "parent_operation_id": "op-origin",
+          "trace_id": "trace-main"
+        },
+        "status": "SUCCESS"
+      },
+      "response_bytes": 176,
+      "stderr": "",
+      "stdout": "{\"diagnostic\":{\"code\":\"SUCCESS\"},\"entries\":[],\"partial\":true,\"receipt\":{\"context_id\":\"task-main\",\"parent_operation_id\":\"op-origin\",\"trace_id\":\"trace-main\"},\"status\":\"SUCCESS\"}\n"
+    },
+    "probe_number": 28
+  }
+]

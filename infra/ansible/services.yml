@@ -1,0 +1,127 @@
+---
+- name: Stage accepted non-root Blaine services without starting candidates
+  hosts: blaine
+  gather_facts: false
+  vars:
+    blaine_prefix: ""
+    blaine_activate: false
+    blaine_operator_home: /home/leofuso
+    blaine_operator_uid: 1000
+    service_home: '{{ blaine_prefix }}{{ blaine_operator_home }}'
+    config_root: '{{ service_home }}/.config/blaine'
+    runtime_root: '{{ service_home }}/.local/share/blaine/runtime'
+    service_names: [generation, embedding, mirix, restate, runtime]
+  tasks:
+    - name: Require bounded scratch or real operator paths
+      ansible.builtin.assert:
+        that:
+          - blaine_prefix == '' or blaine_prefix is match('^/tmp/blaine-d1-[A-Za-z0-9_-]+$')
+          - not (blaine_activate | bool) or blaine_prefix == ''
+    - name: Observe operator identity
+      ansible.builtin.command: /usr/bin/id -u
+      register: operator_identity
+      changed_when: false
+      check_mode: false
+    - name: Refuse root service staging
+      ansible.builtin.assert:
+        that: operator_identity.stdout | int == blaine_operator_uid | int and operator_identity.stdout != '0'
+    - name: Reject redirected installation paths
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - "from pathlib import Path; import sys; assert all(Path(p).resolve() == Path(p) for p in sys.argv[1:]), 'Symlink in service installation path'"
+          - '{{ config_root }}/services'
+          - '{{ config_root }}/inference'
+          - '{{ runtime_root }}'
+          - '{{ service_home }}/.config/systemd/user'
+          - '{{ service_home }}/.local/bin'
+      changed_when: false
+      check_mode: false
+    - name: Create private deployment directories
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: directory
+        mode: '0700'
+      loop:
+        - '{{ config_root }}/services'
+        - '{{ config_root }}/inference'
+        - '{{ runtime_root }}/bin'
+        - '{{ runtime_root }}/app/runtime/kernel'
+        - '{{ service_home }}/.config/systemd/user'
+        - '{{ service_home }}/.local/bin'
+    - name: Stage inference configuration and launcher
+      ansible.builtin.copy:
+        src: '{{ item }}'
+        dest: '{{ config_root }}/inference/{{ item | basename }}'
+        mode: '0600'
+      loop:
+        - ../inference/candidate.json
+        - ../inference/serve.py
+    - name: Stage operational service configuration
+      ansible.builtin.copy:
+        src: '{{ item }}'
+        dest: '{{ config_root }}/services/{{ item | basename }}'
+        mode: '0600'
+      with_fileglob:
+        - ../services/*.py
+        - ../services/*.json
+        - ../services/*.toml
+    - name: Stage persistent user units without enabling them
+      ansible.builtin.copy:
+        src: '../systemd/user/blaine-{{ item }}.service'
+        dest: '{{ service_home }}/.config/systemd/user/blaine-{{ item }}.service'
+        mode: '0600'
+      loop: '{{ service_names }}'
+    - name: Stage the actual accepted application modules
+      ansible.builtin.copy:
+        src: '{{ item }}'
+        dest: '{{ runtime_root }}/app/runtime/{{ item | basename }}'
+        mode: '0600'
+      with_fileglob: ../../runtime/*.py
+    - name: Stage existing kernel modules and schemas
+      ansible.builtin.copy:
+        src: '{{ item }}'
+        dest: '{{ runtime_root }}/app/runtime/kernel/{{ item | basename }}'
+        mode: '0600'
+      with_fileglob:
+        - ../../runtime/kernel/*.py
+        - ../../runtime/kernel/*.json
+    - name: Stage the pinned Restate binary
+      ansible.builtin.copy:
+        src: ../../.local/bin/restate-server
+        dest: '{{ runtime_root }}/bin/restate-server'
+        mode: '0700'
+    - name: Explain activation and state boundaries
+      ansible.builtin.debug:
+        msg: Staging only. No state copy, dependency installation or secret change. Activation requires blaine_activate=true and accepted live evidence; preserved Restate state is handled explicitly by the adoption runbook.
+    - name: Install the actual Personal Agent ACP entrypoint
+      ansible.builtin.copy:
+        src: ../services/blaine-agent
+        dest: '{{ service_home }}/.local/bin/blaine-agent'
+        mode: '0700'
+    - name: Require accepted live evidence before enabling runtime ownership
+      ansible.builtin.command:
+        argv:
+          - /usr/bin/python3
+          - -c
+          - |
+            import json, sys
+            from pathlib import Path
+            evidence = Path(sys.argv[1])
+            for name in ['inference-summary', 'mirix-summary', 'durable-summary', 'cognition-summary']:
+                assert json.loads((evidence / (name + '.json')).read_text())['status'] == 'PASS'
+            state = Path.home() / '.local/share/blaine/runtime/restate-data'
+            assert state.is_dir() and any(state.iterdir()), 'Preserved journal must already exist'
+          - '{{ playbook_dir }}/../../experiments/d1-service-adoption/evidence'
+      changed_when: false
+      when: blaine_activate | bool
+    - name: Adopt accepted services under the user manager
+      ansible.builtin.systemd_service:
+        scope: user
+        daemon_reload: true
+        name: 'blaine-{{ item }}.service'
+        enabled: true
+        state: started
+      loop: '{{ service_names }}'
+      when: blaine_activate | bool

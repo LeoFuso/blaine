@@ -1,0 +1,638 @@
+{
+  "check_count": 158,
+  "checks": [
+    {
+      "check": "unique-cases",
+      "status": "PASS"
+    },
+    {
+      "check": "correct-oracles",
+      "status": "PASS"
+    },
+    {
+      "check": "source-hashes",
+      "status": "PASS"
+    },
+    {
+      "check": "accepted-tree-source",
+      "status": "PASS"
+    },
+    {
+      "check": "restored",
+      "status": "PASS"
+    },
+    {
+      "check": "budget",
+      "status": "PASS"
+    },
+    {
+      "check": "max-response",
+      "status": "PASS"
+    },
+    {
+      "check": "denials-no-content",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/root",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/root/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/personal",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/personal/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/project-a",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-a/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/task-a1",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a1/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/work-a1",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-a1/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/task-a2",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-a2/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/employer-x",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/employer-x/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/project-x",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/project-x/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/task-x1",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x1/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/work-x1",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/work-x1/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "lineage/task-x2",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/root-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/personal-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/project-a-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/task-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/work-a1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/task-a2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/employer-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/project-x-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/task-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/work-x1-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "direct/task-x2/task-x2-memory",
+      "status": "PASS"
+    },
+    {
+      "check": "sequence/cognition",
+      "status": "PASS"
+    },
+    {
+      "check": "sequence/worker",
+      "status": "PASS"
+    },
+    {
+      "check": "sequence/verifier",
+      "status": "PASS"
+    },
+    {
+      "check": "shared-binding",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/human-declaration",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/cognition-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "provenance/worker-observation",
+      "status": "PASS"
+    },
+    {
+      "check": "state/empty",
+      "status": "PASS"
+    },
+    {
+      "check": "state/denied",
+      "status": "PASS"
+    },
+    {
+      "check": "state/unavailable",
+      "status": "PASS"
+    },
+    {
+      "check": "state/recovered",
+      "status": "PASS"
+    },
+    {
+      "check": "overflow",
+      "status": "PASS"
+    },
+    {
+      "check": "oversized",
+      "status": "PASS"
+    },
+    {
+      "check": "control/initial-only",
+      "status": "PASS"
+    },
+    {
+      "check": "control/forged-provenance",
+      "status": "PASS"
+    },
+    {
+      "check": "control/frozen-snapshot",
+      "status": "PASS"
+    },
+    {
+      "check": "control/persisted-forgery",
+      "status": "PASS"
+    },
+    {
+      "check": "summary",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS"
+}

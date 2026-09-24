@@ -1,0 +1,11 @@
+{
+  "blaine_pids_unchanged_across_entire_slice": true,
+  "unit_pids": {
+    "blaine-generation": "346389",
+    "blaine-embedding": "346052",
+    "blaine-mirix": "356517",
+    "blaine-restate": "358882",
+    "blaine-runtime": "360671"
+  },
+  "temporary_proxy_listener_closed": true
+}

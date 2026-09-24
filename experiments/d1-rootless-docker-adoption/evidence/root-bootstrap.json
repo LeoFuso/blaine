@@ -1,0 +1,67 @@
+{
+  "source_secret_metadata": {
+    "infrastructure.json": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600"
+    },
+    "object-storage.json": {
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o400"
+    },
+    "clickhouse.env": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600"
+    },
+    "langfuse.env": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o600"
+    }
+  },
+  "source_data_inventory": {
+    "/srv/blaine/infra/objects": {
+      "entries": 167,
+      "regular_file_bytes": 1001215,
+      "owners": {
+        "1000:1000": 167
+      },
+      "modes": {
+        "0o700": 1,
+        "0o600": 7,
+        "0o644": 130,
+        "0o755": 29
+      }
+    },
+    "/srv/blaine/infra/clickhouse/data": {
+      "entries": 35389,
+      "regular_file_bytes": 467314139,
+      "owners": {
+        "101:101": 35389
+      },
+      "modes": {
+        "0o700": 1,
+        "0o640": 34351,
+        "0o755": 3,
+        "0o750": 1008,
+        "0o777": 26
+      }
+    },
+    "/srv/blaine/infra/clickhouse/logs": {
+      "entries": 3,
+      "regular_file_bytes": 276086431,
+      "owners": {
+        "101:101": 3
+      },
+      "modes": {
+        "0o700": 1,
+        "0o640": 2
+      }
+    }
+  },
+  "private_secret_copy": "PASS",
+  "source_data_mutated": false,
+  "cutover": "NOT PERFORMED"
+}

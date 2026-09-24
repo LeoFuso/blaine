@@ -1,0 +1,343 @@
+{
+  "approval_fixture_note": "Trusted synthetic approval covers exact source digest, destination and candidate digest. Unsafe candidates also receive test approvals to isolate scanner enforcement, not to assert semantic safety.",
+  "approvals": [],
+  "bindings": [
+    {
+      "context": "child-personal",
+      "name": "same-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    },
+    {
+      "context": "employer-x",
+      "name": "cross-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    },
+    {
+      "context": "task-x",
+      "name": "deep-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    },
+    {
+      "context": "child-personal",
+      "name": "agent",
+      "role": "AGENT"
+    },
+    {
+      "context": "child-personal",
+      "name": "human",
+      "role": "HUMAN"
+    },
+    {
+      "context": "personal",
+      "name": "personal-service",
+      "role": "SYSTEM_PROMOTION_SERVICE"
+    }
+  ],
+  "candidates": {
+    "database": {
+      "content": "Inspect table_x_internal."
+    },
+    "exact_literal": {
+      "content": "Remember employer-x-secret-memory."
+    },
+    "hostname_url": {
+      "content": "Contact https://internal-host-x.example.invalid."
+    },
+    "human-safe": {
+      "content": "Prefer explicit construction for dependencies."
+    },
+    "organization": {
+      "content": "Advice from employer-x."
+    },
+    "project_repository": {
+      "content": "Refactor repository-x-private."
+    },
+    "raw": {
+      "content": "ProprietaryRoutingClassX in repository-x-private uses internal-host-x.example.invalid for X-TICKET-481 and table_x_internal. employer-x-secret-memory. Amber engines route cobalt packets through concealed violet queues before morning checks."
+    },
+    "safe": {
+      "content": "When runtime behavior varies substantially behind a stable contract, separating behavior via Strategy can reduce conditional branching; first search for an existing canonical abstraction."
+    },
+    "safe-alternative": {
+      "content": "Search for a canonical abstraction before proposing another behavioral interface."
+    },
+    "same": {
+      "content": "An unverified local hypothesis."
+    },
+    "secret": {
+      "content": "Use SYNTH_TOKEN_ABCDEF123456."
+    },
+    "source_fragment": {
+      "content": "Amber engines: route cobalt packets through concealed violet queues, before morning checks."
+    },
+    "source_identifier": {
+      "content": "Change ProprietaryRoutingClassX in internal.routing.x."
+    },
+    "ticket": {
+      "content": "Apply X-TICKET-481."
+    }
+  },
+  "expected": {
+    "cross-human-safe": "ADMITTED",
+    "database": "REJECTED_SECURITY",
+    "exact_literal": "REJECTED_SECURITY",
+    "hostname_url": "REJECTED_SECURITY",
+    "organization": "REJECTED_SECURITY",
+    "project_repository": "REJECTED_SECURITY",
+    "raw": "REJECTED_SECURITY",
+    "safe": "ADMITTED",
+    "same": "ADMITTED",
+    "same-human": "ADMITTED",
+    "secret": "REJECTED_SECURITY",
+    "source_fragment": "REJECTED_SECURITY",
+    "source_identifier": "REJECTED_SECURITY",
+    "ticket": "REJECTED_SECURITY"
+  },
+  "memory": {
+    "context_domains": {
+      "employer-x": "employer-x",
+      "irrelevant-1": "personal",
+      "irrelevant-2": "personal",
+      "irrelevant-3": "personal",
+      "irrelevant-4": "personal",
+      "match-1": "personal",
+      "match-2": "personal",
+      "match-3": "personal",
+      "match-4": "personal",
+      "personal": "personal",
+      "prior": "personal",
+      "project": "personal",
+      "protected-prior": "employer-x",
+      "root": "public",
+      "trap-1": "personal",
+      "trap-2": "personal",
+      "trap-3": "personal",
+      "trap-4": "personal"
+    },
+    "declaration_targets": {
+      "human-personal": "project"
+    },
+    "derived": [],
+    "entries": [],
+    "nodes": [
+      {
+        "id": "root",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": null
+      },
+      {
+        "id": "personal",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "project",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "personal"
+      },
+      {
+        "id": "prior",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "employer-x",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "root"
+      },
+      {
+        "id": "protected-prior",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "employer-x"
+      },
+      {
+        "id": "irrelevant-1",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "irrelevant-2",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "irrelevant-3",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "irrelevant-4",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-1",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-2",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-3",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "match-4",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-1",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-2",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-3",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      },
+      {
+        "id": "trap-4",
+        "inherit_parent": true,
+        "kind": "generic",
+        "parent_id": "project"
+      }
+    ],
+    "policy": {
+      "deny_ids": [],
+      "grants": {
+        "employer-x": [
+          "public",
+          "employer-x"
+        ],
+        "personal": [
+          "public",
+          "personal"
+        ],
+        "public": [
+          "public"
+        ]
+      },
+      "version": "fixture-v1"
+    }
+  },
+  "promotion_policy": {
+    "admissible_statuses": [
+      "UNVERIFIED",
+      "DECLARED",
+      "VERIFIED_SUCCESS",
+      "VERIFIED_FAILURE"
+    ],
+    "routes": [
+      [
+        "prior",
+        "project"
+      ],
+      [
+        "protected-prior",
+        "employer-x"
+      ],
+      [
+        "employer-x",
+        "root"
+      ]
+    ],
+    "version": "promotion-policy-v2"
+  },
+  "protected_literals": [
+    "protected-source",
+    "protected-human",
+    "deep-protected",
+    "human-private",
+    "agent-private",
+    "employer-x",
+    "project-x",
+    "task-x",
+    "repository-x-private",
+    "internal-host-x.example.invalid",
+    "X-TICKET-481",
+    "ProprietaryRoutingClassX",
+    "internal.routing.x",
+    "src/private/RoutingX.java",
+    "table_x_internal",
+    "employer-x-secret-memory",
+    "SYNTH_TOKEN_ABCDEF123456",
+    "Amber engines"
+  ],
+  "scanner_faults": [
+    "unavailable",
+    "crash",
+    "malformed",
+    "unknown",
+    "timeout",
+    "cannot_evaluate"
+  ],
+  "scanner_manifest": {
+    "database": [
+      "table_x_internal"
+    ],
+    "exact_literal": [
+      "employer-x-secret-memory"
+    ],
+    "hostname_url": [
+      "internal-host-x.example.invalid",
+      "https://internal-host-x.example.invalid"
+    ],
+    "organization": [
+      "employer-x"
+    ],
+    "project_repository": [
+      "project-x",
+      "repository-x-private"
+    ],
+    "secret": [
+      "SYNTH_TOKEN_[A-Z0-9]{12}"
+    ],
+    "source_fragment": [],
+    "source_identifier": [
+      "ProprietaryRoutingClassX",
+      "internal.routing.x",
+      "src/private/RoutingX.java"
+    ],
+    "ticket": [
+      "X-TICKET-481"
+    ]
+  },
+  "scanner_names": [
+    "secret",
+    "organization",
+    "project_repository",
+    "hostname_url",
+    "ticket",
+    "source_identifier",
+    "database",
+    "exact_literal",
+    "source_fragment"
+  ]
+}

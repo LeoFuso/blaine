@@ -1,0 +1,14 @@
+{
+  ".tailscale-keyring.list": {
+    "url": "https://pkgs.tailscale.com/stable/ubuntu/resolute.tailscale-keyring.list",
+    "bytes": 162,
+    "sha256": "a6d31baa60db4c9c2eab0ec49bf785a891935358a2f7223a54509a816c8e870d",
+    "generated_source_matches_vendor": true
+  },
+  ".noarmor.gpg": {
+    "url": "https://pkgs.tailscale.com/stable/ubuntu/resolute.noarmor.gpg",
+    "bytes": 2288,
+    "sha256": "3e03dacf222698c60b8e2f990b809ca1b3e104de127767864284e6c228f1fb39",
+    "binary_openpgp_header": true
+  }
+}

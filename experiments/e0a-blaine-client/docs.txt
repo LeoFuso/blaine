@@ -1,0 +1,1 @@
+PASS: 6 documents; 145 local links; 16 anchors; fences and JSON parsed

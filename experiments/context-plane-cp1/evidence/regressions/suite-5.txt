@@ -1,0 +1,6 @@
+test_liveness_does_not_substitute_for_memory_readiness (test_direct_readiness.DirectReadinessTests.test_liveness_does_not_substitute_for_memory_readiness) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

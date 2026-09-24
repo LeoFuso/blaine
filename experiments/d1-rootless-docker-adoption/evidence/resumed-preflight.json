@@ -1,0 +1,16 @@
+{
+  "observed_at": "2026-09-21T17:05:32.813232+00:00",
+  "candidate_database": "blaine_rootless_candidate_20260921; fresh native PostgreSQL database owned by existing role",
+  "candidate_redis": "isolated user transient service at 127.0.0.1:16379; separate private AOF state",
+  "source_secret_materialization": "PASS; user-owned 0700 parent, env/JSON 0600 and object-storage.json 0400",
+  "linger": "Linger=yes",
+  "sudo_noninteractive": "PASS at resumption; bounded host actions only",
+  "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+  "initial_full_candidate": "PASS",
+  "candidate_docker_restart": "PASS: automatic recovery, no Compose up; retained S3/ClickHouse/trace identities",
+  "native_service_pids": {
+    "postgresql@18-main": "2795",
+    "redis-server": "2741",
+    "alloy": "8845"
+  }
+}

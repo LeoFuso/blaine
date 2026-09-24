@@ -1,0 +1,1 @@
+{"kind":"HumanDecisionRequest","payload":{"allowed_responses":["YES","NO"],"origin_task_id":"human-resume","question":"Accept the investigation findings?","request_id":"decide","revision":0,"task_id":"human-resume"},"version":1}

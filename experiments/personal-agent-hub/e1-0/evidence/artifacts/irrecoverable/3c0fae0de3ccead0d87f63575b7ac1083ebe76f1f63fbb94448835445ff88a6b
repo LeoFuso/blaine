@@ -1,0 +1,1 @@
+{"kind":"EffectiveAuthority","payload":{"capabilities":["artifact.write","fixture.effect","workspace.read"],"classification":"kernel@1","externally_bounded":true,"operation_classes":["external.effect","task.artifact.write","workspace.read"],"revision":0,"task_id":"irrecoverable","workspaces":["/work/example"]},"version":1}

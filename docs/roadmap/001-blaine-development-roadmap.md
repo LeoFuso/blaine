@@ -1,6 +1,6 @@
 # Blaine development roadmap and repository handoff
 
-**Living checkpoint: 2026-09-20. Current program: Daily Driver Enablement.**
+**Living checkpoint: 2026-09-21. Current program: Daily Driver Enablement / Personal Agent Hub E0–E3.**
 
 This is Blaine's authoritative **living development program**, handoff for future
 human/agent sessions, and record of intended sequencing and dependencies. It is
@@ -16,8 +16,11 @@ block before selecting an increment.
 This checkpoint is based on kernel milestones through 037, D1 infrastructure
 acceptance (`48b077d`, `e642966`) and its activation runbook (`e2d9134`), and D2
 implementation/validation (`d7a492f`, `658fef5`). These are repository evidence,
-not a fresh claim about host health. A clone supplies the program and evidence;
-it does not supply secrets, machine state, or authorization to mutate the host.
+not a fresh claim about host health. The Hub checkpoint includes the isolated
+E0.A client foundation and [E0.B network prerequisite evidence](../../experiments/e0b-tailscale-onboarding/README.md); it does not change
+platform acceptance. See the
+[documentation authority map](../README.md). A clone supplies the program and
+evidence; it does not supply secrets, machine state, or host mutation authority.
 
 ## Product destination
 
@@ -53,7 +56,7 @@ or host-disaster scenario has passed.
 | Task and lifecycle | Task state is durable. Restate owns lifecycle, retries, timers, suspension/resumption and crash recovery. Models, workers, ACP/Personal Agent/chat sessions do not own that lifecycle. | [Task identity ADR](../decisions/0001-task-is-the-unit-of-work.md), [runtime ADR](../decisions/0003-evaluate-restate-as-durable-runtime.md), [kernel progress](../milestones/cognitive-kernel-progress.md) |
 | Cognition | Models propose semantic intent; Blaine determines admissible actions; code lowers intent into operational protocol. Cognition selects semantic work to attempt, not whether a known wait or verified completion should occur. | [semantic boundary and verifier-driven progression](../milestones/024-cognitive-kernel-increment-8-passed.md), [architecture checkpoint amendments](../research/cognitive-loop-checkpoint.md) |
 | Waiting | Known external dependency → durable runtime suspension. No model call merely to choose WAIT, including human input and joined child outcomes. | [HumanDecision milestone](../milestones/011-cognitive-kernel-increment-5-passed.md), [parallel child Tasks](../milestones/037-cognitive-kernel-increment-12-parallel-children.md) |
-| Completion | CompletionContract and deterministic CompletionVerifier own completion. Worker/model claims are insufficient. Parent and child completion remain independent. | [completion policy](../policies/task-completion-and-lifecycle.md), [progression evidence](../milestones/024-cognitive-kernel-increment-8-passed.md), [child evidence](../milestones/037-cognitive-kernel-increment-12-parallel-children.md) |
+| Completion | CompletionContract and deterministic CompletionVerifier own completion. Worker/model claims are insufficient. Parent and child completion remain independent. The durable, revisioned v1 contract (provenance, amendments, capability journal, one legality function) is implemented in the kernel: **E1.0 PASS** 2026-09-24; ADR 0026 Partially Validated, E1 end-to-end pending ([ADR 0026](../decisions/0026-completion-contract-is-a-durable-task-primitive.md)). | [completion policy](../policies/task-completion-and-lifecycle.md), [E1.0 evidence](../../experiments/personal-agent-hub/e1-0/README.md), [progression evidence](../milestones/024-cognitive-kernel-increment-8-passed.md), [child evidence](../milestones/037-cognitive-kernel-increment-12-parallel-children.md) |
 | Authority | PolicyGate / hard execution authority decides whether a concrete effect may execute. Suitability/economic routing is not authority. Technical capability, authorization, and approval/autonomy are separate. Workers cannot broaden grants. | [frontier contract](../contracts/frontier-dispatch.md), [YouTrack proof](../milestones/012-cognitive-kernel-increment-6-passed.md), [D2 scoped workspace proof](../daily-driver-d2.md) |
 | Context | MIRIX is semantic memory, not Task state. Project graphs are derived knowledge, not authority. Chat history is not Task state. Frontier authority binds the exact projected bytes delivered to the worker binding; raw context cannot bypass projection. | [MIRIX milestone](../milestones/009-cognitive-kernel-increment-4-passed.md), [project-knowledge carveout](../milestones/025-cognitive-kernel-increment-9-passed.md), [projection contract](../contracts/frontier-dispatch.md) |
 | Workers | Worker dispatch ≠ model inference; worker session ≠ Task; worker completion ≠ Task completion. Hidden worker/provider/model usage stays UNKNOWN when unobservable; do not invent exact call counts, models or costs. | [worker/harness milestone](../milestones/015-cognitive-kernel-increment-7-passed.md), [live frontier proof and accounting limits](../milestones/036-cognitive-kernel-increment-11-live-pass.md) |
@@ -117,11 +120,66 @@ experience as a whole.
 | --- | --- | --- |
 | D1 — long-lived platform runtime | **IN PROGRESS — infrastructure foundation PASS** | Stable service ownership and operational recovery |
 | D2 — Personal Agent / remote intake | **PASS**, bounded control/fixture scope | Durable work accessible without kernel probes |
-| D3 — live IntelliJ / real code Tasks | **NEXT**, not started | Useful work in the existing trusted project environment |
+| D3 — live IntelliJ / real code Tasks | **PLANNED through E1–E3**, not live-accepted | Useful work in the existing trusted project environment; E0 connection comes first |
 | D4 — reusable capability system | **PLANNED** | Reuse without a monolithic Personal Agent integration layer |
 | D5 — human interaction channels | **PLANNED** | Notifications and asynchronous remote decisions |
 | D6 — operational/cognitive observability | **PARTIALLY IMPLEMENTED / ACCELERATED BY D1** | Diagnose real Tasks using the existing stack |
 | D7 — v0 acceptance | **PLANNED** | Evidence that the combined product is a Daily Driver |
+
+### Near-term product sequence — Personal Agent Hub E0–E3
+
+The [canonical Hub design](../personal-agent-hub.md) and
+[ADR 0022](../decisions/0022-workstation-personal-agent-client.md) define the next
+bounded product architecture. **E0.A is PASS for the isolated client foundation**:
+[client/build guide](../../client/README.md), [evidence](../../experiments/e0a-blaine-client/README.md).
+**E0.B development-platform PASS; cross-platform PARTIAL** adds real Tailscale
+detection, read-only doctor and idempotent network readiness on Ubuntu amd64.
+Four standalone builds and install/auth fixtures passed; macOS runtime remains
+unverified and WSL host reuse is STOP pending a live spike.
+**E0.C PASS** ([migration evidence](../../experiments/personal-agent-hub/e0c-direct/README.md))
+now implements the operator-selected embedded tsnet/direct private transport.
+Local protocol/identity/process regressions, host readiness and designated Mac/WSL
+direct binary/ACP/signal batches passed within their recorded scope. Public alpha.3
+plus the host ACP compatibility corrections now has a real Mac IntelliJ read-only
+round trip and clean-session-end/Task-independence proof. Effective narrow tailnet
+policy and canonical persistent host deployment have now passed, followed by a
+repeat primary Mac IDE round trip under that final configuration.
+Minimum transport identity reuse has passed. E0.D owns automatic durable workstation
+identity/inventory, reconnect/presence and future capability association for peers
+already admitted by Tailscale and the existing Blaine handshake. It adds no second
+manual approval or authentication system. Tailscale owns strong device revocation;
+Blaine retirement/revocation is product state, not protection against retained Hub
+administrative SSH authority. Full Windows IntelliJ-to-WSL acceptance belongs to E0.F.
+Prior SSH and E0.A/B evidence keeps its original scope. E0.D is PASS: primary Mac registration/reconnect, edge restart, public alpha.4 upgrade and designated WSL distinct-node registration passed. E0.E is next, not started.
+Full Blaine onboarding,
+remote effects and coding E2E remain unvalidated.
+Accepted platform/runtime capabilities are inputs, not a reason to reopen their
+entire workstreams. Workstation and worker remain independent.
+
+| Milestone | Status / product outcome | Dependencies and D-series mapping |
+| --- | --- | --- |
+| E0 — Connect a Workstation | **E0.A foundation PASS; E0.B Linux prerequisite PASS / cross-platform PARTIAL; E0.C and E0.D PASS; full E0 remains unaccepted.** Small portable client, embedded private connectivity, browser enrollment, handshake/registration, safe IntelliJ config and read-only doctor. Linux/macOS/Windows+WSL2 design; initial live proof may cover fewer platforms explicitly. | Consumes D1 service availability and D2 controls; no workspace mutation. Mac real IDE read-only exchange passed. E0.C narrow tailnet policy and canonical persistent Hub deployment passed. Registration lifecycle belongs to E0.D; full second-peer Windows IDE/WSL acceptance belongs to E0.F. E0.D passed with deterministic registry/protocol evidence, primary Mac lifecycle/upgrade and distinct designated WSL registration. E0.E is next. |
+| E1 — Remote Workspace Read | **E1.0 PASS (kernel, 2026-09-24); E1.A–E NOT STARTED.** Design revised 2026-09-23: IDE-delegated read-only workspace through the IntelliJ MCP server (`use_idea_mcp`), PolicyGate-compiled READ_ONLY authority, capability-journal no-mutation evidence and cited findings in the same durable Task across reconnect; first consumer of [Completion Contract v1](../contracts/completion-contract.md). [Workspace contract](../contracts/workspace-capability.md), [ADR 0026](../decisions/0026-completion-contract-is-a-durable-task-primitive.md), [ADR 0027](../decisions/0027-ide-delegation-is-workspace-authority.md), [E1.0 evidence](../../experiments/personal-agent-hub/e1-0/README.md). | E0 (E0.D `workstation_id` PASS; E0.E integration install sets per-agent `use_idea_mcp`); delivers D3.A product proof. E1.0 (kernel, no workstation) PASS → E1.A–E. Live delegation payload unobserved; ADR 0027 Unvalidated. |
+| E2 — Remote Workspace Effects | **E2.0 PASS (provider-independent kernel, fixture provider, 2026-09-24); E2.A–D NOT STARTED; E2 not PASS.** [Target-effect contract](../contracts/target-effects.md), [E2.0 evidence](../../experiments/personal-agent-hub/e2-0/README.md). Designed: conditional bounded file write and authorized workstation test/build with deterministic verification. | E1; supplies D3.B effects. Write concurrency/terminal/provider gates must pass; no unrestricted shell fallback. |
+| E3 — First Personal Agent Coding E2E | **DESIGNED.** Natural-language request, memory/worker, genuine human response, same-Task resume and verified Java 25 Gradle result. | E2; spans synthetic D3.B proof and prepares D3.C, without claiming useful real-work acceptance or all D7. |
+
+D1 remains platform/runtime work; D2 remains bounded remote intake; D3 remains live
+IntelliJ/real code Tasks. Their historical definitions and evidence are unchanged.
+E0–E3 are product/E2E gates consuming those capabilities, not renamed D milestones.
+Post-v0 Cycle E (advanced multi-worker patterns) is also unchanged.
+
+The selected E0.C path embeds tsnet in the workstation client; no separately
+installed workstation CLI/daemon or nested WSL daemon is required. Tailscale
+remains private network infrastructure, separate from Blaine application identity
+and registration. SSH remains administrative. Windows IntelliJ opening the WSL
+project requires live validation of its explicit Linux-client launch boundary.
+
+New platform/observability work is **not on the E0–E3 critical path** without an
+observed blocker. Perfect Task-level OTel, Cloud logs/traces, Fleet, telemetry
+restart durability (OBS-001), backup continuation and full D1.G acceptance are not
+implicit prerequisites. Existing services must be ready for the exercised path;
+fix a demonstrated availability/identity/safety blocker narrowly and retain its
+evidence. D7 keeps its broader operational acceptance requirements.
 
 ### Explicitly not blockers for Daily Driver v0
 
@@ -134,7 +192,26 @@ when evidence demonstrates that it blocks v0; do not import an entire later cycl
 <a id="d1"></a>
 ## D1 — Long-Lived Platform Runtime
 
-**STATUS: IN PROGRESS — infrastructure foundation PASS. Backup: PAUSED.**
+**STATUS: IN PROGRESS — infrastructure foundation and infrastructure-only rootful
+host reboot PASS. Rootless migration: PASS. Backup: PAUSED.**
+
+The [rootless migration checkpoint](../platform-rootless-docker.md) and
+[ADR 0020](../decisions/0020-rootless-docker-operator-runtime.md) select user systemd
+and linger. Full candidate, coherent offline copy, cutover and controlled restarts passed.
+The rootless user stack and linger are enabled; the legacy system owner is disabled.
+D1.A/B/C/D live service adoption is now PASS: five enabled user units, 131072-token
+Qwen with one generation, concurrent GPU embeddings, Goose/Worker, retained MIRIX
+memory, retained Restate Tasks and actual Blaine cognitive/resume evidence.
+No benchmark program or hybrid CPU/GPU investigation was introduced.
+[Operational evidence and exact reboot procedure](../platform-services.md) preserve
+[ADR 0019](../decisions/0019-local-inference-serving-baseline.md).
+D1.G host reboot remains pending and D1.F backup remains PAUSED.
+
+**User-visible completion:** after boot, the operator logs in to a ready Blaine
+that can recover and continue its existing durable Tasks without manual service
+starts. User systemd + linger must start all adopted services independently of
+login. Dependency readiness and same-Task recovery are required in addition to
+enabled units. See the [current startup gap and acceptance](../platform-d1.md#ready-at-login--configured-and-live-tested-host-reboot-pending).
 
 **Why:** the kernel can be durable while Blaine still depends on open terminals
 and undocumented machine state. D1 makes the machine an understandable long-lived
@@ -152,22 +229,26 @@ Langfuse Web and Langfuse Worker. Native PostgreSQL and Redis are reused; native
 Grafana Alloy collects local telemetry. systemd owns the top-level Compose stack
 and Alloy; pragmatic Ansible records desired state. Stack, Docker and Alloy
 restart/persistence smoke tests passed, including synthetic storage and Langfuse
-roundtrips. This does not claim a full-machine reboot or real cognitive traffic.
+roundtrips. A real infrastructure-only reboot passed on 2026-09-21 with a new boot ID and automatic recovery. It does not prove rootless boot recovery, full D1.G, or real cognitive traffic.
 
-Persistent locations are explicit: `/srv/blaine/infra/objects` includes SeaweedFS
-metadata/filer/volumes; ClickHouse uses `/srv/blaine/infra/clickhouse`; native
+Persistent locations are explicit: `~/.local/share/blaine/infra/objects` includes SeaweedFS
+metadata/filer/volumes; ClickHouse uses `~/.local/share/blaine/infra/clickhouse`. The
+old `/srv/blaine/infra` tree is retained unchanged as the pre-cutover source; native
 PostgreSQL uses `/var/lib/postgresql/18/main`; Redis uses `/var/lib/redis`; Alloy
 uses `/var/lib/alloy`. The infrastructure runbook owns the detailed inventory,
 versions, endpoints and config paths. Do not copy a historical inventory into a
 new deployment without observing current state.
 
 Object namespaces are `blaine-artifacts`, `langfuse-events` and `langfuse-media`,
-with separate scoped access. Grafana Cloud is **CONFIGURED FOR FUTURE ACTIVATION**:
-local Alloy works, remote export is inactive, and an operator credential/bootstrap
-procedure is prepared. The [Bitwarden materialization/activation runbook](../platform-grafana-cloud.md)
-keeps secrets external to Git; preparation is not account authentication, token
-creation or delivery verification. No secrets were committed. The temporary D1
-privilege grant was removed; future operators must not assume passwordless sudo.
+with separate scoped access. The [Fleet control-plane slice](../platform-grafana-cloud.md)
+reached **STOP for activation** on native Alloy 1.19.2 offline-start failure.
+BWS/Keyring materialization and Fleet read-API access passed; local Alloy is restored
+after that slice. The independent data-plane slice now exports metrics with Cloud
+readback; restart-durable replay is unaccepted. No D1.G identity was replaced.
+[ADR 0021](../decisions/0021-fleet-observability-control-plane.md) records the direction
+without claiming adoption. Resolve and prove offline startup before enrollment;
+do not introduce an alternate supervisor or reopen inference. Temporary maintenance
+sudo was left untouched for human cleanup, not made a runtime dependency.
 
 The durable knowledge/artifact brain is **PostgreSQL + Blaine Object Storage**.
 Restate separately owns durable Task execution state and needs its own state path
@@ -193,6 +274,9 @@ backup data must remain untouched. Cloud/off-site backup is deferred.
 
 ### D1.A — Blaine service adoption
 
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
+
 **Goal:** run actual Blaine application/runtime services under stable systemd
 ownership rather than terminals. Select the accepted application entrypoint and
 record release, config, secret references, state/artifact paths and dependencies;
@@ -205,6 +289,9 @@ with D1.B so application registration and runtime ownership agree.
 
 ### D1.B — Restate service adoption
 
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
+
 **Goal:** one stable long-lived Restate runtime with systemd ownership and an
 explicit durable state directory. Inventory existing instances and registrations
 before adoption; no accidental second runtime may mask a failed service.
@@ -216,6 +303,9 @@ D2 process-restart evidence is useful input, not host-service adoption evidence.
 
 ### D1.C — vLLM service adoption
 
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
+
 **Goal:** replace the observed terminal-owned local inference process with
 systemd ownership while capturing the actual version, model and serving config.
 Do not change model behavior or introduce a benchmark program in this slice.
@@ -226,6 +316,9 @@ by a bounded authorized check. Account for any separate embedding service and GP
 resource dependencies actually used by the adopted configuration.
 
 ### D1.D — MIRIX service adoption
+
+**Live adoption: PASS, 2026-09-21.** [Evidence and limitations](../platform-services.md).
+Host reboot acceptance remains D1.G.
 
 **Goal:** apply the same long-lived operational treatment to MIRIX. Observe its
 actual process/dependency setup; preserve its PostgreSQL/object dependencies and
@@ -304,7 +397,11 @@ service adoption or a general natural-language coding agent.
 <a id="d3"></a>
 ## D3 — Live IntelliJ / Real Code Tasks
 
-**STATUS: NEXT — not started by this checkpoint.**
+**STATUS: PLANNED — delivered through the E1–E3 product gates after E0 connection.**
+
+D3.A/B/C retain their historical meaning below. E1 delivers D3.A, E2 supplies
+D3.B effects, and E3 is a synthetic full-loop proof that prepares D3.C rather than
+automatically closing real-work readiness. See the [Hub acceptance/decomposition](../personal-agent-hub.md).
 
 **Why:** this is the minimum practical threshold for Daily Driver use. Blaine must
 work on repositories in the trusted company/work laptop environment, which already
@@ -489,11 +586,60 @@ failure should first challenge selection/condensation before blaming model abili
 Smarter routing needs real execution history. Model failure caused by inadequate
 context must not be misclassified as model capability failure.
 
+**Current baseline: Policy C — local-first execution with bounded authorized
+escalation**, accepted direction in [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
+and implemented in [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
+Every eligible Task starts locally, extra turns are a cost rather than a failure,
+and escalation is a deterministic recommendation that only the trusted boundary
+admits. It exists to produce the evidence a smarter pre-router would have to beat.
+
+```text
+Policy C — local-first + bounded authorized escalation     CURRENT BASELINE
+  implementation ........................................  COMPLETE
+  local execution .......................................  LIVE
+  escalation detection ..................................  LIVE
+  authority enforcement .................................  LIVE
+  escalation evidence ...................................  LIVE
+  remote escalation path ................................  IMPLEMENTED
+  remote binding ........................................  NOT PROVISIONED
+
+Policy B — deterministic heuristic pre-routing .........  FUTURE WORK
+Policy A — classifier pre-routing (Jev) ................  INTEGRATED CANDIDATE,
+                                                           NOT ADOPTED, FUTURE WORK
+Controlled downgrade sampling ..........................  FUTURE WORK
+C1 — failure classification ............................  FUTURE WORK
+C4 — cost to successful completion ......................  FUTURE WORK
+```
+
+The distinction that matters most: **the escalation mechanism is implemented and
+validated, and production remote escalation is not provisioned.** No deployment
+configures an escalation binding, so the trusted boundary currently resolves every
+recommendation to `denied_binding_unavailable`. That is the deployment state, not
+a defect, and it is recorded in each routing record:
+
+```text
+local execution -> escalation condition -> trusted admission
+                -> no provisioned remote binding -> denied_binding_unavailable
+```
+
+The first deployment to provision a remote binding can use that denial count as
+one signal that the binding became reachable. No live Qwen-to-remote execution has
+been demonstrated; the live acceptance showed local completion under an external
+grant with no paid provider invocation.
+
+The local turn budget and repetition threshold are **initial experimental
+defaults**, not architectural invariants. Both are recorded in every routing
+record so evidence gathered under one setting stays interpretable after it
+changes. Revising them is a deliberate configuration change informed by observed
+outcomes, not an ADR for each numeric adjustment.
+
 | Slice | Plan and evidence gate |
 | --- | --- |
 | C1 — Failure taxonomy | Candidate distinctions: capability insufficient, context insufficient, policy denied, worker failure, tool failure, invalid output, external dependency and verifier rejection. Do not freeze categories before real cases support them. |
-| C2 — Escalation semantics | Specify who judges previous capability insufficient and what evidence warrants escalation. Separate runtime lifecycle, routing recommendation, authority limits and verifier ownership; no omnipotent escalation subsystem or self-issued grants. |
-| C3 — Jev vs Qwen carveout | Jev remains a candidate only. Use approximately 20–30 real Blaine Tasks to compare routing/workload classification, decision error, latency and cost. Preserve fixtures and evaluation labels; adoption requires measured benefit. |
+| C2 — Escalation semantics | **Partially implemented by Policy C**: a deterministic recommendation, trusted admission, escalation as an outcome rather than a diagnosis, and no self-issued grant. Still open: who judges previous capability insufficient, and what evidence warrants escalation beyond the two deterministic conditions in use. |
+| C3 — Policy A, classifier pre-routing (Jev) | Jev is integrated, authenticated and **unadopted**; do not rebuild it and do not invent a use case for it. Adoption requires measured improvement against both Policy C and Policy B. Its existence is not a reason to place it in the runtime path. |
+| C3b — Policy B, deterministic heuristic pre-routing | A cheap baseline any classifier must beat. The heuristic is deliberately undefined: derive it from real Policy C escalation evidence rather than inventing rules in advance. |
+| C3c — Controlled exploration | Following a remote recommendation produces no evidence about whether local would have sufficed, so a router can become trivially conservative. A bounded downgrade sample must be randomized or explicitly defined, recorded, bounded, low-risk, distinguishable from normal routing, and unable to change policy automatically. |
 | C4 — Cost-to-success routing | Optimize expected total cost to successful completion, not the cheapest invocation. Include retries, failure probability, escalation, runtime and observed cost where known; retain uncertainty for hidden accounting. |
 | C5 — Learning-assisted routing | Begin offline: history → proposed policy → evaluation → human/promoted policy. No uncontrolled online self-modification initially. |
 
@@ -528,6 +674,192 @@ WorkerSessions, role-scoped ContextPackets, explicit authority and typed outcome
 Parent/child completion remains independent. Unconstrained multi-agent debate is
 not the default, and parallelism should answer measured workload needs.
 
+### Shared local resource arbitration (FUTURE)
+
+The merged **Local Verification Scheduler v0** (`docs/verification.md`) is the
+first production consumer of a broader resource-claim pattern: a run declares a
+set of resources as data, a trusted durable arbiter admits the whole set
+atomically, and Workers never coordinate shared resources ad hoc. v0 is
+verification-specific (strict FIFO, one active HOST run, PASS/FAIL/BLOCKED) and
+is **not** a generic `ResourceScheduler`.
+
+A future trusted arbiter may extend to shared workstation resources —
+`workspace:<id>`, `gpu:<device>`, `service:<name>`, `port:<n>`,
+`verification-host` — with `shared read` / `exclusive write` / capacity modes.
+**These are FUTURE and unimplemented.** Future consumers must prove their
+requirements first; in particular, PA-3 real coding delegation should provide
+workspace-contention evidence before the workspace-claim mode is frozen. The
+governing invariant: *resource coordination is trusted infrastructure
+surrounding Tasks, not Worker-owned authority* — a Worker may request but never
+self-grant or bypass arbitration. Coding Workers will consume the merged
+scheduler for host-bound canonical qualification rather than inventing a second
+coordinator. See [verification.md — Future: shared local resource
+arbitration](../verification.md).
+
+## Track III — Hierarchical Context, Memory & Verified Learning
+
+**2026-09-23: Track III research COMPLETE; architecture consolidation PASS.**
+[ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md), the
+[Context Plane specification](../context-plane.md) and
+[semantic contracts](../contracts/context-plane.md) accept broad governed knowledge
+with compiled narrow agent context. Resolver and Compiler remain separate; current
+trusted binding, provenance, source/evidence authority and explicit promotion survive.
+III.8 remains FAIL; III.8R remains its separate PASS recovery; III.G is complementary
+PASS / ADAPT ON-DEMAND. III.10 remains the planned sequence close. All experiments
+and their historical results are unchanged.
+
+**2026-09-24: CP.1 production slice PASS**, opt-in on the existing hosted local Goose
+worker path: read-only Memory facade, exact/lexical sources, trusted binding, compiler
+admission and one fresh bounded delta. [Milestone](../milestones/055-context-plane-cp1.md)
+and [evidence](../../experiments/context-plane-cp1/evidence/acceptance.json) retain 217
+passing relevant tests and native local smoke. Live MIRIX remains unqualified/disabled.
+The [bounded implementation plan](002-context-plane-implementation.md) owns remaining
+gates: **CP.2 is next, NOT STARTED**, requiring separate authorization. Review/merge CP.1
+before starting a fresh CP.2 worktree; deployment enablement still requires evidence review.
+Other tracks' priorities and E0–E3 dependencies are unchanged.
+
+**2026-09-23: complementary III.G Graphify structural utility PASS.**
+[Milestone](../milestones/054-track-iii-g-graphify-structural-utility.md) and
+[evidence](../../experiments/track-iii-graphify/README.md): twenty frozen questions on
+pinned Spring Kafka/Jackson, combined +9 distinct required targets over bounded source
+exploration, eight exploration-request reductions, no stale/forbidden output, <=1995
+bytes. Value is corpus-dependent; overload precision and validation costs remain limits.
+Classification **ADAPT / ON-DEMAND**, not production adoption. III.10 remains the
+planned sequence close; III.8 FAIL and III.8R PASS are unchanged.
+
+**2026-09-23: III.10 context propagation PASS within the offline fixture.**
+[Milestone 052](../milestones/053-track-iii-10-context-propagation.md) records 12 frozen
+handoff/checkpoint/second-process cases, 1,460 independent checks, zero content/metadata
+leaks and three caught scope/policy/provenance mutations. Receivers reconstruct access
+from trusted current state; serialization is not authority. Maximum complete response
+1696 bytes. No production integration or subsequent increment has started.
+
+**2026-09-23: III.9 novelty/simplicity advisory PASS within its synthetic corpus.**
+[Milestone 051](../milestones/052-track-iii-9-novelty-simplicity-advisory.md) records
+two local-model paired repetitions: duplicate choices 4/4 → 0/4, legitimate additions
+and near-match distinctions 4/4 → 4/4. Falsified contract presentation causes incorrect
+reuse in both mutation runs. 58 Qwen calls, 2012-byte maximum advisory, no stale or
+forbidden input. This supports advisory behavior, not a production hard gate.
+
+**III.8R remains PASS on the original frozen III.8 corpus and thresholds.**
+[Milestone 050](../milestones/051-track-iii-8r-narrow-consumption-recovery.md) records
+three additional required targets per revision with one predeclared recovery policy,
+all exact hits preserved, fresh fallback restored and three caught mutations.
+Complete responses remain within 2048 bytes. Its separately authorized III.9 follows below.
+
+**III.8 remains FAIL under its frozen workspace-discovery thresholds.**
+[Milestone 049](../milestones/050-track-iii-8-workspace-discovery.md) records one
+distinct non-lexical gain per revision, below two; exact hits, freshness, isolation
+and corrected full-response budget pass. The canonical reuse target was missed.
+Its separately authorized III.8R follow-up is recorded below; III.8 evidence is unchanged.
+
+**III.7 remains PASS within the fixed synthetic local-model workload.**
+[Milestone 048](../milestones/049-track-iii-7-learned-memory-utility.md) records two
+paired local-Qwen repetitions: matching 0/4 → 4/4, irrelevant and near-match 4/4 → 4/4.
+The failure-as-success rendering causes an actual incorrect commitment in both
+controls. 268 composition checks and 842 independent checks pass; 78 local model
+calls, 1761-byte maximum retrieval, no protected leakage. III.1–III.6 sources/history
+remain unchanged; no production runtime or model routing changes occurred.
+III.1 remains PASS within source-research scope. The
+[reference-systems report](../research/track-iii/001-reference-systems.md) and
+[milestone 042](../milestones/043-track-iii-1-reference-systems.md) retain current
+upstream pins, mechanism classifications, architectural constraints and evidence
+limits. This independent research track does not reopen the Cognitive Kernel,
+alter D1/D2, worker execution or remote-execution work, or add a v0 prerequisite.
+Existing Track A/B and post-v0 cycle names are unchanged.
+
+The accepted primitive is a generic ContextNode tree: permitted knowledge inherits
+downward, writes stay in the current context, and upward promotion is explicit and
+gated. Security applies to every derived representation. Memory remains derived;
+Restate owns lifecycle, PolicyGate authority, and Completion Contracts verification.
+The research studies continuous runtime memory access and learning from verified
+work, not just initial prompt injection.
+
+The [increment sequence](../research/track-iii/001-reference-systems.md#9-track-iii-sequence-and-open-risks)
+covers III.2 hierarchy, III.3 continuous capability, III.4 isolation, III.5 promotion,
+III.6 verified reflection, III.7 lesson utility, III.8 workspace retrieval,
+III.9 Novelty/Simplicity advisory and III.10 local/checkpoint/process lineage.
+Remote-machine and production integration remain unproven and unauthorized.
+
+**III.2 executed** the user-assigned 11-context tree with literal read/write
+oracles, forged-binding/direct-ID/malformed-input checks and an isolated mutation.
+The [experiment](../../experiments/track-iii-002/README.md) records the refinement
+from III.1's tentative topology; no cache or traversal API was needed.
+
+**III.3 executed** continuous capability access with trusted caller bindings and
+unverified current-context observations. The accepted human-declaration refinement
+allows direct writes to an explicitly authorized context with trusted USER_DECLARATION
+provenance; this is not promotion, and agents cannot forge that provenance.
+
+**III.4 executed** explicit lineage/domain/policy intersection across raw and
+synthetic derived memory, graph/cache paths, diagnostics and policy faults. Human
+provenance remains domain-bound; shared public knowledge is explicitly classified.
+Write keys are destination-scoped in the experiment to avoid foreign-ID collision
+oracles. No promotion, declassification or production security system was implemented.
+
+**III.5 executed** immediate-parent promotion through a distinct trusted gate.
+Hand-authored cross-domain candidates require exact-bound approval and all required
+checks; human origin is not declassification, and promotion is not verification.
+Public receipts omit private source/audit data. Replay rechecks security; destination
+identifiers and visible revisions reveal only permitted activity.
+
+**III.6 executed** scoped reflection admission against trusted outcome/evidence
+snapshots and explicit hand-authored candidate-support pairs. Success requires all
+mandatory evidence; failure remains failure-qualified. Reflection is not promotion,
+verified status is not declassification, and replay rechecks current evidence. The
+unchanged III.5 prototype rejects the new verified-outcome provenance class; future
+promotion needs an explicit schema extension, not silent coercion.
+
+**III.7 executed** real local-model pairs with governed learned memory versus
+withheld memory. Trusted outcome admission feeds explicit immediate-parent promotion,
+then later siblings retrieve only the promoted representation. An isolated gate-v2
+schema extension preserves verified success/failure provenance without changing other
+gate logic. The frozen III.5 prototype/history remains unchanged. This demonstrates
+finite synthetic utility, not universal improvement or automatic lesson generation.
+
+**III.8 executed** real local BGE-M3 and Graphify extraction alongside a token-based
+lexical baseline on 12 frozen queries and two immutable source snapshots. The
+[experiment](../../experiments/track-iii-008/README.md) records FAIL: combined semantic
+coverage improves 1/4 → 2/4, structural coverage stays 8/8, and exact lexical coverage
+stays 4/4 in each revision. Only one distinct new target survives the bounded packet;
+the canonical reuse and retry-policy targets are missed. No stale/forbidden output
+appears with enforcement; both leakage mutations are caught. Complete responses fit
+2048 bytes after a documented budget-only correction. Stale derived candidates can
+also suppress fresh lexical fallback in the conservative merged-candidate design.
+
+**III.8R executed** one frozen recovery policy against exactly the retained III.8
+candidate sets, queries, oracles, sources and lexical baseline. Per-contribution
+validation precedes fusion, target deduplication preserves provenance, RRF uses k=60,
+source-family diversity defers repetitive declarations and compact shared metadata
+fits the complete envelope. Semantic coverage is 1/4 → 4/4 in both revisions, with
+three distinct gained targets each; exact 4/4 and structural 8/8 are preserved. No
+post-outcome ranking tuning occurred. Fresh lexical fallback retains all four exact
+hits against stale derived data. Freshness, isolation and late-invalidation mutations
+are caught. Structural incremental retrieval utility remains unproven on this corpus.
+
+**III.9 executed** 12 frozen abstraction proposals with advisory OFF/ON, identical
+local Qwen cognition and three-action budgets, in two reversed-order repetitions.
+The actual III.8R selector is unchanged, bound only to new synthetic data. Semantic
+candidate evidence enables four fewer duplicate choices per repetition without
+legitimate-addition or near-match losses. A fixed false contract excerpt causes two
+incorrect reuses and a nonzero oracle check. Advice remains derived evidence; current
+contracts remain primary. Structural incremental utility is still unproven without
+ablation, and source-family diversity is not evidence of contract equivalence.
+
+**III.10 executed** 12 deterministic transfer cases across local participants,
+checkpoint/resume and actual second OS processes. P2 removes prior P1 visibility;
+T2 reparenting replaces old ancestry; missing current evidence invalidates old success.
+Memory is re-queried, trusted provenance survives, and correlation grants no authority.
+Scope, stale-policy and provenance mutations cause actual caught violations. Whole-tree
+validation and per-operation trusted snapshots are explicit; concurrency, crash
+consistency, production authentication and remote-machine transport remain unproved.
+
+**Post-Track-III consolidation is complete.** The [accepted architecture](../context-plane.md)
+records trusted binding, scoped metadata, routing/compilation and durable revalidation
+obligations with explicit current-code gaps. [CP.1 and later implementation phases](002-context-plane-implementation.md)
+remain proposed, separately authorized work. No production lifecycle, authentication,
+hard gate or runtime adoption follows automatically; all historical results retain scope.
+
 ## How to resume development
 
 A future human/agent should be able to resume from `main` without this conversation:
@@ -551,12 +883,12 @@ A future human/agent should be able to resume from `main` without this conversat
    local links and `git diff --check`; do not run live models/infra just for a docs pass.
 8. Record **PASS or STOP** against acceptance. Update the selected milestone and this
    roadmap's status, evidence links, dependencies, unknowns and current-next block.
-9. Synchronize with latest local main, inspect concurrent changes, stop on semantic
-   conflicts, and revalidate affected scope. Integrate safe/coherent state quickly
-   with bounded commits and fast-forward main when safe; never overwrite concurrent work.
-10. Push main once accepted and authorized, then verify local and remote HEADs.
-    This roadmap checkpoint explicitly authorizes its push; it is not blanket
-    authorization for future live effects, credentials, reboots or frontier dispatches.
+9. Inspect concurrent changes and stop on semantic conflicts; revalidate affected
+   scope. Commit coherent bounded work. Integrate into main only within the current
+   task's authorization; never overwrite concurrent work or infer merge permission.
+10. Publish only when the current task explicitly authorizes it, then verify the
+    authorized result. Historical checkpoint permissions are not standing authority.
+    This Hub design slice requires one local commit and explicitly forbids push/merge.
 
 **STOP is not failure.** It is expected when evidence reveals ownership ambiguity,
 a lifecycle seam, an authority seam, source-of-truth ambiguity or a missing contract.
@@ -576,10 +908,11 @@ shared publication step, not permission to edit another feature worktree.
 
 ## Next-step decision guide
 
-The default sequence is outstanding **D1 service-operational work → D3 → D4 → D5 →
-D6 remaining wiring → D7**. D1 and D3 can progress as separate owned tracks where
-dependencies allow; the ordering does not require completing paused backup before
-a safe D3 read-only proof. Operational reliability still gates final v0 acceptance.
+The default product sequence is **E0 → E1 → E2 → E3 → remaining D3.C / D4 / D5 /
+D6 work as justified → D7**. D1 operations remain a separate track; an observed
+service/safety blocker can interrupt the affected product slice. Paused backup,
+Fleet, Cloud logs/traces, perfect Task-level OTel and telemetry restart durability
+are not E0–E3 prerequisites. Operational reliability still gates final v0 acceptance.
 
 | Evidence observed | Bounded priority adjustment |
 | --- | --- |
@@ -600,11 +933,14 @@ explicit decision closes it.
 
 | Unknown | Evidence needed to resolve it |
 | --- | --- |
+| Hub client/platform/provider choices | [Explicit Hub open questions](../personal-agent-hub.md#open-questions), including WSL2/IDE live gates and safe write/exec |
+| Exact IntelliJ MCP delegation payload to a custom ACP agent | E1.A redacted `session/new` observation on the installed IDE |
+| Operator-rule storage for promoted completion criteria | First real promoted rule (expected E3); see [Completion Contract memory](../contracts/completion-contract.md#memory-and-learning) |
 | Final Capability Registry scope/shape | D3/D4 packaging, admission, versioning and cross-Task reuse experience |
 | Redis profile separation | Actual cache/queue persistence, eviction and recovery requirements |
 | When project graph belongs in the context path | Measured retrieval benefit with trustworthy freshness/provenance |
 | Need for semantic condensation | FULL/SELECTED/COMPILED fidelity results showing a remaining deterministic gap |
-| Whether Jev merits adoption | Approximately 20–30 real Task comparisons against Qwen |
+| Whether Jev merits adoption | Measured improvement against Policy C and Policy B on cost to successful completion. Policy C now produces that evidence as a side effect of normal operation; a valid outcome is that no pre-router is worth its complexity |
 | Precise escalation ownership/semantics | Real failure cases, attribution and a bounded recommendation/authority contract |
 | Eventual custom UI | Concrete operator friction that ACP and remote channels cannot reasonably address |
 | Complete backup/off-site strategy | PostgreSQL/Object Storage coverage, Restate recovery needs, isolated restores, agreed recovery objectives and later off-site requirements |
@@ -622,15 +958,113 @@ operator procedures; this document owns development direction and dependencies.
 <a id="current-next"></a>
 ## Current next work
 
-- **Track A: D3 — Live IntelliJ / Real Code Task.** Start with D3.A, a safe live
-  read-only proof; then D3.B and D3.C only after their preceding gates pass.
-- **Track B: continue D1 long-lived service adoption:** Blaine, Restate, vLLM and
-  MIRIX; then controlled recovery/reboot acceptance with explicit reboot authorization.
+- **Track III research COMPLETE; architecture consolidation PASS.**
+  [Accepted Context Plane](../context-plane.md) and [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md).
+  III.8 FAIL / III.8R PASS remain separate; III.G remains complementary PASS / ADAPT ON-DEMAND.
+  **Latest production increment: [CP.1 PASS](../milestones/055-context-plane-cp1.md)**
+  (opt-in local initial packet + one delta; 217 relevant tests and native Goose smoke).
+  **Next proposal: [CP.2 — Governed declared/observed writes](002-context-plane-implementation.md#3-subsequent-bounded-phases), NOT STARTED.**
+  CP.1 is merged into main (PR #2); use a fresh CP.2 worktree only after authorization. Qualify
+  existing MIRIX/metadata before writes; live MIRIX remains disabled on the CP.1 path.
+  No automatic learning, semantic retrieval, Graphify, promotion or declassification is
+  authorized. Deployment requires evidence review. Other product priorities unchanged.
+- **Track A: Personal Agent Hub E0–E3.** **E0.A foundation PASS**: standalone
+  client, platform/config locations and clean stdio/process proof
+  ([evidence](../../experiments/e0a-blaine-client/README.md)). **E0.B native Linux
+  network prerequisite PASS / cross-platform PARTIAL**
+  ([evidence](../../experiments/e0b-tailscale-onboarding/README.md)). **E0.C PASS**
+  ([closure](../../experiments/personal-agent-hub/e0c-direct/closure.json)): embedded
+  tsnet/direct transport, primary Mac real IntelliJ read-only round trip, persistent
+  identity/reconnect, narrow effective policy, canonical persistent Hub and bounded
+  Task independence. Public alpha.3 provided the E0.C client proof; alpha.4 now
+  provides E0.D registration receipts and live Mac/WSL identity metadata. Alpha.1
+  is historical SSH product-transport evidence. Earlier WSL stream evidence keeps its recorded scope;
+  full Windows-hosted IntelliJ/WSL acceptance belongs to E0.F. **E0.D Registration**
+  is **PASS** ([closure](../../experiments/personal-agent-hub/e0d/closure.json)): automatic registration of
+  Tailscale-admitted peers, stable identity/inventory, reconnect/presence and future
+  capability association. No second manual Blaine admission boundary is planned.
+  Strong device revocation stays with Tailscale. E0.E is next, then E0.F; neither has started and no later capability work is implemented.
+  Use the [design and decomposition](../personal-agent-hub.md#implementation-decomposition).
+  Full E0 onboarding then E1 read, E2 effects and E3 coding each require their own gates.
+  **Completion Contract / E1 design (2026-09-23, design only):** IDE delegation is
+  workspace authority, IntelliJ MCP is the E1 provider, PolicyGate is the single
+  enforcer and the client is a bridge ([ADR 0027](../decisions/0027-ide-delegation-is-workspace-authority.md));
+  Completion Contract v1 with capability journal ([ADR 0026](../decisions/0026-completion-contract-is-a-durable-task-primitive.md)).
+  **E1.0 PASS (2026-09-24):** the kernel contract, journal, verifiers, amendments and
+  legality run on real Restate with SIGKILL recovery ([evidence](../../experiments/personal-agent-hub/e1-0/README.md)).
+  **E2.0 PASS (2026-09-24), provider-independent only:** [target effects](../contracts/target-effects.md)
+  (operation-id identity with receipt-first recovery, conditional whole-file writes,
+  reviewed exec profiles, cancellation, reconciliation to APPLIED / NOT_APPLIED /
+  DIFFERENT_STATE / STILL_UNKNOWN, `change_set`/`capability_result`, never COMPLETED
+  with an unresolved target effect, Task cancel reconciles effects and is not rollback)
+  on a fixture provider ([evidence](../../experiments/personal-agent-hub/e2-0/README.md)).
+  No workstation, IDE or provider path uses E1.0/E2.0 yet; **E1 and E2 are not PASS**.
+  **Critical path:** E0.E JetBrains integration install (sets Blaine's per-agent
+  `use_idea_mcp`) → **E1.A** observe the real delegation (operator + installed
+  IntelliJ required: redacted ACP `session/new`, MCP server descriptor, tool list,
+  project representation, `use_idea_mcp` on/off, configOptions; token never leaves
+  the workstation; no tool calls) → E1.B relay/bridge built on the observed contract
+  → E1.C real read-only operations with `intellij-mcp@1` classification, receipts and
+  journal (PolicyGate stays the only enforcer; no local PolicyGate, no Blaine-owned
+  filesystem provider) → E1.D templates/findings schemas → E1.E live acceptance →
+  **E2.A** prove on the real provider what E2.0 assumes of fixtures (atomic
+  conditional write, durable receipt keyed by Blaine `operation_id`, dirty buffers,
+  confirmed termination and descendant cleanup, environment control, response loss,
+  semantic-operation → tool mapping), or STOP rather than weaken E2.0 invariants.
+  **Verification:** suites are classified HERMETIC / HOST / FLEET / CI_ONLY
+  ([E2.0 classification](../../experiments/personal-agent-hub/e2-0/regression.json));
+  the unit suite and isolated-Restate acceptances are HERMETIC, live-service
+  harnesses HOST, IntelliJ/workstation acceptance FLEET. The Local Verification
+  Scheduler v0 is a separate track, not yet on main; no Python CI exists yet and none
+  should be added outside that canonical integration.
+  See the [E1/E2 slices](../personal-agent-hub.md#implementation-decomposition).
+  D3 history is preserved; no full E-series milestone is claimed live PASS.
+- **Track B: D1.A/B/C/D live adoption accepted.** Run the prepared D1.G reboot
+  acceptance only with explicit human authorization; backup stays PAUSED.
 - **Backup: PAUSED.** Preserve historical backup data; no live backup completion claimed.
-- **Grafana Cloud: CONFIGURED FOR FUTURE ACTIVATION.** Human credential/bootstrap
-  procedure prepared; remote delivery inactive/unproven.
+- **Grafana Cloud metrics: ACCEPTED best-effort; current slice CONCLUDED.**
+  Live delivery, network retry/drain and offline local startup passed. Restart
+  replay remains unguaranteed, not a D1.G blocker. [OBS-001 / NCP-3](https://leofuso.youtrack.cloud/issue/NCP-3)
+  tracks future durability investigation in Upstream/Backlog. Fleet remains
+  DEFERRED / STOP; logs/traces export is inactive. See the
+  [live inventory and validated PromQL](../platform-observability-inventory.md).
+- **Blaine observability coverage:** current coverage/gaps and its independent
+  operational follow-ups live in the [observability inventory](../platform-observability-inventory.md)
+  and [GPU/vLLM runbook](../platform-gpu-vllm-telemetry.md). Additional coverage is
+  outside the E0–E3 critical path unless a concrete product blocker requires it.
+  This is separate from OBS-001 and does not change D1.G's Cloud independence.
 - **D2: PASS.** Live IntelliJ project access and real code execution remain D3 work.
 - **Cognitive Kernel 1–12: COMPLETE.** No further kernel increment is scheduled.
+- **Secret delivery: ADR 0023 accepted.** Bitwarden is the source of truth and not
+  a runtime dependency; SecretSpec 0.20.0 resolves declared secrets behind one
+  alias while Blaine keeps the consumer allowlist, atomic activation, verification
+  and rotation reporting. Services and bounded processes start from local `0600`
+  credentials with the secret manager, the keyring and a desktop session all
+  unavailable. Credentials remain plaintext at rest, recorded as an accepted
+  limitation. See the [secrets runbook](../platform-secrets.md).
+- **Jev: integration PASS, NOT adopted.** One real authenticated invocation exists
+  and Jev changes no routing outcome. C3's comparison is still unstarted; see
+  [milestone 041](../milestones/041-jev-provider-candidate.md).
+- **Policy C — local-first execution with bounded escalation: COMPLETE.**
+  [ADR 0024](../decisions/0024-local-first-execution-with-bounded-escalation.md)
+  is accepted for its mechanism. Every eligible Task starts on the local binding,
+  escalation is deterministic and trusted, and each Task retains authoritative
+  routing evidence that a deterministic report reads. Effective capability
+  authority is now the request intersected with an external grant, closing a real
+  gap where a top-level Task declared its own authority. **No production remote
+  binding is provisioned**, so escalation currently denies as unavailable by
+  design. Policies A and B remain future work; nothing routes by classifier or
+  heuristic. See [milestone 042](../milestones/042-policy-c-local-first-escalation.md).
+- **Worker execution boundary: user-directed increment, PASS within its evidence.**
+  A provider-neutral continuation boundary, adapter capability claims and an
+  OpenTelemetry telemetry path now exist, with a synchronous control hook where an
+  adapter genuinely provides one. Codex app-server exposes observation, steering and
+  interruption but **not** synchronous continuation admission, which is declared
+  UNSUPPORTED rather than emulated. This changes no workstream status, adopts no
+  worker binding and builds no supervisor or dashboard. See
+  [milestone 040](../milestones/040-worker-execution-instrumentation.md) and the
+  [boundary contract](../contracts/worker-execution-boundary.md). Selective semantic
+  supervision, steering policy and rebinding policy remain unstarted.
 
-This checkpoint records the program and handoff only. It does not start D3, adopt
-services, change Platform D1 infrastructure, unpause backup or authorize a reboot.
+This checkpoint includes E0.A/B and partial E0.C; it does not claim full E0–E3/D3 acceptance,
+adopt services, change Platform D1 infrastructure, unpause backup or authorize a reboot.

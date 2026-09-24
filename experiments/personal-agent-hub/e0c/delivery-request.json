@@ -1,0 +1,14 @@
+{
+  "objective": "Add repository-owned GitHub Actions CI/artifacts and tag-driven alpha Releases for the E0.C workstation client; publish v0.1.0-alpha.1 after reporting exact semantics and prove downloaded assets without pulling E0.D+ forward.",
+  "mode": "interactive",
+  "capabilities": ["edit repository", "run client validation", "publish the E0.C branch for GitHub Actions", "create first alpha tag/release", "download and verify public artifacts"],
+  "autonomy": {
+    "allowed": ["supporting E0.C delivery work", "GitHub Actions and Releases", "local commits", "report release semantics before publication"],
+    "forbidden": ["merge", "native Windows client", "self-updater", "final installer", "changelog automation", "commit generated binaries", "E0.D+ implementation", "repurpose an undesignated peer"]
+  },
+  "completion": [
+    {"criterion":"Pinned toolchain CI validates and builds the accepted four-target matrix", "evidence":"Successful Actions run and downloadable artifacts"},
+    {"criterion":"First alpha release contains four correctly named binaries and one checksum manifest with exact commit metadata", "evidence":"Published release, asset readback, SHA-256 verification and native version output"},
+    {"criterion":"Clean workstation installation and unresolved live E0.C gates are explicit", "evidence":"Platform-specific Release install commands; no stable or remote-peer acceptance claim"}
+  ]
+}

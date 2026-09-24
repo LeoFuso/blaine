@@ -1,0 +1,1 @@
+uid=1000(leofuso) gid=1000(leofuso) groups=1000(leofuso),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),111(lpadmin),114(lxd),971(docker),973(ollama)

@@ -1,0 +1,1 @@
+{"kind":"EffectObservation","payload":{"operation_id":"change/4","outcome":"success","receipt_ref":"artifact://change/sha256:17c0cf4f65236f72bc65d0dcb7f897d0edcca70268e903d508f72561ca307f5d","request_ref":"artifact://change/sha256:b1595144c578c53296a3fe579657284df5b1d396d9c8ece618adf5a362685822","status":"completed"},"version":1}

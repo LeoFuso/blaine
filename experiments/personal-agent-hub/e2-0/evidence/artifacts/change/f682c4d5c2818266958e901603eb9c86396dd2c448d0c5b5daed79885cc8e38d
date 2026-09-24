@@ -1,0 +1,1 @@
+{"kind":"CapabilityJournalEntry","payload":{"operation_id":"change/2","outcome":"success","phase":"observed","previous_ref":"artifact://change/sha256:c650fac264c697cd1a53641495de16dbb98a75593d1a812e9a52b572a81f358f","receipt_ref":"artifact://change/sha256:11b59c07a3852eba5451c14c2087d499d41ddfad69812e9b54908b504feb1ced","seq":3,"task_id":"change"},"version":1}

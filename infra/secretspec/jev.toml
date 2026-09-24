@@ -1,0 +1,9 @@
+# Declaration only; never a value. One manifest per consumer, because SecretSpec
+# profiles extend the default profile rather than isolating from it, so a shared
+# manifest would let one consumer resolve another consumer's secrets.
+[project]
+name = "blaine-jev"
+revision = "1.0"
+
+[profiles.default]
+TYPESAFE_API_KEY = { description = "TypeSafe/Jev provider credential", required = true }

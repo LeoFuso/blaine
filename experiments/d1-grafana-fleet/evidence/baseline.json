@@ -1,0 +1,18 @@
+{
+  "head": "2e0ddb0",
+  "alloy": "1.19.2",
+  "alloy_revision": "becfd48",
+  "service_user": "alloy",
+  "local_config_sha256": "3ba1564eb34b1f5139484c8ee944134f06a363ee5fcbaf137651ed5a6825f967",
+  "remote_export_active": false,
+  "fleet_active": false,
+  "bws_fleet_fields_present": true,
+  "bws_telemetry_fields_present": false,
+  "preserved_fixture_sha256": {
+    "object-fixture.json": "1671e654a1ddfbf82527e11fe832903d90191e77f6f1e078230d6bf90887c231",
+    "mirix-fixture.json": "f3bac89f8a2cc32de78ac0797ba6ed3121a340b23418dc2a703595278d1dca2a",
+    "durable-fixture.json": "859c0c4f49322f0eafdffbffe8dc4d822c36124e21e3806ffa798291f7460d76",
+    "durable-waiting-before.json": "92c802aa81c80c870d51f139141cae762d9df30d38a15be64d3917ac86d83bff",
+    "pre-reboot.json": "42dc3394db84ae0b7fdb5b0e34dc0a1097e5cf863fda872314dd1b0219ea55b2"
+  }
+}

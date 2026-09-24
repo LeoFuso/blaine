@@ -1,0 +1,25 @@
+{
+  "artifact_sha256": {
+    "cost.json": "899f23fd0ba552ddabb4db55bc5b81b780d5eea11085c38d48bf3a510c4b313d",
+    "raw.json.gz": "addb877bbb087db924f26ac62c6b85eae47de3deb5ebd4b5aceb1a42712f1034",
+    "source.json.gz": "b25f94437f97fbe6a4ba0d67d7857998ca00315388b8a97f64a3e875a2ff75e7",
+    "source.tar.gz": "9fac385eb4b4cad4bd4e6ff5cb7db19d4a595418aa23435d9e47e59eff24a2cf"
+  },
+  "command": [
+    "/home/leofuso/workspace/blaine/experiments/graphify-carveout/.venv/bin/python",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/collect.py",
+    "--child",
+    "jackson-databind",
+    "/tmp/blaine-iii-g/jackson-databind-extract",
+    "/tmp/blaine-iii-g/jackson-databind-cache",
+    "/home/leofuso/workspace/blaine-track-iii-context-memory/experiments/track-iii-graphify/evidence/indexes/jackson-databind/B"
+  ],
+  "commit": "c59ce26302bb9cfdc8084ffee1e1318ad1db3d99",
+  "exit_code": 0,
+  "mode": "full graph rebuild with existing parse cache; not incremental graph update",
+  "repo": "jackson-databind",
+  "revision": "B",
+  "stderr": "",
+  "stdout": "  AST extraction: 17/17 uncached files (100%)\n",
+  "wall_seconds": 5.751784501015209
+}

@@ -1,0 +1,53 @@
+
+PLAY [Stage the D1 rootless operator runtime (activation is a separate cutover)] ***
+
+TASK [Require operator staging with explicit safe scope] ***********************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Require recorded acceptance and a disabled legacy owner before activation] ***
+skipping: [localhost]
+
+TASK [Observe executing identity] **********************************************
+ok: [localhost]
+
+TASK [Refuse root or a different operator identity] ****************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Refuse symlinks before touching runtime paths] ***************************
+ok: [localhost]
+
+TASK [Create private operator configuration and state parents] *****************
+ok: [localhost] => (item=/tmp/blaine-d1-rootless-scratch/home/leofuso/.config/blaine)
+ok: [localhost] => (item=/tmp/blaine-d1-rootless-scratch/home/leofuso/.config/blaine/infra)
+ok: [localhost] => (item=/tmp/blaine-d1-rootless-scratch/home/leofuso/.config/blaine/secrets)
+ok: [localhost] => (item=/tmp/blaine-d1-rootless-scratch/home/leofuso/.local/share/blaine)
+ok: [localhost] => (item=/tmp/blaine-d1-rootless-scratch/home/leofuso/.local/share/blaine/infra)
+ok: [localhost] => (item=/tmp/blaine-d1-rootless-scratch/home/leofuso/.config/systemd/user)
+
+TASK [Stage versioned rootless configuration without secrets or activation marker] ***
+ok: [localhost] => (item={'src': '../compose/rootless.yaml', 'dest': '/tmp/blaine-d1-rootless-scratch/home/leofuso/.config/blaine/infra/compose.yaml'})
+ok: [localhost] => (item={'src': '../rootless/preflight.py', 'dest': '/tmp/blaine-d1-rootless-scratch/home/leofuso/.config/blaine/infra/preflight.py'})
+ok: [localhost] => (item={'src': '../systemd/user/blaine-infra.service', 'dest': '/tmp/blaine-d1-rootless-scratch/home/leofuso/.config/systemd/user/blaine-infra.service'})
+
+TASK [Validate private runtime and selected rootless daemon] *******************
+skipping: [localhost]
+
+TASK [Validate rootless Compose without rendering secrets] *********************
+skipping: [localhost]
+
+TASK [Own the accepted infrastructure as a user service] ***********************
+skipping: [localhost]
+
+TASK [Explain the default staging boundary] ************************************
+ok: [localhost] => {
+    "msg": "Staging only unless blaine_activate=true and acceptance/legacy-owner guards pass. Native Alloy/PostgreSQL/Redis remain system services; rootless-host.yml owns bounded host prerequisites and accepted legacy cleanup."
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=7    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0

@@ -1,0 +1,1 @@
+{"kind":"EffectReceipt","payload":{"exec":{"cleanup":"confirmed","signal":"SIGKILL","started":true},"operation_class":"workspace.exec","operation_id":"task-cancel-active/1","provider":"fixture-target","request_digest":"sha256:b45c9c4912e21c384b805e6c4c9fdc03bb9e2c8d5d9a9c4240c0eefee0237dec","state":"canceled","task_id":"task-cancel-active"},"version":1}

@@ -1,0 +1,627 @@
+{
+  "started": 1790038947.7273731,
+  "input_kind": "synthetic token IDs",
+  "max_output_tokens": 512,
+  "idle": [
+    {
+      "time": 1790038947.751891,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2757.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29350.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 24.434,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 420.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 14543267.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1525658.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 0.0,
+        "used_mib": 29352.0,
+        "free_mib": 2757.0,
+        "temperature_c": 46.0,
+        "power_w": 30.11
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    },
+    {
+      "time": 1790038948.774745,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2757.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29350.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 24.434,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 420.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 14543267.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1525658.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 0.0,
+        "used_mib": 29352.0,
+        "free_mib": 2757.0,
+        "temperature_c": 46.0,
+        "power_w": 28.37
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    },
+    {
+      "time": 1790038949.7970023,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2757.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29350.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 24.434,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 420.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 14543267.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1525658.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 0.0,
+        "used_mib": 29349.0,
+        "free_mib": 2760.0,
+        "temperature_c": 46.0,
+        "power_w": 27.09
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    },
+    {
+      "time": 1790038950.8244429,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2759.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29348.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 26.025,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 292.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 9487828.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1274977.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 0.0,
+        "used_mib": 29357.0,
+        "free_mib": 2752.0,
+        "temperature_c": 46.0,
+        "power_w": 25.47
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    },
+    {
+      "time": 1790038951.8468425,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2759.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29348.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 26.025,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 292.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 9487828.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1274977.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 0.0,
+        "used_mib": 29357.0,
+        "free_mib": 2752.0,
+        "temperature_c": 46.0,
+        "power_w": 29.85
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    },
+    {
+      "time": 1790038952.8742805,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2759.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29348.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 26.025,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 292.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 9487828.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1274977.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 5.0,
+        "used_mib": 29375.0,
+        "free_mib": 2734.0,
+        "temperature_c": 46.0,
+        "power_w": 30.31
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    }
+  ],
+  "load": [
+    {
+      "time": 1790038953.9139385,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2759.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29348.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 26.025,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 292.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 9487828.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1274977.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 0.0,
+        "used_mib": 29376.0,
+        "free_mib": 2733.0,
+        "temperature_c": 46.0,
+        "power_w": 29.4
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    },
+    {
+      "time": 1790038954.936216,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2759.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29348.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 46.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 405.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 8.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 26.025,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 292.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 9487828.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 1274977.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 99.0,
+        "used_mib": 29379.0,
+        "free_mib": 2730.0,
+        "temperature_c": 55.0,
+        "power_w": 341.94
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.04166666666666663
+      }
+    },
+    {
+      "time": 1790038955.961786,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2720.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29387.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 55.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 99.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 13801.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 84.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 341.937,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2880.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 62671590.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 6448213.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 99.0,
+        "used_mib": 29387.0,
+        "free_mib": 2722.0,
+        "temperature_c": 56.0,
+        "power_w": 379.17
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.04166666666666663
+      }
+    },
+    {
+      "time": 1790038956.9848056,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2720.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29387.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 55.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 99.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 13801.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 84.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 341.937,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2880.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 62671590.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 6448213.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 99.0,
+        "used_mib": 29390.0,
+        "free_mib": 2719.0,
+        "temperature_c": 56.0,
+        "power_w": 381.02
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.04166666666666663
+      }
+    },
+    {
+      "time": 1790038958.009232,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2720.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29387.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 55.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 99.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 13801.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 84.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 341.937,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2880.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 62671590.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 6448213.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 99.0,
+        "used_mib": 29403.0,
+        "free_mib": 2706.0,
+        "temperature_c": 57.0,
+        "power_w": 383.16
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.04166666666666663
+      }
+    },
+    {
+      "time": 1790038959.0319514,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2720.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29387.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 55.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 99.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 13801.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 84.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 341.937,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2880.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 62671590.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 6448213.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 99.0,
+        "used_mib": 29402.0,
+        "free_mib": 2707.0,
+        "temperature_c": 57.0,
+        "power_w": 385.77
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.04166666666666663
+      }
+    },
+    {
+      "time": 1790038960.0549674,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2720.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29387.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 55.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 99.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 13801.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 84.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 341.937,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2880.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 62671590.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 6448213.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 99.0,
+        "used_mib": 29402.0,
+        "free_mib": 2707.0,
+        "temperature_c": 57.0,
+        "power_w": 384.19
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.04166666666666663
+      }
+    },
+    {
+      "time": 1790038961.0785172,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2688.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29419.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 57.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 99.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 13801.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 84.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 384.187,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2887.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 76295896.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 11165684.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 99.0,
+        "used_mib": 29416.0,
+        "free_mib": 2693.0,
+        "temperature_c": 58.0,
+        "power_w": 384.58
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.04166666666666663
+      }
+    },
+    {
+      "time": 1790038962.0956755,
+      "dcgm": {
+        "DCGM_FI_DEV_CLOCK_THROTTLE_REASONS{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_FB_FREE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2688.0,
+        "DCGM_FI_DEV_FB_RESERVED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 499.0,
+        "DCGM_FI_DEV_FB_USED{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 29419.0,
+        "DCGM_FI_DEV_GPU_TEMP{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 57.0,
+        "DCGM_FI_DEV_GPU_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 99.0,
+        "DCGM_FI_DEV_MEM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 13801.0,
+        "DCGM_FI_DEV_MEM_COPY_UTIL{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 84.0,
+        "DCGM_FI_DEV_PCIE_REPLAY_COUNTER{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_DEV_POWER_MGMT_LIMIT{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 600.0,
+        "DCGM_FI_DEV_POWER_USAGE{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 384.187,
+        "DCGM_FI_DEV_POWER_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2237548448.0,
+        "DCGM_FI_DEV_SM_CLOCK{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 2887.0,
+        "DCGM_FI_DEV_THERMAL_VIOLATION{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 0.0,
+        "DCGM_FI_PROF_PCIE_RX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 76295896.0,
+        "DCGM_FI_PROF_PCIE_TX_BYTES{gpu=\"0\",UUID=\"GPU-b5f6fbf5-447a-6121-b0e2-7e573bb6fe5e\",pci_bus_id=\"00000000:01:00.0\",device=\"nvidia0\",modelName=\"NVIDIA GeForce RTX 5090\"}": 11165684.0
+      },
+      "nvidia_smi": {
+        "utilization_percent": 0.0,
+        "used_mib": 29420.0,
+        "free_mib": 2689.0,
+        "temperature_c": 52.0,
+        "power_w": 324.15
+      },
+      "generation_gauges": {
+        "vllm:num_requests_running{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"capacity\"}": 0.0,
+        "vllm:num_requests_waiting_by_reason{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",reason=\"deferred\"}": 0.0,
+        "vllm:kv_cache_usage_perc{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.0
+      }
+    }
+  ],
+  "generation_request": {
+    "http_status": 200,
+    "elapsed_seconds": 7.708824634552002,
+    "usage": {
+      "prompt_tokens": 256,
+      "total_tokens": 768,
+      "completion_tokens": 512,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    },
+    "embedding_count": null
+  },
+  "embedding_request": {
+    "http_status": 200,
+    "elapsed_seconds": 0.030634641647338867,
+    "usage": {
+      "prompt_tokens": 48,
+      "total_tokens": 48,
+      "completion_tokens": 0,
+      "prompt_tokens_details": null,
+      "completion_tokens_details": null
+    },
+    "embedding_count": 1
+  },
+  "deltas": {
+    "generation": {
+      "vllm:prefix_cache_queries_total{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 256.0,
+      "vllm:prompt_tokens_total{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 256.0,
+      "vllm:prompt_tokens_by_source_total{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\",source=\"local_compute\"}": 256.0,
+      "vllm:generation_tokens_total{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 512.0,
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"length\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_prompt_tokens_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_prompt_tokens_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 256.0,
+      "vllm:request_generation_tokens_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_generation_tokens_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 512.0,
+      "vllm:iteration_tokens_total_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 512.0,
+      "vllm:iteration_tokens_total_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 768.0,
+      "vllm:request_max_num_generation_tokens_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_max_num_generation_tokens_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 512.0,
+      "vllm:request_params_n_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_params_n_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_params_max_tokens_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_params_max_tokens_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 512.0,
+      "vllm:time_to_first_token_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:time_to_first_token_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.07550621032714844,
+      "vllm:inter_token_latency_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 511.0,
+      "vllm:inter_token_latency_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 7.631922718996066,
+      "vllm:request_time_per_output_token_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_time_per_output_token_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.014935269508798588,
+      "vllm:e2e_request_latency_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:e2e_request_latency_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 7.707221746444702,
+      "vllm:request_queue_time_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_queue_time_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.4789999113418162e-05,
+      "vllm:request_inference_time_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_inference_time_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 7.706516974001715,
+      "vllm:request_prefill_time_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_prefill_time_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 0.07459425500564976,
+      "vllm:request_decode_time_seconds_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_decode_time_seconds_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 7.631922718996066,
+      "vllm:request_num_preemptions_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_prefill_kv_computed_tokens_count{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 1.0,
+      "vllm:request_prefill_kv_computed_tokens_sum{engine=\"0\",model_name=\"nvidia/Qwen3.8-27B-NVFP4\"}": 256.0
+    },
+    "embedding": {
+      "vllm:prompt_tokens_total{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 48.0,
+      "vllm:prompt_tokens_by_source_total{engine=\"0\",model_name=\"BAAI/bge-m3\",source=\"local_compute\"}": 48.0,
+      "vllm:request_success_total{engine=\"0\",finished_reason=\"stop\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_prompt_tokens_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_prompt_tokens_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 48.0,
+      "vllm:request_generation_tokens_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:iteration_tokens_total_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:iteration_tokens_total_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 48.0,
+      "vllm:request_max_num_generation_tokens_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_params_n_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_params_n_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:time_to_first_token_seconds_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:time_to_first_token_seconds_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 0.028421640396118164,
+      "vllm:request_time_per_output_token_seconds_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:e2e_request_latency_seconds_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:e2e_request_latency_seconds_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 0.028421640396118164,
+      "vllm:request_queue_time_seconds_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_queue_time_seconds_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.6328995116055012e-05,
+      "vllm:request_inference_time_seconds_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_inference_time_seconds_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 0.027524633005668875,
+      "vllm:request_prefill_time_seconds_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_prefill_time_seconds_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 0.027524633005668875,
+      "vllm:request_decode_time_seconds_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_num_preemptions_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_prefill_kv_computed_tokens_count{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 1.0,
+      "vllm:request_prefill_kv_computed_tokens_sum{engine=\"0\",model_name=\"BAAI/bge-m3\"}": 48.0
+    }
+  },
+  "ended": 1790038964.104803
+}

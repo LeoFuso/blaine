@@ -1,0 +1,22 @@
+{
+  "baseline_commit": "4705592",
+  "exact_losses_max": 0,
+  "forbidden_emitted_max": 0,
+  "fusion": "exact symbol first; explicit structural answers next; interleaved semantic/lexical ranks for remaining candidates with RRF k=20 tie-break; greedy whole-record byte selection",
+  "lexical": "case-folded identifier splitting and stopword-filtered OR-token BM25 over source declarations; exact full-symbol matches prioritized",
+  "mutation_freshness": "Use revision-A derived indexes for requested B and bypass revision/hash/symbol/edge validation",
+  "mutation_isolation": "Use all-domain candidates and bypass scoped filtering before retrieval and packet emission",
+  "no_tuning": "Queries, source/oracles, selection and thresholds freeze before comparing outputs; report FAIL if unmet.",
+  "packet_bytes": 2048,
+  "queries": 12,
+  "required_nonlexical_gain": 2,
+  "revisions": [
+    "A",
+    "B"
+  ],
+  "semantic": "local BAAI/bge-m3 dense cosine over AST declaration text; rounded scores for deterministic tie breaking",
+  "stale_emitted_max": 0,
+  "structural": "real pinned Graphify extraction, bounded relation lookup/path expansion, source-AST relation revalidation",
+  "threshold_scope": "At least two distinct required targets gained across the eight non-lexical queries in EACH revision; repeated target across queries counts once. No exact loss; all combined required targets must survive packet bounding.",
+  "version": "iii8-v1"
+}

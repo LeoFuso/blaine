@@ -1,0 +1,12 @@
+?   	blaine.local/client/cmd/blaine	[no test files]
+?   	blaine.local/client/cmd/blaine-hub-transport	[no test files]
+ok  	blaine.local/client/internal/buildinfo	(cached)
+ok  	blaine.local/client/internal/cli	1.012s
+ok  	blaine.local/client/internal/connect	(cached)
+ok  	blaine.local/client/internal/connection	(cached)
+ok  	blaine.local/client/internal/direct	(cached)
+ok  	blaine.local/client/internal/doctor	(cached)
+?   	blaine.local/client/internal/fixture	[no test files]
+ok  	blaine.local/client/internal/platform	(cached)
+ok  	blaine.local/client/internal/process	(cached)
+ok  	blaine.local/client/internal/wire	(cached)

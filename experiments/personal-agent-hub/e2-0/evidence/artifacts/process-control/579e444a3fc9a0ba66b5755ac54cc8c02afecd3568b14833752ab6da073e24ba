@@ -1,0 +1,1 @@
+{"kind":"EffectObservation","payload":{"operation_id":"process-control/4","outcome":"failure","receipt_ref":"artifact://process-control/sha256:b518a0aeb3cc7b8c0abb8eda9c8850e83328b905f7cd89d2fae094fba7aac5eb","request_ref":"artifact://process-control/sha256:e2db1559b2bcf87544701cfaf3242dd4383be412442bb7c9518eb1e3c1d2ea21","status":"timed_out"},"version":1}

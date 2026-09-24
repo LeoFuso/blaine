@@ -1,0 +1,221 @@
+"""Bounded adapters around real Graphify and rg/source exploration; not a graph engine."""
+from collections import Counter,defaultdict
+import copy
+import gzip
+import hashlib
+import json
+from pathlib import Path
+import re
+import subprocess
+import sys
+import time
+from source import HERE,ROOTS,load,save,wire,digest
+
+CFG=load(HERE/'graphify.json')
+sys.path.insert(0,CFG['checkout'])
+import networkx as nx
+from graphify.build import build_from_json
+from graphify.serve import _bfs, _shortest_path_text
+
+
+def readgz(p):return json.loads(gzip.decompress(Path(p).read_bytes()))
+def triple(e):return (e['source'],e['relation'],e['target'])
+def simple(n):return n.split('#')[-1].split('/')[0] if '#' in n else n.rsplit('.',1)[-1]
+
+
+class Corpus:
+    def __init__(self,repo,index_revision='B',current='B',variant='normal'):
+        self.repo=repo;self.index_revision=index_revision;self.current=current;self.variant=variant
+        self.manifest=load(HERE/'repositories.json')[repo]
+        self.root=Path(self.manifest[current]['path'])
+        self.security=load(HERE/'security.json')[repo]
+        d=HERE/'evidence/indexes'/repo
+        self.facts=readgz(d/current/'source.json.gz')
+        self.index_facts=readgz(d/index_revision/'source.json.gz')
+        self.raw=readgz(d/index_revision/'raw.json.gz')
+        self.nodes=self.facts['nodes']; self.denied=set(self.security['denied_files'])
+        begin=time.perf_counter()
+        self.current_hashes={file:hashlib.sha256((self.root/file).read_bytes()).hexdigest()
+                             for file in self.facts['files'] if (self.root/file).is_file()}
+        self.validation_setup=dict(seconds=time.perf_counter()-begin,
+            source_files=len(self.current_hashes),mode='snapshot source digests read before queries')
+        self.valid_triples={triple(e) for e in self.facts['edges']}
+        self.file_nodes=defaultdict(list)
+        for key,n in self.index_facts['nodes'].items():self.file_nodes[n['file']].append((key,n))
+        self.node_map={}; self.ambiguous=set()
+        for node in self.raw['nodes']:
+            mapped,ambiguous=self.map_node(node)
+            if mapped:self.node_map[node['id']]=mapped
+            if ambiguous:self.ambiguous.add(node['id'])
+        self.normalized=[];self.validation=[]
+        for index,e in enumerate(self.raw['edges']):
+            a=self.node_map.get(e['source']);b=self.node_map.get(e['target'])
+            reason=None
+            if not a or not b:reason='UNRESOLVED_NODE'
+            elif e['source'] in self.ambiguous or e['target'] in self.ambiguous:reason='AMBIGUOUS_OVERLOAD'
+            elif self.index_revision!=current:reason='STALE_REVISION'
+            elif any(self.index_facts['nodes'][x]['file'] in self.denied for x in (a,b)):reason='FORBIDDEN'
+            elif any(x not in self.nodes or self.current_hashes.get(self.nodes[x]['file'])!=self.index_facts['files'].get(self.index_facts['nodes'][x]['file'],{}).get('sha256') for x in (a,b)):reason='STALE_SOURCE'
+            rel='contains' if e['relation']=='method' else e['relation']
+            if reason is None and (a,rel,b) not in self.valid_triples:reason='UNSUPPORTED_RELATION'
+            self.validation.append(dict(index=index,confidence=e.get('confidence','ABSENT'),reason=reason or 'VALID',source=a,target=b,relation=rel))
+            bypass=bool(variant=='stale' and index_revision!=current and a and b)
+            bypass|=bool(variant=='inferred-authority' and e.get('confidence')=='INFERRED' and a and b)
+            bypass|=variant=='isolation' and reason=='FORBIDDEN'
+            if (reason is None or bypass) and a!=b and a and b:
+                if variant!='isolation' and any(self.index_facts['nodes'][x]['file'] in self.denied for x in (a,b)):continue
+                self.normalized.append(dict(source=a,target=b,relation=rel,confidence=e.get('confidence','ABSENT'),
+                                            mechanisms=['G'],raw_index=index,index_revision=index_revision))
+
+    def map_node(self,n):
+        file=n.get('source_file');label=n.get('label','');candidates=self.file_nodes.get(file,[])
+        if label.endswith('.java'):
+            key='file:'+str(file);return (key if key in self.index_facts['nodes'] else None),False
+        match=re.match(r'L(\d+)',n.get('source_location') or '')
+        if not match:return None,False
+        line=int(match.group(1));name=label.removeprefix('.').removesuffix('()')
+        near=[(k,r) for k,r in candidates if r['kind']!='file' and simple(k)==name and r['line']<=line<=r['end']]
+        if not near:return None,False
+        key,row=min(near,key=lambda x:x[1]['end']-x[1]['line'])
+        overloads=[k for k,r in candidates if '#' in key and k.split('#')[0]==key.split('#')[0] and simple(k)==simple(key)]
+        return key,len(overloads)>1 or row.get('ambiguous',False)
+
+    def allowed(self,key):return key in self.nodes and self.nodes[key]['file'] not in self.denied
+
+    def relevant(self,edges,q):
+        return [e for e in edges if e['relation'] in q['relations'] and (not q['local'] or e['source'].split('#')[0]==e['target'].split('#')[0])]
+
+    def lexical(self,q):
+        started=time.perf_counter(); known={};operations=[];opened=set()
+        def accept(file,lines=None):
+            for e in self.facts['edges']:
+                if e['file']==file and (lines is None or e['line'] in lines) and self.allowed(e['source']) and self.allowed(e['target']):
+                    known[triple(e)]={**e,'confidence':'SOURCE','mechanisms':['L'],'index_revision':self.current}
+        def grep(symbols):
+            tokens=sorted({simple(s) for s in symbols if not s.startswith('file:')})
+            if not tokens:tokens=[Path(self.nodes[q['start']]['file']).stem]
+            pattern=r'\b(?:'+'|'.join(re.escape(t) for t in tokens)+r')\b'
+            command=['rg','--json','-n','-C','4','--glob','*.java']
+            for denied in self.denied:command+=['--glob','!'+denied]
+            command += [pattern,ROOTS[self.repo]]
+            begin=time.perf_counter();p=subprocess.run(command,cwd=self.root,capture_output=True,text=True)
+            if p.returncode not in (0,1):raise RuntimeError('rg source exploration failed')
+            windows=defaultdict(set)
+            for line in p.stdout.splitlines():
+                row=json.loads(line)
+                if row['type'] in ('match','context'):
+                    value=row['data'];file=value['path']['text'];windows[file].add(value['line_number'])
+            for file,lines in windows.items():
+                if file not in self.denied:opened.add(file);accept(file,lines)
+            operations.append(dict(type='rg',command=command,seconds=time.perf_counter()-begin,
+                                   raw_bytes=len(p.stdout.encode()),files_examined=sorted(windows),
+                                   windows={k:sorted(v) for k,v in sorted(windows.items())}))
+        seeds={q['start']}|({q['end']} if q['end'] else set())
+        grep(seeds)
+        file=self.nodes[q['start']]['file']
+        start=time.perf_counter();body=(self.root/file).read_bytes()
+        if file not in self.denied:opened.add(file);accept(file)
+        operations.append(dict(type='source.open',file=file,bytes=len(body),seconds=time.perf_counter()-start))
+        related=self.relevant(list(known.values()),q)
+        frontier=set(seeds)
+        # Adjacent discovered endpoints, not oracle-derived names.
+        for e in related:
+            if e['source'] in seeds or e['target'] in seeds:frontier.update([e['source'],e['target']])
+        grep(frontier-seeds or seeds)
+        return self.relevant(list(known.values()),q),dict(operations=operations,requests=len(operations),
+                source_files_opened=sorted(opened),seconds=time.perf_counter()-started)
+
+    def graph(self,q):
+        started=time.perf_counter();edges=self.relevant(self.normalized,q)
+        # Use actual Graphify builder and traversal, retaining original graph IDs.
+        by_canon={}
+        for nid,canonical in sorted(self.node_map.items()):
+            if self.variant in ('stale','inferred-authority') or nid not in self.ambiguous:by_canon.setdefault(canonical,nid)
+        raw_edges=[]
+        for e in edges:
+            r=copy.deepcopy(self.raw['edges'][e['raw_index']]);r['relation']=e['relation'];raw_edges.append(r)
+        ids={e[x] for e in raw_edges for x in ('source','target')}
+        ids.update(by_canon[k] for k in [q['start'],q['end']] if k in by_canon)
+        raw_nodes=[n for n in self.raw['nodes'] if n['id'] in ids and (self.variant=='isolation' or self.node_map.get(n['id']) not in self.nodes or self.allowed(self.node_map[n['id']]))]
+        allowedids={n['id'] for n in raw_nodes};raw_edges=[e for e in raw_edges if e['source'] in allowedids and e['target'] in allowedids]
+        graph=build_from_json({'nodes':raw_nodes,'edges':raw_edges},directed=True)
+        seed=by_canon.get(q['start']);view=graph if q['direction']=='out' else graph.reverse(copy=False)
+        if seed in view:visited,traversed=_bfs(view,[seed],q['depth'])
+        else:visited,traversed=set(),[]
+        native_text=None;native_calls=['graphify.build.build_from_json','graphify.serve._bfs']
+        if q['kind']=='path' and seed in graph and by_canon.get(q['end']) in graph:
+            native_text=_shortest_path_text(graph,{'source':seed,'target':by_canon[q['end']],'max_hops':q['depth']})
+            native_calls.append('graphify.serve._shortest_path_text')
+        exceeded=len(visited)>2500 or len(traversed)>10000
+        seen={self.node_map[n] for n in visited if n in self.node_map}
+        selected=[] if exceeded else [e for e in edges if e['source'] in seen and e['target'] in seen]
+        return selected,dict(requests=1,native_calls=native_calls,native_text=native_text,
+                             nodes_traversed=len(visited),edges_traversed=len(traversed),traversal_limit_exceeded=exceeded,
+                             seconds=time.perf_counter()-started,source_files_opened=[])
+
+    def answer(self,q,edges):
+        # Deterministic answer assembly shared by A/B/C, using NetworkX (Graphify's backend).
+        # No new structural facts are inferred here; only already retrieved edges are joined.
+        grouped=defaultdict(list)
+        for e in self.relevant(edges,q):grouped[triple(e)].append(e)
+        unified=[]
+        for (a,rel,b),group in sorted(grouped.items()):
+            unified.append(dict(source=a,target=b,relation=rel,
+                confidence=sorted({e['confidence'] for e in group}),mechanisms=sorted({m for e in group for m in e['mechanisms']}),
+                index_revisions=sorted({e['index_revision'] for e in group})))
+        graph=nx.DiGraph();graph.add_nodes_from([q['start']]+([q['end']] if q['end'] else []))
+        graph.add_edges_from(sorted((e['source'],e['target']) for e in unified))
+        view=graph if q['direction']=='out' else graph.reverse(copy=False)
+        paths=nx.single_source_shortest_path(view,q['start'],cutoff=q['depth'])
+        targets=([q['end']] if q['end'] in paths else []) if q['kind']=='path' else sorted(
+            k for k in paths if k!=q['start'] and (not q['scope'] or k.startswith(q['scope'])))
+        answers=[]
+        for target in targets:
+            path=paths[target];steps=[]
+            for a,b in zip(path,path[1:]):
+                if q['direction']=='in':a,b=b,a
+                choices=[e for e in unified if e['source']==a and e['target']==b]
+                steps.append(sorted(choices,key=lambda e:e['relation'])[0])
+            answers.append(dict(target=target,steps=steps))
+        return sorted(answers,key=lambda a:(len(a['steps']),a['target']))
+
+    def packet(self,q,answers):
+        packet={'revision':self.manifest[self.current]['commit'],'repo':self.repo,'nodes':[],
+                'answers':[],'partial':False,'status':'RESULTS' if answers else 'NO_SUPPORTED_RESULT',
+                'diagnostic':'structural evidence; runtime effect not established'}
+        selected=[]
+        for answer in answers:
+            trial=copy.deepcopy(packet);nodes={wire(x):i for i,x in enumerate(trial['nodes'])}
+            def ref(k,index_revision):
+                f=self.index_facts if index_revision!=self.current else self.facts
+                n=f['nodes'].get(k) or self.index_facts['nodes'][k]
+                # Repo root is shared. File and exact nested/method symbol preserve identity.
+                record=[n['file'].removeprefix(ROOTS[self.repo]+'/'),n['symbol'],n['line'],index_revision]
+                key=wire(record)
+                if key not in nodes:nodes[key]=len(trial['nodes']);trial['nodes'].append(record)
+                return nodes[key]
+            step_records=[]
+            for edge in answer['steps']:
+                revision=edge['index_revisions'][0]
+                step_records.append([ref(edge['source'],revision),edge['relation'],ref(edge['target'],revision),
+                                     edge['confidence'],''.join(edge['mechanisms'])])
+            trial['answers'].append({'target':ref(answer['target'],answer['steps'][-1]['index_revisions'][0]),'steps':step_records})
+            if len(wire(trial).encode())<=2048:packet=trial;selected.append(answer)
+        packet['partial']=len(selected)<len(answers)
+        return packet,selected
+
+    def query(self,q,condition,lex=None,graph=None):
+        start=time.perf_counter()
+        lex=lex if lex is not None else self.lexical(q)
+        graph=graph if graph is not None else self.graph(q)
+        pairs={'A':[lex],'B':[graph],'C':[lex,graph]}[condition]
+        edges=[e for es,_ in pairs for e in es]
+        answers=self.answer(q,edges);packet,selected=self.packet(q,answers)
+        files=sorted({self.index_facts['nodes'].get(e[x],self.nodes.get(e[x]))['file']
+                      for a in answers for e in a['steps'] for x in ('source','target')})
+        return dict(query=q['id'],repo=self.repo,condition=condition,packet=packet,packet_bytes=len(wire(packet).encode()),
+                    selected=selected,candidate_answers=answers,raw_candidates=edges,
+                    discovery=[meta for _,meta in pairs],exploration_requests=sum(m['requests'] for _,m in pairs),
+                    exploration_files=sorted({f for _,m in pairs for f in m['source_files_opened']}),
+                    source_revalidation_files=files,assembly_seconds=time.perf_counter()-start,
+                    confidence_selected=dict(Counter(c for a in selected for e in a['steps'] for c in e['confidence'])))

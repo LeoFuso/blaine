@@ -1,0 +1,157 @@
+{
+  "result": "PASS",
+  "scope": "Linux amd64 runtime; no network/IDE/remote ACP",
+  "standalone": {
+    "copied_outside_checkout": true,
+    "PATH_contains_no_commands": true,
+    "home_unchanged": true,
+    "binary_sha256": "b0ad7596b51c3be3ad4dbd80ed5f5b5bf82a019fb04e1935aad15c8f4500e62a"
+  },
+  "version_default": "blaine 0.1.0-e0a protocol=1 commit=7286bfd21dfd128af28e0a3d6735d665a9850843-dirty go=go1.27.1 platform=linux/amd64\n",
+  "version_json": {
+    "schema_version": 1,
+    "client_version": "0.1.0-e0a",
+    "protocol_version": 1,
+    "build_commit": "7286bfd21dfd128af28e0a3d6735d665a9850843-dirty",
+    "go_version": "go1.27.1",
+    "os": "linux",
+    "arch": "amd64"
+  },
+  "doctor_exit": 2,
+  "doctor_default": "client               PASS    OK: blaine 0.1.0-e0a protocol=1 commit=7286bfd21dfd128af28e0a3d6735d665a9850843-dirty go=go1.27.1 platform=linux/amd64\nplatform             PASS    OK: linux/amd64\nconfig_directory     PASS    OK: Location valid; directory absent and not needed in E0.A\nstate_directory      PASS    OK: Location valid; directory absent and not needed in E0.A\nexecution            PASS    OK: Standalone executable resolved; no external commands required in E0.A\nconnection           UNKNOWN NOT_IMPLEMENTED: Not implemented in E0.A\ntailscale            UNKNOWN NOT_IMPLEMENTED: Not implemented in E0.A\nremote_blaine        UNKNOWN NOT_IMPLEMENTED: Not implemented in E0.A\nrestate              UNKNOWN NOT_IMPLEMENTED: Not implemented in E0.A\nmirix                UNKNOWN NOT_IMPLEMENTED: Not implemented in E0.A\nqwen                 UNKNOWN NOT_IMPLEMENTED: Not implemented in E0.A\nintellij_acp         UNKNOWN NOT_IMPLEMENTED: Not implemented in E0.A\nNOT_READY \u2014 E0.A foundation only; onboarding is not implemented.\n",
+  "doctor_json": {
+    "schema_version": 1,
+    "timestamp": "2026-09-22T02:13:13Z",
+    "overall": "NOT_READY",
+    "checks": [
+      {
+        "id": "client",
+        "status": "PASS",
+        "code": "OK",
+        "summary": "blaine 0.1.0-e0a protocol=1 commit=7286bfd21dfd128af28e0a3d6735d665a9850843-dirty go=go1.27.1 platform=linux/amd64",
+        "remediation": "",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "platform",
+        "status": "PASS",
+        "code": "OK",
+        "summary": "linux/amd64",
+        "remediation": "",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "config_directory",
+        "status": "PASS",
+        "code": "OK",
+        "summary": "Location valid; directory absent and not needed in E0.A",
+        "remediation": "",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "state_directory",
+        "status": "PASS",
+        "code": "OK",
+        "summary": "Location valid; directory absent and not needed in E0.A",
+        "remediation": "",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "execution",
+        "status": "PASS",
+        "code": "OK",
+        "summary": "Standalone executable resolved; no external commands required in E0.A",
+        "remediation": "",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "connection",
+        "status": "UNKNOWN",
+        "code": "NOT_IMPLEMENTED",
+        "summary": "Not implemented in E0.A",
+        "remediation": "Requires later E0 slices; onboarding is unavailable.",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "tailscale",
+        "status": "UNKNOWN",
+        "code": "NOT_IMPLEMENTED",
+        "summary": "Not implemented in E0.A",
+        "remediation": "Requires later E0 slices; onboarding is unavailable.",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "remote_blaine",
+        "status": "UNKNOWN",
+        "code": "NOT_IMPLEMENTED",
+        "summary": "Not implemented in E0.A",
+        "remediation": "Requires later E0 slices; onboarding is unavailable.",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "restate",
+        "status": "UNKNOWN",
+        "code": "NOT_IMPLEMENTED",
+        "summary": "Not implemented in E0.A",
+        "remediation": "Requires later E0 slices; onboarding is unavailable.",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "mirix",
+        "status": "UNKNOWN",
+        "code": "NOT_IMPLEMENTED",
+        "summary": "Not implemented in E0.A",
+        "remediation": "Requires later E0 slices; onboarding is unavailable.",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "qwen",
+        "status": "UNKNOWN",
+        "code": "NOT_IMPLEMENTED",
+        "summary": "Not implemented in E0.A",
+        "remediation": "Requires later E0 slices; onboarding is unavailable.",
+        "observed_at": "2026-09-22T02:13:13Z"
+      },
+      {
+        "id": "intellij_acp",
+        "status": "UNKNOWN",
+        "code": "NOT_IMPLEMENTED",
+        "summary": "Not implemented in E0.A",
+        "remediation": "Requires later E0 slices; onboarding is unavailable.",
+        "observed_at": "2026-09-22T02:13:13Z"
+      }
+    ]
+  },
+  "stdio": {
+    "input_bytes": 304000,
+    "stdout_bytes": 304000,
+    "input_sha256": "c4953daac7093d42a9363d7b3e9610542f7ca8aeadca284f934f31ebeb6dcea8",
+    "stdout_sha256": "c4953daac7093d42a9363d7b3e9610542f7ca8aeadca284f934f31ebeb6dcea8",
+    "stderr": "blaine: E0.A byte fixture only; no ACP server or network connection\nblaine: fixture child diagnostic\nblaine: fixture exited: 0\n",
+    "exit": 0,
+    "empty_input_pass": true,
+    "streaming_before_eof_pass": true,
+    "malformed_invocations_stdout_empty": true,
+    "exit_23_propagated": true,
+    "byte_limit_exit": 1,
+    "deadline_exit": 124
+  },
+  "signals": [
+    {
+      "signal": "SIGINT",
+      "exit": 130,
+      "direct_children_observed": 1,
+      "children_reaped": true,
+      "stdout_bytes": 0,
+      "stderr": "blaine: E0.A byte fixture only; no ACP server or network connection\nblaine: fixture child diagnostic\nblaine: cancelled; child group stopped\n"
+    },
+    {
+      "signal": "SIGTERM",
+      "exit": 130,
+      "direct_children_observed": 1,
+      "children_reaped": true,
+      "stdout_bytes": 0,
+      "stderr": "blaine: E0.A byte fixture only; no ACP server or network connection\nblaine: fixture child diagnostic\nblaine: cancelled; child group stopped\n"
+    }
+  ]
+}

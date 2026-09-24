@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "restarts": [
+    {
+      "unit": "blaine-restate.service",
+      "before": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "MainPID": "356909"
+      },
+      "after": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "MainPID": "358882"
+      },
+      "peer_pid_preserved": true,
+      "same_task_states": true
+    },
+    {
+      "unit": "blaine-runtime.service",
+      "before": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "MainPID": "357857"
+      },
+      "after": {
+        "ActiveState": "active",
+        "UnitFileState": "enabled",
+        "MainPID": "360671"
+      },
+      "peer_pid_preserved": true,
+      "same_task_states": true
+    }
+  ],
+  "fixture": {
+    "request_ids": {
+      "waiting": "d1-waiting-aa1a9c5cdf7e",
+      "resume": "d1-resume-aa1a9c5cdf7e",
+      "small": "d1-small-aa1a9c5cdf7e"
+    },
+    "tasks": {
+      "waiting": "task-f14cf0feca5d864d6ec1ab5a99e4a93ba858267b05f060e6d8bb7dbf425dae92",
+      "resume": "task-5e7425160c23459ed8b873e9bdf472253c547735c5e86045a6f7b8c248785e5e",
+      "small": "task-bcc786838fee34c98e4275450c19ade85b9d4561fc12730d3ed4bda362eb18d0"
+    }
+  },
+  "legacy_tasks_preserved": 5,
+  "human_wait_retained": true,
+  "separate_task_resumed_after_explicit_response": true,
+  "artifact_authority": "/home/leofuso/.local/share/blaine/runtime/data/artifacts",
+  "controlled_stop_limitation": "Hypercorn 0.17.3 / Python 3.14.4 did not finish SIGTERM shutdown within 60 seconds; systemd terminated its cgroup with SIGKILL. Same durable Tasks/artifacts remained intact and explicit resume passed. Graceful shutdown is not claimed."
+}

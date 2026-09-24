@@ -1,0 +1,57 @@
+{
+  "observed_at": "2026-09-22T03:23:41.320143+00:00",
+  "binary_sha256": "650a08aa5cb126800ea42836b96c6f6871f5677377872888e2484235fe074baa",
+  "tailscale_version": "1.102.4",
+  "target": {
+    "host": "blaine",
+    "ssh_user": "leofuso"
+  },
+  "tailscale_ssh_enabled": true,
+  "short_name_resolves_to_own_tailnet": false,
+  "qualified_magicdns_resolves_to_own_tailnet": true,
+  "self_route_ssh_banner": "SSH-2.0-OpenSSH_10.2p1 Ubuntu-2ubuntu3.6",
+  "self_route_is_remote_peer_proof": false,
+  "second_workstation": "PENDING: no device designated; no other device contacted",
+  "connect_attempts": [
+    {
+      "exit_code": 3,
+      "state": "REMOTE_UNAVAILABLE",
+      "profile_persisted": false
+    },
+    {
+      "exit_code": 3,
+      "state": "REMOTE_UNAVAILABLE",
+      "profile_persisted": false
+    }
+  ],
+  "doctor": {
+    "exit_code": 2,
+    "overall": "NOT_READY",
+    "read_only": true
+  },
+  "local_host_boundary_processes": [
+    {
+      "operation": "handshake",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "state": "PEER_UNVERIFIED"
+    },
+    {
+      "operation": "acp",
+      "exit_code": 2,
+      "stdout_bytes": 0,
+      "state": "PEER_UNVERIFIED"
+    }
+  ],
+  "readiness": {
+    "runtime": "PASS",
+    "restate": "PASS",
+    "mirix": "UNKNOWN",
+    "generation": "PASS",
+    "embeddings": "PASS"
+  },
+  "network_unchanged": true,
+  "ssh_known_hosts_unchanged": true,
+  "tailscale_preferences_unchanged": true,
+  "result": "PARTIAL: local observations only; trusted second-peer binding and remote ACP remain pending"
+}

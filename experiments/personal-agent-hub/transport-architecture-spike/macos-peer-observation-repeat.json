@@ -1,0 +1,161 @@
+{
+  "date": "2026-09-23",
+  "evidence_origin": "Three complete operator-supplied JSON reports; repeated cat output confirms same reports, not three additional runs",
+  "system_tailscale_condition": "Mac system Tailscale GUI disconnected and quit by operator; residual network extension/service absence not independently measured",
+  "host_condition": "Private fixture restarted before this bounded repeat",
+  "reports_in_order": [
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 32,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 9,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 7,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19017,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20017
+      }
+    },
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 8,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 4,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 4,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": false
+            }
+          },
+          {
+            "elapsed_ms": 3018,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19018,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20014
+      }
+    },
+    {
+      "clean_close": true,
+      "embedded_backend_state": "Running",
+      "embedded_health_warning_count": 0,
+      "hub_in_embedded_peer_map": true,
+      "hub_name_matches": true,
+      "node_id": "nmUtVa2GmA11CNTRL",
+      "node_reused": true,
+      "platform": "darwin/arm64",
+      "scope": "no stream or production acceptance",
+      "source_commit": "source-b68dfd7434c5a09a56a4d0393478fa0d042d08918363a60128c564ff5dcb79ce",
+      "status": "DIAGNOSTIC_ONLY",
+      "tsnet_version": "v1.102.4",
+      "magicdns": {
+        "elapsed_ms": 14,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "observed_hub_ipv4": {
+        "elapsed_ms": 4,
+        "hub_identity_verified": true,
+        "tcp": "PASS"
+      },
+      "peer_observation": {
+        "changes": [
+          {
+            "elapsed_ms": 7,
+            "snapshot": {
+              "embedded_backend_state": "Running",
+              "embedded_health_warning_count": 0,
+              "hub_in_embedded_peer_map": true,
+              "hub_name_matches": true
+            }
+          }
+        ],
+        "last_sample": {
+          "elapsed_ms": 19018,
+          "snapshot": {
+            "embedded_backend_state": "Running",
+            "embedded_health_warning_count": 0,
+            "hub_in_embedded_peer_map": true,
+            "hub_name_matches": true
+          }
+        },
+        "sample_count": 20,
+        "window_ms": 20017
+      }
+    }
+  ],
+  "interpretation": "Three successful name/IP TCP and Hub identity checks after observation; one same-process delayed Hub visibility; stable node and clean close. No application stream in diagnostic mode."
+}

@@ -1,0 +1,94 @@
+{
+  "authoritative_state": {
+    "accepted_spec": {
+      "kind": "TaskSpec",
+      "payload": {
+        "autonomy": {
+          "allowed": [
+            "human.request"
+          ]
+        },
+        "capabilities": [
+          "human.request"
+        ],
+        "completion": [
+          {
+            "criterion": "Scoped human response recorded",
+            "evidence": {
+              "artifact": "response",
+              "request": {
+                "kind": "HumanDecisionRequest",
+                "payload": {
+                  "allowed_responses": [
+                    "YES",
+                    "NO"
+                  ],
+                  "origin_task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844",
+                  "question": "Controlled E0.C lifecycle acceptance: retain this human wait across workstation transport disconnects.",
+                  "request_id": "decision-1",
+                  "revision": 0,
+                  "task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844"
+                },
+                "version": 1
+              },
+              "verifier": "human_response"
+            }
+          }
+        ],
+        "objective": "Controlled E0.C lifecycle acceptance: retain this human wait across workstation transport disconnects."
+      },
+      "version": 1
+    },
+    "artifacts": {
+      "human-request-decision-1": "artifact://task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844/sha256:a9628dcf4c26e819fdcaedbb7c2ee58d32c1784b78ff91705c04ec29ff3b4ea8"
+    },
+    "blocking_dependency": {
+      "input_type": "human_response",
+      "request_ref": "artifact://task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844/sha256:a9628dcf4c26e819fdcaedbb7c2ee58d32c1784b78ff91705c04ec29ff3b4ea8",
+      "task_revision": 0,
+      "wait_id": "decision-1"
+    },
+    "children": {},
+    "completion": {
+      "kind": "CompletionEvaluation",
+      "payload": {
+        "criteria": [
+          {
+            "criterion": "Scoped human response recorded",
+            "detail": "Required artifact is missing",
+            "evidence_ref": null,
+            "outcome": "unsatisfied"
+          }
+        ],
+        "outcome": "unsatisfied"
+      },
+      "version": 1
+    },
+    "lifecycle": "WAITING",
+    "objective": "Controlled E0.C lifecycle acceptance: retain this human wait across workstation transport disconnects.",
+    "pending_human_decision": {
+      "kind": "HumanDecisionRequest",
+      "payload": {
+        "allowed_responses": [
+          "YES",
+          "NO"
+        ],
+        "origin_task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844",
+        "question": "Controlled E0.C lifecycle acceptance: retain this human wait across workstation transport disconnects.",
+        "request_id": "decision-1",
+        "revision": 0,
+        "task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844"
+      },
+      "version": 1
+    },
+    "pending_workspace_read": null,
+    "request_digest": "9a43a738738140080fb4ef19e39e231c662a549e48d9c9b215402b6985c8f889",
+    "result": null,
+    "result_ref": null,
+    "revision": 0,
+    "task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844"
+  },
+  "operation": "prepare",
+  "scope": "Controlled live Task snapshot; compare before/after actual session termination",
+  "task_id": "task-cfc1cc822b74ddb411f322ea01828eeb43286aa6ad74c5eda07ae1bbcc1f7844"
+}

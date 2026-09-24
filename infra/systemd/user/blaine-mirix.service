@@ -1,0 +1,22 @@
+[Unit]
+Description=Blaine MIRIX semantic memory
+Wants=blaine-generation.service blaine-embedding.service
+StartLimitIntervalSec=1800
+StartLimitBurst=5
+
+[Service]
+Type=exec
+ExecStartPre=/usr/bin/python3 %h/.config/blaine/services/wait-ready.py --timeout 1500 http://127.0.0.1:8000/health http://127.0.0.1:8001/health
+ExecStart=/usr/bin/python3 %h/.config/blaine/services/mirix-launch.py
+ExecStartPost=/usr/bin/python3 %h/.config/blaine/services/wait-ready.py --timeout 120 http://127.0.0.1:8531/health
+Restart=on-failure
+RestartSec=15
+TimeoutStartSec=1650
+TimeoutStopSec=60
+MemoryHigh=3G
+MemoryMax=5G
+CPUQuota=400%
+UMask=0077
+
+[Install]
+WantedBy=default.target

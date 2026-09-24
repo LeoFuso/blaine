@@ -1,0 +1,20 @@
+[Unit]
+Description=Blaine durable Task runtime (Restate 1.7.9)
+StartLimitIntervalSec=600
+StartLimitBurst=5
+
+[Service]
+Type=exec
+WorkingDirectory=%h/.local/share/blaine/runtime
+ExecStart=%h/.local/share/blaine/runtime/bin/restate-server --config-file %h/.config/blaine/services/restate.toml
+ExecStartPost=/usr/bin/python3 %h/.config/blaine/services/wait-ready.py --timeout 120 http://127.0.0.1:49070/deployments
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=150
+TimeoutStopSec=60
+MemoryHigh=3G
+MemoryMax=4G
+UMask=0077
+
+[Install]
+WantedBy=default.target

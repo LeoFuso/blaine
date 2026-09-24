@@ -1,0 +1,9 @@
+{
+  "status": "STOP",
+  "scope": "Native Fleet runtime adoption; accepted local D1 foundation preserved",
+  "evidence": "experiments/d1-grafana-fleet/evidence/summary.json",
+  "blocking_evidence": "experiments/d1-grafana-fleet/evidence/startup-failure.json",
+  "local_restoration": "PASS",
+  "D1.G": "NOT_EXECUTED",
+  "backup": "PAUSED"
+}

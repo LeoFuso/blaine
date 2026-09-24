@@ -1,0 +1,22 @@
+{
+ "version": 1,
+ "increment": "isolated Jev provider candidate",
+ "preflight": {
+  "credential_variable": "TYPESAFE_API_KEY",
+  "credential_present": false,
+  "default_model": "jev-latest",
+  "destination": "https://api.typesafe.ai",
+  "sdk_installed": true,
+  "sdk_version": "0.7.1",
+  "sdk_credential_variable": "TYPESAFE_API_KEY",
+  "sdk_default_model": "jev-latest",
+  "sdk_default_base_url": "https://api.typesafe.ai"
+ },
+ "authenticated_calls_attempted": 0,
+ "frontier_dispatch_grants_consumed": 0,
+ "task_lifecycle_involvement": "none",
+ "routing_default_changed": false,
+ "status": "BLOCKED",
+ "calls": [],
+ "reason": "credential absent from the environment"
+}

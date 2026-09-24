@@ -1,0 +1,9 @@
+{
+  "database": "blaine",
+  "runtime_role": "leofuso",
+  "schema_version": 1,
+  "can_create_schema_objects": false,
+  "can_read_inventory": true,
+  "can_update_inventory": true,
+  "schema_owner": "postgres"
+}
