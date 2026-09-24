@@ -13,7 +13,9 @@ not terminal outcomes invented by a prompt. Binding details belong in the
 
 ## Completion evidence
 
-The accepted TaskSpec completion contract defines what must be demonstrated.
+The accepted TaskSpec completion contract defines what must be demonstrated
+([Completion Contract v1](../contracts/completion-contract.md) specifies the durable,
+amendable form; design, not implemented).
 Verification should cover affected behavior and risk, not a fixed number of passes.
 For code, relevant tests plus inspection of the resulting diff may be appropriate;
 for research, source-backed coverage and traceable conclusions; for watches, event

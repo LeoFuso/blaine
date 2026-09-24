@@ -1,0 +1,199 @@
+{
+  "status": "DESIGN_FIXTURE",
+  "note": "Synthetic, illustrative Completion Contract v1 and E1 artifacts. Not validated by runtime code; field shapes follow docs/contracts/completion-contract.md and docs/contracts/workspace-capability.md.",
+  "effective_authority": {
+    "version": 1, "kind": "EffectiveAuthority", "payload": {
+      "task_id": "task-example-investigation",
+      "revision": 0,
+      "operation_classes": ["workspace.read"],
+      "workspaces": ["wsp-3f1c0a9e2b7d4c6f8a1e5b2d9c0f7a31"],
+      "constraints": {"access": "read_only", "source": "acp_config_option"},
+      "delegation_ref": "artifact://task-example-investigation/sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "classification": "intellij-mcp@1"
+    }
+  },
+  "contracts": [
+    {
+      "version": 1, "kind": "CompletionContract", "payload": {
+        "task_id": "task-example-investigation",
+        "revision": 0, "previous_ref": null, "amendment_ref": null,
+        "task_type": {"template": "investigation", "version": 1},
+        "request": "Investigate why ExampleService returns 500 for this request.",
+        "criteria": [
+          {"id": "no-mutation", "level": "REQUIRED",
+           "requirement": "No workspace-mutating capability was admitted or executed.",
+           "provenance": {"source": "task_type", "ref": "investigation@1"},
+           "verifier": {"kind": "capability_journal", "version": 1,
+                        "predicates": [{"name": "operation_classes_subset", "allowed": ["workspace.read"]},
+                                       {"name": "admitted_before_observed"}]}},
+          {"id": "workspace-scope", "level": "REQUIRED",
+           "requirement": "Every workspace operation targeted this Task's workspace.",
+           "provenance": {"source": "task_type", "ref": "investigation@1"},
+           "verifier": {"kind": "capability_journal", "version": 1,
+                        "predicates": [{"name": "workspace_subset"}]}},
+          {"id": "code-path-inspected", "level": "REQUIRED",
+           "requirement": "The relevant code path was read, not only searched.",
+           "provenance": {"source": "task_type", "ref": "investigation@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "InvestigationFindings@1",
+                        "predicates": [{"name": "min_cited_receipts", "operation": "read_file", "count": 1}]}},
+          {"id": "findings-cited", "level": "REQUIRED",
+           "requirement": "Every claim cites admitted workspace evidence and quoted spans match it.",
+           "provenance": {"source": "task_type", "ref": "investigation@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "InvestigationFindings@1",
+                        "predicates": [{"name": "every_claim_cited"}, {"name": "quotes_match_receipts"}]}},
+          {"id": "conclusion-explicit", "level": "REQUIRED",
+           "requirement": "The cause is stated as supported, or explicitly unresolved with remaining uncertainty.",
+           "provenance": {"source": "task_type", "ref": "investigation@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "InvestigationFindings@1",
+                        "predicates": [{"name": "conclusion_status_present"},
+                                       {"name": "unresolved_requires_uncertainty"}]}},
+          {"id": "cause-supported", "level": "ADVISORY",
+           "requirement": "The cited evidence supports the stated cause without contradiction.",
+           "provenance": {"source": "task_type", "ref": "investigation@1"},
+           "verifier": {"kind": "semantic_review", "version": 1, "subject": "findings.conclusion",
+                        "question": "Does the cited evidence support the stated cause without contradiction?",
+                        "on_low_confidence": "unknown"}}
+        ]
+      }
+    },
+    {
+      "version": 1, "kind": "CompletionContract", "payload": {
+        "task_id": "task-example-explanation",
+        "revision": 0, "previous_ref": null, "amendment_ref": null,
+        "task_type": {"template": "explanation", "version": 1},
+        "request": "Explain how retry behavior works in this module.",
+        "criteria": [
+          {"id": "no-mutation", "level": "REQUIRED",
+           "requirement": "No workspace-mutating capability was admitted or executed.",
+           "provenance": {"source": "task_type", "ref": "explanation@1"},
+           "verifier": {"kind": "capability_journal", "version": 1,
+                        "predicates": [{"name": "operation_classes_subset", "allowed": ["workspace.read"]},
+                                       {"name": "admitted_before_observed"}]}},
+          {"id": "workspace-scope", "level": "REQUIRED",
+           "requirement": "Every workspace operation targeted this Task's workspace.",
+           "provenance": {"source": "task_type", "ref": "explanation@1"},
+           "verifier": {"kind": "capability_journal", "version": 1,
+                        "predicates": [{"name": "workspace_subset"}]}},
+          {"id": "implementation-inspected", "level": "REQUIRED",
+           "requirement": "The module implementation was read.",
+           "provenance": {"source": "task_type", "ref": "explanation@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "ExplanationFindings@1",
+                        "predicates": [{"name": "min_cited_receipts", "operation": "read_file", "count": 1,
+                                        "path_prefix": "service/src/main/java/example/retry/"}]}},
+          {"id": "topics-covered", "level": "REQUIRED",
+           "requirement": "Retry trigger, limit and backoff are each answered with citations or reported not found.",
+           "provenance": {"source": "user", "ref": "request-text"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "ExplanationFindings@1",
+                        "predicates": [{"name": "topics_resolved", "topics": ["trigger", "limit", "backoff"]}]}},
+          {"id": "claims-cited", "level": "REQUIRED",
+           "requirement": "Every behavior claim cites admitted evidence with matching quotes.",
+           "provenance": {"source": "task_type", "ref": "explanation@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "ExplanationFindings@1",
+                        "predicates": [{"name": "every_claim_cited"}, {"name": "quotes_match_receipts"}]}},
+          {"id": "explanation-complete", "level": "ADVISORY",
+           "requirement": "No uncited behavior claims and no internal contradiction.",
+           "provenance": {"source": "task_type", "ref": "explanation@1"},
+           "verifier": {"kind": "semantic_review", "version": 1, "subject": "findings",
+                        "question": "Is the explanation internally consistent and fully grounded in the citations?",
+                        "on_low_confidence": "unknown"}}
+        ]
+      }
+    },
+    {
+      "version": 1, "kind": "CompletionContract", "payload": {
+        "task_id": "task-example-location",
+        "revision": 0, "previous_ref": null, "amendment_ref": null,
+        "task_type": {"template": "location", "version": 1},
+        "request": "Find where customer status is computed.",
+        "criteria": [
+          {"id": "no-mutation", "level": "REQUIRED",
+           "requirement": "No workspace-mutating capability was admitted or executed.",
+           "provenance": {"source": "task_type", "ref": "location@1"},
+           "verifier": {"kind": "capability_journal", "version": 1,
+                        "predicates": [{"name": "operation_classes_subset", "allowed": ["workspace.read"]},
+                                       {"name": "admitted_before_observed"}]}},
+          {"id": "workspace-scope", "level": "REQUIRED",
+           "requirement": "Every workspace operation targeted this Task's workspace.",
+           "provenance": {"source": "task_type", "ref": "location@1"},
+           "verifier": {"kind": "capability_journal", "version": 1,
+                        "predicates": [{"name": "workspace_subset"}]}},
+          {"id": "search-performed", "level": "REQUIRED",
+           "requirement": "The workspace was searched with the IDE index.",
+           "provenance": {"source": "task_type", "ref": "location@1"},
+           "verifier": {"kind": "capability_journal", "version": 1,
+                        "predicates": [{"name": "observed_operation_present",
+                                        "operations": ["search_text", "search_regex", "search_symbol", "search_file"]}]}},
+          {"id": "location-evidenced", "level": "REQUIRED",
+           "requirement": "Each candidate location cites a read receipt whose returned lines contain the cited span.",
+           "provenance": {"source": "task_type", "ref": "location@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "LocationFindings@1",
+                        "predicates": [{"name": "candidate_spans_in_receipts", "operation": "read_file"}]}},
+          {"id": "ambiguity-reported", "level": "REQUIRED",
+           "requirement": "One primary location is identified, or ambiguity is reported explicitly.",
+           "provenance": {"source": "task_type", "ref": "location@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "LocationFindings@1",
+                        "predicates": [{"name": "primary_or_ambiguity"}]}},
+          {"id": "call-path-attached", "level": "ADVISORY",
+           "requirement": "The primary location has at least one cited caller.",
+           "provenance": {"source": "task_type", "ref": "location@1"},
+           "verifier": {"kind": "evidence_citation", "version": 1, "artifact": "findings",
+                        "schema": "LocationFindings@1",
+                        "predicates": [{"name": "primary_has_caller_citation"}]}}
+        ]
+      }
+    }
+  ],
+  "amendment_example": {
+    "version": 1, "kind": "CompletionContractAmendment", "payload": {
+      "task_id": "task-example-investigation",
+      "from_revision": 0, "to_revision": 1,
+      "from_ref": "artifact://task-example-investigation/sha256:2222222222222222222222222222222222222222222222222222222222222222",
+      "operations": [
+        {"op": "add", "criterion": {"id": "user-accepts", "level": "REQUIRED",
+          "requirement": "The user accepts the findings or asks for further investigation.",
+          "provenance": {"source": "user", "actor": "operator"},
+          "verifier": {"kind": "human_response", "version": 1, "artifact": "acceptance",
+                       "request": {"version": 1, "kind": "HumanDecisionRequest", "payload": {
+                         "task_id": "task-example-investigation", "origin_task_id": "task-example-investigation",
+                         "request_id": "accept-findings", "revision": 0,
+                         "question": "Accept the investigation findings for ExampleService?",
+                         "allowed_responses": ["ACCEPT", "INVESTIGATE_FURTHER", "REJECT"]}}}}}
+      ],
+      "actor": {"kind": "user", "via": "modify-constraints"},
+      "provenance": "user",
+      "reason": "User asked to confirm the conclusion before closing the Task."
+    }
+  },
+  "journal_example": [
+    {"version": 1, "kind": "CapabilityJournalEntry", "payload": {
+      "task_id": "task-example-investigation", "seq": 0, "previous_ref": null, "phase": "admitted",
+      "decision_id": "task-example-investigation/1", "operation_id": "task-example-investigation/1",
+      "capability": "workspace.read", "operation_class": "workspace.read",
+      "provider": "intellij-mcp", "operation": "search_text", "workspace_id": "wsp-3f1c0a9e2b7d4c6f8a1e5b2d9c0f7a31",
+      "request_digest": "sha256:3333333333333333333333333333333333333333333333333333333333333333",
+      "authority_ref": "artifact://task-example-investigation/sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "contract_revision": 0}},
+    {"version": 1, "kind": "CapabilityJournalEntry", "payload": {
+      "task_id": "task-example-investigation", "seq": 1,
+      "previous_ref": "artifact://task-example-investigation/sha256:5555555555555555555555555555555555555555555555555555555555555555",
+      "phase": "observed", "operation_id": "task-example-investigation/1", "outcome": "success",
+      "receipt_ref": "artifact://task-example-investigation/sha256:6666666666666666666666666666666666666666666666666666666666666666"}},
+    {"version": 1, "kind": "CapabilityJournalEntry", "payload": {
+      "task_id": "task-example-investigation", "seq": 2,
+      "previous_ref": "artifact://task-example-investigation/sha256:7777777777777777777777777777777777777777777777777777777777777777",
+      "phase": "denied", "decision_id": "task-example-investigation/2",
+      "capability": "workspace.read", "operation_class": "workspace.write",
+      "provider": "intellij-mcp", "operation": "apply_patch",
+      "reason": "Operation class workspace.write is not in effective authority (access=read_only)",
+      "authority_ref": "artifact://task-example-investigation/sha256:4444444444444444444444444444444444444444444444444444444444444444",
+      "contract_revision": 0}}
+  ]
+}

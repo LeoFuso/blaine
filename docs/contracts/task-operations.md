@@ -90,6 +90,10 @@ resulting state when available.
 
 Not every signal is valid in every runtime state.
 
+`modify-constraints` is also the route for user-originated Completion Contract
+amendments; waiving or rebinding a required criterion is only possible through an
+explicit human action ([Completion Contract amendments](completion-contract.md#amendments), design).
+
 ## Result
 
 Input:

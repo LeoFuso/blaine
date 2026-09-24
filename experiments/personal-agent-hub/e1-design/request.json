@@ -1,0 +1,58 @@
+{
+  "objective": "Design Blaine Completion Contracts as a durable Task primitive and E1 read-only workspace capabilities as its first consumer, with documentation, contracts, ADRs, fixtures and acceptance definitions only; no runtime, client or transport implementation.",
+  "mode": "interactive",
+  "context": [
+    {
+      "need": "Kernel Task, verifier, PolicyGate, human, memory and workspace primitives; Hub design, roadmap and ADR index",
+      "source": "git:2327187",
+      "sharing": "local-only"
+    },
+    {
+      "need": "JetBrains ACP and IntelliJ MCP server delegation and scope semantics",
+      "freshness": "checked 2026-09-23 (documentation and intellij-community source)",
+      "sharing": "local-only"
+    }
+  ],
+  "capabilities": [
+    "read repository and history",
+    "read public documentation and source",
+    "edit design documentation and fixtures",
+    "validate documentation",
+    "create local commits"
+  ],
+  "autonomy": {
+    "allowed": [
+      "documentation, contract, ADR and fixture changes",
+      "roadmap/navigation updates",
+      "read-only source investigation",
+      "local documentation validation",
+      "local commits on design/completion-contract-e1"
+    ],
+    "forbidden": [
+      "implement E1 runtime capabilities",
+      "modify live workstation or Hub transport",
+      "redo E0.C validation",
+      "modify or depend on the E0.D worktree",
+      "push",
+      "merge",
+      "publish releases"
+    ]
+  },
+  "cloud": {
+    "policy": "ask"
+  },
+  "completion": [
+    {
+      "criterion": "Completion Contract model covers durable shape, provenance/precedence, amendments, verifier taxonomy, deterministic/semantic/human boundaries, completion legality, crash/retry, evidence linkage and memory interaction",
+      "evidence": "Review docs/contracts/completion-contract.md and ADR 0026"
+    },
+    {
+      "criterion": "E1 design covers workspace, delegation/authority, capability contract, protocol, confinement, disconnect, no-write evidence, contract examples, acceptance and E2 extension",
+      "evidence": "Review docs/contracts/workspace-capability.md, ADR 0027 and the Hub revisions"
+    },
+    {
+      "criterion": "Documentation-only change is validated and committed locally without publication",
+      "evidence": "JSON and link/anchor checks, git diff --check, documentation-only changed-file list and local commit identities"
+    }
+  ]
+}

@@ -39,6 +39,17 @@ The current [alpha.4 delivery](../experiments/personal-agent-hub/e0d/alpha4-deli
 provides the protocol-2 client. Development bootstrap is a shell-only release
 installer delegating JetBrains JSON registration to the Go client; it is not ACP Registry publication.
 
+**E1 design revision (2026-09-23, design only):** the operator selected IDE
+delegation as workspace authority. Connecting Blaine to IntelliJ with **Pass
+IntelliJ MCP server** enabled delegates the IntelliJ-exposed project surface; the
+IntelliJ MCP server is the E1 provider; PolicyGate is the single enforcer and the
+workstation client is a protocol/capability bridge. E1 is also the first consumer
+of [Completion Contract v1](contracts/completion-contract.md). See
+[ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md) and the
+[E1 workspace contract](contracts/workspace-capability.md), which supersede this
+document's earlier local-consent, local-guard and ACP-client-read statements for
+E1 onward. Revised passages below are marked. Nothing is implemented.
+
 Blaine is the persistent Personal Agent. A workstation is a registered execution
 surface, and IntelliJ/ACP is its first interactive surface. The next product
 increment makes that relationship usable without requiring the human to operate
@@ -147,6 +158,8 @@ within the milestone gates. Acceptance of a design is not live validation.
 | A13 | Selected correction: the workstation embeds tsnet with one private, stable, revocable node store per installation; no separate workstation CLI/daemon is required. Tailscale remains vendor private-network infrastructure, distinct from Blaine application identity and registration. |
 | A14 | E0 architecture targets Linux, native macOS and Windows development environments using WSL2. One platform boundary owns OS differences; implementation evidence may initially cover fewer platforms. |
 | A15 | Native macOS and Linux/WSL clients use userspace tsnet. No nested WSL daemon, TUN/root prerequisite or dependency on Windows Tailscale. Native browser approval remains explicit. Windows IDE → wsl.exe → Linux ACP stdio must be verified live. |
+| A16 | (2026-09-23) IDE delegation is workspace authority: Blaine connected with `use_idea_mcp` enabled delegates the IntelliJ-exposed project surface. No second Blaine workspace approval. Delegated scope, Task relevance, user constraints (ACP `configOptions` as input channel) and effective authority stay separate; PolicyGate alone enforces. [ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md). |
+| A17 | (2026-09-23) Completion is governed by a durable, revisioned Completion Contract with provenance, REQUIRED/ADVISORY levels, a closed verifier taxonomy and a capability journal. [ADR 0026](decisions/0026-completion-contract-is-a-durable-task-primitive.md). |
 
 ### Recommended
 
@@ -207,15 +220,18 @@ Task-authorized capability → PersonalACP → same connection/session
                           ← bounded result/receipt ← admitted Task evidence
 ```
 
-The local guard is a proposed responsibility inside the launcher/adapter, not a
-new filesystem daemon or replacement ACP protocol. E0 can bridge standard ACP;
-E1 must add enough Task/workspace-bound validation to safely forward reads.
-Standard ACP messages do not themselves carry Blaine Task authority. Before E1,
-a minimal versioned private control message must bind an authorized operation to
-the corresponding ACP request ID/session; it must not alter standard ACP meaning
-or leak onto IntelliJ's stream. Exact encoding is an E1.A gate. Neither byte
-forwarding nor a host-only PolicyGate protects a workstation from a compromised
-host. Local user-approved scope must independently bound forwarded effects.
+**Revised 2026-09-23 ([ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md)).**
+The launcher/adapter is a protocol/capability bridge, not a filesystem daemon,
+replacement ACP protocol or second policy engine. For E1 it relays the IntelliJ
+MCP server the IDE delegates in `session/new` over a negotiated capability channel
+of the direct transport, keeps IDE tokens local, and correlates each call to a
+Blaine operation ID; it never alters standard ACP meaning or leaks onto
+IntelliJ's stream. PolicyGate on the Hub is the single enforcement authority. The
+earlier requirement that "local user-approved scope must independently bound
+forwarded effects" is withdrawn: the operator's IDE delegation is the scope, and
+the residual risk under a compromised host is recorded in
+[security boundaries](#security-boundaries). Wire details:
+[E1 workspace contract](contracts/workspace-capability.md#direct-protocol-extension).
 
 ### Distinct identities
 
@@ -636,10 +652,16 @@ scope, Task authority and PolicyGate. A session change must not silently broaden
 existing durable Task grants. Restate retains Task lifecycle independently of the
 selector or IDE session. E1/E2 own workspace read/write/execution enforcement.
 
+**E1 (revised):** selections are operator constraints delivered by the IDE and
+compiled by Blaine into the Task's effective authority; the option layer is an
+input channel, not a policy engine. E1 advertises only `access = read_only`.
+See [effective authority](contracts/workspace-capability.md#effective-authority).
+
 Prompt `resource_link` data is independent of these selectors and capability
 advertisements. E0 accepts links as inert references with an explicit unused-context
 notice. Receiving a URI or context from the IDE does not authorize resolving,
-reading or executing it; resource consumption remains subject to the E1 boundary.
+reading or executing it. From E1 a link is a relevance hint inside the delegated
+scope; reading its target is an ordinary admitted `workspace.read` operation.
 
 ### Negotiation matrix
 
@@ -652,6 +674,7 @@ Current upstream documentation was checked on 2026-09-21.
 | Write | `fs.writeTextFile` advertises `fs/write_text_file`, supplying path/content. | Installed behavior and editor/disk consistency unverified. | No D2 write adapter. | E2 conditional write and negative tests. |
 | Exec | `terminal` advertises create/output/wait/kill/release methods. | No target live proof; do not infer from the IDE having a Terminal tool window. | No D2 terminal adapter. | E2 capability and lifecycle probe before execution. |
 | Other | ACP supports session/control/UI mechanisms; not a universal file listing, diff, stat or CAS API. | Verify each needed method/extension explicitly. | D2 supplies bounded controls, not generic IDE navigation. | Add only a demonstrated need. |
+| IntelliJ MCP (E1 provider, revised) | ACP `session/new` `mcpServers` carries MCP servers the IDE passes. | Per-agent "Pass IntelliJ MCP server" (`use_idea_mcp`, default off); read/search/list tools respect project/library/SDK roots; mutating/exec tools share the server. Upstream source checked 2026-09-23; installed payload unobserved. | E0.C strips client capabilities and denies non-empty MCP forwarding. | E1.A records the real delegated surface; E1.B bridges it. |
 
 ACP filesystem reads can reflect unsaved editor content; a hash of that content
 is not necessarily a disk hash. The base write request has no expected-content
@@ -671,10 +694,23 @@ Effective capability = installed implementation ∩ live negotiation ∩ local s
 ∩ Task grant ∩ PolicyGate decision. Persist the observed advertisement for diagnosis;
 never use yesterday's advertisement as current permission. Missing/false capability
 fails explicitly; no host filesystem fallback, hidden MCP forwarding or arbitrary
-shell workaround. Initial E1 can use an explicitly selected file; do not require
-a generic project search service to prove a read.
+shell workaround. **Revised for E1:** "local scope" in this formula is the IDE
+delegation, and the IntelliJ MCP server delegated by the operator is the E1
+provider, which supplies project search without a Blaine search service. MCP use
+is explicit, delegated and journaled — not the hidden forwarding forbidden here.
 
 ### Workspace identity and path confinement
+
+**Revised for E1 (2026-09-23).** A Workspace is an IDE project delegated from one
+registered workstation; its identity is derived from registration, path platform
+and canonical project root, with no Blaine consent step. For the read-only IntelliJ
+MCP provider the IDE project model is the confinement boundary; PolicyGate rejects
+absolute, parent-traversal and URL arguments and pins the target project. The
+"local user selected / local consent" and "actual filesystem provider must enforce
+access-time confinement" requirements below remain the design input for **E2
+writes**, where the provider question is still open (Q11). E1 authority:
+[workspace contract](contracts/workspace-capability.md#workspace),
+[confinement](contracts/workspace-capability.md#confinement).
 
 Treat ACP `cwd` as a proposed workspace root, not authorization. On the workstation,
 canonicalize it, verify the local user selected that project and bind the canonical
@@ -705,9 +741,11 @@ replacing the required E1 ACP client read needs an explicit design revision.
 ### Task operation and evidence envelope
 
 Before an effect, the runtime records Task ID, operation ID, grant/revision,
-registration/workspace identity, operation kind, exact request digest and limits.
-The local guard matches this authorization to the ACP request/session and its
-locally approved scope. Session generation prevents stale routing. Evidence
+registration/workspace identity, operation kind, exact request digest and limits
+— from E1 as an `admitted` entry in the Task's capability journal
+([Completion Contract](contracts/completion-contract.md#capability-journal)).
+**Revised:** the bridge correlates this operation to the relayed call; it does not
+re-authorize it. Session generation prevents stale routing. Evidence
 admission checks the same identities, expected pending operation, revocation and
 payload bounds; random client JSON or a worker artifact path cannot satisfy it.
 
@@ -796,8 +834,10 @@ command output/exit, structured test report and any required artifact hashes.
 Store private file evidence within the authorized artifact/context boundary;
 logs and metrics carry references, not raw source or secrets.
 
-Completion Contracts declare criteria before execution. E1 may retain D2's known
-fixture digest. E2 adds deterministic contract predicates for the exact allowed
+Completion Contracts declare criteria before execution
+([Completion Contract v1](contracts/completion-contract.md)). E1 uses
+`capability_journal` and `evidence_citation` criteria instead of a known fixture
+digest; see the [E1 contract examples](contracts/workspace-capability.md#completion-contract-examples). E2 adds deterministic contract predicates for the exact allowed
 change set, command identity, terminal outcome and admitted test report. E3 adds
 observable CLI behavior, required human decision evidence and no unrelated writes.
 These are bounded extensions to the existing verifier, not worker-written claims
@@ -887,7 +927,19 @@ config damage, false READY, ACP corruption, or a demand for broad admin credenti
 **Goal:** prove an actual connected IntelliJ workstation as a read capability
 provider, without mutation or a project checkout on Blaine.
 
-**Positive acceptance:** create a disposable project only on a second workstation;
+**Revised acceptance (2026-09-23) — authoritative:** the
+[E1 acceptance matrix](contracts/workspace-capability.md#e1-acceptance) replaces
+the text below for provider, authority and completion. Its core additions: the
+operator's `use_idea_mcp` delegation is the only workspace approval; a READ_ONLY
+Task runs an investigation through the delegated IntelliJ MCP surface, completes
+by its Completion Contract, and the capability journal shows zero mutating
+admissions although mutating tools were delegated; scripted mutating proposals
+produce journaled denials and zero IDE calls. The prior text is retained for its
+still-valid identity, reconnect, human-WAITING and no-host-checkout requirements;
+"read a known fixture through IntelliJ's ACP filesystem method" and "register …
+under local consent" are superseded.
+
+**Positive acceptance (prior text):** create a disposable project only on a second workstation;
 open it in IntelliJ and record `cwd`/capability advertisement; register its canonical
 workspace under local consent; submit a read-only Personal Agent request; record
 the durable Task and pending authorized operation. Read a known fixture through
@@ -990,16 +1042,16 @@ is implied for routine defaults already authorized by an implementation request.
 | Q6 Registration storage — Recommended | PostgreSQL owns structured durable brain data; Restate owns Task execution; D2 has no device registry. | Small PostgreSQL registry as specified above; no new service/database instance or MIRIX registry. | Existing adopted application already provides a suitable identity/config repository; preserve ownership and migration/uniqueness guarantees. E0.D. |
 | Q7 Local config/secrets — Recommended | Host scripts use private local paths; no client config schema exists. | Versioned platform-native config/state (XDG Linux/WSL, Application Support macOS), restrictive permissions, native credential stores, no secrets in JSON. | A supported packaging mechanism changes location/credential needs. All platform paths defined in E0.A; live validation may be staged. |
 | Q8 IntelliJ installation — Open | Current official docs specify `~/.jetbrains/acp.json`; old live WSL path conflicts with current support statement. | Platform-specific IDE discovery and owned-entry merge; preserve others, test running IDE and Windows-to-WSL launcher arrangement. Native Linux may be first live proof. | Actual installed versions/schema/reload or managed restrictions differ. E0.E/F must record a supported version pair. |
-| Q9 Capability negotiation/provider — Open | ACP defines read/write/terminal; D2 implements only read fixture; JetBrains terminal support is unproven. | Negotiate every session and fail closed. Probe live read in E1, write/terminal in E2 before enabling. | Missing capability: choose a supported IDE version or separately review a small session-owned local provider; no silent MCP/host fallback. E1.A/B and E2.A. |
-| Q10 Workspace identity/confinement — Open | D2 compares POSIX cwd and lexically validates paths; symlink protection is delegated to client. | Registration + workspace ID + canonical local root/platform, local grant, access-time containment; regular files with platform-aware paths. | IntelliJ provider cannot prove confinement or needs unsupported platform semantics. STOP E1; review local provider boundary. E1.A/B. |
+| Q9 Capability negotiation/provider — Open; **E1 provider selected** (IntelliJ MCP via IDE delegation, [ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md)); E2 write/terminal provider still open | ACP defines read/write/terminal; D2 implements only read fixture; JetBrains terminal support is unproven. | Negotiate every session and fail closed. Probe live read in E1, write/terminal in E2 before enabling. | Missing capability: choose a supported IDE version or separately review a small session-owned local provider; no silent MCP/host fallback. E1.A/B and E2.A. |
+| Q10 Workspace identity/confinement — **E1: Recommended** (derived `workspace_id`; IDE project model is the read boundary; PolicyGate argument/project pinning — [contract](contracts/workspace-capability.md#confinement)); E2 write confinement still Open | D2 compares POSIX cwd and lexically validates paths; symlink protection is delegated to client. | Registration + workspace ID + canonical local root/platform, local grant, access-time containment; regular files with platform-aware paths. | IntelliJ provider cannot prove confinement or needs unsupported platform semantics. STOP E1; review local provider boundary. E1.A/B. |
 | Q11 Write semantics — Open | ACP whole-file write has no base CAS parameter or atomicity guarantee. | Conditional whole-file UTF-8 replacement with expected hash/absent and atomic guarded commit; avoid a patch engine. | Installed provider cannot enforce concurrency/editor safety: E2.A must choose an extension or bounded provider and record it before E2.B. No best-effort downgrade. |
 | Q12 Exec semantics — Open | ACP has terminal lifecycle; D2 has no exec, and env/descendant cleanup are unverified. | Exact reviewed profile + structured args/cwd, minimal env, deadline/output bounds, confirmed cleanup and receipt. | Terminal unavailable or insufficient control: decide whether a session-owned local provider is warranted; no daemon/arbitrary shell. E2.A/C. |
-| Q13 Evidence/completion — Recommended | Existing verifier admits exact artifacts and typed human responses, not generic remote coding claims. | Extend existing contracts with matched remote receipts, change hashes, source-correlated build/test evidence and deterministic predicates. | Tool output lacks enough provenance or tests do not establish requested behavior. E1.C, E2.D, E3.A. |
+| Q13 Evidence/completion — Recommended; **specified** as [Completion Contract v1](contracts/completion-contract.md) | Existing verifier admits exact artifacts and typed human responses, not generic remote coding claims. | Extend existing contracts with matched remote receipts, change hashes, source-correlated build/test evidence and deterministic predicates. | Tool output lacks enough provenance or tests do not establish requested behavior. E1.C, E2.D, E3.A. |
 | Q14 Reconnect/uncertain effects — Open | Same-Task waiting and read replay have D2 evidence; remote writes/exec do not. | Fresh routing, explicit human response, one-shot result admission; uncertain mutations require reconciliation, never blind replay. | Provider supports durable idempotency receipts or proven cancellation semantics. Freeze E1.A read behavior; E2.D mutation recovery. |
 | Q15 Multiple workstations/surfaces — Recommended | Existing session cwd alone cannot distinguish identical paths on devices. | Stable registration/workspace IDs from E0; one active effect route per Task/workspace, no implicit migration. | Concurrent surface demand requires a richer routing policy. Identity required E0.D/E1.A; multi-device product UX deferred. |
 | Q16 IntelliJ plugin — Accepted boundary; future UX open | Custom ACP agents need no Blaine plugin. | No plugin in E0–E3; possible later thin settings/connect UI calling the same client. | Measured user friction cannot be addressed by connect/config/diagnostics. No current milestone gate. |
 | Q17 Version compatibility — Recommended | ACP negotiates its own version; no Blaine client handshake exists. | Client/server versions, explicit supported Blaine protocol range initially one value, feature flags, actionable incompatibility error. | Actual independently shipped releases need broader compatibility windows. Required E0.C; extend features explicitly in E1/E2. |
-| Q18 Local authorization transport — Open | Standard ACP session/path calls lack Task ID/grant revision. Host-only policy is insufficient under host compromise. | Minimal private, versioned operation envelope bound to ACP call IDs, consumed by local guard and stripped before IDE; local scope is user-controlled. | SDK/transport cannot preserve correlation or local scope cannot be enforced; STOP E1.A, choose a documented compatible extension. No new public protocol replacement. |
+| Q18 Local authorization transport — **Revised**: capability-relay channel with operation correlation; no local authorization ([ADR 0027](decisions/0027-ide-delegation-is-workspace-authority.md)) | Standard ACP session/path calls lack Task ID/grant revision. Host-only policy is insufficient under host compromise. | Minimal private, versioned operation envelope bound to ACP call IDs, consumed by local guard and stripped before IDE; local scope is user-controlled. | SDK/transport cannot preserve correlation or local scope cannot be enforced; STOP E1.A, choose a documented compatible extension. No new public protocol replacement. |
 | Q19 E3 normalization/fixture — Open | D2 currently accepts deterministic controls and narrow completion schemas; Java 25 workflow is not implemented. | Small deterministic CLI, local-first routing, genuine behavior question, existing human/runtime primitives, fresh build/test predicates. | Fixture cannot expose real human choice or installed Gradle/JDK combination is unsupported. E3.A before coding acceptance. |
 | Q20 WSL2 network reuse — Open | Vendor warning excludes default nested daemons; host/guest routing is untested here. | Native Windows Tailscale; detect via Windows interop, probe actual WSL path; no forwarding changes initially. | Real WSL2 evidence shows DNS/routing/interop failure; record the smallest supported adjustment and explicit deployment mode. E0.B/C/F. |
 | Q21 Cross-platform install/IDE launch — Open | macOS needs native approval; IDE and client may occupy different OS namespaces under WSL. | Three platform adapters, guided supported installs, explicit escalation, no permanent root; stable local launcher in the IDE namespace. | Supported installer/CLI discovery or JetBrains process arrangement differs on target machine. E0.A/B/E/F; no all-platform PASS without results. |
@@ -1034,14 +1086,14 @@ compromised trusted machine or provide a new enterprise security platform.
 | Threat | Required control and residual boundary | Milestone |
 | --- | --- | --- |
 | Compromised workstation | Treat content/capability replies as untrusted inputs; validate schema, size and operation identity. Workstation cannot authorize host/global effects. Its own evidence can still be fabricated; no attestation claim. | E0 identity, E1 evidence, E2/E3 verification. |
-| Compromised Blaine host | Independent local workspace consent and guard; deny unsolicited/out-of-scope filesystem/exec calls even over authenticated transport. Never forward workstation credentials. A host can still misuse already granted scope; keep it narrow/revocable. | E0 no ambient grants; E1 guard; E2 effect enforcement. |
+| Compromised Blaine host | **Revised (ADR 0027):** no independent local policy. A compromised host can invoke any tool in the IDE-delegated surface, including mutating/executing ones, limited by IDE-side controls (exposed-tool settings; command confirmation unless brave mode) and by what the operator delegates. IDE tokens and workstation credentials never leave the workstation. Accepted residual of the delegated-authority model. | E0 no ambient grants; E1 delegation only via `use_idea_mcp`; E2 revisits for writes. |
 | Device removed from tailnet | Tailscale owns strong network revocation; Blaine reflects observed state and invalidates affected routes. Measure propagation/session teardown; a registry flag cannot neutralize retained administrative SSH authority over the Hub. | E0.D state reflection; E0.F integrated negative probe; E1/E2 route invalidation. |
 | Stale/retired inventory | Preserve durable identity/history; last-seen is informational. A fresh policy-authorized handshake can restore presence without manual Blaine approval. Reinstall or a changed binding cannot inherit old grants. | E0.D onward. |
-| Path traversal / link races | Canonical local workspace plus operation-time containment, narrow file set, negative traversal/symlink/hard-link probes; cwd string is not a sandbox. | E1 reads, E2 writes. |
+| Path traversal / link races | E1 reads: IDE project model plus PolicyGate argument schema and project pinning; symlinked content the IDE treats as project content is an accepted residual. E2 writes: canonical workspace, operation-time containment, negative traversal/symlink/hard-link probes. | E1 reads, E2 writes. |
 | Arbitrary command execution | Exact profile/args/env/cwd with reviewed build inputs, bounds and lifecycle; deny shell text. Trusted synthetic fixture initially; allowlist is not an OS sandbox. | E2/E3. |
 | Client impersonation | Server derives authenticated principal/device; UUID/path/name cannot authenticate. Detect copied UUID on another device, mismatched server and stale route generation. | E0.C/D, E1. |
 | ACP stdout injection/corruption | Separate diagnostics/control channel, no PTY/banners, strict framing/correlation, reject malformed traffic, serialize tool output as data. | E0.C/F; regress E1–E3. |
-| Accidental capability widening | Intersect negotiated support, local consent and Task/PolicyGate grants; absent capability denies; MCP forwarding cannot grant authority; workspace/worker change invalidates assumptions. | E0 no grants; E1–E3 per operation. |
+| Accidental capability widening | Effective authority = Task grant ∩ user constraints ∩ delegated scope ∩ Blaine operation classification (unknown ⇒ denied), enforced by PolicyGate and evidenced by the capability journal; session option changes never widen a running Task. | E0 no grants; E1–E3 per operation. |
 | Malicious source/memory instructions | Repository/MIRIX text is context, never policy. Workers cannot rewrite grants or Completion Contracts to accept their own output. | E1 context; E3 cognition. |
 | Configuration/supply-chain tampering | Trusted versioned distribution, verified digest provenance, restrictive local permissions, host verification, safe merge/rollback and no automatic arbitrary remote installer. | E0. |
 
@@ -1076,9 +1128,12 @@ gate merely because its mocks pass. No concurrent agent execution is required.
 | E0.D Workstation identity/inventory/presence — [PASS](../experiments/personal-agent-hub/e0d/README.md) | PostgreSQL registry, automatic registration after the accepted handshake, signed protocol-2 receipt, read-only host inventory CLI and expiring connection presence; primary Mac lifecycle, public alpha.4 upgrade and designated WSL distinct-identity acceptance passed. | First connection/concurrent retry/response loss produce one registration; restart/reconnect/upgrade reuse it; copied identifiers cannot take over another binding; presence and stale-session fencing preserve inventory and Tasks. Retirement/revocation records reflect product/network state; Tailscale owns strong admission/revocation. | Second manual Blaine approval without a demonstrated threat; new Task ledger; registration grants workspace scope; unknown outcome reported success; registry revocation claimed to resist host-admin authority. | E0.C; effective narrow Tailscale admission; existing PostgreSQL access scoped to registry. |
 | E0.E IntelliJ config | Proposed client IDE config adapter and merge fixtures. | Actual IntelliJ with a second agent, closed/running merge/reload; correct OS user config and stable launcher; test supported Windows/WSL arrangement before that platform PASS. | Overwrites unrelated fields, managed installation blocks agents, version unsupported. | E0.A/C/D; supported IDE installation. |
 | E0.F Doctor/connect acceptance | Integrate state flow, diagnostics, disconnect and release artifact; proposed E0 acceptance report. | New-workstation journey and E0 positive/negative matrix per implemented platform, twice-run connect, read-only doctor; full real IntelliJ acceptance on the designated second Windows/WSL workstation; mark other targets unverified. | False READY, any missing identity/config/stdio invariant; no live IntelliJ evidence. | E0.A–E; closes only explicitly validated platform scope of E0. |
-| E1.A Workspace/operation boundary | Extend workspace contracts, route binding and proposed local guard/private envelope. | Real IntelliJ initialization captures versions/cwd/support; bind canonical workspace and authorization to one read request; wrong-device/session denied. | Task authority cannot be matched locally, no live read capability, ambiguous workspace. | E0 PASS; Q9/Q10/Q18 decisions. |
-| E1.B Live confined read | Extend PersonalACP read path and local provider checks without host filesystem access. | Actual second-workstation ACP read; traversal/link/race negatives; no host checkout/sentinel access. | Containment relies only on preflight lexical/realpath checks or local fallback replaces required IDE proof. | E1.A. |
-| E1.C Same-Task evidence/reconnect | Extend read receipts/admission and acceptance fixtures. | Disconnect at pending read, rebind, return verified evidence to same Task; human WAITING unaffected; stale/wrong replies denied. | Session becomes Task identity, evidence substitution or implicit response/restart. | E1.B; closes E1. |
+| E1.0 Completion Contract kernel (no workstation) | [Completion Contract v1](contracts/completion-contract.md): contract artifact/revision in TaskState, v0 lowering, CompletionEvaluation v2, legality function, capability journal on the single dispatch path, `capability_journal`/`evidence_citation` verifiers, human-only amendment handler. | Kernel fixtures: v0 parity; cited-findings completion; fabricated quote fails; cognition cannot drop REQUIRED; human waiver visible; SIGKILL/replay stable refs; unadmitted journal entry fails. | Contract mutable by cognition; journal bypassable; evaluation not tied to revision/evidence. | None beyond current kernel; new Restate deployment. |
+| E1.A Delegation observation | Allow `session/new` with the IntelliJ MCP entry in an observation mode; record redacted descriptor, `cwd`, IDE versions and `tools/list`; no tool calls. | Real IntelliJ with `use_idea_mcp` on: delegated surface recorded (including mutating tools); with it off: none. | IDE does not pass its MCP server to a custom ACP agent; no read/search tools in the surface. | E0.C client; E0.D registration ID preferred (installation ID allowed for this spike, labelled). |
+| E1.B Capability relay | Direct-protocol `capability-relay/1` feature and frame kind 5; Go bridge to the observed MCP transport; Hub MCP client in `PersonalACP`; counting fake MCP server fixture. | Fixture: relayed `tools/list`/`tools/call` round trip with operation correlation; bridge never originates or filters calls; ACP stream unaffected. | Capability bytes on IntelliJ stdio; token leaves workstation; uncorrelated calls. | E1.A. |
+| E1.C Read-only authority and dispatch | `workspace.read` provider form, `intellij-mcp@1` classification, argument schemas, `EffectiveAuthority`, `access` configOption, `DelegationSnapshot`, receipts, `continue` delivery. | Fixture: READ_ONLY Task with mutating tools delegated → denials journaled, zero fake-IDE mutating calls; wrong workspace/registration/generation rejected. | Local tool filtering substituted for PolicyGate; unclassified tool admitted. | E1.0, E1.B. |
+| E1.D Investigation templates | `investigation@1`, `explanation@1`, `location@1` templates, findings schemas, bounded `investigate/explain/locate` intake; optional advisory `semantic_review` (local model). | Fixture Tasks for all three examples complete only with valid citations; unresolved conclusion completes honestly. | Completion from model sentiment; REQUIRED semantic without human path. | E1.C. |
+| E1.E Live E1 acceptance | Run the [E1 acceptance matrix](contracts/workspace-capability.md#e1-acceptance) on a real second workstation. | Positive/negative matrix, disconnect/continue same Task, restart during pending op, human WAITING unaffected. | Any STOP in the matrix. | E1.A–D; E0 PASS for the platform used; closes E1. |
 | E2.A Provider contract spike | Observe live write/terminal support; specify CAS/editor behavior, environment, timeout and descendant cleanup. Proposed contract and probe report first. | Demonstrate guarded conditional write and process controls on disposable fixture, or explicit STOP with smallest provider decision. | Base ACP cannot deliver required safety, proposed workaround is daemon/unrestricted shell or hidden provider switch. | E1 PASS; scoped temporary effect authorization; resolves Q11/Q12. |
 | E2.B Conditional write adapter | Extend workspace/PolicyGate dispatch, local guard/provider and receipt store. | One bounded write with before/after/diff evidence; stale, dirty-buffer, link/race and response-loss controls. | Lost update, unauthorized mutation, blind replay or false atomicity claim. | E2.A proven write mechanism. |
 | E2.C Bounded exec adapter | Add command profile/provider, terminal lifecycle and output/report normalization. | Allowed local build/test with actual exit/output, deadline and descendant cleanup; env/argument denial. | Unrestricted shell, inherited secrets, uncontrolled process, exec on host or missing evidence. | E2.A proven terminal mechanism; reviewed fixture. |
