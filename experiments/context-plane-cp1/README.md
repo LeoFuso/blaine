@@ -3,6 +3,18 @@
 **PASS — 2026-09-24.** Opt-in hosted local Context Plane through the existing owned
 loop and Goose worker. No deployment enablement, push, CP.2 or Track III reopening.
 
+**Final handoff: READY_FOR_PIPELINE.** Normal merge `e9e9196` reconciles CP.1 with
+E1.0 at `origin/main f0a3ca5`. See the
+[qualification record](evidence/reconciliation/qualification.json),
+[CI matrix](evidence/reconciliation/ci-matrix.json) and
+[rerun guide/results](evidence/reconciliation/README.md).
+333 root tests (22 CP.1), six repeated CI host/readiness tests, and all three native
+gates passed. Current Completion Contracts now govern compiled requirements and
+admission; authorized amendments invalidate stale worker/handoff context.
+No automatic GitHub workflow matches this diff; no push/PR/main merge was performed.
+
+Original pre-E1.0 implementation evidence, preserved unchanged:
+
 - [Acceptance and evidence hashes](evidence/acceptance.json).
 - [217 relevant tests](evidence/regressions/summary.json), including 21 deterministic
   CP.1 enforcement tests; full test names/results in the five adjacent logs.

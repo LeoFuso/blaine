@@ -11,8 +11,13 @@ continues to own prioritization relative to Hub E0–E3 and other programs.
 The authorized CP.1 implementation is complete within its opt-in hosted/local boundary.
 [Milestone and handoff](../milestones/055-context-plane-cp1.md),
 [executable subset](../contracts/context-plane-cp1.md), and
-[retained acceptance](../../experiments/context-plane-cp1/evidence/acceptance.json)
-record 217 passing relevant tests (21 CP.1) and a native Restate/local Goose smoke.
+[original acceptance](../../experiments/context-plane-cp1/evidence/acceptance.json)
+retain the initial 217-test/native result. The final
+[E1.0 reconciliation qualification](../../experiments/context-plane-cp1/evidence/reconciliation/qualification.json)
+is **READY_FOR_PIPELINE** at merge `e9e9196` over `origin/main f0a3ca5`:
+333 root tests (22 CP.1), native Restate/local Goose, E1.0 and parallel-child gates pass.
+The actual GitHub workflow filters match no CP.1 branch/PR paths; the retained CI matrix
+records commands and conditional CI-only services. Nothing was pushed or merged into main.
 The implementation request has an unsubmitted TaskSpec draft because no creation binding
 was available; the separate synthetic native acceptance Task completed with exact evidence.
 
@@ -20,7 +25,10 @@ was available; the separate synthetic native acceptance Task completed with exac
 create_workflow / GooseWorker; trusted local Task/spec/principal/resource binding; separate
 Resolver and deterministic Compiler; qualified read-only configured Memory corpus; confined
 exact/lexical sources and admitted evidence; private compiler admissions; one fresh replacement
-delta; current authority/source checks before physical delivery. Default deployments and
+delta; current authority/source checks before physical delivery. Compiler projections and
+private admissions use the authoritative E1.0 contract reference/revision; amendments
+invalidate stale worker delivery and prepared handoff context. `context.request` is a
+governed TARGET_READ with existing admission/observation journals. Default deployments and
 unaffected paths retain their behavior. Implementation acceptance is not deployment approval.
 
 **Blockers:** none for bounded CP.1. Live MIRIX remains unqualified/disabled on this path;

@@ -1,0 +1,137 @@
+{
+  "automatic_relevant_jobs": 0,
+  "matrix": [
+    {
+      "workflow": ".github/workflows/client-ci.yml",
+      "job": "client",
+      "trigger": "all-branch pushes / pull requests with listed client/E0/host-readiness paths; manual workflow_dispatch",
+      "cp1_diff_relevance": "No reconciled branch path matches push/PR filters; workflow_dispatch remains possible",
+      "commands": [
+        "uses ./.github/workflows/client-build.yml"
+      ],
+      "prerequisites": "see shared build",
+      "external_dependencies": "GitHub reusable workflow runner",
+      "secrets": "contents:read GitHub token; no custom secret",
+      "locally_reproducible": "underlying build commands, not GitHub trigger/routing",
+      "result": "NOT_TRIGGERED_BY_CP1_BRANCH_OR_PR_DIFF",
+      "reinspected": true
+    },
+    {
+      "workflow": ".github/workflows/client-build.yml",
+      "job": "build",
+      "trigger": "workflow_call only",
+      "cp1_diff_relevance": "indirect only; no automatic caller triggered by reconciled CP.1 diff",
+      "commands": [
+        "(cd client && go mod download && go mod verify)",
+        "client/ci.sh"
+      ],
+      "underlying_commands": [
+        "gofmt -l client (must produce no paths)",
+        "go -C client test -count=1 -v ./...",
+        "go -C client test -race -count=1 ./...",
+        "python3 client/tests/with_postgres.py go -C client test -p 1 -race -count=1 -v ./internal/workstation ./cmd/blaine-hub-transport",
+        "go -C client vet ./...",
+        "sh -n client/install-jetbrains-agent.sh",
+        "python3 -m unittest discover -s client/tests -v",
+        "python3 -m unittest tests.test_host_connection tests.test_direct_readiness -v",
+        "client/build.sh \"$PWD/.local/client-delivery/bin\"",
+        "client/build.sh \"$PWD/.local/client-delivery/rebuild\"",
+        "python3 experiments/e0b-tailscale-onboarding/accept_offline.py \"$PWD/.local/client-delivery/bin/blaine-linux-amd64\" --direct",
+        "python3 client/verify-build.py \"$PWD/.local/client-delivery\"",
+        "git diff --check"
+      ],
+      "build_metadata": "BLAINE_COMMIT=git rev-parse HEAD; branch BLAINE_VERSION=0.1.0-dev+first 12 commit characters",
+      "prerequisites": [
+        "ubuntu-24.04 runner",
+        "Go 1.27.1 from client/.go-version",
+        "Python 3",
+        "Bash and sh",
+        "race-test C toolchain",
+        "PostgreSQL tools via pg_config",
+        "file",
+        "readelf",
+        "Git"
+      ],
+      "external_dependencies": [
+        "public pinned Go dependencies downloaded before GOPROXY=off",
+        "disposable Unix-socket PostgreSQL fixture"
+      ],
+      "secrets": "no custom secrets or live service credentials",
+      "locally_reproducible": "Underlying validation/build commands reproducible on suitable Linux; full client job is not relevant to this diff and was not run",
+      "platform_matrix": [
+        "linux/amd64",
+        "linux/arm64",
+        "darwin/amd64",
+        "darwin/arm64"
+      ],
+      "ci_only": "CI_ONLY_EXPECTED when invoked: GitHub checkout/setup orchestration and upload-artifact service",
+      "result": "NOT_TRIGGERED_BY_CP1_BRANCH_OR_PR_DIFF",
+      "reinspected": true,
+      "locally_reproduced": [
+        "python3 -m unittest tests.test_host_connection tests.test_direct_readiness -v",
+        "git diff --check"
+      ],
+      "local_result": "PASS: 6 tests and whitespace check; these are portions of the non-triggered build job, not a claim that client/ci.sh ran"
+    },
+    {
+      "workflow": ".github/workflows/client-release.yml",
+      "job": "client",
+      "trigger": "push tag v0.*-alpha.*",
+      "cp1_diff_relevance": "not a branch/PR trigger",
+      "commands": [
+        "uses ./.github/workflows/client-build.yml"
+      ],
+      "prerequisites": "see shared build",
+      "external_dependencies": "GitHub workflow service",
+      "secrets": "contents:read GitHub token",
+      "locally_reproducible": "underlying build only",
+      "result": "NOT_TRIGGERED_BY_CP1_BRANCH_OR_PR_DIFF",
+      "reinspected": true
+    },
+    {
+      "workflow": ".github/workflows/client-release.yml",
+      "job": "publish",
+      "trigger": "alpha-tag push after shared build",
+      "cp1_diff_relevance": "not applicable to CP.1 branch/PR",
+      "commands": [
+        "download-artifact blaine-*",
+        "sha256sum --check checksums.txt",
+        "python3 exact five-file payload assertion",
+        "gh release create \"$GITHUB_REF_NAME\" --verify-tag --prerelease --latest=false with workflow title, notes and assets"
+      ],
+      "prerequisites": [
+        "ubuntu-24.04",
+        "Bash",
+        "Python 3",
+        "sha256sum",
+        "gh"
+      ],
+      "external_dependencies": [
+        "GitHub artifact service",
+        "GitHub Releases API"
+      ],
+      "secrets": "GH_TOKEN=${{ github.token }} with contents:write; GH_REPO=${{ github.repository }}",
+      "locally_reproducible": "checksum/payload verification only; publication is unauthorized and requires GitHub identity",
+      "ci_only": "CI_ONLY_EXPECTED on a future authorized tag release, not this branch/PR",
+      "result": "CI_ONLY_EXPECTED_IF_FUTURE_ALPHA_TAG; NOT_APPLICABLE_TO_THIS_BRANCH_OR_PR",
+      "reinspected": true,
+      "structural_readiness": "Workflow and client payload sources unchanged; publication not performed or authorized"
+    }
+  ],
+  "inspected_sha256": {
+    ".github/workflows/client-ci.yml": "c31efe128f2ab376be4a82121f5a47a56437b74c177d860770eaf65f8b6ee027",
+    ".github/workflows/client-release.yml": "82c4f19558524ab34f532d828c0282ef4c4dec5709be5f512c6b447e0fb451c4",
+    ".github/workflows/client-build.yml": "23ac6fbffbcb51d06e010e068a65fb901475e67fabab0471bcbd4e113612be35",
+    "client/ci.sh": "10b82975157abc85bca457bae8f0e980595ef079a443af8d4edff253b5e83ef6",
+    "client/build.sh": "9a305944d7782763d587b805a6b5b2a04a1ddb2245babece8a841cd8bcc468bf",
+    "client/verify-build.py": "27ad3449f53d6f0d34dbac0b292431684c0a1fe38e270c283a11ee63ee80fc7a",
+    "client/tests/with_postgres.py": "63a0fe5f67a621b0dcf0247365bca8d518d9a2c681f5f4f4a07e835d47e8bc8e",
+    "client/.go-version": "a8844fbc8c3eb51c26ed00aec4cd5a5a9d647f849c6ead07bcc83ed24c4a7718",
+    "client/go.mod": "5e03245bbad07aa20f2e872eb8a4c054f7e2782003aa2a68f359f154f9e49ca4",
+    "client/go.sum": "a1a7ff96e2f9eed86bf7bcff0f6dfe00a90b1bc7ef8ee3960fcfb0f34a0b3156",
+    "client/install-jetbrains-agent.sh": "ac54300a5999397286e7178dde1cf9f743140dcc9c3de8454a3e2775a8fd4d91",
+    "experiments/e0b-tailscale-onboarding/accept_offline.py": "491d4af5560e76ba60e40b4ce85ad10faaa841d2a8efa67340399248b39c0ac4"
+  },
+  "matched_paths": [],
+  "notes": "No workflow modified, bypassed or removed. No CP.1-specific GitHub job exists. GitHub artifact upload requires runner identity/service; release also requires contents:write and an authorized tag. Neither is a pending required check for this diff."
+}

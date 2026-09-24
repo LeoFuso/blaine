@@ -2,13 +2,48 @@
 
 **PASS — 2026-09-24.** Latest completed Context Plane increment: **CP.1**.
 Branch `feature/context-plane-cp1`, worktree `/home/leofuso/workspace/blaine-cp1`,
-baseline `b1b3073`. Implementation and acceptance are local; not deployed by default.
-No push/merge or CP.2 work. Track III research and its historical outcomes are unchanged.
+original baseline `b1b3073`. Implementation and acceptance are local; not deployed by default.
+No push, merge into main or CP.2 work. Track III research and its historical outcomes are unchanged.
 
 The [roadmap](../roadmap/002-context-plane-implementation.md) owns sequencing;
 the [executable subset](../contracts/context-plane-cp1.md) owns concrete CP.1 shapes;
 [retained acceptance](../../experiments/context-plane-cp1/evidence/acceptance.json) owns
 measurements, source/evidence hashes and qualification gaps.
+
+## E1.0 reconciliation and final qualification
+
+**READY_FOR_PIPELINE — 2026-09-24.** Normal merge `e9e9196` integrates
+`origin/main` at `f0a3ca5` without rewriting CP.1 commit `b0f782a`.
+The only textual conflict was `runtime/kernel/workflow.py`; the resolution retains
+E1.0 intake/settlement/journals and CP.1 route, compilation and delivery guards.
+
+The Compiler now projects the runtime's current Completion Contract reference,
+revision and exact criteria. Private worker admissions pin that revision; stale
+delivery refuses. E1.0's existing amendment handler and journaled `promise().peek()`
+remain authoritative. The deterministic integration test proves revision 0 initial
+context, an authorized amendment, stale-packet refusal, revision 1 delta and replay.
+An amendment also invalidates context prepared by a preceding handoff. This fixes
+the observed stale cognitive packet without introducing another contract owner.
+`context.request` is a TARGET_READ (`context.read`) in the existing classification
+table; permission, class-forgery and scope denials remain enforced.
+
+[Durable qualification](../../experiments/context-plane-cp1/evidence/reconciliation/qualification.json)
+records exact commands, failures/resolutions, source hashes and per-file test counts:
+**333 root tests**, including **22 CP.1** and **61 E1.0 contract/workflow/coverage**
+tests, all passed. The exact CI host/readiness command passed its six tests (already
+included in the root count). Native CP.1 passed 15 checks with two local Goose
+dispatches, one delta and CompletionEvaluation v2 legality. Packets measured
+**2,428 → 2,411 bytes**, delta **2,577**. The accepted E1.0 and parallel-child native
+suites also passed: **9 + 12 Tasks**, **11 runtime + 5 server SIGKILLs** combined,
+no duplicate effects. Expected negative fixture outcomes remain failures, not success.
+
+The [reinspected CI matrix](../../experiments/context-plane-cp1/evidence/reconciliation/ci-matrix.json)
+shows **no automatic GitHub job matching this branch/PR diff**. Client build/release
+workflows are unchanged. Full client builds were not run for this unrelated diff;
+GitHub artifact upload and tag-release publication require GitHub identity when
+invoked and are not pending required checks for CP.1. No workflow was weakened.
+Historical evidence below remains unchanged. No blocker remains; push/PR and merge
+into main still require human authorization. CP.2 is next and **NOT STARTED**.
 
 ## Production result
 
@@ -38,7 +73,7 @@ No old worker results/transcript are accumulated. New cognition and worker calls
 authority inside physical journal steps; historical replay causes no new inference/effects.
 A new admitted resolution can narrow current policy; pending stale delivery is refused.
 
-## Acceptance
+## Original CP.1 acceptance (before E1.0)
 
 | Roadmap boundary | Retained proof |
 | --- | --- |
@@ -62,7 +97,8 @@ quality, semantic entailment, DLP, authentication or production concurrency vali
 
 ## Surprises, blockers and limits
 
-- No architecture contradiction or required seam displacement was found.
+- No architecture contradiction was found. The later E1.0 completion seam changes
+  are reconciled and qualified above.
 - MIRIX's existing client header/filter tags and row provenance are insufficient for
   governed processing. It remains **NOT QUALIFIED** here; that optional adapter gap does
   not invalidate the roadmap's permitted source-only/read-only-corpus CP.1 acceptance.
@@ -89,7 +125,7 @@ trusted human declaration vs UNVERIFIED current-context agent observation, all-m
 scope isolation, committed readback, scoped idempotency, response-loss/restart evidence
 and provenance-preserving schema migration. A queued write is not committed evidence.
 
-Review and merge CP.1 first. This session does neither. After merge, create a fresh
+Review and merge CP.1 into main first. After that merge, create a fresh
 `feature/context-plane-cp2` branch/worktree from the accepted base, e.g.
 `/home/leofuso/workspace/blaine-cp2`; preserve this worktree and retained evidence.
 If CP.1 review is still pending, remain on this branch for CP.1 fixes only.
