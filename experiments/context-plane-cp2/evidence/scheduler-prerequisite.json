@@ -1,0 +1,14 @@
+{
+  "read_only": true,
+  "endpoint": "http://127.0.0.1:49070/services",
+  "required": [
+    "VerificationScheduler_blaine",
+    "VerificationRun"
+  ],
+  "required_services_registered": {
+    "VerificationScheduler_blaine": false,
+    "VerificationRun": false
+  },
+  "status": "UNAVAILABLE",
+  "other_services_count": 1
+}

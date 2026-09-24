@@ -1,0 +1,11 @@
+{
+  "read_only": true,
+  "content_read": false,
+  "credentials_emitted": false,
+  "agent_configs_observed": 7,
+  "all_embedding_routes_loopback_8001": true,
+  "embedding_route_limits": "Current database configuration only, not atomic admission or authorization for every SecurityContext.",
+  "user_timer_probe_ok": true,
+  "mirix_named_user_timers_present": false,
+  "timer_limits": "Named user timers only; not proof that cron, external jobs or manual cleanup cannot run."
+}

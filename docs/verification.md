@@ -296,11 +296,14 @@ provision).
 
 ## How Context Plane verification is added after CP.1 merge
 
-CP.1 is being reconciled in its own worktree and is **not** yet merged into
-main. Context Plane verification must **not** be implemented now and must **not**
-copy the CP.1 implementation from another worktree.
+CP.1 is now merged. `verification/suites/context_plane.py` additively registers
+the integrated Context Plane/kernel HERMETIC regressions. It does not qualify
+CP.2 storage: [CP.2 is requalifying its storage boundary](milestones/056-context-plane-cp2-storage-qualification.md).
+The configured HOST scheduler is currently unavailable (milestone 056); do not provision
+or bypass it. No native persistence PASS is implied by the hermetic suite. A later HOST suite
+must declare actual prerequisites/resources and use the Restate scheduler.
 
-After CP.1 merges:
+The extension mechanism remains:
 
 1. Add `verification/suites/context_plane.py` with a `SUITE` whose steps invoke
    CP.1's *existing* authoritative tests/scripts (by name), exactly like

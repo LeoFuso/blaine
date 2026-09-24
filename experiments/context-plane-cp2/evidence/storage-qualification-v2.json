@@ -1,0 +1,121 @@
+{
+  "schema_version": 2,
+  "status": "PARTIAL_SOURCE_QUALIFICATION",
+  "date": "2026-09-24",
+  "baseline": "56f2e65cdf1bb470aa179168e3a628b29f422092",
+  "mirix_commit": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "supersedes_decision_in": "storage-qualification.json",
+  "historical_evidence_unchanged": true,
+  "correction": "Exact source preservation does not forbid derived processing. Persistence does not imply retention. Embeddings alone are not a blocker.",
+  "semantics": {
+    "agent_observation": "AGENT_OBSERVATION / UNVERIFIED / WORKING; current bound context",
+    "human_declaration": "USER_DECLARATION / RETAINED; explicit authorized bounded destination and intent to remember",
+    "caller_retention_selection": false,
+    "automatic_retention_transition": false,
+    "scope_implies_retention": false,
+    "memory_is_completion_evidence": false
+  },
+  "qualification_questions": [
+    "exact_source_preservation",
+    "blaine_metadata_preservation",
+    "automatic_derived_processing",
+    "derived_scope_inheritance",
+    "blaine_retention_ownership",
+    "governed_retrieval_separation",
+    "no_implicit_upward_flow",
+    "authorized_processing_and_egress"
+  ],
+  "boundaries": [
+    {
+      "boundary": "public_raw_with_embeddings",
+      "status": "VIABLE_CANDIDATE_NOT_ACCEPTED",
+      "questions": {
+        "exact_source_preservation": "OBSERVED_IN_SOURCE: context is stored unchanged; PostgreSQL commit/refresh precedes Redis caching. Live committed facade readback not tested.",
+        "blaine_metadata_preservation": "OBSERVED_CAPACITY: JSON filter_tags can carry version, context/security references, origin, qualification, retention and scoped idempotency digest. MIRIX overwrites scope with actor.write_scope. Adapter must assign and validate all Blaine fields; tags alone are not authority.",
+        "automatic_derived_processing": "OBSERVED: configured embedding of exact context; vector/config stored on the source row and row may be cached. This create route does not invoke extraction or consolidation. Embedding failures can still yield a committed row without a vector.",
+        "derived_scope_inheritance": "PARTIAL: vector belongs to same organization/user/tagged row as source. Raw search filters in SQL before limit. Cache by-ID omits explicit cached organization comparison; do not expose it without independent qualified validation. Broader vector/cache consumers not accepted.",
+        "blaine_retention_ownership": "UNPROVEN: no raw create status upgrade observed; tags could preserve WORKING/RETAINED. Raw cleanup selects by age without retention partition. No named MIRIX user timer observed; does not establish cleanup absent or retention safe. Neither semantic status implies a fixed TTL.",
+        "governed_retrieval_separation": "OBSERVED_CAPACITY: search_raw uses AND tag predicates, enabling retention/context/security filtering before pagination. Need trusted adapter to select current WORKING versus permitted RETAINED lineage; no caller-controlled filters.",
+        "no_implicit_upward_flow": "PARTIAL: raw create stamps current actor organization/write scope; no parent-copy operation on this route. Adapter must bind hierarchy and prohibit target selection; other processors remain unqualified.",
+        "authorized_processing_and_egress": "PARTIAL: all seven current agent embedding configurations point to loopback port 8001. Public route selects first authorized agent; no per-request pin. Require trusted approved provider configuration and fail-closed admission for source SecurityContext; current snapshot alone is not an atomic grant."
+      },
+      "next_proofs": [
+        "trusted provider admission and metadata schema",
+        "retention lifecycle boundary for both states",
+        "scoped replay/conflict and response-loss reconciliation",
+        "committed Blaine facade readback",
+        "restart and forbidden reads",
+        "compiled fresh delta carrying retention projection"
+      ]
+    },
+    {
+      "boundary": "public_extraction_ingestion",
+      "status": "NOT_ADMITTED_AS_CP2_WRITE_BOUNDARY",
+      "questions": {
+        "exact_source_preservation": "PARTIAL: optional session ingestion writes conversation turns separately; its exception is caught and ingestion proceeds. Extraction or queue success cannot attest exact-source commit.",
+        "blaine_metadata_preservation": "PARTIAL: ingestion copies filter_tags and stamps actor scope; child agents inherit copied tags. Semantic insert uses agent tags. This is useful support, not complete immutable source lineage.",
+        "automatic_derived_processing": "OBSERVED: meta dispatch, extraction and embedding; task-tagged sessions can trigger procedural experience auto-dream at a session threshold. Such automatic learning is outside CP.2.",
+        "derived_scope_inheritance": "UNPROVEN: tag propagation exists, but semantic update deletes arbitrary model-selected old IDs using actor access and stamps new records with current agent tags. No per-source Blaine retention/security intersection is checked in that tool.",
+        "blaine_retention_ownership": "UNPROVEN: backend tools do not distinguish WORKING from RETAINED; processing over mixed sources cannot be accepted solely because new rows inherit current tags.",
+        "governed_retrieval_separation": "UNPROVEN: copied tags can support separation, but model history, source reads and destructive update tools need end-to-end qualification before use.",
+        "no_implicit_upward_flow": "UNPROVEN: no Blaine hierarchy owner here; task session distillation is broader processing, not proof of governed destination/abstraction admission.",
+        "authorized_processing_and_egress": "UNPROVEN: embeddings are locally configured, but extraction/model, tracing and background routes require their own processing grants; embedding configuration is not sufficient."
+      },
+      "decision": "Do not enable the current full ingestion pipeline for CP.2. This rejects the unqualified pipeline, not extraction or consolidation as concepts. Scoped derived processing can be qualified separately without upgrading retention or enabling learning."
+    },
+    {
+      "boundary": "existing_substrate_internal_adapter",
+      "status": "DESIGN_OPTION_NOT_SELECTED",
+      "questions": {
+        "exact_source_preservation": "Same RawMemoryManager can preserve source; direct existing-substrate metadata transaction also permitted by CP.2 roadmap, but not implemented.",
+        "blaine_metadata_preservation": "Blaine-owned schema/registry in existing approved storage is an authorized design option, not a second Memory product. No schema adopted yet.",
+        "automatic_derived_processing": "Manager accepts explicit agent_state and cache choice. A trusted adapter may pin approved processing; disabling embeddings is not the objective or acceptance criterion.",
+        "derived_scope_inheritance": "Must bind every source/derived row and restrict consumers; no blanket qualification from sharing PostgreSQL.",
+        "blaine_retention_ownership": "Must preserve independent WORKING/RETAINED metadata and lifecycle; calling the same raw manager alone does not repair its cleanup selection.",
+        "governed_retrieval_separation": "Must expose only Blaine facade query semantics with trusted current binding, not ORM/scopes to workers.",
+        "no_implicit_upward_flow": "Must implement only direct authorized destination writes; no promotion operation in CP.2.",
+        "authorized_processing_and_egress": "May pin trusted agent configuration explicitly; still needs native isolation and process/restart evidence."
+      },
+      "decision": "Remain an in-scope alternative if the public route cannot satisfy qualified lifecycle/processing requirements. No alternate database or upstream edit was made."
+    }
+  ],
+  "implementation_acceptance": "NOT_IMPLEMENTED_OR_PROVEN",
+  "host_qualification": {
+    "result": "BLOCKED",
+    "reason": "CANONICAL_HOST_SCHEDULER_UNAVAILABLE",
+    "scheduler_submission": false,
+    "queue_bypassed": false,
+    "provisioning": false,
+    "limits": "Read-only configured Restate service registry query; not a scheduler-generated run report."
+  },
+  "next_increment": "Resume CP.2 qualification after canonical HOST scheduler is available; qualify lifecycle/processing and implement governed writes. CP.3 remains not started.",
+  "completion_status": "STOP",
+  "stop_classification": "ENVIRONMENT_FAILURE",
+  "stop_reason": "Required canonical HOST scheduler services are absent from the configured Restate registry. Verify, do not provision; no native persistence tests bypassed the scheduler.",
+  "source_sha256": {
+    "mirix/services/raw_memory_manager.py": "ec5b041c1f9bd9c96449a7c1cb454bff572be08ad9587d11fe2c69af0f43c703",
+    "mirix/orm/raw_memory.py": "e12ef1274d3745d6a6f96a289003434ffda88823298e2ad27c8cd2e7cb51ddfa",
+    "mirix/orm/sqlalchemy_base.py": "7747bb848b6a641744df6a9a3d81c15aeb2fe715eed7212ade5658d4ae7d4548",
+    "mirix/server/rest_api.py": "88258a85dc9b14aea9de396c65b247a0da53675bac4ab64105c85fe791de2b2d",
+    "mirix/services/agent_manager.py": "fc4bbdfcd2144b552642ddbe8e9f77e3eb9ad56dab852f903a1626ba8e166228",
+    "mirix/database/filter_tags_query.py": "96851fc1e6d973c2e8449fcfb8c054541031b1997d47e05996dc55cf50baea11",
+    "mirix/functions/function_sets/memory_tools.py": "015eed9bd40bc3646629f08e8641337660a3ec5d6aa6f10ca61e5419b5353b2c",
+    "mirix/services/semantic_memory_manager.py": "a6c6fb1d38acd492c5456e4457ba30ca1791a8263f7180f98dc6623df9bb9037",
+    "mirix/jobs/cleanup_raw_memories.py": "df9f8fb6d3391afb80ec41a27aafe7bf48983b425a9a6c8ef381d2029a01a4e3",
+    "mirix/embeddings.py": "533c6f6b35fbf313c30fe27745e17fdb0e625c3a2695569452a500a318a9b436"
+  },
+  "observations": [
+    "processing-observation.json",
+    "scheduler-prerequisite.json"
+  ],
+  "retention_acceptance": {
+    "human_retained": "NOT_IMPLEMENTED_OR_PROVEN",
+    "agent_working": "NOT_IMPLEMENTED_OR_PROVEN",
+    "forgery_denial": "NOT_IMPLEMENTED_OR_PROVEN",
+    "persisted_status_readback": "NOT_IMPLEMENTED_OR_PROVEN",
+    "restart_status_readback": "NOT_IMPLEMENTED_OR_PROVEN",
+    "working_retained_retrieval_separation": "NOT_IMPLEMENTED_OR_PROVEN",
+    "forbidden_context_read_after_restart": "NOT_IMPLEMENTED_OR_PROVEN",
+    "compiled_status_preservation": "NOT_IMPLEMENTED_OR_PROVEN"
+  }
+}

@@ -55,7 +55,7 @@ remain separately admitted through existing capability boundaries.
 | ContextNode | Stable scoped identity, one parent except root, trusted structural revision, descriptive kind/labels; no lifecycle state. |
 | ExecutionContextRef | Existing Task/work identity plus resolvable binding reference; optional non-authoritative correlation and historical revision. |
 | Trusted binding | Current association to C, principal/caller class, security/resource permissions, policy/topology revisions and evidence context; not serialized as a worker grant. |
-| Memory representation | Scoped record identity, owner C, content, trusted origin, semantic qualification, permitted source/evidence provenance and content revision. |
+| Memory representation | Scoped record identity, owner C, content, trusted origin, semantic qualification, retention status, permitted source/evidence provenance and content revision. |
 | Workspace target | Workspace identity, authoritative source identity/path and exact version/digest, symbol/range where meaningful, relationship kind/provenance for graph results. |
 | Evidence reference | Existing Task/artifact/verifier identity and exact source/digest; access must be separately admitted, not implied by knowing the reference. |
 
@@ -183,9 +183,24 @@ Compiler; trusted declaration and write/admission roles have separately authoriz
 | --- | --- |
 | `memory.search` | Bounded need/query against current permitted lineage; results retain origin/status and safe provenance. Caller supplies no scopes/ancestors/backend namespaces. |
 | `memory.retrieve` | Scoped direct reference; same checks as search; ID possession cannot bypass access or disclose protected existence. |
-| `memory.recordObservation` | New UNVERIFIED agent observation in bound current C only; trusted creator/origin. Cannot accept parent/global target, verified status or human source in payload. |
-| `memory.declare` | Separate authenticated human path with explicit authorized destination. Runtime assigns human provenance. This is not promotion or preference precedence. |
+| `memory.recordObservation` | New UNVERIFIED, WORKING agent observation in bound current C only; trusted creator/origin. Cannot accept RETAINED, parent/global target, verified status or human source in payload. |
+| `memory.declare` | Separate authenticated human path with explicit authorized destination. Runtime assigns human provenance and RETAINED status when explicitly authorized to remember. This is not promotion or preference precedence. |
 | `memory.requestPromotion` | Submit source/candidate and proposed destination to the separate PromotionGate. Requesting admission is not having admission authority. |
+
+Persistence MUST NOT imply reusable retention. WORKING and RETAINED are independent of
+scope and epistemic qualification. Agent observations default to WORKING; trusted human
+declarations intended for reuse default to RETAINED. Caller fields MUST NOT upgrade
+these states. CP.2 has no WORKING-to-RETAINED transition. Governed retrieval MUST distinguish
+current-context working knowledge from permitted retained reusable knowledge and preserve
+that distinction through readback, reconstruction and compilation. Backend indexing or
+consolidation MUST NOT silently change it. No expiry duration is prescribed by these names.
+
+Exact admitted source content MUST remain faithfully recoverable. Derived processing may
+be useful, including embeddings, extraction and indexing, only within source permissions
+and authorized provider egress; every derived representation MUST preserve source
+provenance/retention and must not imply upward flow or completion evidence. Blaine's
+adapter MUST qualify the actual route, including caches, processing and lifecycle, before
+admitting it. Disabling all processing is not a qualification requirement.
 
 No secret values in reusable Memory. Writes need explicit scope, immutable provenance,
 scoped idempotency keys and observed committed readback before claiming RECORDED. Backend
@@ -195,7 +210,7 @@ Partial write failure cannot be reported success; unknown outcome requires recon
 Historical memories do not mutate authoritative Task evidence or completion requirements.
 
 MIRIX is a provider behind this contract. Blaine controls trusted entry ownership,
-provenance, hierarchy, security, promotion and outcome qualification. Its row `source`,
+provenance, retention, hierarchy, security, promotion and outcome qualification. Its row `source`,
 client ID header and filter tags do not establish those properties. Missing trusted
 metadata fails closed. No direct worker connection or adoption of MIRIX's session agent,
 reflection success semantics or queue as Task lifecycle.

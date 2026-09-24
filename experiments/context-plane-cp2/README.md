@@ -1,0 +1,73 @@
+# CP.2 storage qualification
+
+**Revised storage review PARTIAL; CP.2 STOP at HOST prerequisite — 2026-09-24.** No CP.2 production writes accepted.
+[Revision 2](evidence/storage-qualification-v2.json) supersedes the prior STOP criterion:
+persistence is not retention, and embeddings are not inherently a blocker. Qualification
+covers governed source plus useful derived processing, preserving Blaine-owned
+WORKING/RETAINED, provenance and security semantics. No automatic retention or promotion.
+
+The revised matrix covers all eight questions for raw+embedding, extraction ingestion,
+and an internal existing-substrate adapter. Raw+embedding remains a viable candidate;
+no production write path is accepted. [Processing observation](evidence/processing-observation.json)
+found seven local embedding configurations. [Scheduler prerequisite](evidence/scheduler-prerequisite.json)
+found the required services absent from the configured Restate registry: HOST BLOCKED,
+ENVIRONMENT_FAILURE, no provisioning or scheduler bypass. No write/restart tests ran.
+
+[Current refinement qualification](evidence/refinement/qualification.json): canonical
+pre_handoff passed again, 463 unique tests, zero skips. JSON reports are extracted from
+the retained canonical console with suite filenames, preserving their original run IDs.
+No new runner or redundant acceptance claims. CP.2 persistence tests: zero.
+
+The following records describe the **historical** checkpoint, not the revised decision.
+Baseline: `origin/main 56f2e65cdf1bb470aa179168e3a628b29f422092`.
+Branch: `feature/context-plane-cp2`, same worktree formerly used for CP.1.
+CP.1 is merged and historical; CP.3 is not started.
+
+- [Historical source-pinned storage qualification](evidence/storage-qualification.json): actual
+  running MIRIX source/cleanliness, safe process observation, concrete source locations,
+  positive substrate mechanisms, blocker and unproven guarantees.
+- [Canonical qualification summary](evidence/qualification.json).
+- [Canonical pre-handoff console](evidence/pre-handoff.txt).
+- Promoted canonical reports: [Completion Contract](evidence/hermetic/run-1.json),
+  [Context Plane/kernel](evidence/hermetic/run-2.json),
+  [scheduler sample](evidence/hermetic/run-3.json).
+- [Milestone, stop boundary and next session](../../docs/milestones/056-context-plane-cp2-storage-qualification.md).
+
+The current public MIRIX raw route processes content through embeddings by default
+before storage; the existing Blaine binding does not qualify that processing route.
+Semantic ingestion performs model-driven extraction. Raw exact content/JSON metadata,
+SQL commit/refresh and scoped search are real useful mechanisms, but do not establish
+the complete scoped idempotency/metadata/retention contract. Internal-manager or direct
+SQL access was considered and not silently adopted as a different integration seam.
+This is not a claim that an approved adapter over the existing substrate is impossible.
+
+Canonical HERMETIC results: **437 integrated tests + 26 scheduler tests PASS**,
+zero skipped; the **61 E1.0 tests** also passed as their own suite and are included
+in the 437. No CP.2 write acceptance tests exist yet. Existing CP.1 read/compiler,
+E1.0 contract and E2.0 effect regressions remain green. A passing baseline does not
+prove declaration/observation persistence.
+
+Canonical command used the configured interpreter, with no dependency installation:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m nox --no-venv -s pre_handoff
+```
+
+The separate CLI invocations reused `run-1`, so the last local report overwrote the
+others. The console retains every original report. To retain durable machine-readable
+results through the repository's accepted API, the three discovered HERMETIC suites
+were re-executed with one `verification.scheduler.Scheduler` instance and each actual
+`RunRecord` was explicitly exported using `verification.report.promote`. Reports preserve
+the tested base commit and dirty state. This evidence-recovery rerun is not a new runner
+or a fix to the verification scheduler. No count is presented as unique twice.
+
+**HOST: BLOCKED — MIRIX_STORAGE_BOUNDARY_NOT_QUALIFIED.** This prerequisite assessment
+was made before any HOST submission; it is not a synthetic scheduler execution report.
+No protected synthetic writes, native restart, resource-queue bypass, cloud call, secret
+retrieval, service reconfiguration or infrastructure provisioning occurred.
+
+The next increment is still CP.2: review and qualify the narrow existing-substrate
+write adapter/server boundary, then implement and test the accepted write semantics.
+No executable contract was frozen for an unqualified implementation. No alternative
+Memory store, reflection, learning, promotion, declassification or semantic retrieval
+was introduced.

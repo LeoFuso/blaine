@@ -1,0 +1,150 @@
+{
+  "status": "STOP",
+  "phase": "CP.2 storage qualification; implementation not started",
+  "baseline": "56f2e65cdf1bb470aa179168e3a628b29f422092",
+  "branch": "feature/context-plane-cp2",
+  "worktree": "/home/leofuso/workspace/blaine-cp1",
+  "mirix": {
+    "commit": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+    "checkout_clean": true,
+    "service_observation": {
+      "active": "active",
+      "substate": "running",
+      "cwd_matches_reviewed_checkout": true,
+      "process_environment_BUILD_EMBEDDINGS_FOR_MEMORY": "absent; source default true",
+      "limits": "Read-only systemd/proc observation; secret environment values not read out or retained. No request, restart or configuration mutation."
+    },
+    "source_sha256": {
+      "mirix/server/rest_api.py": "88258a85dc9b14aea9de396c65b247a0da53675bac4ab64105c85fe791de2b2d",
+      "mirix/schemas/raw_memory.py": "62b96b88c82cbb5b6e0f61c057157bd764f109f1ae35eea2af1bdb4f0618d660",
+      "mirix/services/raw_memory_manager.py": "ec5b041c1f9bd9c96449a7c1cb454bff572be08ad9587d11fe2c69af0f43c703",
+      "mirix/services/semantic_memory_manager.py": "a6c6fb1d38acd492c5456e4457ba30ca1791a8263f7180f98dc6623df9bb9037",
+      "mirix/orm/raw_memory.py": "e12ef1274d3745d6a6f96a289003434ffda88823298e2ad27c8cd2e7cb51ddfa",
+      "mirix/orm/sqlalchemy_base.py": "7747bb848b6a641744df6a9a3d81c15aeb2fe715eed7212ade5658d4ae7d4548",
+      "mirix/jobs/cleanup_raw_memories.py": "df9f8fb6d3391afb80ec41a27aafe7bf48983b425a9a6c8ef381d2029a01a4e3",
+      "mirix/constants.py": "62d93627943e939fc0e3d32050d7f21dbcbdcb79357e7835760d88c39d9aa3d0"
+    }
+  },
+  "findings": [
+    {
+      "id": "semantic-ingestion",
+      "status": "NOT_QUALIFIED",
+      "source": "mirix/server/rest_api.py",
+      "lines": [
+        2345,
+        2495
+      ],
+      "observation": "add queues extraction; add_sync invokes extraction. Neither is a caller-exact governed declaration/observation commit with immutable Blaine provenance and scoped idempotency.",
+      "limits": "Source review and retained prior research; no new ingestion request sent."
+    },
+    {
+      "id": "raw-direct-positive",
+      "status": "PARTIAL_SUBSTRATE_CAPABILITY",
+      "source": "mirix/orm/sqlalchemy_base.py",
+      "lines": [
+        631,
+        658
+      ],
+      "observation": "Raw manager stores exact context plus JSON filter_tags with a caller-provided optional ID. create_with_redis commits and refreshes PostgreSQL before caching. These are useful substrate mechanisms, not proof of Blaine committed readback or atomic registry/retry semantics."
+    },
+    {
+      "id": "raw-processing",
+      "status": "BLOCKER",
+      "source": "mirix/server/rest_api.py",
+      "lines": [
+        5146,
+        5181
+      ],
+      "observation": "Public create_raw_memory selects an agent and supplies its state to create_raw_memory_manager. The request exposes no no-embedding or use_cache switch.",
+      "related": [
+        {
+          "source": "mirix/services/raw_memory_manager.py",
+          "lines": [
+            144,
+            160
+          ]
+        },
+        {
+          "source": "mirix/constants.py",
+          "lines": [
+            299,
+            301
+          ]
+        }
+      ],
+      "inference": "At default BUILD_EMBEDDINGS_FOR_MEMORY=true, exact submitted content is processed by the agent embedding configuration before storage. Current trusted CP.1 bindings do not grant this processing route. Post-read filtering cannot qualify that processing boundary."
+    },
+    {
+      "id": "raw-scope",
+      "status": "UNPROVEN",
+      "source": "mirix/services/raw_memory_manager.py",
+      "lines": [
+        201,
+        280
+      ],
+      "observation": "Raw by-ID cache read checks scope and optional user; unlike SQL fallback it does not explicitly compare cached organization with actor.organization_id. Search passes organization, user, tags and read scopes. MIRIX scopes are not Blaine lineage/security/provenance.",
+      "limits": "No cross-tenant exploit attempted. A restricted adapter could narrow some methods; no all-method safe adapter is established."
+    },
+    {
+      "id": "scoped-idempotency",
+      "status": "UNPROVEN",
+      "source": "mirix/orm/raw_memory.py",
+      "lines": [
+        39,
+        44
+      ],
+      "observation": "Single globally keyed row ID; optional IDs/tags enable a possible future scoped encoding, but do not implement a scoped payload-digest compare-and-set/readback receipt. SQL uniqueness alone is not the required replay/conflict contract.",
+      "limits": "Does not prove scoped idempotency impossible; requires an approved adapter and response-loss tests before qualification."
+    },
+    {
+      "id": "retention",
+      "status": "UNQUALIFIED_LIFECYCLE",
+      "source": "mirix/jobs/cleanup_raw_memories.py",
+      "lines": [
+        20,
+        73
+      ],
+      "observation": "Raw storage advertises a 14-day TTL. Cleanup selects by updated_at across the raw table with no Blaine retention/provenance partition.",
+      "limits": "No cleanup executed; no claim the nightly job is installed or that its synthetic actor succeeds. This is an unresolved lifecycle contract, not measured data loss."
+    },
+    {
+      "id": "internal-manager-alternative",
+      "status": "NOT_ADOPTED",
+      "source": "mirix/services/raw_memory_manager.py",
+      "lines": [
+        52,
+        60
+      ],
+      "observation": "Internal create accepts agent_state=None/use_cache=False, which could avoid those processing branches. It is not the existing Blaine HTTP seam and does not itself establish scoped registry atomicity, all-method isolation, retention or response-loss recovery.",
+      "decision": "Do not silently switch to internal ORM writes or a second database. Stop and request a reviewed existing-substrate adapter/server boundary before implementation."
+    }
+  ],
+  "decision": "Existing public integration is NOT QUALIFIED for governed CP.2 writes. No alternate store, upstream change, host reconfiguration or protected write attempted. This is a STOP under the explicit storage/processing boundary conditions, not a claim that MIRIX/PostgreSQL is inherently incapable.",
+  "implementation_acceptance": {
+    "human_declaration": "NOT_IMPLEMENTED_OR_PROVEN",
+    "agent_observation": "NOT_IMPLEMENTED_OR_PROVEN",
+    "trusted_provenance": "NOT_IMPLEMENTED_OR_PROVEN",
+    "write_scope_isolation": "NOT_IMPLEMENTED_OR_PROVEN",
+    "scoped_idempotency": "NOT_IMPLEMENTED_OR_PROVEN",
+    "committed_facade_readback": "NOT_IMPLEMENTED_OR_PROVEN",
+    "restart_reconstruction": "NOT_IMPLEMENTED_OR_PROVEN",
+    "post_restart_forbidden_reads": "NOT_IMPLEMENTED_OR_PROVEN",
+    "new_memory_compiled_delta": "NOT_IMPLEMENTED_OR_PROVEN"
+  },
+  "host_qualification": {
+    "result": "BLOCKED",
+    "reason": "MIRIX_STORAGE_BOUNDARY_NOT_QUALIFIED",
+    "scheduler_submission": false,
+    "queue_bypassed": false,
+    "provisioning": false
+  },
+  "non_goals": [
+    "CP.3",
+    "reflection/learning",
+    "promotion/declassification",
+    "semantic retrieval",
+    "Graphify",
+    "distributed context transport"
+  ],
+  "next_increment": "Resume CP.2 storage qualification after reviewing the narrowly scoped MIRIX/approved-storage adapter boundary; not CP.3"
+}

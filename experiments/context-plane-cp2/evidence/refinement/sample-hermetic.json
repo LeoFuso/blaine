@@ -1,0 +1,49 @@
+{
+  "environment": {
+    "hostname": "blaine",
+    "os": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+    "python": "3.14.4"
+  },
+  "generated_at": "2026-09-24T19:55:06.829501+00:00",
+  "prerequisites": {},
+  "reason": "",
+  "resources": [],
+  "result": "PASS",
+  "run_id": "run-1",
+  "schema_version": 1,
+  "state": "PASS",
+  "steps": [
+    {
+      "command": [
+        "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+        "-m",
+        "pytest",
+        "verification/tests.py",
+        "-q"
+      ],
+      "duration": 0.149,
+      "env": [
+        "BLAINE_PYTHON"
+      ],
+      "exit_code": 0,
+      "name": "scheduler-self-test",
+      "stderr_tail": "",
+      "stdout_tail": "..........................                                          [100%]\n",
+      "timed_out": false
+    }
+  ],
+  "suite": "sample-hermetic",
+  "timing": {
+    "admitted_at": null,
+    "completed_at": 1790279706.8294213,
+    "duration": 0.14905524253845215,
+    "started_at": 1790279706.680366
+  },
+  "verification_class": "HERMETIC",
+  "worktree": {
+    "branch": "feature/context-plane-cp2",
+    "commit": "56f2e65cdf1bb470aa179168e3a628b29f422092",
+    "dirty": true,
+    "root": "/home/leofuso/workspace/blaine-cp1"
+  }
+}

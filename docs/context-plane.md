@@ -9,7 +9,7 @@ III.10 remains the planned sequence close; III.G is a complementary carveout.
 [ADR 0025](decisions/0025-context-plane-and-compiled-agent-context.md) records the decision.
 [Context Plane contracts](contracts/context-plane.md) own normative semantic interfaces;
 [implementation plan](roadmap/002-context-plane-implementation.md) owns production sequencing:
-**CP.1 PASS; CP.2–CP.9 NOT STARTED**. The [CP.1 executable subset](contracts/context-plane-cp1.md)
+**CP.1 PASS and MERGED; CP.2 storage review PARTIAL, HOST prerequisite blocked; CP.3–CP.9 NOT STARTED**. The [CP.1 executable subset](contracts/context-plane-cp1.md)
 freezes only its local wire shapes. Later schemas remain implementation gates.
 The [main roadmap](roadmap/001-blaine-development-roadmap.md#current-next) owns scheduling
 relative to other programs. Historical experiment proposals are not new authorization.
@@ -231,10 +231,31 @@ Separate provenance dimensions rather than freeze one overloaded product enum:
 | Verified-success-derived | Trusted current outcome/evidence plus supported candidate; retain success qualification. | Arbitrary causal/generalized truth or future Task success. |
 | Verified-failure-derived | Trusted failure evidence plus supported failure candidate; retain failure qualification. | Successful guidance or a recommended procedure. |
 
-Origin, epistemic status, source/evidence references and security classification are
-orthogonal. Storage and every renderer preserve them. Unknown versions/statuses fail
+Origin, epistemic status, retention status, source/evidence references and security
+classification are orthogonal. Storage and every renderer preserve them. Unknown
+versions/statuses fail
 closed for admission rather than being mapped to a stronger old value. Private evidence
 references remain private; ordinary retrieval exposes a safe provenance projection.
+
+Persistence is not long-term retention. **WORKING** knowledge is durable enough for
+bounded work continuity and restart; hypotheses, failed attempts and exact local details
+may be useful without becoming reusable knowledge. It is the default for an
+AGENT_OBSERVATION / UNVERIFIED. **RETAINED** knowledge is explicitly admitted for reuse
+in its bounded context; an authorized human declaration intended to be remembered
+receives this status. These are semantic distinctions, not prescribed enum names.
+ContextNode and SecurityContext determine where knowledge may exist, not whether it
+merits retention. Neither persistence nor indexing upgrades WORKING to RETAINED.
+
+MIRIX may preserve exact source memory and produce useful scoped embeddings, indexing,
+relationships, extraction or consolidation. Derived representations must preserve source
+provenance and retention status, remain no broader than source permissions, and use only
+authorized processing/egress. Blaine owns admission and retention semantics; processing
+must not promote knowledge, turn it into evidence, or silently replace the admitted source.
+CP.2 qualifies this substrate behavior without adding automatic reflection, retention
+scoring, semantic workspace retrieval or promotion. Future upward promotion must justify
+destination relevance and abstraction level; project-to-global knowledge requires
+appropriate generalization, and cross-domain flow additionally requires explicit
+declassification authority and leakage checks. None of that is implemented in CP.2.
 
 Human declaration is an authorized direct write, not child-to-parent promotion.
 Retrieving a preference does not alter accepted Task constraints or PolicyGate. Conflict,
