@@ -69,9 +69,9 @@ class ContractValidation(unittest.TestCase):
         request = examples['amendment_example']['payload']
         submitted = fx.amendment('task-example-investigation', request['operations'])
         state = {'contract_ref': ref('task-example-investigation', 'r0'), 'human_responses': {}}
+        actor, content = completion.validate_amendment_submission(submitted, 'task-example-investigation')
         amendment, updated = completion.apply_amendment(
-            base, state['contract_ref'], completion.validate_amendment_request(submitted, 'task-example-investigation'),
-            ref('task-example-investigation', 'action'), state, mutating=False)
+            base, state['contract_ref'], actor, content, ref('task-example-investigation', 'action'), state, mutating=False)
         self.assertEqual(updated['revision'], 1)
         self.assertEqual(updated['criteria'][-1]['id'], 'user-accepts')
         self.assertEqual(amendment['actor']['kind'], 'user')
@@ -213,10 +213,10 @@ class Amendments(unittest.TestCase):
         ]), TASK, False)
         self.state = {'contract_ref': ref(TASK, 'r0'), 'human_responses': {'decide': ref(TASK, 'response')}}
 
-    def apply(self, operations, actor=None, from_revision=0):
-        request = completion.validate_amendment_request(
-            fx.amendment(TASK, operations, from_revision=from_revision, actor=actor), TASK)
-        return completion.apply_amendment(self.base, self.state['contract_ref'], request,
+    def apply(self, operations, actor=None, from_revision=0, **content):
+        actor, request = completion.validate_amendment_submission(
+            fx.amendment(TASK, operations, from_revision=from_revision, actor=actor, **content), TASK)
+        return completion.apply_amendment(self.base, self.state['contract_ref'], actor, request,
                                           ref(TASK, 'action'), self.state, mutating=False)
 
     def test_user_waiver_is_explicit_retained_and_keeps_the_criterion(self):
@@ -224,36 +224,48 @@ class Amendments(unittest.TestCase):
         waived = next(c for c in updated['criteria'] if c['id'] == 'user-1')
         self.assertEqual(waived['waiver']['revision'], 1)
         self.assertEqual(waived['waiver']['actor']['ref'], ref(TASK, 'action'))
+        self.assertEqual(waived['waiver']['actor']['binding'], 'test-binding')
         self.assertEqual(len(updated['criteria']), len(self.base['criteria']))
         self.assertEqual(updated['previous_ref'], self.state['contract_ref'])
         self.assertEqual(amendment['from_revision'], 0)
         self.assertNotIn('waiver', next(c for c in self.base['criteria'] if c['id'] == 'user-1'))  # immutable r0
 
     def test_authority_matrix(self):
-        user = {'kind': 'user', 'via': 'modify-constraints'}
-        exception = {'kind': 'operator', 'via': 'policy_exception',
-                     'exception_for': {'rule': 'orchid-policy#canonical-build', 'digest': 'sha256:' + 'b' * 64}}
+        pinned = {'exception_for': {'rule': 'orchid-policy#canonical-build', 'digest': 'sha256:' + 'b' * 64}}
         cases = [
-            ('invariant waive by user', [{'op': 'waive', 'id': 'no-mutation', 'reason': 'x'}], user, 'invariant'),
-            ('invariant waive by operator', [{'op': 'waive', 'id': 'no-mutation', 'reason': 'x'}], exception, 'invariant'),
+            ('invariant waive by user', [{'op': 'waive', 'id': 'no-mutation', 'reason': 'x'}], fx.USER, {}, 'invariant'),
+            ('invariant waive by operator', [{'op': 'waive', 'id': 'no-mutation', 'reason': 'x'}], fx.OPERATOR_EXCEPTION, pinned, 'invariant'),
             ('invariant rebind', [{'op': 'rebind', 'id': 'no-mutation', 'verifier': {'kind': 'capability_journal', 'version': 1,
-                'predicates': [{'name': 'workspace_subset'}]}}], user, 'invariant'),
-            ('policy waive by user text', [{'op': 'waive', 'id': 'canonical-build', 'reason': 'skip'}], user, 'policy exception'),
-            ('policy exception names another rule', [{'op': 'waive', 'id': 'ops-rule', 'reason': 'x'}], exception, 'different rule'),
-            ('operator cannot waive user criteria', [{'op': 'waive', 'id': 'user-1', 'reason': 'x'}], exception, 'only the user'),
-            ('user cannot add policy criteria', [{'op': 'add', 'criterion': policy_criterion('new-rule')}], user, 'cannot add'),
-            ('project policy cannot waive', [{'op': 'waive', 'id': 'canonical-build', 'reason': 'x'}],
-             {'kind': 'project_policy', 'via': 'policy_update'}, 'policy exception'),
+                'predicates': [{'name': 'workspace_subset'}]}}], fx.USER, {}, 'invariant'),
+            ('policy waive by user text', [{'op': 'waive', 'id': 'canonical-build', 'reason': 'skip'}], fx.USER, {}, 'policy exception'),
+            ('policy exception names another rule', [{'op': 'waive', 'id': 'ops-rule', 'reason': 'x'}], fx.OPERATOR_EXCEPTION, pinned, 'different rule'),
+            ('operator cannot waive user criteria', [{'op': 'waive', 'id': 'user-1', 'reason': 'x'}], fx.OPERATOR_EXCEPTION, pinned, 'only the user'),
+            ('user cannot add policy criteria', [{'op': 'add', 'criterion': policy_criterion('new-rule')}], fx.USER, {}, 'cannot add'),
+            ('project policy cannot waive', [{'op': 'waive', 'id': 'canonical-build', 'reason': 'x'}], fx.POLICY_UPDATE, {}, 'policy exception'),
         ]
-        for name, operations, actor, reason in cases:
+        for name, operations, actor, content, reason in cases:
             with self.subTest(name), self.assertRaisesRegex(completion.AmendmentDenied, reason):
-                self.apply(operations, actor)
-        _, updated = self.apply([{'op': 'waive', 'id': 'canonical-build', 'reason': 'CI outage'}], exception)
+                self.apply(operations, actor, **content)
+        _, updated = self.apply([{'op': 'waive', 'id': 'canonical-build', 'reason': 'CI outage'}], fx.OPERATOR_EXCEPTION, **pinned)
         waiver = next(c for c in updated['criteria'] if c['id'] == 'canonical-build')['waiver']
         self.assertEqual(waiver['actor']['exception_for']['rule'], 'orchid-policy#canonical-build')
-        _, tightened = self.apply([{'op': 'add', 'criterion': policy_criterion('integration-suite')}],
-                                  {'kind': 'project_policy', 'via': 'policy_update'})
+        _, tightened = self.apply([{'op': 'add', 'criterion': policy_criterion('integration-suite')}], fx.POLICY_UPDATE)
         self.assertEqual(tightened['criteria'][-1]['provenance']['source'], 'project_policy')
+
+    def test_policy_requirements_stay_pinned_to_their_source_digest(self):
+        original = next(c for c in self.base['criteria'] if c['id'] == 'canonical-build')['provenance']
+        edited = {'rule': 'orchid-policy#canonical-build', 'digest': 'sha256:' + 'c' * 64}  # policy file changed since
+        with self.assertRaisesRegex(completion.AmendmentDenied, 'different rule or digest'):
+            self.apply([{'op': 'waive', 'id': 'canonical-build', 'reason': 'x'}], fx.OPERATOR_EXCEPTION, exception_for=edited)
+        newer = policy_criterion('canonical-build')
+        newer['provenance']['source_digest'] = edited['digest']
+        with self.assertRaisesRegex(ValueError, 'new id'):  # a later edit cannot replace the pinned criterion
+            self.apply([{'op': 'add', 'criterion': newer}], fx.POLICY_UPDATE)
+        _, updated = self.apply([{'op': 'waive', 'id': 'canonical-build', 'reason': 'x'}], fx.OPERATOR_EXCEPTION,
+                                exception_for={'rule': original['ref'], 'digest': original['source_digest']})
+        after = next(c for c in updated['criteria'] if c['id'] == 'canonical-build')
+        self.assertEqual(after['provenance'], original)  # every revision still names the version that created it
+        self.assertEqual(after['waiver']['actor']['exception_for'], {'rule': original['ref'], 'digest': original['source_digest']})
 
     def test_elevating_a_derived_suggestion_records_user_confirmation(self):
         _, updated = self.apply([{'op': 'elevate', 'id': 'suggested'}])
@@ -262,31 +274,46 @@ class Amendments(unittest.TestCase):
                          ('REQUIRED', {'source': 'user', 'confirmed_from': 'memory'}))
 
     def test_stale_revision_and_unaccepted_human_action_are_rejected(self):
+        via_response = {**fx.USER, 'via': 'human_response'}
         with self.assertRaises(completion.AmendmentConflict):
             self.apply([{'op': 'waive', 'id': 'user-1', 'reason': 'x'}], from_revision=1)
         with self.assertRaisesRegex(completion.AmendmentDenied, 'not accepted'):
-            self.apply([{'op': 'waive', 'id': 'user-1', 'reason': 'x'}],
-                       {'kind': 'user', 'via': 'human_response', 'ref': ref(TASK, 'forged')})
-        _, updated = self.apply([{'op': 'waive', 'id': 'user-1', 'reason': 'x'}],
-                                {'kind': 'user', 'via': 'human_response', 'ref': ref(TASK, 'response')})
+            self.apply([{'op': 'waive', 'id': 'user-1', 'reason': 'x'}], via_response, response_ref=ref(TASK, 'forged'))
+        _, updated = self.apply([{'op': 'waive', 'id': 'user-1', 'reason': 'x'}], via_response,
+                                response_ref=ref(TASK, 'response'))
         self.assertEqual(updated['criteria'][1]['waiver']['actor']['response_ref'], ref(TASK, 'response'))
 
-    def test_request_shape_rejects_cognition_style_and_malformed_changes(self):
-        for actor in ({'kind': 'model', 'via': 'modify-constraints'}, {'kind': 'user', 'via': 'policy_exception'},
-                      {'kind': 'operator', 'via': 'policy_exception'}):
+    def test_payload_cannot_claim_or_upgrade_the_actor(self):
+        waive = [{'op': 'waive', 'id': 'canonical-build', 'reason': 'x'}]
+        pinned = {'rule': 'orchid-policy#canonical-build', 'digest': 'sha256:' + 'b' * 64}
+        forged = fx.amendment(TASK, waive)
+        forged['payload']['amendment']['payload']['actor'] = {**fx.OPERATOR_EXCEPTION, 'exception_for': pinned}
+        with self.assertRaisesRegex(ValueError, 'Invalid object fields'):  # content has no authority field
+            completion.validate_amendment_submission(forged, TASK)
+        with self.assertRaisesRegex(ValueError, 'policy exception names'):  # naming a rule is not being the operator
+            completion.validate_amendment_submission(fx.amendment(TASK, waive, exception_for=pinned), TASK)
+        bare = fx.amendment_content(TASK, waive)  # content without a binding's envelope
+        with self.assertRaises(ValueError):
+            completion.validate_amendment_submission(bare, TASK)
+        for actor in ({'kind': 'model', 'via': 'modify-constraints', 'binding': 'b'},
+                      {'kind': 'user', 'via': 'policy_exception', 'binding': 'b'},
+                      {'kind': 'operator', 'via': 'policy_exception'}):  # no establishing binding
             with self.subTest(actor=actor), self.assertRaises(ValueError):
-                completion.validate_amendment_request(fx.amendment(TASK, [{'op': 'waive', 'id': 'user-1', 'reason': 'x'}],
-                                                                   actor=actor), TASK)
+                completion.validate_amendment_submission(fx.amendment(TASK, waive, actor=actor, exception_for=pinned), TASK)
+        with self.assertRaisesRegex(completion.AmendmentDenied, 'policy exception'):
+            self.apply(waive)  # a user context stays user whatever the content says
+
+    def test_request_shape_rejects_malformed_changes(self):
         for operation in ({'op': 'delete', 'id': 'user-1'}, {'op': 'waive', 'id': 'user-1'}):
             with self.assertRaises(ValueError):
-                completion.validate_amendment_request(fx.amendment(TASK, [operation]), TASK)
+                completion.validate_amendment_submission(fx.amendment(TASK, [operation]), TASK)
         with self.assertRaisesRegex(ValueError, 'superseded only by'):
             self.apply([{'op': 'supersede', 'id': 'user-1', 'by': 'user-1'}])
         with self.assertRaisesRegex(ValueError, 'superseded only by'):  # lower precedence cannot supersede
             self.apply([{'op': 'supersede', 'id': 'user-1', 'by': 'suggested'}])
 
 
-class Journal(Store, unittest.TestCase):
+class JournalFixtures(Store):
     def authority(self, capabilities=('workspace.read', 'artifact.write'), workspaces=(fx.WORKSPACE,)):
         value = journal.compile_authority(TASK, capabilities, workspaces, True)
         return self.store.put_json(TASK, value)
@@ -312,6 +339,8 @@ class Journal(Store, unittest.TestCase):
     def observed(self, op, outcome='success'):
         return {'phase': 'observed', 'operation_id': op, 'outcome': outcome, 'receipt_ref': ref(TASK, op)}
 
+
+class Journal(JournalFixtures, unittest.TestCase):
     def test_hash_chain_is_verified_and_tampering_is_unknown(self):
         authority = self.authority()
         head, length = self.chain([self.admitted('t/1', 'workspace.read', authority, fx.WORKSPACE), self.observed('t/1')])
@@ -352,6 +381,91 @@ class Journal(Store, unittest.TestCase):
         self.assertIn('outside effective authority', outside['analysis']['problems'][0])
         elsewhere = self.facts([self.admitted('t/1', 'workspace.read', narrow, '/work/other')], narrow)
         self.assertEqual(journal.verify([{'name': 'workspace_subset'}], elsewhere['analysis'], elsewhere['authorities'])[0], 'failed')
+
+
+class NoMutation(JournalFixtures, unittest.TestCase):
+    """"No mutation" means no unauthorized TARGET_EFFECT; INTERNAL_EFFECT never counts."""
+    def test_effect_scopes_of_the_kernel_classification(self):
+        scopes = {name: journal.effect_scope(journal.operation_class(name)) for name in journal.OPERATION_CLASSES}
+        self.assertEqual({n for n, s in scopes.items() if s == journal.INTERNAL_EFFECT},
+                         {'artifact.write', 'artifact.read', 'human.request', 'text.stats'})
+        self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_READ}, {'workspace.read', 'youtrack.read'})
+        self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_EFFECT}, {'worker.run', 'fixture.effect'})
+        for unreviewed in ('database.write', 'unclassified', 'workspace.write', 'workspace.exec'):
+            self.assertEqual(journal.effect_scope(unreviewed), journal.TARGET_EFFECT)
+
+    def test_internal_effects_and_reads_do_not_violate_no_mutation(self):
+        authority = self.authority(('workspace.read', 'youtrack.read', 'artifact.write', 'artifact.read',
+                                    'human.request', 'text.stats'))
+        entries = []
+        for n, capability in enumerate(('workspace.read', 'youtrack.read', 'artifact.write', 'artifact.read',
+                                        'human.request', 'text.stats')):
+            entries += [self.admitted(f't/{n}', capability, authority, fx.WORKSPACE if capability == 'workspace.read' else None),
+                        self.observed(f't/{n}')]
+        facts = self.facts(entries, authority)
+        status, detail = journal.verify([{'name': 'no_target_effect'}], facts['analysis'], facts['authorities'])
+        self.assertEqual(status, 'satisfied', detail)
+
+    def test_target_effect_violates_no_mutation_unless_explicitly_allowed(self):
+        authority = self.authority(('workspace.read', 'fixture.effect'))
+        facts = self.facts([self.admitted('t/1', 'fixture.effect', authority), self.observed('t/1')], authority)
+        self.assertEqual(journal.verify([{'name': 'no_target_effect'}], facts['analysis'], facts['authorities'])[0], 'failed')
+        allowed = [{'name': 'no_target_effect', 'allowed': ['external.effect']}]
+        self.assertEqual(journal.verify(allowed, facts['analysis'], facts['authorities'])[0], 'satisfied')
+        denied = self.facts([{'phase': 'denied', 'decision_id': 't/1', 'capability': 'fixture.effect',
+                              'operation_class': 'external.effect', 'provider': 'kernel', 'operation': 'fixture.effect',
+                              'reason': 'denied', 'authority_ref': authority, 'contract_revision': 0}], authority)
+        self.assertEqual(journal.verify([{'name': 'no_target_effect'}], denied['analysis'], denied['authorities'])[0],
+                         'satisfied')  # prevention worked; nothing was admitted
+
+
+class TerminalOrRemediable(unittest.TestCase):
+    def test_only_failed_unwaivable_monotonic_invariants_are_terminal(self):
+        invariant = fx.journal_criterion('no-mutation', [{'name': 'no_target_effect'}])
+        user_journal = {**fx.journal_criterion('no-effects', [{'name': 'no_target_effect'}], invariant=False),
+                        'provenance': {'source': 'user'}}
+        default_journal = fx.journal_criterion('scope', [{'name': 'workspace_subset'}], invariant=False)
+        tests_pass = user_digest('tests-pass')
+        advisory_invariant = {**invariant, 'level': 'ADVISORY'}
+        cases = [(invariant, 'failed', True), (invariant, 'pending', False), (invariant, 'unknown', False),
+                 (user_journal, 'failed', False), (default_journal, 'failed', False), (tests_pass, 'failed', False),
+                 ({**invariant, 'superseded_by': 'x'}, 'failed', False), (advisory_invariant, 'failed', False)]
+        for criterion, status, expected in cases:
+            with self.subTest(criterion=criterion['id'], status=status, level=criterion['level']):
+                self.assertEqual(completion.terminal(criterion, {'status': status}), expected)
+
+
+class RevisionZero(unittest.TestCase):
+    def test_lowering_is_verbatim_ordered_and_one_to_one(self):
+        request = fx.human_request(TASK, 'decide')
+        items = [{'criterion': '  Exact bytes, including spacing — and Unicode ✓  ', 'evidence': {'artifact': 'answer', 'sha256': 'a' * 64}},
+                 {'criterion': 'Exact bytes, including spacing — and Unicode ✓', 'evidence': {'artifact': 'answer', 'sha256': 'a' * 64}},
+                 {'criterion': 'Human decided', 'evidence': {'artifact': 'decision', 'verifier': 'human_response', 'request': request}}]
+        spec = validate_spec(message('TaskSpec', {'objective': 'o', 'completion': deepcopy(items)}))
+        lowered = completion.lower_spec(spec, TASK)['criteria']
+        self.assertEqual(len(lowered), len(items))  # near-duplicates are not merged
+        for number, (item, criterion) in enumerate(zip(items, lowered), 1):
+            self.assertEqual(criterion['id'], f'c{number}')
+            self.assertEqual(criterion['requirement'].encode(), item['criterion'].encode())
+            self.assertEqual(criterion['level'], 'REQUIRED')
+            evidence = {k: v for k, v in criterion['verifier'].items() if k not in ('kind', 'version')}
+            self.assertEqual(evidence, {k: v for k, v in item['evidence'].items() if k != 'verifier'})
+
+    def test_envelope_cannot_summarize_merge_weaken_or_reinterpret_intake_criteria(self):
+        spec = validate_spec(fx.investigation_spec())
+        variants = {
+            'summarized': lambda c: c[0].update(requirement='Source was read.'),
+            'weakened': lambda c: c[0].update(level='ADVISORY'),
+            'reinterpreted': lambda c: c[0].update(verifier={**c[0]['verifier'], 'sha256': 'f' * 64}),
+            're-sourced': lambda c: c[0].update(provenance={'source': 'model'}),
+            'superseded': lambda c: c[0].update(superseded_by='findings-cited'),
+            'merged away': lambda c: c.pop(0),
+        }
+        for name, change in variants.items():
+            contract = fx.investigation_contract(TASK)
+            change(contract['payload']['criteria'])
+            with self.subTest(name), self.assertRaises(ValueError):
+                completion.accept_contract(spec, None, contract, TASK, False)
 
 
 class Citation(Store, unittest.TestCase):
@@ -492,8 +606,8 @@ class Legality(Store, unittest.TestCase):
         request = fx.amendment(TASK, [{'op': 'waive', 'id': 'extra', 'reason': 'Out of scope now.'}])
         action = self.store.put_json(TASK, request)
         state = {**self.state, 'contract_ref': base_ref}
-        amendment, updated = completion.apply_amendment(base, base_ref, completion.validate_amendment_request(request, TASK),
-                                                        action, state, False)
+        actor, content = completion.validate_amendment_submission(request, TASK)
+        amendment, updated = completion.apply_amendment(base, base_ref, actor, content, action, state, False)
         amendment_ref = self.store.put_json(TASK, message('CompletionContractAmendment', amendment))
         sealed = completion.seal(updated, amendment_ref, TASK, False)
         sealed_ref = self.store.put_json(TASK, message('CompletionContract', sealed))
@@ -505,6 +619,11 @@ class Legality(Store, unittest.TestCase):
         forged = deepcopy(sealed)
         forged['criteria'][1]['waiver']['actor']['ref'] = ref(TASK, 'never-retained')
         result = completion.evaluate_contract(forged, sealed_ref, current, self.store)['payload']
+        self.assertFalse(result['legality']['legal'])
+        self.assertIn('retained human action', result['legality']['blockers'][0])
+        reattributed = deepcopy(sealed)  # the record claims operator; the retained action says user
+        reattributed['criteria'][1]['waiver']['actor'].update(binding='operator-console')
+        result = completion.evaluate_contract(reattributed, sealed_ref, current, self.store)['payload']
         self.assertFalse(result['legality']['legal'])
         self.assertIn('retained human action', result['legality']['blockers'][0])
 

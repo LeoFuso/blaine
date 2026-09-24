@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import time
 
 ROOT = Path(__file__).resolve().parents[3]
 sys.path[:0] = [str(ROOT), str(ROOT / 'tests')]
@@ -60,6 +61,10 @@ def action_for(turn):
             return {'type': 'INVOKE_CAPABILITY', 'capability': 'fixture.effect', 'input': {'value': 'synthetic effect'}}
         case 'wait':
             return {'type': 'WAIT', 'wait_id': 'continue', 'input_type': 'text'}
+        case 'spawn':
+            return {'type': 'SPAWN_TASK', 'task_spec': FIXTURES[turn['task_id']]['spawn']}
+        case 'handoff':
+            return {'type': 'HANDOFF', 'specialist': 'specialist'}
         case 'amend-attempt':
             return {'type': 'AMEND_CONTRACT', 'operations': [{'op': 'waive', 'id': 'c1'}]}
     raise ValueError('Script exhausted')
@@ -89,7 +94,14 @@ class Audited(Capabilities):
         payload = request['payload']
         audit('capabilities.jsonl', {'task_id': payload['task_id'], 'operation_id': payload['operation_id'],
                                      'capability': payload['capability']})
-        return super().execute(request)
+        result = super().execute(request)
+        if FIXTURES[payload['task_id']].get('lose_effect_response') and payload['capability'] == 'fixture.effect':
+            # The effect is committed; hold before Restate records the step result so
+            # the runtime can be killed and the retry must deduplicate it.
+            audit('effect-committed.jsonl', {'operation_id': payload['operation_id']})
+            while not (DIRECTORY / 'release-effect').exists():
+                time.sleep(0.05)
+        return result
 
 
 async def checkpoint(ctx, stage, state):

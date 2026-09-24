@@ -351,8 +351,12 @@ class HumanBoundary(Base):
             self.assertEqual(error.exception.status_code, status, error.exception.message)
             return error.exception.message
         self.assertIn('only the user', await rejected(fx.amendment(TASK, [{'op': 'waive', 'id': 'c2', 'reason': 'x'}],
-            actor={'kind': 'operator', 'via': 'policy_exception',
-                   'exception_for': {'rule': 'r', 'digest': 'sha256:' + 'a' * 64}}), 403))
+            actor=fx.OPERATOR_EXCEPTION, exception_for={'rule': 'r', 'digest': 'sha256:' + 'a' * 64}), 403))
+        # Caller-controlled content can neither claim an actor nor turn a user into an operator.
+        forged = fx.amendment(TASK, [{'op': 'waive', 'id': 'c2', 'reason': 'x'}])
+        forged['payload']['amendment']['payload']['actor'] = fx.OPERATOR_EXCEPTION
+        await rejected(forged, 400)
+        await rejected(fx.amendment_content(TASK, [{'op': 'waive', 'id': 'c2', 'reason': 'x'}]), 400)
         await rejected(fx.amendment(TASK, [{'op': 'waive', 'id': 'missing', 'reason': 'x'}]), 400)
         await rejected(fx.amendment(TASK, [{'op': 'waive', 'id': 'c1', 'reason': 'x'}], from_revision=3), 409)
         first = fx.amendment(TASK, [{'op': 'waive', 'id': 'c2', 'reason': 'First.'}], request_id='first')
@@ -367,6 +371,50 @@ class HumanBoundary(Base):
         self.assertEqual(harness.state(TASK)['contract_revision'], 1)
         self.assertEqual((await harness.call(TASK, 'amend_contract', first))['payload']['outcome'], 'ALREADY_SUBMITTED')
         await rejected(fx.amendment(TASK, [{'op': 'waive', 'id': 'c1', 'reason': 'x'}], from_revision=1), 409)  # terminal
+
+
+class Remediable(Base):
+    """A failed REQUIRED criterion blocks COMPLETED; only terminal invariants end the Task."""
+    def spec(self, capabilities=('artifact.write',)):
+        return message('TaskSpec', {'objective': 'Make the tests pass.', 'completion': [
+            {'criterion': 'Tests pass', 'evidence': {'artifact': 'test-report', 'sha256': hashlib.sha256(b'PASS').hexdigest()}}],
+            'capabilities': list(capabilities), 'autonomy': {'allowed': list(capabilities)}})
+
+    async def test_a_failed_test_criterion_is_remediable(self):
+        harness = self.harness({1: lambda turn: fx.write('test-report', 'FAIL'),
+                                2: lambda turn: fx.write('test-report', 'FAIL'),
+                                3: lambda turn: fx.write('test-report', 'PASS')})
+        result = await self.drive(harness, request=self.spec())
+        self.assertEqual(result['payload']['outcome'], 'COMPLETED')
+        failing = self.store.read_json(TASK, self.at('verification-effect', 2)['completion_ref'])['payload']
+        self.assertEqual((failing['criteria'][0]['status'], failing['irrecoverable']), ('failed', []))
+        self.assertEqual(self.at('verification-effect', 2)['lifecycle'], 'RUNNING')
+        self.assertEqual(self.cognition.calls, [1, 2, 3])
+
+    async def test_a_waivable_journal_criterion_failure_is_not_terminal(self):
+        spec = self.spec(('artifact.write', 'fixture.effect'))
+        user_journal = {**fx.journal_criterion('no-effects', [{'name': 'no_target_effect'}], invariant=False),
+                        'provenance': {'source': 'user'}, 'requirement': 'Please avoid external effects.'}
+        contract = message('CompletionContract', {'task_id': TASK, 'revision': 0, 'previous_ref': None,
+            'amendment_ref': None, 'task_type': None, 'criteria': [
+                completion.lower_spec(spec['payload'], TASK)['criteria'][0], user_journal]})
+        request = message('TaskRequest', {'task_spec': spec, 'contract': contract,
+                                          'grant': {'capabilities': ['artifact.write', 'fixture.effect']}})
+        harness = self.harness({1: lambda turn: {'type': 'INVOKE_CAPABILITY', 'capability': 'fixture.effect',
+                                                 'input': {'value': 'x'}},
+                                2: lambda turn: fx.write('test-report', 'PASS'),
+                                3: lambda turn: {'type': 'WAIT', 'wait_id': 'decide', 'input_type': 'text'}})
+        self.assertIsNone(await self.drive(harness, request=request))
+        state = harness.state(TASK)
+        self.assertEqual(state['lifecycle'], 'WAITING')  # not FAILED: the user may still waive it
+        evaluation = self.store.read_json(TASK, state['completion_ref'])['payload']
+        self.assertEqual({c['id']: c['status'] for c in evaluation['criteria']}, {'c1': 'satisfied', 'no-effects': 'failed'})
+        await harness.call(TASK, 'amend_contract', fx.amendment(TASK, [{'op': 'waive', 'id': 'no-effects',
+                                                                         'reason': 'That effect was intended.'}]))
+        await harness.call(TASK, 'submit_input', message('ExternalInput', {
+            'wait_id': 'decide', 'task_revision': state['wait']['task_revision'], 'input_type': 'text', 'value': 'ok'}))
+        result = await self.drive(harness)
+        self.assertEqual(result['payload']['outcome'], 'COMPLETED')
 
 
 class Revisions(Base):

@@ -10,6 +10,10 @@ from runtime.kernel.contracts import accept_task_request, encode, fields, identi
 from runtime.kernel.events import safe_prepare, safe_publish
 from runtime.task import summarize_objective
 
+# The Personal Agent binding speaks for the Task's user over its private session;
+# it has no operator or project-policy principal to establish.
+USER_ACTOR = {'kind': 'user', 'via': 'modify-constraints', 'binding': 'personal-agent'}
+
 
 def task_identity(request_id):
     return 'task-' + hashlib.sha256(identifier(request_id).encode()).hexdigest()
@@ -81,7 +85,7 @@ class PersonalAgent:
         outcome = 'rejected'
         operation = 'invalid'
         try:
-            fields(request, {'operation'}, {'request_id', 'task_request', 'task_id', 'response', 'name'})
+            fields(request, {'operation'}, {'request_id', 'task_request', 'task_id', 'response', 'name', 'amendment'})
             operation = text(request['operation'], 32)
             if operation == 'create':
                 fields(request, {'operation', 'request_id', 'task_request'})
@@ -119,6 +123,13 @@ class PersonalAgent:
                 handler = {'respond': 'submit_human_response', 'workspace-result': 'submit_workspace_result',
                            'signal': 'submit_input'}[operation]
                 result = self.binding.call(task_id, handler, request['response'])
+            elif operation == 'amend':
+                # This binding's principal is the Task's user, so it can only ever
+                # establish user authority. The amendment content is forwarded as
+                # untrusted data; the kernel rejects any authority field inside it.
+                fields(request, {'operation', 'task_id', 'amendment'})
+                result = self.binding.call(task_id, 'amend_contract', message(
+                    'CompletionContractAmendmentSubmission', {'actor': USER_ACTOR, 'amendment': request['amendment']}))
             else:
                 raise ValueError('Unsupported Task control operation')
             outcome = 'accepted'
@@ -133,7 +144,7 @@ class PersonalAgent:
         finally:
             if self.publisher:
                 event = safe_prepare(task_id=task_id, run_id='control-' + uuid4().hex,
-                    step_id=operation if operation in {'create', 'inspect', 'result', 'cancel', 'artifact', 'respond', 'workspace-result', 'signal'} else 'invalid',
+                    step_id=operation if operation in {'create', 'inspect', 'result', 'cancel', 'artifact', 'respond', 'workspace-result', 'signal', 'amend'} else 'invalid',
                     event_type='personal_agent.control', outcome=outcome,
                     producer={'kind': 'deterministic_application', 'component': 'blaine.personal_agent'})
                 safe_publish(self.publisher, event)

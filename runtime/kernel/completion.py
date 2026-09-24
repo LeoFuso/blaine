@@ -143,9 +143,10 @@ def validate_verifier(value: object, task_id: str) -> dict:
 
 
 def validate_actor_record(value: object) -> dict:
-    actor = fields(value, {'kind', 'via', 'ref'}, {'response_ref', 'exception_for'})
+    actor = fields(value, {'kind', 'via', 'binding', 'ref'}, {'response_ref', 'exception_for'})
     if actor['kind'] not in ACTORS or actor['via'] not in ACTORS[actor['kind']]:
         raise ValueError('Invalid amendment actor')
+    identifier(actor['binding'])
     journal.ref(actor['ref'])
     if 'response_ref' in actor:
         journal.ref(actor['response_ref'])
@@ -531,9 +532,11 @@ def legality(contract: dict, contract_ref: str | None, evaluation: dict, state: 
             blockers.append(f"Waiver of {criterion['id']} lacks authority: {denied}")
             continue
         try:
-            action = unpack(store.read_json(state['task_id'], actor['ref']), 'CompletionContractAmendmentRequest')
-            if action['task_id'] != state['task_id']:
-                raise ValueError('foreign action')
+            action = unpack(store.read_json(state['task_id'], actor['ref']), 'CompletionContractAmendmentSubmission')
+            # The waiver's actor must be the one the binding established for that action.
+            if (action['actor'] != {k: actor[k] for k in ('kind', 'via', 'binding')}
+                    or action['amendment']['payload']['task_id'] != state['task_id']):
+                raise ValueError('foreign or re-attributed action')
         except (OSError, ValueError, TypeError):
             blockers.append(f"Waiver of {criterion['id']} does not reference a retained human action")
             continue
@@ -541,6 +544,20 @@ def legality(contract: dict, contract_ref: str | None, evaluation: dict, state: 
             blockers.append(f"Waiver of {criterion['id']} cites an unaccepted human response")
     legal = not blockers and evaluation['outcome'] == 'satisfied'
     return {'legal': legal, 'blockers': blockers[:16]}
+
+
+def terminal(criterion: dict, entry: dict) -> bool:
+    """An irrecoverable (monotonic) invariant violation, as opposed to a remediable miss.
+
+    Terminal only when all hold: the criterion gates completion, nobody may waive or
+    change it (task-type invariant), and its failure is a fact later evidence cannot
+    undo. A ``capability_journal`` failure is such a fact: the journal is append-only,
+    so an admitted prohibited effect stays admitted. Every other ``failed`` REQUIRED
+    criterion (a failed test, a bad quote, a digest mismatch, a waivable user journal
+    criterion) is remediable: it blocks COMPLETED but the Task keeps working.
+    """
+    return (entry['status'] == 'failed' and gating(criterion) and invariant(criterion)
+            and criterion['verifier']['kind'] == 'capability_journal')
 
 
 def evaluate_contract(contract: dict, contract_ref: str | None, state: dict, store) -> dict:
@@ -554,8 +571,7 @@ def evaluate_contract(contract: dict, contract_ref: str | None, state: dict, sto
         'criteria': results}
     evaluation['concerns'] = concerns(contract, results, facts)
     evaluation['irrecoverable'] = [entry['id'] for criterion, entry in zip(contract['criteria'], results)
-                                   if invariant(criterion) and gating(criterion)
-                                   and criterion['verifier']['kind'] == 'capability_journal' and entry['status'] == 'failed']
+                                   if terminal(criterion, entry)]
     evaluation['legality'] = legality(contract, contract_ref, evaluation, state, store, facts)
     return {'version': 2, 'kind': 'CompletionEvaluation', 'payload': evaluation}
 
@@ -602,26 +618,34 @@ def dependency_view(criterion: dict, results: list[dict]) -> list[dict]:
 
 # ------------------------------------------------------------------ amendments
 
+def validate_actor_context(value: object) -> dict:
+    """The effective actor, established by the authenticated binding, never by content.
+
+    ``binding`` names the trusted component that authenticated the principal and
+    constructed this context (as the grant is constructed for a TaskRequest).
+    """
+    actor = fields(value, {'kind', 'via', 'binding'})
+    if actor['kind'] not in ACTORS or actor['via'] not in ACTORS[actor['kind']]:
+        raise ValueError('Actor kind and channel do not form an amendment authority')
+    identifier(actor['binding'])
+    return actor
+
+
 def validate_amendment_request(raw: object, task_id: str) -> dict:
+    """The requested change. Untrusted content: it carries no actor or authority field."""
     request = fields(unpack(raw, 'CompletionContractAmendmentRequest'),
-                     {'task_id', 'request_id', 'from_revision', 'operations', 'actor', 'reason'})
+                     {'task_id', 'request_id', 'from_revision', 'operations', 'reason'},
+                     {'exception_for', 'response_ref'})
     if request['task_id'] != identifier(task_id):
         raise ValueError('Amendment does not belong to this Task')
     identifier(request['request_id'])
     if type(request['from_revision']) is not int or request['from_revision'] < 0:
         raise ValueError('Invalid from_revision')
     text(request['reason'], 512)
-    actor = fields(request['actor'], {'kind', 'via'}, {'ref', 'exception_for'})
-    if actor['kind'] not in ACTORS or actor['via'] not in ACTORS[actor['kind']]:
-        raise ValueError('Actor kind and channel do not form an amendment authority')
-    if (actor['via'] == 'human_response') != ('ref' in actor):
-        raise ValueError('A human_response actor references its accepted response; others do not')
-    if 'ref' in actor:
-        journal.ref(actor['ref'])
-    if (actor['via'] == 'policy_exception') != ('exception_for' in actor):
-        raise ValueError('A policy exception names exactly the rule and digest it sets aside')
-    if 'exception_for' in actor:
-        exception = fields(actor['exception_for'], {'rule', 'digest'})
+    if 'response_ref' in request:
+        journal.ref(request['response_ref'])
+    if 'exception_for' in request:
+        exception = fields(request['exception_for'], {'rule', 'digest'})
         text(exception['rule'], 256)
         if not re.fullmatch(DIGEST, str(exception['digest'])):
             raise ValueError('Policy exception digest must be pinned')
@@ -639,6 +663,23 @@ def validate_amendment_request(raw: object, task_id: str) -> dict:
         if operation['op'] == 'supersede':
             identifier(operation['by'])
     return request
+
+
+def validate_amendment_submission(raw: object, task_id: str) -> tuple[dict, dict]:
+    """(trusted actor context, untrusted request) from the binding's envelope."""
+    envelope = fields(unpack(raw, 'CompletionContractAmendmentSubmission'), {'actor', 'amendment'})
+    actor = validate_actor_context(envelope['actor'])
+    request = validate_amendment_request(envelope['amendment'], task_id)
+    if (actor['via'] == 'human_response') != ('response_ref' in request):
+        raise ValueError('A human_response amendment cites exactly its accepted response')
+    if (actor['via'] == 'policy_exception') != ('exception_for' in request):
+        raise ValueError('A policy exception names exactly the rule and digest it sets aside')
+    return actor, request
+
+
+def submission(actor: dict, amendment: dict) -> dict:
+    """Envelope a binding sends: its authenticated actor around the requested change."""
+    return message('CompletionContractAmendmentSubmission', {'actor': actor, 'amendment': amendment})
 
 
 def authority_gap(operation: str, criterion: dict, actor: dict) -> str | None:
@@ -672,19 +713,22 @@ def add_gap(criterion: dict, actor: dict) -> str | None:
     return None
 
 
-def apply_amendment(contract: dict, contract_ref: str, request: dict, action_ref: str,
+def apply_amendment(contract: dict, contract_ref: str, actor: dict, request: dict, action_ref: str,
                     state: dict, mutating: bool) -> tuple[dict, dict]:
-    """(amendment payload, next revision payload). Raises on conflict or missing authority."""
+    """(amendment payload, next revision payload). Raises on conflict or missing authority.
+
+    ``actor`` is the binding-established context; ``request`` never supplies authority.
+    """
     if request['from_revision'] != contract['revision'] or contract_ref != state.get('contract_ref'):
         raise AmendmentConflict('Amendment is not against the current contract revision')
-    actor = request['actor']
-    record = {'kind': actor['kind'], 'via': actor['via'], 'ref': journal.ref(action_ref)}
+    record = {**validate_actor_context(actor), 'ref': journal.ref(action_ref)}
     if actor['via'] == 'human_response':
-        if actor['ref'] not in (state.get('human_responses') or {}).values():
+        if request['response_ref'] not in (state.get('human_responses') or {}).values():
             raise AmendmentDenied('The cited human response was not accepted for this Task')
-        record['response_ref'] = actor['ref']
-    if 'exception_for' in actor:
-        record['exception_for'] = actor['exception_for']
+        record['response_ref'] = request['response_ref']
+    if 'exception_for' in request:
+        record['exception_for'] = request['exception_for']
+    actor = record
     task_id = contract['task_id']
     revision = contract['revision'] + 1
     updated = deepcopy(contract)

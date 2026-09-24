@@ -82,8 +82,7 @@ def semantic_criterion(level='ADVISORY', on_low='unknown', source='task_type', d
 def investigation_contract(task_id, extra=(), semantic=True):
     criteria = [
         lowered_c1(),
-        {**journal_criterion('no-mutation', [{'name': 'operation_classes_subset', 'allowed': ['workspace.read']},
-                                             {'name': 'admitted_before_observed'}]),
+        {**journal_criterion('no-mutation', [{'name': 'no_target_effect'}, {'name': 'admitted_before_observed'}]),
          'requirement': 'No workspace-mutating capability was admitted or executed.'},
         {**journal_criterion('workspace-scope', [{'name': 'workspace_subset'}]),
          'requirement': "Every workspace operation targeted this Task's workspace."},
@@ -139,8 +138,21 @@ def decision(packet, action):
                    | {'next_action': action})
 
 
-def amendment(task_id, operations, from_revision=0, request_id='amend-1', actor=None, reason='Explicit user change.'):
+# Actor contexts are established by a binding, never by amendment content.
+USER = {'kind': 'user', 'via': 'modify-constraints', 'binding': 'test-binding'}
+OPERATOR_EXCEPTION = {'kind': 'operator', 'via': 'policy_exception', 'binding': 'operator-console'}
+POLICY_UPDATE = {'kind': 'project_policy', 'via': 'policy_update', 'binding': 'policy-sync'}
+
+
+def amendment_content(task_id, operations, from_revision=0, request_id='amend-1', reason='Explicit user change.', **content):
     return message('CompletionContractAmendmentRequest', {
         'task_id': task_id, 'request_id': request_id, 'from_revision': from_revision,
-        'operations': operations, 'actor': actor or {'kind': 'user', 'via': 'modify-constraints'},
-        'reason': reason})
+        'operations': operations, 'reason': reason, **content})
+
+
+def amendment(task_id, operations, from_revision=0, request_id='amend-1', actor=None, reason='Explicit user change.',
+              **content):
+    """The envelope a binding submits: its trusted actor context around untrusted content."""
+    return message('CompletionContractAmendmentSubmission', {
+        'actor': actor or USER,
+        'amendment': amendment_content(task_id, operations, from_revision, request_id, reason, **content)})

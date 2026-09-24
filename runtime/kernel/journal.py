@@ -12,10 +12,18 @@ import re
 from runtime.kernel.contracts import encode, fields, identifier, message, text, unpack
 
 CLASSIFICATION = 'kernel@1'
+# Effect scope of an operation class. Only TARGET_EFFECT is "mutation":
+#   INTERNAL_EFFECT  changes only this Task's own durable state: its artifacts and
+#                    evidence, journal, evaluations, a request published at the
+#                    human boundary, local computation, semantic-review packets.
+#   TARGET_READ      observes a target (workspace, external system) without
+#                    changing it.
+#   TARGET_EFFECT    may change state outside the Task: workspace files, process or
+#                    terminal execution, external API, database or remote systems.
+# Unknown classes are treated as TARGET_EFFECT, never as harmless.
+INTERNAL_EFFECT, TARGET_READ, TARGET_EFFECT = 'internal_effect', 'target_read', 'target_effect'
 # Reviewed, versioned capability -> operation-class table (Hub code next to
-# PolicyGate). ``task.*`` classes never leave the Task: its own artifacts, a
-# request published at the human boundary, local computation. Every other class
-# is external. An unknown capability is unclassified and never admissible.
+# PolicyGate). An unknown capability is unclassified and never admissible.
 OPERATION_CLASSES = {
     'artifact.write': 'task.artifact.write',
     'artifact.read': 'task.artifact.read',
@@ -26,7 +34,9 @@ OPERATION_CLASSES = {
     'worker.run': 'worker.run',
     'fixture.effect': 'external.effect',
 }
-MUTATING_CLASSES = frozenset({'external.effect', 'worker.run', 'workspace.write', 'workspace.exec'})
+TARGET_READ_CLASSES = frozenset({'workspace.read', 'external.read'})
+TARGET_EFFECT_CLASSES = frozenset({'external.effect', 'worker.run', 'workspace.write', 'workspace.exec'})
+MUTATING_CLASSES = TARGET_EFFECT_CLASSES
 UNCLASSIFIED = 'unclassified'
 PHASES = ('denied', 'admitted', 'observed')
 OUTCOMES = ('success', 'failure', 'uncertain')
@@ -38,13 +48,21 @@ def operation_class(capability: str) -> str:
     return OPERATION_CLASSES.get(capability, UNCLASSIFIED)
 
 
+def effect_scope(operation_class: str) -> str:
+    if operation_class.startswith('task.'):
+        return INTERNAL_EFFECT
+    if operation_class in TARGET_READ_CLASSES:
+        return TARGET_READ
+    return TARGET_EFFECT  # declared target effects, and anything unreviewed
+
+
 def internal(operation_class: str) -> bool:
-    return operation_class.startswith('task.')
+    return effect_scope(operation_class) == INTERNAL_EFFECT
 
 
 def mutating(capabilities) -> bool:
-    return any(operation_class(name) in MUTATING_CLASSES or operation_class(name) == UNCLASSIFIED
-               for name in capabilities)
+    """Whether authority includes any TARGET_EFFECT (or unclassified) capability."""
+    return any(effect_scope(operation_class(name)) == TARGET_EFFECT for name in capabilities)
 
 
 def ref(value: object) -> str:
@@ -188,6 +206,7 @@ PREDICATES = {
     'admitted_before_observed': ({'name'}, set()),
     'workspace_subset': ({'name'}, set()),
     'observed_operation_present': ({'name', 'operations'}, set()),
+    'no_target_effect': ({'name'}, {'allowed'}),
 }
 
 
@@ -228,6 +247,15 @@ def verify(predicates: list[dict], analysis: dict, authorities: dict[str, dict])
                 for entry in admitted.values():
                     if 'workspace_id' in entry and entry['workspace_id'] not in authorities[entry['authority_ref']]['workspaces']:
                         return 'failed', f"Operation {entry['operation_id']} targeted a workspace outside the Task's scope"
+            case 'no_target_effect':
+                # "No mutation": no admitted TARGET_EFFECT outside the explicitly
+                # allowed classes (default none). INTERNAL_EFFECT and TARGET_READ
+                # never violate it, so a Task can always build its own evidence.
+                effects = sorted({e['operation_class'] for e in admitted.values()
+                                  if effect_scope(e['operation_class']) == TARGET_EFFECT
+                                  and e['operation_class'] not in predicate.get('allowed', [])})
+                if effects:
+                    return 'failed', f"Admitted target effects {effects}"
             case 'observed_operation_present':
                 if not any(observed.get(op, {}).get('outcome') == 'success' and entry['operation'] in predicate['operations']
                            for op, entry in admitted.items()):

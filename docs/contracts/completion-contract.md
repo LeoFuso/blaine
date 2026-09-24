@@ -83,8 +83,7 @@ only references and counters. No new store, table or ledger is introduced.
      "level": "REQUIRED",
      "provenance": {"source": "task_type", "ref": "investigation@1", "invariant": true},
      "verifier": {"kind": "capability_journal", "version": 1,
-                  "predicates": [{"name": "operation_classes_subset", "allowed": ["workspace.read"]},
-                                 {"name": "admitted_before_observed"}]}}
+                  "predicates": [{"name": "no_target_effect"}, {"name": "admitted_before_observed"}]}}
   ]}}
 ```
 
@@ -93,7 +92,7 @@ only references and counters. No new store, table or ledger is introduced.
 | `id` | Identifier, unique within the contract, stable across revisions. Evaluations, amendments and results refer to it. |
 | `requirement` | Bounded human-readable statement (≤512 bytes). Descriptive only; the verifier decides. |
 | `level` | `REQUIRED` or `ADVISORY`. Only REQUIRED criteria gate COMPLETED. No other priority levels. |
-| `provenance` | `{source, ref?, actor?, invariant?, designation_ref?, source_digest?}`; see [provenance](#provenance-and-precedence). Mandatory. `invariant` only for `task_type`; `designation_ref` and `source_digest` required for `project_policy`. |
+| `provenance` | `{source, ref?, actor?, invariant?, designation_ref?, source_digest?, confirmed_from?}`; see [provenance](#provenance-and-precedence). Mandatory and never changed by an amendment. `invariant` only for `task_type`; `ref` and `source_digest` required for `operator_rule` and `project_policy`, plus `designation_ref` for `project_policy`. |
 | `verifier` | `{kind, version, …params}` from the closed [taxonomy](#verifier-taxonomy). `unbound` is allowed only under the [refinement rule](#creation). |
 
 Limits: 1..16 criteria; a contract artifact ≤16 KiB (`MAX_PACKET`). Criterion
@@ -105,7 +104,17 @@ A v0 `TaskSpec.completion` list lowers deterministically into revision 0: item *
 becomes id `c{n}`, level `REQUIRED`, provenance `{source: "user"}` for top-level
 intake or `{source: "parent_task"}` for a child, and verifier `artifact_digest` or
 `human_response` from its evidence shape. Existing D2 requests and kernel fixtures
-therefore keep their exact meaning. New intake may supply a CompletionContract in
+therefore keep their exact meaning.
+
+Lowering is deterministic kernel code, run at intake before any cognition. It is
+one-to-one and verbatim: the requirement text is byte-identical, order is kept,
+near-duplicates are not merged, and each verifier carries exactly the item's
+evidence fields. No model summarizes, improves, merges, weakens or reinterprets an
+intake criterion, and an envelope contract (below) must carry every lowered
+criterion unchanged — the same id, text, level, provenance and verifier, with no
+supersession. The summary-only TaskSpec form for contract Tasks is future E1.D work.
+
+New intake may supply a CompletionContract in
 the trusted `TaskRequest` envelope (next to `grant`); the TaskSpec keeps its
 human-readable `completion` summary. Because E1 Tasks are cognition-driven, the
 envelope's `initial_action` becomes optional when a `contract` and `grant` are
@@ -165,7 +174,14 @@ arbitrary repository content acquiring authority.
   the exact source revision/digest it read. A later edit to the policy file does
   not silently change a running Task: tightening arrives as an amendment with
   `project_policy` actor; weakening applies only to future Tasks or through a
-  policy exception.
+  policy exception. Concretely (E1.0): `operator_rule` and `project_policy`
+  criteria must carry `ref` (rule identity) and `source_digest` (the exact version);
+  no amendment operation changes a criterion's provenance, so every revision and
+  the evaluation chain behind `TaskResult.completion_ref` name the version that
+  created the criterion; an edited rule can only enter a running Task as a new
+  criterion with a new id (a tightening amendment), never by replacing the pinned
+  one; and a policy exception must name exactly `{rule: ref, digest: source_digest}`
+  of the pinned criterion — an exception naming the edited version is refused.
 - **Scope.** A designation applies only to Tasks whose relevant workspace is that
   project. It grants no capability; a rule requiring a build does not authorize
   running it (effective authority still decides).
@@ -198,7 +214,7 @@ a version so its semantics can evolve without silently changing old evaluations.
 | --- | --- | --- | --- | --- |
 | `artifact_digest` | A named artifact exists with an exact SHA-256 | Yes | **Existing** (`evaluate`) | D2 |
 | `human_response` | A scoped typed HumanDecision was answered within its allowed set | Human judgement, deterministic admission | **Existing** | Kernel inc. 5 / D2 |
-| `capability_journal` | Predicates over the Task's own capability journal: allowed operation classes, workspace scope, no unadmitted execution, required operation present | Yes | New | E1 |
+| `capability_journal` | Predicates over the Task's own capability journal: no target effect ("no mutation"), allowed operation classes, workspace scope, no unadmitted execution, required operation present | Yes | New | E1 |
 | `evidence_citation` | A structured result artifact conforms to its schema and every claim cites admitted receipts; quoted spans match receipt content (the Context Plane's exact-excerpt semantics) | Yes (provenance, not truth) | New | E1 |
 | `capability_result` | A specific admitted capability result satisfies a structured predicate (exit code, test report counts, HTTP status, state field); typical binding for project-policy build/test rules | Yes | New, specified; E1 does not need it | E2 |
 | `change_set` | The admitted diff touches only allowed paths / preserves listed signatures | Yes | Reserved | E2 |
@@ -353,6 +369,28 @@ Each entry is an immutable artifact linked by digest:
 - `authority_ref` points to the compiled effective-authority artifact in force,
   so a verifier can recompute whether each admission was legal at that time.
 
+### No mutation: internal versus target effects
+
+A capability's operation class has one effect scope in the reviewed classification
+(`kernel@1` in E1.0; `intellij-mcp@1` extends it in E1.C):
+
+| Scope | Meaning | Kernel classes | Examples |
+| --- | --- | --- | --- |
+| `INTERNAL_EFFECT` | Changes only the Task's own durable state | `task.*` (`artifact.write`/`read`, `human.request`, `text.stats`) | Task state, journal entries, artifacts and evidence, human requests, completion evaluations, local computation, semantic-review packets |
+| `TARGET_READ` | Observes a target without changing it | `workspace.read`, `external.read` | File read, index search, issue read |
+| `TARGET_EFFECT` | May change state outside the Task | `external.effect`, `worker.run`, `workspace.write`, `workspace.exec`, and every unclassified class | Workspace file mutation, process or terminal execution, external API, database or remote-system change |
+
+A "no mutation" criterion means **no unauthorized TARGET_EFFECT**. It is expressed
+with the `capability_journal` predicate `no_target_effect {allowed?}`: it fails when
+an admitted journal entry's class is a TARGET_EFFECT outside `allowed` (default:
+none). INTERNAL_EFFECT and TARGET_READ never violate it, so a read-only Task can
+always create its own evidence, journal and result; a denied proposal never
+violates it either (prevention worked). An admitted effect outside effective
+authority is additionally a journal authority violation for every criterion and
+for legality. Unreviewed classes are treated as TARGET_EFFECT, never as harmless.
+`operation_classes_subset` remains a scope predicate (which external classes a
+Task may use at all); internal classes are outside it.
+
 ## Creation
 
 ```text
@@ -457,6 +495,32 @@ Task additionally races its input promise against `contract/{n}` with
 [clarifications](#e10-implementation-clarifications)). Each amendment emits an
 ExecutionEvent (`contract.amended`, outcome `applied` or `rejected`) for forensics only.
 
+### Amendment actor is binding-owned
+
+Amendment authority is never read from the requested change. The binding that
+authenticated the principal (for the Personal Agent, the user's private session;
+for policy, the operator or policy-synchronisation path) establishes the actor and
+submits an envelope, like the grant in a `TaskRequest`:
+
+```json
+{"version": 1, "kind": "CompletionContractAmendmentSubmission", "payload": {
+  "actor": {"kind": "user", "via": "modify-constraints", "binding": "personal-agent"},
+  "amendment": {"version": 1, "kind": "CompletionContractAmendmentRequest", "payload": {
+    "task_id": "task-…", "request_id": "…", "from_revision": 1,
+    "operations": [{"op": "waive", "id": "tests-pass", "reason": "…"}], "reason": "…"}}}}
+```
+
+The amendment content has no actor or authority field; content that carries one is
+rejected, so text from a user message, model or file cannot claim or upgrade an
+actor. Content may only *name* things the kernel then checks: `exception_for`
+(the pinned rule an exception sets aside, valid only with an operator
+`policy_exception` actor) and `response_ref` (an accepted human response, valid only
+with a `human_response` actor and verified against the Task). The retained action
+is the whole submission, and legality rechecks that each waiver's recorded actor is
+the one its retained action carries. This is the human-response boundary's trust
+model: the binding delivers and vouches for the principal; the kernel validates
+scope and authority deterministically.
+
 ## Completion legality
 
 The workflow may set `lifecycle = COMPLETED` only when a single deterministic
@@ -481,8 +545,29 @@ exit code is neither necessary nor sufficient. "Why is this Task COMPLETED?" is
 answered by `TaskResult.completion_ref` alone, following the audit chain above.
 
 A Task that cannot satisfy its contract ends `FAILED` (turn budget, explicit human
-`fail`, terminal capability error) with the last evaluation attached; it is never
-relabelled complete with concerns.
+`fail`, terminal capability error, terminal invariant violation) with the last
+evaluation attached; it is never relabelled complete with concerns.
+
+### Terminal versus remediable
+
+A `failed` REQUIRED criterion blocks COMPLETED but does not, by itself, end the
+Task. It is **remediable**: later evidence may pass it (a failing test is fixed; a
+bad citation is rewritten), or the user may waive or rebind a user criterion. The
+Task keeps working within its turn budget.
+
+A criterion is a **terminal invariant violation** only when all hold, and then the
+Task ends `FAILED` immediately (`Invariant criteria failed: …`), with that
+evaluation as its `completion_ref`:
+
+1. it gates completion (REQUIRED, not superseded);
+2. nobody may change it within the Task (a `task_type` invariant); and
+3. its failure is monotonic — no later evidence can undo it. In E1.0 that is a
+   `capability_journal` failure: the journal is append-only, so a prohibited target
+   effect that was admitted stays admitted.
+
+The same journal failure on a user criterion is not terminal (the user may waive
+it); a failed digest, citation or test criterion is never terminal. The rule is
+`completion.terminal()`; evaluations list terminal criteria in `irrecoverable`.
 
 ## Crash, retry and replay
 
@@ -560,8 +645,8 @@ the E1.0 evidence. None changes a decision in ADR 0026.
   HumanDecisionRequest (`request`, `artifact`, optional `accept`) so the escalation
   question and answers exist before any wait.
 - `capability_journal` parameters are a `predicates` list:
-  `operation_classes_subset {allowed}`, `admitted_before_observed`,
-  `workspace_subset`, `observed_operation_present {operations}`.
+  `no_target_effect {allowed?}`, `operation_classes_subset {allowed}`,
+  `admitted_before_observed`, `workspace_subset`, `observed_operation_present {operations}`.
 - `evidence_citation@1` implements schema `InvestigationFindings@1` and predicates
   `every_claim_cited`, `quotes_match_receipts`, `min_cited_receipts {operation, count,
   path_prefix?}`, `conclusion_status_present`, `unresolved_requires_uncertainty`.
@@ -574,11 +659,10 @@ the E1.0 evidence. None changes a decision in ADR 0026.
   classes: `artifact.write`/`artifact.read` → `task.artifact.*`, `human.request` →
   `task.human.request`, `text.stats` → `task.compute`, `youtrack.read` →
   `external.read`, `workspace.read` → `workspace.read`, `worker.run` → `worker.run`,
-  `fixture.effect` → `external.effect`; anything else is `unclassified`. `task.*`
-  classes never leave the Task, so `operation_classes_subset` constrains only
-  external classes: an investigation may write its own `findings` artifact without
-  breaking `no-mutation`. "Mutating authority" (for `unbound`) means any of
-  `external.effect`, `worker.run`, `workspace.write`, `workspace.exec` or an
+  `fixture.effect` → `external.effect`; anything else is `unclassified`. Effect
+  scopes are in [No mutation](#no-mutation-internal-versus-target-effects): an
+  investigation may write its own `findings` artifact without breaking
+  `no-mutation`. "Mutating authority" (for `unbound`) means any TARGET_EFFECT or
   unclassified capability.
 - E1.0 retains an `EffectiveAuthority` artifact (`classification: kernel@1`,
   capabilities, operation classes, workspaces, `externally_bounded`) compiled from
@@ -610,7 +694,8 @@ the E1.0 evidence. None changes a decision in ADR 0026.
   rechecks the authority matrix and that the action is retained.
 - A gating task-type **invariant** `capability_journal` criterion that is `failed`
   can never recover (append-only journal, unwaivable), so the Task ends `FAILED`
-  immediately (`Invariant criteria failed: …`) with that evaluation attached.
+  immediately; every other failed criterion is remediable
+  ([terminal versus remediable](#terminal-versus-remediable)).
 - ADVISORY non-passing results, waivers, supersessions, PolicyGate denial counts and
   semantic contradictions become `TaskResult.concerns` (still at most 8).
 - `semantic_review` runs, as journaled steps, only when its `depends_on` criteria are
@@ -623,17 +708,18 @@ the E1.0 evidence. None changes a decision in ADR 0026.
 
 **Amendments**
 
-- The signal is `CompletionContractAmendmentRequest {task_id, request_id,
-  from_revision, operations[1..8], actor {kind, via, ref?, exception_for?}, reason}`.
-  Actor channels: `user` via `modify-constraints` or `human_response` (with `ref` to
-  an accepted response); `operator` via `policy_exception` (with `exception_for
-  {rule, digest}`) or `policy_update`; `project_policy` via `policy_update`. The
-  caller binding asserts the actor, as it does for `submit_human_response`; the
-  kernel enforces the authority matrix for that actor. Cognition has no path to the
-  handler: a model output that tries to change the contract is an unknown NextAction
-  and is denied by PolicyGate.
+- The signal is a binding envelope `CompletionContractAmendmentSubmission {actor
+  {kind, via, binding}, amendment}` around `CompletionContractAmendmentRequest
+  {task_id, request_id, from_revision, operations[1..8], reason, exception_for?,
+  response_ref?}` ([binding-owned actor](#amendment-actor-is-binding-owned)).
+  Actor channels: `user` via `modify-constraints` or `human_response`; `operator`
+  via `policy_exception` or `policy_update`; `project_policy` via `policy_update`.
+  The Personal Agent binding exposes `amend` and always establishes
+  `user`/`modify-constraints`; no operator or policy binding exists yet. Cognition
+  has no path to the handler: a model output that tries to change the contract is
+  an unknown NextAction and is denied by PolicyGate.
 - `amend_contract` answers `SUBMITTED` or `ALREADY_SUBMITTED` (identical retry),
-  `400` malformed, `403` authority not covering the criterion's source, `409` stale
+  `400` malformed (including authority fields inside the content), `403` authority not covering the criterion's source, `409` stale
   revision, already-amended revision, or terminal Task. A receipt means submitted,
   not applied; `contract_revision` shows application.
 - Application is at every iteration boundary and, for a human `WAITING` Task, as soon

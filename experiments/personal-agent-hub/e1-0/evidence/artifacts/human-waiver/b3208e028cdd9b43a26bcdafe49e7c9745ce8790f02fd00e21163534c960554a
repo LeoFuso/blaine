@@ -1,1 +1,0 @@
-{"kind":"CompletionContractAmendmentRequest","payload":{"actor":{"kind":"user","via":"modify-constraints"},"from_revision":0,"operations":[{"id":"c2","op":"waive","reason":"Approval not needed (right)."}],"reason":"Explicit user change.","request_id":"right","task_id":"human-waiver"},"version":1}

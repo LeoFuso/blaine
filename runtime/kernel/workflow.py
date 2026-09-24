@@ -215,10 +215,10 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             to_revision = contract['revision'] + 1
             def admit(submitted, contract, contract_ref, state):
                 try:
-                    amendment_request = completion.validate_amendment_request(submitted['request'], task_id)
-                    if store.read_json(task_id, submitted['action_ref']) != submitted['request']:
+                    actor, amendment_request = completion.validate_amendment_submission(submitted['submission'], task_id)
+                    if store.read_json(task_id, submitted['action_ref']) != submitted['submission']:
                         raise ValueError('Retained human action differs from the submitted amendment')
-                    amendment, updated = completion.apply_amendment(contract, contract_ref, amendment_request,
+                    amendment, updated = completion.apply_amendment(contract, contract_ref, actor, amendment_request,
                                                                     submitted['action_ref'], state, mutating)
                 except (ValueError, TypeError, KeyError) as error:
                     # The handler validates against this same immutable revision, so
@@ -692,6 +692,12 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
     async def amend_contract(ctx: restate.WorkflowSharedContext, request: dict) -> dict:
         """Explicit, typed human change of the Completion Contract.
 
+        The request is a CompletionContractAmendmentSubmission: the actor context is
+        established by the authenticated binding that calls this handler (the same
+        trust as submit_human_response and a TaskRequest grant); the amendment content
+        it wraps carries no authority field, so content a user, model or file supplied
+        cannot claim or upgrade an actor.
+
         Compare-and-set by revision: the amendment resolves the one-shot promise
         ``contract/{from_revision + 1}``, so of two amendments to one revision only
         the first is taken, and an identical retry is recognised. The receipt means
@@ -703,12 +709,12 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             raise restate.TerminalError('Task unavailable', status_code=404)
         state = current['payload']
         try:
-            submitted = completion.validate_amendment_request(request, task_id)
+            actor, submitted = completion.validate_amendment_submission(request, task_id)
         except (ValueError, TypeError) as error:
             raise restate.TerminalError(str(error), status_code=400) from error
         to_revision = submitted['from_revision'] + 1
         promise = ctx.promise(f'contract/{to_revision}', type_hint=dict)
-        value = {'request': request,
+        value = {'submission': request,
                  'action_ref': f'artifact://{task_id}/sha256:' + hashlib.sha256(encode(request)).hexdigest()}
         receipt = {'task_id': task_id, 'request_id': submitted['request_id'],
                    'from_revision': submitted['from_revision'], 'to_revision': to_revision}
@@ -727,7 +733,8 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
             mutating = capability_journal.mutating(authority['capabilities'])
             contract = completion.validate_contract(store.read_json(task_id, state['contract_ref']), task_id, mutating)
             try:
-                completion.apply_amendment(contract, state['contract_ref'], submitted, value['action_ref'], state, mutating)
+                completion.apply_amendment(contract, state['contract_ref'], actor, submitted, value['action_ref'],
+                                           state, mutating)
             except completion.AmendmentDenied as error:
                 return {'status': 403, 'reason': str(error)}
             except completion.AmendmentConflict as error:
@@ -738,7 +745,8 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
         verdict = await ctx.run_typed('check-amendment', check, restate.RunOptions(max_attempts=3))
         if verdict['status'] != 200:
             raise restate.TerminalError(verdict['reason'], status_code=verdict['status'])
-        # The submitted request is the retained human action a waiver will cite.
+        # The whole submission (binding-established actor and requested change) is
+        # the retained human action a waiver will cite.
         action_ref = await ctx.run_typed('retain-amendment-request', store.put_json,
             restate.RunOptions(max_attempts=3), task_id=task_id, value=request)
         if action_ref != value['action_ref']:

@@ -30,6 +30,25 @@ Runtime applies verifier results to lifecycle. If evidence and recorded state di
 report the discrepancy without changing state in prose. Unmet required criteria remain
 unmet; concerns cannot disguise partial work as completion.
 
+A failed required criterion is normally **remediable**: a failing test, a bad
+citation or a wrong digest blocks COMPLETED while the Task keeps working, and a later
+verdict may pass it (or the user may waive a user criterion). Only a **terminal
+invariant violation** ends the Task FAILED at once: a gating, unwaivable task-type
+invariant whose failure later evidence cannot undo, such as an admitted prohibited
+target effect in the append-only capability journal. See
+[terminal versus remediable](../contracts/completion-contract.md#terminal-versus-remediable).
+
+"No mutation" means no unauthorized **target effect** (workspace files, process or
+terminal execution, external API, database or remote state). A Task's **internal
+effects** (its own state, journal, artifacts and evidence, human requests,
+evaluations, local computation, semantic-review packets) are never mutation, so a
+read-only Task can always record its evidence and result
+([effect scopes](../contracts/completion-contract.md#no-mutation-internal-versus-target-effects)).
+
+Authority to change completion criteria comes from the authenticated binding that
+submits the change, never from fields inside the requested change
+([amendment actor](../contracts/completion-contract.md#amendment-actor-is-binding-owned)).
+
 ## Consequential work and safety
 
 - Preserve existing user changes; inspect workspace/Git state before edits.

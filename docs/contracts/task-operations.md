@@ -93,11 +93,15 @@ Not every signal is valid in every runtime state.
 `modify-constraints` is also the route for user-originated Completion Contract
 amendments; waiving or rebinding a required criterion is only possible through an
 explicit human action ([Completion Contract amendments](completion-contract.md#amendments)).
-The kernel implements this as the `amend_contract` workflow handler (E1.0): a typed
-`CompletionContractAmendmentRequest` naming the expected `from_revision`, answered
-`SUBMITTED`/`ALREADY_SUBMITTED` or rejected (403 authority, 409 stale or already
-amended). No Personal Agent or ACP binding maps `modify-constraints` to it yet, so
-the agent must still say such a change is not submitted.
+The kernel implements this as the `amend_contract` workflow handler (E1.0): the
+binding submits a `CompletionContractAmendmentSubmission` whose actor it
+established from its authenticated principal, wrapping the requested change (which
+names the expected `from_revision` and carries no authority field). It answers
+`SUBMITTED`/`ALREADY_SUBMITTED` or rejects (400 malformed or authority in content,
+403 authority, 409 stale or already amended). The Personal Agent binding exposes
+this as its `amend` operation and always establishes the user actor; it can never
+submit operator or policy authority. The ACP command grammar does not expose `amend`
+yet, so in chat the agent must still say such a change is not submitted.
 
 ## Result
 
