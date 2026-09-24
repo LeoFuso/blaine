@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blaine-verification"
+version = "0.1.0"
+description = "Blaine local verification: suite metadata, prerequisite probes, durable host scheduling and qualification reporting"
+requires-python = ">=3.11"
+
+[project.optional-dependencies]
+verification = [
+    "pytest",
+    "nox",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "verification"]
+pythonpath = [".", "tests"]
+addopts = "-q"
+markers = [
+    "hermetic: can run from a normal checkout without pre-existing Blaine host services",
+    "host: requires services/resources already configured on the canonical Blaine host",
+    "completion_contract: Completion Contract / E1 qualification",
+    "scheduler: local verification scheduler tests",
+]
+
+[tool.setuptools]
+packages = []
+py-modules = []
