@@ -2,43 +2,110 @@
   "recorded": "2026-09-24",
   "branch": "impl/e2-effect-foundations",
   "baseline": "origin/main f0a3ca5 (E1.0 integrated)",
-  "execution_policy": "Focused tests during development; the full Python suite ran twice (milestone and final). No GitHub Actions workflow covers the Python runtime (the existing workflows build/test the Go client only), so gating Python and real-Restate regressions ran locally; outputs recorded as counts only.",
-  "gating": {
-    "unit_suite": {
-      "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m unittest discover -s tests -p 'test_*.py'",
-      "baseline_tests": 311,
-      "after_tests": 344,
-      "after_result": "OK",
-      "new_tests": {
-        "tests/test_effects.py": 17,
-        "tests/test_effects_workflow.py": 16
-      },
-      "existing_test_changes": "tests/test_completion_contract.py: the kernel classification expectation now includes workspace.write and workspace.exec as TARGET_EFFECT (deliberate: E2.0 adds these reviewed classes). tests/completion_harness.py gained durable sleep for the replay stand-in."
-    },
-    "restate_harnesses": [
-      {
-        "harness": "experiments/personal-agent-hub/e2-0/accept.py",
-        "scope": "E2.0 target-effect lifecycle",
-        "result": "PASS",
-        "evidence": "experiments/personal-agent-hub/e2-0/evidence/summary.json"
-      },
-      {
-        "harness": "experiments/personal-agent-hub/e1-0/accept.py",
-        "scope": "E1.0 Completion Contract lifecycle on E2.0 code",
-        "result": "PASS",
-        "notes": "Run with --evidence in a scratch directory so the committed E1.0 evidence was not rewritten; 9 Tasks, 8 runtime and 2 server SIGKILLs, no duplicates."
-      },
-      {
-        "harness": "scripts/verify-kernel-parallel.py",
-        "scope": "Increment 12 native parallel children on E2.0 code",
-        "result": "PASS",
-        "notes": "3 runtime and 3 server SIGKILLs, no duplicate turns or capability executions."
-      }
-    ]
+  "verification_architecture": {
+    "canonical_orchestration_on_main": "None. No noxfile, pyproject or suite registry exists; .github/workflows contains only client-ci, client-build and client-release (Go client).",
+    "local_verification_scheduler": "Not landed: origin/main is f0a3ca5; chore/local-verification-scheduler-v0 exists only in its own worktree, which was not read or modified.",
+    "github_actions_changed": false,
+    "why_deferred": "Wiring CI now would create a second handwritten list of test commands and preempt the canonical named-suite design. E2.0 records classification and CI eligibility below so the canonical integration can attach these suites without redefining them.",
+    "policy": "verify, don't provision: HERMETIC suites may run locally or in CI through the canonical named suite; HOST suites run only through the local Restate verification scheduler; no GitHub job provisions a Blaine host substitute."
   },
-  "historical_non_gating": "Unchanged from E1.0 (experiments/personal-agent-hub/e1-0/regression.json): Increment 1, 2 and 5 harnesses remain frozen, mapped and guarded by tests/test_regression_coverage.py.",
-  "not_run": {
-    "scripts/verify-kernel-model.py, -memory.py, -worker.py, -youtrack.py": "Require live inference or external services; unrelated to E2.0.",
-    "client (Go) tests": "No client change in E2.0."
-  }
+  "suites": [
+    {
+      "name": "python-unit",
+      "classification": "HERMETIC",
+      "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m unittest discover -s tests -p 'test_*.py'",
+      "reason": "Pure and in-process tests: Completion Contract, effect state machine with FixtureTarget (SQLite in a temp dir), verifiers, deterministic journaled-replay stand-in, JSON evidence guards. Test URLs use .invalid domains and are never contacted.",
+      "prerequisites": "checkout-local tooling from scripts/setup-runtime.sh (.local/runtime-venv with restate-sdk 1.0.5, hypercorn, agent-client-protocol; .local/bin/restate-server 1.7.9)",
+      "result": "351 OK (baseline 311)",
+      "current_execution": "local, once per checkpoint",
+      "intended_execution": "canonical HERMETIC named suite; eligible for local and GitHub Actions via that suite"
+    },
+    {
+      "name": "e2-0-restate-acceptance",
+      "classification": "HERMETIC",
+      "command": "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python experiments/personal-agent-hub/e2-0/accept.py --restate-server .local/bin/restate-server --output <fresh temp dir> [--evidence <temp dir>]",
+      "reason": "Starts and owns its own restate-server and probe runtime from checkout tooling, on dedicated loopback ports, with a fresh --output data directory, RESTATE_* environment stripped, SQLite fixtures inside that directory, no canonical Blaine Restate/runtime, database, model, credential or network dependency, and terminates its processes in a finally block. Verified by reading the harness, not inferred from its name. Ports 38380/39370/39380/35422.",
+      "prerequisites": "checkout-local tooling from scripts/setup-runtime.sh (.local/runtime-venv with restate-sdk 1.0.5, hypercorn, agent-client-protocol; .local/bin/restate-server 1.7.9); the four ports free (the harness refuses to start otherwise)",
+      "result": "PASS: 11 Tasks, 7 runtime and 2 server SIGKILLs",
+      "current_execution": "local; default --evidence refreshes the committed milestone evidence, a temp --evidence is for ordinary runs",
+      "intended_execution": "canonical HERMETIC durability suite (slow); CI-eligible through that suite with a temp --evidence"
+    },
+    {
+      "name": "e1-0-restate-acceptance",
+      "classification": "HERMETIC",
+      "command": "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python experiments/personal-agent-hub/e1-0/accept.py --restate-server .local/bin/restate-server --output <fresh temp dir> --evidence <temp dir>",
+      "reason": "Starts and owns its own restate-server and probe runtime from checkout tooling, on dedicated loopback ports, with a fresh --output data directory, RESTATE_* environment stripped, SQLite fixtures inside that directory, no canonical Blaine Restate/runtime, database, model, credential or network dependency, and terminates its processes in a finally block. Verified by reading the harness, not inferred from its name. Ports 38280/39270/39280/35322.",
+      "prerequisites": "checkout-local tooling from scripts/setup-runtime.sh (.local/runtime-venv with restate-sdk 1.0.5, hypercorn, agent-client-protocol; .local/bin/restate-server 1.7.9)",
+      "result": "PASS on E2.0 code 065150d (scratch evidence; committed E1.0 evidence untouched). Not rerun after the cancellation/invariant follow-up: those paths only act when a Task has target effects, which E1.0 Tasks never admit.",
+      "current_execution": "local",
+      "intended_execution": "canonical HERMETIC durability suite; CI-eligible"
+    },
+    {
+      "name": "increment-12-parallel",
+      "classification": "HERMETIC",
+      "command": "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python scripts/verify-kernel-parallel.py --restate-server .local/bin/restate-server --output <fresh temp dir>",
+      "reason": "Starts and owns its own restate-server and probe runtime from checkout tooling, on dedicated loopback ports, with a fresh --output data directory, RESTATE_* environment stripped, SQLite fixtures inside that directory, no canonical Blaine Restate/runtime, database, model, credential or network dependency, and terminates its processes in a finally block. Verified by reading the harness, not inferred from its name. Ports 38080/39070/39080/35122 (its bind check does not use SO_REUSEADDR, so back-to-back runs need a TIME_WAIT pause).",
+      "prerequisites": "checkout-local tooling from scripts/setup-runtime.sh (.local/runtime-venv with restate-sdk 1.0.5, hypercorn, agent-client-protocol; .local/bin/restate-server 1.7.9)",
+      "result": "PASS on E2.0 code 065150d; same reasoning as E1.0 for the follow-up",
+      "current_execution": "local",
+      "intended_execution": "canonical HERMETIC durability suite; CI-eligible"
+    },
+    {
+      "name": "historical-kernel-increments-1-2-5",
+      "classification": "HERMETIC (by dependencies) and HISTORICAL, NON-GATING",
+      "command": "scripts/verify-kernel.py, verify-kernel-children.py, verify-kernel-human.py",
+      "reason": "Frozen milestone evidence whose fixtures predate verifier-first progression; mapped to current coverage in experiments/personal-agent-hub/e1-0/regression.json and guarded by tests/test_regression_coverage.py.",
+      "prerequisites": "checkout-local tooling from scripts/setup-runtime.sh (.local/runtime-venv with restate-sdk 1.0.5, hypercorn, agent-client-protocol; .local/bin/restate-server 1.7.9)",
+      "result": "not run (fail identically on unchanged baseline)",
+      "current_execution": "none",
+      "intended_execution": "must be excluded from gating discovery when the canonical suite mechanism lands"
+    },
+    {
+      "name": "live-kernel-services (verify-kernel-model/-memory/-worker/-youtrack)",
+      "classification": "HOST",
+      "reason": "Need configured host resources: local inference endpoint (127.0.0.1:8000, Qwen), MIRIX memory, Goose worker runtime/state, YouTrack connector credentials.",
+      "prerequisites": "configured canonical Blaine host",
+      "result": "not run; unrelated to E2.0",
+      "current_execution": "manual on the host",
+      "intended_execution": "local Restate verification scheduler; never provisioned in GitHub Actions"
+    },
+    {
+      "name": "real-provider-and-workstation-acceptance (E1.A-E, E2.A-D, E0 workstation matrices)",
+      "classification": "FLEET",
+      "reason": "Need a real IntelliJ workstation/peer (Mac, WSL/Windows) and IDE delegation.",
+      "prerequisites": "operator-designated workstation",
+      "result": "out of E2.0 scope",
+      "current_execution": "none",
+      "intended_execution": "operator-scheduled fleet acceptance"
+    },
+    {
+      "name": "client-release workflow",
+      "classification": "CI_ONLY",
+      "reason": "Release publication semantics owned by GitHub infrastructure.",
+      "prerequisites": "GitHub",
+      "result": "not affected",
+      "current_execution": ".github/workflows/client-release.yml",
+      "intended_execution": "unchanged"
+    },
+    {
+      "name": "client-ci / client-build workflows",
+      "classification": "HERMETIC",
+      "reason": "Go client build/test from checkout.",
+      "prerequisites": "Go toolchain",
+      "result": "not affected (no client change)",
+      "current_execution": "GitHub Actions",
+      "intended_execution": "unchanged"
+    },
+    {
+      "name": "docs-static (local links/anchors, JSON parse, git diff --check)",
+      "classification": "HERMETIC",
+      "reason": "Reads the checkout only.",
+      "prerequisites": "python3, git",
+      "result": "clean except two pre-existing anchors on main",
+      "current_execution": "ad hoc inline check in this session (no repository-owned script)",
+      "intended_execution": "a canonical static named suite"
+    }
+  ],
+  "historical_non_gating": "Unchanged from E1.0; see experiments/personal-agent-hub/e1-0/regression.json.",
+  "existing_test_changes": "tests/test_completion_contract.py classification expectation includes workspace.write/workspace.exec; tests/completion_harness.py gained durable sleep and journaled cancellation delivery."
 }

@@ -1,6 +1,7 @@
 # E2.0 — Provider-independent effect foundations
 
-**Status: PASS (2026-09-24).** Kernel semantics only, proven with a deterministic
+**Status: PASS (2026-09-24; operator decisions on the lifecycle invariant and Task
+cancellation applied the same day).** Kernel semantics only, proven with a deterministic
 fixture provider (`tests/effect_fixtures.py`, SQLite). No real file, IDE, MCP call,
 terminal or run configuration was touched. **E2 is not PASS**: E2.A–E2.D (real
 provider contract, conditional write adapter, bounded exec adapter, live recovery)
@@ -26,6 +27,11 @@ Contract: [target effects](../../../docs/contracts/target-effects.md).
 - **Verifiers:** `change_set@1`, `capability_result@1`, `effects_reconciled`.
 - **Approval:** `ask_before` → deterministic HumanDecisionRequest through the
   existing boundary; the same operation dispatches on APPROVE.
+- **Lifecycle invariant:** never COMPLETED while an admitted TARGET_EFFECT is
+  unresolved, independent of the contract; reads and internal effects excluded.
+- **Task cancellation:** closes never-dispatched effects, stops or recovers active
+  ones (query first, one stop request), reconciles once, retains a final evaluation;
+  CANCELLED results name every effect's actual outcome, including STILL_UNKNOWN.
 
 ## Required cases
 
@@ -50,17 +56,39 @@ Contract: [target effects](../../../docs/contracts/target-effects.md).
 | 22 | Human approval resumes the same Task and effect | `test_approval_waits_and_the_same_effect_continues` | `approval` (runtime + server SIGKILL while waiting) |
 | 23 / 24 | Completion illegal while unresolved / legal once proven | `test_completion_is_illegal_until_effect_criteria_are_proven`, `test_insufficient_evidence…` | `outage` |
 | 25 | Replay reproduces the same outcome | `test_crashes_and_replay_reproduce_the_same_outcome` | offline `verify()` for every Task |
+| + | Invariant without an `effects_reconciled` criterion | `LifecycleInvariant`, `UnresolvedInvariantInput` (reads/internal excluded) | `task-cancel-unknown` final evaluation blocker |
+| + | Task cancel before dispatch | `test_task_cancel_before_dispatch_closes_the_effect_as_never_dispatched` | `task-cancel-approval` |
+| + | Task cancel of an active effect, confirmed stop | `test_task_cancel_stops_an_active_effect_with_confirmed_stop` | `task-cancel-active` |
+| + | Effect completes before the Task cancel | `test_effect_completion_can_win_the_race_with_task_cancel` | `task-cancel-race` (no stop request) |
+| + | Task cancel leaves STILL_UNKNOWN explicit | `test_task_cancel_keeps_a_still_unknown_effect_explicit` | `task-cancel-unknown` |
+| + | Crash during Task cancellation, no duplicate stop/effect | `test_crash_during_task_cancellation_replays_without_duplicate_stop` | `task-cancel-active` (runtime SIGKILL mid-cancellation) |
 
 ## Evidence
 
-- [`evidence/summary.json`](evidence/summary.json) — PASS: 7 Tasks, 34 cognitive
-  turns, 14 provider executions, no duplicates; 6 runtime and 2 server SIGKILLs;
+- [`evidence/summary.json`](evidence/summary.json) — PASS: 11 Tasks, 40 cognitive
+  turns, 22 provider executions, no duplicates, at most one stop request per
+  effect; 7 runtime and 2 server SIGKILLs;
   per-Task criteria, effect statuses and journal phases, each final evaluation
   recomputed offline.
 - [`evidence/checks.json`](evidence/checks.json), [`journal-prefixes.json`](evidence/journal-prefixes.json),
   [`executions.json`](evidence/executions.json) (provider-side execution log).
-- [`regression.json`](regression.json) — gating: unit suite, this acceptance, the
-  E1.0 acceptance and Increment 12 on the E2.0 code, all PASS.
+- [`regression.json`](regression.json) — per-suite classification (below), results
+  and intended canonical execution.
+
+## Verification classification
+
+| Suite | Class | Why | Intended execution |
+| --- | --- | --- | --- |
+| `python-unit` (351 tests) | HERMETIC | in-process; fixture provider in temp SQLite | canonical HERMETIC suite; local and CI-eligible |
+| `e2-0-restate-acceptance`, `e1-0-restate-acceptance`, `increment-12-parallel` | HERMETIC | each starts and owns an isolated restate-server and runtime from checkout tooling on its own loopback ports and fresh data dir; no shared host state, secrets or network | canonical HERMETIC durability suite; CI-eligible with a temp `--evidence` |
+| Increment 1/2/5 harnesses | HERMETIC deps, HISTORICAL non-gating | frozen milestone evidence | excluded from gating discovery |
+| `verify-kernel-model/-memory/-worker/-youtrack` | HOST | local inference, MIRIX, Goose, YouTrack | local Restate verification scheduler |
+| E1.A–E, E2.A–D, E0 workstation matrices | FLEET | real IntelliJ workstation / peers | operator-scheduled |
+| client release | CI_ONLY | GitHub release infrastructure | unchanged |
+
+No GitHub Actions change: no canonical named-suite mechanism exists on `main` and the
+Local Verification Scheduler has not landed, so a workflow now would be a second
+command list. The classification above is what that integration should attach.
 
 ## Limitations
 
@@ -69,8 +97,6 @@ Contract: [target effects](../../../docs/contracts/target-effects.md).
   STOP on.
 - No dirty-buffer handling, access-time confinement, link races, environment or
   descendant control, or build-input hashing beyond the pinned profile.
-- Task-level cancellation (`cancel`) of an in-flight effect is not reconciled by the
-  kernel; use `cancel_effect`.
-- Unreconciled effects block completion only through contract criteria
-  (`effects_reconciled`, effect verifiers), not a global legality rule.
+- An effect left STILL_UNKNOWN by a CANCELLED or FAILED Task is reported, not
+  revisited later by the kernel.
 - Neither `cancel_effect` nor effect approvals are exposed by a Personal Agent/ACP binding.
