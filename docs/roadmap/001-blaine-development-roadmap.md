@@ -674,6 +674,28 @@ WorkerSessions, role-scoped ContextPackets, explicit authority and typed outcome
 Parent/child completion remains independent. Unconstrained multi-agent debate is
 not the default, and parallelism should answer measured workload needs.
 
+### Shared local resource arbitration (FUTURE)
+
+The merged **Local Verification Scheduler v0** (`docs/verification.md`) is the
+first production consumer of a broader resource-claim pattern: a run declares a
+set of resources as data, a trusted durable arbiter admits the whole set
+atomically, and Workers never coordinate shared resources ad hoc. v0 is
+verification-specific (strict FIFO, one active HOST run, PASS/FAIL/BLOCKED) and
+is **not** a generic `ResourceScheduler`.
+
+A future trusted arbiter may extend to shared workstation resources —
+`workspace:<id>`, `gpu:<device>`, `service:<name>`, `port:<n>`,
+`verification-host` — with `shared read` / `exclusive write` / capacity modes.
+**These are FUTURE and unimplemented.** Future consumers must prove their
+requirements first; in particular, PA-3 real coding delegation should provide
+workspace-contention evidence before the workspace-claim mode is frozen. The
+governing invariant: *resource coordination is trusted infrastructure
+surrounding Tasks, not Worker-owned authority* — a Worker may request but never
+self-grant or bypass arbitration. Coding Workers will consume the merged
+scheduler for host-bound canonical qualification rather than inventing a second
+coordinator. See [verification.md — Future: shared local resource
+arbitration](../verification.md).
+
 ## Track III — Hierarchical Context, Memory & Verified Learning
 
 **2026-09-23: Track III research COMPLETE; architecture consolidation PASS.**

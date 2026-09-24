@@ -385,6 +385,112 @@ HOST = local-only (v0).
 
 ---
 
+## Future: shared local resource arbitration
+
+The Verification Scheduler v0 is the **first production consumer** of a broader
+resource-claim pattern, but it remains verification-specific by design. The
+generic direction is recorded here as **FUTURE**; nothing in this increment
+generalizes the implementation.
+
+> **Generalize the contract, not the implementation.**
+
+The pattern already present in v0 — a *named run declares a set of resources as
+data*, a *trusted durable arbiter admits the whole set atomically or not at
+all*, and *workers never coordinate shared resources ad hoc* — is the contract
+future consumers would share. v0 keeps that contract but does not yet expose it
+as a generic `ResourceScheduler`.
+
+### What is generic enough today (contract only)
+
+- A run declares **resource claims as data** (`Suite.resources`), not
+  hard-coded scheduler logic.
+- Admission is **atomic**: the whole declared set is granted together, or the
+  run stays queued/blocked. No partial acquisition.
+- **Admission/release ownership is centralized** in the durable scheduler; a run
+  never grants or releases resources itself.
+- **Terminal failure/cancellation releases the slot**, so one bad run cannot
+  permanently retain a resource.
+- **Worktree identity is observed from Git**, not stored as coordination state.
+- **Restate is the durable coordination owner**; there is no second scheduler.
+
+These properties mean v0 does not *prevent* future generalization. They do not
+*provide* it.
+
+### What remains deliberately verification-specific
+
+- The strict FIFO, at-most-one-active-HOST-run policy is verification's choice,
+  not a generic scheduling policy.
+- The `restate` prerequisite probe and the E1.0 suite are verification concerns.
+- PASS / FAIL / BLOCKED semantics are qualification semantics, not generic
+  resource-outcome semantics.
+
+### What is explicitly FUTURE (not implemented)
+
+A future trusted durable arbiter may admit claims with identities such as:
+
+```
+workspace:<canonical-id>
+gpu:<device>
+service:<name>
+port:<number>
+verification-host
+```
+
+and claim modes such as:
+
+```
+shared read
+exclusive write
+capacity / count based
+```
+
+These are **not implemented**. Future consumers must prove their requirements
+before the scheduler is generalized. There is no generic workspace lease
+manager, no read/write workspace modes, no GPU capacity allocation, and no
+priorities/aging/generalized capacities in v0.
+
+> **Resource coordination is trusted infrastructure surrounding Tasks. It is not
+> Worker-owned authority.**
+
+A Worker may *request* resources. A Worker must not *grant itself* resources or
+bypass arbitration.
+
+### Workspace direction (FUTURE, not implemented)
+
+For coding agents, a workspace/repository is likely to become a **first-class
+shared resource**. A future Task is expected to have an *externally granted*
+workspace scope:
+
+```
+Task authority     permits repository/workspace
+Task / Worker      requests workspace claim
+resource arbiter   admits claim
+Worker             receives usable checkout/worktree
+```
+
+Possible future behaviors (not decided here):
+
+- read-only Task → shared workspace/read claim;
+- writing Task → exclusive workspace/write claim;
+- writing Tasks → isolated Git worktrees.
+
+**This policy is intentionally not frozen in this increment.** PA-3 real coding
+delegation should produce evidence (real workspace contention) before the
+workspace-claim mode is decided.
+
+### Relationship to future PA-3 (coding delegation)
+
+One integration expectation, recorded now and **not implemented**:
+
+> Coding Workers may perform bounded local development work, but host-bound
+> canonical qualification should use the **Local Verification Scheduler** rather
+> than inventing another host-verification coordination mechanism.
+
+PA-3 will consume the merged scheduler later; it will not build a second host
+verification coordinator.
+
+---
+
 ## Out of scope (v0)
 
 - Production Blaine Cognitive Loop semantics (unchanged).
