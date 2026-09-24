@@ -38,6 +38,11 @@ class Registry:
         return accept
 
 
+class NoAmendment:
+    async def peek(self):
+        return None
+
+
 class Context:
     def __init__(self): self.saved, self.steps = {}, []
     def key(self): return 'control'
@@ -46,6 +51,10 @@ class Context:
     async def run_typed(self, name, fn, *options, **kw):
         self.steps.append(name)
         return fn(**kw)
+
+    def promise(self, name, type_hint=None):
+        # No contract amendment is submitted in these fixtures.
+        return NoAmendment()
 
 
 def spec(capabilities=('artifact.write',), content=b'GOOD'):

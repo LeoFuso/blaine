@@ -1,0 +1,1 @@
+{"kind":"CapabilityResult","payload":{"artifacts":{},"error":null,"operation_id":"irrecoverable/1","outcome":"success","output":{"delivery":"authorized ACP client read","request_ref":"artifact://irrecoverable/sha256:e4fe28fded71b64afdfe876da73c627f224fc96c4dd13b01f132eaa1c5668be3"}},"version":1}

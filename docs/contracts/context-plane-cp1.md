@@ -48,6 +48,9 @@ the bounded workflow stops safely. Automatic recovery/rebinding is outside CP.1.
 
 `context.request` is an existing `INVOKE_CAPABILITY` operation under PolicyGate's current
 Task capability intersection. It is not a sixth action and does not redefine `add-context`.
+The kernel operation table classifies it as `context.read` (TARGET_READ); payloads
+cannot choose that class or authority. E1.0 records its admission and observation
+in the existing capability journal under the current contract revision.
 Its input is a closed v1 `ContextRequest` envelope:
 
 ```json
@@ -84,6 +87,12 @@ Optional Memory unavailability is explicit and does not suppress valid current s
 Resolver emits internal candidates; Compiler revalidates permission/freshness before
 selection. Mandatory objective, exact completion criteria, accepted constraints and
 required exact source/evidence precede optional Memory. No LLM summary or ranking occurs.
+Completion requirements come from the runtime-held `contract_ref` and
+`contract_revision`, never the original `TaskSpec.completion`. The first context
+entry projects every current criterion (including exact verifier, provenance,
+waiver and supersession fields), revision and authoritative contract reference.
+The Completion Contract runtime remains the sole owner of amendments and legality.
+If the complete requirements cannot fit, compilation fails as insufficient.
 Current source and artifact bytes have narrowly stated provenance; historical Memory is
 qualified and explicitly not completion evidence or authority.
 
@@ -96,13 +105,16 @@ whole-envelope output bytes, limit, partial status and `truncated:false`.
 
 The owning workflow journals a **private admission**, including Task, compilation
 operation, exact packet digest/ref, accepted spec, current binding fingerprint, selected
-source versions and retained snapshot ref. It does not put this admission in the public
+source versions, current contract reference/revision and retained snapshot ref. It does not put this admission in the public
 artifact map or accept one from a caller. The initial compile uses the existing Task
 identity plus `context-initial` step; the delta uses the admitted decision/operation ID.
 `worker.run` receives the independently held admission via a trusted Python argument,
 checks the current dispatch operation, exact packet digest, current binding and all
 selected source bytes immediately before delivery. A same-shaped model-authored artifact,
 caller receipt or successful PolicyGate decision alone cannot satisfy these checks.
+An E1.0 amendment invalidates delivery of an older compiled revision. The one fresh
+delta reads the newly applied runtime contract after the accepted amendment/peek
+mechanism; it does not amend or keep a mutable copy of that contract itself.
 
 The first bounded worker observation permits exactly one successful context request.
 The request re-resolves current authority and sources, writes a bounded v1 ContextDelta
@@ -122,7 +134,7 @@ DENIED, UNAVAILABLE, INVALID_CONTEXT, STALE, EMPTY or INSUFFICIENT_CONTEXT. No p
 source content accompanies a failed required lookup. Optional unavailability may instead
 yield partial SUCCESS. Empty lookup does not establish global absence. Raw artifact reads
 are refused on this opt-in context path; fresh context/evidence goes through the Resolver.
-The independent exact-artifact CompletionEvaluation is unchanged.
+The independent E1.0 CompletionEvaluation v2 and legality decision own completion.
 
 ## Retained boundaries
 

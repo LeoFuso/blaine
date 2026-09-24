@@ -8,8 +8,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PATTERNS = ['test_kernel*.py', 'test_personal*.py', 'test_acp.py',
-            'test_host_connection.py', 'test_direct_readiness.py']
+PATTERNS = ['test_*.py']
 
 
 def main():

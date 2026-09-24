@@ -100,6 +100,10 @@ bind-address = "127.0.0.1:{ingress}"
         workers, cognition, capabilities = rows('workers'), rows('cognition'), rows('capabilities')
         store = ArtifactStore(out / 'runtime' / 'artifacts')
         verification = store.read_json('control', result['payload']['completion_ref'])
+        contract_ref = verification['payload']['contract_ref']
+        contract = store.read_json('control', contract_ref)
+        (out / 'contract.json').write_bytes(encode(contract))
+        projections = [json.loads(w['packet']['payload']['context'][0]['content']) for w in workers]
         delta_ref = capabilities[1]['payload']['output']['delta_ref']
         delta = store.read_json('control', delta_ref)
         (out / 'delta.json').write_bytes(encode(delta))
@@ -113,6 +117,10 @@ bind-address = "127.0.0.1:{ingress}"
             'fresh_active_source': 'GOOD' in encode(workers[1]['packet']).decode() and 'DRAFT' not in encode(workers[1]['packet']).decode(),
             'initial_observation': store.read('control', result['payload']['artifacts']['draft']) == b'DRAFT',
             'independent_exact_evidence': verification['payload']['outcome'] == 'satisfied' and store.read('control', result['payload']['artifacts']['answer']) == b'GOOD',
+            'current_contract_projection': all(p['contract_ref'] == contract_ref and p['completion'] == {
+                'revision': contract['payload']['revision'], 'criteria': contract['payload']['criteria']}
+                for p in projections),
+            'completion_legality': verification['version'] == 2 and verification['payload']['legality']['legal'],
             'worker_budget': all(w['packet_bytes'] <= 4096 for w in workers),
             'cognition_budget': all(c['packet_bytes'] <= 16384 for c in cognition),
             'delta_budget': len(encode(delta)) <= 4096,
@@ -126,6 +134,7 @@ bind-address = "127.0.0.1:{ingress}"
             'worker_bytes': [w['packet_bytes'] for w in workers], 'delta_bytes': len(encode(delta)),
             'cognition_bytes': [c['packet_bytes'] for c in cognition],
             'capability_bytes': [len(encode(c)) for c in capabilities],
+            'contract_revisions': [p['completion']['revision'] for p in projections],
             'cognition': 'recorded decisions; not a live cognition/utility claim',
             'memory': 'qualified in-process fixture; live MIRIX remains disabled',
             'recovery': 'native completion only; kill/resume and concurrent revocation remain CP.8'}

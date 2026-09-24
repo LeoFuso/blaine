@@ -12,6 +12,7 @@ import os
 from pathlib import Path, PurePosixPath
 import stat
 
+from runtime.kernel import completion, journal
 from runtime.kernel.contracts import MAX_CONTENT, encode, fields, message, text, unpack
 from runtime.kernel.worker import validate_packet
 
@@ -338,7 +339,7 @@ class ContextCompiler:
     def __init__(self, resolver):
         self.resolver = resolver
 
-    def compile(self, bound, state, spec, need, resolved, operation, *, mode):
+    def compile(self, bound, state, spec, need, resolved, operation, *, mode, contract):
         limit = min(WORKER_BYTES, need.get('max_bytes', WORKER_BYTES))
         candidates = resolved['candidates']
         # Validate before selection; invalid optional material never suppresses source.
@@ -357,7 +358,9 @@ class ContextCompiler:
                     'memory': resolved['memory_status'], 'budget': stats,
                     'constraints': {'capabilities': spec['capabilities'], 'autonomy': spec['autonomy']},
                     'authority': 'Projection only; requirements and exact evidence govern.'}
-        requirements = {'completion': spec['completion'], 'projection': metadata}
+        requirements = {'contract_ref': state['contract_ref'],
+                        'completion': {'revision': contract['revision'], 'criteria': contract['criteria']},
+                        'projection': metadata}
 
         def render(selected):
             stats.update(selected=len(selected), selected_bytes=sum(len(encode(c)) for c in selected),
@@ -408,8 +411,23 @@ class ContextPlane:
             raise ContextError('STALE')
         return bound
 
+    def current_contract(self, state, spec):
+        """Read the runtime-owned revision; never reconstruct truth from TaskSpec."""
+        try:
+            contract = completion.validate_contract(
+                self.store.read_json(state['task_id'], state['contract_ref']),
+                state['task_id'], journal.mutating(spec['capabilities']))
+            if contract['revision'] != state['contract_revision']:
+                raise ContextError('STALE')
+            return contract
+        except (KeyError, OSError, ValueError) as error:
+            if isinstance(error, ContextError):
+                raise
+            raise ContextError('INVALID_CONTEXT') from None
+
     def compile(self, state, spec, operation, *, request=None, previous=None):
         bound = self.authority.resolve(state, spec)
+        contract = self.current_contract(state, spec)
         need = validate_need(request or bound.snapshot['initial_need'])
         mode = 'delta' if previous is not None else 'initial'
         if previous is not None:
@@ -420,7 +438,7 @@ class ContextPlane:
         resolved = self.resolver.resolve(bound, state, need, include_memory=True)
         if resolved['status'] == 'EMPTY':
             raise ContextError('EMPTY')
-        packet, selected, budget = self.compiler.compile(bound, state, spec, need, resolved, operation, mode=mode)
+        packet, selected, budget = self.compiler.compile(bound, state, spec, need, resolved, operation, mode=mode, contract=contract)
         self.guard_binding(state, spec, bound.fingerprint)
         packet_ref = self.store.put_json(state['task_id'], packet)
         # This is private journal data, not a public artifact/receipt. The workflow
@@ -428,7 +446,8 @@ class ContextPlane:
         admission = {'version': 1, 'task_id': state['task_id'], 'operation': operation,
                      'packet_ref': packet_ref, 'packet_sha256': digest(encode(packet)),
                      'binding': bound.fingerprint, 'spec_ref': state['spec_ref'], 'mode': mode,
-                     'sources': selected, 'budget': budget}
+                     'sources': selected, 'budget': budget,
+                     'contract_ref': state['contract_ref'], 'contract_revision': contract['revision']}
         output = {'status': 'SUCCESS', 'packet_ref': packet_ref, 'budget': budget,
                   'memory': resolved['memory_status']}
         if previous is not None:
@@ -465,6 +484,10 @@ class ContextPlane:
                 or operation != f"{state['task_id']}/{state['iteration']}"
                 or admission['operation'] == operation):
             raise ContextError('DENIED')
+        if (admission.get('contract_ref') != state.get('contract_ref')
+                or admission.get('contract_revision') != state.get('contract_revision')):
+            raise ContextError('STALE')
+        self.current_contract(state, spec)
         bound = self.guard_binding(state, spec, admission['binding'])
         try:
             packet = self.store.read(state['task_id'], packet_ref)

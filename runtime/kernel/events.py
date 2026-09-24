@@ -56,6 +56,7 @@ OUTCOMES = {
     'capability.finished': {'success', 'failure'},
     'artifact.produced': {'recorded'},
     'verifier.evaluated': {'satisfied', 'unsatisfied', 'unknown'},
+    'contract.amended': {'applied', 'rejected'},
     'completion.finished': {'COMPLETED', 'FAILED', 'CANCELLED'},
     'operation.prepared': {'recorded'},
     'personal_agent.control': {'accepted', 'rejected', 'submitted', 'uncertain'},

@@ -1,0 +1,17 @@
+{"capability":"workspace.read","operation_id":"investigation/1","pid":3104374,"task_id":"investigation"}
+{"capability":"artifact.write","operation_id":"investigation/2","pid":3105108,"task_id":"investigation"}
+{"capability":"artifact.write","operation_id":"investigation/3","pid":3105108,"task_id":"investigation"}
+{"capability":"workspace.read","operation_id":"denial/1","pid":3105108,"task_id":"denial"}
+{"capability":"artifact.write","operation_id":"denial/5","pid":3105127,"task_id":"denial"}
+{"capability":"workspace.read","operation_id":"irrecoverable/1","pid":3105127,"task_id":"irrecoverable"}
+{"capability":"fixture.effect","operation_id":"irrecoverable/2","pid":3105127,"task_id":"irrecoverable"}
+{"capability":"human.request","operation_id":"child-f0237bcabf6dccfa35763b2d2dae47b84f15be84c3cabed5d9fa6575e2f5d593/1","pid":3105127,"task_id":"child-f0237bcabf6dccfa35763b2d2dae47b84f15be84c3cabed5d9fa6575e2f5d593"}
+{"capability":"artifact.write","operation_id":"child-parent/2","pid":3105130,"task_id":"child-parent"}
+{"capability":"fixture.effect","operation_id":"response-loss/1","pid":3105130,"task_id":"response-loss"}
+{"capability":"fixture.effect","operation_id":"response-loss/1","pid":3105132,"task_id":"response-loss"}
+{"capability":"artifact.write","operation_id":"response-loss/2","pid":3105132,"task_id":"response-loss"}
+{"capability":"artifact.write","operation_id":"human-resume/1","pid":3105132,"task_id":"human-resume"}
+{"capability":"human.request","operation_id":"human-resume/2","pid":3105132,"task_id":"human-resume"}
+{"capability":"artifact.write","operation_id":"human-waiver/1","pid":3105341,"task_id":"human-waiver"}
+{"capability":"human.request","operation_id":"human-waiver/2","pid":3105341,"task_id":"human-waiver"}
+{"capability":"artifact.write","operation_id":"policy-exception/1","pid":3105826,"task_id":"policy-exception"}

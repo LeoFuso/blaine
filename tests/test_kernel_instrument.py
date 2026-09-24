@@ -35,6 +35,11 @@ class Registry:
         return accept
 
 
+class NoAmendment:
+    async def peek(self):
+        return None
+
+
 class Context:
     """Records journal step names and can replay them without re-execution."""
     def __init__(self, journal=None, replay=False):
@@ -51,6 +56,10 @@ class Context:
         value = fn(**kw)
         self.journal[name] = deepcopy(value)
         return value
+
+    def promise(self, name, type_hint=None):
+        # No contract amendment is submitted in these fixtures.
+        return NoAmendment()
 
 
 def spec(content=b'GOOD'):

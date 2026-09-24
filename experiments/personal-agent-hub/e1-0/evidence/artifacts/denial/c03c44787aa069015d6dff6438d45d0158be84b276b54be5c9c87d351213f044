@@ -1,0 +1,1 @@
+{"kind":"CognitiveDecision","payload":{"next_action":{"operations":[{"id":"c1","op":"waive"}],"type":"AMEND_CONTRACT"},"task_id":"denial","task_revision":2,"turn_id":"denial/3"},"version":1}

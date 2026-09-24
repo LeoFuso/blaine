@@ -1,0 +1,13 @@
+package example;
+
+public final class ExampleService {
+    private final Repository repository;
+
+    public Response handle(Request request) {
+        Customer customer = repository.find(request.customerId());
+        if (customer == null) {
+            throw new IllegalStateException("customer missing");
+        }
+        return Response.ok(customer.status());
+    }
+}

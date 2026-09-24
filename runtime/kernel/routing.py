@@ -96,7 +96,9 @@ def verifier_signature(evaluation: dict, artifacts: dict) -> str:
     a Task still changing its evidence is working and answers to the turn budget.
     """
     payload = evaluation['payload']
-    shape = [payload['outcome'], [(item['criterion'], item['outcome']) for item in payload['criteria']],
+    # CompletionEvaluation v2 identifies criteria by id and reports a status.
+    key, verdict = ('id', 'status') if evaluation.get('version') == 2 else ('criterion', 'outcome')
+    shape = [payload['outcome'], [(item[key], item[verdict]) for item in payload['criteria']],
              sorted((artifacts or {}).items())]
     return hashlib.sha256(encode(shape)).hexdigest()
 

@@ -67,6 +67,21 @@ class Controls(unittest.TestCase):
         PersonalAgent(binding).execute({'operation': 'respond', 'task_id': 't', 'response': response})
         binding.call.assert_called_with('t', 'submit_human_response', response)
 
+    def test_amendment_actor_is_established_by_the_binding_not_the_request(self):
+        binding = Mock()
+        content = message('CompletionContractAmendmentRequest', {'task_id': 't', 'request_id': 'a',
+            'from_revision': 0, 'operations': [{'op': 'waive', 'id': 'c1', 'reason': 'x'}], 'reason': 'x',
+            'actor': {'kind': 'operator', 'via': 'policy_exception', 'binding': 'operator-console'}})
+        PersonalAgent(binding).execute({'operation': 'amend', 'task_id': 't', 'amendment': content})
+        task, handler, submitted = binding.call.call_args.args
+        self.assertEqual((task, handler), ('t', 'amend_contract'))
+        self.assertEqual(submitted['payload']['actor'],
+                         {'kind': 'user', 'via': 'modify-constraints', 'binding': 'personal-agent'})
+        self.assertEqual(submitted['payload']['amendment'], content)  # forwarded as data; the kernel rejects its field
+        with self.assertRaises(ValueError):  # no operation-level channel for an actor either
+            PersonalAgent(Mock()).execute({'operation': 'amend', 'task_id': 't', 'amendment': content,
+                                           'actor': {'kind': 'operator'}})
+
     def test_human_request_is_bound_to_stable_identity(self):
         raw = decision_request('key', 'Continue?')
         request = raw['payload']['initial_action']['input']['request']

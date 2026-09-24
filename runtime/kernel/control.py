@@ -24,8 +24,11 @@ def add_control_handlers(workflow, store):
             'blocking_dependency': {k: v for k, v in wait.items() if k != 'promise'} if wait else None,
             'children': state['children'], 'artifacts': state['artifacts'],
             'result_ref': state['result_ref'], 'completion': None, 'result': None,
+            'contract_revision': state.get('contract_revision'), 'contract': None,
+            'journal_length': state.get('journal_length'),
             'pending_human_decision': None, 'pending_workspace_read': None}
-        for name, ref in [('completion', state['completion_ref']), ('result', state['result_ref'])]:
+        for name, ref in [('completion', state['completion_ref']), ('result', state['result_ref']),
+                          ('contract', state.get('contract_ref'))]:
             if ref:
                 view[name] = await read(ctx, ref)
         if wait and wait.get('request_ref'):

@@ -27,7 +27,7 @@ executed. Bindings/runtime may normalize omitted fields to conservative defaults
 | `capabilities` | Optional list of scoped capabilities the work requires, such as `read repository`, `edit task workspace`, `network`, or `read public web`. Requirements do not grant access or choose a worker/vendor. |
 | `autonomy` | Optional object with `allowed`, `ask_before`, and `forbidden` string lists. It records user-granted scope and constraints. Omission never expands authorization. |
 | `cloud` | Optional `{policy, max_usd?}`. Policy is `forbid`, `ask`, or `allow-within-budget`. Omitted means `ask`. |
-| `completion` | **Required.** Nonempty list of `{criterion, evidence}`: an observable acceptance condition and how it will be checked or evidenced. The runtime's durable, amendable form is the [Completion Contract](completion-contract.md) (v1 designed, not implemented); this list lowers into its revision 0. |
+| `completion` | **Required.** Nonempty list of `{criterion, evidence}`: an observable acceptance condition and how it will be checked or evidenced. The runtime's durable, amendable form is the [Completion Contract](completion-contract.md) (v1 implemented in the kernel, E1.0); this list lowers into its revision 0 as criteria `c1..cN`. |
 | `schedule` | Optional. Either `at` for one-shot scheduled work, or `every` with `starts_at` for recurring work. Recurring work must have `ends_at` or another bounded stop condition expressed in completion. |
 
 ## Cloud authorization

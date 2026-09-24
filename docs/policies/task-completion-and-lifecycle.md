@@ -15,7 +15,7 @@ not terminal outcomes invented by a prompt. Binding details belong in the
 
 The accepted TaskSpec completion contract defines what must be demonstrated
 ([Completion Contract v1](../contracts/completion-contract.md) specifies the durable,
-amendable form; design, not implemented).
+amendable form; implemented in the kernel by E1.0).
 Verification should cover affected behavior and risk, not a fixed number of passes.
 For code, relevant tests plus inspection of the resulting diff may be appropriate;
 for research, source-backed coverage and traceable conclusions; for watches, event
@@ -29,6 +29,25 @@ warrants it; it is not mandatory ceremony for every Task.
 Runtime applies verifier results to lifecycle. If evidence and recorded state disagree,
 report the discrepancy without changing state in prose. Unmet required criteria remain
 unmet; concerns cannot disguise partial work as completion.
+
+A failed required criterion is normally **remediable**: a failing test, a bad
+citation or a wrong digest blocks COMPLETED while the Task keeps working, and a later
+verdict may pass it (or the user may waive a user criterion). Only a **terminal
+invariant violation** ends the Task FAILED at once: a gating, unwaivable task-type
+invariant whose failure later evidence cannot undo, such as an admitted prohibited
+target effect in the append-only capability journal. See
+[terminal versus remediable](../contracts/completion-contract.md#terminal-versus-remediable).
+
+"No mutation" means no unauthorized **target effect** (workspace files, process or
+terminal execution, external API, database or remote state). A Task's **internal
+effects** (its own state, journal, artifacts and evidence, human requests,
+evaluations, local computation, semantic-review packets) are never mutation, so a
+read-only Task can always record its evidence and result
+([effect scopes](../contracts/completion-contract.md#no-mutation-internal-versus-target-effects)).
+
+Authority to change completion criteria comes from the authenticated binding that
+submits the change, never from fields inside the requested change
+([amendment actor](../contracts/completion-contract.md#amendment-actor-is-binding-owned)).
 
 ## Consequential work and safety
 

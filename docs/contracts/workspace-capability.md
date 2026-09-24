@@ -413,9 +413,10 @@ The guarantee has three layers, in order of strength:
    `execute_terminal_command` for it, even though the delegated surface offers them.
 2. **Journal:** every admission and denial is in the hash-chained capability journal
    before dispatch. The `capability_journal` verifier deterministically checks that
-   every `admitted` entry's class is `workspace.read`, that every `observed` entry
-   has a matching admission, and that every entry references the READ_ONLY
-   authority revision.
+   no `admitted` entry is a target effect (`no_target_effect`; internal effects such
+   as the Task's own artifacts do not count), that every `observed` entry has a
+   matching admission, and that every entry references the READ_ONLY authority
+   revision.
 3. **Correlation:** every bridged MCP call carries a Blaine `operation_id`; the Hub
    MCP client only issues calls for admitted requests, so no unjournaled call path
    exists on the Hub.
@@ -433,7 +434,7 @@ All three use task-type templates that contribute `no-mutation` and
 
 | Template criterion | Level | Verifier |
 | --- | --- | --- |
-| `no-mutation` — no mutating operation admitted or executed | REQUIRED, invariant | `capability_journal`: `operation_classes_subset ⊆ {workspace.read}` and `admitted_before_observed` |
+| `no-mutation` — no mutating operation admitted or executed | REQUIRED, invariant | `capability_journal`: `no_target_effect` and `admitted_before_observed` ([effect scopes](completion-contract.md#no-mutation-internal-versus-target-effects); the Task's own evidence and journal are internal effects) |
 | `workspace-scope` — every operation targeted the Task's workspace(s) | REQUIRED, invariant | `capability_journal`: `workspace_subset` |
 
 ### 1. Investigation — "Investigate why ExampleService returns 500 for this request."

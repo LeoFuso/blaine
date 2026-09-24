@@ -1,7 +1,7 @@
 # ADR 0026 — Completion Contract is a durable, revisioned Task primitive
 
 **Status:** Accepted (2026-09-24, operator review)
-**Validation:** Unvalidated
+**Validation:** Partially Validated — Integration minimal validation PASS in E1.0 (2026-09-24); end-to-end inside E1 acceptance pending
 **Date:** 2026-09-23
 
 ## Context
@@ -136,6 +136,55 @@ verdicts; (e) a synthetic journal with an unadmitted execution fails
 Retained contracts, amendments, evaluations, journals and TaskResults whose chain
 reproduces each verdict offline; zero COMPLETED Tasks with an unsatisfied REQUIRED
 criterion; identical refs across replay; negative cases rejected with reasons.
+
+### Result (E1.0, 2026-09-24): Integration PASS; end-to-end pending
+
+Kernel implementation on `impl/e1-completion-contract`; evidence in
+[`experiments/personal-agent-hub/e1-0`](../../experiments/personal-agent-hub/e1-0/README.md).
+
+- (a) v0 parity: every pre-existing test (249) passes unchanged in assertions; the
+  v1 `evaluate()` projection gives the same verdicts as before; revision 0 is the
+  lowered `TaskSpec.completion`.
+- (b) An investigation contract completes only after cited findings exist; a
+  fabricated quote fails `findings-cited`, and a later verified citation completes
+  the same Task.
+- (c) Scripted cognition proposing a contract change is denied by PolicyGate and the
+  revision is unchanged; a user waiver through `amend_contract` passes the criterion
+  as visibly `waived`; invariant waivers, user waivers of project policy and policy
+  exceptions naming the wrong digest are refused (403).
+- (d) On restate-server 1.7.9 with five runtime and two server SIGKILLs — at contract
+  retention, after evidence admission, between admission and dispatch, after
+  amendment application and during workspace/human waits — every Task recovered the
+  same contract revision, journal head, evaluation and result refs, with zero
+  duplicate cognition, capability executions or semantic reviews; the retained
+  journal prefix was byte-identical after recovery.
+- (e) A synthetic journal with an observed entry lacking admission fails
+  `capability_journal`; an admitted external effect fails the `no-mutation` invariant
+  and the Task ends FAILED.
+
+Every final verdict was recomputed offline from retained artifacts and matched; no
+COMPLETED Task has an unsatisfied REQUIRED criterion. Still open: the hypothesis is
+about E1 investigation Tasks, so end-to-end validation needs E1.C–E (real
+receipts from the delegated IDE, templates, a live semantic reviewer if any).
+Model-change stability is covered by construction (the contract is not cognition
+state) and by the unchanged escalation tests, not by a dedicated E1.0 case.
+
+### Follow-up clarifications (operator review, 2026-09-24)
+
+Applied without changing the decision; evidence rerun on real Restate (9 Tasks,
+8 runtime and 2 server SIGKILLs, PASS):
+
+- "No mutation" is **no unauthorized TARGET_EFFECT**; the Task's INTERNAL_EFFECTs
+  (its state, journal, artifacts, evaluations, human requests, local computation)
+  never count ([effect scopes](../contracts/completion-contract.md#no-mutation-internal-versus-target-effects)).
+- Only a gating, unwaivable, monotonic invariant failure ends a Task at once; every
+  other failed REQUIRED criterion is remediable
+  ([terminal versus remediable](../contracts/completion-contract.md#terminal-versus-remediable)).
+- Amendment authority comes from the binding-established actor, never from request
+  content; payload forgery through the real Personal Agent binding is refused
+  ([binding-owned actor](../contracts/completion-contract.md#amendment-actor-is-binding-owned)).
+- Revision 0 preserves intake criteria verbatim; policy criteria stay pinned to
+  their source digest in every revision, and exceptions must name that pin.
 
 ### Not required for validation
 

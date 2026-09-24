@@ -8,7 +8,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
-from runtime.kernel import workflow
+from runtime.kernel import completion, journal, workflow
 from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.context_plane import (
     ContextCompiler, ContextError, ContextPlane, LocalContextAuthority, MemoryFacade,
@@ -41,6 +41,7 @@ class Fixture:
         self.spec_ref = self.store.put_json('control', message('TaskSpec', self.spec))
         self.state = {'task_id': 'control', 'spec_ref': self.spec_ref, 'artifacts': {},
             'revision': 0, 'iteration': 1, 'lifecycle': 'RUNNING', 'binding': 'local'}
+        self.accept_contract()
         self.records = {'current': 'answer preference: preserve exact output',
             'ancestor': 'answer declared by user; still not execution evidence',
             'public': 'answer public explicitly shared', 'sibling': 'SIBLING_SECRET',
@@ -67,6 +68,12 @@ class Fixture:
                                                principal='host-operator')
         self.memory = MemoryFacade(ReadOnlyCorpus(self.records))
         self.plane = ContextPlane(self.store, self.authority, self.memory)
+
+    def accept_contract(self):
+        contract = completion.accept_contract(self.spec, None, None, 'control',
+                                               journal.mutating(self.spec['capabilities']))
+        self.state.update(contract_ref=self.store.put_json('control', message('CompletionContract', contract)),
+                          contract_revision=contract['revision'])
 
     def initial(self):
         result = self.plane.compile(self.state, self.spec, 'control/context-initial')
@@ -123,7 +130,7 @@ class PlaneTests(unittest.TestCase):
         with self.assertRaisesRegex(ContextError, '^Context Plane: UNAVAILABLE$'): f.bound()
 
     def test_closed_request_rejects_authority_fields_and_versions(self):
-        for key in ('scopes', 'SecurityContext', 'domain', 'provenance', 'backend', 'namespace', 'compiler', 'receipt'):
+        for key in ('scopes', 'SecurityContext', 'domain', 'provenance', 'backend', 'namespace', 'compiler', 'receipt', 'operation_class', 'authority_ref'):
             raw = need()
             raw['payload'][key] = 'forged'
             with self.subTest(key=key), self.assertRaises(ContextError): validate_need(raw)
@@ -154,7 +161,9 @@ class PlaneTests(unittest.TestCase):
         validate_packet(packet, 'control')
         entries = packet['payload']['context']
         contract = json.loads(entries[0]['content'])
-        self.assertEqual(contract['completion'], f.spec['completion'])
+        self.assertEqual(contract['completion'], {'revision': 0,
+            'criteria': f.plane.current_contract(f.state, f.spec)['criteria']})
+        self.assertEqual(contract['contract_ref'], f.state['contract_ref'])
         self.assertEqual(contract['projection']['constraints']['autonomy'], f.spec['autonomy'])
         source = next(json.loads(e['content']) for e in entries if e['source'] == 'contract.py')
         self.assertEqual(source['content'], f.source.read_text())
@@ -285,13 +294,13 @@ class PlaneTests(unittest.TestCase):
         resolved = f.plane.resolver.resolve(bound, f.state, request, include_memory=True)
         f.memory.provider._records['current'] = 'corrupted PRIVATE_PROVIDER_ERROR'
         packet, selected, stats = f.plane.compiler.compile(bound, f.state, f.spec,
-            request, resolved, 'control/context-initial', mode='initial')
+            request, resolved, 'control/context-initial', mode='initial', contract=f.plane.current_contract(f.state, f.spec))
         self.assertIn('def answer()', encode(packet).decode())
         self.assertNotIn('PRIVATE_PROVIDER_ERROR', encode(packet).decode())
         self.assertTrue(stats['partial'])
         f.source.write_text('changed')
         with self.assertRaisesRegex(ContextError, 'STALE'):
-            f.plane.compiler.compile(bound, f.state, f.spec, request, resolved, 'control/context-initial', mode='initial')
+            f.plane.compiler.compile(bound, f.state, f.spec, request, resolved, 'control/context-initial', mode='initial', contract=f.plane.current_contract(f.state, f.spec))
 
     def test_exact_utf8_recipient_limits_and_no_criteria_trimming(self):
         f = self.f
@@ -301,6 +310,7 @@ class PlaneTests(unittest.TestCase):
             'evidence': {'artifact': 'answer' + str(i), 'sha256': digest(b'GOOD')}} for i in range(8)]
         f.state['spec_ref'] = f.store.put_json('control', message('TaskSpec', f.spec))
         f.snapshot['payload']['spec_ref'] = f.state['spec_ref']
+        f.accept_contract()
         with self.assertRaisesRegex(ContextError, 'INSUFFICIENT_CONTEXT'): f.initial()
 
     def test_changed_binding_during_compilation_refuses_admission(self):
@@ -324,6 +334,15 @@ class PlaneTests(unittest.TestCase):
         self.assertEqual(policy_gate(raw, f.state, f.spec, {'capabilities': ['worker.run']})['outcome'], 'deny')
         denied_spec = {**f.spec, 'autonomy': {'allowed': ['worker.run']}}
         self.assertEqual(policy_gate(raw, f.state, denied_spec)['outcome'], 'deny')
+        for field in ('operation_class', 'authority_ref'):
+            forged = deepcopy(raw)
+            forged['payload']['next_action']['input']['payload'][field] = 'task.compute'
+            self.assertEqual(policy_gate(forged, f.state, f.spec)['outcome'], 'deny')
+            forged = deepcopy(raw)
+            forged['payload']['next_action'][field] = 'task.compute'
+            self.assertEqual(policy_gate(forged, f.state, f.spec)['outcome'], 'deny')
+        self.assertEqual(journal.operation_class('context.request'), 'context.read')
+        self.assertFalse(journal.mutating(['context.request']))
 
     def test_provider_exceptions_are_safe_and_do_not_hide_source(self):
         f = self.f
@@ -351,6 +370,9 @@ class JournalContext:
         self.saved = {}
         self.journal = {} if journal is None else deepcopy(journal)
         self.physical = []
+    def promise(self, name, type_hint=None):
+        async def peek(): return None
+        return SimpleNamespace(peek=peek)
     def key(self): return 'control'
     def request(self): return SimpleNamespace(id='cp1-fixture-invocation')
     def set(self, key, value): self.saved[key] = deepcopy(value)
@@ -362,6 +384,75 @@ class JournalContext:
 
 
 class WorkflowTests(unittest.IsolatedAsyncioTestCase):
+    async def test_authoritative_amendment_invalidates_packet_and_delta_reads_current_contract(self):
+        from tests.completion_harness import Harness
+        from tests.completion_fixtures import amendment, decision
+        with tempfile.TemporaryDirectory() as directory:
+            f = Fixture(Path(directory))
+            packets, turns, amendments = [], [], []
+            def worker(packet, operation):
+                packets.append(deepcopy(packet))
+                return {'outcome': 'success', 'attempt_id': 'fixture',
+                        'content': 'DRAFT' if len(packets) == 1 else 'GOOD'}
+            def cognitive(packet):
+                turns.append(deepcopy(packet))
+                turn = packet['payload']
+                ref = next(c['source'] for c in turn['context'] if c['content'] == {'name': 'compiled-context'})
+                if turn['iteration'] == 2:
+                    return decision(packet, {'type': 'HANDOFF', 'specialist': 'specialist'})
+                action = ({'type': 'INVOKE_CAPABILITY', 'capability': 'context.request',
+                           'input': need(base_ref=ref)} if turn['iteration'] == 3 else
+                          {'type': 'INVOKE_CAPABILITY', 'capability': 'worker.run',
+                           'input': {'packet_ref': ref, 'artifact': 'answer' if turn['iteration'] == 1 else 'amended-answer'}})
+                return decision(packet, action)
+            async def checkpoint(ctx, stage, state):
+                if stage == 'outcome' and state['iteration'] == 2:
+                    amendments.append(await harness.call('control', 'amend_contract', amendment('control', [
+                        {'op': 'rebind', 'id': 'c1', 'verifier': {'kind': 'artifact_digest', 'version': 1,
+                         'artifact': 'amended-answer', 'sha256': digest(b'GOOD')}}])))
+                if stage == 'amended':
+                    initial = next(value for kind, name, value in ctx.runtime.journal
+                                   if kind == 'run' and name == 'context-plane/initial')
+                    admission = initial['admission']
+                    with self.assertRaisesRegex(ContextError, 'STALE'):
+                        f.plane.guard_worker(state, f.spec, admission, admission['packet_ref'],
+                                             f"control/{state['iteration']}")
+                    # The initial compiler API also projects current runtime state,
+                    # independently of whether this invocation requests a delta.
+                    fresh = f.plane.compile(state, f.spec, 'control/current-initial')
+                    self.assertEqual(fresh['admission']['contract_revision'], 1)
+            caps = Capabilities(f.store, f.root / 'effects.sqlite', worker=worker, context_plane=f.plane)
+            harness = Harness(f.store, cognitive, caps, checkpoint=checkpoint)
+            result = await harness.invoke('control', message('TaskSpec', f.spec))
+            self.assertEqual(result['payload']['outcome'], 'COMPLETED')
+            self.assertEqual(amendments[0]['payload']['outcome'], 'SUBMITTED')
+            self.assertEqual(len(packets), 2)
+            self.assertEqual([p['payload']['contract']['revision'] for p in turns], [0, 0, 1, 1])
+            projections = [json.loads(p['payload']['context'][0]['content']) for p in packets]
+            self.assertEqual([p['completion']['revision'] for p in projections], [0, 1])
+            self.assertEqual([p['completion']['criteria'][0]['verifier']['artifact'] for p in projections],
+                             ['answer', 'amended-answer'])
+            state = harness.state('control')
+            self.assertEqual(projections[1]['contract_ref'], state['contract_ref'])
+            self.assertNotEqual(projections[0]['contract_ref'], state['contract_ref'])
+            for packet in packets:
+                self.assertLessEqual(len(encode(packet)), 4096)
+            entries = journal.read(f.store, 'control', state['journal_head'], state['journal_length'])
+            admitted = [e for _, e in entries if e['phase'] == 'admitted']
+            self.assertEqual([(e['capability'], e['operation_class'], e['contract_revision']) for e in admitted],
+                             [('worker.run', 'worker.run', 0), ('context.request', 'context.read', 1),
+                              ('worker.run', 'worker.run', 1)])
+            self.assertEqual(len([e for _, e in entries if e['phase'] == 'observed']), 3)
+            evaluation = f.store.read_json('control', state['completion_ref'])
+            self.assertEqual(evaluation['version'], 2)
+            self.assertEqual(evaluation['payload']['contract_revision'], 1)
+            self.assertEqual(evaluation['payload']['outcome'], 'satisfied')
+            self.assertTrue(evaluation['payload']['legality']['legal'])
+            self.assertEqual(journal.effect_scope('context.read'), journal.TARGET_READ)
+            # E1.0's ordered journal replays amendment peeks and applications.
+            self.assertEqual(await harness.invoke('control'), result)
+            self.assertEqual(len(packets), 2)
+
     async def test_early_and_second_delta_and_duplicate_dispatch_are_denied(self):
         with tempfile.TemporaryDirectory() as directory:
             f = Fixture(Path(directory))
@@ -478,10 +569,11 @@ class WorkflowTests(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(len(worker_packets), 2)
             self.assertEqual(len(turns), 3)
             # Partial replay before physical delivery must consult CURRENT authority.
-            partial = {k: v for k, v in ctx.journal.items() if k not in (
-                'capability/3', 'effect-observation/3', 'progress/effect/3', 'progress-evidence/effect/3',
-                'observation/3', 'progress/outcome/3', 'progress-evidence/outcome/3',
-                'task-result', 'routing-record')}
+            partial = {}
+            for name, value in ctx.journal.items():
+                if name == 'capability/3':
+                    break
+                partial[name] = value
             denied_ctx = JournalContext(partial)
             # Stop after the denied effect to keep this assertion focused on delivery.
             async def stop(ctx, stage, state):
