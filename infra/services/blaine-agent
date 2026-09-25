@@ -1,4 +1,8 @@
 #!/bin/sh
 # Stable ACP stdio entrypoint; durable work remains in the user services.
+# The same Conversation store and deployment config as the Personal Agent bridge,
+# so IntelliJ and the desktop render one conversation projection.
 cd "$HOME/.local/share/blaine/runtime/app" || exit 1
+export BLAINE_D2_DATA="${BLAINE_D2_DATA:-$HOME/.local/share/blaine/runtime/data}"
+export BLAINE_DEPLOYMENT_CONFIG="${BLAINE_DEPLOYMENT_CONFIG:-$HOME/.config/blaine/services/runtime.json}"
 exec "$HOME/.local/share/blaine/runtime/env/bin/python" -m runtime.personal_acp "$@"
