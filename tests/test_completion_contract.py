@@ -391,9 +391,11 @@ class NoMutation(JournalFixtures, unittest.TestCase):
                          {'artifact.write', 'artifact.read', 'human.request', 'text.stats'})
         self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_READ},
                          {'workspace.read', 'youtrack.read', 'context.request'})
-        # E2.0 adds the provider-neutral workspace effects to the reviewed table.
+        # E2.0 workspace effects and CP.2 persistent Memory writes mutate targets.
         self.assertEqual({n for n, s in scopes.items() if s == journal.TARGET_EFFECT},
-                         {'worker.run', 'fixture.effect', 'workspace.write', 'workspace.exec'})
+                         {'worker.run', 'fixture.effect', 'workspace.write', 'workspace.exec',
+                          'memory.recordObservation'})
+        self.assertTrue(journal.mutating(['memory.recordObservation']))
         for unreviewed in ('database.write', 'unclassified', 'workspace.write', 'workspace.exec'):
             self.assertEqual(journal.effect_scope(unreviewed), journal.TARGET_EFFECT)
 

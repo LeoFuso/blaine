@@ -32,6 +32,7 @@ OPERATION_CLASSES = {
     'youtrack.read': 'external.read',
     'workspace.read': 'workspace.read',
     'context.request': 'context.read',
+    'memory.recordObservation': 'memory.write',
     'worker.run': 'worker.run',
     'fixture.effect': 'external.effect',
     'workspace.write': 'workspace.write',
@@ -42,7 +43,7 @@ OPERATION_CLASSES = {
 # admitted -> observed shape.
 LIFECYCLE_CLASSES = frozenset({'workspace.write', 'workspace.exec'})
 TARGET_READ_CLASSES = frozenset({'workspace.read', 'external.read', 'context.read'})
-TARGET_EFFECT_CLASSES = frozenset({'external.effect', 'worker.run', 'workspace.write', 'workspace.exec'})
+TARGET_EFFECT_CLASSES = frozenset({'external.effect', 'worker.run', 'workspace.write', 'workspace.exec', 'memory.write'})
 MUTATING_CLASSES = TARGET_EFFECT_CLASSES
 UNCLASSIFIED = 'unclassified'
 PHASES = ('denied', 'admitted', 'dispatched', 'observed', 'reconciled')

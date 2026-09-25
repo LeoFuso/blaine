@@ -78,6 +78,11 @@ def policy_gate(raw: dict, state: TaskState, spec: TaskSpec, grant: dict | None 
                 validate_need(value)
                 if 'compiled-context' not in state['artifacts']:
                     raise ValueError('Context Plane is not active')
+            elif capability == 'memory.recordObservation':
+                from runtime.kernel.memory_writes import validate_write
+                validate_write(value)
+                if 'compiled-context' not in state['artifacts']:
+                    raise ValueError('Context Plane is not active')
             elif capability == 'text.stats':
                 fields(value, {'text'})
                 text(value['text'], 1024)
@@ -192,6 +197,20 @@ class Capabilities:
         artifacts = {}
         try:
             match request["capability"]:
+                case 'memory.recordObservation':
+                    from runtime.kernel.memory_writes import MemoryError, PersistentMemoryFacade
+                    if (self.context_plane is None or context_runtime is None or
+                            not isinstance(self.context_plane.resolver.memory, PersistentMemoryFacade)):
+                        raise ValueError('Governed Memory writes are not configured')
+                    state, spec, _ = context_runtime
+                    if state['task_id'] != task_id:
+                        raise MemoryError('DENIED')
+                    try:
+                        output = self.context_plane.resolver.memory.observe(state, spec, value)
+                    except MemoryError as error:
+                        return message('CapabilityResult', {'operation_id': operation,
+                            'outcome': 'uncertain' if error.status == 'UNKNOWN' else 'failure',
+                            'output': {}, 'artifacts': {}, 'error': error.status})
                 case 'text.stats':
                     from runtime.task import summarize_objective
                     output = summarize_objective(value['text'])

@@ -14,7 +14,8 @@ SPECIALISTS = {
     "specialist": "Produce the required exact artifact and request verification.",
 }
 CAPABILITIES = {"artifact.write", "artifact.read", "fixture.effect", "human.request", "youtrack.read", "worker.run",
-                "workspace.read", "text.stats", "context.request", "workspace.write", "workspace.exec"}
+                "workspace.read", "text.stats", "context.request", "workspace.write", "workspace.exec",
+                "memory.recordObservation"}
 
 
 class EvidenceRequirement(TypedDict):
@@ -189,7 +190,7 @@ class CapabilityRequest(TypedDict):
 
 class CapabilityResult(TypedDict):
     operation_id: str
-    outcome: Literal["success", "failure"]
+    outcome: Literal["success", "failure", "uncertain"]
     output: dict
     artifacts: dict[str, str]
     error: str | None
