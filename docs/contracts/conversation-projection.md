@@ -1,6 +1,6 @@
 # Conversation Projection v1 — the product presentation contract
 
-**Status: DESIGNED (PA-4, 2026-09-25).** Follows PA-3, whose live acceptance showed the
+**Status: IMPLEMENTED (PA-4, 2026-09-25; [evidence](../../experiments/personal-agent-hub/pa-4/README.md)).** Follows PA-3, whose live acceptance showed the
 desktop deriving Task lifecycle, pending human requests, completion progress and delivery
 state on its own from raw `inspect`/`events`, while `personal_acp` saw none of PA-3.
 

@@ -1,7 +1,7 @@
 # ADR 0028 — The conversation projection is the presentation contract
 
 **Status:** Accepted  
-**Validation:** Unvalidated
+**Validation:** Validated (Integration, 2026-09-25 — [PA-4 evidence](../../experiments/personal-agent-hub/pa-4/README.md))
 
 ## Context
 

@@ -1,0 +1,154 @@
+{
+ "artifacts": {
+  "draft": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:c889dc36981fdd5b2d7bbbd30391cab80772c39c2feb86bfd2a7355917bc941c",
+  "output-pa3-completion-contract-suite": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:998f198f31a07020e170529e7da9203339e961322ce75b3ddfc1ba0a2e70b431",
+  "output-pa3-targeted-tests": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:4d2df7a96ce4a667da3ccf295f2d16c728a65ed0e861a3baa919f7bb469b02b5",
+  "source-1": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3",
+  "source-2": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+  "worker-input": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:2b7bde8e645297a70102cbdd90c5661599df4b1fbdbfbfd9afa3612c935b03d8"
+ },
+ "completion": {
+  "criteria": [
+   {
+    "detail": "Exact artifact digest verified",
+    "evidence_refs": [
+     "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:2b7bde8e645297a70102cbdd90c5661599df4b1fbdbfbfd9afa3612c935b03d8"
+    ],
+    "gating": true,
+    "id": "c1",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "artifact_digest@1"
+   },
+   {
+    "detail": "17 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)",
+    "evidence_refs": [],
+    "gating": true,
+    "id": "no-unauthorized-effect",
+    "journal_range": [
+     0,
+     17
+    ],
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_journal@1"
+   },
+   {
+    "detail": "1 path(s) changed as required: ['tests/test_human_response_bounds.py']",
+    "evidence_refs": [
+     "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:91214c0fdaa7ff4fa01f2f923439aff604278bdf37915e1f5a7d969147384f39"
+    ],
+    "gating": true,
+    "id": "change-made",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "change_set@1"
+   },
+   {
+    "detail": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/6 completed; 3 predicate(s) held",
+    "evidence_refs": [
+     "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:99f9090fdae6dde94fb7d13635cf4e830c1535f4508537e001948a924e55a2cb"
+    ],
+    "gating": true,
+    "id": "tests-pass",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_result@1"
+   },
+   {
+    "detail": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/7 completed; 3 predicate(s) held",
+    "evidence_refs": [
+     "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:5ea53ac8c3c99687e1c3c6513f03f2aef7c7028e3b5b8c6ca8e03272d80fc943"
+    ],
+    "gating": true,
+    "id": "canonical-1",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_result@1"
+   }
+  ],
+  "legality": {
+   "blockers": [],
+   "legal": true
+  },
+  "outcome": "satisfied"
+ },
+ "effects": [
+  {
+   "after": {
+    "sha256": "c889dc36981fdd5b2d7bbbd30391cab80772c39c2feb86bfd2a7355917bc941c"
+   },
+   "args": null,
+   "before": {
+    "sha256": "52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3"
+   },
+   "operation_class": "workspace.write",
+   "operation_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/5",
+   "path": "tests/test_human_response_bounds.py",
+   "profile": null,
+   "status": "applied",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_human_response_bounds.py"
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 0,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/6",
+   "output_bytes": 80,
+   "output_ref": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:4d2df7a96ce4a667da3ccf295f2d16c728a65ed0e861a3baa919f7bb469b02b5",
+   "path": null,
+   "profile": "pa3-targeted-tests",
+   "result": {},
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "verification.cli",
+    "run",
+    "completion-contract",
+    "--worktree",
+    "."
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 0,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/7",
+   "output_bytes": 1551,
+   "output_ref": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:998f198f31a07020e170529e7da9203339e961322ce75b3ddfc1ba0a2e70b431",
+   "path": null,
+   "profile": "pa3-completion-contract-suite",
+   "result": {
+    "verification": "PASS"
+   },
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  }
+ ],
+ "lifecycle": "COMPLETED",
+ "result": {
+  "artifacts": {
+   "draft": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:c889dc36981fdd5b2d7bbbd30391cab80772c39c2feb86bfd2a7355917bc941c",
+   "output-pa3-completion-contract-suite": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:998f198f31a07020e170529e7da9203339e961322ce75b3ddfc1ba0a2e70b431",
+   "output-pa3-targeted-tests": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:4d2df7a96ce4a667da3ccf295f2d16c728a65ed0e861a3baa919f7bb469b02b5",
+   "source-1": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3",
+   "source-2": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+   "worker-input": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:2b7bde8e645297a70102cbdd90c5661599df4b1fbdbfbfd9afa3612c935b03d8"
+  },
+  "completion_ref": "artifact://task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/sha256:6d0d3a32818fc92eb5ede7ff2e72f0221767d4ce413f0c3508f93f4fef220fc3",
+  "concerns": [],
+  "outcome": "COMPLETED",
+  "task_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d"
+ },
+ "revision": 7,
+ "task_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d"
+}

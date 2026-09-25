@@ -1,0 +1,1301 @@
+{
+ "conversation_id": "6a0a06fe-d195-4816-9b94-224613cc37fb",
+ "cursor": 73,
+ "entries": [
+  {
+   "entry_id": "P105x6ALXKaZA5Op",
+   "kind": "message",
+   "role": "human",
+   "created_at": "2026-09-24T20:53:14.496091+00:00",
+   "order": [
+    47,
+    0
+   ],
+   "seq": 1,
+   "text_sha256": "b4957baf34cc08c7c5a50fc1fa395c7047df404f29b44ca77569c9f829444b4d"
+  },
+  {
+   "entry_id": "rpl-1b51715b7feb2eec2e8a72a0",
+   "kind": "message",
+   "role": "agent",
+   "created_at": "2026-09-24T20:53:19.584478+00:00",
+   "order": [
+    48,
+    0
+   ],
+   "seq": 2,
+   "text_sha256": "52e3f5091e00e3afa840b98f5c3fb756c7be3396e1d6eccf2d87af6b2f804f01"
+  },
+  {
+   "entry_id": "brf-40435c1a47f9f89eb8a5",
+   "kind": "brief",
+   "status": "confirmed",
+   "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1",
+   "objective": "Create tests/test_human_response_bounds.py with four pytest cases for runtime.kernel.human.validate_response: (1) valid response returns payload with value APPROVE; (2) value MAYBE outside allowed_responses raises ValueError; (3) request_revision 1 (stale) raises ValueError; (4) wrong request_digest ('0'*64) raises ValueError. Use message() from runtime.kernel.contracts to build all contract messages; use request_digest from runtime.kernel.human for the valid digest. Call validate_response(response, request, 'task-1').",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "inspect": [
+    "runtime/kernel/human.py"
+   ],
+   "targeted_tests": [
+    "tests/test_human_response_bounds.py"
+   ],
+   "constraints": [
+    "All contract messages must be built with message(kind, payload) from runtime.kernel.contracts",
+    "Never pass bare payload dicts or encoded bytes to validate_response",
+    "Use pytest.raises for the three invalid cases",
+    "Only tests/test_human_response_bounds.py may be created or modified",
+    "Keep the file small and self-contained"
+   ],
+   "requested": {
+    "ask_before": [
+     "workspace.write"
+    ],
+    "capabilities": [
+     "artifact.write",
+     "artifact.read",
+     "worker.run",
+     "workspace.read",
+     "workspace.write",
+     "workspace.exec"
+    ],
+    "profiles": [
+     "pa3-targeted-tests",
+     "pa3-completion-contract-suite"
+    ],
+    "workspaces": [
+     "blaine-pa3-target"
+    ]
+   },
+   "order": [
+    48,
+    1
+   ],
+   "seq": 3
+  },
+  {
+   "entry_id": "task:task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1",
+   "kind": "task",
+   "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1",
+   "brief_id": "brf-40435c1a47f9f89eb8a5",
+   "delegation_message_id": "dlg-e335db2f3dc7298de2b2cea3",
+   "objective": "Create tests/test_human_response_bounds.py with four pytest cases for runtime.kernel.human.validate_response: (1) valid response returns payload with value APPROVE; (2) value MAYBE outside allowed_responses raises ValueError; (3) request_revision 1 (stale) raises ValueError; (4) wrong request_digest ('0'*64) raises ValueError. Use message() from runtime.kernel.contracts to build all contract messages; use request_digest from runtime.kernel.human for the valid digest. Call validate_response(response, request, 'task-1').",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "phase": "completed",
+   "lifecycle": "COMPLETED",
+   "steps": [
+    {
+     "key": "brief",
+     "label": "Execution Brief admitted",
+     "status": "done"
+    },
+    {
+     "key": "effect:4",
+     "label": "Wrote tests/test_human_response_bounds.py",
+     "status": "done"
+    },
+    {
+     "key": "effect:5",
+     "label": "pa3-targeted-tests failed",
+     "status": "failed",
+     "detail": "exit 2, 1 errors"
+    },
+    {
+     "key": "effect:7",
+     "label": "Write conflict on tests/test_human_response_bounds.py (file changed since planning)",
+     "status": "failed"
+    },
+    {
+     "key": "effect:9",
+     "label": "pa3-targeted-tests failed",
+     "status": "failed",
+     "detail": "exit 2, 1 errors"
+    },
+    {
+     "key": "effect:11",
+     "label": "Write conflict on tests/test_human_response_bounds.py (file changed since planning)",
+     "status": "failed"
+    },
+    {
+     "key": "effect:13",
+     "label": "Wrote tests/test_human_response_bounds.py",
+     "status": "done"
+    },
+    {
+     "key": "effect:14",
+     "label": "pa3-targeted-tests passed",
+     "status": "done"
+    },
+    {
+     "key": "effect:15",
+     "label": "pa3-completion-contract-suite passed",
+     "status": "done",
+     "detail": "PASS verification"
+    },
+    {
+     "key": "verifier",
+     "label": "CompletionVerifier",
+     "status": "done",
+     "detail": "5/5 criteria satisfied"
+    }
+   ],
+   "criteria": {
+    "satisfied": 5,
+    "total": 5,
+    "items": [
+     {
+      "id": "c1",
+      "status": "satisfied"
+     },
+     {
+      "id": "no-unauthorized-effect",
+      "status": "satisfied"
+     },
+     {
+      "id": "change-made",
+      "status": "satisfied"
+     },
+     {
+      "id": "tests-pass",
+      "status": "satisfied"
+     },
+     {
+      "id": "canonical-1",
+      "status": "satisfied"
+     }
+    ]
+   },
+   "delivery": "surfaced",
+   "revision": 15,
+   "order": [
+    49,
+    0
+   ],
+   "seq": 4
+  },
+  {
+   "entry_id": "brf-2a56afbb9736e1fbe5bd",
+   "kind": "brief",
+   "status": "confirmed",
+   "task_id": "task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177",
+   "objective": "Create tests/test_human_response_bounds.py with four pytest cases for runtime.kernel.human.validate_response: (1) valid response returns payload with value APPROVE; (2) value MAYBE outside allowed_responses raises ValueError; (3) request_revision 1 (stale) raises ValueError; (4) wrong request_digest ('0'*64) raises ValueError. Use message() from runtime.kernel.contracts to build all contract messages; use request_digest from runtime.kernel.human for the valid digest.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "inspect": [
+    "runtime/kernel/human.py"
+   ],
+   "targeted_tests": [
+    "tests/test_human_response_bounds.py"
+   ],
+   "constraints": [
+    "All contract messages must be built with message(kind, payload) from runtime.kernel.contracts",
+    "Never pass bare payload dicts or encoded bytes to validate_response",
+    "validate_response is called with (response, request, 'task-1')",
+    "Use pytest.raises for the three ValueError cases",
+    "Only the new test file may be created or modified"
+   ],
+   "requested": {
+    "ask_before": [
+     "workspace.write"
+    ],
+    "capabilities": [
+     "artifact.write",
+     "artifact.read",
+     "worker.run",
+     "workspace.read",
+     "workspace.write",
+     "workspace.exec"
+    ],
+    "profiles": [
+     "pa3-targeted-tests",
+     "pa3-completion-contract-suite"
+    ],
+    "workspaces": [
+     "blaine-pa3-target"
+    ]
+   },
+   "order": [
+    49,
+    1
+   ],
+   "seq": 5
+  },
+  {
+   "entry_id": "task:task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177",
+   "kind": "task",
+   "task_id": "task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177",
+   "brief_id": "brf-2a56afbb9736e1fbe5bd",
+   "delegation_message_id": "dlg-20e0eb284cb4a3d23faabd98",
+   "objective": "Create tests/test_human_response_bounds.py with four pytest cases for runtime.kernel.human.validate_response: (1) valid response returns payload with value APPROVE; (2) value MAYBE outside allowed_responses raises ValueError; (3) request_revision 1 (stale) raises ValueError; (4) wrong request_digest ('0'*64) raises ValueError. Use message() from runtime.kernel.contracts to build all contract messages; use request_digest from runtime.kernel.human for the valid digest.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "phase": "failed",
+   "lifecycle": "FAILED",
+   "steps": [
+    {
+     "key": "brief",
+     "label": "Execution Brief admitted",
+     "status": "done"
+    },
+    {
+     "key": "effect:4",
+     "label": "Write conflict on tests/test_human_response_bounds.py (file changed since planning)",
+     "status": "failed"
+    },
+    {
+     "key": "effect:6",
+     "label": "pa3-targeted-tests failed",
+     "status": "failed",
+     "detail": "exit 2, 1 errors"
+    },
+    {
+     "key": "effect:8",
+     "label": "Write conflict on tests/test_human_response_bounds.py (file changed since planning)",
+     "status": "failed"
+    },
+    {
+     "key": "effect:10",
+     "label": "Write not performed: tests/test_human_response_bounds.py",
+     "status": "failed",
+     "detail": "Human approval denied"
+    },
+    {
+     "key": "effect:13",
+     "label": "Write conflict on tests/test_human_response_bounds.py (file changed since planning)",
+     "status": "failed"
+    },
+    {
+     "key": "effect:15",
+     "label": "pa3-targeted-tests passed",
+     "status": "done"
+    },
+    {
+     "key": "effect:16",
+     "label": "pa3-completion-contract-suite passed",
+     "status": "done",
+     "detail": "PASS verification"
+    },
+    {
+     "key": "verifier",
+     "label": "CompletionVerifier",
+     "status": "failed",
+     "detail": "4/5 criteria satisfied"
+    }
+   ],
+   "criteria": {
+    "satisfied": 4,
+    "total": 5,
+    "items": [
+     {
+      "id": "c1",
+      "status": "satisfied"
+     },
+     {
+      "id": "no-unauthorized-effect",
+      "status": "satisfied"
+     },
+     {
+      "id": "change-made",
+      "status": "pending"
+     },
+     {
+      "id": "tests-pass",
+      "status": "satisfied"
+     },
+     {
+      "id": "canonical-1",
+      "status": "satisfied"
+     }
+    ]
+   },
+   "delivery": "surfaced",
+   "revision": 16,
+   "order": [
+    50,
+    0
+   ],
+   "seq": 6
+  },
+  {
+   "entry_id": "qjNJPYankH6fbNhI",
+   "kind": "message",
+   "role": "human",
+   "created_at": "2026-09-24T20:55:30.237235+00:00",
+   "order": [
+    51,
+    0
+   ],
+   "seq": 7,
+   "text_sha256": "345e7dfcab045dfcfb0f3caf2f05564ed768315b5fc25afab00a2b6e6d35186f"
+  },
+  {
+   "entry_id": "P8u9AE3ZQUSXiXla",
+   "kind": "message",
+   "role": "human",
+   "created_at": "2026-09-24T20:55:43.331955+00:00",
+   "order": [
+    52,
+    0
+   ],
+   "seq": 8,
+   "text_sha256": "1098b8fb171c2e5fe8f0cbe9674e0950b75e08e7782af0d995966bbd69d22f8a"
+  },
+  {
+   "entry_id": "brf-1dc68402bb4d24609700",
+   "kind": "brief",
+   "status": "confirmed",
+   "task_id": "task-b2a75cb07e4d6612664edfbe4e440e90a60f104d8b2840f8db3fc230a4da93e6",
+   "objective": "Create tests/test_human_response_bounds.py with four pytest cases for runtime.kernel.human.validate_response: (1) valid response returns payload with value APPROVE; (2) value MAYBE outside allowed_responses raises ValueError; (3) request_revision 1 (stale) raises ValueError; (4) wrong request_digest ('0'*64) raises ValueError. Use message() from runtime.kernel.contracts to build all contract messages; use request_digest from runtime.kernel.human for the valid response digest.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "inspect": [
+    "runtime/kernel/human.py"
+   ],
+   "targeted_tests": [
+    "tests/test_human_response_bounds.py"
+   ],
+   "constraints": [
+    "Only tests/test_human_response_bounds.py may be created or modified",
+    "All contract messages must be built with message(kind, payload) from runtime.kernel.contracts",
+    "Never pass bare payload dicts or encoded bytes to validate_response",
+    "Use pytest.raises for the three invalid cases",
+    "Keep the file small and self-contained"
+   ],
+   "requested": {
+    "ask_before": [
+     "workspace.write"
+    ],
+    "capabilities": [
+     "artifact.write",
+     "artifact.read",
+     "worker.run",
+     "workspace.read",
+     "workspace.write",
+     "workspace.exec"
+    ],
+    "profiles": [
+     "pa3-targeted-tests",
+     "pa3-completion-contract-suite"
+    ],
+    "workspaces": [
+     "blaine-pa3-target"
+    ]
+   },
+   "order": [
+    52,
+    1
+   ],
+   "seq": 9
+  },
+  {
+   "entry_id": "task:task-b2a75cb07e4d6612664edfbe4e440e90a60f104d8b2840f8db3fc230a4da93e6",
+   "kind": "task",
+   "task_id": "task-b2a75cb07e4d6612664edfbe4e440e90a60f104d8b2840f8db3fc230a4da93e6",
+   "brief_id": "brf-1dc68402bb4d24609700",
+   "delegation_message_id": "dlg-16afa37ee0f3b61a7c050e5b",
+   "objective": "Create tests/test_human_response_bounds.py with four pytest cases for runtime.kernel.human.validate_response: (1) valid response returns payload with value APPROVE; (2) value MAYBE outside allowed_responses raises ValueError; (3) request_revision 1 (stale) raises ValueError; (4) wrong request_digest ('0'*64) raises ValueError. Use message() from runtime.kernel.contracts to build all contract messages; use request_digest from runtime.kernel.human for the valid response digest.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "phase": "cancelled",
+   "lifecycle": "CANCELLED",
+   "steps": [
+    {
+     "key": "brief",
+     "label": "Execution Brief admitted",
+     "status": "done"
+    },
+    {
+     "key": "effect:4",
+     "label": "Write conflict on tests/test_human_response_bounds.py (file changed since planning)",
+     "status": "failed"
+    },
+    {
+     "key": "effect:6",
+     "label": "Write conflict on tests/test_human_response_bounds.py (file changed since planning)",
+     "status": "failed"
+    },
+    {
+     "key": "effect:8",
+     "label": "Write not performed: tests/test_human_response_bounds.py",
+     "status": "failed",
+     "detail": "Task cancelled before dispatch"
+    },
+    {
+     "key": "verifier",
+     "label": "CompletionVerifier",
+     "status": "failed",
+     "detail": "2/5 criteria satisfied"
+    }
+   ],
+   "criteria": {
+    "satisfied": 2,
+    "total": 5,
+    "items": [
+     {
+      "id": "c1",
+      "status": "satisfied"
+     },
+     {
+      "id": "no-unauthorized-effect",
+      "status": "satisfied"
+     },
+     {
+      "id": "change-made",
+      "status": "pending"
+     },
+     {
+      "id": "tests-pass",
+      "status": "pending"
+     },
+     {
+      "id": "canonical-1",
+      "status": "pending"
+     }
+    ]
+   },
+   "delivery": "surfaced",
+   "revision": 7,
+   "order": [
+    53,
+    0
+   ],
+   "seq": 10
+  },
+  {
+   "entry_id": "res-576dc813801381db1ed12819",
+   "kind": "result",
+   "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1",
+   "lifecycle": "COMPLETED",
+   "verifier": "satisfied",
+   "criteria": [
+    {
+     "id": "c1",
+     "status": "satisfied",
+     "detail": "Exact artifact digest verified"
+    },
+    {
+     "id": "no-unauthorized-effect",
+     "status": "satisfied",
+     "detail": "38 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)"
+    },
+    {
+     "id": "change-made",
+     "status": "satisfied",
+     "detail": "1 path(s) changed as required: ['tests/test_human_response_bounds.py']"
+    },
+    {
+     "id": "tests-pass",
+     "status": "satisfied",
+     "detail": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/14 completed; 3 predicate(s) held"
+    },
+    {
+     "id": "canonical-1",
+     "status": "satisfied",
+     "detail": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/15 completed; 3 predicate(s) held"
+    }
+   ],
+   "changed_files": [
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "conflict",
+     "before": {
+      "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+     },
+     "after": null
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "applied",
+     "before": {
+      "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+     },
+     "after": {
+      "sha256": "52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3"
+     }
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "applied",
+     "before": {
+      "absent": true
+     },
+     "after": {
+      "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+     }
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "conflict",
+     "before": {
+      "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+     },
+     "after": null
+    }
+   ],
+   "runs": [
+    {
+     "profile": "pa3-targeted-tests",
+     "args": [
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_human_response_bounds.py"
+     ],
+     "status": "completed",
+     "exit_code": 0,
+     "result": {}
+    },
+    {
+     "profile": "pa3-completion-contract-suite",
+     "args": [
+      "-m",
+      "verification.cli",
+      "run",
+      "completion-contract",
+      "--worktree",
+      "."
+     ],
+     "status": "completed",
+     "exit_code": 0,
+     "result": {
+      "verification": "PASS"
+     }
+    },
+    {
+     "profile": "pa3-targeted-tests",
+     "args": [
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_human_response_bounds.py"
+     ],
+     "status": "completed",
+     "exit_code": 2,
+     "result": {
+      "errors": 1
+     }
+    },
+    {
+     "profile": "pa3-targeted-tests",
+     "args": [
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_human_response_bounds.py"
+     ],
+     "status": "completed",
+     "exit_code": 2,
+     "result": {
+      "errors": 1
+     }
+    }
+   ],
+   "diff": {
+    "path": "tests/test_human_response_bounds.py",
+    "new_file": true,
+    "unified": "--- /dev/null\n+++ b/tests/test_human_response_bounds.py\n@@ -0,0 +1,63 @@\n+import pytest\n+\n+from runtime.kernel.contracts import message\n+from runtime.kernel.human import request_digest, validate_response\n+\n+\n+def _request():\n+    payload = {\n+        \"task_id\": \"task-1\",\n+        \"origin_task_id\": \"origin-1\",\n+        \"request_id\": \"r\" * 64,\n+        \"revision\": 0,\n+        \"question\": \"Approve?\",\n+        \"allowed_responses\": [\"APPROVE\", \"REJECT\"],\n+    }\n+    return message(\"HumanDecisionRequest\", payload)\n+\n+\n+def _response(value, request, digest, revision=None):\n+    req = request[\"payload\"] if isinstance(request, dict) else request\n+    if revision is None:\n+        revision = req[\"revision\"]\n+    payload = {\n+        \"task_id\": req[\"task_id\"],\n+        \"request_id\": req[\"request_id\"],\n+        \"request_revision\": revision,\n+        \"request_digest\": digest,\n+        \"response_id\": \"resp-1\",\n+        \"value\": value,\n+    }\n+    return message(\"HumanDecisionResponse\", payload)\n+\n+\n+def test_valid_response_returns_payload():\n+    request = _request()\n+    digest = request_digest(request)\n+    response = _response(\"APPROVE\", request, digest)\n+    result = validate_response(response, request, \"task-1\")\n+    assert result[\"value\"] == \"APPROVE\"\n+\n+\n+def test_maybe_outside_allowed_responses_raises():\n+    request = _request()\n+    digest = request_digest(request)\n+    response = _response(\"MAYBE\", request, digest)\n+    with pytest.raises(ValueError):\n+        validate_response(response, request, \"task-1\")\n+\n+\n+def test_stale_request_revision_raises():\n+    request = _request()\n+    digest = request_digest(request)\n+    response = _response(\"APPROVE\", request, digest, revision=1)\n+    with pytest.raises(ValueError):\n+        validate_response(response, request, \"task-1\")\n+\n+\n+def test_wrong_request_digest_raises():\n+    request = _request()\n+    bad_digest = \"0\" * 64\n+    response = _response(\"APPROVE\", request, bad_digest)\n+    with pytest.raises(ValueError):\n+        validate_response(response, request, \"task-1\")\n",
+    "truncated": false
+   },
+   "markdown": "**Blaine Task result** `task-71deb9e958a7313354d\u2026` \u2014 **COMPLETED**\nCompletionVerifier: **satisfied**\n- `c1` satisfied \u2014 Exact artifact digest verified\n- `no-unauthorized-effect` satisfied \u2014 38 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)\n- `change-made` satisfied \u2014 1 path(s) changed as required: ['tests/test_human_response_bounds.py']\n- `tests-pass` satisfied \u2014 task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/14 completed; 3 predicate(s) held\n- `canonical-1` satisfied \u2014 task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/15 completed; 3 predicate(s) held\nChanged: `tests/test_human_response_bounds.py` (conflict)\nChanged: `tests/test_human_response_bounds.py` (applied)\nChanged: `tests/test_human_response_bounds.py` (applied)\nChanged: `tests/test_human_response_bounds.py` (conflict)\nRan `pa3-targeted-tests` -m pytest -q -p no:cacheprovider tests/test_human_response_bounds.py: exit 0\nRan `pa3-completion-contract-suite` -m verification.cli run completion-contract --worktree .: exit 0 {\"verification\": \"PASS\"}\nRan `pa3-targeted-tests` -m pytest -q -p no:cacheprovider tests/test_human_response_bounds.py: exit 2 {\"errors\": 1}\nRan `pa3-targeted-tests` -m pytest -q -p no:cacheprovider tests/test_human_response_bounds.py: exit 2 {\"errors\": 1}",
+   "created_at": "2026-09-25T02:36:40.370174+00:00",
+   "order": [
+    54,
+    0
+   ],
+   "seq": 11
+  },
+  {
+   "entry_id": "fup-576dc813801381db1ed12819",
+   "kind": "followup",
+   "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1",
+   "created_at": "2026-09-25T02:36:41.333208+00:00",
+   "grounded": true,
+   "order": [
+    55,
+    0
+   ],
+   "seq": 12,
+   "text_sha256": "0aed8c6bb7e0358551c1368361d212f4cfd5c59a428960a926cd6aabbe600891"
+  },
+  {
+   "entry_id": "res-9b26d067655b16b0e96330c3",
+   "kind": "result",
+   "task_id": "task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177",
+   "lifecycle": "FAILED",
+   "verifier": "unsatisfied",
+   "criteria": [
+    {
+     "id": "c1",
+     "status": "satisfied",
+     "detail": "Exact artifact digest verified"
+    },
+    {
+     "id": "no-unauthorized-effect",
+     "status": "satisfied",
+     "detail": "36 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)"
+    },
+    {
+     "id": "change-made",
+     "status": "pending",
+     "detail": "Expected changes not yet made: ['tests/test_human_response_bounds.py']"
+    },
+    {
+     "id": "tests-pass",
+     "status": "satisfied",
+     "detail": "task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177/15 completed; 3 predicate(s) held"
+    },
+    {
+     "id": "canonical-1",
+     "status": "satisfied",
+     "detail": "task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177/16 completed; 3 predicate(s) held"
+    }
+   ],
+   "changed_files": [
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "not_dispatched",
+     "before": null,
+     "after": null
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "conflict",
+     "before": {
+      "sha256": "52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3"
+     },
+     "after": null
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "conflict",
+     "before": {
+      "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+     },
+     "after": null
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "conflict",
+     "before": {
+      "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+     },
+     "after": null
+    }
+   ],
+   "runs": [
+    {
+     "profile": "pa3-targeted-tests",
+     "args": [
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_human_response_bounds.py"
+     ],
+     "status": "completed",
+     "exit_code": 0,
+     "result": {}
+    },
+    {
+     "profile": "pa3-completion-contract-suite",
+     "args": [
+      "-m",
+      "verification.cli",
+      "run",
+      "completion-contract",
+      "--worktree",
+      "."
+     ],
+     "status": "completed",
+     "exit_code": 0,
+     "result": {
+      "verification": "PASS"
+     }
+    },
+    {
+     "profile": "pa3-targeted-tests",
+     "args": [
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_human_response_bounds.py"
+     ],
+     "status": "completed",
+     "exit_code": 2,
+     "result": {
+      "errors": 1
+     }
+    }
+   ],
+   "diff": null,
+   "markdown": "**Blaine Task result** `task-3e713e8d338e93f3306\u2026` \u2014 **FAILED**\nCompletionVerifier: **unsatisfied**\n- `c1` satisfied \u2014 Exact artifact digest verified\n- `no-unauthorized-effect` satisfied \u2014 36 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)\n- `change-made` pending \u2014 Expected changes not yet made: ['tests/test_human_response_bounds.py']\n- `tests-pass` satisfied \u2014 task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177/15 completed; 3 predicate(s) held\n- `canonical-1` satisfied \u2014 task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177/16 completed; 3 predicate(s) held\nChanged: `tests/test_human_response_bounds.py` (not_dispatched)\nChanged: `tests/test_human_response_bounds.py` (conflict)\nChanged: `tests/test_human_response_bounds.py` (conflict)\nChanged: `tests/test_human_response_bounds.py` (conflict)\nRan `pa3-targeted-tests` -m pytest -q -p no:cacheprovider tests/test_human_response_bounds.py: exit 0\nRan `pa3-completion-contract-suite` -m verification.cli run completion-contract --worktree .: exit 0 {\"verification\": \"PASS\"}\nRan `pa3-targeted-tests` -m pytest -q -p no:cacheprovider tests/test_human_response_bounds.py: exit 2 {\"errors\": 1}\nConcern: Turn limit exhausted without verified completion",
+   "created_at": "2026-09-25T02:36:47.501515+00:00",
+   "order": [
+    56,
+    0
+   ],
+   "seq": 13
+  },
+  {
+   "entry_id": "fup-9b26d067655b16b0e96330c3",
+   "kind": "followup",
+   "task_id": "task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177",
+   "created_at": "2026-09-25T02:36:48.696530+00:00",
+   "grounded": true,
+   "order": [
+    57,
+    0
+   ],
+   "seq": 14,
+   "text_sha256": "87e18c99dc055d072ed2269a2a2144ffd15dacec17e0bc40c5b7e5498646f4f3"
+  },
+  {
+   "entry_id": "res-407cdc06e8b8988b0fc72f76",
+   "kind": "result",
+   "task_id": "task-b2a75cb07e4d6612664edfbe4e440e90a60f104d8b2840f8db3fc230a4da93e6",
+   "lifecycle": "CANCELLED",
+   "verifier": "unsatisfied",
+   "criteria": [
+    {
+     "id": "c1",
+     "status": "satisfied",
+     "detail": "Exact artifact digest verified"
+    },
+    {
+     "id": "no-unauthorized-effect",
+     "status": "satisfied",
+     "detail": "18 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.read', 'workspace.write']; 0 denial(s)"
+    },
+    {
+     "id": "change-made",
+     "status": "pending",
+     "detail": "Expected changes not yet made: ['tests/test_human_response_bounds.py']"
+    },
+    {
+     "id": "tests-pass",
+     "status": "pending",
+     "detail": "No matching target effect has run"
+    },
+    {
+     "id": "canonical-1",
+     "status": "pending",
+     "detail": "No matching target effect has run"
+    }
+   ],
+   "changed_files": [
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "conflict",
+     "before": {
+      "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+     },
+     "after": null
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "conflict",
+     "before": {
+      "sha256": "52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3"
+     },
+     "after": null
+    },
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "not_dispatched",
+     "before": null,
+     "after": null
+    }
+   ],
+   "runs": [],
+   "diff": null,
+   "markdown": "**Blaine Task result** `task-b2a75cb07e4d6612664\u2026` \u2014 **CANCELLED**\nCompletionVerifier: **unsatisfied**\n- `c1` satisfied \u2014 Exact artifact digest verified\n- `no-unauthorized-effect` satisfied \u2014 18 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.read', 'workspace.write']; 0 denial(s)\n- `change-made` pending \u2014 Expected changes not yet made: ['tests/test_human_response_bounds.py']\n- `tests-pass` pending \u2014 No matching target effect has run\n- `canonical-1` pending \u2014 No matching target effect has run\nChanged: `tests/test_human_response_bounds.py` (conflict)\nChanged: `tests/test_human_response_bounds.py` (conflict)\nChanged: `tests/test_human_response_bounds.py` (not_dispatched)\nConcern: Execution stopped: cancelled\nConcern: Effect task-b2a75cb07e4d6612664edfbe4e440e90a60f104d8b2840f8db3fc230a4da93e6/8 after Task cancelled: not_dispatched (never dispatched)",
+   "created_at": "2026-09-25T02:38:04.962889+00:00",
+   "order": [
+    58,
+    0
+   ],
+   "seq": 15
+  },
+  {
+   "entry_id": "fup-407cdc06e8b8988b0fc72f76",
+   "kind": "followup",
+   "task_id": "task-b2a75cb07e4d6612664edfbe4e440e90a60f104d8b2840f8db3fc230a4da93e6",
+   "created_at": "2026-09-25T02:38:05.816956+00:00",
+   "grounded": true,
+   "order": [
+    59,
+    0
+   ],
+   "seq": 16,
+   "text_sha256": "8f3504812e7f7b68f0df2e53135b56d09a419e7cbdb12b0a64b93c6ca20bbb4c"
+  },
+  {
+   "entry_id": "acp06fd5388bf064814acc231b7",
+   "kind": "message",
+   "role": "human",
+   "created_at": "2026-09-25T03:12:53.777849+00:00",
+   "order": [
+    60,
+    0
+   ],
+   "seq": 17,
+   "text_sha256": "9d075008959577f5b1a55d759c4a395e184f6aae783efa9afe59417713237081"
+  },
+  {
+   "entry_id": "brf-6d8f829e81ec5a886985",
+   "kind": "brief",
+   "status": "confirmed",
+   "task_id": "task-72205b7b63cbcb19a56c252574e8a25c2b5ad8c261798039ac5b5e3831b48ae3",
+   "objective": "Extend tests/test_human_response_bounds.py by adding a fifth pytest case that asserts validate_response raises ValueError when the response belongs to a different task ID ('task-2' vs 'task-1'). Keep the four existing tests unchanged. Use message() from runtime.kernel.contracts and request_digest/validate_response from runtime.kernel.human.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "inspect": [
+    "runtime/kernel/human.py",
+    "runtime/kernel/contracts.py"
+   ],
+   "targeted_tests": [
+    "tests/test_human_response_bounds.py"
+   ],
+   "constraints": [
+    "Keep the four existing tests unchanged",
+    "Only tests/test_human_response_bounds.py may be modified",
+    "Use message() from runtime.kernel.contracts",
+    "Use request_digest and validate_response from runtime.kernel.human",
+    "New test must assert ValueError for mismatched task ID"
+   ],
+   "requested": {
+    "ask_before": [
+     "workspace.write"
+    ],
+    "capabilities": [
+     "artifact.write",
+     "artifact.read",
+     "worker.run",
+     "workspace.read",
+     "workspace.write",
+     "workspace.exec"
+    ],
+    "profiles": [
+     "pa3-targeted-tests",
+     "pa3-completion-contract-suite"
+    ],
+    "workspaces": [
+     "blaine-pa3-target"
+    ]
+   },
+   "order": [
+    60,
+    1
+   ],
+   "seq": 19
+  },
+  {
+   "entry_id": "task:task-72205b7b63cbcb19a56c252574e8a25c2b5ad8c261798039ac5b5e3831b48ae3",
+   "kind": "task",
+   "task_id": "task-72205b7b63cbcb19a56c252574e8a25c2b5ad8c261798039ac5b5e3831b48ae3",
+   "brief_id": "brf-6d8f829e81ec5a886985",
+   "delegation_message_id": "dlg-90a0139981d08c91e71d86f3",
+   "objective": "Extend tests/test_human_response_bounds.py by adding a fifth pytest case that asserts validate_response raises ValueError when the response belongs to a different task ID ('task-2' vs 'task-1'). Keep the four existing tests unchanged. Use message() from runtime.kernel.contracts and request_digest/validate_response from runtime.kernel.human.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "phase": "failed",
+   "lifecycle": "FAILED",
+   "steps": [
+    {
+     "key": "brief",
+     "label": "Execution Brief admitted",
+     "status": "done"
+    },
+    {
+     "key": "verifier",
+     "label": "CompletionVerifier",
+     "status": "failed",
+     "detail": "2/5 criteria satisfied"
+    }
+   ],
+   "criteria": {
+    "satisfied": 2,
+    "total": 5,
+    "items": [
+     {
+      "id": "c1",
+      "status": "satisfied"
+     },
+     {
+      "id": "no-unauthorized-effect",
+      "status": "satisfied"
+     },
+     {
+      "id": "change-made",
+      "status": "pending"
+     },
+     {
+      "id": "tests-pass",
+      "status": "pending"
+     },
+     {
+      "id": "canonical-1",
+      "status": "pending"
+     }
+    ]
+   },
+   "delivery": "surfaced",
+   "revision": 3,
+   "order": [
+    61,
+    0
+   ],
+   "seq": 25
+  },
+  {
+   "entry_id": "res-86811d6676c5f9645040ef78",
+   "kind": "result",
+   "task_id": "task-72205b7b63cbcb19a56c252574e8a25c2b5ad8c261798039ac5b5e3831b48ae3",
+   "lifecycle": "FAILED",
+   "verifier": "unsatisfied",
+   "criteria": [
+    {
+     "id": "c1",
+     "status": "satisfied",
+     "detail": "Exact artifact digest verified"
+    },
+    {
+     "id": "no-unauthorized-effect",
+     "status": "satisfied",
+     "detail": "6 entries; admitted classes ['task.artifact.write', 'workspace.read']; 0 denial(s)"
+    },
+    {
+     "id": "change-made",
+     "status": "pending",
+     "detail": "Expected changes not yet made: ['tests/test_human_response_bounds.py']"
+    },
+    {
+     "id": "tests-pass",
+     "status": "pending",
+     "detail": "No matching target effect has run"
+    },
+    {
+     "id": "canonical-1",
+     "status": "pending",
+     "detail": "No matching target effect has run"
+    }
+   ],
+   "changed_files": [],
+   "runs": [],
+   "diff": null,
+   "markdown": "**Blaine Task result** `task-72205b7b63cbcb19a56\u2026` \u2014 **FAILED**\nCompletionVerifier: **unsatisfied**\n- `c1` satisfied \u2014 Exact artifact digest verified\n- `no-unauthorized-effect` satisfied \u2014 6 entries; admitted classes ['task.artifact.write', 'workspace.read']; 0 denial(s)\n- `change-made` pending \u2014 Expected changes not yet made: ['tests/test_human_response_bounds.py']\n- `tests-pass` pending \u2014 No matching target effect has run\n- `canonical-1` pending \u2014 No matching target effect has run\nConcern: Execution stopped: ValueError('Context packet exceeds budget; provider must select less context')",
+   "created_at": "2026-09-25T03:13:06.816711+00:00",
+   "order": [
+    62,
+    0
+   ],
+   "seq": 26
+  },
+  {
+   "entry_id": "fup-86811d6676c5f9645040ef78",
+   "kind": "followup",
+   "task_id": "task-72205b7b63cbcb19a56c252574e8a25c2b5ad8c261798039ac5b5e3831b48ae3",
+   "created_at": "2026-09-25T03:13:08.028770+00:00",
+   "grounded": true,
+   "order": [
+    63,
+    0
+   ],
+   "seq": 27,
+   "text_sha256": "7a68622d972fa55add758daa4b94f714562a16ca59e7beac9912979e2f7eef4a"
+  },
+  {
+   "entry_id": "acp474685fcb16e4a65a58e48d5",
+   "kind": "message",
+   "role": "human",
+   "created_at": "2026-09-25T03:16:04.386413+00:00",
+   "order": [
+    64,
+    0
+   ],
+   "seq": 28,
+   "text_sha256": "ba2ea192d56fd550d0cdc6997dba1fde6bf178298624721da8da30ac6e4d07f0"
+  },
+  {
+   "entry_id": "rpl-08e334decdaebd96d0c87453",
+   "kind": "message",
+   "role": "agent",
+   "created_at": "2026-09-25T03:16:07.546904+00:00",
+   "order": [
+    65,
+    0
+   ],
+   "seq": 29,
+   "text_sha256": "8d0efbf247a709e2715487a36b5cde2128f36f05559c77fa0d0debd1cd595d80"
+  },
+  {
+   "entry_id": "brf-5fa22d0a2dacddbc7546",
+   "kind": "brief",
+   "status": "confirmed",
+   "task_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d",
+   "objective": "Extend tests/test_human_response_bounds.py by adding a fifth pytest case that asserts validate_response raises ValueError when the response belongs to a different task ID ('task-2' vs 'task-1'). Keep the four existing tests unchanged. Use message() from runtime.kernel.contracts and request_digest/validate_response from runtime.kernel.human.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "inspect": [
+    "tests/test_human_response_bounds.py",
+    "runtime/kernel/human.py"
+   ],
+   "targeted_tests": [
+    "tests/test_human_response_bounds.py"
+   ],
+   "constraints": [
+    "Keep the four existing tests unchanged",
+    "Only modify tests/test_human_response_bounds.py",
+    "Use message() from runtime.kernel.contracts",
+    "Use request_digest/validate_response from runtime.kernel.human",
+    "Assert ValueError is raised for task ID mismatch"
+   ],
+   "requested": {
+    "ask_before": [
+     "workspace.write"
+    ],
+    "capabilities": [
+     "artifact.write",
+     "artifact.read",
+     "worker.run",
+     "workspace.read",
+     "workspace.write",
+     "workspace.exec"
+    ],
+    "profiles": [
+     "pa3-targeted-tests",
+     "pa3-completion-contract-suite"
+    ],
+    "workspaces": [
+     "blaine-pa3-target"
+    ]
+   },
+   "order": [
+    65,
+    1
+   ],
+   "seq": 31
+  },
+  {
+   "entry_id": "task:task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d",
+   "kind": "task",
+   "task_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d",
+   "brief_id": "brf-5fa22d0a2dacddbc7546",
+   "delegation_message_id": "dlg-2c1f8052ea61f201f0aa63f5",
+   "objective": "Extend tests/test_human_response_bounds.py by adding a fifth pytest case that asserts validate_response raises ValueError when the response belongs to a different task ID ('task-2' vs 'task-1'). Keep the four existing tests unchanged. Use message() from runtime.kernel.contracts and request_digest/validate_response from runtime.kernel.human.",
+   "deliverable": {
+    "path": "tests/test_human_response_bounds.py",
+    "workspace_id": "blaine-pa3-target"
+   },
+   "phase": "completed",
+   "lifecycle": "COMPLETED",
+   "steps": [
+    {
+     "key": "brief",
+     "label": "Execution Brief admitted",
+     "status": "done"
+    },
+    {
+     "key": "effect:5",
+     "label": "Wrote tests/test_human_response_bounds.py",
+     "status": "done"
+    },
+    {
+     "key": "effect:6",
+     "label": "pa3-targeted-tests passed",
+     "status": "done"
+    },
+    {
+     "key": "effect:7",
+     "label": "pa3-completion-contract-suite passed",
+     "status": "done",
+     "detail": "PASS verification"
+    },
+    {
+     "key": "verifier",
+     "label": "CompletionVerifier",
+     "status": "done",
+     "detail": "5/5 criteria satisfied"
+    }
+   ],
+   "criteria": {
+    "satisfied": 5,
+    "total": 5,
+    "items": [
+     {
+      "id": "c1",
+      "status": "satisfied"
+     },
+     {
+      "id": "no-unauthorized-effect",
+      "status": "satisfied"
+     },
+     {
+      "id": "change-made",
+      "status": "satisfied"
+     },
+     {
+      "id": "tests-pass",
+      "status": "satisfied"
+     },
+     {
+      "id": "canonical-1",
+      "status": "satisfied"
+     }
+    ]
+   },
+   "delivery": "surfaced",
+   "revision": 7,
+   "order": [
+    66,
+    0
+   ],
+   "seq": 72
+  },
+  {
+   "entry_id": "hr:task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d:approve-5:0",
+   "kind": "human_request",
+   "task_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d",
+   "request_id": "approve-5",
+   "revision": 0,
+   "status": "closed",
+   "order": [
+    66,
+    1
+   ],
+   "seq": 70
+  },
+  {
+   "entry_id": "res-5ab17e0d3a9ae9f6e3486419",
+   "kind": "result",
+   "task_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d",
+   "lifecycle": "COMPLETED",
+   "verifier": "satisfied",
+   "criteria": [
+    {
+     "id": "c1",
+     "status": "satisfied",
+     "detail": "Exact artifact digest verified"
+    },
+    {
+     "id": "no-unauthorized-effect",
+     "status": "satisfied",
+     "detail": "17 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)"
+    },
+    {
+     "id": "change-made",
+     "status": "satisfied",
+     "detail": "1 path(s) changed as required: ['tests/test_human_response_bounds.py']"
+    },
+    {
+     "id": "tests-pass",
+     "status": "satisfied",
+     "detail": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/6 completed; 3 predicate(s) held"
+    },
+    {
+     "id": "canonical-1",
+     "status": "satisfied",
+     "detail": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/7 completed; 3 predicate(s) held"
+    }
+   ],
+   "changed_files": [
+    {
+     "path": "tests/test_human_response_bounds.py",
+     "status": "applied",
+     "before": {
+      "sha256": "52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3"
+     },
+     "after": {
+      "sha256": "c889dc36981fdd5b2d7bbbd30391cab80772c39c2feb86bfd2a7355917bc941c"
+     }
+    }
+   ],
+   "runs": [
+    {
+     "profile": "pa3-targeted-tests",
+     "args": [
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "tests/test_human_response_bounds.py"
+     ],
+     "status": "completed",
+     "exit_code": 0,
+     "result": {}
+    },
+    {
+     "profile": "pa3-completion-contract-suite",
+     "args": [
+      "-m",
+      "verification.cli",
+      "run",
+      "completion-contract",
+      "--worktree",
+      "."
+     ],
+     "status": "completed",
+     "exit_code": 0,
+     "result": {
+      "verification": "PASS"
+     }
+    }
+   ],
+   "diff": {
+    "path": "tests/test_human_response_bounds.py",
+    "new_file": false,
+    "unified": "--- a/tests/test_human_response_bounds.py\n+++ b/tests/test_human_response_bounds.py\n@@ -0,0 +1,79 @@\n+import pytest\n+\n+from runtime.kernel.contracts import message\n+from runtime.kernel.human import request_digest, validate_response\n+\n+\n+def _request():\n+    payload = {\n+        \"task_id\": \"task-1\",\n+        \"origin_task_id\": \"origin-1\",\n+        \"request_id\": \"r\" * 64,\n+        \"revision\": 0,\n+        \"question\": \"Approve?\",\n+        \"allowed_responses\": [\"APPROVE\", \"REJECT\"],\n+    }\n+    return message(\"HumanDecisionRequest\", payload)\n+\n+\n+def _response(value, request, digest, revision=None):\n+    req = request[\"payload\"] if isinstance(request, dict) else request\n+    if revision is None:\n+        revision = req[\"revision\"]\n+    payload = {\n+        \"task_id\": req[\"task_id\"],\n+        \"request_id\": req[\"request_id\"],\n+        \"request_revision\": revision,\n+        \"request_digest\": digest,\n+        \"response_id\": \"resp-1\",\n+        \"value\": value,\n+    }\n+    return message(\"HumanDecisionResponse\", payload)\n+\n+\n+def test_valid_response_returns_payload():\n+    request = _request()\n+    digest = request_digest(request)\n+    response = _response(\"APPROVE\", request, digest)\n+    result = validate_response(response, request, \"task-1\")\n+    assert result[\"value\"] == \"APPROVE\"\n+\n+\n+def test_maybe_outside_allowed_responses_raises():\n+    request = _request()\n+    digest = request_digest(request)\n+    response = _response(\"MAYBE\", request, digest)\n+    with pytest.raises(ValueError):\n+        validate_response(response, request, \"task-1\")\n+\n+\n+def test_stale_request_revision_raises():\n+    request = _request()\n+    digest = request_digest(request)\n+    response = _response(\"APPROVE\", request, digest, revision=1)\n+    with pytest.raises(ValueError):\n+        validate_response(response, request, \"task-1\")\n+\n+\n+def test_wrong_request_digest_raises():\n+    request = _request()\n+    bad_digest = \"0\" * 64\n+    response = _response(\"APPROVE\", request, bad_digest)\n+    with pytest.raises(ValueError):\n+        validate_response(response, request, \"task-1\")\n+\n+\n+def test_task_id_mismatch_raises():\n+    request = _request()\n+    digest = request_digest(request)\n+    response_payload = {\n+        \"task_id\": \"task-2\",\n+        \"request_id\": request[\"payload\"][\"request_id\"],\n+        \"request_revision\": request[\"payload\"][\"revision\"],\n+        \"request_digest\": digest,\n+        \"response_id\": \"resp-1\",\n+        \"value\": \"APPROVE\",\n+    }\n+    response = message(\"HumanDecisionResponse\", response_payload)\n+    with pytest.raises(ValueError):\n+        validate_response(response, request, \"task-1\")",
+    "truncated": false
+   },
+   "markdown": "**Blaine Task result** `task-44bf5b03ef8f6d81986\u2026` \u2014 **COMPLETED**\nCompletionVerifier: **satisfied**\n- `c1` satisfied \u2014 Exact artifact digest verified\n- `no-unauthorized-effect` satisfied \u2014 17 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)\n- `change-made` satisfied \u2014 1 path(s) changed as required: ['tests/test_human_response_bounds.py']\n- `tests-pass` satisfied \u2014 task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/6 completed; 3 predicate(s) held\n- `canonical-1` satisfied \u2014 task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d/7 completed; 3 predicate(s) held\nChanged: `tests/test_human_response_bounds.py` (applied)\nRan `pa3-targeted-tests` -m pytest -q -p no:cacheprovider tests/test_human_response_bounds.py: exit 0\nRan `pa3-completion-contract-suite` -m verification.cli run completion-contract --worktree .: exit 0 {\"verification\": \"PASS\"}",
+   "created_at": "2026-09-25T03:32:19.180543+00:00",
+   "order": [
+    67,
+    0
+   ],
+   "seq": 71
+  },
+  {
+   "entry_id": "fup-5ab17e0d3a9ae9f6e3486419",
+   "kind": "followup",
+   "task_id": "task-44bf5b03ef8f6d819865a56aac27be17be556e5f96cae7900c8ff9a816006e3d",
+   "created_at": "2026-09-25T03:32:20.340222+00:00",
+   "grounded": true,
+   "order": [
+    68,
+    0
+   ],
+   "seq": 73,
+   "text_sha256": "0df57daf7845ca65bec8dccc435f05cfec5f0714dc51af547e96952e71118027"
+  }
+ ]
+}

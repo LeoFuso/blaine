@@ -139,4 +139,4 @@ ADR’s own status before treating it as an accepted constraint.
   is **Accepted / Unvalidated**; it revises the Hub E1 provider, local-guard and
   JetBrains onboarding statements. Live validation is E1 acceptance.
 - [ADR 0028 — The conversation projection is the presentation contract](0028-conversation-projection-is-the-presentation-contract.md)
-  is **Accepted / Unvalidated**; validation is the PA-4 increment.
+  is **Accepted / Validated** (integration) by the [PA-4 evidence](../../experiments/personal-agent-hub/pa-4/README.md).
