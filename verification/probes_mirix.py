@@ -21,10 +21,11 @@ p=Path.home()/'.mirix/config'
 for item in (p,p.parent):
  s=item.stat()
  assert s.st_uid==os.getuid() and not stat.S_IMODE(s.st_mode)&0o077
-c=configparser.ConfigParser();c.read(p)
+c=configparser.ConfigParser(interpolation=None);c.read(p)
 u=c['recall_storage']['uri'];a=urlsplit(u)
 assert u==c['archival_storage']['uri'] and a.hostname=='127.0.0.1' and a.path=='/mirix'
-db=psycopg2.connect(u,connect_timeout=5)
+assert not a.query and not a.fragment and a.scheme in ('postgresql','postgresql+pg8000','postgresql+psycopg2')
+db=psycopg2.connect(a._replace(scheme='postgresql').geturl(),connect_timeout=5)
 db.set_session(readonly=True)
 with db,db.cursor() as cur:
  cur.execute("SELECT 1 FROM information_schema.tables WHERE table_name='raw_memory'")

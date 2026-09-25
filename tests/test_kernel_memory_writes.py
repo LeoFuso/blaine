@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from test_kernel_context_plane import Fixture, need
 from runtime.kernel import journal
@@ -280,6 +280,26 @@ class MemoryWriteTests(unittest.TestCase):
         with patch.object(bridge, '_call', side_effect=[MemoryError('UNKNOWN'), MemoryError('UNAVAILABLE')]):
             with self.assertRaisesRegex(MemoryError, 'UNKNOWN'):
                 bridge.commit({}, 'token')
+
+    def test_existing_sqlalchemy_uri_is_normalized_without_changing_identity(self):
+        from types import SimpleNamespace
+        credentials = Path(self.directory.name) / 'config'
+        config = MirixStorageConfig('/usr/bin/python3', str(credentials), 'n', 'o', 'u', 'c')
+        driver = Mock()
+        for scheme in ('postgresql+pg8000', 'postgresql+psycopg2', 'postgresql'):
+            uri = scheme + '://fixture:fixture%40password@127.0.0.1:5432/mirix'
+            credentials.write_text(f'[recall_storage]\nuri={uri}\n[archival_storage]\nuri={uri}\n')
+            credentials.chmod(0o600)
+            with patch.dict('sys.modules', {'psycopg2': SimpleNamespace(connect=driver)}):
+                PostgresMirixStore(config).connect()
+            self.assertEqual(driver.call_args.args,
+                             ('postgresql://fixture:fixture%40password@127.0.0.1:5432/mirix',))
+        for suffix in ('?host=remote.example', '#fragment'):
+            uri = 'postgresql://fixture@127.0.0.1/mirix' + suffix
+            credentials.write_text(f'[recall_storage]\nuri={uri}\n[archival_storage]\nuri={uri}\n')
+            with patch.dict('sys.modules', {'psycopg2': SimpleNamespace(connect=driver)}), self.assertRaises(MemoryError):
+                PostgresMirixStore(config).connect()
+        self.assertEqual(driver.call_count, 3)
 
     def test_exact_memory_content_does_not_satisfy_completion_evidence(self):
         self.request['content'] = 'GOOD'  # exactly the Task's desired evidence bytes

@@ -124,13 +124,18 @@ class PostgresMirixStore:
             info = path.stat()
             if info.st_uid != os.getuid() or stat.S_IMODE(info.st_mode) & 0o077:
                 raise MemoryError('UNAVAILABLE')
-        config = configparser.ConfigParser()
+        config = configparser.ConfigParser(interpolation=None)
         config.read(source)
         uri = config['recall_storage']['uri']
         target = urlsplit(uri)
-        if uri != config['archival_storage']['uri'] or target.hostname != '127.0.0.1' or target.path != '/mirix':
+        if (uri != config['archival_storage']['uri'] or target.hostname != '127.0.0.1' or
+                target.path != '/mirix' or target.query or target.fragment or
+                target.scheme not in ('postgresql', 'postgresql+pg8000', 'postgresql+psycopg2')):
             raise MemoryError('UNAVAILABLE')
-        return psycopg2.connect(uri, connect_timeout=5, options='-c statement_timeout=15000')
+        # MIRIX config uses a SQLAlchemy driver-qualified URL. libpq expects the
+        # PostgreSQL scheme; preserve the same host/database/credentials verbatim.
+        return psycopg2.connect(target._replace(scheme='postgresql').geturl(),
+                                connect_timeout=5, options='-c statement_timeout=15000')
 
     def install(self):
         # Add metadata to the approved substrate; never create a database/service.
