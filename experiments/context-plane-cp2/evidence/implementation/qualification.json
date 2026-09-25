@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-25",
+  "cp2_status": "PARTIAL",
+  "implementation_commits": [
+    "15a1df1",
+    "8d1c4f6",
+    "e84e08d"
+  ],
+  "candidate_commit": "e84e08df2d2f06ec1887aad82244aba1714024be",
+  "baseline": "16f7e1a170ca0b0a4bb7f773dbb6922405e24287",
+  "branch": "feature/context-plane-cp2",
+  "hermetic": {
+    "result": "PASS",
+    "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m nox --no-venv -s pre_handoff",
+    "root_tests": 462,
+    "cp2_tests_in_root": 25,
+    "scheduler_tests": 26,
+    "completion_contract_tests_in_root": 61,
+    "unique_tests": 488,
+    "skips": 0,
+    "reports": [
+      "hermetic/completion-contract.json",
+      "hermetic/context-plane.json",
+      "hermetic/sample-hermetic.json"
+    ],
+    "limits": "Canonical reports retain actual tested HEAD and dirty state; source hashes identify the tested changes, now committed. No native persistence claim.",
+    "cp2_subtests": 22
+  },
+  "targeted": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m pytest tests/test_kernel_memory_writes.py -o addopts='' -q",
+    "result": "PASS",
+    "tests": 25,
+    "subtests": 22
+  },
+  "host": {
+    "result": "BLOCKED",
+    "run_id": "run-613c0c65fb584188",
+    "report": "host/run-613c0c65fb584188.json",
+    "scheduler": "VerificationScheduler_blaine/host",
+    "suite": "context-plane-memory-native",
+    "native_steps_executed": 0,
+    "native_writes": 0,
+    "service_restarts": 0,
+    "scheduler_final": {
+      "active": null,
+      "queue": []
+    },
+    "resource_queue_bypassed": false,
+    "trusted_suite_publication_observed": true,
+    "published_by_this_session": false,
+    "corrected_probe_publication": "PENDING",
+    "original_probe_sha256": "0eb25d30c88088be0136129e011261249204860c73fa0744f3ca5faaa8965339",
+    "corrected_probe_sha256": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c"
+  },
+  "failures": [
+    {
+      "classification": "CP2_TEST_DEFECT",
+      "detail": "Initial new tests referenced legacy/nonexistent completion and journal fields; corrected to actual outcome and observed operation identity. No assertion removed."
+    },
+    {
+      "classification": "CP2_CONTRACT_EXPECTATION_UPDATE",
+      "detail": "Existing exact operation-class table test needed the new memory.write TARGET_EFFECT entry; added its mutation assertion."
+    },
+    {
+      "classification": "ENVIRONMENT_FAILURE",
+      "detail": "First sandboxed canonical root run could not start an existing PostgreSQL socket fixture. Interrupted only that worktree-owned test process; reran the exact full canonical suite outside sandbox; PASS, no skips."
+    },
+    {
+      "classification": "CP2_DEFECT",
+      "detail": "Canonical HOST probe passed SQLAlchemy postgresql+pg8000 URI to libpq; BLOCKED before steps. Fixed scheme normalization in adapter/probe, refused query/fragment overrides, preserved percent-encoded credentials literally. New deterministic test exposed default ConfigParser interpolation; fixed it too. Read-only connection/identity diagnostic PASS. Corrected trusted probe publication and native rerun still required."
+    }
+  ],
+  "properties": {
+    "trusted_write_admission": "HERMETIC_PASS",
+    "provenance_verification_retention_separation": "HERMETIC_PASS",
+    "scoped_idempotency": "HERMETIC_PASS; NATIVE_PENDING",
+    "committed_facade_readback": "HERMETIC_PROTOCOL_PASS; NATIVE_PENDING",
+    "working_not_reused_by_later_task": "HERMETIC_PASS",
+    "hierarchy_security_isolation": "HERMETIC_PASS; NATIVE_PENDING",
+    "fresh_bounded_delta_worker_delivery": "HERMETIC_PASS; NATIVE_PENDING",
+    "journal_replay": "HERMETIC_PASS",
+    "unknown_effect_blocks_completion": "HERMETIC_PASS",
+    "working_retained_native_persistence": "NOT_RUN",
+    "source_and_local_embedding_atomicity": "NOT_RUN",
+    "restart_isolation": "NOT_RUN",
+    "schema_install_and_cleanup_guard": "NOT_RUN",
+    "e1_e2_cp1_regressions": "PASS"
+  },
+  "source_sha256": {
+    "runtime/kernel/contracts.py": "b86dee525db3da8e7a1c67c43320f6bb4dbb1a2a4737513843c868d5a825ebff",
+    "runtime/kernel/execution.py": "d28e2af8949559e9a696ad32d6def8e0f98974005261fab6a23e1e0e5b4b4245",
+    "runtime/kernel/journal.py": "57e32ef6c95d8e7cbcee15b4ce39b6ecb904774b017b3076d862f756b0706324",
+    "runtime/kernel/memory_writes.py": "e721dc189b3c2af562c7d8b4a39ecce0b5c61a352a6fe093ed68217d63f3361b",
+    "runtime/kernel/mirix_storage.py": "d11d77de55f639853e9b321ab64229f52c686b7adf92713a6f6567a36516c60e",
+    "tests/test_kernel_memory_writes.py": "3629fa926e57e7f2d774ecd5c488c40abb6cc13dd7cba0be3d6ef0d2427e4ef6",
+    "tests/test_completion_contract.py": "5f10c24731002703febaf307b9ba9e4dfa172ef9e7980d3ccbe21af3cabe461f",
+    "experiments/context-plane-cp2/accept_native.py": "abbb8ba443eed1c0fdfef057377373854c35ae614765756dd282d417a05e12e7",
+    "verification/probes_mirix.py": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c",
+    "verification/suites/context_plane_memory_native.py": "af6f26d63c4cc9b91716f86fa24f48c717b3d14f64a9eb251583f4fccf347dfd"
+  },
+  "git_diff_check": "PASS",
+  "next_action": "Publish only corrected trusted verification/probes_mirix.py independently; submit context-plane-memory-native through canonical scheduler against this candidate; diagnose and fix only CP.2 defects. CP.3 NOT STARTED.",
+  "pushed": false,
+  "merged_to_main": false,
+  "production_deployed": false,
+  "infrastructure_provisioned": false
+}

@@ -1,5 +1,64 @@
 # CP.2 — Storage qualification
 
+## Implementation checkpoint: PARTIAL; native qualification pending
+
+The governed write candidate is implemented in `runtime/kernel/memory_writes.py`
+and `runtime/kernel/mirix_storage.py`, opt-in through the existing Context Plane /
+Capabilities path. [Executable contract](../contracts/context-plane-cp2.md) specifies
+trusted operator RETAINED declarations versus UNVERIFIED/WORKING observations,
+fresh runtime grants, scoped retry identity and canonical facade readback.
+
+The selected internal adapter uses **existing MIRIX raw source/vector storage** and
+one metadata-only registry in the same approved PostgreSQL database. It pins the
+existing local embedding service; does not enable extraction, semantic retrieval or
+learning; and protects admitted source rows from age-only cleanup. WORKING remains
+current-Task/current-context continuity, not reusable retained knowledge. RETAINED
+inherits only through permitted lineage/security/policy. Preference precedence stays
+deferred as required by the roadmap. E1 Completion Contract and evidence retain authority.
+
+Implementation and additive native harness checkpoints: `15a1df1`, `8d1c4f6`;
+driver/probe correction and regression: `e84e08d`.
+The trusted native suite was independently published with matching hashes. Canonical
+HOST run **run-613c0c65fb584188 BLOCKED** before executing any step: a CP.2 probe/adapter
+bug passed MIRIX's SQLAlchemy driver URL directly to libpq. Read-only diagnosis
+established this defect; scheme normalization and literal credential parsing correct
+it without changing the database identity. The corrected probe needs separate trusted
+publication before another canonical HOST attempt. No native write/restart is claimed.
+
+Canonical `pre_handoff` after the correction: **462 root tests + 26 scheduler tests
+PASS, zero skips** (488 unique tests). The root suite includes 25 CP.2 tests and the
+61-test Completion Contract suite, which also passed separately. Twenty-two subtests
+exercise additional forgery/admission cases. Existing CP.1, E1/E2, child/human,
+PolicyGate, worker, D2/ACP and remote-read regressions remain covered. One sandboxed
+fixture-start failure was rerun with the same canonical suite and permitted local
+socket access; no test was skipped or replaced.
+
+[Storage qualification revision 3](../../experiments/context-plane-cp2/evidence/storage-qualification-v3.json)
+continues the prior source-pinned matrix. All ten retained MIRIX source hashes still
+match. Native persistence is not inferred from deterministic storage doubles or
+read-only connection diagnostics.
+
+[Durable implementation qualification](../../experiments/context-plane-cp2/evidence/implementation/qualification.json)
+retains canonical results, source hashes, failures and remaining acceptance properties.
+The scheduler remains healthy and returned idle. No publication, provisioning, push,
+CP.3, automatic retention, promotion or declassification was performed by this session.
+
+The next bounded action is to publish only the corrected trusted probe, then submit
+`context-plane-memory-native` for this candidate through
+`VerificationScheduler_blaine/host`. The fixed harness proves native commit, scoped
+replay/response loss, both retention classes, facade readback, source/vector metadata,
+MIRIX-only restart, forbidden reads and bounded fresh compilation. CP.2 stays PARTIAL
+until those checks pass; do not merge it as accepted CP.2 yet.
+
+Publication artifact: `verification/probes_mirix.py` at `e84e08d`, SHA-256
+`6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c`.
+The already-published suite definition is unchanged. Publication must update the
+live trusted probe, without importing the candidate into the scheduler or publishing
+production CP.2. This session did not perform that action.
+
+The following sections are historical checkpoints. Their claims that writes are not
+implemented or the scheduler is unavailable do not describe this candidate.
+
 ## Reconciled checkpoint: PARTIAL; published regression suite passes
 
 Pending docs/evidence and the suite substitution fix were committed as `0b2b46e`.

@@ -1,0 +1,75 @@
+{
+  "schema_version": 3,
+  "status": "PARTIAL_IMPLEMENTED_NATIVE_PENDING",
+  "date": "2026-09-25",
+  "continues": "storage-qualification-v2.json",
+  "mirix_commit": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "source_continuity": {
+    "mirix/services/raw_memory_manager.py": true,
+    "mirix/orm/raw_memory.py": true,
+    "mirix/orm/sqlalchemy_base.py": true,
+    "mirix/server/rest_api.py": true,
+    "mirix/services/agent_manager.py": true,
+    "mirix/database/filter_tags_query.py": true,
+    "mirix/functions/function_sets/memory_tools.py": true,
+    "mirix/services/semantic_memory_manager.py": true,
+    "mirix/jobs/cleanup_raw_memories.py": true,
+    "mirix/embeddings.py": true
+  },
+  "storage_candidate_rejected": false,
+  "selected_boundary": "existing_substrate_internal_adapter",
+  "reason": "Use existing MIRIX raw source/vector storage and an atomic Blaine metadata-only registry in the same approved PostgreSQL database. Public raw writes select mutable agent configuration and age-only cleanup does not own Blaine retention. No different memory database/service or upstream MIRIX edit.",
+  "implementation": [
+    "runtime/kernel/memory_writes.py",
+    "runtime/kernel/mirix_storage.py"
+  ],
+  "questions": {
+    "exact_source_preservation": {
+      "implemented": "Exact UTF-8 source, digest, scoped facade readback before receipt; source/vector/registry transaction.",
+      "evidence": "HERMETIC protocol tests pass; native write/readback not run."
+    },
+    "blaine_metadata_preservation": {
+      "implemented": "Versioned metadata stores context, domain, origin, status, retention, creator, source Task and digest. Scoped retry identity is registry-owned; no caller IDs.",
+      "evidence": "Closed schema/provenance/forgery tests pass; native schema and metadata transaction pending."
+    },
+    "automatic_derived_processing": {
+      "implemented": "One explicitly granted local embedding per new source, no embedding on replay. No public ingestion/extraction/auto-dream path or vector retrieval.",
+      "evidence": "Endpoint/model/proxy/redirect restrictions in adapter; native vector creation pending."
+    },
+    "derived_scope_inheritance": {
+      "implemented": "Vector resides on the same MIRIX raw row, organization/user and opaque context/domain partition as source. Registry joins authorize before content loading/limit.",
+      "evidence": "Facade defense-in-depth and isolation tests pass; native SQL scope proof pending. No blanket claim for other MIRIX APIs/caches."
+    },
+    "blaine_retention_ownership": {
+      "implemented": "Only AGENT_OBSERVATION/UNVERIFIED/WORKING and explicitly authorized USER_DECLARATION/DECLARED/RETAINED tuples. No upgrade API. FK restricts ungoverned raw deletion.",
+      "evidence": "Status/forgery/reconstruction tests pass; native restrictive-FK and restart checks pending. No TTL or automatic retention policy inferred."
+    },
+    "governed_retrieval_separation": {
+      "implemented": "Current-context/source-Task WORKING, permitted ancestral RETAINED, then SecurityContext/policy intersection; lexical/exact facade feeds existing Resolver/Compiler.",
+      "evidence": "Fresh delta and actual Cognitive Loop worker delivery/replay tests pass; native compiled composition pending. Preference precedence explicitly deferred by roadmap."
+    },
+    "no_implicit_upward_flow": {
+      "implemented": "Write grant must match current context. Parent declarations require direct operator binding. No child copying or parent visibility; retained inheritance only down permitted lineage.",
+      "evidence": "Deterministic parent/sibling/context forgery and retained inheritance tests pass; native post-restart isolation pending."
+    },
+    "authorized_processing_and_egress": {
+      "implemented": "Private per-binding domain grant explicitly allows local processing. Fixed existing port 8001 embedding route; redirects/proxies/alternate provider and DSN host overrides refused.",
+      "evidence": "Deterministic configuration/admission tests pass; real local embedding call pending."
+    }
+  },
+  "native_attempt": {
+    "run_id": "run-613c0c65fb584188",
+    "result": "BLOCKED",
+    "steps": 0,
+    "classification": "CP2_DEFECT",
+    "detail": "SQLAlchemy driver URL was not normalized for libpq. Fixed in e84e08d; read-only DB/identity check PASS. Corrected probe must be independently republished before rerun."
+  },
+  "limits": [
+    "Native schema installation, persistence, local embedding creation, facade readback and restart are not yet qualified.",
+    "Foreign-key retention guard may cause an age-cleanup transaction touching admitted rows to fail; no assertion that all legacy cleanup continues unaffected.",
+    "No implicit status transition or deletion schedule; broader governed retention/removal lifecycle remains deferred.",
+    "No machine-level recovery, distributed authentication, backend-wide permission proof, deployment rollout or source migration claim."
+  ],
+  "qualification": "implementation/qualification.json",
+  "next_increment": "Finish CP.2 canonical HOST acceptance; no CP.3."
+}

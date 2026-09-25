@@ -1,0 +1,160 @@
+nox > Running session pre_handoff
+nox > /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m pytest verification/tests.py -q
+..........................                                          [100%]
+nox > == hermetic suite: completion-contract ==
+nox > /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m verification.cli run completion-contract
+[PASS] suite=completion-contract worktree=/home/leofuso/workspace/blaine-cp1 commit=8d1c4f64d1d5 dirty=True -> /home/leofuso/workspace/blaine-cp1/.local/verification/runs/run-1/report.json
+{
+  "environment": {
+    "hostname": "blaine",
+    "os": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+    "python": "3.14.4"
+  },
+  "generated_at": "2026-09-25T03:46:49.362380+00:00",
+  "prerequisites": {},
+  "reason": "",
+  "resources": [],
+  "result": "PASS",
+  "run_id": "run-1",
+  "schema_version": 1,
+  "state": "PASS",
+  "steps": [
+    {
+      "command": [
+        "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+        "-m",
+        "pytest",
+        "tests/test_completion_contract.py",
+        "tests/test_completion_workflow.py",
+        "tests/test_regression_coverage.py",
+        "-q"
+      ],
+      "duration": 0.427,
+      "env": [
+        "BLAINE_PYTHON"
+      ],
+      "exit_code": 0,
+      "name": "completion-contract-unit",
+      "stderr_tail": "",
+      "stdout_tail": ".............................................................       [100%]\n",
+      "timed_out": false
+    }
+  ],
+  "suite": "completion-contract",
+  "timing": {
+    "admitted_at": null,
+    "completed_at": 1790308009.3622992,
+    "duration": 0.4272940158843994,
+    "started_at": 1790308008.9350052
+  },
+  "verification_class": "HERMETIC",
+  "worktree": {
+    "branch": "feature/context-plane-cp2",
+    "commit": "8d1c4f64d1d5d0e77a16993fb07750ab903ac621",
+    "dirty": true,
+    "root": "/home/leofuso/workspace/blaine-cp1"
+  }
+}
+nox > == hermetic suite: context-plane ==
+nox > /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m verification.cli run context-plane
+[PASS] suite=context-plane worktree=/home/leofuso/workspace/blaine-cp1 commit=8d1c4f64d1d5 dirty=True -> /home/leofuso/workspace/blaine-cp1/.local/verification/runs/run-1/report.json
+{
+  "environment": {
+    "hostname": "blaine",
+    "os": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+    "python": "3.14.4"
+  },
+  "generated_at": "2026-09-25T03:46:57.530812+00:00",
+  "prerequisites": {},
+  "reason": "",
+  "resources": [],
+  "result": "PASS",
+  "run_id": "run-1",
+  "schema_version": 1,
+  "state": "PASS",
+  "steps": [
+    {
+      "command": [
+        "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "duration": 8.118,
+      "env": [],
+      "exit_code": 0,
+      "name": "context-plane-kernel-regressions",
+      "stderr_tail": "Failed to export span batch due to timeout, max retries or shutdown.\n",
+      "stdout_tail": "......................................... [  8%]\n............................................................................................................................................................................................................................................................................................... [ 70%]\n........................................................................................................................ [ 96%]\n..............                     [100%]\n",
+      "timed_out": false
+    }
+  ],
+  "suite": "context-plane",
+  "timing": {
+    "admitted_at": null,
+    "completed_at": 1790308017.5307312,
+    "duration": 8.118177652359009,
+    "started_at": 1790308009.4125535
+  },
+  "verification_class": "HERMETIC",
+  "worktree": {
+    "branch": "feature/context-plane-cp2",
+    "commit": "8d1c4f64d1d5d0e77a16993fb07750ab903ac621",
+    "dirty": true,
+    "root": "/home/leofuso/workspace/blaine-cp1"
+  }
+}
+nox > == hermetic suite: sample-hermetic ==
+nox > /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m verification.cli run sample-hermetic
+[PASS] suite=sample-hermetic worktree=/home/leofuso/workspace/blaine-cp1 commit=8d1c4f64d1d5 dirty=True -> /home/leofuso/workspace/blaine-cp1/.local/verification/runs/run-1/report.json
+{
+  "environment": {
+    "hostname": "blaine",
+    "os": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+    "python": "3.14.4"
+  },
+  "generated_at": "2026-09-25T03:46:57.734278+00:00",
+  "prerequisites": {},
+  "reason": "",
+  "resources": [],
+  "result": "PASS",
+  "run_id": "run-1",
+  "schema_version": 1,
+  "state": "PASS",
+  "steps": [
+    {
+      "command": [
+        "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+        "-m",
+        "pytest",
+        "verification/tests.py",
+        "-q"
+      ],
+      "duration": 0.153,
+      "env": [
+        "BLAINE_PYTHON"
+      ],
+      "exit_code": 0,
+      "name": "scheduler-self-test",
+      "stderr_tail": "",
+      "stdout_tail": "..........................                                          [100%]\n",
+      "timed_out": false
+    }
+  ],
+  "suite": "sample-hermetic",
+  "timing": {
+    "admitted_at": null,
+    "completed_at": 1790308017.7341874,
+    "duration": 0.1528611183166504,
+    "started_at": 1790308017.5813262
+  },
+  "verification_class": "HERMETIC",
+  "worktree": {
+    "branch": "feature/context-plane-cp2",
+    "commit": "8d1c4f64d1d5d0e77a16993fb07750ab903ac621",
+    "dirty": true,
+    "root": "/home/leofuso/workspace/blaine-cp1"
+  }
+}
+nox > Session pre_handoff was successful in 9 seconds.

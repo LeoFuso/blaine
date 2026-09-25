@@ -1,3 +1,27 @@
+# CP.2 governed Memory qualification
+
+**Current: CP.2 PARTIAL — implementation and deterministic tests complete; native
+storage acceptance pending.** See [executable contract](../../docs/contracts/context-plane-cp2.md),
+[milestone 056](../../docs/milestones/056-context-plane-cp2-storage-qualification.md) and
+[durable current qualification](evidence/implementation/qualification.json).
+
+`15a1df1` introduces governed WORKING observations and RETAINED declarations through
+Blaine-owned contracts over MIRIX raw source/vector storage and a metadata-only registry
+in the same database. `8d1c4f6` adds the bounded native acceptance harness and additive
+HOST definition. Native run `run-613c0c65fb584188` was BLOCKED before steps by a driver-URL
+probe defect; correction `e84e08d` requires separate trusted probe publication. No native
+write/restart acceptance is claimed. The scheduler is healthy and idle.
+
+Canonical HERMETIC qualification passes: 462 root tests (25 CP.2), 26 scheduler tests,
+zero skips. The 61-test E1 subset also passed and overlaps root. Canonical results,
+the actual HOST report and correction details are retained
+under `evidence/implementation/`. No protected Memory content or credentials are retained.
+The next action remains CP.2 native qualification through the published trusted suite;
+no scheduler bypass, CP.3, push or production deployment.
+
+The following sections preserve historical checkpoints and are superseded by the current
+qualification record where they describe implementation/publication state.
+
 # CP.2 storage qualification
 
 **Current: CP.2 PARTIAL; reconciliation and published regression qualification PASS.**

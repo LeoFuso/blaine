@@ -1,0 +1,47 @@
+{
+  "environment": {
+    "hostname": "blaine",
+    "os": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+    "python": "3.14.4"
+  },
+  "generated_at": "2026-09-25T03:46:57.530812+00:00",
+  "prerequisites": {},
+  "reason": "",
+  "resources": [],
+  "result": "PASS",
+  "run_id": "run-1",
+  "schema_version": 1,
+  "state": "PASS",
+  "steps": [
+    {
+      "command": [
+        "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "duration": 8.118,
+      "env": [],
+      "exit_code": 0,
+      "name": "context-plane-kernel-regressions",
+      "stderr_tail": "Failed to export span batch due to timeout, max retries or shutdown.\n",
+      "stdout_tail": "......................................... [  8%]\n............................................................................................................................................................................................................................................................................................... [ 70%]\n........................................................................................................................ [ 96%]\n..............                     [100%]\n",
+      "timed_out": false
+    }
+  ],
+  "suite": "context-plane",
+  "timing": {
+    "admitted_at": null,
+    "completed_at": 1790308017.5307312,
+    "duration": 8.118177652359009,
+    "started_at": 1790308009.4125535
+  },
+  "verification_class": "HERMETIC",
+  "worktree": {
+    "branch": "feature/context-plane-cp2",
+    "commit": "8d1c4f64d1d5d0e77a16993fb07750ab903ac621",
+    "dirty": true,
+    "root": "/home/leofuso/workspace/blaine-cp1"
+  }
+}

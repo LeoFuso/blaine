@@ -1,44 +1,45 @@
 # Context Plane — bounded production implementation plan
 
-**Status: CP.1 PASS and MERGED; CP.2 PARTIAL; reconciled regression qualification PASS, persistence pending
-(2026-09-24); CP.3–CP.9 NOT STARTED.**
-2026-09-23 consolidation under [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md).
-[Architecture](../context-plane.md) and [semantic contracts](../contracts/context-plane.md)
-are accepted direction. Track III research is COMPLETE, including the retained III.8
-FAIL and separate III.8R recovery PASS. This plan is not III.11 or another experiment.
-Production work needs separate authorization; the [main roadmap](001-blaine-development-roadmap.md#current-next)
-continues to own prioritization relative to Hub E0–E3 and other programs.
+**Status: CP.1 PASS and MERGED; CP.2 PARTIAL — governed writes implemented,
+native storage acceptance pending (2026-09-25); CP.3–CP.9 NOT STARTED.**
+[Architecture](../context-plane.md), [semantic contracts](../contracts/context-plane.md)
+and [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md) remain
+accepted direction. Track III research is COMPLETE. The
+[main roadmap](001-blaine-development-roadmap.md#current-next) owns broader prioritization.
 
-**Current CP.2 checkpoint:** [revised storage qualification](../milestones/056-context-plane-cp2-storage-qualification.md).
-The clean worktree moved from completed CP.1 to `feature/context-plane-cp2` at
-`origin/main 56f2e65`, including CP.1, E2.0 and Local Verification Scheduler v0.
-No CP.2 production writes are accepted yet. The previous STOP framed exact writes too
-narrowly: embeddings are not inherently a blocker. Its source observations and test
-results remain historical; [revision 2](../../experiments/context-plane-cp2/evidence/storage-qualification-v2.json)
-supersedes that decision criterion. Qualification now asks whether MIRIX supports exact
-source preservation plus useful scoped processing while Blaine owns retention,
-provenance, hierarchy and security.
+**Current CP.2 candidate:** [milestone 056](../milestones/056-context-plane-cp2-storage-qualification.md),
+[executable subset](../contracts/context-plane-cp2.md),
+[qualification](../../experiments/context-plane-cp2/evidence/implementation/qualification.json).
+Continue this branch/worktree; do not recreate CP.1 or the storage investigation.
+Checkpoints `0b2b46e` / `c5f3d97` preserve prior work and merged canonical main `16f7e1a`.
+Implementation `15a1df1` adds trusted declarations/observations and scoped MIRIX storage;
+`8d1c4f6` adds the fixed native harness and additive HOST definition; `e84e08d` fixes
+the driver/probe URL integration discovered by its first run.
 
-Persistence is not retention. Agent observations are UNVERIFIED/WORKING in current C;
-explicitly authorized human declarations intended for reuse are USER_DECLARATION/RETAINED
-in their authorized C. No automatic retention, upward promotion or declassification.
-Qualification must cover metadata, derived scope/egress, retrieval separation, scoped
-idempotency, committed facade readback and restart isolation for both statuses.
+The implementation keeps provenance, verification and retention independent:
+AGENT_OBSERVATION / UNVERIFIED / WORKING; explicit authorized USER_DECLARATION /
+DECLARED / RETAINED. The selected adapter preserves source and a local embedding in
+existing MIRIX raw storage, with a metadata-only registry in the same approved
+PostgreSQL database. Fresh trusted grants, scoped idempotency, post-commit facade
+readback and current-Task WORKING versus inherited RETAINED filtering are implemented.
+CP.1 Resolver/Compiler and E1/E2 authority remain intact. This is not deployment approval.
 
-The additive canonical `context-plane` HERMETIC suite covers integrated kernel tests.
-Checkpoint `0b2b46e` preserves the pending CP.2 artifacts and substitution fix; normal merge
-`c5f3d97` incorporates canonical scheduler composition at `16f7e1a` without conflicts.
-The corrected suite is independently trusted-published. Live canonical scheduler run
-`run-e524998cef0c437b` passed against clean `c5f3d97` (437 root tests); 26 scheduler tests
-and composition/substitution checks also passed. Scheduler and suite-publication blockers
-are cleared for those regressions. See milestone 056 and reconciliation evidence.
+Canonical `pre_handoff` passes: 462 root tests (25 CP.2), 26 scheduler tests, zero skips;
+the separately run 61-test E1 suite overlaps root. The existing `context-plane` suite
+remains canonical HERMETIC kernel qualification.
+The dedicated `context-plane-memory-native` HOST suite was separately trusted-published;
+no candidate Python is imported into the scheduler. Its first run
+`run-613c0c65fb584188` was BLOCKED by a CP.2 driver-URL probe defect before any native
+step. The fix requires separate publication of the corrected probe and then a new
+canonical run. The scheduler is healthy and idle; it is not the blocker. No native
+write, restart, provisioning, publication or push is claimed here.
 
-This remains HERMETIC regression coverage, not CP.2 native persistence acceptance.
-Governed writes and a dedicated native persistence/readback/restart harness remain ahead.
-Only trusted infrastructure may publish that harness; candidate worktrees cannot supply
-scheduler-imported Python. Publication does not imply CP.2 acceptance. No deployment,
-provisioning, scheduler redesign, production CP.2 changes or push occurred here.
-The next increment remains CP.2; CP.3 is not started. Earlier CP.1 measurements are historical.
+**Next acceptance boundary:** remain on CP.2 until canonical HOST evidence establishes
+both retention classes across real commit/readback, scoped response-loss replay,
+local embeddings, restart isolation and fresh bounded compilation. Preserve earlier
+STOP/PARTIAL reports as historical evidence. No automatic retention, verified learning,
+reflection, preference precedence, semantic workspace retrieval, Graphify, promotion,
+declassification, Conversation ingestion or CP.3.
 
 The authorized CP.1 implementation is complete within its opt-in hosted/local boundary.
 [Milestone and handoff](../milestones/055-context-plane-cp1.md),
@@ -73,7 +74,7 @@ under the revised storage criteria above. CP.1 is already merged. First
 qualify existing MIRIX and Blaine-owned entry metadata in approved storage. Its acceptance
 boundary is trusted human declaration vs UNVERIFIED current-context observation, isolated
 read methods/metadata, scoped idempotency, committed readback, response-loss/restart evidence
-and provenance-preserving migration. CP.2 production implementation has not started. No reflection/learning,
+and provenance-preserving migration. The CP.2 candidate above is implemented but not yet accepted. No reflection/learning,
 semantic search, Graphify, promotion, declassification or remote propagation is included.
 
 ## 1. Repository baseline and dependency choices
