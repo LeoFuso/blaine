@@ -196,6 +196,27 @@ class PA3Workflow(Base):
         evaluation = self.store.read_json(task_id, state['completion_ref'])['payload']
         self.assertEqual({c['id']: c['status'] for c in evaluation['criteria']}['tests-pass'], 'failed')
 
+    async def test_reading_a_large_source_file_keeps_cognition_within_budget(self):
+        # PA-4 live: reading a ~15 KiB source file overflowed the cognition packet.
+        big = '# padding\n' * 2000 + SOURCE
+        (self.repo / 'pkg' / 'greeting.py').write_text(big)
+        task_id, request = self.request()
+        provider, profiles = target_effects(self.root, self.deployment)
+        script = {2: lambda t: {'type': 'INVOKE_CAPABILITY', 'capability': 'workspace.read',
+                                'input': {'form': 'file', 'workspace_id': WS, 'path': 'pkg/greeting.py', 'artifact': 'source-1'}},
+                  3: lambda t: {'type': 'WAIT', 'wait_id': 'hold', 'input_type': 'text'}}
+        holder = []
+        capabilities = Audited(self.store, self.root / 'fixture.sqlite', holder)
+        harness = Harness(self.store, Cognition(script), capabilities, target_provider=SlowPolls(provider),
+                          exec_profiles=profiles)
+        holder.append(harness)
+        self.assertIsNone(await harness.invoke(task_id, request))  # still running: waited at turn 3
+        state = harness.state(task_id)
+        observation = self.store.read_json(task_id, state['observation_ref'])['payload']
+        self.assertEqual((observation['content_bytes'], observation['content_truncated']), (len(big), True))
+        self.assertLessEqual(len(observation['content'].encode()), 4096)
+        self.assertEqual(self.store.read(task_id, state['artifacts']['source-1']).decode(), big)  # whole file admitted
+
     async def test_denied_write_never_touches_the_workspace(self):
         task_id, request = self.request()
         provider, profiles = target_effects(self.root, self.deployment)

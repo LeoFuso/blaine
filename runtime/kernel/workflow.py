@@ -10,7 +10,7 @@ import restate
 from runtime.kernel.artifacts import ArtifactStore
 from runtime.kernel.context import ContextProvider, reconstruct
 from runtime.kernel.contracts import (
-    MAX_PACKET, MAX_TURNS, TaskResult, TaskState, encode, fields, identifier,
+    MAX_CONTENT, MAX_PACKET, MAX_TURNS, TaskResult, TaskState, encode, fields, identifier,
     child_task_id, child_request, accept_task_request, spawn_specs, message, text, unpack, validate_spec, validate_result,
 )
 from runtime.kernel import completion, effects, journal as capability_journal, review
@@ -387,9 +387,15 @@ def create_workflow(store: ArtifactStore, cognitive: CognitiveAdapter,
                 state['artifacts'] = {**state['artifacts'], action['input']['artifact']: answer['content_ref']}
                 await record(f'{iteration}/observed', {'phase': 'observed', 'operation_id': operation,
                     'outcome': 'success', 'receipt_ref': answer['receipt_ref']})
+                # Cognition sees a bounded excerpt; the whole file is the admitted artifact,
+                # which the worker receives through context_refs. A full copy here made
+                # any source file near 16 KiB exceed the cognition packet (PA-4 live).
+                data = answer['content'].encode('utf-8')
+                excerpt = data[:MAX_CONTENT].decode('utf-8', errors='ignore')
                 return message('WorkspaceReadObservation', {'operation_id': operation, 'receipt_ref': answer['receipt_ref'],
                     'artifact': action['input']['artifact'], 'artifact_ref': answer['content_ref'],
-                    'content': answer['content'], 'outcome': 'success'})
+                    'content': excerpt, 'content_bytes': len(data), 'content_truncated': len(data) > MAX_CONTENT,
+                    'outcome': 'success'})
 
             def lower(value, state):
                 facts = completion.load_journal(state, store)
