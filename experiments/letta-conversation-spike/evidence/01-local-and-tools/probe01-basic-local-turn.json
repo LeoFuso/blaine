@@ -1,0 +1,106 @@
+{
+ "runtime_start": {
+  "success": true,
+  "created": {
+   "agent": true,
+   "conversation": true
+  },
+  "error": null,
+  "runtime": {
+   "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+   "conversation_id": "local-conv-1"
+  },
+  "agent": {
+   "id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+   "name": "blaine-spike-pa",
+   "model": "openai-compatible/nvidia/Qwen3.8-27B-NVFP4",
+   "tools": [],
+   "tags": [
+    "git-memory-enabled"
+   ]
+  },
+  "conversation": {
+   "id": "local-conv-1",
+   "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+   "archived": false,
+   "archived_at": null,
+   "created_at": "2026-09-25T04:45:19.817Z",
+   "updated_at": "2026-09-25T04:45:19.817Z",
+   "last_message_at": null,
+   "summary": null,
+   "in_context_message_ids": []
+  }
+ },
+ "device_status": {
+  "mode": "strict",
+  "toolset": null,
+  "toolset_pref": "auto",
+  "loaded_tools": [],
+  "skills": [],
+  "memory_directory": "$SCRATCH/state/s1/home/.letta/lc-local-backend/memfs/agent-local-05803088-bc44-4c58-88b5-76e0397ced9e/memory",
+  "version": null,
+  "experiments": [
+   "artifacts=false",
+   "conversation_titles=false",
+   "desktop_conversation_bootstrap=false",
+   "diffs=false",
+   "reflection_arena=false",
+   "tui_cron=false"
+  ],
+  "supported_commands": [
+   "clear",
+   "clear-messages",
+   "doctor",
+   "dream",
+   "reflect",
+   "reflection",
+   "init",
+   "compact",
+   "reload",
+   "context-limit",
+   "channels",
+   "upgrade-letta-code",
+   "toolset",
+   "secret",
+   "monitor_stop"
+  ],
+  "mod_commands": null,
+  "reflection": {
+   "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+   "trigger": "step-count",
+   "step_count": 25,
+   "merge": "auto",
+   "merge_instructions": ""
+  }
+ },
+ "turn": {
+  "accepted": {
+   "type": "input_accepted",
+   "request_id": "probe01-input-e4c6da61-1df8-4d1c-bb47-213980f53058",
+   "runtime": {
+    "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+    "conversation_id": "local-conv-1"
+   },
+   "accepted": true,
+   "disposition": "started"
+  },
+  "finished": {
+   "stop_reason": "end_turn",
+   "error": null
+  },
+  "summary": {
+   "assistant": "A durable task is work that produces a lasting artifact or state change (like writing files, deploying code, or updating a database) rather than a transient in-conversation answer, so it should be delegated to a persistent worker like Blaine instead of handled inline.",
+   "reasoning": "",
+   "tool_calls": [],
+   "tool_returns": [],
+   "other": {
+    "input_accepted": 1,
+    "update_loop_status": 5,
+    "update_device_status": 2,
+    "usage_statistics": 1,
+    "stop_reason": 1,
+    "turn_finished": 1
+   }
+  }
+ }
+}

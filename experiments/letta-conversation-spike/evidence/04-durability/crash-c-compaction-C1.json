@@ -1,0 +1,115 @@
+{
+ "case": "C1",
+ "conversation": "local-conv-3",
+ "before": {
+  "integrity": {
+   "conversation": "conversation:local-conv-3",
+   "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtMw",
+   "bytes": 24522,
+   "ends_with_newline": true,
+   "lines": 33,
+   "unparseable_lines": [],
+   "entry_types": {
+    "session": 1,
+    "message": 32
+   },
+   "messages": 32,
+   "duplicate_message_ids": [],
+   "duplicate_user_otids": [],
+   "tool_calls": 0,
+   "tool_calls_without_return": [],
+   "non_message_entries": [],
+   "compaction_summaries": 0,
+   "conversation_json": "ok",
+   "in_context": 32,
+   "in_context_missing_from_transcript": []
+  },
+  "view": {
+   "retrieve_ok": true,
+   "retrieve_error": null,
+   "in_context": 32,
+   "listed": 32,
+   "list_error": null,
+   "summaries": 0
+  }
+ },
+ "kill": {
+  "signal": "KILL",
+  "pid": 3983173,
+  "at": 1790316898.2957597,
+  "namespace_gone": true
+ },
+ "after": {
+  "integrity": {
+   "conversation": "conversation:local-conv-3",
+   "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtMw",
+   "bytes": 24522,
+   "ends_with_newline": true,
+   "lines": 33,
+   "unparseable_lines": [],
+   "entry_types": {
+    "session": 1,
+    "message": 32
+   },
+   "messages": 32,
+   "duplicate_message_ids": [],
+   "duplicate_user_otids": [],
+   "tool_calls": 0,
+   "tool_calls_without_return": [],
+   "non_message_entries": [],
+   "compaction_summaries": 0,
+   "conversation_json": "ok",
+   "in_context": 32,
+   "in_context_missing_from_transcript": []
+  },
+  "view": {
+   "retrieve_ok": true,
+   "retrieve_error": null,
+   "in_context": 32,
+   "listed": 32,
+   "list_error": null,
+   "summaries": 0
+  },
+  "runtime_start": {
+   "success": true,
+   "error": null
+  },
+  "turn": "end_turn",
+  "last_model_request_roles": [
+   "system",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user",
+   "assistant",
+   "user"
+  ]
+ }
+}

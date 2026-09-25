@@ -1,0 +1,15 @@
+{
+ "runtime": {
+  "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+  "conversation_id": "local-conv-3"
+ },
+ "update_toolset": {
+  "success": true,
+  "current": "none",
+  "preference": "none"
+ },
+ "assistant": "None.",
+ "offered_tools": [
+  []
+ ]
+}

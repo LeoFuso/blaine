@@ -1,0 +1,142 @@
+{
+ "conversation": "local-conv-1",
+ "file": "$SCRATCH/state/s3/home/.letta/lc-local-backend/conversations/Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtMQ/conversation.json",
+ "before": {
+  "conversation.json": {
+   "bytes": 3128,
+   "sha256": "b55482c55e5f80b4"
+  },
+  "manifest.json": {
+   "bytes": 145,
+   "sha256": "020ccf4ff02d4269"
+  },
+  "messages.jsonl": {
+   "bytes": 7341796,
+   "sha256": "7e0473e91831de0e"
+  },
+  "system-prompt.json": {
+   "bytes": 803,
+   "sha256": "b7c67eba0f53bc29"
+  }
+ },
+ "inject_start": {
+  "generation": 72,
+  "bwrap_pid": 3982178,
+  "started_at": 1790316783.4828937,
+  "server_pid": 3982201,
+  "ready": true,
+  "ready_after_s": 0.51
+ },
+ "server_alive_after_injection": false,
+ "after_kill": {
+  "conversation.json": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c14"
+  },
+  "manifest.json": {
+   "bytes": 145,
+   "sha256": "020ccf4ff02d4269"
+  },
+  "messages.jsonl": {
+   "bytes": 7341796,
+   "sha256": "7e0473e91831de0e"
+  },
+  "system-prompt.json": {
+   "bytes": 803,
+   "sha256": "b7c67eba0f53bc29"
+  }
+ },
+ "strace_tail": [
+  "16    +++ killed by SIGKILL +++",
+  "15    +++ killed by SIGKILL +++",
+  "14    +++ killed by SIGKILL +++",
+  "13    +++ killed by SIGKILL +++",
+  "12    +++ killed by SIGKILL +++",
+  "11    +++ killed by SIGKILL +++"
+ ],
+ "integrity_after_kill": {
+  "conversation": "conversation:local-conv-1",
+  "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtMQ",
+  "bytes": 7341796,
+  "ends_with_newline": true,
+  "lines": 160,
+  "unparseable_lines": [],
+  "entry_types": {
+   "session": 1,
+   "message": 159
+  },
+  "messages": 159,
+  "duplicate_message_ids": [],
+  "duplicate_user_otids": [],
+  "tool_calls": 0,
+  "tool_calls_without_return": [],
+  "non_message_entries": [],
+  "compaction_summaries": 0,
+  "conversation_json": "error: JSONDecodeError"
+ },
+ "restart": {
+  "generation": 73,
+  "bwrap_pid": 3982303,
+  "started_at": 1790316787.0723135,
+  "server_pid": 3982321,
+  "ready": true,
+  "ready_after_s": 0.51
+ },
+ "conversation_list": {
+  "success": true,
+  "ids": []
+ },
+ "conversation_retrieve": {
+  "success": false,
+  "error": "Conversation local-conv-1 not found",
+  "in_context": null
+ },
+ "runtime_start": {
+  "success": false,
+  "error": "Conversation local-conv-1 not found"
+ },
+ "messages_readable": {
+  "success": false,
+  "count": 0,
+  "error": "Agent agent-local-default not found",
+  "probe_present": 0
+ },
+ "after_recovery": {
+  "conversation.json": {
+   "bytes": 0,
+   "sha256": "e3b0c44298fc1c14"
+  },
+  "manifest.json": {
+   "bytes": 145,
+   "sha256": "020ccf4ff02d4269"
+  },
+  "messages.jsonl": {
+   "bytes": 7341796,
+   "sha256": "7e0473e91831de0e"
+  },
+  "system-prompt.json": {
+   "bytes": 803,
+   "sha256": "b7c67eba0f53bc29"
+  }
+ },
+ "integrity_after_recovery": {
+  "conversation": "conversation:local-conv-1",
+  "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtMQ",
+  "bytes": 7341796,
+  "ends_with_newline": true,
+  "lines": 160,
+  "unparseable_lines": [],
+  "entry_types": {
+   "session": 1,
+   "message": 159
+  },
+  "messages": 159,
+  "duplicate_message_ids": [],
+  "duplicate_user_otids": [],
+  "tool_calls": 0,
+  "tool_calls_without_return": [],
+  "non_message_entries": [],
+  "compaction_summaries": 0,
+  "conversation_json": "error: JSONDecodeError"
+ }
+}

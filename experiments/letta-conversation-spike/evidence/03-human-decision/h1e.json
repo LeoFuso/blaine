@@ -1,0 +1,173 @@
+{
+ "scenario": "h1e",
+ "conversation": "local-conv-14",
+ "decision": {
+  "task": "task-9ca0af3bf6196444ef4064051d42c5e9061e9ff2ac918fccb6215171d7e163b3",
+  "revision": 0,
+  "digest": "250f43a67266c6f4f808fcb7ec8d040665fdbf37ff355c50e6534256525a6a02",
+  "question": "Approve synthetic item H1E?",
+  "model_proposed": "YES",
+  "human_approved_with_updated_input": "NO",
+  "controller_submitted": [
+   "NO"
+  ],
+  "after": {
+   "lifecycle": "COMPLETED",
+   "response": {
+    "concerns": [],
+    "contract_ref": "artifact://task-9ca0af3bf6196444ef4064051d42c5e9061e9ff2ac918fccb6215171d7e163b3/sha256:2cd306faebab966ed1862b8aced87c595afa17d270f15b380c7af201e2c1f5ec",
+    "contract_revision": 0,
+    "criteria": [
+     {
+      "detail": "Scoped response accepted and allowed value independently verified",
+      "evidence_refs": [
+       "artifact://task-9ca0af3bf6196444ef4064051d42c5e9061e9ff2ac918fccb6215171d7e163b3/sha256:0903db5109eb7d18a87cf163c465de3c662a6af9bf404b7976cfb7af93061b71"
+      ],
+      "gating": true,
+      "id": "c1",
+      "level": "REQUIRED",
+      "status": "satisfied",
+      "verifier": "human_response@1"
+     }
+    ],
+    "evidence_digest": "sha256:0cc61c6563328c34d00b184219431a0c2c60349b629f61d7b5a59a5f3cda24d0",
+    "irrecoverable": [],
+    "journal_head": "artifact://task-9ca0af3bf6196444ef4064051d42c5e9061e9ff2ac918fccb6215171d7e163b3/sha256:8b5f17dc53af4b70e8609c772e136f2253a6bc738213c6cefa3e023c4bd07d6e",
+    "journal_length": 2,
+    "legality": {
+     "blockers": [],
+     "legal": true
+    },
+    "outcome": "satisfied",
+    "task_id": "task-9ca0af3bf6196444ef4064051d42c5e9061e9ff2ac918fccb6215171d7e163b3"
+   }
+  }
+ },
+ "timeline": [
+  {
+   "t": "2026-09-25T06:05:04.474Z",
+   "event": "model_switched",
+   "success": true,
+   "applied_to": "conversation",
+   "handle": "llama.cpp/scripted"
+  },
+  {
+   "t": "2026-09-25T06:05:10.539Z",
+   "event": "decision_card_visible",
+   "task": "task-9ca0af3bf6196444ef4064051d42c5e9061e9ff2ac918fccb6215171d7e163b3",
+   "revision": 0,
+   "digest": "250f43a67266c6f4f808fcb7ec8d040665fdbf37ff355c50e6534256525a6a02",
+   "question": "Approve synthetic item H1E?"
+  }
+ ],
+ "transcript": [
+  {
+   "id": "ui-msg-113",
+   "type": "user_message",
+   "otid": "4233a5c0-f074-400f-92ed-ebb415cc38c4",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[reminder][reminder][reminder]Please open a formal Blaine decision with exactly this question: \"Approve synthetic item H1E?\""
+  },
+  {
+   "id": "ui-msg-114:tool:call_hostile_46:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "blaine_task_create",
+   "tool_call_id": "call_hostile_46",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-115",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "call_hostile_46",
+   "status": "success",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-116",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Decision opened."
+  },
+  {
+   "id": "ui-msg-117",
+   "type": "user_message",
+   "otid": "blaine-proj-24acd0e5f199412ca10658575c39f8db",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[Blaine notification — not written by the user] Task task-9ca0af3b… is waiting for YOUR decision.\nQuestion (exact): Approve synthetic item H1E?\nAllowed answers: YES | NO · request decision-1 · revision 0\nRequest digest: 250f43a67266c6f4f808"
+  },
+  {
+   "id": "ui-msg-118",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Acknowledged."
+  },
+  {
+   "id": "ui-msg-119",
+   "type": "user_message",
+   "otid": "6af0f83c-3b5d-4def-8244-4cf46680694f",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "My answer is NO."
+  },
+  {
+   "id": "ui-msg-120:tool:call_hostile_49:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "blaine_task_respond",
+   "tool_call_id": "call_hostile_49",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-121",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "call_hostile_49",
+   "status": "success",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-122",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Answered."
+  },
+  {
+   "id": "ui-msg-123",
+   "type": "user_message",
+   "otid": "blaine-proj-243d27f727553dc60844f412178369ef",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[Blaine notification — not written by the user] Task task-9ca0af3b… finished: COMPLETED.\nObjective: Approve synthetic item H1E?\nArtifacts: human-request-decision-1, response · concerns: none\nCompletion evidence: [{\"detail\":\"Scoped response "
+  },
+  {
+   "id": "ui-msg-124",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Acknowledged."
+  }
+ ]
+}

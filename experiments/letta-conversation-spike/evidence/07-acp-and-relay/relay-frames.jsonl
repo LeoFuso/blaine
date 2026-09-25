@@ -1,0 +1,37 @@
+{"kind":"private_initialize_response","t":1790318402021,"v":{"jsonrpc":"2.0","id":"blaine-private-initialize","result":{"protocolVersion":1,"agentCapabilities":{"loadSession":true,"sessionCapabilities":{"list":{}},"mcpCapabilities":{"http":true,"sse":true},"promptCapabilities":{"image":true,"embeddedContext":true}},"authMethods":[]}}}
+{"kind":"ide_sent","t":1790318402021,"v":{"id":1,"method":"session/new"}}
+{"kind":"ide_received_notification","t":1790318402072,"v":{"method":"session/update","update":"available_commands_update"}}
+{"kind":"ide_response","t":1790318402076,"v":{"error":null,"has_error":false,"id":1,"method":"session/new","result_keys":["sessionId","modes","configOptions"]}}
+{"kind":"ide_sent","t":1790318402076,"v":{"id":2,"method":"session/prompt"}}
+{"kind":"ide_received_notification","t":1790318402446,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_response","t":1790318402559,"v":{"error":null,"has_error":false,"id":2,"method":"session/prompt","result_keys":["stopReason"]}}
+{"kind":"ide_sent","t":1790318402559,"v":{"id":3,"method":"session/load"}}
+{"kind":"ide_received_notification","t":1790318402564,"v":{"method":"session/update","update":"tool_call"}}
+{"kind":"ide_received_notification","t":1790318402564,"v":{"method":"session/update","update":"tool_call_update"}}
+{"kind":"ide_received_notification","t":1790318402564,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402564,"v":{"method":"session/update","update":"user_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402565,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402565,"v":{"method":"session/update","update":"user_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402565,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402565,"v":{"method":"session/update","update":"user_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402565,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402565,"v":{"method":"session/update","update":"user_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402565,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"user_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"tool_call"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"tool_call_update"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"user_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"tool_call"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"tool_call_update"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"user_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402566,"v":{"method":"session/update","update":"agent_message_chunk"}}
+{"kind":"ide_received_notification","t":1790318402567,"v":{"method":"session/update","update":"available_commands_update"}}
+{"kind":"ide_response","t":1790318402567,"v":{"error":null,"has_error":false,"id":3,"method":"session/load","result_keys":["modes","configOptions"]}}
+{"kind":"ide_sent","t":1790318402567,"v":{"id":4,"method":"session/prompt"}}
+{"kind":"ide_received_notification","t":1790318403339,"v":{"method":"session/update","update":"tool_call"}}
+{"kind":"timeout","t":1790318403341,"v":{"id":4,"method":"session/prompt"}}
+{"kind":"relay_end","t":1790318403341,"v":"failed to get reader: failed to read frame header: EOF"}
+{"kind":"host_end","t":1790318403344,"v":"ACP_DENIED: host client capabilities require a later E slice"}
+{"acp_return":"\u003cnil\u003e","ide_output":["{\"id\":1,\"jsonrpc\":\"2.0\",\"result\":{\"agentCapabilities\":{},\"agentInfo\":{\"name\":\"blaine\",\"version\":\"0.1.0-dev\"},\"authMethods\":[{\"description\":\"Authenticate this Blaine installation to its private tailnet. An admitted installation is registered automatically.\",\"id\":\"tailscale\",\"name\":\"Connect Blaine\"}],\"protocolVersion\":1}}","{\"error\":{\"code\":-32601,\"message\":\"Method unavailable before the authenticated session\"},\"id\":2,\"jsonrpc\":\"2.0\"}"],"kind":"frontend_transcript"}

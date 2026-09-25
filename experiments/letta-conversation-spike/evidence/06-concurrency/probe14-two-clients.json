@@ -1,0 +1,351 @@
+{
+ "conversation": "local-conv-10",
+ "steps": [
+  {
+   "t": "2026-09-25T06:21:25.531Z",
+   "event": "A_send_M1",
+   "ack": {
+    "type": "input_accepted",
+    "request_id": "p14-A-input-745b653a-9aaf-4480-a53f-2fde2e1ca430",
+    "runtime": {
+     "agent_id": "agent-local-0e10335f-0b4d-48c0-915d-8a55600d1a9b",
+     "conversation_id": "local-conv-10"
+    },
+    "accepted": true,
+    "disposition": "started"
+   }
+  },
+  {
+   "t": "2026-09-25T06:21:27.034Z",
+   "event": "B_send_M2_during_turn",
+   "ack": {
+    "type": "input_accepted",
+    "request_id": "p14-B-input-93275239-283b-40a6-8fed-61c360aed066",
+    "runtime": {
+     "agent_id": "agent-local-0e10335f-0b4d-48c0-915d-8a55600d1a9b",
+     "conversation_id": "local-conv-10"
+    },
+    "accepted": true,
+    "disposition": "queued"
+   }
+  },
+  {
+   "t": "2026-09-25T06:21:28.034Z",
+   "event": "A_socket_killed_mid_turn"
+  },
+  {
+   "t": "2026-09-25T06:21:29.539Z",
+   "event": "A_reconnected",
+   "sync": true
+  },
+  {
+   "t": "2026-09-25T06:21:33.570Z",
+   "event": "turns_finished_seen_by_B",
+   "stops": [
+    "end_turn",
+    "end_turn"
+   ]
+  },
+  {
+   "t": "2026-09-25T06:21:33.572Z",
+   "event": "A_send_M3",
+   "ack": {
+    "type": "input_accepted",
+    "request_id": "p14-A2-input-5e01b8be-b82a-4113-ab8a-610b04692cfd",
+    "runtime": {
+     "agent_id": "agent-local-0e10335f-0b4d-48c0-915d-8a55600d1a9b",
+     "conversation_id": "local-conv-10"
+    },
+    "accepted": true,
+    "disposition": "queued"
+   }
+  },
+  {
+   "t": "2026-09-25T06:21:34.575Z",
+   "event": "C_send_M4_queued",
+   "ack": {
+    "type": "input_accepted",
+    "request_id": "p14-C-input-15c1973c-247b-485b-b212-3aaa22009c42",
+    "runtime": {
+     "agent_id": "agent-local-0e10335f-0b4d-48c0-915d-8a55600d1a9b",
+     "conversation_id": "local-conv-10"
+    },
+    "accepted": true,
+    "disposition": "queued"
+   }
+  },
+  {
+   "t": "2026-09-25T06:21:34.876Z",
+   "event": "C_disconnected_while_M4_queued"
+  }
+ ],
+ "history_A": [
+  "user_message:p14-M1:[reminder][reminder][reminder]M1 from cl",
+  "assistant_message::Reply to M1 (slow).",
+  "user_message:p14-M2:M2 from client B",
+  "assistant_message::Reply to M2.",
+  "user_message:p14-M3:M3 from client A",
+  "assistant_message::Reply to M3 (slow)."
+ ],
+ "converged": true,
+ "M4_present": false,
+ "frames": {
+  "A": [
+   {
+    "t": 1790317285531,
+    "type": "input_accepted",
+    "disp": "started"
+   },
+   {
+    "t": 1790317287034,
+    "type": "update_queue",
+    "queue": [
+     "p14-M2"
+    ],
+    "removed": []
+   }
+  ],
+  "B": [
+   {
+    "t": 1790317287034,
+    "type": "input_accepted",
+    "disp": "queued"
+   },
+   {
+    "t": 1790317287034,
+    "type": "update_queue",
+    "queue": [
+     "p14-M2"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317293548,
+    "type": "assistant_delta"
+   },
+   {
+    "t": 1790317293550,
+    "type": "turn_finished",
+    "stop": "end_turn"
+   },
+   {
+    "t": 1790317293561,
+    "type": "update_queue",
+    "queue": [],
+    "removed": []
+   },
+   {
+    "t": 1790317293561,
+    "type": "update_queue",
+    "queue": [],
+    "removed": [
+     {
+      "client_message_id": "p14-M2",
+      "disposition": "dequeued"
+     }
+    ]
+   },
+   {
+    "t": 1790317293568,
+    "type": "assistant_delta"
+   },
+   {
+    "t": 1790317293570,
+    "type": "turn_finished",
+    "stop": "end_turn"
+   },
+   {
+    "t": 1790317293572,
+    "type": "update_queue",
+    "queue": [
+     "p14-M3"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317293577,
+    "type": "update_queue",
+    "queue": [
+     "p14-M3"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317293577,
+    "type": "update_queue",
+    "queue": [],
+    "removed": []
+   },
+   {
+    "t": 1790317293577,
+    "type": "update_queue",
+    "queue": [],
+    "removed": [
+     {
+      "client_message_id": "p14-M3",
+      "disposition": "dequeued"
+     }
+    ]
+   },
+   {
+    "t": 1790317294575,
+    "type": "update_queue",
+    "queue": [
+     "p14-M4"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317294877,
+    "type": "update_queue",
+    "queue": [],
+    "removed": [
+     {
+      "client_message_id": "p14-M4",
+      "disposition": "cancelled"
+     }
+    ]
+   },
+   {
+    "t": 1790317299585,
+    "type": "assistant_delta"
+   },
+   {
+    "t": 1790317299587,
+    "type": "turn_finished",
+    "stop": "end_turn"
+   },
+   {
+    "t": 1790317299599,
+    "type": "update_queue",
+    "queue": [],
+    "removed": []
+   }
+  ],
+  "A2": [
+   {
+    "t": 1790317289538,
+    "type": "update_queue",
+    "queue": [
+     "p14-M2"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317289539,
+    "type": "update_queue",
+    "queue": [
+     "p14-M2"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317293548,
+    "type": "assistant_delta"
+   },
+   {
+    "t": 1790317293550,
+    "type": "turn_finished",
+    "stop": "end_turn"
+   },
+   {
+    "t": 1790317293561,
+    "type": "update_queue",
+    "queue": [],
+    "removed": []
+   },
+   {
+    "t": 1790317293561,
+    "type": "update_queue",
+    "queue": [],
+    "removed": [
+     {
+      "client_message_id": "p14-M2",
+      "disposition": "dequeued"
+     }
+    ]
+   },
+   {
+    "t": 1790317293568,
+    "type": "assistant_delta"
+   },
+   {
+    "t": 1790317293570,
+    "type": "turn_finished",
+    "stop": "end_turn"
+   },
+   {
+    "t": 1790317293572,
+    "type": "input_accepted",
+    "disp": "queued"
+   },
+   {
+    "t": 1790317293572,
+    "type": "update_queue",
+    "queue": [
+     "p14-M3"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317293577,
+    "type": "update_queue",
+    "queue": [
+     "p14-M3"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317293577,
+    "type": "update_queue",
+    "queue": [],
+    "removed": []
+   },
+   {
+    "t": 1790317293577,
+    "type": "update_queue",
+    "queue": [],
+    "removed": [
+     {
+      "client_message_id": "p14-M3",
+      "disposition": "dequeued"
+     }
+    ]
+   },
+   {
+    "t": 1790317294575,
+    "type": "update_queue",
+    "queue": [
+     "p14-M4"
+    ],
+    "removed": []
+   },
+   {
+    "t": 1790317294877,
+    "type": "update_queue",
+    "queue": [],
+    "removed": [
+     {
+      "client_message_id": "p14-M4",
+      "disposition": "cancelled"
+     }
+    ]
+   },
+   {
+    "t": 1790317299585,
+    "type": "assistant_delta"
+   },
+   {
+    "t": 1790317299587,
+    "type": "turn_finished",
+    "stop": "end_turn"
+   },
+   {
+    "t": 1790317299599,
+    "type": "update_queue",
+    "queue": [],
+    "removed": []
+   }
+  ]
+ }
+}

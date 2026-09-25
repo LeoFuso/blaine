@@ -1,0 +1,58 @@
+{
+ "case": "D3",
+ "task": "task-476e19da57f52c456a1d536b0a988a2fbdd8fd760c9dac542519707599ab0444",
+ "first_projector_exit": 137,
+ "disposition": "queued",
+ "second_projector_exit": 0,
+ "visible_projection_count": 0,
+ "delivery_log": [
+  {
+   "event": "attempt",
+   "c": "proj-D3-1"
+  },
+  {
+   "event": "input_accepted",
+   "c": "proj-D3-1",
+   "disposition": "queued"
+  },
+  {
+   "event": "fault_crash_after_send",
+   "c": "proj-D3-1"
+  },
+  {
+   "event": "resend",
+   "c": "proj-D3-2"
+  },
+  {
+   "event": "attempt",
+   "c": "proj-D3-2"
+  },
+  {
+   "event": "input_accepted",
+   "c": "proj-D3-2",
+   "disposition": "queued"
+  }
+ ],
+ "integrity": {
+  "conversation": "conversation:local-conv-8",
+  "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtOA",
+  "bytes": 6314,
+  "ends_with_newline": true,
+  "lines": 7,
+  "unparseable_lines": [],
+  "entry_types": {
+   "session": 1,
+   "message": 6
+  },
+  "messages": 6,
+  "duplicate_message_ids": [],
+  "duplicate_user_otids": [],
+  "tool_calls": 1,
+  "tool_calls_without_return": [],
+  "non_message_entries": [],
+  "compaction_summaries": 0,
+  "conversation_json": "ok",
+  "in_context": 6,
+  "in_context_missing_from_transcript": []
+ }
+}

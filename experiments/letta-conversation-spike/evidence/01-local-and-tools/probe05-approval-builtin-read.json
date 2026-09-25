@@ -1,0 +1,89 @@
+{
+ "case": "builtin",
+ "delay_ms": 300,
+ "runtime": {
+  "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+  "conversation_id": "local-conv-6"
+ },
+ "stop_reason": "end_turn",
+ "error": null,
+ "approvals": [
+  {
+   "tool": "Read",
+   "request_id": "perm-chatcmpl-tool-a965b0cc7bec1e9c",
+   "ack": {
+    "accepted": true,
+    "error": null
+   }
+  }
+ ],
+ "summary": {
+  "assistant": "The content of `/etc/hostname` is: `blaine`",
+  "reasoning": "",
+  "tool_calls": [
+   {
+    "mt": "approval_request_message",
+    "id": "chatcmpl-tool-a965b0cc7bec1e9c",
+    "name": "Read",
+    "args": "{\"file_path\":\"/etc/hostname\"}"
+   }
+  ],
+  "tool_returns": [
+   {
+    "id": "chatcmpl-tool-a965b0cc7bec1e9c",
+    "status": "success",
+    "ret": "1\tblaine\n2\t"
+   }
+  ],
+  "other": {
+   "input_accepted": 2,
+   "update_loop_status": 15,
+   "update_device_status": 6,
+   "usage_statistics": 2,
+   "stop_reason": 2,
+   "approval_classification_end": 1,
+   "control_request": 1,
+   "client_tool_start": 1,
+   "client_tool_end": 1,
+   "turn_finished": 1
+  }
+ },
+ "transcript": [
+  {
+   "id": "ui-msg-1",
+   "type": "user_message",
+   "otid": "fea02b69-d0fb-4f67-9de1-46a0a01f817d",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[reminder][reminder][reminder]Use the Read tool to read the file /etc/hostname and tell me its content."
+  },
+  {
+   "id": "ui-msg-2:tool:chatcmpl-tool-a965b0cc7bec1e9c:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "Read",
+   "tool_call_id": "chatcmpl-tool-a965b0cc7bec1e9c",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-3",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "chatcmpl-tool-a965b0cc7bec1e9c",
+   "status": "success",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-4",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "The content of `/etc/hostname` is: `blaine`"
+  }
+ ]
+}

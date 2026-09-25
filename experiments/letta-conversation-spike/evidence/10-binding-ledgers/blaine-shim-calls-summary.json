@@ -1,0 +1,475 @@
+{
+ "calls": 60941,
+ "by_op_status": [
+  [
+   "inspect 200",
+   39488
+  ],
+  [
+   "decision_view 200",
+   18143
+  ],
+  [
+   "artifact 200",
+   3251
+  ],
+  [
+   "create_decision 200",
+   30
+  ],
+  [
+   "respond 200",
+   13
+  ],
+  [
+   "create_summarize 200",
+   7
+  ],
+  [
+   "inspect 502",
+   5
+  ],
+  [
+   "respond 400",
+   3
+  ],
+  [
+   "create_decision 400",
+   1
+  ]
+ ],
+ "write_calls": [
+  {
+   "ts": 1790311692.735,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-a79c1f088924a99307004a901c8f08fccb828a8d2620af85f39d9e23807317a2",
+   "submission": "SUBMITTED",
+   "ms": 65
+  },
+  {
+   "ts": 1790311702.763,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-a79c1f088924a99307004a901c8f08fccb828a8d2620af85f39d9e23807317a2",
+   "submission": "EXISTING",
+   "ms": 4
+  },
+  {
+   "ts": 1790311702.771,
+   "op": "create_decision",
+   "status": 400,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790313575.928,
+   "op": "create_summarize",
+   "status": 200,
+   "task_id": "task-2deb96dbba665f559c60e67dd56435f8f8229ed71a8d82cb7231138fe9f87458",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790314025.307,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-20aa32d00279c6819f2d76e6e7116d3ec5a89b7e898533bb931c025beae7b304",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790314551.295,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-602dc5b2b97958534cb6b186046ca28d703884ba2fefdd88e636f8069803c6ed",
+   "submission": "SUBMITTED",
+   "ms": 8
+  },
+  {
+   "ts": 1790314913.364,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-e8e525c07932cd11ff0fd7051cd99d5012c3ab019c6960449dfddd3b21a1ff59",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790314973.915,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-246f9c44461104f8a7e991e1904d0ffa82d140655e315c1072d5f1ea9676545c",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315280.815,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-4330dcce333b817dbc72b271f5d458b2728d6e63f2985e6c6ab665f2772263b5",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315389.14,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-a700ac8106f43e560f2e36437fe2ecc543cdf65cf946ac27d8370f9a97106777",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315728.249,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315734.763,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 4
+  },
+  {
+   "ts": 1790315754.354,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-c9bd52d91c0900fde61cc650b1636828e836c678903fc96bf0acb26736fb7de5",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315757.908,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 2
+  },
+  {
+   "ts": 1790315761.443,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-458043987e7777f6ed6da57b61005913ea1e0e914f5ced4508d9db0e3942f50d",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315763.482,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 4
+  },
+  {
+   "ts": 1790315784.831,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-41e336b31f54038d7151586ad83791695a2bc4c331cd969a28b463444b148848",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315788.385,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 2
+  },
+  {
+   "ts": 1790315798.546,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-fb433d131a5d1ac05b95708a5e0c61657cd30fd474fbfb92de3c512377261530",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315800.595,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790315810.751,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-ebd76de4ed3e54eaf3500e91aaa11afa891a008361213c40acf097c605186df0",
+   "submission": "SUBMITTED",
+   "ms": 2
+  },
+  {
+   "ts": 1790315812.8,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790315842.551,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-7316b26b9dbc07a264858967305806259d24e5d67ebb287784883ce7fba9a9e8",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790315968.871,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-65eeacd1c701035d352ef36823e977c6e9a79685849c462dd4f6b2ad36a2d12c",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316095.149,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-18cab828fba13dc5a40fa63c6ded16f515947445ec43bd94b59b952e2f1066c9",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316296.05,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-eb296befb97a249f6a03cc876cc8e58d004211afe2061ddcaac4b49865dc1f0b",
+   "submission": "SUBMITTED",
+   "ms": 3
+  },
+  {
+   "ts": 1790316298.313,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790316308.504,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-9ca0af3bf6196444ef4064051d42c5e9061e9ff2ac918fccb6215171d7e163b3",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316312.059,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 2
+  },
+  {
+   "ts": 1790316322.207,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-9ba80a8711efb9b2b82ffa73910fe48f5fc795d2c2a122ffba0518322c05a635",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316325.763,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790316359.048,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-20c9e8e023a5aa14e859d30205b61a0a5010728a8c36f2d7face510cbc13e4fb",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316362.611,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 2
+  },
+  {
+   "ts": 1790316366.15,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-622604ba3748d64363fbf4c83b314c7f6c8be0652d6bb6e69c349c728aadca59",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316379.895,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-bcd5802f6f781ec6caf8764110e6e1bde0eed53b83a6fa262a429036c9397198",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316395.107,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-26a5bd80e471290e5646ac76cb6702f5ba10cba95f70c5e55a4a1f65ab7e2ffc",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316397.362,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790316459.387,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-51a93217bee8ca4e1c7ad4d5a2d6247a47f62799bd31170d56c96d0dc59eb48a",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790316465.535,
+   "op": "respond",
+   "status": 400,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790316465.543,
+   "op": "respond",
+   "status": 400,
+   "task_id": null,
+   "submission": null,
+   "ms": 2
+  },
+  {
+   "ts": 1790316465.551,
+   "op": "respond",
+   "status": 400,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790316468.132,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 3
+  },
+  {
+   "ts": 1790317046.249,
+   "op": "create_summarize",
+   "status": 200,
+   "task_id": "task-4e3a290b639893cbbb42a4912038b2b8deb5edb02f7b1a3898cc159fcbe68e9f",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790317071.542,
+   "op": "create_summarize",
+   "status": 200,
+   "task_id": "task-e4bf7c29d1a397b266c4e9866176316fda18098c5d0d53c88070191ecdf43676",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790317099.466,
+   "op": "create_summarize",
+   "status": 200,
+   "task_id": "task-476e19da57f52c456a1d536b0a988a2fbdd8fd760c9dac542519707599ab0444",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790318192.588,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-02a9d98fc3db3c5b436704cd3adbefdb696522d4b96508529772841bd7a97683",
+   "submission": "SUBMITTED",
+   "ms": 3
+  },
+  {
+   "ts": 1790319014.757,
+   "op": "create_summarize",
+   "status": 200,
+   "task_id": "task-f2c33214755a80d72c4297f446075930d2e6623dd04d6ff68fa6310b959b1ac6",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790319014.762,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-f2c33214755a80d72c4297f446075930d2e6623dd04d6ff68fa6310b959b1ac6",
+   "submission": "SUBMITTED",
+   "ms": 2
+  },
+  {
+   "ts": 1790319241.158,
+   "op": "create_summarize",
+   "status": 200,
+   "task_id": "task-7ecf8694b4a0941e7bc47126731784da446e8a0d6487bc173a2c760a8cfb0b1b",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790319241.158,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-7ecf8694b4a0941e7bc47126731784da446e8a0d6487bc173a2c760a8cfb0b1b",
+   "submission": "SUBMITTED",
+   "ms": 4
+  },
+  {
+   "ts": 1790319243.181,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-7ecf8694b4a0941e7bc47126731784da446e8a0d6487bc173a2c760a8cfb0b1b",
+   "submission": "EXISTING",
+   "ms": 4
+  },
+  {
+   "ts": 1790319296.374,
+   "op": "create_summarize",
+   "status": 200,
+   "task_id": "task-def98358c9d2c0bd7a43ed16f03175a0dc03dde10b1aff188c83b2bee3c5c01d",
+   "submission": "SUBMITTED",
+   "ms": 5
+  },
+  {
+   "ts": 1790319296.385,
+   "op": "create_decision",
+   "status": 200,
+   "task_id": "task-775005363bf1619430842c74c8f54e6fc3badef7a0a65c012a7621e50efe5532",
+   "submission": "SUBMITTED",
+   "ms": 3
+  },
+  {
+   "ts": 1790319300.85,
+   "op": "respond",
+   "status": 200,
+   "task_id": null,
+   "submission": null,
+   "ms": 2
+  }
+ ]
+}

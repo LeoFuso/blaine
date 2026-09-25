@@ -1,0 +1,1 @@
+{"label":"default","turns":30,"reflection_settings":{"agent_id":"agent-local-0e10335f-0b4d-48c0-915d-8a55600d1a9b","trigger":"step-count","step_count":25,"merge":"auto","merge_instructions":""},"model_requests":30,"subagent_bash_edit_requests":0}

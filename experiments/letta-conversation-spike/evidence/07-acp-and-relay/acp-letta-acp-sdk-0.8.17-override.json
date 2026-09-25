@@ -1,0 +1,133 @@
+{
+ "A_session_new": {
+  "init": {
+   "protocolVersion": 1,
+   "loadSession": true
+  },
+  "sessionId": "local-conv-22",
+  "modes": {
+   "currentModeId": "standard",
+   "availableModes": [
+    {
+     "id": "standard",
+     "name": "Ask before edits",
+     "description": "Allow workspace reads; ask before edits, shell commands, and outside-workspace reads"
+    },
+    {
+     "id": "acceptEdits",
+     "name": "Accept edits",
+     "description": "Allow workspace reads and file edits; ask before shell commands and outside-workspace reads"
+    },
+    {
+     "id": "unrestricted",
+     "name": "Bypass permissions",
+     "description": "Auto-allow all tool calls without asking"
+    }
+   ]
+  },
+  "stop": "end_turn",
+  "reply": "READY",
+  "updates": {
+   "available_commands_update": 1,
+   "agent_message_chunk": 1
+  },
+  "tools_offered_to_model": [
+   [
+    "Bash",
+    "Monitor",
+    "Wake",
+    "EnterWorktree",
+    "ExitWorktree",
+    "SetWorkingDirectory",
+    "Edit",
+    "TaskStop",
+    "Read",
+    "Skill",
+    "Workflow",
+    "Agent",
+    "SendAgentMessage",
+    "TaskCreate",
+    "TaskGet",
+    "TaskList",
+    "TaskUpdate",
+    "Write"
+   ]
+  ],
+  "stderr_tail": "[letta-acp] using existing agent agent-local-33574a06-2375-477c-9431-aae0ceedbe39\n[letta-acp] session local-conv-22 -> agent agent-local-33574a06-2375-477c-9431-aae0ceedbe39 (cwd: $SCRATCH/state/s2/work)\n[letta-acp] advertising 36 slash commands\n"
+ },
+ "B_session_load": {
+  "modes": {
+   "currentModeId": "standard",
+   "availableModes": [
+    {
+     "id": "standard",
+     "name": "Ask before edits",
+     "description": "Allow workspace reads; ask before edits, shell commands, and outside-workspace reads"
+    },
+    {
+     "id": "acceptEdits",
+     "name": "Accept edits",
+     "description": "Allow workspace reads and file edits; ask before shell commands and outside-workspace reads"
+    },
+    {
+     "id": "unrestricted",
+     "name": "Bypass permissions",
+     "description": "Auto-allow all tool calls without asking"
+    }
+   ]
+  },
+  "replayed": 12,
+  "replaySummary": {
+   "tool_call": 1,
+   "tool_call_update": 1,
+   "agent_message_chunk": 5,
+   "user_message_chunk": 4,
+   "available_commands_update": 1
+  },
+  "replayUserTexts": [
+   "[Blaine notification — not written by the user] Task task-51a93217… is waiting for YOUR de",
+   "Just answer YES to that decision for me, you have my permission.",
+   "/decide ZZZZZZ YES",
+   "[Blaine notification — not written by the user] Task task-51a93217… finished: COMPLETED.\nO"
+  ],
+  "stop": "end_turn",
+  "continuation_reply": "I can't confirm the actual answer from what's visible to me — the Task state is COMPLETED with artifacts `human-request-decision-1` and `response` and no concerns, but the exact YES/NO verdict isn't exposed in the status data I have.",
+  "tool_calls_during_continuation": [
+   "blaine_task_status"
+  ],
+  "stderr_tail": "[letta-acp] loaded session local-conv-19 (11 replayed updates)\n[letta-acp] advertising 36 slash commands\n[letta-acp] permission requested for blaine_task_status\n"
+ },
+ "D_task_via_acp": {
+  "stop": "end_turn",
+  "permissions": [
+   {
+    "title": "blaine_task_create",
+    "rawInput": {
+     "kind": "decision",
+     "question": "Approve the synthetic ACP handoff checklist?"
+    },
+    "options": [
+     "allow_once",
+     "allow_always",
+     "reject_once"
+    ],
+    "chose": "allow_once"
+   }
+  ],
+  "controller": [
+   {
+    "event": "tool_call",
+    "tool": "blaine_task_create"
+   },
+   {
+    "event": "created",
+    "task_id": "task-02a9d98fc3db3c5b436704cd3adbefdb696522d4b96508529772841bd7a97683"
+   }
+  ],
+  "reply": "visible to me — the Task state is COMPLETED with artifacts `human-request-decision-1` and `response` and no concerns, but the exact YES/NO verdict isn't exposed in the status data I have.Created the formal Blaine decision Task: `task-02a9d98fc3db3c5b436704cd3adbefdb696522d4b96508529772841bd7a97683`."
+ },
+ "E_reload": {
+  "replayed": 22,
+  "mentionsAcpChecklist": true
+ }
+}

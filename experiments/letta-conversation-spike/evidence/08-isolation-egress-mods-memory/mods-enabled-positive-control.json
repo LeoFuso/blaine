@@ -1,0 +1,10 @@
+{
+ "label": "enabled",
+ "stop": "end_turn",
+ "mod_commands": null,
+ "canary_tools_offered": [],
+ "canary_files": [
+  "global",
+  "memory"
+ ]
+}

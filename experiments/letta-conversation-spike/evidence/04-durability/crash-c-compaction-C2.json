@@ -1,0 +1,105 @@
+{
+ "case": "C2",
+ "conversation": "local-conv-4",
+ "before": {
+  "integrity": {
+   "conversation": "conversation:local-conv-4",
+   "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtNA",
+   "bytes": 24522,
+   "ends_with_newline": true,
+   "lines": 33,
+   "unparseable_lines": [],
+   "entry_types": {
+    "session": 1,
+    "message": 32
+   },
+   "messages": 32,
+   "duplicate_message_ids": [],
+   "duplicate_user_otids": [],
+   "tool_calls": 0,
+   "tool_calls_without_return": [],
+   "non_message_entries": [],
+   "compaction_summaries": 0,
+   "conversation_json": "ok",
+   "in_context": 32,
+   "in_context_missing_from_transcript": []
+  },
+  "view": {
+   "retrieve_ok": true,
+   "retrieve_error": null,
+   "in_context": 32,
+   "listed": 32,
+   "list_error": null,
+   "summaries": 0
+  }
+ },
+ "inject_trace": [],
+ "server_killed_by_injection": true,
+ "after_kill_integrity": {
+  "conversation": "conversation:local-conv-4",
+  "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtNA",
+  "bytes": 24522,
+  "ends_with_newline": true,
+  "lines": 33,
+  "unparseable_lines": [],
+  "entry_types": {
+   "session": 1,
+   "message": 32
+  },
+  "messages": 32,
+  "duplicate_message_ids": [],
+  "duplicate_user_otids": [],
+  "tool_calls": 0,
+  "tool_calls_without_return": [],
+  "non_message_entries": [],
+  "compaction_summaries": 0,
+  "conversation_json": "ok",
+  "in_context": 1,
+  "in_context_missing_from_transcript": [
+   "ui-msg-263"
+  ]
+ },
+ "after": {
+  "integrity": {
+   "conversation": "conversation:local-conv-4",
+   "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtNA",
+   "bytes": 24522,
+   "ends_with_newline": true,
+   "lines": 33,
+   "unparseable_lines": [],
+   "entry_types": {
+    "session": 1,
+    "message": 32
+   },
+   "messages": 32,
+   "duplicate_message_ids": [],
+   "duplicate_user_otids": [],
+   "tool_calls": 0,
+   "tool_calls_without_return": [],
+   "non_message_entries": [],
+   "compaction_summaries": 0,
+   "conversation_json": "ok",
+   "in_context": 1,
+   "in_context_missing_from_transcript": [
+    "ui-msg-263"
+   ]
+  },
+  "view": {
+   "retrieve_ok": true,
+   "retrieve_error": null,
+   "in_context": 1,
+   "listed": 0,
+   "list_error": null,
+   "summaries": 0
+  },
+  "runtime_start": {
+   "success": true,
+   "error": null
+  },
+  "turn": "end_turn",
+  "last_model_request_roles": [
+   "system",
+   "user"
+  ]
+ }
+}

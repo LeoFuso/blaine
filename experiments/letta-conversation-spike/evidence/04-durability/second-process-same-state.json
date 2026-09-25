@@ -1,0 +1,23 @@
+{
+ "conversation": "local-conv-19",
+ "headless_tail": "{\n  \"type\": \"result\",\n  \"subtype\": \"success\",\n  \"is_error\": false,\n  \"duration_ms\": 53,\n  \"duration_api_ms\": 13,\n  \"num_turns\": 0,\n  \"result\": \"Acknowledged.\",\n  \"agent_id\": \"agent-local-0e10335f-0b4d-48c0-915d-8a55600d1a9b\",\n  \"conversation_id\": \"local-conv-19\",\n  \"usage\": {\n    \"prompt_tokens\": 10,\n    \"completion_tokens\": 5,\n    \"total_tokens\": 15,\n    \"step_count\": 0,\n    \"cached_input_tokens\": 0,\n    \"cache_write_tokens\": 0,\n    \"reasoning_tokens\": 0,\n    \"context_tokens\": 15\n  }\n}\n",
+ "before": {
+  "messages": 6,
+  "in_context": 6
+ },
+ "after_headless": {
+  "messages": 8,
+  "in_context": 8,
+  "dup_ids": [],
+  "app_server_list": 6
+ },
+ "after_more_app_server_turns": {
+  "messages": 12,
+  "in_context": 12,
+  "dup_ids": [],
+  "missing": [],
+  "unparseable": 0,
+  "app_server_list": 10,
+  "headless_message_visible_to_app_server": false
+ }
+}

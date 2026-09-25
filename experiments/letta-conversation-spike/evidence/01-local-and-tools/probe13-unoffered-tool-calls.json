@@ -1,0 +1,98 @@
+{
+ "canaries_on_disk": [],
+ "results": [
+  {
+   "case": "Bash",
+   "offered": [
+    "blaine_task_status",
+    "blaine_task_create"
+   ],
+   "approval_requests": 1,
+   "tool_return": [
+    {
+     "status": "error",
+     "ret": "Tool not found: Bash. Available tools: blaine_task_status, blaine_task_create"
+    }
+   ],
+   "stop": "end_turn",
+   "canary_exists": false
+  },
+  {
+   "case": "Write",
+   "offered": [
+    "blaine_task_status",
+    "blaine_task_create"
+   ],
+   "approval_requests": 1,
+   "tool_return": [
+    {
+     "status": "error",
+     "ret": "Tool not found: Write. Available tools: blaine_task_status, blaine_task_create"
+    }
+   ],
+   "stop": "end_turn",
+   "canary_exists": false
+  },
+  {
+   "case": "exec_command",
+   "offered": [
+    "blaine_task_status",
+    "blaine_task_create"
+   ],
+   "approval_requests": 1,
+   "tool_return": [
+    {
+     "status": "error",
+     "ret": "Tool not found: exec_command. Available tools: blaine_task_status, blaine_task_create"
+    }
+   ],
+   "stop": "end_turn",
+   "canary_exists": false
+  },
+  {
+   "case": "Agent",
+   "offered": [
+    "blaine_task_status",
+    "blaine_task_create"
+   ],
+   "approval_requests": 1,
+   "tool_return": [
+    {
+     "status": "error",
+     "ret": "Tool not found: Agent. Available tools: blaine_task_status, blaine_task_create"
+    }
+   ],
+   "stop": "end_turn",
+   "canary_exists": false
+  },
+  {
+   "case": "memory",
+   "offered": [
+    "blaine_task_status",
+    "blaine_task_create"
+   ],
+   "approval_requests": 1,
+   "tool_return": [
+    {
+     "status": "error",
+     "ret": "Tool not found: memory. Available tools: blaine_task_status, blaine_task_create"
+    }
+   ],
+   "stop": "end_turn",
+   "canary_exists": false
+  },
+  {
+   "case": "blaine_task_create_on_projection_turn",
+   "offered": [
+    "blaine_task_status"
+   ],
+   "tool_return": [
+    {
+     "status": "error",
+     "ret": "Tool not found: blaine_task_create. Available tools: blaine_task_status"
+    }
+   ],
+   "controller_calls_added": 0
+  }
+ ]
+}

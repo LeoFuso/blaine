@@ -1,0 +1,56 @@
+{
+ "s1/logs/llm-requests.jsonl": {
+  "requests": 25,
+  "tool_sets": [
+   [
+    "[\"AskUserQuestion\", \"Bash\", \"Monitor\", \"Wake\", \"EnterWorktree\", \"ExitWorktree\", \"SetWorkingDirectory\", \"Edit\", \"TaskStop\", \"Read\", \"Skill\", \"Workflow\", \"Agent\", \"SendAgentMessage\", \"TaskCreate\", \"TaskGet\", \"TaskList\", \"TaskUpdate\", \"Write\", \"blaine_task_status\", \"blaine_task_create\"]",
+    13
+   ],
+   [
+    "[\"AskUserQuestion\", \"Bash\", \"Monitor\", \"Wake\", \"EnterWorktree\", \"ExitWorktree\", \"SetWorkingDirectory\", \"Edit\", \"TaskStop\", \"Read\", \"Skill\", \"Workflow\", \"Agent\", \"SendAgentMessage\", \"TaskCreate\", \"TaskGet\", \"TaskList\", \"TaskUpdate\", \"Write\"]",
+    5
+   ],
+   [
+    "[]",
+    5
+   ],
+   [
+    "[\"blaine_task_status\", \"blaine_task_create\"]",
+    1
+   ],
+   [
+    "null",
+    1
+   ]
+  ]
+ },
+ "s2/logs/llm-requests.jsonl": {
+  "requests": 68,
+  "tool_sets": [
+   [
+    "[\"blaine_task_status\", \"blaine_task_create\"]",
+    29
+   ],
+   [
+    "[\"blaine_task_status\"]",
+    16
+   ],
+   [
+    "null",
+    12
+   ],
+   [
+    "[\"blaine_task_status\", \"blaine_task_create\", \"blaine_task_respond\"]",
+    4
+   ],
+   [
+    "[\"Bash\", \"Monitor\", \"Wake\", \"EnterWorktree\", \"ExitWorktree\", \"SetWorkingDirectory\", \"Edit\", \"TaskStop\", \"Read\", \"Skill\", \"Workflow\", \"Agent\", \"SendAgentMessage\", \"TaskCreate\", \"TaskGet\", \"TaskList\", \"TaskUpdate\", \"Write\"]",
+    4
+   ],
+   [
+    "[]",
+    3
+   ]
+  ]
+ }
+}

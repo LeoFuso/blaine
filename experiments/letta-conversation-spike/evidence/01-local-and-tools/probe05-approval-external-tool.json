@@ -1,0 +1,89 @@
+{
+ "case": "external",
+ "delay_ms": 300,
+ "runtime": {
+  "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+  "conversation_id": "local-conv-7"
+ },
+ "stop_reason": "end_turn",
+ "error": null,
+ "approvals": [
+  {
+   "tool": "blaine_task_create",
+   "request_id": "perm-chatcmpl-tool-8cc4396b18c5563e",
+   "ack": {
+    "accepted": true,
+    "error": null
+   }
+  }
+ ],
+ "summary": {
+  "assistant": "Blaine summary task submitted — `task-2deb96…9f87458`. The result will be posted here when it completes.",
+  "reasoning": "",
+  "tool_calls": [
+   {
+    "mt": "approval_request_message",
+    "id": "chatcmpl-tool-8cc4396b18c5563e",
+    "name": "blaine_task_create",
+    "args": "{\"kind\":\"summary\",\"text\":\"Synthetic spike text for approval mechanics.\"}"
+   }
+  ],
+  "tool_returns": [
+   {
+    "id": "chatcmpl-tool-8cc4396b18c5563e",
+    "status": "success",
+    "ret": "{\"task_id\":\"task-2deb96dbba665f559c60e67dd56435f8f8229ed71a8d82cb7231138fe9f87458\",\"submission\":\"SUBMITTED\",\"note\":\"Submitted to Blaine. This receipt is not completion; Blaine will post the result to this conversation.\"}"
+   }
+  ],
+  "other": {
+   "input_accepted": 2,
+   "update_loop_status": 15,
+   "update_device_status": 6,
+   "usage_statistics": 2,
+   "stop_reason": 2,
+   "approval_classification_end": 1,
+   "control_request": 1,
+   "client_tool_start": 1,
+   "client_tool_end": 1,
+   "turn_finished": 1
+  }
+ },
+ "transcript": [
+  {
+   "id": "ui-msg-5",
+   "type": "user_message",
+   "otid": "f773e719-3463-4cbc-9a74-a9d71807bbe0",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[reminder][reminder][reminder]Create a Blaine summary Task for this text: \"Synthetic spike text for approval mechanics.\""
+  },
+  {
+   "id": "ui-msg-6:tool:chatcmpl-tool-8cc4396b18c5563e:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "blaine_task_create",
+   "tool_call_id": "chatcmpl-tool-8cc4396b18c5563e",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-7",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "chatcmpl-tool-8cc4396b18c5563e",
+   "status": "success",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-8",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Blaine summary task submitted — `task-2deb96…9f87458`. The result will be posted here when it completes."
+  }
+ ]
+}

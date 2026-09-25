@@ -1,0 +1,52 @@
+{
+  "captured": "2026-09-25",
+  "blaine": {
+    "branch": "spike/letta-conversation-substrate",
+    "base": "2c0985e7d17fba81fbdc8e45dfb6318f296e8a1a (origin/main 16f7e1a + Letta carveout doc)",
+    "runtime_changed": false,
+    "restate_server": {"version": "1.7.9", "sha256": "388336a1a3929c4ae20701d3c4d587af3ff348b9f81f97a3774515826c40aae5", "note": "copy of the deployed binary, disposable instance"},
+    "python": "3.14.4",
+    "python_lock": "infra/services/requirements.lock (restate-sdk 1.0.5, hypercorn 0.17.3, agent-client-protocol 0.12.1)",
+    "go": {"version": "1.27.1", "tarball_sha256": "63d339f0da5ab53635a56f2490a7984dfe12dfcff22ad749f63edaf590168445", "note": "downloaded to scratch for the relay experiment only"}
+  },
+  "letta_sources": {
+    "letta-ai/letta-code": {"tag": "v0.33.1", "sha": "5631c531da7ee8458decaf49e26a834119e6e549", "main_at_fetch": "a9ee041dc0ad17c3298eb76377070f25a93d8661"},
+    "letta-ai/letta-agent-sdk": {"version": "0.8.17", "sha": "18283a40085ce40cf886fb3fd5c8c21ee081294c"},
+    "letta-ai/letta-acp": {"version": "0.1.11", "sha": "51974915c7084af4edaed08eee6ecb565b66a8ad"},
+    "letta-ai/letta-agent-sdk-react-chat": {"sha": "ee47d2034eb667ad2eecb1cb9b292030764f01e7", "sdk_pin": "0.7.0", "run": false},
+    "letta-ai/letta-oss-ui": {"sha": "d145c2b06e71d1a0a1784667eb6f1eac6329f872", "sdk_pin": "^0.2.7", "license_file": false, "run": false}
+  },
+  "npm_installs": {
+    "env (App Server, spike clients)": {
+      "@letta-ai/letta-code": {"version": "0.33.1", "integrity": "sha512-cTow1SXbomdDtOSgQyObJ1Blr8gUaJcHtcDSee6xe0eHFWGCXq5YAlBJmpEQ1yDDjutVE2C4Sn0cZOqsD41DOg=="},
+      "@letta-ai/letta-agent-sdk": {"version": "0.8.17", "integrity": "sha512-6vjifnqinepS8oZSqVEoO3BdaD0TkPbdiuLkFen6+W1h62nlEdQoQtKbeMrPMsl6qf29Xnfvd7fxql9vajybLQ=="},
+      "@letta-ai/letta-client": "1.12.1",
+      "@earendil-works/pi-ai": "0.87.1",
+      "@earendil-works/pi-telemetry": "0.87.1 (contract-only; no exporter)"
+    },
+    "acp (letta-acp unchanged)": {
+      "@letta-ai/letta-acp": {"version": "0.1.11", "integrity": "sha512-020Ww7abbEG1Oc8eocoJKBBpELNWduWTxHr2foy+9oyJNFE6ptjB9roD03ktvnySeAxGELnSwrrgP8yy8mu5sw=="},
+      "@letta-ai/letta-agent-sdk": "0.7.8",
+      "@letta-ai/letta-code": "0.30.28",
+      "@agentclientprotocol/sdk": "1.5.0"
+    },
+    "acp-o (letta-acp with npm overrides, spike modification)": {
+      "@letta-ai/letta-acp": "0.1.11",
+      "@letta-ai/letta-agent-sdk": "0.8.17 (override)",
+      "@letta-ai/letta-code": "0.33.1 (override)",
+      "@agentclientprotocol/sdk": "1.5.0"
+    },
+    "install_scripts": "npm 11.19 ran none (letta-code postinstall, @scarf/scarf report.js, node-pty, sharp not executed); DO_NOT_TRACK=1 SCARF_ANALYTICS=false set",
+    "node": "v24.21.0",
+    "npm": "11.19.0"
+  },
+  "model_endpoint": {
+    "url": "http://127.0.0.1:8000/v1 (canonical blaine-generation.service, reached only through a Unix-socket bridge)",
+    "model": "nvidia/Qwen3.8-27B-NVFP4",
+    "revision": "482ca0f3832238542f8f5295dde86b5f22711d80",
+    "vllm": "0.29.1rc1.dev401+gc3b484463",
+    "flags": "--enable-auto-tool-choice --tool-call-parser qwen3_coder --reasoning-parser qwen3 --max-num-seqs 1, enable_thinking false",
+    "letta_handle": "openai-compatible/nvidia/Qwen3.8-27B-NVFP4"
+  },
+  "scripted_model": "harness/hostile_model.py, connected as llama.cpp/scripted (deterministic tool-call and crash-window tests)"
+}

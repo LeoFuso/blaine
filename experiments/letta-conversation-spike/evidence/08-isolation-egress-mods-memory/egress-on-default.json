@@ -1,0 +1,24 @@
+{
+ "state": "egress-on-default",
+ "connects": [
+  {
+   "family": "AF_UNIX",
+   "dest": "/var/run/nscd/socket",
+   "result": "-1",
+   "count": 4
+  }
+ ],
+ "dns_queries": {},
+ "execve": {
+  "$HOME/.nvm/versions/node/v24.21.0/bin/node": 2,
+  "/usr/bin/git": 29,
+  ".git/hooks/pre-commit": 1,
+  "/usr/bin/bash": 2,
+  "/usr/lib/git-core/git": 6,
+  "/usr/bin/cat": 1,
+  "/usr/bin/grep": 1,
+  ".git/hooks/post-commit": 1
+ },
+ "sink_requests": {},
+ "sink_bytes": 0
+}

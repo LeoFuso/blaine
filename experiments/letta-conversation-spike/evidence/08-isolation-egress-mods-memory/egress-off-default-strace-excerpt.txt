@@ -1,0 +1,4 @@
+03:41:36.185982 execve("$HOME/.nvm/versions/node/v24.21.0/bin/node", ["node", "$SCRATCH/env/node_modules/@letta-ai/letta-code/letta.js", "connect", "openai-compatible", "--base-url", "http://127.0.0.1:18000/v1", "--api-key", "spike-local-no-key"], 0x7ffd415cffe8 /* 15 vars */) = 0
+03:41:37.129110 sendto(22, "\305W\1\0\0\1\0\0\0\0\0\0\3api\5letta\3com\0\0\34\0\1", 31, MSG_NOSIGNAL, NULL, 0) = 31
+03:41:37.129733 sendto(22, "\305W\1\0\0\1\0\0\0\0\0\0\3api\5letta\3com\0\0\34\0\1", 31, MSG_NOSIGNAL, NULL, 0) = 31
+03:43:37.126906 sendto(22, "\351\250\1\0\0\1\0\0\0\0\0\0\3api\5letta\3com\0\0\34\0\1", 31, MSG_NOSIGNAL, NULL, 0) = 31

@@ -1,0 +1,49 @@
+{
+ "case": "D1",
+ "task": "task-4e3a290b639893cbbb42a4912038b2b8deb5edb02f7b1a3898cc159fcbe68e9f",
+ "first_projector_exit": 137,
+ "second_projector_exit": 0,
+ "visible_projection_count": 1,
+ "delivery_log": [
+  {
+   "event": "attempt",
+   "c": "proj-D1-1"
+  },
+  {
+   "event": "input_accepted",
+   "c": "proj-D1-1",
+   "disposition": "started"
+  },
+  {
+   "event": "fault_crash_after_send",
+   "c": "proj-D1-1"
+  },
+  {
+   "event": "confirmed",
+   "c": "proj-D1-2",
+   "via": "readback-after-attempt"
+  }
+ ],
+ "integrity": {
+  "conversation": "conversation:local-conv-6",
+  "dir": "Y29udmVyc2F0aW9uOmxvY2FsLWNvbnYtNg",
+  "bytes": 6801,
+  "ends_with_newline": true,
+  "lines": 7,
+  "unparseable_lines": [],
+  "entry_types": {
+   "session": 1,
+   "message": 6
+  },
+  "messages": 6,
+  "duplicate_message_ids": [],
+  "duplicate_user_otids": [],
+  "tool_calls": 1,
+  "tool_calls_without_return": [],
+  "non_message_entries": [],
+  "compaction_summaries": 0,
+  "conversation_json": "ok",
+  "in_context": 6,
+  "in_context_missing_from_transcript": []
+ }
+}

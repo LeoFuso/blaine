@@ -1,0 +1,13 @@
+{
+ "reflectionTrigger": "step-count",
+ "reflectionStepCount": 25,
+ "memoryReminderInterval": 25,
+ "agents": [
+  {
+   "toolset": null,
+   "toolsetsByConversation": {
+    "local-conv-3": "none"
+   }
+  }
+ ]
+}

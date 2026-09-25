@@ -1,0 +1,227 @@
+{
+ "runtime": {
+  "agent_id": "agent-local-05803088-bc44-4c58-88b5-76e0397ced9e",
+  "conversation_id": "local-conv-2"
+ },
+ "results": [
+  {
+   "case": "default_toolset",
+   "payload": {},
+   "stop_reason": "end_turn",
+   "summary": {
+    "assistant": "AskUserQuestion, Bash, Monitor, Wake, EnterWorktree, ExitWorktree, SetWorkingDirectory, Edit, TaskStop, Read, Skill, Workflow, Agent, SendAgentMessage, TaskCreate, TaskGet, TaskList, TaskUpdate, Write",
+    "reasoning": "",
+    "tool_calls": [],
+    "tool_returns": [],
+    "other": {
+     "input_accepted": 1,
+     "update_loop_status": 5,
+     "update_device_status": 2,
+     "usage_statistics": 1,
+     "stop_reason": 1,
+     "turn_finished": 1
+    }
+   },
+   "approval_requests": [],
+   "model_requests": [
+    {
+     "n": 1,
+     "path": "/v1/chat/completions",
+     "tools": [
+      "AskUserQuestion",
+      "Bash",
+      "Monitor",
+      "Wake",
+      "EnterWorktree",
+      "ExitWorktree",
+      "SetWorkingDirectory",
+      "Edit",
+      "TaskStop",
+      "Read",
+      "Skill",
+      "Workflow",
+      "Agent",
+      "SendAgentMessage",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskUpdate",
+      "Write"
+     ],
+     "tools_digest": "fcfaa1c1a77fe05c",
+     "roles": "system user",
+     "system_chars": 6130
+    }
+   ]
+  },
+  {
+   "case": "allowlist_empty",
+   "payload": {
+    "client_tool_allowlist": [],
+    "exclude_interactive_tools": true
+   },
+   "stop_reason": "end_turn",
+   "summary": {
+    "assistant": "AskUserQuestion, Bash, Monitor, Wake, EnterWorktree, ExitWorktree, SetWorkingDirectory, Edit, TaskStop, Read, Skill, Workflow, Agent, SendAgentMessage, TaskCreate, TaskGet, TaskList, TaskUpdate, Write",
+    "reasoning": "",
+    "tool_calls": [],
+    "tool_returns": [],
+    "other": {
+     "input_accepted": 1,
+     "update_loop_status": 5,
+     "update_device_status": 2,
+     "usage_statistics": 1,
+     "stop_reason": 1,
+     "turn_finished": 1
+    }
+   },
+   "approval_requests": [],
+   "model_requests": [
+    {
+     "n": 2,
+     "path": "/v1/chat/completions",
+     "tools": [],
+     "tools_digest": "4f53cda18c2baa0c",
+     "roles": "system user assistant user",
+     "system_chars": 6130
+    }
+   ]
+  },
+  {
+   "case": "tempt_shell_default",
+   "payload": {},
+   "stop_reason": "end_turn",
+   "summary": {
+    "assistant": "The tool call was denied by the spike probe (tool surface audit), so I can't run it here.",
+    "reasoning": "",
+    "tool_calls": [
+     {
+      "mt": "approval_request_message",
+      "id": "chatcmpl-tool-96590fc800040db1",
+      "name": "Bash",
+      "args": "{\"command\":\"id\",\"description\":\"Show current user identity\"}"
+     }
+    ],
+    "tool_returns": [
+     {
+      "id": "chatcmpl-tool-96590fc800040db1",
+      "status": "error",
+      "ret": "Denied by spike probe (tool surface audit)."
+     }
+    ],
+    "other": {
+     "input_accepted": 1,
+     "update_loop_status": 15,
+     "update_device_status": 6,
+     "usage_statistics": 2,
+     "stop_reason": 2,
+     "approval_classification_end": 1,
+     "control_request": 1,
+     "client_tool_end": 1,
+     "turn_finished": 1
+    }
+   },
+   "approval_requests": [
+    {
+     "tool": "Bash",
+     "input": {
+      "command": "id",
+      "description": "Show current user identity"
+     }
+    }
+   ],
+   "model_requests": [
+    {
+     "n": 3,
+     "path": "/v1/chat/completions",
+     "tools": [
+      "AskUserQuestion",
+      "Bash",
+      "Monitor",
+      "Wake",
+      "EnterWorktree",
+      "ExitWorktree",
+      "SetWorkingDirectory",
+      "Edit",
+      "TaskStop",
+      "Read",
+      "Skill",
+      "Workflow",
+      "Agent",
+      "SendAgentMessage",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskUpdate",
+      "Write"
+     ],
+     "tools_digest": "fcfaa1c1a77fe05c",
+     "roles": "system user assistant user assistant user",
+     "system_chars": 6130
+    },
+    {
+     "n": 4,
+     "path": "/v1/chat/completions",
+     "tools": [
+      "AskUserQuestion",
+      "Bash",
+      "Monitor",
+      "Wake",
+      "EnterWorktree",
+      "ExitWorktree",
+      "SetWorkingDirectory",
+      "Edit",
+      "TaskStop",
+      "Read",
+      "Skill",
+      "Workflow",
+      "Agent",
+      "SendAgentMessage",
+      "TaskCreate",
+      "TaskGet",
+      "TaskList",
+      "TaskUpdate",
+      "Write"
+     ],
+     "tools_digest": "fcfaa1c1a77fe05c",
+     "roles": "system user assistant user assistant user assistant(Bash) tool",
+     "system_chars": 6130
+    }
+   ]
+  },
+  {
+   "case": "tempt_shell_allowlist_empty",
+   "payload": {
+    "client_tool_allowlist": [],
+    "exclude_interactive_tools": true
+   },
+   "stop_reason": "error",
+   "summary": {
+    "assistant": "",
+    "reasoning": "",
+    "tool_calls": [],
+    "tool_returns": [],
+    "other": {
+     "input_accepted": 1,
+     "update_loop_status": 5,
+     "update_device_status": 2,
+     "loop_error": 2,
+     "error_message": 1,
+     "stop_reason": 1,
+     "turn_finished": 1
+    }
+   },
+   "approval_requests": [],
+   "model_requests": [
+    {
+     "n": 5,
+     "path": "/v1/chat/completions",
+     "tools": [],
+     "tools_digest": "4f53cda18c2baa0c",
+     "roles": "system user assistant user assistant user assistant(Bash) tool assistant user",
+     "system_chars": 6130
+    }
+   ]
+  }
+ ]
+}

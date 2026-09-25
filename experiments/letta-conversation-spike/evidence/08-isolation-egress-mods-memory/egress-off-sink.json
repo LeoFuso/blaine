@@ -1,0 +1,40 @@
+{
+ "state": "egress-off-sink",
+ "connects": [
+  {
+   "family": "AF_INET",
+   "dest": "127.0.0.1:18099",
+   "result": "-1",
+   "count": 1
+  },
+  {
+   "family": "AF_INET",
+   "dest": "127.0.0.1:53",
+   "result": "0",
+   "count": 2
+  },
+  {
+   "family": "AF_UNIX",
+   "dest": "/var/run/nscd/socket",
+   "result": "-1",
+   "count": 6
+  }
+ ],
+ "dns_queries": {
+  "api.letta.com.4": 2
+ },
+ "execve": {
+  "$HOME/.nvm/versions/node/v24.21.0/bin/node": 2,
+  "/usr/bin/git": 29,
+  ".git/hooks/pre-commit": 1,
+  "/usr/bin/bash": 2,
+  "/usr/lib/git-core/git": 7,
+  "/usr/bin/cat": 1,
+  "/usr/bin/grep": 2,
+  ".git/hooks/post-commit": 1
+ },
+ "sink_requests": {
+  "GET /v1/health": 1
+ },
+ "sink_bytes": 0
+}

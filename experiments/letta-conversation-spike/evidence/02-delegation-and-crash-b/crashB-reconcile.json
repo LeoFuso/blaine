@@ -1,0 +1,185 @@
+{
+ "label": "b3-reconcile",
+ "conversation_id": "local-conv-4",
+ "identity": "anchor",
+ "tool_calls": [
+  {
+   "tool_call_id": "chatcmpl-tool-8f1da6001fd0e0a4",
+   "tool": "blaine_task_create",
+   "input": {
+    "kind": "decision",
+    "question": "Approve the synthetic vendor renewal B3-RECONCILE for Q4?"
+   }
+  },
+  {
+   "tool_call_id": "chatcmpl-tool-922a1449aa3fc066",
+   "tool": "blaine_task_create",
+   "input": {
+    "kind": "decision",
+    "question": "Approve the synthetic vendor renewal B3-RECONCILE for Q4?"
+   }
+  }
+ ],
+ "identities": [
+  {
+   "tool_call_id": "chatcmpl-tool-8f1da6001fd0e0a4",
+   "request_id": "lc-6e1430a63386d41a6e2a68a8a93150fbbc707734",
+   "anchor": "ui-msg-17"
+  }
+ ],
+ "created": [
+  {
+   "tool_call_id": "chatcmpl-tool-8f1da6001fd0e0a4",
+   "task_id": "task-a700ac8106f43e560f2e36437fe2ecc543cdf65cf946ac27d8370f9a97106777",
+   "submission": "SUBMITTED"
+  }
+ ],
+ "converged": 1,
+ "distinct_blaine_tasks": 1,
+ "tasks": [
+  "task-a700ac8106f43e560f2e36437fe2ecc543cdf65cf946ac27d8370f9a97106777"
+ ],
+ "timeline": [
+  {
+   "t": "2026-09-25T05:49:47.782Z",
+   "event": "user_request_sent"
+  },
+  {
+   "t": "2026-09-25T05:49:49.283Z",
+   "event": "controller_created_task_and_is_holding_reply",
+   "tool_call_id": "chatcmpl-tool-8f1da6001fd0e0a4"
+  },
+  {
+   "t": "2026-09-25T05:49:49.413Z",
+   "event": "app_server_sigkill",
+   "signal": "KILL",
+   "pid": 3950956,
+   "at": 1790315389.408096,
+   "namespace_gone": true
+  },
+  {
+   "t": "2026-09-25T05:49:50.952Z",
+   "event": "app_server_restarted",
+   "generation": 4,
+   "bwrap_pid": 3955010,
+   "started_at": 1790315390.438249,
+   "server_pid": 3955028,
+   "ready": true,
+   "ready_after_s": 0.51
+  },
+  {
+   "t": "2026-09-25T05:49:51.453Z",
+   "event": "controller_reregistered"
+  },
+  {
+   "t": "2026-09-25T05:49:51.464Z",
+   "event": "client_reattached",
+   "runtime": {
+    "agent_id": "agent-local-33574a06-2375-477c-9431-aae0ceedbe39",
+    "conversation_id": "local-conv-4"
+   }
+  },
+  {
+   "t": "2026-09-25T05:49:51.469Z",
+   "event": "owner_sync_resume_sent"
+  },
+  {
+   "t": "2026-09-25T05:50:51.470Z",
+   "event": "no_resumed_turn",
+   "error": "Error: timeout waiting for resumed turn"
+  },
+  {
+   "t": "2026-09-25T05:50:58.607Z",
+   "event": "followup_turn_finished",
+   "stop_reason": "end_turn"
+  }
+ ],
+ "approvals": [
+  {
+   "tool": "blaine_task_create",
+   "input": {
+    "kind": "decision",
+    "question": "Approve the synthetic vendor renewal B3-RECONCILE for Q4?"
+   },
+   "ack": {
+    "accepted": true,
+    "error": null
+   }
+  }
+ ],
+ "transcript": [
+  {
+   "id": "ui-msg-17",
+   "type": "user_message",
+   "otid": "20c59e05-df5f-4997-a847-3069f1747f52",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[reminder][reminder][reminder]Please open a formal Blaine decision with exactly this question: \"Approve the synthetic vendor renewal B3-RECONCILE for Q4?\""
+  },
+  {
+   "id": "ui-msg-18:tool:chatcmpl-tool-8f1da6001fd0e0a4:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "blaine_task_create",
+   "tool_call_id": "chatcmpl-tool-8f1da6001fd0e0a4",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-19",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "chatcmpl-tool-8f1da6001fd0e0a4",
+   "status": "error",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-20",
+   "type": "user_message",
+   "otid": "3e862326-d709-4171-946f-110e35d2bc89",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[reminder][reminder][reminder][reminder]\n"
+  },
+  {
+   "id": "ui-msg-21",
+   "type": "user_message",
+   "otid": "20efef15-f0de-402d-89d7-9e14ce50d869",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Did that decision get opened? If not, open it now."
+  },
+  {
+   "id": "ui-msg-22:tool:chatcmpl-tool-922a1449aa3fc066:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "blaine_task_create",
+   "tool_call_id": "chatcmpl-tool-922a1449aa3fc066",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-23",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "chatcmpl-tool-922a1449aa3fc066",
+   "status": "success",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-24",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Yes — it was already open from the earlier (interrupted) call, so no duplicate was created.\n\n**Task:** task-a700ac8106f43e560f2e36437fe2ecc543cdf65cf946ac27d8370f9a97106777\n**Status:** Waiting on your decision\n**Question:** Approve the synt"
+  }
+ ],
+ "resumed_deltas": 230
+}

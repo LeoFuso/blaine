@@ -1,0 +1,187 @@
+{
+ "scenario": "h1a",
+ "conversation": "local-conv-5",
+ "model_turn": {
+  "tool_calls": [
+   {
+    "mt": "approval_request_message",
+    "id": "chatcmpl-tool-a13cedd291f79fb6",
+    "name": "blaine_task_respond",
+    "args": "{\"task_id\":\"task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9\",\"request_revision\":0,\"request_digest\":\"95f9dce89aa72cb9ee814feb75d86fcc83d0488a2f48dd6519adb2ebdba472c2\",\"value\":\"YES\"}"
+   }
+  ],
+  "assistant": "Your answer YES was accepted and submitted to Blaine."
+ },
+ "approval_cards": [
+  {
+   "input": {
+    "task_id": "task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9",
+    "request_revision": 0,
+    "request_digest": "95f9dce89aa72cb9ee814feb75d86fcc83d0488a2f48dd6519adb2ebdba472c2",
+    "value": "YES"
+   },
+   "ack": {
+    "accepted": true,
+    "error": null
+   },
+   "matches_canonical": true
+  }
+ ],
+ "task": {
+  "task": "task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9",
+  "revision": 0,
+  "digest": "95f9dce89aa72cb9ee814feb75d86fcc83d0488a2f48dd6519adb2ebdba472c2",
+  "question": "Approve synthetic item H1A-ONBOARDING-CHECKLIST?",
+  "after": {
+   "lifecycle": "COMPLETED",
+   "response": {
+    "concerns": [],
+    "contract_ref": "artifact://task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9/sha256:ba6c1582b1cbc925663be9ebc0af185fb1ea2331e018a596481b73697ceb810a",
+    "contract_revision": 0,
+    "criteria": [
+     {
+      "detail": "Scoped response accepted and allowed value independently verified",
+      "evidence_refs": [
+       "artifact://task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9/sha256:c166c576f1ecb524e2c0a5ce4a7dc052c5fadaf9d6845481746b063160d75582"
+      ],
+      "gating": true,
+      "id": "c1",
+      "level": "REQUIRED",
+      "status": "satisfied",
+      "verifier": "human_response@1"
+     }
+    ],
+    "evidence_digest": "sha256:55b3452a79c2fede4f3fd12515f3686658e14fabba6fdfade9c624df6a98328c",
+    "irrecoverable": [],
+    "journal_head": "artifact://task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9/sha256:da0b223473fc872b7c1e9f6a3d3b38aba6cf45914d61028ceff2ce39f635a6e0",
+    "journal_length": 2,
+    "legality": {
+     "blockers": [],
+     "legal": true
+    },
+    "outcome": "satisfied",
+    "task_id": "task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9"
+   }
+  }
+ },
+ "timeline": [
+  {
+   "t": "2026-09-25T05:55:30.682Z",
+   "event": "decision_card_visible",
+   "task": "task-f7caf257bad5d7dfdbb35f656512290970580f2ae04fe7cfaadf66a6d9cc11f9",
+   "revision": 0,
+   "digest": "95f9dce89aa72cb9ee814feb75d86fcc83d0488a2f48dd6519adb2ebdba472c2",
+   "question": "Approve synthetic item H1A-ONBOARDING-CHECKLIST?"
+  }
+ ],
+ "transcript": [
+  {
+   "id": "ui-msg-35",
+   "type": "user_message",
+   "otid": "fea8854b-c367-49de-9a86-63c70eeecc3f",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[reminder][reminder][reminder]Please open a formal Blaine decision with exactly this question: \"Approve synthetic item H1A-ONBOARDING-CHECKLIST?\""
+  },
+  {
+   "id": "ui-msg-36:tool:chatcmpl-tool-bbe61502d0685f99:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "blaine_task_create",
+   "tool_call_id": "chatcmpl-tool-bbe61502d0685f99",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-37",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "chatcmpl-tool-bbe61502d0685f99",
+   "status": "success",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-38",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Formal decision task created and submitted to Blaine. The result will be posted here once processed."
+  },
+  {
+   "id": "ui-msg-39",
+   "type": "user_message",
+   "otid": "blaine-proj-7e2df98f82ac5d5e4dd250d724450356",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[Blaine notification — not written by the user] Task task-f7caf257… is waiting for YOUR decision.\nQuestion (exact): Approve synthetic item H1A-ONBOARDING-CHECKLIST?\nAllowed answers: YES | NO · request decision-1 · revision 0\nRequest digest:"
+  },
+  {
+   "id": "ui-msg-40",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Decision requested: please type `/decide 5EC68E YES` or `/decide 5EC68E NO`."
+  },
+  {
+   "id": "ui-msg-41",
+   "type": "user_message",
+   "otid": "1421de67-31b1-4690-b2a1-d05051932be3",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "My answer to that decision is YES. Please submit it to Blaine."
+  },
+  {
+   "id": "ui-msg-42:tool:chatcmpl-tool-a13cedd291f79fb6:request",
+   "type": "approval_request_message",
+   "otid": null,
+   "tool": "blaine_task_respond",
+   "tool_call_id": "chatcmpl-tool-a13cedd291f79fb6",
+   "status": null,
+   "text": ""
+  },
+  {
+   "id": "ui-msg-43",
+   "type": "tool_return_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": "chatcmpl-tool-a13cedd291f79fb6",
+   "status": "success",
+   "text": ""
+  },
+  {
+   "id": "ui-msg-44",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Your answer YES was accepted and submitted to Blaine."
+  },
+  {
+   "id": "ui-msg-45",
+   "type": "user_message",
+   "otid": "blaine-proj-658445c172ab2e3aef70d09207eeb3f4",
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "[Blaine notification — not written by the user] Task task-f7caf257… finished: COMPLETED.\nObjective: Approve synthetic item H1A-ONBOARDING-CHECKLIST?\nArtifacts: human-request-decision-1, response · concerns: none\nCompletion evidence: [{\"deta"
+  },
+  {
+   "id": "ui-msg-46",
+   "type": "assistant_message",
+   "otid": null,
+   "tool": null,
+   "tool_call_id": null,
+   "status": null,
+   "text": "Understood — the decision task completed with your YES answer recorded."
+  }
+ ]
+}

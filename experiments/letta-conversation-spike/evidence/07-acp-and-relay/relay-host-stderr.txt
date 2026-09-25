@@ -1,0 +1,6 @@
+[letta-acp] using existing agent agent-local-33574a06-2375-477c-9431-aae0ceedbe39
+[letta-acp] session local-conv-23 -> agent agent-local-33574a06-2375-477c-9431-aae0ceedbe39 (cwd: $SCRATCH/state/s2/work)
+[letta-acp] advertising 36 slash commands
+[letta-acp] loaded session local-conv-19 (21 replayed updates)
+[letta-acp] advertising 36 slash commands
+[letta-acp] permission requested for blaine_task_create

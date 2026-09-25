@@ -1,0 +1,10 @@
+{
+  "name": "letta-conversation-spike",
+  "private": true,
+  "type": "module",
+  "description": "Experiment-only harness; node_modules is a symlink to the scratch install of these exact pins.",
+  "dependencies": {
+    "@letta-ai/letta-code": "0.33.1",
+    "@letta-ai/letta-agent-sdk": "0.8.17"
+  }
+}
