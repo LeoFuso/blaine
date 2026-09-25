@@ -1,0 +1,5 @@
+17:23:48 monitor armed; watching Tasks created after 2026-09-24T20:23:48 UTC
+17:51:42 monitor v2 armed; watching links created after 2026-09-24T20:51:42.016691+00:00
+17:53:52 observed task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1 in 6a0a06fe-d195-4816-9b94-224613cc37fb: link=linked lifecycle=RUNNING
+17:53:52 killed bridge pid 3526469 while Task RUNNING
+17:53:58 bridge restarted from staged app: {"status": "ok"}

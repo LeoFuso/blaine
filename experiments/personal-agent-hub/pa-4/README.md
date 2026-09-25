@@ -63,3 +63,27 @@ Desktop: `blaine-projection` + transport + card Vitest specs, `tsc -b` — OK.
   Conversation is append-only.
 - IntelliJ itself was not driven in this increment (human-attended track); the ACP adapter
   was exercised through the real `blaine-agent` over stdio.
+
+## Checkpoint — frozen (2026-09-25)
+
+- **PA-3: PASS — real coding delegation.** **PA-4: PASS — canonical conversation projection.**
+  Both are historical POC results, frozen as recorded here and in
+  [PA-3](../pa-3/README.md); their evidence is not to be rewritten.
+- PA-4 proved an invariant that is retained: **product lifecycle projection must be
+  backend-owned and shared by all surfaces.** Its specific implementation
+  (`PersonalConversation`, `ConversationProjection`, the Personal Agent bridge and
+  conversation store) may be superseded.
+- Feature development on the Atomic Chat surface, the conversation service, the projection
+  and the bridge is paused. The conversation/session/runtime implementation is under
+  architectural review.
+- The next investigation is Letta as a possible conversation/session substrate. No
+  conclusion from that investigation has been adopted.
+- Runtime at freeze: the POC-only debug desktop app and the manually started bridge were
+  stopped; the canonical `blaine-runtime`/`blaine-restate` user services were left running
+  with the code staged during PA-3/PA-4 (no unit or configuration change at freeze).
+- Uncommitted by design: `tests/test_human_response_bounds.py` in the acceptance worktree
+  `blaine-pa3-target` (branch `pa3/acceptance-target`) — the verified deliverable of Task
+  `task-44bf5b03…` (sha256 `c889dc36981fdd5b2d7bbbd30391cab80772c39c2feb86bfd2a7355917bc941c`,
+  2439 bytes, 5 tests). Left for the operator to decide.
+- `pa-3/evidence/durability.log` is committed with `--force` at freeze (it was ignored by
+  `*.log` although the PA-3 README cites it); content unchanged.
