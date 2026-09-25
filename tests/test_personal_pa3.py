@@ -213,6 +213,21 @@ class BriefTests(Base):
         self.assertEqual(self.store.link(CID, link['task_id'])['state'], 'linked')
         self.assertEqual(list(self.agent.created), [link['task_id']])
 
+    def test_one_running_task_per_workspace(self):
+        self.discuss()
+        service = self.service([BRIEF, BRIEF])
+        first = service.confirm(CID, service.propose(CID)['brief_id'])
+        self.store.add_message(CID, 'human', 'Execute it again', message_id='m9')
+        second = service.propose(CID)
+        with self.assertRaisesRegex(ValueError, 'busy'):
+            service.confirm(CID, second['brief_id'])
+        self.assertEqual(list(self.agent.created), [first['task_id']])
+        # Retrying the same brief is the same Task, not a second writer.
+        self.assertEqual(service.confirm(CID, self.store.link(CID, first['task_id'])['brief_id'])['task_id'],
+                         first['task_id'])
+        self.agent.views[first['task_id']] = {'lifecycle': 'COMPLETED'}
+        self.assertNotEqual(service.confirm(CID, second['brief_id'])['task_id'], first['task_id'])
+
     def test_rejected_brief_cannot_execute(self):
         self.discuss()
         service = self.service()

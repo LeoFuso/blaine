@@ -178,6 +178,7 @@ class BriefService:
                         'inspect_paths': body['inspect'], 'targeted_tests': body['targeted_tests']}, self.policy)
         request_id = 'pa3-' + hashlib.sha256(f'{conversation_id}\x1f{brief_id}'.encode()).hexdigest()[:40]
         task_id = task_identity(request_id)
+        self.require_idle_workspace(body['workspace_id'], task_id)
         delegation_id = short_id('dlg', conversation_id, brief_id)
         summary = json.dumps({'brief_id': brief_id, 'task_id': task_id, 'objective': body['objective'],
                               'deliverable': body['deliverable'], 'targeted_tests': body['targeted_tests']})
@@ -191,6 +192,28 @@ class BriefService:
         self.store.set_brief_status(conversation_id, brief_id, 'confirmed', task_id)
         return {'task_id': task_id, 'submission': created.get('submission'), 'delegation_message_id': delegation_id,
                 'brief': self.store.get_brief(conversation_id, brief_id)}
+
+    def require_idle_workspace(self, workspace_id: str, task_id: str) -> None:
+        """One writing Task per coding workspace (PA-3 contention evidence).
+
+        The live acceptance started three Tasks for the same file in the same
+        worktree within three minutes; they conflicted on every write and asked
+        for approval each time. Until a trusted resource arbiter exists, the
+        Personal Agent refuses to start a second Task on a workspace whose
+        delegated Task has not finished. A retry of the same brief (same Task)
+        is not a second Task. This is a precondition on starting work, not a
+        lease and not Task authority.
+        """
+        for link in self.store.open_delegations():
+            if link['task_id'] == task_id or not link.get('brief_id'):
+                continue
+            other = self.store.get_brief(link['conversation_id'], link['brief_id'])
+            if not other or other['payload']['payload'].get('workspace_id') != workspace_id:
+                continue
+            view = self.agent.execute({'operation': 'inspect', 'task_id': link['task_id']})
+            if view.get('lifecycle') not in ('COMPLETED', 'FAILED', 'CANCELLED', 'UNAVAILABLE'):
+                raise ValueError(f"Workspace {workspace_id} is busy with Task {link['task_id'][:24]}… "
+                                 f"({view.get('lifecycle')}); wait for its result before starting another")
 
     def reconcile(self, link: dict) -> None:
         """Finish a write-ahead delegation whose submission outcome was not recorded."""
