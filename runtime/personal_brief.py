@@ -69,7 +69,7 @@ class CodingPolicy:
             tests = self.profiles[spec['targeted_profile']].get('allowed_args', [])
             lines.append(f"- workspace_id {name}: {spec.get('description', '')}\n"
                          f"  deliverable must be under: {', '.join(spec['allowed_paths'])}\n"
-                         f"  readable paths: {', '.join(spec.get('inspect_paths', ['(any file)']))}\n"
+                         f"  readable paths: {', '.join([*spec.get('inspect_paths', []), *spec['allowed_paths']]) or '(any file)'}\n"
                          f"  targeted test files (choose from): {', '.join(tests)}")
         return '\n'.join(lines)
 
@@ -99,8 +99,10 @@ def validate_brief(raw: dict, policy: CodingPolicy) -> dict:
     if not isinstance(inspect, list) or len(inspect) > MAX_INSPECT:
         raise ValueError('Expected at most two files to inspect')
     inspect = [confined(p) for p in inspect]
+    # What a Task may write it may also read (extending a file needs its current content).
+    readable = [*spec.get('inspect_paths', []), *spec['allowed_paths']]
     if any('.git' in PurePosixPath(p).parts for p in inspect) or (
-            'inspect_paths' in spec and not all(under(p, spec['inspect_paths']) for p in inspect)):
+            'inspect_paths' in spec and not all(under(p, readable) for p in inspect)):
         raise ValueError('Inspection path is outside the reviewed readable paths')
     tests = raw['targeted_tests']
     reviewed = policy.profiles[spec['targeted_profile']].get('allowed_args', [])

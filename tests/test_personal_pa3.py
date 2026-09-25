@@ -158,6 +158,13 @@ class BriefTests(Base):
         self.assertNotIn(b'validate_response rejects stale', raw)
         self.assertEqual(self.agent.calls, [])  # proposing is not executing
 
+    def test_a_brief_may_read_the_file_it_extends(self):
+        self.discuss()
+        extend = {**json.loads(BRIEF), 'inspect_paths': ['runtime/kernel/human.py', 'tests/test_human_response_bounds.py']}
+        brief = self.service([json.dumps(extend)]).propose(CID)
+        self.assertEqual(brief['payload']['payload']['inspect'],
+                         ['runtime/kernel/human.py', 'tests/test_human_response_bounds.py'])
+
     def test_model_cannot_widen_the_brief(self):
         self.discuss()
         for bad in ({**json.loads(BRIEF), 'capabilities': ['shell']},
