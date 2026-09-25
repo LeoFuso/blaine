@@ -160,8 +160,16 @@ def main():
         print(json.dumps(entry['killed']))
     elif args.command == 'stop':
         for entry in data.get('generations', []):
+            # Signalling the outer bwrap does not reach the pid namespace; stop the
+            # server itself so the entry script reaps its bridges and the namespace ends.
+            target = server_pid(entry['bwrap_pid']) or entry.get('server_pid')
+            if target and alive(target):
+                os.kill(target, signal.SIGTERM)
+            deadline = time.time() + 15
+            while time.time() < deadline and alive(entry['bwrap_pid']):
+                time.sleep(0.2)
             if alive(entry['bwrap_pid']):
-                os.kill(entry['bwrap_pid'], signal.SIGTERM)
+                os.kill(entry['bwrap_pid'], signal.SIGKILL)
         for name in ('bridge_vllm', 'bridge_app'):
             if data.get(name) and alive(data[name]):
                 os.kill(data[name], signal.SIGTERM)
