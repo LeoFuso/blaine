@@ -139,12 +139,14 @@ class PersonalConversation:
         if existing is not None:
             return {'human': human, 'reply': existing}
         turns = history(self.store.list_messages(conversation_id, limit=500))
-        system = [{'role': 'system', 'content': SYSTEM}]
+        prompt = SYSTEM
         status = task_status(self.agent, self.store.list_task_links(conversation_id)) if self.agent else None
         if status:
-            system.append({'role': 'system', 'content': '[System fact] Current state of the Tasks this '
-                                                        'conversation delegated (read-only):\n' + status})
+            # One system message only: chat templates (Qwen) reject a system message
+            # anywhere but first — a second one made every turn fail with HTTP 400.
+            prompt += ('\n\n[System fact] Current state of the Tasks this conversation delegated '
+                       '(read-only):\n' + status)
         # No transaction is open here; the human turn is already durable.
-        reply = self.model.complete([*system, *turns])
+        reply = self.model.complete([{'role': 'system', 'content': prompt}, *turns])
         self.store.add_message(conversation_id, 'agent', reply, message_id=reply_id)
         return {'human': human, 'reply': self.store.get_message(conversation_id, reply_id)}

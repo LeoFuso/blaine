@@ -127,9 +127,11 @@ class ConversationTests(Base):
         model = ScriptedModel(['It is waiting for your approval.'])
         PersonalConversation(self.store, model, self.agent).converse(CID, 'm3', 'Is the task running?')
         sent = model.calls[0]
-        self.assertIn('lifecycle WAITING', sent[1]['content'])
-        self.assertIn('approval card', sent[1]['content'])
-        self.assertIn('run targeted: completed exit 1', sent[1]['content'])
+        self.assertEqual([m['role'] for m in sent].count('system'), 1)  # chat templates allow one, first
+        self.assertEqual(sent[0]['role'], 'system')
+        self.assertIn('lifecycle WAITING', sent[0]['content'])
+        self.assertIn('approval card', sent[0]['content'])
+        self.assertIn('run targeted: completed exit 1', sent[0]['content'])
         delegations = [t for t in sent if 'Blaine created this durable Task' in t['content']]
         self.assertEqual([t['role'] for t in delegations], ['user'])  # a fact, never the assistant's words
 
