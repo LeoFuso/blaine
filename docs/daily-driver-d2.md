@@ -64,12 +64,15 @@ both the capability requirement and the allowed authority. Workspace reads are
 also restricted to the exact accepted initial operation.
 
 Creation requires a caller-retained `request_id` (1–80 letters, digits, `_`, `-`).
-The Task ID is `task-` plus SHA-256 of that ID. Restate's workflow key admits one
-main invocation, including concurrent client submissions. A retry uses the same
-request ID and identical request. Reusing an initialized ID with different input
-is rejected. For concurrent *different* inputs, Restate accepts only the first;
-clients must inspect the accepted specification/request digest after submission.
-The receipt `SUBMITTED` is transport acceptance, not verified Task initialization.
+The Task ID is `task-` plus SHA-256 of that ID. Restate's workflow key admits exactly
+one main invocation, including concurrent client submissions. Only the caller whose
+send Restate admitted (`Accepted`) receives `SUBMITTED`. A retry uses the same
+request ID and identical request. Every other create with that ID (retry, replay
+or concurrent duplicate) receives `EXISTING` for the admitted Task. If its input
+differs, it is rejected, including under concurrency ([#4](https://github.com/LeoFuso/blaine/issues/4)).
+If the admitted Task is not inspectable within a bounded wait, the create reports
+an uncertain, retryable outcome, never `SUBMITTED`. The receipt `SUBMITTED` is
+transport acceptance, not verified Task initialization.
 An unknown query is `UNAVAILABLE`, including initialization races; it does not
 assert that a submitted request was lost. A timeout preserves the recoverable ID.
 
