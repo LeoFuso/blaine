@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-25",
+  "cp2_status": "STOP",
+  "implementation_state": "PARTIAL; unchanged candidate",
+  "classification": "TRUSTED_PROBE_REVISION_MISMATCH",
+  "run_id": "run-7c40dd44ff7944a3",
+  "submitted_worktree": {
+    "root": "/home/leofuso/workspace/blaine-cp1",
+    "branch": "feature/context-plane-cp2",
+    "commit": "0e92ec5228bb7e8b7cd9a8e81b4a9c698504c13c",
+    "dirty": false
+  },
+  "scheduler_submission": "ACCEPTED; canonical HOST prerequisite evaluation reached; execution blocked before steps",
+  "prerequisites": {
+    "restate": {
+      "status": "AVAILABLE",
+      "detail": "restate-server 1.7.9"
+    },
+    "mirix-cp2": {
+      "status": "UNAVAILABLE",
+      "detail": "MIRIX database/credential/schema prerequisite unavailable"
+    }
+  },
+  "result": "BLOCKED",
+  "steps_executed": 0,
+  "scheduler_final": {
+    "queue": [],
+    "active": null,
+    "host": "blaine"
+  },
+  "published_probe_sha256": "0eb25d30c88088be0136129e011261249204860c73fa0744f3ca5faaa8965339",
+  "corrected_probe_sha256": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c",
+  "correction_commit": "e84e08d",
+  "suite_definition_matches": true,
+  "diagnosis": "Published probe still passes the SQLAlchemy driver-qualified URI directly to libpq. Corrected probe normalizes the scheme and reads credentials without interpolation. The prior read-only connection diagnostic with the correction passed; this run does not establish a new database outage.",
+  "native_writes": 0,
+  "service_restarts": 0,
+  "scheduler_bypassed": false,
+  "infrastructure_modified": false,
+  "production_modified_this_resume": false,
+  "hermetic_rerun": false,
+  "hermetic_reason": "No production/test changes since the retained passing canonical run; no broad rerun without a concrete reason.",
+  "next_action": "Trusted infrastructure owner must publish the corrected probe revision and make it active; then this CP.2 session submits the same canonical HOST suite. Do not ask the infrastructure owner to run qualification.",
+  "pushed": false,
+  "merged_to_main": false
+}

@@ -1,6 +1,14 @@
 # CP.2 governed Memory qualification
 
-**Current: CP.2 PARTIAL — implementation and deterministic tests complete; native
+**Latest: STOP — trusted probe revision mismatch.** Clean-checkout HOST run
+`run-7c40dd44ff7944a3` is BLOCKED before steps. Restate AVAILABLE; `mirix-cp2`
+UNAVAILABLE; scheduler idle afterward. The deployed probe still lacks correction
+`e84e08d`. No native writes/restarts or implementation changes in this resume.
+[Resume evidence](evidence/implementation/native-resume.json).
+The corrected probe must be published/activated separately; this session then owns
+canonical qualification. Earlier checkpoints below are historical.
+
+**Implementation checkpoint: CP.2 PARTIAL — implementation and deterministic tests complete; native
 storage acceptance pending.** See [executable contract](../../docs/contracts/context-plane-cp2.md),
 [milestone 056](../../docs/milestones/056-context-plane-cp2-storage-qualification.md) and
 [durable current qualification](evidence/implementation/qualification.json).

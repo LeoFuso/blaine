@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "run_id": "run-7c40dd44ff7944a3",
+  "suite": "context-plane-memory-native",
+  "result": "BLOCKED",
+  "reason": "missing prerequisites: mirix-cp2=UNAVAILABLE (MIRIX database/credential/schema prerequisite unavailable)",
+  "verification_class": "HOST",
+  "state": "BLOCKED",
+  "host": "blaine",
+  "worktree": {
+    "root": "/home/leofuso/workspace/blaine-cp1",
+    "branch": "feature/context-plane-cp2",
+    "commit": "0e92ec5228bb7e8b7cd9a8e81b4a9c698504c13c",
+    "dirty": false
+  },
+  "resources": [
+    "restate-runtime",
+    "mirix"
+  ],
+  "prerequisites": {
+    "restate": {
+      "status": "AVAILABLE",
+      "detail": "restate-server 1.7.9"
+    },
+    "mirix-cp2": {
+      "status": "UNAVAILABLE",
+      "detail": "MIRIX database/credential/schema prerequisite unavailable"
+    }
+  },
+  "steps": []
+}

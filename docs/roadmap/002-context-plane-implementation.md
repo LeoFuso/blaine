@@ -1,11 +1,19 @@
 # Context Plane — bounded production implementation plan
 
-**Status: CP.1 PASS and MERGED; CP.2 PARTIAL — governed writes implemented,
-native storage acceptance pending (2026-09-25); CP.3–CP.9 NOT STARTED.**
+**Status: CP.1 PASS and MERGED; CP.2 STOP — trusted probe revision mismatch;
+implementation PARTIAL (2026-09-25); CP.3–CP.9 NOT STARTED.**
 [Architecture](../context-plane.md), [semantic contracts](../contracts/context-plane.md)
 and [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md) remain
 accepted direction. Track III research is COMPLETE. The
 [main roadmap](001-blaine-development-roadmap.md#current-next) owns broader prioritization.
+
+Latest clean-checkout native attempt `run-7c40dd44ff7944a3` is BLOCKED before steps.
+The published probe is the old revision; correction `e84e08d` is not present there.
+Scheduler is healthy/idle. No native writes/restarts occurred. See
+[resume evidence](../../experiments/context-plane-cp2/evidence/implementation/native-resume.json).
+Next: trusted publication/activation of only the corrected probe, then this session
+submits the same canonical HOST suite. No implementation or scheduler redesign is needed
+to address this observed dependency. Native acceptance remains unproven.
 
 **Current CP.2 candidate:** [milestone 056](../milestones/056-context-plane-cp2-storage-qualification.md),
 [executable subset](../contracts/context-plane-cp2.md),

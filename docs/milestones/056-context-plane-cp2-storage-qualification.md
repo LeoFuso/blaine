@@ -1,5 +1,28 @@
 # CP.2 — Storage qualification
 
+## Latest native resume: STOP — trusted probe revision mismatch
+
+Canonical HOST run **run-7c40dd44ff7944a3** submitted the clean CP.2 worktree at
+`0e92ec5228bb7e8b7cd9a8e81b4a9c698504c13c`. Restate prerequisite AVAILABLE;
+`mirix-cp2` UNAVAILABLE. Result **BLOCKED**, zero suite steps, zero native writes,
+zero service restarts. The scheduler returned `active = null`, `queue = []`.
+[Canonical report](../../experiments/context-plane-cp2/evidence/implementation/host/run-7c40dd44ff7944a3.json)
+and [publication comparison](../../experiments/context-plane-cp2/evidence/implementation/native-resume.json).
+
+The deployed suite definition matches the candidate. The deployed probe is still
+`0eb25d30c88088be0136129e011261249204860c73fa0744f3ca5faaa8965339`, which passes
+MIRIX's SQLAlchemy URL directly to libpq. The correction already committed at
+`e84e08d` is `6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c`.
+This is **TRUSTED_PROBE_REVISION_MISMATCH**, not evidence of a new MIRIX outage.
+
+The implementation remains PARTIAL and unchanged. Existing HERMETIC results below
+remain applicable; they were not repeated without a code change. Stop native attempts
+until the trusted infrastructure owner publishes and activates the corrected probe.
+Then this CP.2 session owns submission of the same HOST suite. Do not bypass or
+modify the scheduler, publish from this session, or ask its owner to run qualification.
+No production/verification infrastructure changes, push, main merge or CP.3 occurred
+in this resume. Native persistence/readback/embedding/restart/composition remain unproven.
+
 ## Implementation checkpoint: PARTIAL; native qualification pending
 
 The governed write candidate is implemented in `runtime/kernel/memory_writes.py`

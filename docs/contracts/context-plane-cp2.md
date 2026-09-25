@@ -1,7 +1,8 @@
 # CP.2 executable subset — governed declared/observed Memory writes
 
-**Implementation candidate; CP.2 PARTIAL.** Deterministic enforcement passes; native
-MIRIX commit/embedding/restart acceptance is pending trusted HOST suite publication.
+**Implementation candidate PARTIAL; qualification STOP.** Deterministic enforcement
+passes; native MIRIX commit/embedding/restart acceptance awaits publication and
+activation of the corrected trusted probe. The suite definition is already published.
 This document does not claim storage acceptance or authorize deployment. See
 [milestone 056](../milestones/056-context-plane-cp2-storage-qualification.md) and
 [qualification evidence](../../experiments/context-plane-cp2/evidence/implementation/qualification.json).

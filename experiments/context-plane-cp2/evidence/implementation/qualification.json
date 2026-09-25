@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "date": "2026-09-25",
-  "cp2_status": "PARTIAL",
+  "cp2_status": "STOP",
   "implementation_commits": [
     "15a1df1",
     "8d1c4f6",
@@ -35,8 +35,8 @@
   },
   "host": {
     "result": "BLOCKED",
-    "run_id": "run-613c0c65fb584188",
-    "report": "host/run-613c0c65fb584188.json",
+    "run_id": "run-7c40dd44ff7944a3",
+    "report": "host/run-7c40dd44ff7944a3.json",
     "scheduler": "VerificationScheduler_blaine/host",
     "suite": "context-plane-memory-native",
     "native_steps_executed": 0,
@@ -49,9 +49,16 @@
     "resource_queue_bypassed": false,
     "trusted_suite_publication_observed": true,
     "published_by_this_session": false,
-    "corrected_probe_publication": "PENDING",
+    "corrected_probe_publication": "NOT_PRESENT; observed deployed hash still matches original probe",
     "original_probe_sha256": "0eb25d30c88088be0136129e011261249204860c73fa0744f3ca5faaa8965339",
-    "corrected_probe_sha256": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c"
+    "corrected_probe_sha256": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c",
+    "previous_run_id": "run-613c0c65fb584188",
+    "submitted_worktree": {
+      "root": "/home/leofuso/workspace/blaine-cp1",
+      "branch": "feature/context-plane-cp2",
+      "commit": "0e92ec5228bb7e8b7cd9a8e81b4a9c698504c13c",
+      "dirty": false
+    }
   },
   "failures": [
     {
@@ -69,6 +76,10 @@
     {
       "classification": "CP2_DEFECT",
       "detail": "Canonical HOST probe passed SQLAlchemy postgresql+pg8000 URI to libpq; BLOCKED before steps. Fixed scheme normalization in adapter/probe, refused query/fragment overrides, preserved percent-encoded credentials literally. New deterministic test exposed default ConfigParser interpolation; fixed it too. Read-only connection/identity diagnostic PASS. Corrected trusted probe publication and native rerun still required."
+    },
+    {
+      "classification": "TRUSTED_PROBE_REVISION_MISMATCH",
+      "detail": "Requested resume submitted clean 0e92ec5; canonical HOST run blocked before steps using the older published probe. Production implementation unchanged; no native writes/restarts."
     }
   ],
   "properties": {
@@ -104,5 +115,7 @@
   "pushed": false,
   "merged_to_main": false,
   "production_deployed": false,
-  "infrastructure_provisioned": false
+  "infrastructure_provisioned": false,
+  "implementation_state": "PARTIAL; native acceptance pending",
+  "latest_native_resume": "native-resume.json"
 }
