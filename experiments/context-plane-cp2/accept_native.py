@@ -12,6 +12,7 @@ from pathlib import Path
 import subprocess
 import sys
 import tempfile
+import textwrap
 import time
 import urllib.request
 import uuid
@@ -47,21 +48,29 @@ try:
    row=cur.fetchone();assert row
    out={'organization':row[0],'user':row[1],'client':row[2]}
   elif action=='support':
+   stage='support-query'
    cur.execute("SELECT e.raw_id,e.metadata,r.filter_tags,r.context_embedding::text,r.context FROM blaine_memory_entry_v1 e JOIN raw_memory r ON r.id=e.raw_id WHERE e.namespace=%s ORDER BY e.raw_id",(c.namespace,))
-   rows=cur.fetchall();assert len(rows)==4
+   rows=cur.fetchall();stage='support-row-count';assert len(rows)==4
    for identity,metadata,tags,vector,content in rows:
+    stage='support-vector'
     embedding=json.loads(vector)
     assert len(embedding)==4096 and any(v!=0 for v in embedding)
+    stage='support-metadata'
     assert tags['blaine']==metadata
+    stage='support-partition'
     assert tags['scope']==PostgresMirixStore(c)._partition(metadata['context'],metadata['domain'])
    # The FK protects BOTH statuses against an age-selected/raw cleanup delete.
    protected=0
+   stage='support-cleanup-refusal'
    for identity,*_ in rows:
     cur.execute('SAVEPOINT retention_check')
     try:
      cur.execute('DELETE FROM raw_memory WHERE id=%s',(identity,))
     except Exception as error:
-     assert error.pgcode=='23503'
+     # PostgreSQL may distinguish RESTRICT (23001) from a generic FK violation
+     # (23503). Require the exact CP.2 guard, not just any integrity error.
+     if error.pgcode not in ('23001','23503') or error.diag.constraint_name!='blaine_memory_entry_v1_raw_id_fkey':
+      raise
      protected+=1
     finally:
      cur.execute('ROLLBACK TO SAVEPOINT retention_check')
@@ -75,11 +84,17 @@ try:
 finally: db.close()
 print(json.dumps(out))
 '''
+    code = ('import json,sys\nstage="database-support"\ntry:\n' + textwrap.indent(code, ' ') +
+            '\nexcept Exception as error:\n'
+            ' print(json.dumps({"stage":stage,"error_type":type(error).__name__,"sqlstate":getattr(error,"pgcode",None)}))\n'
+            ' sys.exit(1)\n')
     result = subprocess.run([PYTHON, '-c', code], cwd=ROOT,
         input=encode({'config': asdict(config), 'action': action}), capture_output=True, timeout=30,
         env={**os.environ, 'PYTHONDONTWRITEBYTECODE': '1'})
     if result.returncode:
-        raise AssertionError('Native database support check failed (details suppressed)')
+        # Only fixed stage, exception class and SQLSTATE; never exception text/SQL.
+        safe = json.loads(result.stdout) if result.stdout else {'stage': 'support-process'}
+        raise AssertionError('Native database support check failed: ' + json.dumps(safe))
     return json.loads(result.stdout)
 
 
@@ -164,10 +179,18 @@ def main():
             memory.grants = grant_provider
             # Explicit operator declaration directly at the project; no promotion.
             f.snapshot['payload']['context'] = 'project'
-            retained = memory.declare(f.state, f.spec,
-                {'content': 'answer preference: preserve exact text.', 'idempotency_key': 'human-declaration'})
+            declaration = {'content': 'answer preference: preserve exact text.', 'idempotency_key': 'human-declaration'}
+            retained = memory.declare(f.state, f.spec, declaration)
             check('human_retained', (retained['origin'], retained['status'], retained['retention']) ==
                   ('USER_DECLARATION', 'DECLARED', 'RETAINED'))
+            replay = memory.declare(f.state, f.spec, declaration)
+            check('retained_scoped_replay', replay['id'] == retained['id'] and replay['idempotency'] == 'REPLAY')
+            try:
+                memory.declare(f.state, f.spec, {**declaration, 'content': 'changed human declaration'})
+            except MemoryError as error:
+                check('retained_changed_payload_conflict', error.status == 'IDEMPOTENCY_CONFLICT')
+            else:
+                check('retained_changed_payload_conflict', False)
             f.snapshot['payload']['context'] = 'sibling'
             sibling = memory.observe(f.state, f.spec, value)
             check('same_token_unrelated_context', sibling['id'] != working['id'])
@@ -219,10 +242,14 @@ def main():
             check('post_restart_facade_exact', status == 'SUCCESS' and encode(after) == before)
             check('post_restart_working', fresh.retrieve(f.bound(), working['id'])[0][0]['retention'] == 'WORKING')
             check('post_restart_retained', fresh.retrieve(f.bound(), retained['id'])[0][0]['retention'] == 'RETAINED')
+            replay = fresh.observe(f.state, f.spec, value)
+            check('post_restart_working_replay', replay['id'] == working['id'] and replay['idempotency'] == 'REPLAY')
             check('post_restart_forbidden', all(fresh.retrieve(f.bound(), identity) == ([], 'DENIED')
                   for identity in (sibling['id'], foreign['id'], 'nonexistent')))
             f.snapshot['payload']['context'] = 'project'
             check('parent_cannot_read_child', fresh.retrieve(f.bound(), working['id']) == ([], 'DENIED'))
+            replay = fresh.declare(f.state, f.spec, declaration)
+            check('post_restart_retained_replay', replay['id'] == retained['id'] and replay['idempotency'] == 'REPLAY')
             f.snapshot['payload']['context'] = 'child'
             check('descendant_inherits_retained_only', fresh.retrieve(f.bound(), retained['id'])[1] == 'SUCCESS'
                   and fresh.retrieve(f.bound(), working['id']) == ([], 'DENIED'))

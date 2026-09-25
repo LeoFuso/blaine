@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "checks": {
+    "schema_v1": true,
+    "policy_admits_observation": true,
+    "runtime_write_success": true,
+    "post_commit_sigkill_reconciled": true,
+    "observation_working_unverified": true,
+    "scoped_replay": true,
+    "changed_payload_conflict": true,
+    "ungranted_human_declaration_denied": true,
+    "human_retained": true,
+    "same_token_unrelated_context": true,
+    "same_token_unrelated_domain": true,
+    "facade_committed_readback": true,
+    "exact_source_readback": true,
+    "unrelated_before_restart": true
+  },
+  "restart": null,
+  "scope": "CP.2 synthetic local native persistence; no cloud cognition",
+  "production_deployment": false,
+  "pre_restart_facade_sha256": "660c617293146fdf70c3d13bff93fce462418253391c1742c85d04a2f85e15de",
+  "error_type": "AssertionError",
+  "failed_check": "Native database support check failed (details suppressed)",
+  "fixture_teardown": {
+    "removed_synthetic_records": 4
+  }
+}

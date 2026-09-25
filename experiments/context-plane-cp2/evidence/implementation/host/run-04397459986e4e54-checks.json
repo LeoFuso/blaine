@@ -1,0 +1,28 @@
+{
+  "status": "FAIL",
+  "checks": {
+    "schema_v1": true,
+    "policy_admits_observation": true,
+    "runtime_write_success": true,
+    "post_commit_sigkill_reconciled": true,
+    "observation_working_unverified": true,
+    "scoped_replay": true,
+    "changed_payload_conflict": true,
+    "ungranted_human_declaration_denied": true,
+    "human_retained": true,
+    "same_token_unrelated_context": true,
+    "same_token_unrelated_domain": true,
+    "facade_committed_readback": true,
+    "exact_source_readback": true,
+    "unrelated_before_restart": true
+  },
+  "restart": null,
+  "scope": "CP.2 synthetic local native persistence; no cloud cognition",
+  "production_deployment": false,
+  "pre_restart_facade_sha256": "531b3f9d49cdfd7ca8fa4fc278c08fe345fd6ba28b24abe6c964184a12741d2b",
+  "error_type": "AssertionError",
+  "failed_check": "Native database support check failed: {\"stage\": \"support-cleanup-refusal\", \"error_type\": \"RestrictViolation\", \"sqlstate\": \"23001\"}",
+  "fixture_teardown": {
+    "removed_synthetic_records": 4
+  }
+}
