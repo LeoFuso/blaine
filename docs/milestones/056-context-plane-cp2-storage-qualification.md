@@ -1,6 +1,54 @@
 # CP.2 — Storage qualification
 
-**CP.2 STOP — required HOST scheduler unavailable (2026-09-24).** The revised
+## Resume checkpoint: PARTIAL; implementation held for trusted suite publication
+
+The prior scheduler-unavailable blocker is **CLEARED**. Both canonical services are
+registered; shared status is idle (`active = null`, empty queue), and live acceptance
+`run-1a6e284513a14870` reports PASS. See
+[health observation](../../experiments/context-plane-cp2/evidence/resume/scheduler-health.json).
+No provisioning, deployment or acceptance rerun was performed.
+
+Git remains on `feature/context-plane-cp2` at checkpoint `3d7ef0b`. Current main is
+`16f7e1a`: its sole additional change extracts `build_services()` while preserving
+scheduler execution behavior. No merge/rebase or other-worktree change was made.
+All ten MIRIX source hashes retained in revision 2 still match; the previous storage
+review is reused, not reopened. [Source continuity](../../experiments/context-plane-cp2/evidence/resume/source-continuity.json).
+
+**Qualification integration gap:** the live scheduler imports named suites from its
+own deployed `verification/suites` directory. `worktree` sets execution cwd and Git
+identity; it does not select the suite-definition directory. The deployed catalog has
+`completion-contract`, `completion-contract-native`, `sample-hermetic`, and
+`live-acceptance` (a bounded sleep). Even this branch's existing `context-plane` suite
+is unknown there. [Read-only discovery evidence](../../experiments/context-plane-cp2/evidence/resume/suite-discovery.json).
+The user has selected **trusted suite publication** as a separate verification
+infrastructure action. CP.2 remains **PARTIAL**, with implementation explicitly stopped
+until the `context-plane` qualification suite is published and visible to the live
+scheduler. The current branch, prior evidence and checkpoint are preserved.
+
+Only the reviewed suite definition / verification harness needed to qualify CP.2 may
+be published through that infrastructure action. It must run its named probes/tests
+against the submitted worktree, which is the subject of qualification, not a trusted
+scheduler-code source. Do not dynamically import candidate-worktree Python into the
+scheduler, add arbitrary-command suites, redesign discovery, or bypass arbitration.
+Publication does not publish/merge CP.2 production implementation and does not imply
+acceptance. PASS / FAIL / BLOCKED semantics remain unchanged.
+
+Repository fact: the current `verification/suites/context_plane.py` is **HERMETIC**
+and runs root regressions. It is not yet the CP.2 HOST persistence harness. Trusted
+publication must supply the intended HOST qualification definition and prerequisites;
+merely publishing or relabeling this hermetic suite cannot prove persistence. No suite
+code was changed as part of this hold.
+
+Next: the trusted infrastructure owner publishes the qualification suite separately.
+This session must not provision or redeploy the scheduler itself. After publication,
+verify live suite visibility and its trusted definition, then resume the retained CP.2
+storage proofs and implementation. The WORKING/RETAINED, provenance and authority rules
+below remain unchanged. CP.3 is not started. No new test result is claimed for this
+instruction-only checkpoint. See [publication boundary](../../experiments/context-plane-cp2/evidence/resume/trusted-publication.json).
+
+## Historical scheduler-unavailable checkpoint
+
+**CP.2 STOP — required HOST scheduler unavailable (2026-09-24; now cleared).** The revised
 storage review is PARTIAL, not an architectural rejection of MIRIX. No CP.2 governed
 write implementation is accepted yet. [Revision 2](../../experiments/context-plane-cp2/evidence/storage-qualification-v2.json)
 supersedes the prior STOP criterion: persistence is not retention and embedding

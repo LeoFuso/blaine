@@ -1,0 +1,19 @@
+{
+  "read_only_discovery": true,
+  "worktree_suite": {
+    "name": "context-plane",
+    "class": "HERMETIC"
+  },
+  "deployment": {
+    "suite_directory": "/home/leofuso/.local/share/blaine/runtime/app/verification/suites",
+    "suites": [
+      "completion-contract",
+      "completion-contract-native",
+      "live-acceptance",
+      "sample-hermetic"
+    ],
+    "context_plane": "UNKNOWN_SUITE"
+  },
+  "limits": "Source/module discovery only; no suite submitted or run. Scheduler health remains PASS.",
+  "user_constraint": "No scheduler provisioning, redeployment, redesign or bypass."
+}

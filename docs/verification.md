@@ -299,9 +299,18 @@ provision).
 CP.1 is now merged. `verification/suites/context_plane.py` additively registers
 the integrated Context Plane/kernel HERMETIC regressions. It does not qualify
 CP.2 storage: [CP.2 is requalifying its storage boundary](milestones/056-context-plane-cp2-storage-qualification.md).
-The configured HOST scheduler is currently unavailable (milestone 056); do not provision
-or bypass it. No native persistence PASS is implied by the hermetic suite. A later HOST suite
-must declare actual prerequisites/resources and use the Restate scheduler.
+The configured HOST scheduler is healthy (milestone 056 resume evidence). Publishing
+the reviewed CP.2 suite/harness is a separate trusted infrastructure action. Candidate
+worktrees are qualification subjects, never sources of Python imported into the trusted
+scheduler process. Named probes/tests execute against the submitted worktree; no generic
+arbitrary-command suite or discovery redesign is allowed. Publication does not imply
+CP.2 acceptance or publish its production implementation. PASS / FAIL / BLOCKED semantics
+remain unchanged. This session must not provision, redeploy or bypass the scheduler.
+
+CP.2 implementation is held until the intended suite is published and visible. The
+existing `context-plane` definition is HERMETIC; the required HOST persistence harness
+must declare its actual prerequisites/resources. Relabeling hermetic regressions cannot
+establish native persistence PASS.
 
 The extension mechanism remains:
 

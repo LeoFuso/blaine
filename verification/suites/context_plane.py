@@ -11,8 +11,7 @@ SUITE = Suite(
     verification_class=VerificationClass.HERMETIC,
     description='Context Plane and integrated kernel regressions; not CP.2 storage acceptance.',
     steps=[Step(name='context-plane-kernel-regressions',
-                command=['BLAINE_PYTHON', '-m', 'pytest', 'tests', '-q'],
-                env={'BLAINE_PYTHON': ''})],
+                command=['BLAINE_PYTHON', '-m', 'pytest', 'tests', '-q'])],
     resources=(),
     prereq_probes=(),
 )

@@ -1,6 +1,17 @@
 # CP.2 storage qualification
 
-**Revised storage review PARTIAL; CP.2 STOP at HOST prerequisite — 2026-09-24.** No CP.2 production writes accepted.
+**CP.2 PARTIAL; implementation stopped pending trusted suite publication.**
+The [publication boundary](evidence/resume/trusted-publication.json) records the user's
+choice: a separate trusted infrastructure action publishes only the reviewed suite/harness.
+No candidate-worktree Python is imported into the scheduler; no production implementation
+is published or accepted by this action. The current local suite is HERMETIC, not yet a
+HOST persistence harness. This session will not provision or redeploy the scheduler.
+The scheduler-unavailable blocker is cleared: [resume health](evidence/resume/scheduler-health.json).
+The live catalog does not discover this worktree's additive suites:
+[discovery evidence](evidence/resume/suite-discovery.json). Trusted publication is required before implementation resumes; no scheduler redesign or bypass. No implementation
+or new persistence acceptance was performed. The prior records below are historical.
+
+**Previous checkpoint: CP.2 STOP at HOST prerequisite — 2026-09-24.** No CP.2 production writes accepted.
 [Revision 2](evidence/storage-qualification-v2.json) supersedes the prior STOP criterion:
 persistence is not retention, and embeddings are not inherently a blocker. Qualification
 covers governed source plus useful derived processing, preserving Blaine-owned

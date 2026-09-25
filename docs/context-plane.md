@@ -9,7 +9,7 @@ III.10 remains the planned sequence close; III.G is a complementary carveout.
 [ADR 0025](decisions/0025-context-plane-and-compiled-agent-context.md) records the decision.
 [Context Plane contracts](contracts/context-plane.md) own normative semantic interfaces;
 [implementation plan](roadmap/002-context-plane-implementation.md) owns production sequencing:
-**CP.1 PASS and MERGED; CP.2 storage review PARTIAL, HOST prerequisite blocked; CP.3–CP.9 NOT STARTED**. The [CP.1 executable subset](contracts/context-plane-cp1.md)
+**CP.1 PASS and MERGED; CP.2 storage review PARTIAL, HOST suite publication unresolved; CP.3–CP.9 NOT STARTED**. The [CP.1 executable subset](contracts/context-plane-cp1.md)
 freezes only its local wire shapes. Later schemas remain implementation gates.
 The [main roadmap](roadmap/001-blaine-development-roadmap.md#current-next) owns scheduling
 relative to other programs. Historical experiment proposals are not new authorization.

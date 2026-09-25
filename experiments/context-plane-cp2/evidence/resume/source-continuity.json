@@ -1,0 +1,17 @@
+{
+  "expected_commit": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "observed_commit": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "reviewed_source_hashes_unchanged": {
+    "mirix/services/raw_memory_manager.py": true,
+    "mirix/orm/raw_memory.py": true,
+    "mirix/orm/sqlalchemy_base.py": true,
+    "mirix/server/rest_api.py": true,
+    "mirix/services/agent_manager.py": true,
+    "mirix/database/filter_tags_query.py": true,
+    "mirix/functions/function_sets/memory_tools.py": true,
+    "mirix/services/semantic_memory_manager.py": true,
+    "mirix/jobs/cleanup_raw_memories.py": true,
+    "mirix/embeddings.py": true
+  },
+  "reinvestigation_from_first_principles": false
+}

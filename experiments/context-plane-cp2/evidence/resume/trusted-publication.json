@@ -1,0 +1,25 @@
+{
+  "cp2_status": "PARTIAL",
+  "implementation": "STOPPED_BY_USER_PENDING_TRUSTED_SUITE_PUBLICATION",
+  "checkpoint_commit": "3d7ef0bde066d4e84d53d14332f6843070c59095",
+  "branch": "feature/context-plane-cp2",
+  "scheduler_unavailable_blocker": "CLEARED_BY_PRIOR_RESUME_PROBE",
+  "required_action": "Separate trusted infrastructure publication of the reviewed context-plane suite / CP.2 verification harness",
+  "allowed_publication": "Qualification suite/harness only; named probes/tests execute against submitted worktree",
+  "candidate_worktree_is_trusted_scheduler_code": false,
+  "dynamic_candidate_module_import": false,
+  "generic_arbitrary_commands": false,
+  "production_implementation_publication": false,
+  "publication_implies_acceptance": false,
+  "result_semantics": [
+    "PASS",
+    "FAIL",
+    "BLOCKED"
+  ],
+  "current_repository_suite_class": "HERMETIC",
+  "required_cp2_persistence_qualification_class": "HOST",
+  "suite_definition_changed": false,
+  "publication_performed": false,
+  "scheduler_provisioned_or_redeployed": false,
+  "resume_condition": "Intended trusted suite published and visible to live scheduler; verify definition before resuming CP.2"
+}

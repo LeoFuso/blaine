@@ -1,0 +1,34 @@
+{
+  "registered": {
+    "VerificationScheduler_blaine": true,
+    "VerificationRun": true
+  },
+  "read_only": true,
+  "scheduler_host": {
+    "queue": [],
+    "active": null,
+    "host": "blaine"
+  },
+  "scheduler_blaine": {
+    "queue": [],
+    "active": null,
+    "host": "blaine"
+  },
+  "prior_acceptance": {
+    "run_id": "run-1a6e284513a14870",
+    "suite": "live-acceptance",
+    "state": "PASS",
+    "worktree": {
+      "root": "/home/leofuso/workspace/blaine",
+      "branch": "main",
+      "commit": "56f2e65cdf1bb470aa179168e3a628b29f422092",
+      "dirty": true
+    },
+    "result": "PASS"
+  },
+  "checkpoint": "3d7ef0bde066d4e84d53d14332f6843070c59095",
+  "origin_main": "16f7e1a170ca0b0a4bb7f773dbb6922405e24287",
+  "previous_scheduler_unavailable_blocker": "CLEARED",
+  "provisioned": false,
+  "redeployed": false
+}
