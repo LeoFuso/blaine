@@ -138,3 +138,5 @@ ADR’s own status before treating it as an accepted constraint.
 - [ADR 0027 — IDE delegation is workspace authority; PolicyGate is the single enforcer](0027-ide-delegation-is-workspace-authority.md)
   is **Accepted / Unvalidated**; it revises the Hub E1 provider, local-guard and
   JetBrains onboarding statements. Live validation is E1 acceptance.
+- [ADR 0028 — The conversation projection is the presentation contract](0028-conversation-projection-is-the-presentation-contract.md)
+  is **Accepted / Unvalidated**; validation is the PA-4 increment.
