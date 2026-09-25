@@ -30,6 +30,7 @@ class ProjectionTests(Base):
         self.assertEqual([(e['kind'], e['entry_id']) for e in entries],
                          [('message', 'm1'), ('message', 'm2'), ('brief', brief['brief_id'])])
         self.assertEqual(entries[2]['status'], 'proposed')
+        self.assertEqual([e['order'] for e in entries], [[1, 0], [2, 0], [2, 1]])
         self.assertEqual(entries[2]['deliverable']['path'], 'tests/test_human_response_bounds.py')
 
     def test_task_phase_steps_and_a_pending_human_request_come_only_from_backend_facts(self):

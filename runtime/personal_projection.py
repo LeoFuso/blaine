@@ -160,7 +160,9 @@ class ConversationProjection:
                     'request_id': request_id, 'revision': int(revision),
                     'status': 'closed' if (view or {}).get('lifecycle') in TERMINAL else 'resolved'}))
         entries.sort(key=lambda item: item[0])
-        return [entry for _, entry in entries]
+        # `order` places an entry in Conversation order even when a client only
+        # receives deltas; it is part of the body, so a move re-emits the entry.
+        return [{**entry, 'order': list(key)} for key, entry in entries]
 
     def task_entries(self, anchor: tuple, link: dict, conversation_id: str) -> list[tuple[tuple, dict]]:
         task_id = link['task_id']

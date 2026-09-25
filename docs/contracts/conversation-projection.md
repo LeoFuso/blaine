@@ -59,7 +59,8 @@ human decision → `waiting_human`; lifecycle `RUNNING`/`WAITING` → `running`;
 lifecycles map one-to-one; inspect unavailable → `unavailable` (the entry keeps its last
 known facts and says so).
 
-Ordering: entries are listed in Conversation order — the `rowid` order of the message that
+Every entry carries `order` = `[anchor, sub]`, its position key; clients that apply deltas
+insert by it. Ordering: entries are listed in Conversation order — the `rowid` order of the message that
 introduced them (a `task` entry sits at its `delegation` message; a `brief` entry at the last
 message it was compiled from; a `human_request` directly after its `task`).
 
