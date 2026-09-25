@@ -1,53 +1,59 @@
 # Context Plane — bounded production implementation plan
 
-**Status: CP.1 PASS and MERGED; CP.2 STOP — trusted probe revision mismatch;
-implementation PARTIAL (2026-09-25); CP.3–CP.9 NOT STARTED.**
+**Status: CP.1 PASS and MERGED; CP.2 PASS — bounded native acceptance complete
+(2026-09-25); CP.3–CP.9 NOT STARTED.**
 [Architecture](../context-plane.md), [semantic contracts](../contracts/context-plane.md)
 and [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md) remain
 accepted direction. Track III research is COMPLETE. The
 [main roadmap](001-blaine-development-roadmap.md#current-next) owns broader prioritization.
 
-Latest clean-checkout native attempt `run-7c40dd44ff7944a3` is BLOCKED before steps.
-The published probe is the old revision; correction `e84e08d` is not present there.
-Scheduler is healthy/idle. No native writes/restarts occurred. See
-[resume evidence](../../experiments/context-plane-cp2/evidence/implementation/native-resume.json).
-Next: trusted publication/activation of only the corrected probe, then this session
-submits the same canonical HOST suite. No implementation or scheduler redesign is needed
-to address this observed dependency. Native acceptance remains unproven.
+**Latest completed increment: CP.2 — Governed declared/observed Memory writes.**
+[Milestone 056](../milestones/056-context-plane-cp2-storage-qualification.md),
+[executable contract](../contracts/context-plane-cp2.md),
+[durable qualification](../../experiments/context-plane-cp2/evidence/implementation/qualification.json),
+[qualified storage boundary](../../experiments/context-plane-cp2/evidence/storage-qualification-v4.json).
 
-**Current CP.2 candidate:** [milestone 056](../milestones/056-context-plane-cp2-storage-qualification.md),
-[executable subset](../contracts/context-plane-cp2.md),
-[qualification](../../experiments/context-plane-cp2/evidence/implementation/qualification.json).
-Continue this branch/worktree; do not recreate CP.1 or the storage investigation.
-Checkpoints `0b2b46e` / `c5f3d97` preserve prior work and merged canonical main `16f7e1a`.
-Implementation `15a1df1` adds trusted declarations/observations and scoped MIRIX storage;
-`8d1c4f6` adds the fixed native harness and additive HOST definition; `e84e08d` fixes
-the driver/probe URL integration discovered by its first run.
-
-The implementation keeps provenance, verification and retention independent:
+The opt-in implementation keeps provenance, verification and retention independent:
 AGENT_OBSERVATION / UNVERIFIED / WORKING; explicit authorized USER_DECLARATION /
-DECLARED / RETAINED. The selected adapter preserves source and a local embedding in
-existing MIRIX raw storage, with a metadata-only registry in the same approved
-PostgreSQL database. Fresh trusted grants, scoped idempotency, post-commit facade
-readback and current-Task WORKING versus inherited RETAINED filtering are implemented.
-CP.1 Resolver/Compiler and E1/E2 authority remain intact. This is not deployment approval.
+DECLARED / RETAINED. Exact source and a scoped local embedding live in existing MIRIX
+raw storage; a metadata-only registry in the same approved PostgreSQL database owns
+Blaine identity/retention/retry semantics. Fresh private grants restrict writes to
+current C. WORKING is current-Task/current-context continuity; RETAINED can inherit
+through permitted ancestry intersected with SecurityContext and policy. No automatic
+retention, provenance upgrade, promotion or declassification exists.
 
-Canonical `pre_handoff` passes: 462 root tests (25 CP.2), 26 scheduler tests, zero skips;
-the separately run 61-test E1 suite overlaps root. The existing `context-plane` suite
-remains canonical HERMETIC kernel qualification.
-The dedicated `context-plane-memory-native` HOST suite was separately trusted-published;
-no candidate Python is imported into the scheduler. Its first run
-`run-613c0c65fb584188` was BLOCKED by a CP.2 driver-URL probe defect before any native
-step. The fix requires separate publication of the corrected probe and then a new
-canonical run. The scheduler is healthy and idle; it is not the blocker. No native
-write, restart, provisioning, publication or push is claimed here.
+Canonical HOST run **run-b4a6ab1fcf2442fb PASS** tested clean `e5fbf2b` through
+`VerificationScheduler_blaine/host`: both prerequisites AVAILABLE, **33 checks**, four
+native source/vector records, scoped replay/conflicts, post-commit writer SIGKILL
+recovery, exact facade readback, and restart of **only blaine-mirix.service**. Fresh
+bindings/facades preserved semantic hashes and denied forbidden reads. CP.1
+Resolver/Compiler produced a **2,678 / 4,096-byte** fresh delta with both source classes.
+Synthetic records were removed; scheduler ended idle with an empty queue.
 
-**Next acceptance boundary:** remain on CP.2 until canonical HOST evidence establishes
-both retention classes across real commit/readback, scoped response-loss replay,
-local embeddings, restart isolation and fresh bounded compilation. Preserve earlier
-STOP/PARTIAL reports as historical evidence. No automatic retention, verified learning,
-reflection, preference precedence, semantic workspace retrieval, Graphify, promotion,
-declassification, Conversation ingestion or CP.3.
+Supporting canonical HERMETIC qualification: **462 root tests (25 CP.2), 26 scheduler
+tests, zero skips**; the separately run 61-test E1 suite overlaps root. Production and
+deterministic-test hashes are unchanged since that PASS; this resume reran the 25
+CP.2 tests and qualified harness changes through HOST instead of repeating broad suites.
+The earlier STOP/BLOCKED runs and native diagnostic failures are preserved as history.
+The native harness now checks PostgreSQL RESTRICT/FK errors against the exact CP.2
+constraint and explicitly proves RETAINED replay/conflict and both-class restart replay.
+No trusted suite/probe policy was modified by this resume.
+
+**Blockers:** none for the bounded CP.2 contract. This is implementation acceptance,
+not broad production rollout or approval to publish/merge. The restrictive FK can make
+legacy age-cleanup transactions fail when they touch admitted records; governed
+removal/retention lifecycle and blanket qualification of other MIRIX APIs remain outside
+this slice. PostgreSQL, embedding service, Restate and the host were not restarted.
+Preference precedence, automatic retention, reflection, verified learning, semantic
+workspace retrieval, Graphify, promotion, declassification and Conversation ingestion
+remain explicit non-goals.
+
+**Next action:** review/merge CP.2 under separate Git authorization. Keep this clean
+`feature/context-plane-cp2` worktree for review; do not start another increment here.
+After merge and separate authorization, the next roadmap increment is **CP.3 —
+Outcome-qualified local knowledge**, whose acceptance boundary is trusted evidence-based
+outcome admission, never worker-success or persisted text as verified truth. CP.3 is
+NOT STARTED. Main remained `16f7e1a` after the final fetch; no reconciliation is pending.
 
 The authorized CP.1 implementation is complete within its opt-in hosted/local boundary.
 [Milestone and handoff](../milestones/055-context-plane-cp1.md),
@@ -62,28 +68,14 @@ records commands and conditional CI-only services. Nothing was pushed or merged 
 The implementation request has an unsubmitted TaskSpec draft because no creation binding
 was available; the separate synthetic native acceptance Task completed with exact evidence.
 
-**Current production state:** deployment-selected ContextPlane on existing Capabilities /
-create_workflow / GooseWorker; trusted local Task/spec/principal/resource binding; separate
-Resolver and deterministic Compiler; qualified read-only configured Memory corpus; confined
-exact/lexical sources and admitted evidence; private compiler admissions; one fresh replacement
-delta; current authority/source checks before physical delivery. Compiler projections and
-private admissions use the authoritative E1.0 contract reference/revision; amendments
-invalidate stale worker delivery and prepared handoff context. `context.request` is a
-governed TARGET_READ with existing admission/observation journals. Default deployments and
-unaffected paths retain their behavior. Implementation acceptance is not deployment approval.
-
-**Blockers:** none for bounded CP.1. Live MIRIX remains unqualified/disabled on this path;
-headers/tags are not proven processing isolation or trusted provenance. Whole-file exact
-requirements must fit unchanged WorkerInput field/envelope limits, otherwise insufficiency
-is explicit. General concurrency/revocation/restart guarantees remain CP.8.
-
-**Next bounded increment:** resume authorized CP.2 — Governed declared/observed writes
-under the revised storage criteria above. CP.1 is already merged. First
-qualify existing MIRIX and Blaine-owned entry metadata in approved storage. Its acceptance
-boundary is trusted human declaration vs UNVERIFIED current-context observation, isolated
-read methods/metadata, scoped idempotency, committed readback, response-loss/restart evidence
-and provenance-preserving migration. The CP.2 candidate above is implemented but not yet accepted. No reflection/learning,
-semantic search, Graphify, promotion, declassification or remote propagation is included.
+**Current production state:** the existing deployment-selected ContextPlane on
+Capabilities / create_workflow / GooseWorker retains separate Resolver/Compiler,
+private current-contract admissions, confined lexical/exact sources, admitted evidence
+and one fresh bounded replacement delta. CP.2 adds an optional PersistentMemoryFacade,
+private write grants, the governed `memory.recordObservation` TARGET_EFFECT and a
+separate trusted operator declaration API. E1/E2 keep completion/effect authority;
+Memory remains derived knowledge. Default deployments and unaffected worker paths
+retain previous behavior. No broad deployment or migration was enabled.
 
 ## 1. Repository baseline and dependency choices
 
@@ -274,7 +266,7 @@ branches; CP.8 is required before claiming general durable Context Plane integra
 
 | Phase / dependency | Objective and production boundary | Deterministic acceptance | Regressions protected / explicit non-goals |
 | --- | --- | --- | --- |
-| **CP.2 — Governed declared/observed writes**; CP.1 | Qualify existing MIRIX substrate plus Blaine-owned persistent entry metadata; trusted human RETAINED declaration and current-context WORKING observation; scoped idempotency/readback through existing durable work. Decide registry schema in existing approved storage. | Human origin only from trusted path; agent always UNVERIFIED/local; all read methods and metadata isolated; pending queue ≠ committed write; response-loss retry produces one record or explicit unknown; schema migration and restart retain provenance and WORKING/RETAINED status; current working versus inherited retained retrieval stays distinct. | Preserve existing Memory reads, Task lifecycle and evidence ownership. No second memory product/Task ledger, reflection, promotion, preference precedence or automatic ingestion of conversations. |
+| **CP.2 — Governed declared/observed writes — PASS**; CP.1 | Qualify existing MIRIX substrate plus Blaine-owned persistent entry metadata; trusted human RETAINED declaration and current-context WORKING observation; scoped idempotency/readback through existing durable work. Decide registry schema in existing approved storage. | Human origin only from trusted path; agent always UNVERIFIED/local; all read methods and metadata isolated; pending queue ≠ committed write; response-loss retry produces one record or explicit unknown; schema migration and restart retain provenance and WORKING/RETAINED status; current working versus inherited retained retrieval stays distinct. | Preserve existing Memory reads, Task lifecycle and evidence ownership. No second memory product/Task ledger, reflection, promotion, preference precedence or automatic ingestion of conversations. |
 | **CP.3 — Outcome-qualified local knowledge**; CP.2 | Feed trusted CompletionEvaluation/evidence into VerifiedOutcomeAdmission; initially reviewed or exactly supported candidates in current C. | Missing/unknown/contradictory evidence cannot support success; verified failure retained as failure; outcome alone cannot verify unsupported text; worker-success and missing-as-pass mutations fail; replay checks current evidence. | Human declarations remain separate; no parent visibility or success from Task FAILED alone. No LLM reflection, arbitrary entailment, consolidation, utility or automatic promotion. |
 | **CP.4 — Semantic workspace routing**; CP.1 | Add replaceable semantic adapter using existing local BGE-M3 only for conceptual needs; validate before rank fusion and preserve lexical fallback. | Frozen conceptual/exact/trap workloads; final-packet useful gain, exact non-regression, stale/forbidden zero, incompatible embedding/index rejected; raw scores not directly combined; cost and insufficient-context states retained. | Existing exact lookup stays default; no all-source fan-out, Milvus, new persistent service, Claude Context product adoption, code-equivalence claim or parameter tuning to test oracles. |
 | **CP.5 — Same-domain PromotionGate**; CP.2+3 | Add explicit immediate-parent admission with compatible learned provenance/status and private audit/projected receipt; separate operation authority. | No upward ordinary write; authorized route creates distinct parent representation; source immutable; failure/unverified never upgraded; replay revalidates current policy; destination IDs/revisions scoped. | Preserve current-context learning and existing parent TaskResult delivery. Cross-domain promotion remains disabled; no autonomous abstraction or automatic promotion. |

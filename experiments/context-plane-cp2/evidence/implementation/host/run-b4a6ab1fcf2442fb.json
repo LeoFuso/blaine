@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "run_id": "run-b4a6ab1fcf2442fb",
+  "suite": "context-plane-memory-native",
+  "result": "PASS",
+  "reason": "",
+  "verification_class": "HOST",
+  "state": "PASS",
+  "host": "blaine",
+  "worktree": {
+    "root": "/home/leofuso/workspace/blaine-cp1",
+    "branch": "feature/context-plane-cp2",
+    "commit": "e5fbf2baaf26e319c2a61fafa27b596479403dc0",
+    "dirty": false
+  },
+  "resources": [
+    "restate-runtime",
+    "mirix"
+  ],
+  "prerequisites": {
+    "restate": {
+      "status": "AVAILABLE",
+      "detail": "restate-server 1.7.9"
+    },
+    "mirix-cp2": {
+      "status": "AVAILABLE",
+      "detail": "Existing MIRIX/PostgreSQL and local embedding service available"
+    }
+  },
+  "steps": [
+    {
+      "name": "context-plane-memory-native",
+      "command": [
+        "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+        "experiments/context-plane-cp2/accept_native.py"
+      ],
+      "exit_code": 0,
+      "stdout_tail": "{\"status\": \"PASS\", \"checks\": 33, \"evidence\": \"/home/leofuso/workspace/blaine-cp1/.local/verification/cp2-native/cp2-native-ffc3ab7833654c37bf2da5eb09a58d55/qualification.json\"}\n",
+      "stderr_tail": "",
+      "duration": 4.425,
+      "timed_out": false,
+      "env": []
+    }
+  ]
+}

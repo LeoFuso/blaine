@@ -1,5 +1,73 @@
 # CP.2 — Storage qualification
 
+## Current: CP.2 PASS — bounded native acceptance complete
+
+Canonical **context-plane-memory-native** run **run-b4a6ab1fcf2442fb PASS** tested
+clean `feature/context-plane-cp2` at `e5fbf2baaf26e319c2a61fafa27b596479403dc0`.
+Both `restate` and `mirix-cp2` prerequisites were AVAILABLE; the canonical scheduler
+owned admission/execution and returned `active = null`, `queue = []`.
+[Canonical report](../../experiments/context-plane-cp2/evidence/implementation/host/run-b4a6ab1fcf2442fb.json),
+[33 native checks](../../experiments/context-plane-cp2/evidence/implementation/host/run-b4a6ab1fcf2442fb-checks.json),
+[full qualification and run history](../../experiments/context-plane-cp2/evidence/implementation/qualification.json).
+
+- Governed observation persists AGENT_OBSERVATION / UNVERIFIED / WORKING; authorized
+  declaration persists USER_DECLARATION / DECLARED / RETAINED. Ungranted declaration
+  is denied. Neither persistence nor embedding upgrades source semantics.
+- Both classes replay without duplicates and reject changed payloads. Same token in
+  unrelated context/domain creates a separate scoped identity. Post-commit writer
+  SIGKILL is reconciled by read-only lookup and canonical facade readback.
+- Four exact source rows and four local embeddings share scoped metadata in existing
+  MIRIX raw storage, with Blaine's metadata-only registry in the same approved DB.
+  The exact restrictive FK guards admitted rows against ungoverned raw deletion.
+- Only **blaine-mirix.service** restarted. Its invocation changed and health recovered.
+  Fresh backend processes, facade and bindings returned identical semantic hashes;
+  parent/sibling/foreign reads stayed denied. Descendants inherit permitted RETAINED,
+  not source-Task WORKING. Replay after restart remains idempotent for both classes.
+- Fresh CP.1 Resolver/Compiler output preserved origin/status/retention for both
+  sources in a **2,678-byte packet under the 4,096-byte budget**. Private backend/scope
+  fields and foreign content were absent. Completion Contract remained unchanged and
+  unsatisfied without independent execution evidence.
+- All four synthetic records were explicitly removed. No cloud cognition, unrelated
+  service restart, provisioning, scheduler bypass, broad deployment or push occurred.
+
+Implementation: `15a1df1`, `8d1c4f6`, `e84e08d`. Native harness correction: `e5fbf2b`.
+Earlier runs `run-866ba9c1a3fc47ee`, `run-3599016864f54467` and
+`run-04397459986e4e54` failed a **test expectation**, not the retention guard:
+PostgreSQL returned RESTRICT SQLSTATE `23001`, whereas the fixture expected `23503`.
+Safe diagnostics identified the exact condition; the assertion now requires an
+appropriate RESTRICT/FK SQLSTATE **and the exact CP.2 constraint name**. No safety
+assertion was removed. RETAINED replay/conflict and both-class post-restart replay
+checks were added. Failure reports and successful fixture teardown remain retained.
+
+Supporting HERMETIC qualification remains **462 root tests + 26 scheduler tests PASS,
+zero skips**; root includes 25 CP.2 and the 61-test E1 subset. Production/test hashes
+match that canonical run. This resume reran the 25 CP.2 tests (22 additional subtests),
+then qualified the harness correction through HOST; no unnecessary broad rerun.
+Existing CP.1/Track III, PolicyGate, E1/E2, child/human, worker, D2/ACP and remote-read
+regressions remain preserved. No Task lifecycle, Conversation, PA-3/Desktop,
+automatic retention/promotion/declassification or preference-precedence work was added.
+
+[Executable contract](../contracts/context-plane-cp2.md) and
+[storage qualification revision 4](../../experiments/context-plane-cp2/evidence/storage-qualification-v4.json)
+state the bounded acceptance and limits. A legacy age-cleanup transaction touching an
+admitted row can fail on the guard; broader governed removal/retention lifecycle remains
+deferred. This acceptance does not qualify every MIRIX API/cache/processor or machine
+recovery. No outstanding blocker remains within the accepted CP.2 boundary.
+
+**Next session:** review/merge CP.2 only, under separate Git authorization. Keep this
+branch/worktree for review; CP.2 should merge before later implementation. The next
+roadmap increment is CP.3, NOT STARTED and requiring separate authorization. Retain
+GPT-6 Astra / high reasoning for review of the trust/storage boundary.
+
+> Review completed CP.2 on feature/context-plane-cp2 in /home/leofuso/workspace/blaine-cp1.
+> Read milestone 056, the CP.2 executable contract and qualification.json, including the
+> clean-checkout canonical HOST PASS and earlier failures. Review the narrow MIRIX adapter,
+> retention distinction and preserved E1/E2 authority. Do not push, merge or start CP.3
+> without separate authorization. No scheduler publication/provisioning is needed.
+
+The sections below are historical checkpoints; their STOP/PARTIAL states are superseded
+by the current acceptance above. Their original observations are retained honestly.
+
 ## Latest native resume: STOP — trusted probe revision mismatch
 
 Canonical HOST run **run-7c40dd44ff7944a3** submitted the clean CP.2 worktree at

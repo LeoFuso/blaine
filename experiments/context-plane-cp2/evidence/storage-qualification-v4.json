@@ -1,0 +1,30 @@
+{
+  "schema_version": 4,
+  "date": "2026-09-25",
+  "status": "PASS_BOUNDED_CP2_NATIVE",
+  "continues": "storage-qualification-v3.json",
+  "historical_reports_unchanged": true,
+  "mirix_commit": "8cb06a62bbb7c478beb33dd4f2815696a72df482",
+  "selected_boundary": "existing_substrate_internal_adapter",
+  "storage_candidate_rejected": false,
+  "native_run": "run-b4a6ab1fcf2442fb",
+  "qualification": "implementation/qualification.json",
+  "questions": {
+    "exact_source_preservation": "PASS: exact UTF-8 committed facade readback; identical semantic hash after MIRIX restart.",
+    "blaine_metadata_preservation": "PASS: both origin/status/retention tuples, scope and source digest validated by facade before/after restart; four scoped raw/vector/registry entries.",
+    "automatic_derived_processing": "PASS within boundary: four local nonzero embeddings on raw rows, 1024 dimensions padded to 4096. No extraction, consolidation or vector retrieval enabled.",
+    "derived_scope_inheritance": "PASS within boundary: each vector shares the source raw row and verified context/domain partition; canonical reads deny sibling/foreign entries before/after restart.",
+    "blaine_retention_ownership": "PASS: WORKING remains AGENT_OBSERVATION/UNVERIFIED; authorized USER_DECLARATION remains RETAINED; exact FK refuses ungoverned raw deletes; no status transition API.",
+    "governed_retrieval_separation": "PASS: current-context WORKING and permitted ancestor RETAINED feed canonical facade/Resolver/Compiler; descendants inherit retained only; resulting delta 2678/4096 bytes.",
+    "no_implicit_upward_flow": "PASS: parent cannot read child WORKING; project knowledge written by direct authorized declaration, never copied/promoted from child.",
+    "authorized_processing_and_egress": "PASS within boundary: trusted processing grant plus fixed local endpoint/model; redirects/proxies/alternate providers refused; source metadata remains unchanged."
+  },
+  "limits": [
+    "Opt-in bounded local implementation, not broad production deployment.",
+    "Only accepted MIRIX service and owned writer process restarted/killed; no PostgreSQL/Restate/embedding restart or host disaster-recovery claim.",
+    "No blanket qualification of other MIRIX APIs/caches/extraction pipelines.",
+    "A legacy age-cleanup transaction touching an admitted row can fail on the restrictive FK; broader governed removal/retention lifecycle remains deferred.",
+    "Preference precedence remains deferred; source classes survive compilation without overriding Task constraints."
+  ],
+  "next_action": "Review and merge CP.2 through separately authorized GitHub actions. CP.3 remains NOT STARTED and requires separate authorization."
+}

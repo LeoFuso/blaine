@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "date": "2026-09-25",
-  "cp2_status": "STOP",
+  "cp2_status": "PASS",
   "implementation_commits": [
     "15a1df1",
     "8d1c4f6",
     "e84e08d"
   ],
-  "candidate_commit": "e84e08df2d2f06ec1887aad82244aba1714024be",
+  "candidate_commit": "e5fbf2baaf26e319c2a61fafa27b596479403dc0",
   "baseline": "16f7e1a170ca0b0a4bb7f773dbb6922405e24287",
   "branch": "feature/context-plane-cp2",
   "hermetic": {
@@ -25,40 +25,68 @@
       "hermetic/sample-hermetic.json"
     ],
     "limits": "Canonical reports retain actual tested HEAD and dirty state; source hashes identify the tested changes, now committed. No native persistence claim.",
-    "cp2_subtests": 22
+    "cp2_subtests": 22,
+    "applicability": "Production and deterministic test hashes are unchanged since retained PASS. Broad suites were not repeated without a code change. Native harness diagnostics/assertions changed and were qualified through the same canonical HOST suite."
   },
   "targeted": {
     "command": "PYTHONDONTWRITEBYTECODE=1 /home/leofuso/workspace/blaine/.local/runtime-venv/bin/python -m pytest tests/test_kernel_memory_writes.py -o addopts='' -q",
     "result": "PASS",
     "tests": 25,
-    "subtests": 22
+    "subtests": 22,
+    "rerun_this_resume": true
   },
   "host": {
-    "result": "BLOCKED",
-    "run_id": "run-7c40dd44ff7944a3",
-    "report": "host/run-7c40dd44ff7944a3.json",
+    "result": "PASS",
+    "run_id": "run-b4a6ab1fcf2442fb",
+    "report": "host/run-b4a6ab1fcf2442fb.json",
+    "checks_report": "host/run-b4a6ab1fcf2442fb-checks.json",
+    "scheduler_report": "host/run-b4a6ab1fcf2442fb-scheduler.json",
     "scheduler": "VerificationScheduler_blaine/host",
     "suite": "context-plane-memory-native",
-    "native_steps_executed": 0,
-    "native_writes": 0,
-    "service_restarts": 0,
-    "scheduler_final": {
-      "active": null,
-      "queue": []
-    },
-    "resource_queue_bypassed": false,
-    "trusted_suite_publication_observed": true,
-    "published_by_this_session": false,
-    "corrected_probe_publication": "NOT_PRESENT; observed deployed hash still matches original probe",
-    "original_probe_sha256": "0eb25d30c88088be0136129e011261249204860c73fa0744f3ca5faaa8965339",
-    "corrected_probe_sha256": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c",
-    "previous_run_id": "run-613c0c65fb584188",
     "submitted_worktree": {
       "root": "/home/leofuso/workspace/blaine-cp1",
       "branch": "feature/context-plane-cp2",
-      "commit": "0e92ec5228bb7e8b7cd9a8e81b4a9c698504c13c",
+      "commit": "e5fbf2baaf26e319c2a61fafa27b596479403dc0",
       "dirty": false
-    }
+    },
+    "prerequisites": {
+      "restate": {
+        "status": "AVAILABLE",
+        "detail": "restate-server 1.7.9"
+      },
+      "mirix-cp2": {
+        "status": "AVAILABLE",
+        "detail": "Existing MIRIX/PostgreSQL and local embedding service available"
+      }
+    },
+    "admission": "Accepted by canonical scheduler; executed fixed published HOST command with both prerequisites AVAILABLE",
+    "resources": [
+      "restate-runtime",
+      "mirix"
+    ],
+    "named_checks": 33,
+    "native_records": 4,
+    "local_embeddings": 4,
+    "service_restarts": 1,
+    "restarted_services": [
+      "blaine-mirix.service"
+    ],
+    "post_commit_writer_sigkill": true,
+    "compiled_packet_bytes": 2678,
+    "compiled_packet_limit_bytes": 4096,
+    "facade_pre_post_restart_hash_equal": true,
+    "synthetic_records_removed": 4,
+    "scheduler_final": {
+      "queue": [],
+      "active": null,
+      "host": "blaine"
+    },
+    "resource_queue_bypassed": false,
+    "trusted_publication_observed": true,
+    "published_or_redeployed_by_this_session": false,
+    "corrected_probe_sha256": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c",
+    "trusted_probe_matches": true,
+    "trusted_suite_matches": true
   },
   "failures": [
     {
@@ -75,28 +103,40 @@
     },
     {
       "classification": "CP2_DEFECT",
-      "detail": "Canonical HOST probe passed SQLAlchemy postgresql+pg8000 URI to libpq; BLOCKED before steps. Fixed scheme normalization in adapter/probe, refused query/fragment overrides, preserved percent-encoded credentials literally. New deterministic test exposed default ConfigParser interpolation; fixed it too. Read-only connection/identity diagnostic PASS. Corrected trusted probe publication and native rerun still required."
+      "detail": "Canonical HOST probe passed SQLAlchemy postgresql+pg8000 URI to libpq; BLOCKED before steps. Fixed scheme normalization in adapter/probe, refused query/fragment overrides, preserved percent-encoded credentials literally. New deterministic test exposed default ConfigParser interpolation; fixed it too. Read-only connection/identity diagnostic PASS. Corrected trusted probe publication and native rerun still required.",
+      "resolution": "Corrected probe independently activated; both prerequisites AVAILABLE in subsequent executed runs; final native PASS."
     },
     {
       "classification": "TRUSTED_PROBE_REVISION_MISMATCH",
-      "detail": "Requested resume submitted clean 0e92ec5; canonical HOST run blocked before steps using the older published probe. Production implementation unchanged; no native writes/restarts."
+      "detail": "Requested resume submitted clean 0e92ec5; canonical HOST run blocked before steps using the older published probe. Production implementation unchanged; no native writes/restarts.",
+      "resolution": "Corrected probe independently activated; both prerequisites AVAILABLE in subsequent executed runs; final native PASS."
+    },
+    {
+      "classification": "CP2_TEST_DEFECT",
+      "runs": [
+        "run-866ba9c1a3fc47ee",
+        "run-3599016864f54467",
+        "run-04397459986e4e54"
+      ],
+      "detail": "Native retention guard worked but supporting assertion expected only SQLSTATE 23503. Diagnostics revealed RestrictViolation 23001. Harness now accepts PostgreSQL RESTRICT/FK states only when the exact CP.2 foreign-key constraint is named; all safety assertions remain. Added explicit RETAINED replay/conflict and both-class post-restart replay. All failed-run synthetic records were removed; no restart occurred in those runs.",
+      "resolution": "e5fbf2b; same canonical HOST suite PASS with 33 named checks. No production fix or trusted policy change was needed."
     }
   ],
   "properties": {
-    "trusted_write_admission": "HERMETIC_PASS",
-    "provenance_verification_retention_separation": "HERMETIC_PASS",
-    "scoped_idempotency": "HERMETIC_PASS; NATIVE_PENDING",
-    "committed_facade_readback": "HERMETIC_PROTOCOL_PASS; NATIVE_PENDING",
+    "trusted_write_admission": "HERMETIC_PASS; NATIVE_PASS",
+    "provenance_verification_retention_separation": "HERMETIC_PASS; NATIVE_PASS",
+    "scoped_idempotency": "HERMETIC_PASS; NATIVE_PASS for both classes, conflicts and replay after restart",
+    "committed_facade_readback": "HERMETIC_PASS; NATIVE_PASS",
     "working_not_reused_by_later_task": "HERMETIC_PASS",
-    "hierarchy_security_isolation": "HERMETIC_PASS; NATIVE_PENDING",
-    "fresh_bounded_delta_worker_delivery": "HERMETIC_PASS; NATIVE_PENDING",
+    "hierarchy_security_isolation": "HERMETIC_PASS; NATIVE_PASS before/after restart",
+    "fresh_bounded_delta_worker_delivery": "HERMETIC worker delivery PASS; NATIVE facade/Resolver/Compiler PASS; no live-model claim",
     "journal_replay": "HERMETIC_PASS",
     "unknown_effect_blocks_completion": "HERMETIC_PASS",
-    "working_retained_native_persistence": "NOT_RUN",
-    "source_and_local_embedding_atomicity": "NOT_RUN",
-    "restart_isolation": "NOT_RUN",
-    "schema_install_and_cleanup_guard": "NOT_RUN",
-    "e1_e2_cp1_regressions": "PASS"
+    "working_retained_native_persistence": "PASS",
+    "source_and_local_embedding_atomicity": "PASS: same native row and transaction, committed facade readback after writer SIGKILL",
+    "restart_isolation": "PASS: only MIRIX user service restarted; fresh backend/facade/binding, identical semantic hashes, forbidden reads denied",
+    "schema_install_and_cleanup_guard": "PASS: repeated schema install; four source/vector rows guarded by exact FK",
+    "e1_e2_cp1_regressions": "PASS; production/test source hashes unchanged from canonical HERMETIC evidence"
   },
   "source_sha256": {
     "runtime/kernel/contracts.py": "b86dee525db3da8e7a1c67c43320f6bb4dbb1a2a4737513843c868d5a825ebff",
@@ -106,16 +146,97 @@
     "runtime/kernel/mirix_storage.py": "d11d77de55f639853e9b321ab64229f52c686b7adf92713a6f6567a36516c60e",
     "tests/test_kernel_memory_writes.py": "3629fa926e57e7f2d774ecd5c488c40abb6cc13dd7cba0be3d6ef0d2427e4ef6",
     "tests/test_completion_contract.py": "5f10c24731002703febaf307b9ba9e4dfa172ef9e7980d3ccbe21af3cabe461f",
-    "experiments/context-plane-cp2/accept_native.py": "abbb8ba443eed1c0fdfef057377373854c35ae614765756dd282d417a05e12e7",
+    "experiments/context-plane-cp2/accept_native.py": "73950bdea077b7417714bf4f7641a0b8dfb3cf55c94312bbb50e02c227a2eb55",
     "verification/probes_mirix.py": "6107de0b47b0b4d484a53fa041bb864144780b2ac81f72a8edadcfc8d2e6bf0c",
     "verification/suites/context_plane_memory_native.py": "af6f26d63c4cc9b91716f86fa24f48c717b3d14f64a9eb251583f4fccf347dfd"
   },
   "git_diff_check": "PASS",
-  "next_action": "Publish only corrected trusted verification/probes_mirix.py independently; submit context-plane-memory-native through canonical scheduler against this candidate; diagnose and fix only CP.2 defects. CP.3 NOT STARTED.",
+  "next_action": "Review and merge CP.2 through separately authorized GitHub actions. CP.3 remains NOT STARTED and requires separate authorization.",
   "pushed": false,
   "merged_to_main": false,
   "production_deployed": false,
   "infrastructure_provisioned": false,
-  "implementation_state": "PARTIAL; native acceptance pending",
-  "latest_native_resume": "native-resume.json"
+  "implementation_state": "COMPLETE within opt-in CP.2 executable contract; not deployed broadly",
+  "latest_native_resume": "host/run-b4a6ab1fcf2442fb.json",
+  "qualification_fix_commits": [
+    "e5fbf2b"
+  ],
+  "origin_main_verified_after_fetch": "16f7e1a170ca0b0a4bb7f773dbb6922405e24287",
+  "native_run_history": [
+    {
+      "run_id": "run-613c0c65fb584188",
+      "submitted_head": "8d1c4f64d1d5d0e77a16993fb07750ab903ac621",
+      "dirty": true,
+      "result": "BLOCKED",
+      "prerequisites": {
+        "restate": "AVAILABLE",
+        "mirix-cp2": "UNAVAILABLE"
+      },
+      "report": "host/run-613c0c65fb584188.json"
+    },
+    {
+      "run_id": "run-7c40dd44ff7944a3",
+      "submitted_head": "0e92ec5228bb7e8b7cd9a8e81b4a9c698504c13c",
+      "dirty": false,
+      "result": "BLOCKED",
+      "prerequisites": {
+        "restate": "AVAILABLE",
+        "mirix-cp2": "UNAVAILABLE"
+      },
+      "report": "host/run-7c40dd44ff7944a3.json"
+    },
+    {
+      "run_id": "run-866ba9c1a3fc47ee",
+      "submitted_head": "7303e6fe92257e7c70bc95d9a2f887948ee7c269",
+      "dirty": false,
+      "result": "FAIL",
+      "prerequisites": {
+        "restate": "AVAILABLE",
+        "mirix-cp2": "AVAILABLE"
+      },
+      "report": "host/run-866ba9c1a3fc47ee.json"
+    },
+    {
+      "run_id": "run-3599016864f54467",
+      "submitted_head": "7303e6fe92257e7c70bc95d9a2f887948ee7c269",
+      "dirty": true,
+      "result": "FAIL",
+      "prerequisites": {
+        "restate": "AVAILABLE",
+        "mirix-cp2": "AVAILABLE"
+      },
+      "report": "host/run-3599016864f54467.json"
+    },
+    {
+      "run_id": "run-04397459986e4e54",
+      "submitted_head": "7303e6fe92257e7c70bc95d9a2f887948ee7c269",
+      "dirty": true,
+      "result": "FAIL",
+      "prerequisites": {
+        "restate": "AVAILABLE",
+        "mirix-cp2": "AVAILABLE"
+      },
+      "report": "host/run-04397459986e4e54.json"
+    },
+    {
+      "run_id": "run-b4a6ab1fcf2442fb",
+      "submitted_head": "e5fbf2baaf26e319c2a61fafa27b596479403dc0",
+      "dirty": false,
+      "result": "PASS",
+      "prerequisites": {
+        "restate": "AVAILABLE",
+        "mirix-cp2": "AVAILABLE"
+      },
+      "report": "host/run-b4a6ab1fcf2442fb.json"
+    }
+  ],
+  "remaining_gaps": [],
+  "qualification_limits": [
+    "Opt-in bounded local implementation, not broad production deployment.",
+    "Only accepted MIRIX service and owned writer process restarted/killed; no PostgreSQL/Restate/embedding restart or host disaster-recovery claim.",
+    "No blanket qualification of other MIRIX APIs/caches/extraction pipelines.",
+    "A legacy age-cleanup transaction touching an admitted row can fail on the restrictive FK; broader governed removal/retention lifecycle remains deferred.",
+    "Preference precedence remains deferred; source classes survive compilation without overriding Task constraints."
+  ],
+  "historical_native_resume": "native-resume.json"
 }

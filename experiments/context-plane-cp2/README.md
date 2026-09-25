@@ -1,5 +1,29 @@
 # CP.2 governed Memory qualification
 
+**Current: CP.2 PASS within the opt-in local boundary.** Canonical HOST run
+`run-b4a6ab1fcf2442fb` passed **33 checks** against clean `e5fbf2b`: governed WORKING
+and RETAINED writes, scoped retry/conflict and response-loss recovery, four local
+embeddings, exact facade readback, MIRIX-only restart/isolation and fresh compiled
+context (**2,678 / 4,096 bytes**). Both probes AVAILABLE; scheduler idle afterward;
+all synthetic records removed.
+
+- [Current qualification and complete run history](evidence/implementation/qualification.json).
+- [Canonical HOST report](evidence/implementation/host/run-b4a6ab1fcf2442fb.json).
+- [Native assertions](evidence/implementation/host/run-b4a6ab1fcf2442fb-checks.json).
+- [Qualified storage matrix](evidence/storage-qualification-v4.json).
+- [Executable contract](../../docs/contracts/context-plane-cp2.md).
+- [Milestone / handoff](../../docs/milestones/056-context-plane-cp2-storage-qualification.md).
+
+HERMETIC: 462 root tests (25 CP.2) + 26 scheduler tests PASS, zero skips. Production
+and test hashes are unchanged from the retained canonical run; targeted 25 CP.2 tests
+passed again. The native fixture's RESTRICT SQLSTATE expectation was corrected in
+`e5fbf2b`, requiring the exact CP.2 FK and preserving all acceptance assertions.
+All failed runs remain evidence; no candidate modules were imported by the scheduler,
+no trusted policy was modified here and no native test bypassed it.
+
+Next: review/merge CP.2 under separate authorization. No broad deployment, CP.3, push
+or main merge. The following sections preserve superseded historical checkpoints.
+
 **Latest: STOP — trusted probe revision mismatch.** Clean-checkout HOST run
 `run-7c40dd44ff7944a3` is BLOCKED before steps. Restate AVAILABLE; `mirix-cp2`
 UNAVAILABLE; scheduler idle afterward. The deployed probe still lacks correction

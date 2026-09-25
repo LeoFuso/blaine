@@ -1,9 +1,9 @@
 # CP.2 executable subset — governed declared/observed Memory writes
 
-**Implementation candidate PARTIAL; qualification STOP.** Deterministic enforcement
-passes; native MIRIX commit/embedding/restart acceptance awaits publication and
-activation of the corrected trusted probe. The suite definition is already published.
-This document does not claim storage acceptance or authorize deployment. See
+**CP.2 PASS within this opt-in local boundary.** Native canonical HOST run
+`run-b4a6ab1fcf2442fb` passed 33 checks against clean `e5fbf2b`, including both retention
+classes, local embeddings, facade readback, scoped replay and MIRIX-only restart.
+Acceptance does not authorize broad deployment. See
 [milestone 056](../milestones/056-context-plane-cp2-storage-qualification.md) and
 [qualification evidence](../../experiments/context-plane-cp2/evidence/implementation/qualification.json).
 The [Context Plane semantic contract](context-plane.md) remains authoritative.
@@ -59,7 +59,8 @@ context/domain, origin/status/retention, creator, source Task identity and diges
 A restrictive foreign key prevents MIRIX's age-only raw cleanup from silently
 discarding either admitted class. This is a guard against ungoverned deletion, not
 a WORKING-to-RETAINED transition. CP.2 adds no TTL, automatic cleanup or retention
-scoring. Native migration/cleanup-guard qualification remains pending.
+scoring. Native repeated schema installation and the exact cleanup guard are qualified;
+this is not a migration/backfill of unrelated existing Memory.
 An age-cleanup transaction touching an admitted row can consequently fail; CP.2
 does not claim all legacy cleanup continues unaffected. Broader governed removal
 and retention lifecycle design remains deferred.
@@ -125,7 +126,10 @@ SIGKILL, facade readback, a restart of **only `blaine-mirix.service`**, fresh bi
 and compiled delta checks. It explicitly removes its synthetic records afterward.
 It does not reboot the host, restart PostgreSQL/Restate, or provision infrastructure.
 
-CP.2 cannot PASS until that canonical HOST run proves both retention classes, local
-embeddings, scoped idempotency, committed facade readback and restart isolation.
+The retained native run proves both retention classes, four scoped local embeddings,
+scoped idempotency (including after restart), exact committed facade readback and
+restart isolation. The compiled delta is 2,678 bytes against its 4,096-byte limit.
+Only the owned writer and MIRIX service restart boundaries were tested; no host-level
+disaster recovery or broader MIRIX-pipeline qualification is claimed.
 CP.3, verified learning, reflection, promotion, declassification, semantic workspace
 retrieval, Graphify and Conversation-to-Memory ingestion remain out of scope.
