@@ -1,6 +1,7 @@
 """Transport-neutral Task controls. No sessions, Task ledger, or model loop."""
 import hashlib
 import json
+import time
 from urllib.request import Request, build_opener, ProxyHandler
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
@@ -77,8 +78,22 @@ class RestateBinding:
 
 
 class PersonalAgent:
+    # Bounded wait for a Task admitted by another caller to become inspectable.
+    admission_polls = 50
+    admission_poll_seconds = 0.1
+
     def __init__(self, binding, publisher=None):
         self.binding, self.publisher = binding, publisher
+
+    def admitted_state(self, task_id):
+        """Inspect until the admitted run has initialized, or give up (None)."""
+        for attempt in range(self.admission_polls):
+            state = self.binding.call(task_id, 'inspect')
+            if state['lifecycle'] != 'UNAVAILABLE':
+                return state
+            if attempt + 1 < self.admission_polls:
+                time.sleep(self.admission_poll_seconds)
+        return None
 
     def execute(self, request):
         task_id = 'unassigned'
@@ -107,9 +122,21 @@ class PersonalAgent:
                     return {'task_id': task_id, 'submission': 'EXISTING', 'state': before}
                 outcome = 'uncertain'
                 receipt = self.binding.call(task_id, 'run/send', raw)
-                outcome = 'submitted'
-                # This is transport acceptance, not a claim that TaskSpec is persisted yet.
-                return {'task_id': task_id, 'submission': 'SUBMITTED', 'receipt': receipt}
+                # The workflow key admits exactly one main invocation, atomically. Only
+                # this caller's own admission is SUBMITTED (transport acceptance, not a
+                # claim that TaskSpec is persisted yet). A concurrent or earlier caller
+                # won otherwise: this input was discarded, so converge on that Task.
+                if isinstance(receipt, dict) and receipt.get('status') == 'Accepted':
+                    outcome = 'submitted'
+                    return {'task_id': task_id, 'submission': 'SUBMITTED', 'receipt': receipt}
+                before = self.admitted_state(task_id)
+                if before is None:
+                    raise ValueError(f'Submission uncertain for {task_id}: another request was admitted '
+                                     'first and is not yet inspectable; retry the same request_id and input')
+                if before.get('request_digest') != digest:
+                    raise ValueError('Request identity already belongs to different input')
+                outcome = 'accepted'
+                return {'task_id': task_id, 'submission': 'EXISTING', 'state': before}
             task_id = identifier(request.get('task_id'))
             if operation in ('inspect', 'result', 'cancel'):
                 fields(request, {'operation', 'task_id'})
