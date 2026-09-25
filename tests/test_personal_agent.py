@@ -1,6 +1,7 @@
 import hashlib
 import io
 import json
+import threading
 import unittest
 from contextlib import redirect_stderr
 from unittest.mock import AsyncMock, Mock
@@ -123,6 +124,158 @@ class Controls(unittest.TestCase):
             validate_read_result(message('CapabilityResult', {'operation_id': 'wrong',
                 'outcome': 'success', 'output': {'content': 'x'}, 'artifacts': {}, 'error': None}),
                 {'operation_id': 'expected'})
+
+
+class WorkflowKeyBinding:
+    """Hermetic model of the Restate create boundary observed on Restate 1.7.9.
+
+    A workflow key admits one main invocation: the first ``run/send`` is
+    ``Accepted``; every later send under that key is ``PreviouslyAccepted`` and
+    its input is discarded. The admitted input runs exactly once. ``inspect`` is
+    UNAVAILABLE until the admitted run initializes the Task. With ``callers`` > 1
+    the first ``callers`` inspects wait for each other, so every racing caller
+    finishes its pre-submission check before any of them sends.
+    """
+
+    def __init__(self, callers=1, initialize='on_admit'):
+        self.lock = threading.Lock()
+        self.barrier = threading.Barrier(callers) if callers > 1 else None
+        self.gated = callers if callers > 1 else 0
+        self.initialize = initialize  # 'on_admit' | 'after_inspects' | 'never'
+        self.admitted = {}     # task_id -> the one admitted TaskRequest
+        self.visible = set()   # task_ids whose state is initialized
+        self.sends = self.inspects = 0
+        self.lifecycle = 'RUNNING'
+
+    def call(self, task_id, handler, body=None):
+        if handler == 'inspect':
+            with self.lock:
+                self.inspects += 1
+                if self.initialize == 'after_inspects' and task_id in self.admitted and self.inspects >= 4:
+                    self.visible.add(task_id)
+                state = ({'task_id': task_id, 'lifecycle': self.lifecycle,
+                          'request_digest': hashlib.sha256(encode(self.admitted[task_id])).hexdigest()}
+                         if task_id in self.visible else {'task_id': task_id, 'lifecycle': 'UNAVAILABLE'})
+                gate = self.gated > 0
+                self.gated -= gate
+            if gate:
+                self.barrier.wait(timeout=5)
+            return state
+        if handler == 'run/send':
+            with self.lock:
+                self.sends += 1
+                first = task_id not in self.admitted
+                if first:
+                    self.admitted[task_id] = body
+                    if self.initialize == 'on_admit':
+                        self.visible.add(task_id)
+                return {'invocationId': 'inv_' + task_id[-8:],
+                        'status': 'Accepted' if first else 'PreviouslyAccepted'}
+        raise AssertionError(handler)
+
+    def executed_inputs(self, task_id):
+        """Inputs that actually run: exactly the one admitted per workflow key."""
+        return [self.admitted[task_id]] if task_id in self.admitted else []
+
+
+def fast(binding):
+    """The real control; only its admission wait interval is shortened for tests."""
+    control = PersonalAgent(binding)
+    control.admission_poll_seconds = 0
+    return control
+
+
+class ConcurrentCreate(unittest.TestCase):
+    """Issue #4: one request_id converges on one Task, raced or replayed."""
+
+    def race(self, binding, request_id, raws):
+        results = [None] * len(raws)
+        def create(i):
+            try:
+                results[i] = fast(binding).execute(
+                    {'operation': 'create', 'request_id': request_id, 'task_request': raws[i]})
+            except ValueError as error:
+                results[i] = {'error': str(error)}
+        threads = [threading.Thread(target=create, args=(i,)) for i in range(len(raws))]
+        for thread in threads:
+            thread.start()
+        for thread in threads:
+            thread.join(timeout=10)
+        self.assertEqual(binding.sends, len(raws), 'every racing caller passed the check before sending')
+        return results
+
+    def assert_converged(self, binding, request_id, results, raw):
+        task_id = task_identity(request_id)
+        self.assertEqual({r.get('task_id') for r in results}, {task_id}, results)
+        self.assertEqual(sorted(r.get('submission') for r in results),
+                         ['EXISTING'] * (len(results) - 1) + ['SUBMITTED'], results)
+        self.assertEqual(list(binding.admitted), [task_id])
+        self.assertEqual(binding.executed_inputs(task_id), [raw])
+
+    def test_two_simultaneous_identical_creates_converge(self):
+        binding = WorkflowKeyBinding(callers=2)
+        raw = small_request('same input')
+        self.assert_converged(binding, 'race-2', self.race(binding, 'race-2', [raw, raw]), raw)
+
+    def test_concurrent_burst_converges_on_one_task(self):
+        binding = WorkflowKeyBinding(callers=8)
+        raw = small_request('burst input')
+        self.assert_converged(binding, 'burst', self.race(binding, 'burst', [raw] * 8), raw)
+
+    def test_conflicting_payload_race_never_reports_submitted_for_discarded_input(self):
+        binding = WorkflowKeyBinding(callers=2)
+        first, second = small_request('alpha input'), small_request('beta input')
+        results = self.race(binding, 'conflict', [first, second])
+        task_id = task_identity('conflict')
+        executed = binding.executed_inputs(task_id)
+        self.assertEqual(len(executed), 1)
+        for raw, result in zip((first, second), results):
+            if raw in executed:
+                self.assertEqual((result.get('task_id'), result.get('submission')), (task_id, 'SUBMITTED'))
+            else:
+                # Same rule as a sequential retry with different input.
+                self.assertIn('different input', result.get('error', ''), result)
+
+    def test_sequential_replay_after_admission_and_completion_returns_existing(self):
+        binding = WorkflowKeyBinding()
+        raw = small_request('replayed')
+        control = fast(binding)
+        request = {'operation': 'create', 'request_id': 'replay', 'task_request': raw}
+        self.assertEqual(control.execute(request)['submission'], 'SUBMITTED')
+        replay = control.execute(dict(request))
+        self.assertEqual((replay['task_id'], replay['submission']), (task_identity('replay'), 'EXISTING'))
+        binding.lifecycle = 'COMPLETED'
+        self.assertEqual(control.execute(dict(request))['state']['lifecycle'], 'COMPLETED')
+        self.assertEqual(binding.sends, 1)
+        self.assertEqual(binding.executed_inputs(task_identity('replay')), [raw])
+
+    def test_replay_before_initialization_converges_on_admitted_task(self):
+        binding = WorkflowKeyBinding(initialize='after_inspects')
+        raw = small_request('slow start')
+        control = fast(binding)
+        request = {'operation': 'create', 'request_id': 'slow', 'task_request': raw}
+        self.assertEqual(control.execute(request)['submission'], 'SUBMITTED')
+        # Admitted but not yet initialized: Restate answers PreviouslyAccepted.
+        replay = control.execute(dict(request))
+        self.assertEqual((replay['task_id'], replay['submission']), (task_identity('slow'), 'EXISTING'))
+        self.assertEqual(binding.executed_inputs(task_identity('slow')), [raw])
+
+    def test_unobservable_prior_admission_is_uncertain_not_submitted(self):
+        binding = WorkflowKeyBinding(initialize='never')
+        control = fast(binding)
+        request = {'operation': 'create', 'request_id': 'stuck', 'task_request': small_request('stuck')}
+        self.assertEqual(control.execute(request)['submission'], 'SUBMITTED')
+        with self.assertRaisesRegex(ValueError, 'uncertain for ' + task_identity('stuck')):
+            control.execute(dict(request))
+
+    def test_distinct_request_ids_remain_distinct_tasks(self):
+        binding = WorkflowKeyBinding()
+        control = fast(binding)
+        one = control.execute({'operation': 'create', 'request_id': 'r1', 'task_request': small_request('x')})
+        two = control.execute({'operation': 'create', 'request_id': 'r2', 'task_request': small_request('x')})
+        self.assertNotEqual(one['task_id'], two['task_id'])
+        self.assertEqual((one['submission'], two['submission']), ('SUBMITTED', 'SUBMITTED'))
+        self.assertEqual(sorted(binding.admitted), sorted([one['task_id'], two['task_id']]))
 
 
 class ACP(unittest.IsolatedAsyncioTestCase):
