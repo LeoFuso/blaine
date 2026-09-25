@@ -207,6 +207,16 @@ def _get_handler_ref(workflow, handler_name: str):
     return None
 
 
+def build_services(host: str = HOST):
+    """Return the [scheduler, run] service list for composition.
+
+    Used by the canonical deployment to compose the verification services
+    alongside other services in a single Restate app endpoint.
+    """
+    scheduler, run = _build_scheduler_and_run(host)
+    return [scheduler, run]
+
+
 def build_app(host: str = HOST):
     """Deployment: scheduler object and run workflow.
 
@@ -216,6 +226,11 @@ def build_app(host: str = HOST):
     works in protocol v6. After the run returns, the slot is released and
     the next FIFO head is admitted recursively.
     """
+    scheduler, run = _build_scheduler_and_run(host)
+    return restate.app([scheduler, run])
+
+
+def _build_scheduler_and_run(host: str):
     run = build_run(host)
     run_main = run.main_handler
     name = scheduler_name(host)
@@ -272,4 +287,4 @@ def build_app(host: str = HOST):
         # Admit the next head (strict FIFO).
         await _full_dispatch(ctx)
 
-    return restate.app([scheduler, run])
+    return scheduler, run
