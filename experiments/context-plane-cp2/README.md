@@ -1,5 +1,15 @@
 # CP.2 storage qualification
 
+**Current: CP.2 PARTIAL; reconciliation and published regression qualification PASS.**
+[Reconciliation evidence](evidence/reconciliation/qualification.json) retains checkpoint
+`0b2b46e`, normal merge `c5f3d97` of main `16f7e1a`, 26 scheduler tests and the actual
+live canonical run `run-e524998cef0c437b`: 437 root tests PASS on a clean checkout.
+The suite is independently trusted-published; no scheduler deployment or publication
+was performed here. Native CP.2 persistence acceptance remains unimplemented/unproven;
+this published suite is HERMETIC. Earlier publication holds below are historical for
+these regressions, not current blockers. No CP.3 or push.
+
+
 **CP.2 PARTIAL; implementation stopped pending trusted suite publication.**
 The [publication boundary](evidence/resume/trusted-publication.json) records the user's
 choice: a separate trusted infrastructure action publishes only the reviewed suite/harness.

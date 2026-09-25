@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "run_id": "run-e524998cef0c437b",
+  "suite": "context-plane",
+  "result": "PASS",
+  "reason": "",
+  "verification_class": "HERMETIC",
+  "state": "PASS",
+  "host": "blaine",
+  "worktree": {
+    "root": "/home/leofuso/workspace/blaine-cp1",
+    "branch": "feature/context-plane-cp2",
+    "commit": "c5f3d9755353f35b127065a974324b3a1dd0170f",
+    "dirty": false
+  },
+  "resources": [],
+  "prerequisites": {},
+  "steps": [
+    {
+      "name": "context-plane-kernel-regressions",
+      "command": [
+        "/home/leofuso/workspace/blaine/.local/runtime-venv/bin/python",
+        "-m",
+        "pytest",
+        "tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout_tail": "......................................... [  9%]\n.............................................................................................................................................................................................................. [ 56%]\n............................................................................................................................ [ 84%]\n.................................................................. [100%]\n",
+      "stderr_tail": "",
+      "duration": 7.905,
+      "timed_out": false,
+      "env": []
+    }
+  ]
+}

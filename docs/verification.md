@@ -307,8 +307,9 @@ arbitrary-command suite or discovery redesign is allowed. Publication does not i
 CP.2 acceptance or publish its production implementation. PASS / FAIL / BLOCKED semantics
 remain unchanged. This session must not provision, redeploy or bypass the scheduler.
 
-CP.2 implementation is held until the intended suite is published and visible. The
-existing `context-plane` definition is HERMETIC; the required HOST persistence harness
+The corrected `context-plane` suite is now trusted-published and its live scheduled
+regression run passed (milestone 056 reconciliation evidence). This definition remains
+HERMETIC; the required separate CP.2 HOST persistence harness
 must declare its actual prerequisites/resources. Relabeling hermetic regressions cannot
 establish native persistence PASS.
 

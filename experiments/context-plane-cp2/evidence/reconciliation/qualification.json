@@ -1,0 +1,30 @@
+{
+  "cp2_status": "PARTIAL",
+  "checkpoint_commit": "0b2b46e",
+  "canonical_main": "16f7e1a170ca0b0a4bb7f773dbb6922405e24287",
+  "merge_commit": "c5f3d9755353f35b127065a974324b3a1dd0170f",
+  "merge_conflicts": [],
+  "clean_checkout_tested": true,
+  "production_cp2_implementation_introduced": false,
+  "pushed": false,
+  "canonical_suite": "context-plane",
+  "run_id": "run-e524998cef0c437b",
+  "suite_class": "HERMETIC",
+  "execution_transport": "Existing live Restate scheduler, VerificationScheduler_blaine/host",
+  "trusted_publication_observed": true,
+  "published_suite_sha256": "ae97c540bbdd617f8b6e597ad677404ab1333a84e24cef3f706e8a7b6afe702d",
+  "candidate_suite_imported_by_scheduler": false,
+  "published_or_deployed_by_this_session": false,
+  "checks": {
+    "scheduler_unit_tests": 26,
+    "kernel_tests": 437,
+    "composition_and_substitution": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "native_cp2_persistence": "NOT_RUN; published suite is hermetic kernel regressions, not native persistence acceptance",
+  "diagnostics": [
+    "Ad hoc composition assertion initially expected handler run; corrected to actual main, without changing production code.",
+    "Status read initially sent Content-Type application/json with an empty body and received HTTP 400; corrected to repository no-body protocol. Original scheduler submission completed successfully and was not repeated."
+  ],
+  "next_increment": "Continue CP.2 storage qualification and governed writes; dedicated native persistence harness must be separately trusted-published before HOST acceptance. CP.3 not started."
+}

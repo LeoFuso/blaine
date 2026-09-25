@@ -1,0 +1,20 @@
+{
+  "run_id": "run-e524998cef0c437b",
+  "run_status": {
+    "run_id": "run-e524998cef0c437b",
+    "suite": "context-plane",
+    "state": "PASS",
+    "worktree": {
+      "root": "/home/leofuso/workspace/blaine-cp1",
+      "branch": "feature/context-plane-cp2",
+      "commit": "c5f3d9755353f35b127065a974324b3a1dd0170f",
+      "dirty": false
+    },
+    "result": "PASS"
+  },
+  "scheduler_status": {
+    "queue": [],
+    "active": null,
+    "host": "blaine"
+  }
+}

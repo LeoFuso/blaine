@@ -1,6 +1,6 @@
 # Context Plane — bounded production implementation plan
 
-**Status: CP.1 PASS and MERGED; CP.2 PARTIAL, implementation held for trusted suite publication
+**Status: CP.1 PASS and MERGED; CP.2 PARTIAL; reconciled regression qualification PASS, persistence pending
 (2026-09-24); CP.3–CP.9 NOT STARTED.**
 2026-09-23 consolidation under [ADR 0025](../decisions/0025-context-plane-and-compiled-agent-context.md).
 [Architecture](../context-plane.md) and [semantic contracts](../contracts/context-plane.md)
@@ -26,14 +26,18 @@ Qualification must cover metadata, derived scope/egress, retrieval separation, s
 idempotency, committed facade readback and restart isolation for both statuses.
 
 The additive canonical `context-plane` HERMETIC suite covers integrated kernel tests.
-Its retained baseline PASS does not establish CP.2 acceptance. HOST persistence has not
-been submitted; qualification must use the canonical scheduler without provisioning. The resumed check confirms both scheduler services are healthy and clears the old
-environment blocker. The remaining integration gap is publication of additive CP.2 suites
-to the live deployment: worktree selection does not select suite definitions. The user selected separate trusted infrastructure publication of the reviewed suite/harness.
-CP.2 implementation is stopped until that suite is visible to the live scheduler. Candidate
-worktrees must not supply Python imported into the trusted scheduler. Publication is not
-CP.2 acceptance; scheduler provisioning/redeployment/redesign/bypass by this session is forbidden.
-See milestone 056 and its resume evidence. No storage impossibility is claimed.
+Checkpoint `0b2b46e` preserves the pending CP.2 artifacts and substitution fix; normal merge
+`c5f3d97` incorporates canonical scheduler composition at `16f7e1a` without conflicts.
+The corrected suite is independently trusted-published. Live canonical scheduler run
+`run-e524998cef0c437b` passed against clean `c5f3d97` (437 root tests); 26 scheduler tests
+and composition/substitution checks also passed. Scheduler and suite-publication blockers
+are cleared for those regressions. See milestone 056 and reconciliation evidence.
+
+This remains HERMETIC regression coverage, not CP.2 native persistence acceptance.
+Governed writes and a dedicated native persistence/readback/restart harness remain ahead.
+Only trusted infrastructure may publish that harness; candidate worktrees cannot supply
+scheduler-imported Python. Publication does not imply CP.2 acceptance. No deployment,
+provisioning, scheduler redesign, production CP.2 changes or push occurred here.
 The next increment remains CP.2; CP.3 is not started. Earlier CP.1 measurements are historical.
 
 The authorized CP.1 implementation is complete within its opt-in hosted/local boundary.
@@ -281,7 +285,7 @@ and dynamic topology administration likewise need measured demand and scoped pla
 
 | Question | Current accepted/proposed default | Decision point |
 | --- | --- | --- |
-| Start and prioritize production work? | CP.1 merged; CP.2 authorized; revised storage review PARTIAL, HOST suite publication unresolved. Other track priorities unchanged. | Resolve the CP.2 storage boundary before writes; implementation approval does not enable deployment. |
+| Start and prioritize production work? | CP.1 merged; CP.2 authorized; revised storage review PARTIAL, reconciled regressions PASS, native persistence pending. Other track priorities unchanged. | Resolve the CP.2 storage boundary before writes; implementation approval does not enable deployment. |
 | First issuer and snapshot ownership? | Trusted single-host application binding, immutable configured snapshot, existing Task/artifact identities; no caller issuance. | Confirm exact local configuration/administration boundary in CP.1 preflight; stop if it requires production multi-principal auth. |
 | Durable entry metadata / MIRIX scope qualification? | Reuse existing substrate; Blaine-owned metadata is required, tags are not ACLs. Unqualified provider stays unavailable. | CP.2 storage/atomicity design; no new store silently chosen in CP.1. |
 | Remote and concurrency guarantees? | Do not claim them from III.10. Refuse detected stale authority at local delivery now. | CP.8 consistency/revocation model; CP.9 existing Hub trust boundary. |

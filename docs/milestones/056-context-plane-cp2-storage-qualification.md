@@ -1,5 +1,30 @@
 # CP.2 — Storage qualification
 
+## Reconciled checkpoint: PARTIAL; published regression suite passes
+
+Pending docs/evidence and the suite substitution fix were committed as `0b2b46e`.
+Canonical main `16f7e1a` was merged normally into CP.2 as `c5f3d97`, without conflicts,
+rebasing or production CP.2 changes. Scheduler composition is preserved; 26 scheduler
+unit tests and local composition/substitution checks passed. Both diff checks passed.
+
+The corrected `context-plane` suite is now independently published in the trusted app;
+its bytes match this branch. Existing live scheduler identity
+`VerificationScheduler_blaine/host` ran it against clean `c5f3d97`:
+**run-e524998cef0c437b PASS, 437 root tests**. The scheduler returned idle with an empty
+queue. [Canonical report and reconciliation evidence](../../experiments/context-plane-cp2/evidence/reconciliation/qualification.json).
+This session did not publish, provision, redeploy or push anything.
+
+The earlier publication/substitution blockers are cleared for this regression suite.
+Its class remains HERMETIC. Running it through Restate does not make it a HOST persistence
+proof. CP.2 remains PARTIAL: governed writes and native storage/readback/restart/compiled
+context acceptance are not implemented or accepted. Next is the retained CP.2 storage
+qualification/implementation plan and its dedicated native harness, published separately
+through trusted verification infrastructure before HOST acceptance. No CP.3.
+
+The following checkpoints preserve earlier observations; their publication hold is
+superseded for the existing regression suite by this successful live run.
+
+
 ## Resume checkpoint: PARTIAL; implementation held for trusted suite publication
 
 The prior scheduler-unavailable blocker is **CLEARED**. Both canonical services are
