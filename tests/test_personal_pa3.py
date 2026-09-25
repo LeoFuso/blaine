@@ -289,6 +289,16 @@ class DeliveryTests(Base):
         # The interpreter saw only the verified facts.
         self.assertIn('"verifier_outcome": "satisfied"', model.calls[0][1]['content'])
 
+    def test_an_extended_file_diffs_against_its_admitted_previous_content(self):
+        from runtime.personal_delivery import result_facts
+        view = {'task_id': 't', 'lifecycle': 'COMPLETED', 'artifacts': {'source-2': 'artifact://t/sha256:' + 'b' * 64},
+                'effects': [{'operation_class': 'workspace.write', 'status': 'applied', 'path': 'tests/t.py',
+                             'before': {'sha256': 'b' * 64}, 'after': {'sha256': 'c' * 64}}]}
+        facts = result_facts(view, 'a = 1\nb = 2\n', before='a = 1\n')
+        self.assertFalse(facts['diff']['new_file'])
+        self.assertIn('+b = 2', facts['diff']['unified'])
+        self.assertNotIn('+a = 1', facts['diff']['unified'])
+
     def test_crash_between_stages_resumes_without_duplicates(self):
         task_id = self.delegate()
         self.complete(task_id)

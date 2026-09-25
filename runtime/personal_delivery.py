@@ -30,7 +30,15 @@ TERMINAL = ('COMPLETED', 'FAILED', 'CANCELLED')
 DIFF_BYTES = 12000
 
 
-def result_facts(view: dict, draft: str | None) -> dict:
+def artifact_by_digest(view: dict, sha256: str | None) -> str | None:
+    """Name of the admitted artifact whose content hash is ``sha256`` (refs embed it)."""
+    if not sha256:
+        return None
+    return next((name for name, ref in (view.get('artifacts') or {}).items()
+                 if str(ref).endswith(':' + sha256)), None)
+
+
+def result_facts(view: dict, draft: str | None, before: str | None = None) -> dict:
     """Authoritative facts only: lifecycle, verifier verdicts, effect receipts."""
     completion = (view.get('completion') or {}).get('payload') or {}
     result = (view.get('result') or {}).get('payload') or {}
@@ -56,7 +64,10 @@ def result_facts(view: dict, draft: str | None) -> dict:
     if draft is not None and applied:
         path = applied[-1].get('path') or 'file'
         before_absent = (applied[-1].get('before') or {}).get('absent') is True
-        lines = difflib.unified_diff([] if before_absent else [], draft.splitlines(keepends=True),
+        # An existing file diffs against its admitted pre-write content (the read the
+        # write was planned from); without it the diff would claim every line as new.
+        previous = [] if before_absent or before is None else before.splitlines(keepends=True)
+        lines = difflib.unified_diff(previous, draft.splitlines(keepends=True),
                                      fromfile='/dev/null' if before_absent else f'a/{path}', tofile=f'b/{path}')
         diff = ''.join(lines)
         facts['diff'] = {'path': path, 'new_file': before_absent, 'unified': diff[:DIFF_BYTES],
@@ -142,7 +153,16 @@ class ResultDelivery:
                     draft = self.agent.execute({'operation': 'artifact', 'task_id': task_id, 'name': 'draft'})['content']
                 except (OSError, ValueError, KeyError):
                     draft = None
-            facts = result_facts(view, draft)
+            before = None
+            applied = [e for e in view.get('effects') or []
+                       if e.get('operation_class') == 'workspace.write' and e.get('status') == 'applied']
+            source = artifact_by_digest(view, ((applied[-1].get('before') or {}).get('sha256')) if applied else None)
+            if source:
+                try:
+                    before = self.agent.execute({'operation': 'artifact', 'task_id': task_id, 'name': source})['content']
+                except (OSError, ValueError, KeyError):
+                    before = None
+            facts = result_facts(view, draft, before)
             content = json.dumps({'kind': 'TaskResult', 'version': 1, 'facts': facts, 'markdown': render(facts)})
             self.store.record_result(conversation_id, task_id, result_id, content)   # stage 1
         recorded = self.store.get_message(conversation_id, result_id)
