@@ -688,7 +688,11 @@ A future trusted arbiter may extend to shared workstation resources —
 `verification-host` — with `shared read` / `exclusive write` / capacity modes.
 **These are FUTURE and unimplemented.** Future consumers must prove their
 requirements first; in particular, PA-3 real coding delegation should provide
-workspace-contention evidence before the workspace-claim mode is frozen. The
+workspace-contention evidence before the workspace-claim mode is frozen. **PA-3 PASS
+(2026-09-24)** supplied it: three concurrent Tasks on one worktree, CAS conflicts with no
+lost update, and a repeated-approval "loop" UX; the bounded response is a single-writer
+precondition in the Personal Agent, not a lease
+([evidence](../../experiments/personal-agent-hub/pa-3/README.md)). The
 governing invariant: *resource coordination is trusted infrastructure
 surrounding Tasks, not Worker-owned authority* — a Worker may request but never
 self-grant or bypass arbitration. Coding Workers will consume the merged

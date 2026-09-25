@@ -1,0 +1,150 @@
+{
+ "conversation_id": "pa3-smoke-4",
+ "links": [
+  {
+   "task_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef",
+   "message_id": "dlg-eb993c105168862511c159be",
+   "created_at": "2026-09-24T20:12:04.695353+00:00",
+   "result_surfaced": true,
+   "state": "surfaced",
+   "brief_id": "brf-0ba5c3ed3ba605dfb250"
+  }
+ ],
+ "messages": [
+  {
+   "seq": 19,
+   "id": "smoke4-m1",
+   "role": "human",
+   "created_at": "2026-09-24T20:11:57.119422+00:00",
+   "content_sha256": "f8e354060394c5a961d8082e6c58425686d7c8e79e646d5dd521f69db02fc1a6"
+  },
+  {
+   "seq": 20,
+   "id": "rpl-15b62822e093f88b04f6ca84",
+   "role": "agent",
+   "created_at": "2026-09-24T20:12:01.517344+00:00",
+   "content_sha256": "ff109d34926013a84849c31c326cd987c5067f0cfa25004f19e63c2b2b75821e"
+  },
+  {
+   "seq": 21,
+   "id": "dlg-eb993c105168862511c159be",
+   "role": "delegation",
+   "created_at": "2026-09-24T20:12:04.695364+00:00",
+   "content_sha256": "5b77e5b8a6ab762c7a3086a9bcba857672fee894a4aed32e78cbf43777c6b2da",
+   "delegation": {
+    "brief_id": "brf-0ba5c3ed3ba605dfb250",
+    "task_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef",
+    "objective": "Create tests/test_human_response_bounds.py covering runtime.kernel.human.validate_response(raw, accepted_request, task_id). Use plain dicts from runtime.kernel.contracts.message(kind, payload). Test: value outside allowed_responses, stale request_revision, wrong request_digest (each raises ValueError), and one valid response. Small file.",
+    "deliverable": {
+     "path": "tests/test_human_response_bounds.py",
+     "workspace_id": "blaine-pa3-target"
+    },
+    "targeted_tests": [
+     "tests/test_human_response_bounds.py"
+    ]
+   }
+  },
+  {
+   "seq": 22,
+   "id": "res-ba2b3cc3272116fdedc4a923",
+   "role": "result",
+   "created_at": "2026-09-24T20:12:48.380002+00:00",
+   "content_sha256": "23a8bb9fba27f4ab515cd7f327b1b19e4b262f46baf58917858d803b279d5aa9",
+   "facts": {
+    "task_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef",
+    "lifecycle": "COMPLETED",
+    "revision": 6,
+    "contract_revision": 0,
+    "verifier_outcome": "satisfied",
+    "legal_completion": true,
+    "criteria": [
+     {
+      "id": "c1",
+      "status": "satisfied",
+      "detail": "Exact artifact digest verified"
+     },
+     {
+      "id": "no-unauthorized-effect",
+      "status": "satisfied",
+      "detail": "15 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)"
+     },
+     {
+      "id": "change-made",
+      "status": "satisfied",
+      "detail": "1 path(s) changed as required: ['tests/test_human_response_bounds.py']"
+     },
+     {
+      "id": "tests-pass",
+      "status": "satisfied",
+      "detail": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/5 completed; 3 predicate(s) held"
+     },
+     {
+      "id": "canonical-1",
+      "status": "satisfied",
+      "detail": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/6 completed; 3 predicate(s) held"
+     }
+    ],
+    "result_outcome": "COMPLETED",
+    "concerns": [],
+    "changed_files": [
+     {
+      "path": "tests/test_human_response_bounds.py",
+      "status": "applied",
+      "before": {
+       "absent": true
+      },
+      "after": {
+       "sha256": "ef3d8742db08bac3e21063240d82080977f595894581eea6b8bc8a5d1a6c14f6"
+      }
+     }
+    ],
+    "test_runs": [
+     {
+      "profile": "pa3-targeted-tests",
+      "args": [
+       "-m",
+       "pytest",
+       "-q",
+       "-p",
+       "no:cacheprovider",
+       "tests/test_human_response_bounds.py"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "result": {}
+     },
+     {
+      "profile": "pa3-completion-contract-suite",
+      "args": [
+       "-m",
+       "verification.cli",
+       "run",
+       "completion-contract",
+       "--worktree",
+       "."
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "result": {
+       "verification": "PASS"
+      }
+     }
+    ],
+    "diff": {
+     "path": "tests/test_human_response_bounds.py",
+     "new_file": true,
+     "unified": "--- /dev/null\n+++ b/tests/test_human_response_bounds.py\n@@ -0,0 +1,77 @@\n+import hashlib\n+import uuid\n+\n+from runtime.kernel.contracts import message\n+from runtime.kernel.human import request_digest, validate_response\n+\n+\n+def _request_payload():\n+    return {\n+        'task_id': 'task-a',\n+        'origin_task_id': 'task-origin',\n+        'request_id': 'human-req-1',\n+        'revision': 1,\n+        'question': 'Approve?',\n+        'allowed_responses': ['approve', 'reject'],\n+    }\n+\n+\n+def _request():\n+    payload = _request_payload()\n+    return message('HumanDecisionRequest', payload)\n+\n+\n+def _response_payload(value):\n+    payload = _request_payload()\n+    return {\n+        'task_id': payload['task_id'],\n+        'request_id': payload['request_id'],\n+        'request_revision': payload['revision'],\n+        'request_digest': request_digest(_request()),\n+        'response_id': 'resp-1',\n+        'value': value,\n+    }\n+\n+\n+def _response(**overrides):\n+    payload = _response_payload(overrides.get('value', 'approve'))\n+    for key, value in overrides.items():\n+        if key != 'value':\n+            payload[key] = value\n+    return message('HumanDecisionResponse', payload)\n+\n+\n+def test_valid_response_is_returned():\n+    request = _request()\n+    response = _response()\n+    assert validate_response(response, request, 'task-a')['value'] == 'approve'\n+\n+\n+def test_value_outside_allowed_responses_raises():\n+    request = _request()\n+    response = _response(value='nope')\n+    try:\n+        validate_response(response, request, 'task-a')\n+    except ValueError:\n+        return\n+    raise AssertionError('Expected ValueError')\n+\n+\n+def test_stale_request_revision_raises():\n+    request = _request()\n+    response = _response(request_revision=2)\n+    try:\n+        validate_response(response, request, 'task-a')\n+    except ValueError:\n+        return\n+    raise AssertionError('Expected ValueError')\n+\n+\n+def test_wrong_request_digest_raises():\n+    request = _request()\n+    response = _response(request_digest=hashlib.sha256(b'other').hexdigest())\n+    try:\n+        validate_response(response, request, 'task-a')\n+    except ValueError:\n+        return\n+    raise AssertionError('Expected ValueError')\n",
+     "truncated": false
+    }
+   }
+  },
+  {
+   "seq": 23,
+   "id": "fup-ba2b3cc3272116fdedc4a923",
+   "role": "agent",
+   "created_at": "2026-09-24T20:12:49.180358+00:00",
+   "content_sha256": "e09d9faf8a71f8996916955f4f55a13f6991deec6af1d85adcaa2811d059c446",
+   "followup": "The task completed successfully, creating the new file `tests/test_human_response_bounds.py` with 78 lines of code. Both the targeted pytest run and the completion contract suite passed with exit code 0, confirming that all verification criteria were satisfied."
+  }
+ ]
+}

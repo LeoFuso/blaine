@@ -1,0 +1,420 @@
+{
+ "accepted_spec": {
+  "autonomy": {
+   "allowed": [
+    "artifact.write",
+    "artifact.read",
+    "worker.run",
+    "workspace.read",
+    "workspace.write",
+    "workspace.exec"
+   ]
+  },
+  "capabilities": [
+   "artifact.write",
+   "artifact.read",
+   "worker.run",
+   "workspace.read",
+   "workspace.write",
+   "workspace.exec"
+  ],
+  "completion": [
+   {
+    "criterion": "The human-confirmed Execution Brief is admitted as the Worker input",
+    "evidence": {
+     "artifact": "worker-input",
+     "sha256": "350196d8f3a9e853fb1c6b030279538f9643bbe58e625343ae5babf70c97de59"
+    }
+   }
+  ],
+  "objective": "Brief (full intent in WorkerInput): Create tests/test_human_response_bounds.py with four pytest cases for runtime.kernel.human.validate_response: (1) valid response returns payload with value APPROVE; (2) value MAYBE outside allowed_... Workspace blaine-pa3-target. Steps: 1) workspace.read form=file runtime/kernel/human.py as source-1; 2) worker.run packet_ref=worker-input ref, artifact=draft, context_refs=source refs; 3) workspace.write tests/test_human_response_bounds.py: content_ref=draft ref, precondition absent (new file) or a read receipt; 4) workspace.exec pa3-targeted-tests args [tests/test_human_response_bounds.py]; 5) workspace.exec pa3-completion-contract-suite; then COMPLETE. If tests fail: worker.run with context_refs + output-pa3-targeted-tests ref, workspace.read tests/test_human_response_bounds.py as current, workspace.write with precondition receipt of that read, rerun the tests."
+ },
+ "artifacts": {
+  "current-test-file": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37",
+  "draft": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3",
+  "output-pa3-completion-contract-suite": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:5cdb504748c6a5198557d8622f533c6d7a9e6ee0f8c526a556f510363b361b36",
+  "output-pa3-targeted-tests": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:c4b808d34f4db00b333696dec1f3a43a2887d8bfe0cb7af07a3cb98ff43a7830",
+  "source-1": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+  "worker-input": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:350196d8f3a9e853fb1c6b030279538f9643bbe58e625343ae5babf70c97de59"
+ },
+ "completion": {
+  "concerns": [],
+  "criteria": [
+   {
+    "detail": "Exact artifact digest verified",
+    "evidence_refs": [
+     "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:350196d8f3a9e853fb1c6b030279538f9643bbe58e625343ae5babf70c97de59"
+    ],
+    "gating": true,
+    "id": "c1",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "artifact_digest@1"
+   },
+   {
+    "detail": "38 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)",
+    "evidence_refs": [],
+    "gating": true,
+    "id": "no-unauthorized-effect",
+    "journal_range": [
+     0,
+     38
+    ],
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_journal@1"
+   },
+   {
+    "detail": "1 path(s) changed as required: ['tests/test_human_response_bounds.py']",
+    "evidence_refs": [
+     "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:0eff2750212315f3650d8afaa621f453d447573cdd3b73d205c5fc78a4fbd5d1",
+     "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:93b488e314d1beea38d14a848d5d93c41b06455e4b23a70d2236bdae9eabfd7d"
+    ],
+    "gating": true,
+    "id": "change-made",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "change_set@1"
+   },
+   {
+    "detail": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/14 completed; 3 predicate(s) held",
+    "evidence_refs": [
+     "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:81e0db73cb5038e563a65e25cf41769dd2b5c9495214246d9b3e64256523f273"
+    ],
+    "gating": true,
+    "id": "tests-pass",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_result@1"
+   },
+   {
+    "detail": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/15 completed; 3 predicate(s) held",
+    "evidence_refs": [
+     "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:3938e56e690807af5de4930ff91e3f49f7b6f462ba1898b993ecf6aa84ab2c40"
+    ],
+    "gating": true,
+    "id": "canonical-1",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_result@1"
+   }
+  ],
+  "irrecoverable": [],
+  "legality": {
+   "blockers": [],
+   "legal": true
+  },
+  "outcome": "satisfied"
+ },
+ "contract": {
+  "amendment_ref": null,
+  "criteria": [
+   {
+    "id": "c1",
+    "level": "REQUIRED",
+    "provenance": {
+     "source": "user"
+    },
+    "requirement": "The human-confirmed Execution Brief is admitted as the Worker input",
+    "verifier": {
+     "artifact": "worker-input",
+     "kind": "artifact_digest",
+     "sha256": "350196d8f3a9e853fb1c6b030279538f9643bbe58e625343ae5babf70c97de59",
+     "version": 1
+    }
+   },
+   {
+    "id": "no-unauthorized-effect",
+    "level": "REQUIRED",
+    "provenance": {
+     "invariant": true,
+     "ref": "implementation@1",
+     "source": "task_type"
+    },
+    "requirement": "Only authorized target effects were admitted, inside the Task workspace, and all are reconciled.",
+    "verifier": {
+     "kind": "capability_journal",
+     "predicates": [
+      {
+       "allowed": [
+        "worker.run",
+        "workspace.write",
+        "workspace.exec"
+       ],
+       "name": "no_target_effect"
+      },
+      {
+       "name": "workspace_subset"
+      },
+      {
+       "name": "admitted_before_observed"
+      },
+      {
+       "name": "effects_reconciled"
+      }
+     ],
+     "version": 1
+    }
+   },
+   {
+    "id": "change-made",
+    "level": "REQUIRED",
+    "provenance": {
+     "source": "user"
+    },
+    "requirement": "tests/test_human_response_bounds.py was written with evidence, and nothing outside the allowed paths changed.",
+    "verifier": {
+     "kind": "change_set",
+     "predicates": [
+      {
+       "name": "changed",
+       "paths": [
+        "tests/test_human_response_bounds.py"
+       ]
+      },
+      {
+       "allowed": [
+        "tests/"
+       ],
+       "name": "only_paths"
+      },
+      {
+       "name": "evidence_complete"
+      }
+     ],
+     "version": 1,
+     "workspace_id": "blaine-pa3-target"
+    }
+   },
+   {
+    "id": "tests-pass",
+    "level": "REQUIRED",
+    "provenance": {
+     "source": "user"
+    },
+    "requirement": "The targeted tests tests/test_human_response_bounds.py passed after the last change.",
+    "verifier": {
+     "kind": "capability_result",
+     "operation_class": "workspace.exec",
+     "predicates": [
+      {
+       "equals": 0,
+       "name": "exit_code"
+      },
+      {
+       "name": "result_after_last_change"
+      },
+      {
+       "name": "cleanup_confirmed"
+      }
+     ],
+     "profile": "pa3-targeted-tests",
+     "version": 1
+    }
+   },
+   {
+    "id": "canonical-1",
+    "level": "REQUIRED",
+    "provenance": {
+     "ref": "coding-policy:blaine-pa3-target",
+     "source": "operator_rule",
+     "source_digest": "sha256:67a062ca77174a34fcb578f532161291d582771ef0813636ddadf55b3fa7ed16"
+    },
+    "requirement": "The existing canonical hermetic suite profile pa3-completion-contract-suite passed after the last change.",
+    "verifier": {
+     "kind": "capability_result",
+     "operation_class": "workspace.exec",
+     "predicates": [
+      {
+       "equals": 0,
+       "name": "exit_code"
+      },
+      {
+       "name": "result_after_last_change"
+      },
+      {
+       "name": "cleanup_confirmed"
+      }
+     ],
+     "profile": "pa3-completion-contract-suite",
+     "version": 1
+    }
+   }
+  ],
+  "previous_ref": null,
+  "revision": 0,
+  "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1",
+  "task_type": {
+   "template": "implementation",
+   "version": 1
+  }
+ },
+ "contract_revision": 0,
+ "effects": [
+  {
+   "after": null,
+   "args": null,
+   "before": {
+    "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+   },
+   "operation_class": "workspace.write",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/11",
+   "path": "tests/test_human_response_bounds.py",
+   "profile": null,
+   "status": "conflict",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "after": {
+    "sha256": "52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3"
+   },
+   "args": null,
+   "before": {
+    "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+   },
+   "operation_class": "workspace.write",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/13",
+   "path": "tests/test_human_response_bounds.py",
+   "profile": null,
+   "status": "applied",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_human_response_bounds.py"
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 0,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/14",
+   "output_bytes": 80,
+   "output_ref": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:c4b808d34f4db00b333696dec1f3a43a2887d8bfe0cb7af07a3cb98ff43a7830",
+   "path": null,
+   "profile": "pa3-targeted-tests",
+   "result": {},
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "verification.cli",
+    "run",
+    "completion-contract",
+    "--worktree",
+    "."
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 0,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/15",
+   "output_bytes": 1551,
+   "output_ref": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:5cdb504748c6a5198557d8622f533c6d7a9e6ee0f8c526a556f510363b361b36",
+   "path": null,
+   "profile": "pa3-completion-contract-suite",
+   "result": {
+    "verification": "PASS"
+   },
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "after": {
+    "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+   },
+   "args": null,
+   "before": {
+    "absent": true
+   },
+   "operation_class": "workspace.write",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/4",
+   "path": "tests/test_human_response_bounds.py",
+   "profile": null,
+   "status": "applied",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_human_response_bounds.py"
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 2,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/5",
+   "output_bytes": 1812,
+   "output_ref": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:0db5cc5bbebcffebeeb03cb9b52905f52645e75009dc41dbcfd60bf43a78898f",
+   "path": null,
+   "profile": "pa3-targeted-tests",
+   "result": {
+    "errors": 1
+   },
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "after": null,
+   "args": null,
+   "before": {
+    "sha256": "4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37"
+   },
+   "operation_class": "workspace.write",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/7",
+   "path": "tests/test_human_response_bounds.py",
+   "profile": null,
+   "status": "conflict",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_human_response_bounds.py"
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 2,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/9",
+   "output_bytes": 1812,
+   "output_ref": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:0db5cc5bbebcffebeeb03cb9b52905f52645e75009dc41dbcfd60bf43a78898f",
+   "path": null,
+   "profile": "pa3-targeted-tests",
+   "result": {
+    "errors": 1
+   },
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  }
+ ],
+ "journal_length": 38,
+ "lifecycle": "COMPLETED",
+ "request_digest": "9fb00a0b44f4dc90d5696f176e1ac2569df7fb2e0835fc853e7dad85fd1a4349",
+ "result": {
+  "artifacts": {
+   "current-test-file": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:4829e4b33084fe1123a41023e65463b9e4e9b1f5ee650cb80705609106d25d37",
+   "draft": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:52f4895bd9f83b9403f38cc281cf762fe23c027afc837a655bf38f558f221dd3",
+   "output-pa3-completion-contract-suite": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:5cdb504748c6a5198557d8622f533c6d7a9e6ee0f8c526a556f510363b361b36",
+   "output-pa3-targeted-tests": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:c4b808d34f4db00b333696dec1f3a43a2887d8bfe0cb7af07a3cb98ff43a7830",
+   "source-1": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+   "worker-input": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:350196d8f3a9e853fb1c6b030279538f9643bbe58e625343ae5babf70c97de59"
+  },
+  "completion_ref": "artifact://task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1/sha256:4991b706acd5fc4576a083a7116208d037fa8ccb95b87b5f40c026b99a23b621",
+  "concerns": [],
+  "outcome": "COMPLETED",
+  "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1"
+ },
+ "revision": 15,
+ "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1"
+}

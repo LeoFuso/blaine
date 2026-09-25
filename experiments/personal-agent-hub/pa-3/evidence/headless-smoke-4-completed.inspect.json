@@ -1,0 +1,330 @@
+{
+ "accepted_spec": {
+  "autonomy": {
+   "allowed": [
+    "artifact.write",
+    "artifact.read",
+    "worker.run",
+    "workspace.read",
+    "workspace.write",
+    "workspace.exec"
+   ]
+  },
+  "capabilities": [
+   "artifact.write",
+   "artifact.read",
+   "worker.run",
+   "workspace.read",
+   "workspace.write",
+   "workspace.exec"
+  ],
+  "completion": [
+   {
+    "criterion": "The human-confirmed Execution Brief is admitted as the Worker input",
+    "evidence": {
+     "artifact": "worker-input",
+     "sha256": "6fa09f70c91c52f72bb0fa6a2c60134f4c1db2c3cfb236a960d16c2f213bd549"
+    }
+   }
+  ],
+  "objective": "Brief (full intent in WorkerInput): Create tests/test_human_response_bounds.py covering runtime.kernel.human.validate_response(raw, accepted_request, task_id). Use plain dicts from runtime.kernel.contracts.message(kind, payload). Tes... Workspace blaine-pa3-target. Steps: 1) workspace.read form=file runtime/kernel/human.py as source-1; 2) worker.run packet_ref=worker-input ref, artifact=draft, context_refs=source refs; 3) workspace.write tests/test_human_response_bounds.py: content_ref=draft ref, precondition absent (new file) or a read receipt; 4) workspace.exec pa3-targeted-tests args [tests/test_human_response_bounds.py]; 5) workspace.exec pa3-completion-contract-suite; then COMPLETE. If tests fail: worker.run with context_refs + output-pa3-targeted-tests ref, workspace.read tests/test_human_response_bounds.py as current, workspace.write with precondition receipt of that read, rerun the tests."
+ },
+ "artifacts": {
+  "draft": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:ef3d8742db08bac3e21063240d82080977f595894581eea6b8bc8a5d1a6c14f6",
+  "output-pa3-completion-contract-suite": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:858859085db9b932b329423a042fbb7d2e2f33b83b3332be85baded1d8a1467b",
+  "output-pa3-targeted-tests": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:c4b808d34f4db00b333696dec1f3a43a2887d8bfe0cb7af07a3cb98ff43a7830",
+  "source-1": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+  "worker-input": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:6fa09f70c91c52f72bb0fa6a2c60134f4c1db2c3cfb236a960d16c2f213bd549"
+ },
+ "completion": {
+  "concerns": [],
+  "criteria": [
+   {
+    "detail": "Exact artifact digest verified",
+    "evidence_refs": [
+     "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:6fa09f70c91c52f72bb0fa6a2c60134f4c1db2c3cfb236a960d16c2f213bd549"
+    ],
+    "gating": true,
+    "id": "c1",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "artifact_digest@1"
+   },
+   {
+    "detail": "15 entries; admitted classes ['task.artifact.write', 'worker.run', 'workspace.exec', 'workspace.read', 'workspace.write']; 0 denial(s)",
+    "evidence_refs": [],
+    "gating": true,
+    "id": "no-unauthorized-effect",
+    "journal_range": [
+     0,
+     15
+    ],
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_journal@1"
+   },
+   {
+    "detail": "1 path(s) changed as required: ['tests/test_human_response_bounds.py']",
+    "evidence_refs": [
+     "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:6b2a38eca5d315da483554695c5881f9ff36fb1b86fe4fd15b82bbcd71236c53"
+    ],
+    "gating": true,
+    "id": "change-made",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "change_set@1"
+   },
+   {
+    "detail": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/5 completed; 3 predicate(s) held",
+    "evidence_refs": [
+     "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:1e6300f53f37c8935d3bd30665c7fe271750fcd29a9de2c70ecebbab5f0354f8"
+    ],
+    "gating": true,
+    "id": "tests-pass",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_result@1"
+   },
+   {
+    "detail": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/6 completed; 3 predicate(s) held",
+    "evidence_refs": [
+     "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:105835cb53b4beb1b6c1aeaa5e01972ccd0a32700fa0d414f328512426b07262"
+    ],
+    "gating": true,
+    "id": "canonical-1",
+    "level": "REQUIRED",
+    "status": "satisfied",
+    "verifier": "capability_result@1"
+   }
+  ],
+  "irrecoverable": [],
+  "legality": {
+   "blockers": [],
+   "legal": true
+  },
+  "outcome": "satisfied"
+ },
+ "contract": {
+  "amendment_ref": null,
+  "criteria": [
+   {
+    "id": "c1",
+    "level": "REQUIRED",
+    "provenance": {
+     "source": "user"
+    },
+    "requirement": "The human-confirmed Execution Brief is admitted as the Worker input",
+    "verifier": {
+     "artifact": "worker-input",
+     "kind": "artifact_digest",
+     "sha256": "6fa09f70c91c52f72bb0fa6a2c60134f4c1db2c3cfb236a960d16c2f213bd549",
+     "version": 1
+    }
+   },
+   {
+    "id": "no-unauthorized-effect",
+    "level": "REQUIRED",
+    "provenance": {
+     "invariant": true,
+     "ref": "implementation@1",
+     "source": "task_type"
+    },
+    "requirement": "Only authorized target effects were admitted, inside the Task workspace, and all are reconciled.",
+    "verifier": {
+     "kind": "capability_journal",
+     "predicates": [
+      {
+       "allowed": [
+        "worker.run",
+        "workspace.write",
+        "workspace.exec"
+       ],
+       "name": "no_target_effect"
+      },
+      {
+       "name": "workspace_subset"
+      },
+      {
+       "name": "admitted_before_observed"
+      },
+      {
+       "name": "effects_reconciled"
+      }
+     ],
+     "version": 1
+    }
+   },
+   {
+    "id": "change-made",
+    "level": "REQUIRED",
+    "provenance": {
+     "source": "user"
+    },
+    "requirement": "tests/test_human_response_bounds.py was written with evidence, and nothing outside the allowed paths changed.",
+    "verifier": {
+     "kind": "change_set",
+     "predicates": [
+      {
+       "name": "changed",
+       "paths": [
+        "tests/test_human_response_bounds.py"
+       ]
+      },
+      {
+       "allowed": [
+        "tests/"
+       ],
+       "name": "only_paths"
+      },
+      {
+       "name": "evidence_complete"
+      }
+     ],
+     "version": 1,
+     "workspace_id": "blaine-pa3-target"
+    }
+   },
+   {
+    "id": "tests-pass",
+    "level": "REQUIRED",
+    "provenance": {
+     "source": "user"
+    },
+    "requirement": "The targeted tests tests/test_human_response_bounds.py passed after the last change.",
+    "verifier": {
+     "kind": "capability_result",
+     "operation_class": "workspace.exec",
+     "predicates": [
+      {
+       "equals": 0,
+       "name": "exit_code"
+      },
+      {
+       "name": "result_after_last_change"
+      },
+      {
+       "name": "cleanup_confirmed"
+      }
+     ],
+     "profile": "pa3-targeted-tests",
+     "version": 1
+    }
+   },
+   {
+    "id": "canonical-1",
+    "level": "REQUIRED",
+    "provenance": {
+     "ref": "coding-policy:blaine-pa3-target",
+     "source": "operator_rule",
+     "source_digest": "sha256:67a062ca77174a34fcb578f532161291d582771ef0813636ddadf55b3fa7ed16"
+    },
+    "requirement": "The existing canonical hermetic suite profile pa3-completion-contract-suite passed after the last change.",
+    "verifier": {
+     "kind": "capability_result",
+     "operation_class": "workspace.exec",
+     "predicates": [
+      {
+       "equals": 0,
+       "name": "exit_code"
+      },
+      {
+       "name": "result_after_last_change"
+      },
+      {
+       "name": "cleanup_confirmed"
+      }
+     ],
+     "profile": "pa3-completion-contract-suite",
+     "version": 1
+    }
+   }
+  ],
+  "previous_ref": null,
+  "revision": 0,
+  "task_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef",
+  "task_type": {
+   "template": "implementation",
+   "version": 1
+  }
+ },
+ "contract_revision": 0,
+ "effects": [
+  {
+   "after": {
+    "sha256": "ef3d8742db08bac3e21063240d82080977f595894581eea6b8bc8a5d1a6c14f6"
+   },
+   "args": null,
+   "before": {
+    "absent": true
+   },
+   "operation_class": "workspace.write",
+   "operation_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/4",
+   "path": "tests/test_human_response_bounds.py",
+   "profile": null,
+   "status": "applied",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests/test_human_response_bounds.py"
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 0,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/5",
+   "output_bytes": 80,
+   "output_ref": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:c4b808d34f4db00b333696dec1f3a43a2887d8bfe0cb7af07a3cb98ff43a7830",
+   "path": null,
+   "profile": "pa3-targeted-tests",
+   "result": {},
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  },
+  {
+   "args": [
+    "-m",
+    "verification.cli",
+    "run",
+    "completion-contract",
+    "--worktree",
+    "."
+   ],
+   "cleanup": "confirmed",
+   "exit_code": 0,
+   "operation_class": "workspace.exec",
+   "operation_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/6",
+   "output_bytes": 1551,
+   "output_ref": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:858859085db9b932b329423a042fbb7d2e2f33b83b3332be85baded1d8a1467b",
+   "path": null,
+   "profile": "pa3-completion-contract-suite",
+   "result": {
+    "verification": "PASS"
+   },
+   "status": "completed",
+   "workspace_id": "blaine-pa3-target"
+  }
+ ],
+ "journal_length": 15,
+ "lifecycle": "COMPLETED",
+ "request_digest": "8c4092ae8f86e38105052be200d5b9e36311fda584dc2f26823b19c321d2f82d",
+ "result": {
+  "artifacts": {
+   "draft": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:ef3d8742db08bac3e21063240d82080977f595894581eea6b8bc8a5d1a6c14f6",
+   "output-pa3-completion-contract-suite": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:858859085db9b932b329423a042fbb7d2e2f33b83b3332be85baded1d8a1467b",
+   "output-pa3-targeted-tests": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:c4b808d34f4db00b333696dec1f3a43a2887d8bfe0cb7af07a3cb98ff43a7830",
+   "source-1": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:7f8e1f66f82e893ebdadb343fcbbf09b08bb072d105c7347773c235255f764ec",
+   "worker-input": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:6fa09f70c91c52f72bb0fa6a2c60134f4c1db2c3cfb236a960d16c2f213bd549"
+  },
+  "completion_ref": "artifact://task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef/sha256:922a23c8e642acbcdc3ee55feb79baa2b14f9483ef571715001fdd5e45dd43f4",
+  "concerns": [],
+  "outcome": "COMPLETED",
+  "task_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef"
+ },
+ "revision": 6,
+ "task_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef"
+}

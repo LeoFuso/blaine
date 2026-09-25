@@ -1,0 +1,233 @@
+{
+ "live-ui-completed": {
+  "task_id": "task-71deb9e958a7313354d5eb809e0839f785f4d0b392fd40d75e57321c71bc67e1",
+  "lifecycle": "COMPLETED",
+  "verifier": "satisfied",
+  "effects": [
+   [
+    "11",
+    "workspace.write",
+    null,
+    "conflict",
+    null
+   ],
+   [
+    "13",
+    "workspace.write",
+    null,
+    "applied",
+    null
+   ],
+   [
+    "14",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    0
+   ],
+   [
+    "15",
+    "workspace.exec",
+    "pa3-completion-contract-suite",
+    "completed",
+    0
+   ],
+   [
+    "4",
+    "workspace.write",
+    null,
+    "applied",
+    null
+   ],
+   [
+    "5",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    2
+   ],
+   [
+    "7",
+    "workspace.write",
+    null,
+    "conflict",
+    null
+   ],
+   [
+    "9",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    2
+   ]
+  ]
+ },
+ "live-ui-contention-failed": {
+  "task_id": "task-3e713e8d338e93f3306db56205bf7f3e15c7998f20a04f0452c8f5b7935f2177",
+  "lifecycle": "FAILED",
+  "verifier": "unsatisfied",
+  "effects": [
+   [
+    "10",
+    "workspace.write",
+    null,
+    "not_dispatched",
+    null
+   ],
+   [
+    "13",
+    "workspace.write",
+    null,
+    "conflict",
+    null
+   ],
+   [
+    "15",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    0
+   ],
+   [
+    "16",
+    "workspace.exec",
+    "pa3-completion-contract-suite",
+    "completed",
+    0
+   ],
+   [
+    "4",
+    "workspace.write",
+    null,
+    "conflict",
+    null
+   ],
+   [
+    "6",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    2
+   ],
+   [
+    "8",
+    "workspace.write",
+    null,
+    "conflict",
+    null
+   ]
+  ]
+ },
+ "live-ui-contention-cancelled": {
+  "task_id": "task-b2a75cb07e4d6612664edfbe4e440e90a60f104d8b2840f8db3fc230a4da93e6",
+  "lifecycle": "CANCELLED",
+  "verifier": "unsatisfied",
+  "effects": [
+   [
+    "4",
+    "workspace.write",
+    null,
+    "conflict",
+    null
+   ],
+   [
+    "6",
+    "workspace.write",
+    null,
+    "conflict",
+    null
+   ],
+   [
+    "8",
+    "workspace.write",
+    null,
+    "not_dispatched",
+    null
+   ]
+  ]
+ },
+ "live-ui-first-failed": {
+  "task_id": "task-ff41f493e881e2044e1b0b8ae9692f3012be6e25f4009bf8e6a5b2be995bad0e",
+  "lifecycle": "FAILED",
+  "verifier": "unsatisfied",
+  "effects": [
+   [
+    "11",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    1
+   ],
+   [
+    "13",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    1
+   ],
+   [
+    "15",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    1
+   ],
+   [
+    "4",
+    "workspace.write",
+    null,
+    "applied",
+    null
+   ],
+   [
+    "5",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    1
+   ],
+   [
+    "7",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    1
+   ],
+   [
+    "9",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    1
+   ]
+  ]
+ },
+ "headless-smoke-4-completed": {
+  "task_id": "task-ac4beed1118e9aa29b52c0ec0e618cff697d6ebeec621cd983f8afc8f844c3ef",
+  "lifecycle": "COMPLETED",
+  "verifier": "satisfied",
+  "effects": [
+   [
+    "4",
+    "workspace.write",
+    null,
+    "applied",
+    null
+   ],
+   [
+    "5",
+    "workspace.exec",
+    "pa3-targeted-tests",
+    "completed",
+    0
+   ],
+   [
+    "6",
+    "workspace.exec",
+    "pa3-completion-contract-suite",
+    "completed",
+    0
+   ]
+  ]
+ }
+}
