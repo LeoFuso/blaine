@@ -21,6 +21,7 @@ Conversation (encrypted, durable):
     GET  /conversation/<id>
     GET  /conversation/<id>/messages?after=<seq>
     GET  /conversation/<id>/tasks
+    GET  /conversation/<id>/projection?after=<cursor>   (the presentation contract)
     POST /conversation/<id>/converse                 {"message_id", "text"}
     POST /conversation/<id>/brief/propose            {}
     GET  /conversation/<id>/brief/<brief_id>
@@ -33,14 +34,12 @@ delegated Task's verified outcome to its Conversation.
 import json
 import os
 import re
-from functools import cached_property
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 from runtime.kernel.contracts import MAX_PACKET, identifier, text as bounded_text
-from runtime.kernel.conversation import ConversationService
-from runtime.personal_agent import PersonalAgent, RestateBinding, human_response, small_request
+from runtime.personal_agent import human_response, small_request
+from runtime.personal_services import Services
 
 INGRESS = os.environ.get('BLAINE_D2_INGRESS', 'http://127.0.0.1:48080')
 HOST = '127.0.0.1'
@@ -87,52 +86,7 @@ def read_task_events(task_id: str, after: int) -> dict:
     return {'task_id': task_id, 'after': after, 'next': seq, 'events': events}
 
 
-class Services:
-    """Composition root: wires the Personal Agent services for this process."""
-
-    def __init__(self):
-        self.data_dir = Path(os.environ.get('BLAINE_D2_DATA', '.local/d2'))
-        path = os.environ.get('BLAINE_DEPLOYMENT_CONFIG')
-        self.deployment = json.loads(Path(path).read_text()) if path else {}
-
-    @cached_property
-    def agent(self):
-        return PersonalAgent(RestateBinding(INGRESS))
-
-    @cached_property
-    def store(self):
-        return ConversationService(self.data_dir)
-
-    @cached_property
-    def model(self):
-        from runtime.personal_conversation import ConversationModel
-        cognition = self.deployment.get('cognition')
-        if not cognition:
-            raise ValueError('No local model is deployed for the Personal Agent')
-        return ConversationModel(endpoint=cognition['endpoint'], model=cognition['model'])
-
-    @cached_property
-    def conversation(self):
-        from runtime.personal_conversation import PersonalConversation
-        return PersonalConversation(self.store, self.model, self.agent)
-
-    @cached_property
-    def briefs(self):
-        from runtime.personal_brief import BriefService, CodingPolicy
-        return BriefService(self.store, self.model, self.agent, CodingPolicy(self.deployment))
-
-    def delivery(self):
-        from runtime.personal_brief import BriefService, CodingPolicy
-        from runtime.personal_delivery import ResultDelivery, ResultInterpreter
-        # Its own store connection: the delivery thread never shares a SQLite handle.
-        store = ConversationService(self.data_dir)
-        model = self.model if self.deployment.get('cognition') else None
-        briefs = (BriefService(store, model, self.agent, CodingPolicy(self.deployment))
-                  if self.deployment.get('coding_workspaces') else None)
-        return ResultDelivery(store, self.agent, ResultInterpreter(model), briefs)
-
-
-services = Services()
+services = Services()  # composition root shared with personal_acp
 
 
 def conversation_id(value: object) -> str:
@@ -202,6 +156,10 @@ class BridgeHandler(BaseHTTPRequestHandler):
                 after = int(query.get('after', ['0'])[0])
                 return self._dispatch(lambda: {'conversation_id': cid, 'messages':
                                                services.store.list_messages(conversation_id(cid), limit=500, after=after)})
+            if tail == ['projection']:
+                # The presentation contract (docs/contracts/conversation-projection.md).
+                after = int(query.get('after', ['0'])[0])
+                return self._dispatch(lambda: services.projection.read(conversation_id(cid), after))
             if tail == ['tasks']:
                 return self._dispatch(lambda: {'conversation_id': cid,
                                                'tasks': services.store.list_task_links(conversation_id(cid))})

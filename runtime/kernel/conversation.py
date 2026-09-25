@@ -287,6 +287,17 @@ class ConversationService:
                 payload_enc BLOB NOT NULL,
                 payload_nonce BLOB NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS projection_entries (
+                conversation_id TEXT NOT NULL REFERENCES conversations(id),
+                entry_id TEXT NOT NULL,
+                digest TEXT NOT NULL,
+                seq INTEGER NOT NULL,
+                PRIMARY KEY (conversation_id, entry_id)
+            );
+            CREATE TABLE IF NOT EXISTS projection_counter (
+                id INTEGER PRIMARY KEY CHECK (id = 1),
+                seq INTEGER NOT NULL
+            );
             CREATE INDEX IF NOT EXISTS idx_msg_conv
                 ON conversation_messages(conversation_id, created_at);
             CREATE INDEX IF NOT EXISTS idx_task_link_conv
@@ -547,6 +558,50 @@ class ConversationService:
         except Exception:
             self._db.rollback()
             raise
+
+    # --- Conversation projection bookkeeping (PA-4) ---
+    #
+    # Digests and cursors only: entry bodies are recomputed from the sources on
+    # every read, so this table never holds a plaintext copy of encrypted history.
+
+    @serialized
+    def stamp_projection(self, conversation_id: str, digests: dict[str, str]) -> dict[str, int]:
+        """Give every new or changed entry the next store-wide seq; one short transaction."""
+        try:
+            self._db.execute('BEGIN IMMEDIATE')
+            known = dict(((row[0], (row[1], row[2])) for row in self._db.execute(
+                'SELECT entry_id, digest, seq FROM projection_entries WHERE conversation_id = ?',
+                (conversation_id,))))
+            row = self._db.execute('SELECT seq FROM projection_counter WHERE id = 1').fetchone()
+            counter = row[0] if row else 0
+            stamped = {}
+            for entry_id, digest in digests.items():
+                previous = known.get(entry_id)
+                if previous and previous[0] == digest:
+                    stamped[entry_id] = previous[1]
+                    continue
+                counter += 1
+                stamped[entry_id] = counter
+                self._db.execute('INSERT OR REPLACE INTO projection_entries VALUES (?, ?, ?, ?)',
+                                 (conversation_id, entry_id, digest, counter))
+            self._db.execute('INSERT OR REPLACE INTO projection_counter VALUES (1, ?)', (counter,))
+            self._db.commit()
+        except Exception:
+            self._db.rollback()
+            raise
+        return stamped
+
+    @serialized
+    def projection_entry_ids(self, conversation_id: str) -> list[str]:
+        return [row[0] for row in self._db.execute(
+            'SELECT entry_id FROM projection_entries WHERE conversation_id = ?', (conversation_id,))]
+
+    @serialized
+    def list_briefs(self, conversation_id: str) -> list[dict]:
+        ids = [row[0] for row in self._db.execute(
+            'SELECT brief_id FROM execution_briefs WHERE conversation_id = ? ORDER BY created_at',
+            (conversation_id,))]
+        return [self.get_brief(conversation_id, brief_id) for brief_id in ids]
 
     # --- Execution Briefs (encrypted; a brief requests authority, never grants it) ---
 
