@@ -1,0 +1,48 @@
+
+PLAY [Own bounded RTX 5090 and vLLM infrastructure telemetry] ******************
+
+TASK [Enforce the staging and activation boundary] *****************************
+ok: [localhost] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [Verify the accepted native host before package installation] *************
+ok: [localhost]
+
+TASK [Create only telemetry-owned directories] *********************************
+ok: [localhost] => (item=/var/cache/blaine-telemetry)
+ok: [localhost] => (item=/etc/dcgm-exporter)
+ok: [localhost] => (item=/usr/local/lib/blaine)
+ok: [localhost] => (item=/etc/systemd/system)
+
+TASK [Create protected infrastructure staging directory] ***********************
+ok: [localhost]
+
+TASK [Retrieve the exact official tested package pair] *************************
+ok: [localhost] => (item={'file': 'datacenter-gpu-manager-4-core_4.6.1-1_amd64.deb', 'sha256': '75cb5c40079aceee83ca291d6129a30e0110319015e6b54b3fbdcf1a9ec2c998'})
+ok: [localhost] => (item={'file': 'datacenter-gpu-manager-exporter_4.8.4.3955-1_amd64.deb', 'sha256': '78dae98dfd53e571463afe920ec98eaec80f587145ae090d10b162ad3c0bb6cb'})
+
+TASK [Install only DCGM core and official exporter without service autostart] ***
+ok: [localhost] => (item={'file': 'datacenter-gpu-manager-4-core_4.6.1-1_amd64.deb', 'sha256': '75cb5c40079aceee83ca291d6129a30e0110319015e6b54b3fbdcf1a9ec2c998'})
+ok: [localhost] => (item={'file': 'datacenter-gpu-manager-exporter_4.8.4.3955-1_amd64.deb', 'sha256': '78dae98dfd53e571463afe920ec98eaec80f587145ae090d10b162ad3c0bb6cb'})
+
+TASK [Stage bounded exporter counters and dedicated native unit] ***************
+ok: [localhost] => (item={'src': '../telemetry/gpu-counters.csv', 'dest': '/etc/dcgm-exporter/blaine-counters.csv'})
+ok: [localhost] => (item={'src': '../systemd/blaine-gpu-exporter.service', 'dest': '/etc/systemd/system/blaine-gpu-exporter.service'})
+
+TASK [Stage separately owned Alloy fragment and reconciler] ********************
+ok: [localhost] => (item={'src': '../alloy/platform-telemetry.alloy', 'dest': '/etc/blaine/infra/platform-telemetry.alloy'})
+ok: [localhost] => (item={'src': '../telemetry/reconcile-alloy.py', 'dest': '/usr/local/lib/blaine/platform-telemetry.py'})
+
+TASK [Start the only GPU exporter with unprivileged embedded DCGM] *************
+ok: [localhost]
+
+TASK [Verify hardware metrics before wiring Alloy] *****************************
+ok: [localhost]
+
+TASK [Validate and reconcile only the platform block and restart Alloy if changed] ***
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0

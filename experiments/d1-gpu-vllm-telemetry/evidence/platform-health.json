@@ -1,0 +1,15 @@
+{
+  "observed_at": 1790039495.1060693,
+  "user_services": {
+    "exit_code": 0,
+    "stdout": "Id=docker.service\nActiveState=active\nSubState=running\n\nId=blaine-infra.service\nActiveState=active\nSubState=exited"
+  },
+  "containers": {
+    "exit_code": 0,
+    "stdout": "blaine-infra-rootless-langfuse-worker-1 Up 8 hours (healthy)\nblaine-infra-rootless-langfuse-web-1 Up 8 hours (healthy)\nblaine-infra-rootless-clickhouse-1 Up 8 hours (healthy)\nblaine-infra-rootless-object-storage-1 Up 8 hours (healthy)"
+  },
+  "system_services": {
+    "exit_code": 0,
+    "stdout": "Id=postgresql.service\nActiveState=active\n\nId=redis-server.service\nActiveState=active\n\nId=docker.service\nActiveState=active"
+  }
+}

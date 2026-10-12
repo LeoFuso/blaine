@@ -1,0 +1,146 @@
+{
+  "observed_at": 1790038522.340406,
+  "boot_id": "4e64cd04-43eb-45ef-b493-15fb67cc8072",
+  "units": {
+    "blaine-generation": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nActiveEnterTimestamp=Mon 2026-09-21 17:47:19 -03\nMainPID=346389\nNRestarts=0"
+    },
+    "blaine-embedding": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nActiveEnterTimestamp=Mon 2026-09-21 17:46:56 -03\nMainPID=346052\nNRestarts=0"
+    },
+    "blaine-mirix": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nActiveEnterTimestamp=Mon 2026-09-21 17:58:29 -03\nMainPID=356517\nNRestarts=0"
+    },
+    "blaine-restate": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nActiveEnterTimestamp=Mon 2026-09-21 18:00:05 -03\nMainPID=358882\nNRestarts=0"
+    },
+    "blaine-runtime": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nActiveEnterTimestamp=Mon 2026-09-21 18:01:06 -03\nMainPID=360671\nNRestarts=0"
+    }
+  },
+  "alloy": {
+    "exit_code": 0,
+    "stdout": "ActiveState=active\nMainPID=499383\nNRestarts=0"
+  },
+  "alloy_ready": "Alloy is ready.",
+  "config_sha256": "2c0168ecb501f0c9553e59a9ec91b367150afc714d7ce18999db8d29bb6bdb5d",
+  "scrapes": [
+    "host",
+    "alloy"
+  ],
+  "fleet_active": false,
+  "remote_write_count": 1,
+  "alloy_metrics": [
+    "prometheus_forwarded_samples_total{component_id=\"prometheus.scrape.alloy\",component_path=\"/\"} 74314",
+    "prometheus_forwarded_samples_total{component_id=\"prometheus.scrape.host\",component_path=\"/\"} 252410",
+    "prometheus_remote_storage_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 7.42376e+06",
+    "prometheus_remote_storage_enqueue_retries_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_exemplars_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_exemplars_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_exemplars_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_exemplars_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_highest_timestamp_in_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\"} 1.790038517e+09",
+    "prometheus_remote_storage_histograms_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_histograms_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_histograms_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_histograms_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_max_samples_per_send{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 500",
+    "prometheus_remote_storage_metadata_bytes_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_metadata_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_metadata_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_metadata_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_queue_highest_sent_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.790038517e+09",
+    "prometheus_remote_storage_queue_highest_timestamp_seconds{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1.790038517e+09",
+    "prometheus_remote_storage_samples_failed_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_samples_pending{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 75",
+    "prometheus_remote_storage_samples_retried_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0",
+    "prometheus_remote_storage_samples_total{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 326649",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.005\"} 0",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.01\"} 0",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.025\"} 0",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.05\"} 0",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.1\"} 0",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.25\"} 0",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"0.5\"} 210",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"1\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"2.5\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"5\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"10\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"25\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"60\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"120\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"300\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_bucket{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\",le=\"+Inf\"} 781",
+    "prometheus_remote_storage_sent_batch_duration_seconds_sum{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 396.5944219160002",
+    "prometheus_remote_storage_sent_batch_duration_seconds_count{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 781",
+    "prometheus_remote_storage_shard_capacity{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2500",
+    "prometheus_remote_storage_shards{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1",
+    "prometheus_remote_storage_shards_desired{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 0.1463394248162121",
+    "prometheus_remote_storage_shards_max{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 2",
+    "prometheus_remote_storage_shards_min{component_id=\"prometheus.remote_write.grafana_metrics\",component_path=\"/\",remote_name=\"grafana_metrics\",url=\"https://prometheus-prod-40-prod-sa-east-1.grafana.net/api/prom/push\"} 1"
+  ],
+  "gpu": {
+    "exit_code": 0,
+    "stdout": "name, driver_version, memory.total [MiB], memory.used [MiB], memory.free [MiB], utilization.gpu [%], utilization.memory [%], temperature.gpu, power.draw [W], power.limit [W], clocks.current.sm [MHz], clocks.current.memory [MHz]\nNVIDIA GeForce RTX 5090, 595.91.07, 32607 MiB, 29382 MiB, 2727 MiB, 0 %, 8 %, 44, 25.95 W, 600.00 W, 300 MHz, 405 MHz"
+  },
+  "exporter_units": {
+    "exit_code": 1,
+    "stdout": "UNIT FILE STATE PRESET\n\n0 unit files listed."
+  },
+  "cloud_up": {
+    "query": "up{host=\"blaine\",environment=\"blaine-dev\"}",
+    "status": "success",
+    "result": [
+      {
+        "metric": {
+          "__name__": "up",
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "blaine",
+          "job": "integrations/self"
+        },
+        "value": [
+          1790038522.452,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "asserts_env": "blaine-dev",
+          "environment": "blaine-dev",
+          "host": "blaine",
+          "instance": "blaine",
+          "job": "integrations/unix"
+        },
+        "value": [
+          1790038522.452,
+          "1"
+        ]
+      }
+    ]
+  },
+  "host_cpu": {
+    "query": "count(node_cpu_seconds_total{host=\"blaine\",environment=\"blaine-dev\"})",
+    "status": "success",
+    "result": [
+      {
+        "metric": {},
+        "value": [
+          1790038522.478,
+          "256"
+        ]
+      }
+    ]
+  },
+  "backup": {
+    "exit_code": 0,
+    "stdout": "ActiveState=inactive\nUnitFileState=disabled"
+  }
+}

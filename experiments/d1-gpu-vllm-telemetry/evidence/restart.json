@@ -1,0 +1,42 @@
+{
+  "started": 1790039102.371839,
+  "before": {
+    "blaine-gpu-exporter": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nMainPID=547270\nNRestarts=0"
+    },
+    "alloy": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nMainPID=547393\nNRestarts=0"
+    }
+  },
+  "after": {
+    "blaine-gpu-exporter": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nUnitFileState=enabled\nMainPID=550901\nNRestarts=0\nCapabilityBoundingSet=\nUser=nvidia-dcgm"
+    },
+    "alloy": {
+      "exit_code": 0,
+      "stdout": "ActiveState=active\nUnitFileState=enabled\nMainPID=550937\nNRestarts=0\nCapabilityBoundingSet=cap_chown cap_dac_override cap_dac_read_search cap_fowner cap_fsetid cap_kill cap_setgid cap_setuid cap_setpcap cap_linux_immutable cap_net_bind_service cap_net_broadcast cap_net_admin cap_net_raw cap_ipc_lock cap_ipc_owner cap_sys_module cap_sys_rawio cap_sys_chroot cap_sys_ptrace cap_sys_pacct cap_sys_admin cap_sys_boot cap_sys_nice cap_sys_resource cap_sys_time cap_sys_tty_config cap_mknod cap_lease cap_audit_write cap_audit_control cap_setfcap cap_mac_override cap_mac_admin cap_syslog cap_wake_alarm cap_block_suspend cap_audit_read cap_perfmon cap_bpf cap_checkpoint_restore\nUser=alloy"
+    }
+  },
+  "local_gpu_metrics_available": true,
+  "alloy_ready": "Alloy is ready.",
+  "vendor_units": {
+    "exit_code": 0,
+    "stdout": "ActiveState=inactive\nUnitFileState=disabled\n\nActiveState=inactive\nUnitFileState=disabled"
+  },
+  "exporter_version": {
+    "exit_code": 0,
+    "stdout": "DCGM Exporter version 4.8.4"
+  },
+  "dcgm_version": {
+    "exit_code": 0,
+    "stdout": "Version : 4.6.1\nBuild ID : 22441\nBuild Date : 2026-07-24\nBuild Type : RelWithDebInfo\nCommit ID : 6e0069fb6ea61e5edd82e652192dfa64de061378\nBranch Name : v4.6.1\nCPU Arch : x86_64\nBuild Platform : Linux 6.17.0-35-generic #35~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue May 26 19:30:42\nUTC 2 x86_64\nCRC : b0bfe0b072c3f07fbccca796644267d6"
+  },
+  "listeners": {
+    "exit_code": 0,
+    "stdout": "State  Recv-Q Send-Q Local Address:Port Peer Address:Port\nLISTEN 0      4096       127.0.0.1:9400      0.0.0.0:*"
+  },
+  "ended": 1790039110.5418699
+}
