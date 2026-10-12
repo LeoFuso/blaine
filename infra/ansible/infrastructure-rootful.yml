@@ -5,6 +5,8 @@
   vars:
     blaine_prefix: ""
     blaine_activate: false
+    # Preserve configuration while preventing automatic activation by default.
+    blaine_paused: true
     blaine_allow_legacy_rootful: false
     # Live execution follows reviewed bootstrap-packages.py. No full-host upgrade.
     blaine_packages:
@@ -159,11 +161,11 @@
         name: blaine-infra.service
         enabled: true
         state: "{{ 'restarted' if staged_files.changed or alloy_config.changed else 'started' }}"
-      when: blaine_activate | bool
+      when: blaine_activate | bool and not (blaine_paused | bool)
 
     - name: Start and enable package-owned Alloy
       ansible.builtin.systemd_service:
         name: alloy.service
         enabled: true
         state: "{{ 'restarted' if staged_files.changed else 'started' }}"
-      when: blaine_activate | bool
+      when: blaine_activate | bool and not (blaine_paused | bool)

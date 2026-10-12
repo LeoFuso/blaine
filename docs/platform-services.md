@@ -1,5 +1,15 @@
 # D1 service adoption and prepared reboot proof
 
+**Operator pause, 2026-10-12:** Blaine services and observability are paused by
+default while the operator evaluates other work models. Configuration, packages,
+service definitions and state remain in place. PostgreSQL and Redis remain
+available. The Ansible activation paths require the explicit override
+`blaine_paused=false` in addition to their existing activation gates before they
+start Blaine-owned services. Bitwarden is used as a secrets client; no Bitwarden
+daemon is configured by this project. During the live pause, the Blaine runtime
+did not exit within its 60-second systemd stop timeout and systemd sent SIGKILL;
+its unit is disabled and stopped, while PostgreSQL and Redis remained active.
+
 **2026-09-21: D1.A/B/C/D live adoption PASS within the evidence below. D1 remains
 IN PROGRESS: D1.G host reboot is not executed; D1.F backup remains PAUSED.**
 This accepts the actual runtime and its bounded integrations, not general Daily

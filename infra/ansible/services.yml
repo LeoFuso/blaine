@@ -7,10 +7,11 @@
     blaine_activate: false
     blaine_operator_home: /home/leofuso
     blaine_operator_uid: 1000
+    blaine_paused: true
     service_home: '{{ blaine_prefix }}{{ blaine_operator_home }}'
     config_root: '{{ service_home }}/.config/blaine'
     runtime_root: '{{ service_home }}/.local/share/blaine/runtime'
-    service_names: [generation, embedding, mirix, restate, runtime]
+    service_names: [generation, embedding, mirix, restate, runtime, hub-transport]
   tasks:
     - name: Require bounded scratch or real operator paths
       ansible.builtin.assert:
@@ -124,4 +125,4 @@
         enabled: true
         state: started
       loop: '{{ service_names }}'
-      when: blaine_activate | bool
+      when: blaine_activate | bool and not (blaine_paused | bool)

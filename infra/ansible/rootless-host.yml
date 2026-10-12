@@ -5,6 +5,7 @@
   vars:
     blaine_operator_user: leofuso
     blaine_rootless_accepted: false
+    blaine_paused: true
   tasks:
     - name: Verify installed rootless prerequisite packages
       ansible.builtin.command:
@@ -154,4 +155,4 @@
         name: alloy.service
         enabled: true
         state: "{{ 'restarted' if local_alloy.changed else 'started' }}"
-      when: blaine_rootless_accepted | bool
+      when: blaine_rootless_accepted | bool and not (blaine_paused | bool)

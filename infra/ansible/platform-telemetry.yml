@@ -5,6 +5,7 @@
   vars:
     blaine_prefix: ""
     blaine_activate: false
+    blaine_paused: true
     nvidia_repository: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64
     telemetry_packages:
       - file: datacenter-gpu-manager-4-core_4.6.1-1_amd64.deb
@@ -99,7 +100,7 @@
         daemon_reload: '{{ gpu_staged.changed }}'
         enabled: true
         state: "{{ 'restarted' if gpu_staged.changed else 'started' }}"
-      when: blaine_activate | bool
+      when: blaine_activate | bool and not (blaine_paused | bool)
 
     - name: Verify hardware metrics before wiring Alloy
       ansible.builtin.uri:

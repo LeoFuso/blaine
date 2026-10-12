@@ -7,6 +7,8 @@
     blaine_operator_home: /home/leofuso
     blaine_operator_uid: 1000
     blaine_activate: false
+    # Keep the preserved deployment paused unless an operator explicitly resumes it.
+    blaine_paused: true
     blaine_config: '{{ blaine_prefix }}{{ blaine_operator_home }}/.config/blaine'
     blaine_state: '{{ blaine_prefix }}{{ blaine_operator_home }}/.local/share/blaine/infra'
   tasks:
@@ -94,7 +96,7 @@
         name: docker.service
         enabled: true
         state: started
-      when: blaine_activate | bool
+      when: blaine_activate | bool and not (blaine_paused | bool)
 
     - name: Validate private runtime and selected rootless daemon
       ansible.builtin.command:
@@ -120,7 +122,7 @@
         daemon_reload: '{{ staged_rootless.changed }}'
         enabled: true
         state: "{{ 'restarted' if staged_rootless.changed else 'started' }}"
-      when: blaine_activate | bool
+      when: blaine_activate | bool and not (blaine_paused | bool)
 
     - name: Explain the default staging boundary
       ansible.builtin.debug:
